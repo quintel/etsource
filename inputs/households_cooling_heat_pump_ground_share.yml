@@ -1,0 +1,22 @@
+--- 
+attr_name: cooling_market_share
+comments: 
+factor: 100.0
+id: 351
+key: households_cooling_heat_pump_ground_share
+keys: heatpump_cooling_households_energetic
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Heat pump (ground)
+query: UPDATE(LINK(heatpump_cooling_households_energetic,cooling_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
+share_group: cooling_households
+start_value: 
+start_value_gql: future:V(heatpump_households_energetic;share_of_heating_demand_households_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

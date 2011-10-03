@@ -1,0 +1,22 @@
+--- 
+attr_name: heating_market_share
+comments: 
+factor: 100.0
+id: 340
+key: households_heating_pellet_stove_share
+keys: heater_on_biomass_households_energetic
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Pellet stove
+query: UPDATE(LINK(heater_on_biomass_households_energetic,heating_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
+share_group: heating_households
+start_value: 
+start_value_gql: present:V(heater_on_biomass_households_energetic;share_of_heating_demand_households_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

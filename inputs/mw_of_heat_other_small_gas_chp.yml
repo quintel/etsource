@@ -1,0 +1,27 @@
+--- 
+attr_name: production_in_mw
+comments: |-
+  The max value is dynamically determined by how many CHPs would be build if all of the electricity demand would be supplied by this specific CHP.
+  
+  The max value field is taken from the Excel model, but is overrided by the dynamic field, so not used.
+  
+  Also, limited to 99% to avoid negative numbers.
+factor: 1.0
+id: 544
+key: mw_of_heat_other_small_gas_chp
+keys: chp_other_other_energetic
+label: ""
+label_query: 
+max_value: 17042.0
+max_value_gql: present:PRODUCT(2,DIVIDE(V(heat_demand_other_other_energetic;demand),V(chp_other_other_energetic;typical_heat_production_per_unit)))
+min_value: 0.0
+min_value_gql: 
+name: Small gas CHP
+query: UPDATE(OUTPUT_LINKS(chp_other_other_energetic;constant), share, PRODUCT(V(chp_other_other_energetic), USER_INPUT(), SECS_PER_YEAR))
+share_group: ""
+start_value: 
+start_value_gql: present:V(chp_other_other_energetic; heat_production_in_mw)
+unit: MW
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

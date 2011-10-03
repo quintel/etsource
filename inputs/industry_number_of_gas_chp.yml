@@ -1,0 +1,29 @@
+--- 
+attr_name: number_of_units
+comments: |-
+  The max value is dynamically determined by how many CHPs would be build if all of the electricity demand would be supplied by this specific CHP.
+  
+  The max value field is taken from the Excel model, but is overrided by the dynamic field, so not used.
+factor: 1.0
+id: 322
+key: industry_number_of_gas_chp
+keys: small_chp_industry_energetic
+label: ""
+label_query: 
+max_value: 30500.0
+max_value_gql: future:DIVIDE(V(electricity_industry_energetic;demand),V(small_chp_industry_energetic;typical_electricity_production_per_unit))
+min_value: 0.0
+min_value_gql: 
+name: Gas CHP
+query: |-
+  EACH(
+              UPDATE(V(small_chp_industry_energetic), number_of_units, USER_INPUT()),
+              UPDATE(OUTPUT_LINKS(V(small_chp_industry_energetic);constant), share, V(small_chp_industry_energetic; production_based_on_number_of_units)),
+            )
+share_group: ""
+start_value: 
+start_value_gql: present:V(small_chp_industry_energetic;number_of_units)
+unit: "#"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

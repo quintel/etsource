@@ -1,0 +1,26 @@
+--- 
+attr_name: useable_heat_output_link_share
+comments: ""
+factor: 100.0
+id: 397
+key: buildings_waste_heat_recovery
+keys: heat_recovery_savings_buildings_energetic
+label: ""
+label_query: 
+max_value: 50.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Waste heat recovery
+query: |-
+  EACH(
+          UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(heat_recovery_savings_buildings_energetic);useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
+          UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(cold_recovery_savings_buildings_energetic);cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
+        )
+share_group: ""
+start_value: 
+start_value_gql: present:AREA(heat_recovery)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

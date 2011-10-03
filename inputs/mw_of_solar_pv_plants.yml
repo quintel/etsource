@@ -1,0 +1,22 @@
+--- 
+attr_name: production_in_mw
+comments: 
+factor: 1.0
+id: 501
+key: mw_of_solar_pv_plants
+keys: solar_pv_central_production_energy_energetic
+label: 
+label_query: 
+max_value: 300.0
+max_value_gql: present:DIVIDE(Q(final_demand_electricity),V(solar_pv_central_production_energy_energetic;full_load_seconds))
+min_value: 0.0
+min_value_gql: 
+name: Solar PV plants
+query: UPDATE(OUTPUT_LINKS(solar_pv_central_production_energy_energetic;constant), share, PRODUCT(V(solar_pv_central_production_energy_energetic), USER_INPUT(), SECS_PER_YEAR))
+share_group: ""
+start_value: 
+start_value_gql: present:V(solar_pv_central_production_energy_energetic;electricity_production_in_mw)
+unit: MW
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

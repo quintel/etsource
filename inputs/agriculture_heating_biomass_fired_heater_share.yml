@@ -1,0 +1,28 @@
+--- 
+attr_name: agri_heating_market_share
+comments: 
+factor: 100.0
+id: 225
+key: agriculture_heating_biomass_fired_heater_share
+keys: biomass_burner_agri_agriculture_energetic
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Biomass-fired heater
+query: |-
+  EACH(
+              UPDATE(LINK(biomass_burner_agri_agriculture_energetic,heating_demand_agriculture_energetic), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(heating_demand_agriculture_energetic,gas_burner_agri_agriculture_energetic), share, 
+                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_demand_agriculture_energetic)),UPDATE_COLLECTION()); share))), 1)
+              )
+            )
+share_group: agri_heat
+start_value: 0.0
+start_value_gql: present:V(biomass_burner_agri_agriculture_energetic;share_of_heating_demand_agriculture_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

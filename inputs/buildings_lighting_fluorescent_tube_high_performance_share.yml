@@ -1,0 +1,28 @@
+--- 
+attr_name: lighting_buildings_market_share
+comments: 
+factor: 100.0
+id: 401
+key: buildings_lighting_fluorescent_tube_high_performance_share
+keys: tl8_buildings_energetic
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Fluorescent tube high performance
+query: |-
+  EACH(
+              UPDATE(LINK(tl8_buildings_energetic,lighting_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(lighting_buildings_energetic,tl5_buildings_energetic), share, 
+                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(lighting_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
+              )
+            )
+share_group: lighting_buildings
+start_value: 
+start_value_gql: present:V(tl8_buildings_energetic;share_of_lighting_buildings_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

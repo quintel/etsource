@@ -1,0 +1,32 @@
+--- 
+attr_name: agri_heating_market_share
+comments: |-
+  changed max value for slider that was set to the output of the CHP:
+  future:Q(max_percentage_heat_network_agriculture)
+  This was not good, as tapped heat can also be produced centrally.
+  This central production is now also included in the named query.
+factor: 100.0
+id: 327
+key: agriculture_heating_combined_heat_power_share
+keys: steam_hot_water_agriculture_energetic
+label: ""
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Combined heat power
+query: |-
+  EACH(
+              UPDATE(LINK(steam_hot_water_agriculture_energetic,heating_demand_agriculture_energetic), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(heating_demand_agriculture_energetic,gas_burner_agri_agriculture_energetic), share, 
+                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_demand_agriculture_energetic)),UPDATE_COLLECTION()); share))), 1)
+              )
+            )
+share_group: agri_heat
+start_value: 3.5
+start_value_gql: future:V(steam_hot_water_agriculture_energetic;share_of_heating_demand_agriculture_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

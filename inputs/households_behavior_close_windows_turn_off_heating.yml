@@ -1,0 +1,22 @@
+--- 
+attr_name: decrease_total
+comments: 
+factor: 1500.0
+id: 370
+key: households_behavior_close_windows_turn_off_heating
+keys: heating_demand_with_current_insulation_households_energetic_AND_heating_new_houses_current_insulation_households_energetic
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Close windows / Turn off heating
+query: UPDATE(V(heating_demand_with_current_insulation_households_energetic,heating_new_houses_current_insulation_households_energetic), preset_demand, NEG(DIVIDE(USER_INPUT(),V(15.0))))
+share_group: ""
+start_value: 0.0
+start_value_gql: 
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: "%"

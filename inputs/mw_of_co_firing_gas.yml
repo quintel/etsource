@@ -1,0 +1,22 @@
+--- 
+attr_name: production_in_mw
+comments: ""
+factor: 1.0
+id: 518
+key: mw_of_co_firing_gas
+keys: co_firing_gas_energy
+label: ""
+label_query: 
+max_value: 300.0
+max_value_gql: present:DIVIDE(Q(final_demand_electricity),V(co_firing_gas_energy; full_load_seconds))
+min_value: 0.0
+min_value_gql: 
+name: Co-firing gas
+query: UPDATE(OUTPUT_LINKS(co_firing_gas_energy;constant), share, PRODUCT(V(co_firing_gas_energy), USER_INPUT(), SECS_PER_YEAR))
+share_group: ""
+start_value: 
+start_value_gql: present:V(co_firing_gas_energy; electricity_production_in_mw)
+unit: MW
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

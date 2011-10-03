@@ -1,0 +1,26 @@
+--- 
+attr_name: number_of_units
+comments: 
+factor: 1.0
+id: 270
+key: number_of_geothermal_electric
+keys: geothermal_electricity_energy
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: present:DIVIDE(Q(electricity_production),V(geothermal_electricity_energy;typical_electricity_production_per_unit))
+min_value: 0.0
+min_value_gql: 
+name: Geothermal electric
+query: |-
+  EACH(
+              UPDATE(V(geothermal_electricity_energy), number_of_units, USER_INPUT()),
+              UPDATE(OUTPUT_LINKS(V(geothermal_electricity_energy);constant), share, V(geothermal_electricity_energy; production_based_on_number_of_units)),
+            )
+share_group: 
+start_value: 
+start_value_gql: present:V(geothermal_electricity_energy;number_of_units)
+unit: "#"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

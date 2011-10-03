@@ -1,0 +1,26 @@
+--- 
+attr_name: number_of_units
+comments: 
+factor: 1.0
+id: 276
+key: number_of_large_gas_chp
+keys: large_chp_industry_energetic
+label: 
+label_query: 
+max_value: 100000000.0
+max_value_gql: present:PRODUCT(DIVIDE(Q(electricity_production),V(large_chp_industry_energetic;typical_electricity_production_per_unit)),2)
+min_value: 0.0
+min_value_gql: 
+name: Large CHP
+query: |-
+  EACH(
+              UPDATE(V(large_chp_industry_energetic), number_of_units, USER_INPUT()),
+              UPDATE(OUTPUT_LINKS(V(large_chp_industry_energetic);constant), share, V(large_chp_industry_energetic; production_based_on_number_of_units)),
+            )
+share_group: 
+start_value: 
+start_value_gql: future:V(large_chp_industry_energetic;number_of_units)
+unit: "#"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 

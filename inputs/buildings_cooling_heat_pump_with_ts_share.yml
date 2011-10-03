@@ -1,0 +1,28 @@
+--- 
+attr_name: cooling_buildings_market_share
+comments: 
+factor: 100.0
+id: 392
+key: buildings_cooling_heat_pump_with_ts_share
+keys: heatpump_ts_cooling_buildings_energetic
+label: 
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Heat pump with TS
+query: |-
+  EACH(
+              UPDATE(LINK(heatpump_ts_cooling_buildings_energetic,cooling_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(cooling_buildings_energetic,airco_buildings_energetic), share, 
+                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(cooling_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
+              )
+            )
+share_group: cooling_buildings
+start_value: 
+start_value_gql: present:V(heatpump_ts_cooling_buildings_energetic;share_of_cooling_buildings_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 
