@@ -1,0 +1,10 @@
+# The average cost per MJ electricity produced by plants directly fed by the "Coal distribution" converters, given in euro per MJ.
+# 
+# This value can be used to determine the attribute of foreign_coal_electricity if exported or imported.
+
+- unit = euro
+
+DIVIDE(
+   SUM(V(Q(electricity_producing_converters_coalbiomasslignite);total_costs)),
+   SUM(V(Q(electricity_producing_converters_coalbiomasslignite);output_of_electricity))
+)

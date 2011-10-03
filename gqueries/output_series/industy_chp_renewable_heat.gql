@@ -1,0 +1,7 @@
+# The heat from the bio-oil CHP in industry, including the part from the sustainable green gas from the gas CHP.
+
+- unit = pj
+
+DIVIDE(SUM(V(bio_oil_chp_industry_energetic,biomass_chp_industry_energetic;output_of_heat_carriers),
+SUM(V(small_chp_industry_energetic;output_of_heat_carriers* sustainability_share)))
+,BILLIONS)

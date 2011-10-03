@@ -1,0 +1,14 @@
+# Used for the chart: Comparison of gas use from micro-chp versus conventional use. Attention: We use a fixed value for CCGT electricity conversion, which reflects the state of the art. Take care to change this to be more generic.
+
+- unit = mj
+
+SUM(
+  DIVIDE(
+    V( micro_chp_households_energetic; output_of_heat_carriers),
+    V( gas_burner_other_other_energetic; useable_heat_output_conversion)
+  ),
+  DIVIDE(
+    V( micro_CHP_production_households; output_of_electricity),
+    0.53
+  )
+)

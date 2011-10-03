@@ -1,0 +1,19 @@
+# The share of uranium in the primary demand (excluding imported_electricity), multiplied by the total costs as calculated in the model
+
+- unit = factor
+
+PRODUCT( 
+ DIVIDE(
+  SUM(
+    V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)); primary_demand_of_uranium)
+     )
+  ,
+  SUM(
+    V(G(final_demand_cbs); primary_demand),
+    NEG(SUM(
+        V(G(final_demand_cbs); primary_demand_of_imported_electricity)
+        ))
+     )
+  ),
+ Q(cost_total)
+)

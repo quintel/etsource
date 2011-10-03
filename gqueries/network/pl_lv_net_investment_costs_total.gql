@@ -1,0 +1,25 @@
+# This query calculates the total investment required for the LV network. It calculates the new peak load and compares it to the available capacity. If the new peak load is higher than available capacity it multiplies by the cost coeffecient.
+# 
+# overnight_investment_ex_co2_per_mj_s contains the investment costs per MVA per km
+# 
+# land_use_in_nl contains length of network
+# 
+# SUM(
+#   MAX(
+#     SUM(
+#       Q(peak_load_delta_max_lv_net), 
+#       V(lv_electricity_network_energy_energetic; typical_capacity_effective_in_mj_s) 
+#     ),
+#     V(lv_electricity_network_energy_energetic;typical_capacity_gross_in_mj_s)
+#   ),
+#   NEG(
+#     V(lv_electricity_network_energy_energetic;typical_capacity_gross_in_mj_s)
+#   )
+# )
+
+- unit = euro
+
+PRODUCT(
+ Q(pl_lv_net_capacity_needed),
+V(lv_electricity_network_energy_energetic;network_expansion_costs_in_euro_per_mw)
+)

@@ -1,0 +1,9 @@
+# The average CO2 emission per MJ electricity produced by nuclear plants, given in KG per MJ. This value can be used to determine the attribute of foreign_nuclear_electricity if exported or imported.
+
+- unit = kg
+
+
+DIVIDE(
+   SUM(V(Q(electricity_producing_converters_uranium);primary_co2_emission)),
+   SUM(V(Q(electricity_producing_converters_uranium);output_of_electricity))
+)

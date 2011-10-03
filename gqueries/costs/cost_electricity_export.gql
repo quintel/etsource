@@ -1,0 +1,10 @@
+# Cost of the exported electricity
+
+- unit = euro
+
+PRODUCT(
+  Q(cost_domestic_electricity),
+  INVERSE(SUM(V(GROUP(electricity_production);output_of_electricity)))
+  ,
+  V(electricity_export_energy;demand)
+)
