@@ -410,7 +410,7 @@ matches('electricity_produced_from_wind_and_solar', 16646840000, 200729324643.84
 matches('primary_demand_of_electricity_assigned_to_wind', 16827444687.594603, 150201462066.7734,1);
 matches('primary_demand_of_electricity_assigned_to_solar', 169491107.13657215, 39256198164.54332,1);
 matches('actual_co2_emission_total', 150641630299.00873, 92015190713.27567,1);
-chart_demand_41_electricity_production_futurematches('costs_per_mj_electricity_from_coal', 0.013501479608722859, 0.028945484710985205,1);
+matches('costs_per_mj_electricity_from_coal', 0.013501479608722859, 0.028945484710985205,1);
 matches('co2_per_mj_electricity_from_coal', 0.22129739421988398, 0.19340505937098776,1);
 matches('sustainability_of_electricity_from_coal', 0, 0,1);
 matches('co2_emission_per_mj', 0.14328823454619774, 0.06196518736157251,1);
