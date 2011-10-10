@@ -1,0 +1,16 @@
+# The maximum share the heat network can supply of the agriculture heat demand, capped by 100%.
+# 
+# This is calculated by the amount of rest heat locally and centrally.
+
+- unit = factor
+
+MIN(
+  1,
+  DIVIDE(
+         SUM(
+                V(chp_agri_agriculture_energetic;output_of_steam_hot_water),
+                V(heat_network_industry_energetic;demand))
+     ,
+     V(heating_demand_agriculture_energetic;demand)
+     )
+   )

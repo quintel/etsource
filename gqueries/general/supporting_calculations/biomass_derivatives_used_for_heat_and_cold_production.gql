@@ -1,0 +1,10 @@
+- deprecated_key = heat_and_cold_production_biomass
+# the green gas share in the natual gas is added.
+
+- unit = pj
+
+DIVIDE(PRODUCT(DIVIDE(SUM(V(G(heat_production);input_of_biomass + input_of_greengas),
+
+PRODUCT(SUM(V(G(heat_production);input_of_natural_gas)),Q(greengas_share))
+
+),SUM(V(G(heat_production);demand))),SUM(V(G(heat_production);output_of_heat_and_cooling_carriers))),BILLIONS)

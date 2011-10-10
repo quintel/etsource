@@ -1,0 +1,12 @@
+- deprecated_key = cost_heat_production_new
+# Total costs of traditional heat and heat pumps.
+# Also insulation costs are included.
+
+- unit = euro
+
+SUM( V(
+         G(cost_traditional_heat),G(cost_heat_pumps);  total_costs
+           ), 
+Q(insulation_costs)
+
+)

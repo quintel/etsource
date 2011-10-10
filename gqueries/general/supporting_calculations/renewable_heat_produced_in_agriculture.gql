@@ -1,0 +1,14 @@
+- deprecated_key = sustainable_heat_agriculture
+# The biomass, plus the sustainable part of the fossil fuels.
+
+- unit = mj
+
+SUM(
+V(biomass_burner_agri_agriculture_energetic;output_of_useable_heat)
+,
+  V(
+    oil_burner_agri_agriculture_energetic,
+    gas_burner_agri_agriculture_energetic,
+    steam_hot_water_agriculture_energetic;
+      output_of_heat_carriers * sustainability_share
+  ))

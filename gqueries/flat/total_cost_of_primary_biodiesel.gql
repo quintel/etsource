@@ -1,0 +1,11 @@
+# Added sustainable to allow future deviations of 1
+
+- unit = euro
+
+PRODUCT(
+  SUM(
+    V(G(final_demand_cbs); primary_demand_of_biodiesel)
+  )
+  ,
+  V(CARRIER(biodiesel);cost_per_mj * sustainable)
+)

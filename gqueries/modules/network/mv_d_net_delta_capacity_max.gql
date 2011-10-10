@@ -1,0 +1,15 @@
+- deprecated_key = pl_mv_d_net_delta_capacity_max
+# Doesn't matter which simult is used, since: simult_wd = simult_se = simult_we = simult_sd
+# 
+# Old query:
+# PRODUCT(
+#   Q( peak_load_delta_max_mv_lv_transformer ),
+#   V( lv_mv_transformer_energy ; simult_wd )
+# )
+
+- unit = mw
+
+MAX(
+  Q(peak_load_delta_demand_mv_distribution_net),
+  Q(peak_load_delta_supply_mv_distribution_net)
+)

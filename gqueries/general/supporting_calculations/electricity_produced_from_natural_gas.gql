@@ -1,0 +1,13 @@
+- deprecated_key = electricity_produced_from_natural_gas
+# 
+
+- unit = mj
+
+PRODUCT(
+ Q(natural_gas_share)
+ ,
+ SUM(
+   V(G(electricity_production);output_of_electricity * natural_gas_input_conversion ),
+   V(G(electricity_production);output_of_electricity * gasmix_input_conversion )
+  )
+ )

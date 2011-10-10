@@ -1,0 +1,16 @@
+- deprecated_key = households_heating_final_demand_biomass
+# 
+
+- unit = mj
+
+SUM(
+V(Q(households_heating_converters);input_of_biomass),
+V(Q(households_heating_converters);input_of_biofuel),
+V(Q(households_heating_converters);input_of_greengas),
+V(Q(households_heating_converters);input_of_biodiesel),
+V(Q(households_heating_converters);input_of_bio_ethanol),
+V(Q(households_heating_converters);input_of_algae_diesel),
+V(Q(households_heating_converters);input_of_biogas),
+V(collective_biomass_chp_households_energetic;steam_hot_water_output_conversion * input_of_biomass)
+
+)

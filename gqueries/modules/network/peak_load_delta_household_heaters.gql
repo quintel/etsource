@@ -1,0 +1,18 @@
+- deprecated_key = peak_load_delta_hh_heaters
+# This query gives the peak load delta due to heater technologies using electricity.
+# 
+# In theory the query needs to be written for all 4 time periods: we, wd, se, sd. And then take the max value. However the simultaneousness of the technologies is 1,and the peak is during the winter evening for hh_heaters
+
+- unit = mw
+
+PRODUCT (
+     SUM(
+        V(Q(hh_heaters);
+          simult_we*
+          electricity_input_conversion*
+          typical_input_capacity_in_mw*
+          share_of_heating_demand_households_energetic)
+        )
+     ,
+    AREA(number_households)
+)
