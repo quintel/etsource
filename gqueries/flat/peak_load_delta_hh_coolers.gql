@@ -1,0 +1,27 @@
+# This query determines the number MW required to meet the cooling demand based on the chosen cooling technologies. Since the cooling demand is currently met by Airconditioning, for the DELTA peak load it is necessary to subtract the current installed capacity of airconditioning units. The 2nd part of the query therefore calculates this installed capacity
+# This query does not yet account for growth in the cooling demand. The cooling_demand_households_energetic should always refer to the 2010 value of the cooling demand..
+
+- unit = mw
+
+MAX(
+  PRODUCT(
+    SUM(
+      SUM(
+        V(Q(hh_coolers);
+        simult_sd*
+        electricity_input_conversion*
+        typical_input_capacity_in_mw*
+        share_of_cooling_demand_households_energetic)
+      ),
+      NEG(
+        V(airco_households_energetic;
+        simult_sd*
+        electricity_input_conversion*
+        typical_input_capacity_in_mw*
+        1)
+      )
+    ),
+    AREA(number_households)
+  ),
+  0
+)

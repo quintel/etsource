@@ -1,0 +1,8 @@
+# The heat from the gas CHP in industry, excluding the part from the sustainable green gas.
+
+- unit = pj
+
+DIVIDE(SUM(
+V(small_chp_industry_energetic;output_of_heat_carriers),
+NEG(V(small_chp_industry_energetic;output_of_heat_carriers*sustainability_share))
+),BILLIONS)

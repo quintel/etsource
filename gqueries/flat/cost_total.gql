@@ -1,0 +1,14 @@
+# Sums up the costs. Only for the Netherlands the netwerk costs are included.
+
+- unit = euro
+
+SUM(
+  Q(cost_heat_production_new),
+  Q(cost_electricity_production_new),
+  Q(cost_transport_fuels),
+  Q(cost_energy_sector_fuels),
+  Q(cost_non_energetic_fuels),
+  IF(EQUALS(AREA(area),nl),
+    PRODUCT(Q(pl_network_total_costs),BILLIONS),
+    0)
+)    

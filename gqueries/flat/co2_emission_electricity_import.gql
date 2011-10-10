@@ -1,0 +1,19 @@
+# If there is a value for imported electricity, this should be used.
+# 
+# 
+# V(CARRIER(imported_electricity);co2_per_mj)
+# 
+# 
+# I removed this for ameland, as this can be done similair to amsterdam. This should still be made to work correctly.
+# 
+# EQUALS(AREA(area),ame),0.14285585185399852,
+
+- unit = kg
+
+PRODUCT(
+    IF(
+        EQUALS(AREA(area),ams),0,
+        Q(co2_per_mj_domestic_electricity_production)
+       ), 
+    VALUE(electricity_import_export_energy;demand)
+ )

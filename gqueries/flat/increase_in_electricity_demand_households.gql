@@ -1,0 +1,8 @@
+# This query calculates how much the electricity demand increases between start and future year.
+
+- unit = factor
+
+DIVIDE(
+    V(electricity_households_energetic; demand),
+    V(electricity_households_energetic; demand_expected_value)
+)

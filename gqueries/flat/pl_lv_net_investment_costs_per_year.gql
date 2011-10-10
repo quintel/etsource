@@ -1,0 +1,16 @@
+# 
+
+- unit = euro
+
+SUM(
+ DIVIDE(
+  Q(pl_lv_net_investment_costs_total),V(lv_electricity_network_energy_energetic;technical_lifetime)
+ ),
+ PRODUCT(
+  DIVIDE(
+   Q(pl_lv_net_investment_costs_total),2
+  ),
+  V(lv_electricity_network_energy_energetic;wacc)
+ ),
+ Q(pl_lv_net_operational_costs_total)
+ )

@@ -1,0 +1,9 @@
+# Amount of final demand of electricity (group, which includes e export), that is produced sustainable.
+# 
+# added INVALID_TO_ZERO() to make sure it doesnt crash when primary demand is 0.
+# 
+# *update 28-10-2010: This is now only calculated over the energetic final demand.
+
+- unit = mj
+
+SUM(INVALID_TO_ZERO(V(INTERSECTION(G(final_demand_electricity),USE(energetic));primary_demand_of_sustainable * demand / primary_demand)))

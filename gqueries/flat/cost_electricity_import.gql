@@ -1,0 +1,17 @@
+# ALERT: To fix this value for ameland demo we added a temporarily if statement. 
+# Multiplies the imported electricity with the average electricity production cost of the domestic production.
+
+- unit = euro
+
+IF(EQUALS(AREA(area),ame),
+   PRODUCT(
+    V(electricity_import_export_energy;demand),
+    0.03420733031744972
+   ),
+
+  PRODUCT(
+   Q(cost_domestic_electricity),
+   V(electricity_import_export_energy;demand),
+   INVERSE(SUM(V(GROUP(electricity_production);output_of_electricity)))
+  )
+)
