@@ -1,0 +1,10 @@
+- deprecated_key = natural_gas_heat_agri
+# The gas used in the agriculture sector, minus the sustainable part of the gas.
+
+- unit = mj
+
+SUM(
+ V(gas_burner_agri_agriculture_energetic;output_of_heat_carriers),
+ NEG(
+V(gas_burner_agri_agriculture_energetic;output_of_heat_carriers * sustainability_share))
+)

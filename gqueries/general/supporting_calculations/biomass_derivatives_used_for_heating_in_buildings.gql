@@ -1,0 +1,15 @@
+- deprecated_key = buildings_heating_final_demand_biomass
+# The green gas in the natural gas is included as well.
+
+- unit = mj
+
+SUM(
+V(Q(buildings_heating_converters);input_of_biomass),
+V(Q(buildings_heating_converters);input_of_biofuel),
+V(Q(buildings_heating_converters);input_of_greengas),
+V(Q(buildings_heating_converters);input_of_biodiesel),
+V(Q(buildings_heating_converters);input_of_bio_ethanol),
+V(Q(buildings_heating_converters);input_of_algae_diesel),
+V(Q(buildings_heating_converters);input_of_biogas),
+PRODUCT(Q(greengas_share),SUM(V(Q(buildings_heating_converters);input_of_natural_gas)))
+)

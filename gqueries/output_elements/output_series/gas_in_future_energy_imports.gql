@@ -1,0 +1,13 @@
+- deprecated_key = chart_gas_value_76_energy_dependence_3
+# 
+
+- unit = pj
+
+future:DIVIDE(
+
+SUM(
+	V(G(energy_import);output_of_natural_gas + output_of_lng),
+	NEG(V(G(energy_export);input_of_natural_gas + input_of_lng ))
+	)
+
+,BILLIONS)

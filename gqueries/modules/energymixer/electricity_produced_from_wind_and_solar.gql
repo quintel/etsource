@@ -1,0 +1,12 @@
+- deprecated_key = electricity_from_wind_and_solar
+# All electricity made by wind turbines and solar panels.
+# 
+# the used queries are NOT dynamic!
+
+- unit = mj
+
+SUM
+ (
+ Q(electricity_produced_from_wind),
+ Q(electricity_produced_from_solar)
+ )

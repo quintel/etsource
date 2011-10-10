@@ -1,0 +1,11 @@
+# Sum of REB tax for the electricity (0.1114 EUR/KWh) and gas (0.1629 EUR/m3 gas) per household.
+# 
+# Source:
+# http://www.deenergiegids.nl/Regulerende-Energie-Belasting.aspx
+
+- unit = euro
+
+SUM(
+PRODUCT(MAX(Q(kwh_electricity_per_household),0.1114),0),
+PRODUCT(Q(households_m3_gas_use_per_household),0.1629)
+)

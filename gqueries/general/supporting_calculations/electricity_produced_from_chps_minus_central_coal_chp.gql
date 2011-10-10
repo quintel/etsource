@@ -1,0 +1,12 @@
+- deprecated_key = chp_electricity_output
+# 
+
+- unit = pj
+
+DIVIDE(
+SUM(
+V(
+Q(all_chp_converters);
+output_of_electricity
+),NEG(V(coal_chp_energy;output_of_electricity))
+),BILLIONS)

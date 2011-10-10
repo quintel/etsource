@@ -1,0 +1,14 @@
+- deprecated_key = electricity_produced_from_solar
+# Returns the produced electricity using solar.
+# 
+# It works by looking to converters directly fed by the "sun" converter that have output of electricity.
+
+- unit = mj
+
+SUM(
+  V(
+     Q(electricity_producing_converters_solar)
+     ;output_of_electricity    )
+   )
+
+

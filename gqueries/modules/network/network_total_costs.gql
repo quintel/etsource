@@ -1,0 +1,14 @@
+- deprecated_key = pl_network_total_costs
+# 
+
+- unit = bln_euro
+
+DIVIDE(
+           SUM(
+                   SUM(
+                         MAX(AREA(annual_infrastructure_cost_electricity),0),
+                         MAX(AREA(annual_infrastructure_cost_gas),0)
+                    ),
+                    Q(pl_network_investment_costs_per_year)
+                    ),
+          1000)

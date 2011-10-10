@@ -1,0 +1,10 @@
+- deprecated_key = cost_electricity_production_new
+# Total cost of domestic electricity production including all CHPs, plus cost of electricity import, minus cost of electricity export.
+
+- unit = euro
+
+SUM(
+  V(G(cost_electricity_production),G(cost_chps); total_costs),
+  Q(cost_electricity_import),
+  NEG(Q(cost_electricity_export))
+)

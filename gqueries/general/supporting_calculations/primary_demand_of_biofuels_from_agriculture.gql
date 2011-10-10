@@ -1,0 +1,10 @@
+- deprecated_key = all_biofuels_agriculture_primary
+# 
+
+- unit = pj
+
+DIVIDE(SUM(
+V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs));primary_demand_of_biodiesel),
+V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs));primary_demand_of_biofuel),
+V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs));primary_demand_of_algae_diesel),
+V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs));primary_demand_of_bio_ethanol)),BILLIONS)

@@ -1,0 +1,11 @@
+- deprecated_key = peak_load_units_delta_electric_cars
+# 
+
+- unit = #
+
+SUM(
+  Q( number_of_electric_cars ),
+  NEG(
+    VALUE( electric_cars_transport_energetic ; peak_load_units_present )
+  )
+)

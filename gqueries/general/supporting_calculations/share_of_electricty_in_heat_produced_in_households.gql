@@ -1,0 +1,10 @@
+- deprecated_key = heating_households_electricity_share
+# The share of electricity in the supply of household heat demand, including the greengas in the natural gas
+
+- unit = factor
+
+DIVIDE(
+SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_electricity))
+,
+SUM(V(CHILDREN(V(heating_demand_households_energetic));demand))
+)

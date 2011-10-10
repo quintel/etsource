@@ -1,0 +1,16 @@
+- deprecated_key = buildings_cooling_gas
+# 
+
+- unit = mj
+
+PRODUCT(
+ DIVIDE(
+  SUM(
+   V(Q(buildings_cooling_converters);input_of_natural_gas)
+  ),
+  SUM(
+   V(Q(buildings_cooling_converters);demand)
+  )
+ ),
+V(cooling_buildings_energetic;input_of_cooling)
+)

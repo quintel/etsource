@@ -1,0 +1,11 @@
+- deprecated_key = pl_lv_grid_investment_costs_per_year
+# 
+
+- unit = mln_euro
+
+DIVIDE(
+SUM(
+ Q(pl_mv_lv_trafo_investment_costs_per_year),
+ Q(pl_lv_net_investment_costs_per_year)
+),
+MILLIONS)
