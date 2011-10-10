@@ -1,0 +1,16 @@
+# 
+
+- unit = euro
+
+SUM(
+ DIVIDE(
+  Q(pl_mv_lv_trafo_investment_costs_total),V(lv_mv_transformer_energy;technical_lifetime)
+ ),
+ PRODUCT(
+  DIVIDE(
+   Q(pl_mv_lv_trafo_investment_costs_total),2
+  ),
+  V(lv_mv_transformer_energy;wacc)
+ ),
+ Q(pl_mv_lv_trafo_operational_costs_total)
+ )

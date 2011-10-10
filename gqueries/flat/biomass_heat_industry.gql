@@ -1,0 +1,9 @@
+# The total energetic biomass use in the final demand of industry, with the addition of share of green gas in the gas.
+
+- unit = mj
+
+SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic));output_of_biomass), 
+
+PRODUCT(V(national_gas_network_energy;sustainability_share),
+SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic));output_of_natural_gas)))
+)
