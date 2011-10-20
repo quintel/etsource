@@ -1,0 +1,15 @@
+- deprecated_key = electricity_produced_from_biomass
+# Returns the produced electricity using biomass.
+# 
+# It works by looking to converters directly fed by the "biomass distribution" converter that have output of electricity.
+
+- unit = mj
+
+SUM(
+  V(
+     Q(electricity_producing_converters_biomass)
+     ;output_of_electricity * biomass_input_conversion
+    )
+   )
+
+

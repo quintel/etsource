@@ -1,0 +1,14 @@
+- deprecated_key = electricity_producing_converters_biocoal
+# Returns the converters which produce electricity using biocoal.
+# 
+# It works by looking to converters directly fed by the "biocoal distribution" converter that have output of electricity.
+
+- unit = converters
+
+V(
+  FILTER(
+    V(
+      PARENTS(V(biocoal_distribution_energy))
+      )
+   ;electricity_output_conversion && electricity_output_conversion > 0)
+  )

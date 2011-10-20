@@ -1,0 +1,15 @@
+- deprecated_key = electricity_producing_converters_lignitecoal
+# Returns the converters which produce electricity using coal or lignite.
+# 
+# It works by looking to converters directly fed by the "Coal distribution" and "Lignite distribution" converters that have output of electricity.
+
+- unit = converters
+
+V(
+  FILTER(
+    V(
+      PARENTS(V(coal_distribution_energy)),
+      PARENTS(V(lignite_distribution_energy))
+      )
+   ;electricity_output_conversion && electricity_output_conversion > 0)
+  )

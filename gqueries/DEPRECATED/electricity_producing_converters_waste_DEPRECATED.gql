@@ -1,0 +1,6 @@
+- deprecated_key = electricity_producing_converters_waste
+# Returns the converters which produce electricity using waste. It works by looking to converters directly fed by the "waste_distribution" converter that have output of electricity.
+
+- unit = converters
+
+FILTER(PARENTS(V(waste_distribution_energy ));electricity_output_conversion && electricity_output_conversion > 0)
