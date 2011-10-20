@@ -1,0 +1,11 @@
+# DIVIDE(SUM(V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),INTERSECTION(SECTOR(energy),G(final_demand_cbs));primary_demand_of_biomass)),BILLIONS)
+
+- unit = mj
+
+DIVIDE(SUM(
+V(INTERSECTION(SECTOR(industry),G(final_demand_cbs));primary_demand_of_biomass),
+V(INTERSECTION(SECTOR(energy),G(final_demand_cbs));primary_demand_of_biomass),
+V(INTERSECTION(SECTOR(industry),G(final_demand_cbs));primary_demand_of_bio_oil),
+V(INTERSECTION(SECTOR(energy),G(final_demand_cbs));primary_demand_of_bio_oil)
+
+),BILLIONS)

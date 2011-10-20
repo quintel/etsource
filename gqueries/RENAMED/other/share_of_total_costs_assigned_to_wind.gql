@@ -1,0 +1,14 @@
+# The share of sustainable_wind in the primary demand (excluding imported_electricity)
+
+- unit = factor
+
+DIVIDE(
+  Q(primary_demand_of_electricity_assigned_to_wind)
+  ,
+  SUM(
+    V(G(final_demand_cbs); primary_demand),
+    NEG(SUM(
+        V(G(final_demand_cbs); primary_demand_of_imported_electricity)
+        ))
+     )
+  )

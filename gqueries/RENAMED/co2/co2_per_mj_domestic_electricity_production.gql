@@ -1,0 +1,20 @@
+# ALERT:
+# To fix this value for ameland demo we added a temporarily if statement.
+# 
+# 
+# How much kg CO2 the average MJ electricity produces domestically
+
+- unit = kg
+
+IF(EQUALS(AREA(area),ame),
+   0.14285585185399852,
+
+ DIVIDE
+  (
+   SUM(
+     VALUE(GROUP(electricity_production);primary_co2_emission)
+         ),
+
+      SUM(VALUE(GROUP(electricity_production);output_of_electricity))
+  )
+)

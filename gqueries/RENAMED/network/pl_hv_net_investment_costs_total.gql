@@ -1,0 +1,34 @@
+# First checks if the country is set to NL before it does the calculation.
+# 
+# The investment costs for the HV network are defined according a rule of thumb in which the costs (in MEur) are a percent of the installed capacity (in MW). The percentages are given by the hard numbers: 0.20 and 0.25
+# 
+# Additional HV network costs for 'stopcontact op zee' are also included.
+
+- unit = mln_euro
+
+IF(EQUALS(AREA(area),nl),
+SUM(
+  IF(
+    Q( pl_hv_net_capacity_buffer_total_check ),
+    IF(
+      Q( pl_hv_net_capacity_buffer_decentral_check ), 
+      SUM(
+        PRODUCT(
+          Q( pl_hv_net_delta_capacity_central ),
+          0.20
+        ),
+        PRODUCT(
+          Q( pl_hv_net_delta_capacity_decentral ),
+          0.25 
+        )
+      ),
+      PRODUCT(
+        Q(pl_hv_net_delta_capacity_total),
+        0.20
+      )
+    ),
+   0
+  ),
+ Q(pl_hv_net_investment_costs_wind_offshore)
+),
+0)

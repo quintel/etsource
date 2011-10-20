@@ -1,0 +1,17 @@
+# Note: 
+# 1. we use peak_load_delta_max_LV instead of "peak_load_delta_max_transformer_lv_mv". 
+# 
+# 2. theoretically speaking use : 
+# MAX( 
+# V( lv_electricity_network_energy_energetic ; simult_wd ) 
+# V( lv_electricity_network_energy_energetic ; simult_we ) 
+# V( lv_electricity_network_energy_energetic ; simult_sd ) 
+# V( lv_electricity_network_energy_energetic ; simult_se ) 
+# )
+
+- unit = mw
+
+PRODUCT(
+  Q( pl_lv_net_delta_capacity_max),
+  V( lv_electricity_network_energy_energetic ; simult_wd )
+)

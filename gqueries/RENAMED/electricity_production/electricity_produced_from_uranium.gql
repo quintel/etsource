@@ -1,0 +1,13 @@
+# Returns the produced electricity using uranium.
+# 
+# It works by looking to converters directly fed by the "uranium distribution" converter that have output of electricity.
+
+- unit = mj
+
+SUM(
+  V(
+     Q(electricity_producing_converters_uranium)
+     ;output_of_electricity    )
+   )
+
+
