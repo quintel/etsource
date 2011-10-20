@@ -1,0 +1,13 @@
+# Returns the produced electricity using wind.
+# 
+# It works by looking to converters directly fed by the "wind" converter that have output of electricity.
+
+- unit = mj
+
+SUM(
+  V(
+     Q(electricity_producing_converters_wind)
+     ;output_of_electricity    )
+   )
+
+

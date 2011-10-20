@@ -1,0 +1,21 @@
+# The share of biomass in the supply of household heat demand, including the greengas in the natural gas.
+# 
+# Finally, the sustainable part of the CHP heat is added too.
+
+- unit = factor
+
+SUM(
+
+DIVIDE(
+SUM(SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_biomass + input_of_biofuel + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas )),
+
+PRODUCT(SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_natural_gas)),Q(greengas_share))
+
+)
+,
+SUM(V(CHILDREN(V(heating_demand_households_energetic));demand))
+)
+
+,
+PRODUCT(INVALID_TO_ZERO(V(heat_from_steam_hot_water_households_energetic;primary_demand_of_sustainable/primary_demand)),Q(heating_households_steam_share))
+)

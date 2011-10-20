@@ -1,0 +1,21 @@
+# ALERT: To fix this value for ameland demo we added a temporarily if statement.
+# The final demand that is filled by sustainable sources is divided over the total final energy demand. This is only calculated over the energetic final demand.
+# 
+# Also, the ambient heat that is used is added to the final demand. Here, it is important to notice that the ambient heat that is used should be calculated only 'left' of the final demand, otherwise the ambient heat is counted double. This is not possible yet, but should be fixed when it is.
+
+- unit = factor
+
+DIVIDE(
+ SUM(
+  V(INTERSECTION(G(final_demand_cbs),USE(energetic)); demand * sustainability_share),
+  Q(ambient_heat_use),
+  IF(EQUALS(AREA(area),ame),
+   PRODUCT(V(electricity_import_export_energy;demand),0.16185258875918246),
+   0
+  )
+ ),
+ SUM(
+  V(INTERSECTION(G(final_demand_cbs),USE(energetic)); demand),
+  Q(ambient_heat_use)
+ )
+)
