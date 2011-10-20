@@ -1,0 +1,6 @@
+- deprecated_key = electricity_producing_converters_biomass
+# Returns the converters which produce electricity using biomoass. It works by looking to converters directly fed by the "biomass_distribution" converter that have output of electricity.
+
+- unit = converters
+
+  FILTER(PARENTS(V(biomass_distribution_energy ));electricity_output_conversion && electricity_output_conversion > 0)

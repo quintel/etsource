@@ -1,0 +1,15 @@
+- deprecated_key = electricity_produced_from_lignite
+# Returns the produced electricity using lignite.
+# 
+# It works by looking to converters directly fed by the "lignite distribution" converter that have output of electricity.
+
+- unit = mj
+
+SUM(
+  V(
+     Q(electricity_producing_converters_lignite)
+     ;output_of_electricity * lignite_input_conversion
+    )
+   )
+
+

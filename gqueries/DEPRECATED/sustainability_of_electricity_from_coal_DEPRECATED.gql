@@ -1,0 +1,14 @@
+- deprecated_key = sustainability_of_electricity_from_coal
+# This returns the sustainability of electricity produced by coal plants
+
+- unit = factor
+
+IF(
+   EQUALS(
+    SUM(V( Q(electricity_producing_converters_coal); output_of_electricity)),0,),
+    0,
+    DIVIDE(
+     SUM(V( Q(electricity_producing_converters_coal); sustainability_share)),
+     SUM(V( Q(electricity_producing_converters_coal); output_of_electricity ))
+     )
+  )
