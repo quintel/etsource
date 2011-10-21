@@ -1,0 +1,10 @@
+# 
+
+- deprecated_key = heating_agriculture_electricity_share
+- unit = factor
+
+DIVIDE(
+SUM(V(CHILDREN(V(heating_demand_agriculture_energetic));input_of_electricity))
+,
+SUM(V(CHILDREN(V(heating_demand_agriculture_energetic));demand))
+)
