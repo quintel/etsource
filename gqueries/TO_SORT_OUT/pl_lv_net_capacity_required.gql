@@ -1,8 +1,0 @@
-# This query calculates the required network capacity in the LV network. The delta capacity is added to the occupied capacity.
-
-- unit = mw
-
-SUM(
-   V(lv_electricity_network_energy_energetic ; network_capacity_used_in_mw),
-   Q(pl_lv_net_delta_capacity_max)
-)
