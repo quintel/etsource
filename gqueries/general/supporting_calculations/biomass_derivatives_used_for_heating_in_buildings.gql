@@ -4,12 +4,12 @@
 - unit = mj
 
 SUM(
-V(Q(buildings_heating_converters);input_of_biomass),
-V(Q(buildings_heating_converters);input_of_biofuel),
-V(Q(buildings_heating_converters);input_of_greengas),
-V(Q(buildings_heating_converters);input_of_biodiesel),
-V(Q(buildings_heating_converters);input_of_bio_ethanol),
-V(Q(buildings_heating_converters);input_of_algae_diesel),
-V(Q(buildings_heating_converters);input_of_biogas),
-PRODUCT(Q(greengas_share),SUM(V(Q(buildings_heating_converters);input_of_natural_gas)))
+V(Q(heating_converters_in_buildings);input_of_biomass),
+V(Q(heating_converters_in_buildings);input_of_biofuel),
+V(Q(heating_converters_in_buildings);input_of_greengas),
+V(Q(heating_converters_in_buildings);input_of_biodiesel),
+V(Q(heating_converters_in_buildings);input_of_bio_ethanol),
+V(Q(heating_converters_in_buildings);input_of_algae_diesel),
+V(Q(heating_converters_in_buildings);input_of_biogas),
+PRODUCT(Q(share_of_greengas_in_gas_network),SUM(V(Q(heating_converters_in_buildings);input_of_natural_gas)))
 )
