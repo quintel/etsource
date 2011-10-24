@@ -4,7 +4,7 @@
 # OLD QUERY:
 # PRODUCT(
 #   SUM(
-#     V(Q(demand_plants_connected_to_mv_distribution_net) ; 
+#     V(Q(demand_units_connected_to_mv_distribution_net) ; 
 #            simult_we*
 #            electricity_input_conversion*
 #            typical_capacity_gross_in_mj_s*
@@ -21,7 +21,7 @@ SUM(
       SUM(
         V(
           INTERSECTION(
-            GROUP(heat_production), Q(demand_plants_connected_to_mv_distribution_net));
+            GROUP(heat_production), Q(demand_units_connected_to_mv_distribution_net));
              simult_we*
              electricity_input_conversion*
              typical_input_capacity*
@@ -33,7 +33,7 @@ SUM(
       SUM(
         V(
           INTERSECTION(
-            GROUP(heat_production), Q(demand_plants_connected_to_mv_distribution_net));
+            GROUP(heat_production), Q(demand_units_connected_to_mv_distribution_net));
              simult_sd*
              electricity_input_conversion*
              typical_input_capacity*
@@ -46,7 +46,7 @@ SUM(
     SUM(
       V(
         INTERSECTION(
-          GROUP(electricity_production), Q(demand_plants_connected_to_mv_distribution_net));
+          GROUP(electricity_production), Q(demand_units_connected_to_mv_distribution_net));
            simult_we*
            electricity_input_conversion*
            typical_input_capacity*

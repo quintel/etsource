@@ -10,26 +10,26 @@
 IF(EQUALS(AREA(area),nl),
 SUM(
   IF(
-    Q( pl_hv_net_capacity_buffer_total_check ),
+    Q(hv_net_capacity_buffer_total_check),
     IF(
-      Q( pl_hv_net_capacity_buffer_decentral_check ), 
+      Q(hv_net_capacity_buffer_decentral_check), 
       SUM(
         PRODUCT(
-          Q( pl_hv_net_delta_capacity_central ),
+          Q(hv_net_delta_capacity_central),
           0.20
         ),
         PRODUCT(
-          Q( pl_hv_net_delta_capacity_decentral ),
+          Q(hv_net_delta_capacity_decentral),
           0.25 
         )
       ),
       PRODUCT(
-        Q(pl_hv_net_delta_capacity_total),
+        Q(hv_net_delta_capacity_total),
         0.20
       )
     ),
    0
   ),
- Q(pl_hv_net_investment_costs_wind_offshore)
+ Q(yearly_investment_costs_of_hv_net_wind_offshore)
 ),
 0)

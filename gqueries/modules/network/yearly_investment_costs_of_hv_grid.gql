@@ -6,15 +6,15 @@
 IF(EQUALS(AREA(area),nl),
    SUM(
     DIVIDE(
-      Q(pl_hv_net_investment_costs_total),V(hv_electricity_network_energy;technical_lifetime)
+      Q(total_investment_costs_of_hv_net),V(hv_electricity_network_energy;technical_lifetime)
      ),
      PRODUCT(
      DIVIDE(
-       Q(pl_hv_net_investment_costs_total),2
+       Q(total_investment_costs_of_hv_net),2
        ),
        V(hv_electricity_network_energy;wacc)
        ),
-    DIVIDE(Q(pl_hv_net_operational_costs_total),MILLIONS)
+    DIVIDE(Q(operational_costs_of_hv_net),MILLIONS)
      ),
   0)
 
