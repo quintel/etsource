@@ -3,7 +3,7 @@ require 'CSV'
 require 'fileutils'
 
 CSV_WITH_REPLACEMENTS = "new_gquery_names.csv"
-DIR_OF_FILES = "gqueries/modules/monitoring" #relative to this script!
+DIR_OF_FILES = "gqueries/general/supporting_calculations" #relative to this script!
 
 #First define what we want to replace with what
 replacements = {}
