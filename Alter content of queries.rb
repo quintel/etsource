@@ -3,14 +3,14 @@ require 'CSV'
 require 'fileutils'
 
 CSV_WITH_REPLACEMENTS = "new_gquery_names.csv"
-DIR_OF_FILES = "gqueries/modules/network" #relative to this script!
+DIR_OF_FILES = "gqueries/modules/monitoring" #relative to this script!
 
 #First define what we want to replace with what
 replacements = {}
 CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
   #this is how the columns of the CSV are ordered
   id, old_key, old_unit, new_key, new_unit, purpose, new_group, old_group, deleted = row
-  replacements[old_key] = new_key #unless old_key == new_key
+  replacements[old_key] = new_key unless old_key == new_key
 end
 
 #read this directory and point File System there
@@ -28,7 +28,7 @@ files.each do |file_name|
   File.open file_name, 'w' do |file|
     replacements.each do |old_value, new_value|
        raise "can't be nil! (found in #{file_name}: #{old_value} & #{new_value})" if (old_value.nil? || new_value.nil?)
-       puts "I removed the depretaced key in #{file_name} as its old name was the same" if content.gsub!("- deprecated_key = #{new_value}","")
+       puts "I changed the deprecated key in #{file_name} from #{old_value} to #{new_value}" if content.gsub!(/Q\s*\(\s*#{old_value}\s*\)/mi,"Q(#{new_value})")
     end
     file.write content
     file.close    
@@ -39,6 +39,3 @@ end
 # to start and create a log file, type for example:
 # ruby changer_of_query_content.rb > 20111021_replacement_of_query_contents_attempt_1.txt
 
-
-
-#Paolo's help:       n = text.gsub /Q\(\s*insulation_costs\)/m, "Q(foobar)"

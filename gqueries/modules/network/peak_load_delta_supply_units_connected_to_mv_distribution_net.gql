@@ -10,7 +10,7 @@
 #       PRODUCT(
 #         V(
 #           INTERSECTION(
-#             GROUP(heat_production), Q(supply_plants_connected_to_mv_distribution_net));
+#             GROUP(heat_production), Q(supply_units_connected_to_mv_distribution_net));
 #              simult_we*
 #              electricity_output_conversion*
 #              typical_capacity_gross_in_mj_s)
@@ -18,7 +18,7 @@
 #         MAX(
 #           V(
 #             INTERSECTION(
-#               GROUP(heat_production), Q(supply_plants_connected_to_mv_distribution_net));
+#               GROUP(heat_production), Q(supply_units_connected_to_mv_distribution_net));
 #            number_of_heat_plants_future-peak_load_units_present),
 #           0
 #         )
@@ -30,7 +30,7 @@
 #       PRODUCT(
 #         V(
 #           INTERSECTION(
-#             GROUP(electricity_production), Q(supply_plants_connected_to_mv_distribution_net));
+#             GROUP(electricity_production), Q(supply_units_connected_to_mv_distribution_net));
 #              simult_we*
 #              electricity_output_conversion*
 #              typical_capacity_gross_in_mj_s)
@@ -38,7 +38,7 @@
 #         MAX(
 #           V(
 #             INTERSECTION(
-#               GROUP(electricity_production), Q(supply_plants_connected_to_mv_distribution_net));
+#               GROUP(electricity_production), Q(supply_units_connected_to_mv_distribution_net));
 #            number_of_plants_future-peak_load_units_present),
 #           0
 #         )
@@ -54,7 +54,7 @@ SUM(
     SUM(
       V(
         INTERSECTION(
-          GROUP(heat_production), Q(supply_plants_connected_to_mv_distribution_net));
+          GROUP(heat_production), Q(supply_units_connected_to_mv_distribution_net));
            simult_we*
            electricity_output_conversion*
            typical_input_capacity_in_mw*
@@ -66,7 +66,7 @@ SUM(
     SUM(
       V(
         INTERSECTION(
-          GROUP(electricity_production), Q(supply_plants_connected_to_mv_distribution_net));
+          GROUP(electricity_production), Q(supply_units_connected_to_mv_distribution_net));
            simult_we*
            electricity_output_conversion*
            typical_input_capacity_in_mw*
