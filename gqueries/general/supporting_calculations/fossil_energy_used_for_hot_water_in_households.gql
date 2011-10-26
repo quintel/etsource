@@ -1,6 +1,6 @@
-- deprecated_key = households_hot_water_fossil
 # adjusted for the green gas in the gas
 
+- deprecated_key = households_hot_water_fossil
 - unit = mj
 
 SUM(
@@ -11,6 +11,6 @@ NEG(SUM(V(Q(hot_water_converters_in_households);input_of_natural_gas*sustainabil
 V(Q(hot_water_converters_in_households);input_of_diesel),
 V(Q(hot_water_converters_in_households);input_of_gasoline),
 V(Q(hot_water_converters_in_households);input_of_lignite),
-V(hot_water_fuel_cell_households_energetic;demand),
+PRODUCT(V(fuel_cell_chp_households_energetic;demand),V(gas_households_energetic;share_of_fuel_cell_chp_households_energetic)),
 V(micro_chp_hot_water_households_energetic;steam_hot_water_output_conversion * input_of_natural_gas)
 )
