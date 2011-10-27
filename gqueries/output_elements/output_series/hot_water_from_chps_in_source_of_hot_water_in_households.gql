@@ -1,6 +1,13 @@
-- deprecated_key = chart_hot_water_from_chps_65_hot_water_demand_722
-# 
+# WARNING: It may be possible that micro CHP at this moment does not show up in chart, or not at the right place!
 
+- deprecated_key = chart_hot_water_from_chps_65_hot_water_demand_722
 - unit = pj
 
-DIVIDE(PRODUCT(DIVIDE(SUM(V(Q(households_hot_water_converters);input_of_steam_hot_water)),Q(total_input_for_hot_water)),V(hot_water_demand_households_energetic;input_of_hot_water)),BILLIONS)
+DIVIDE(
+	PRODUCT(
+		DIVIDE(
+			SUM(V(Q(households_hot_water_converters);input_of_steam_hot_water)),
+			Q(total_input_for_hot_water)),
+		V(hot_water_demand_households_energetic;input_of_hot_water)
+		),
+	BILLIONS)
