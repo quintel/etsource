@@ -1,4 +1,3 @@
-- deprecated_key = peak_load_delta_hh_micro_chp
 # OLD query:
 # 
 # PRODUCT (
@@ -8,15 +7,10 @@
 #                    Q(peak_load_units_delta_hh_micro_chp)
 # )
 
+- deprecated_key = peak_load_delta_hh_micro_chp
 - unit = mw
 
-PRODUCT (
-  PRODUCT(
-    V(micro_chp_households_energetic;simult_we*1/1000),
-    PRODUCT(
-      V(micro_chp_households_energetic;share_of_heat_from_steam_hot_water_households_energetic),
-      V(heat_from_steam_hot_water_households_energetic;share_of_heating_demand_households_energetic)
-    )
-  ),
-  AREA(number_households)
+PRODUCT(
+    V(micro_CHP_production_households;simult_we* 1/1000 * share_of_heating_demand_households_energetic),
+    AREA(number_households)
 )
