@@ -1,0 +1,51 @@
+--- 
+attr_name: 
+comments: 
+factor: 1.0
+id: 1001
+key: initial_updates_related_to_micro_ch
+keys: 
+label: 
+label_query: 
+max_value: 2050
+max_value_gql: 
+min_value: 2008
+min_value_gql: 
+name: Initial
+query: |
+  EACH(
+    UPDATE(
+      OUTPUT_SLOTS(micro_chp_hot_water_households_energetic;electricity), conversion,   
+      TIME_SERIE_VALUE(376,electricity_output_slot_conversion,USER_INPUT())
+    ),
+    UPDATE(
+      OUTPUT_SLOTS(micro_chp_hot_water_households_energetic;useable_heat), conversion,   
+      TIME_SERIE_VALUE(376,hot_water_output_slot_conversion,USER_INPUT())
+    ),
+    UPDATE(
+      OUTPUT_SLOTS(micro_chp_hot_water_households_energetic;loss), conversion,   
+      TIME_SERIE_VALUE(376,loss_output_slot_conversion,USER_INPUT())
+    ),
+    UPDATE(
+      V(micro_chp_hot_water_households_energetic), full_load_hours, 
+      TIME_SERIE_VALUE(376,full_load_hours,USER_INPUT())
+    ),
+    UPDATE(
+      V(micro_chp_hot_water_households_energetic), typical_nominal_input_capacity, 
+      TIME_SERIE_VALUE(376,typical_nominal_input_capacity,USER_INPUT())
+    ),
+    UPDATE(
+      V(micro_chp_hot_water_households_energetic), purchase_price_per_mw_input, 
+      TIME_SERIE_VALUE(376,purchase_price_per_mw_input,USER_INPUT())
+    ),
+    UPDATE(
+      V(micro_chp_hot_water_households_energetic), operation_and_maintenance_cost_fixed_per_mw_input, 
+      TIME_SERIE_VALUE(376,operation_and_maintenance_cost_fixed_per_mw_input,USER_INPUT())
+    )
+  )
+share_group: ""
+start_value: 2040
+unit: "#"
+update_type: 
+updateable_period: future
+v1_legacy_unit: 
