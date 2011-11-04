@@ -20,6 +20,14 @@ query: |
         gas_for_electricity_production_micro_CHP_space_heating_households
       ), 
       share,
+      TIME_SERIE_VALUE(525,natural_gas_output_link_share,USER_INPUT())
+    ),
+    UPDATE(
+      LINK(
+        micro_chp_hot_water_households_energetic,
+        gas_for_electricity_production_micro_CHP_hot_water_households
+      ), 
+      share,
       TIME_SERIE_VALUE(526,natural_gas_output_link_share,USER_INPUT())
     )
   )
