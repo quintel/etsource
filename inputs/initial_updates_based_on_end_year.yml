@@ -1,0 +1,28 @@
+--- 
+attr_name: 
+comments: 
+factor: 1.0
+id: 1000
+key: initial_updates_based_on_end_year
+keys: 
+label: 
+label_query: 
+max_value: 2050
+max_value_gql: 
+min_value: 2010
+min_value_gql: 
+name: Initial
+query: |
+  EACH(
+    UPDATE(
+      OUTPUT_SLOTS(micro_CHP_production_households;electricity), 
+      conversion,   
+      TIME_SERIE_VALUE(417,electricity_output_slot_conversion,USER_INPUT())
+    )
+  )
+share_group: ""
+start_value: 2040
+unit: "#"
+update_type: 
+updateable_period: future
+v1_legacy_unit: 
