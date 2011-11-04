@@ -1,0 +1,55 @@
+--- 
+attr_name: 
+comments: 
+factor: 1.0
+id: 1003
+key: initial_updates_preset_demands
+keys: 
+label: 
+label_query: 
+max_value: 2050
+max_value_gql: 
+min_value: 2008
+min_value_gql: 
+name: Initial
+query: |
+  EACH(
+    UPDATE(
+      V(bio_oil_production_energy), preset_demand,
+      TIME_SERIE_VALUE(100,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(biomass_residuals_energy), preset_demand,
+      TIME_SERIE_VALUE(101,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(gas_extraction_energy), preset_demand,
+      TIME_SERIE_VALUE(102,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(oil_extraction_energy), preset_demand,
+      TIME_SERIE_VALUE(104,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(coal_extraction_energy), preset_demand,
+      TIME_SERIE_VALUE(106,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(greengas_production_energy), preset_demand,
+      TIME_SERIE_VALUE(133,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(uranium_extraction_energy), preset_demand,
+      TIME_SERIE_VALUE(240,preset_demand,USER_INPUT())
+    ),
+    UPDATE(
+      V(lignite_extraction_energy_energetic), preset_demand,
+      TIME_SERIE_VALUE(272,preset_demand,USER_INPUT())
+    )
+  )
+share_group: ""
+start_value: 2040
+unit: "#"
+update_type: 
+updateable_period: future
+v1_legacy_unit: 

@@ -1,0 +1,31 @@
+--- 
+attr_name: 
+comments: 
+factor: 1.0
+id: 1004
+key: initial_updates_micro_chp_link_share
+keys: 
+label: 
+label_query: 
+max_value: 2050
+max_value_gql: 
+min_value: 2008
+min_value_gql: 
+name: Initial
+query: |
+  EACH(
+    UPDATE(
+      LINK(
+        micro_CHP_production_households,
+        gas_for_electricity_production_micro_CHP_space_heating_households
+      ), 
+      share,
+      TIME_SERIE_VALUE(526,natural_gas_output_link_share,USER_INPUT())
+    )
+  )
+share_group: ""
+start_value: 2040
+unit: "#"
+update_type: 
+updateable_period: future
+v1_legacy_unit: 
