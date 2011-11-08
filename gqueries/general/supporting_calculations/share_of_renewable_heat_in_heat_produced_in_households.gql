@@ -1,0 +1,11 @@
+# The share of renewables in the supply of household heat demand, including the greengas in the natural gas.
+
+- unit = factor
+
+ DIVIDE(
+  SUM(
+	SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_biomass + input_of_biofuel + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas + input_of_ambient_heat + input_of_solar_radiation )),
+    PRODUCT(SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_natural_gas * sustainability_share )),Q(share_of_greengas_in_gas_network))
+    ),
+  SUM(V(CHILDREN(V(heating_demand_households_energetic));demand))
+ )
