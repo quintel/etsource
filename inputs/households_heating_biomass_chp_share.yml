@@ -1,10 +1,10 @@
 --- 
-attr_name: combined_input_link_share_to_collective_biomass_chp_households_energetic
+attr_name: steam_hot_water_output_link_share
 comments: ""
 factor: 100.0
 id: 343
 key: households_heating_biomass_chp_share
-keys: heat_from_steam_hot_water_households_energetic
+keys: collective_biomass_chp_households_energetic
 label: ""
 label_query: ""
 max_value: 50.0
@@ -13,9 +13,9 @@ min_value: 0.0
 min_value_gql: 
 name: Biomass CHP
 query: 
-share_group: heating_households
+share_group: district_heating_households
 start_value: 
-start_value_gql: present:PRODUCT(V(collective_biomass_chp_households_energetic;share_of_heat_from_steam_hot_water_households_energetic),V(heat_from_steam_hot_water_households_energetic;share_of_heating_demand_households_energetic) )
+start_value_gql: present:V(collective_biomass_chp_households_energetic;share_of_heat_from_steam_hot_water_households_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future
