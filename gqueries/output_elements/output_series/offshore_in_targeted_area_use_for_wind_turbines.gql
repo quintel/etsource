@@ -1,6 +1,11 @@
+# Used to be stored:policy_offshore
+
 - deprecated_key = chart_offshore_100_35_targeted_area_use_for_wind_turbines_299
-# 
-
 - unit = km2
-
-stored:policy_offshore
+MIXED(
+ Q(share_of_designated_area_used_for_offshore_wind),
+ PRODUCT(DIVIDE(
+  V(GOAL(offshore);user_value),
+  AREA(offshore_suitable_for_wind)
+ ),100)
+)
