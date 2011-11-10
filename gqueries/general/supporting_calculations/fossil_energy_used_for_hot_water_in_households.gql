@@ -4,13 +4,6 @@
 - unit = mj
 
 SUM(
-V(Q(hot_water_converters_in_households);input_of_coal),
-V(Q(hot_water_converters_in_households);input_of_crude_oil),
-V(Q(hot_water_converters_in_households);input_of_natural_gas),
-NEG(SUM(V(Q(hot_water_converters_in_households);input_of_natural_gas*sustainability_share))),
-V(Q(hot_water_converters_in_households);input_of_diesel),
-V(Q(hot_water_converters_in_households);input_of_gasoline),
-V(Q(hot_water_converters_in_households);input_of_lignite),
-PRODUCT(V(fuel_cell_chp_households_energetic;demand),V(gas_households_energetic;share_of_fuel_cell_chp_households_energetic)),
-V(micro_chp_hot_water_households_energetic;steam_hot_water_output_conversion * input_of_natural_gas)
+	V(Q(hot_water_converters_in_households);input_of_coal + input_of_crude_oil + input_of_natural_gas + input_of_diesel + input_of_gasoline + input_of_lignite ),
+	NEG(SUM(V(Q(hot_water_converters_in_households);input_of_natural_gas*sustainability_share)))
 )
