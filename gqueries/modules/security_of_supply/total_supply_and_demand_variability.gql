@@ -1,0 +1,11 @@
+# Total variability in both supply and demand
+# Variability is calculated as the root of the sum of squares of individual variabilities
+
+- unit = mw
+
+SQRT(
+  SUM(
+    V(G(electricity_production);installed_production_capacity_in_mw_electricity*availability*variability*installed_production_capacity_in_mw_electricity*availability*variability),
+    V(G(final_demand_electricity);mw_input_capacity*variability*mw_input_capacity*variability)
+  )
+)
