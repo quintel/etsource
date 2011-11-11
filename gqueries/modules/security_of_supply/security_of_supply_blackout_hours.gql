@@ -1,0 +1,8 @@
+# calculates the number of hours per year that supply is less than demand
+
+- unit = hours
+
+PRODUCT(
+  NORMCDF(Q(peak_electricity_demand_in_mw),Q(available_production_capacity_in_mw),Q(security_of_supply_in_percent)),
+  Q(hours_per_year)
+)
