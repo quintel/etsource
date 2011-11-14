@@ -4,9 +4,9 @@
 - unit = factor
 
 DIVIDE(
-
- SUM(SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_coal+ input_of_diesel+ input_of_crude_oil+ input_of_gasoline+ input_of_lignite)),
-     PRODUCT(SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_natural_gas)),Q(share_of_natural_gas_in_gas_network))
-    ),
- SUM(V(CHILDREN(V(heating_demand_households_energetic));demand))
- )
+	SUM(
+		V(CHILDREN(V(heating_demand_households_energetic));input_of_coal+ input_of_diesel+ input_of_crude_oil+ input_of_gasoline+ input_of_lignite),
+     	NEG(Q(gas_allocated_to_electricity_production_in_households_heating)),
+		PRODUCT(SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_natural_gas)),Q(share_of_natural_gas_in_gas_network))),
+ 	SUM(V(CHILDREN(V(heating_demand_households_energetic));demand))
+ 	)
