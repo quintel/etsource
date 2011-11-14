@@ -1,6 +1,6 @@
-# Including gas used for electricity production in the CHPs for hot water
+# excluding gas used for electricity production in the CHPs for hot water
 
 - deprecated_key = total_input_for_hot_water
 - unit = mj
 
-SUM(V(Q(hot_water_converters_in_households);demand))
+SUM(V(Q(hot_water_converters_in_households);demand),NEG(Q(gas_allocated_to_electricity_production_in_households_hot_water)))
