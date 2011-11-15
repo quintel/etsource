@@ -1,13 +1,11 @@
-- deprecated_key = electricity_produced_from_biocoal
 # Returns the produced electricity using biocoal.
-# 
 # It works by looking to converters directly fed by the "biocoal distribution" converter that have output of electricity.
 
 - unit = mj
 
 SUM(
   V(
-     Q(electricity_producing_converters_biocoal)
+     Q(electricity_producing_biocoal_converters)
      ;output_of_electricity * biocoal_input_conversion
     )
    )
