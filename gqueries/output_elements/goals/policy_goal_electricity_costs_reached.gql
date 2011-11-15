@@ -1,6 +1,8 @@
-- deprecated_key = policy_goal_electricity_cost_reached
 # 
+- deprecated_key = policy_goal_electricity_cost_reached
+- unit = boolean
 
-- unit = 
-
-LESS_OR_EQUAL(PRODUCT(SECS_PER_HOUR,Q(average_costs_of_produced_electricity)),V(GOAL(electricity_cost);user_value))
+LESS_OR_EQUAL(
+  Q(policy_goal_electricity_costs_value),
+  Q(policy_goal_electricity_costs_target_value)
+)
