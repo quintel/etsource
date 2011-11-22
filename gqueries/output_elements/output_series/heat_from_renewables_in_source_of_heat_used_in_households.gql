@@ -3,4 +3,11 @@
 - deprecated_key = heat_from_renewable_heat_in_source_of_heat_used_in_households
 - unit = pj
 
-DIVIDE(PRODUCT(Q(share_of_renewables_in_heat_produced_in_households),Q(energy_used_for_heating_in_households)),BILLIONS)
+
+DIVIDE(
+  PRODUCT(
+    Q(share_of_renewables_in_heat_produced_in_households),
+    V(heating_demand_households_energetic;demand)),
+  BILLIONS
+)
+
