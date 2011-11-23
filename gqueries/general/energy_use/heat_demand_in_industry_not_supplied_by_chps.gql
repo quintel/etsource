@@ -3,11 +3,14 @@
 
 - unit = mj
 
-SUM(
-  V(heating_demand_industry_energetic;demand),
-  NEG(
+MAX(
     SUM(
-      V(small_chp_industry_energetic,large_chp_industry_energetic,biomass_chp_industry_energetic,bio_oil_chp_industry_energetic;output_of_heat_carriers)
-    )
-  )
+        V(heating_demand_industry_energetic;demand),
+        NEG(
+            SUM(
+                V(small_chp_industry_energetic,large_chp_industry_energetic,biomass_chp_industry_energetic,bio_oil_chp_industry_energetic;output_of_heat_carriers)
+            )
+        )
+    ),
+    0
 )
