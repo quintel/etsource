@@ -1,0 +1,13 @@
+# WARNING: It may be possible that micro CHP at this moment does not show up in chart, or not at the right place!
+
+- deprecated_key = hot_water_from_chps_in_source_of_hot_water_in_households
+- unit = pj
+
+DIVIDE(
+	PRODUCT(
+		DIVIDE(
+			SUM(V(Q(hot_water_converters_in_households);input_of_steam_hot_water)),
+			Q(energy_used_for_hot_water_in_households)),
+		V(hot_water_demand_households_energetic;input_of_hot_water)
+		),
+	BILLIONS)

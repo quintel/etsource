@@ -1,6 +1,11 @@
-- deprecated_key = chart_electricity_demand_excluding_heating_57_heat_and_electricity_demand_523
 # 
 
+- deprecated_key = chart_electricity_demand_excluding_heating_57_heat_and_electricity_demand_523
 - unit = pj
 
-DIVIDE(SUM(V(electricity_excl_heating_demand_households_energetic;demand),NEG(Q(cooling_from_electricity_in_households))),BILLIONS)
+DIVIDE(SUM(V(
+	electricity_for_hot_water_households_energetic,
+	electricity_for_cooking_households_energetic,
+	electricity_for_lighting_households_energetic,
+	electricity_for_appliances_households_energetic;demand
+	)),BILLIONS)

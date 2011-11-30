@@ -1,0 +1,24 @@
+- deprecated_key = electricity_growth
+# 
+
+- unit = pj
+
+DIVIDE(
+ SUM(
+  V(
+   electricity_for_cooling_households_energetic,
+   electricity_for_cooking_households_energetic,
+   electricity_for_appliances_households_energetic,
+   electricity_agriculture_energetic,
+   electricity_industry_energetic,
+   electricity_other_energetic;output_of_electricity
+  ),
+  NEG(
+   SUM(
+    V(
+     heat_pump_with_CHS_agri_agriculture_energetic,
+     geothermal_agri_agriculture_energetic;input_of_electricity
+    )
+   )
+  )
+),BILLIONS)

@@ -1,0 +1,10 @@
+- deprecated_key = share_of_ambient_heat_in_heat_produced_in_households
+# The share of ambient heat (+geothermal) in the supply of household heat demand
+
+- unit = factor
+
+DIVIDE(
+SUM(V(CHILDREN(V(heating_demand_households_energetic));input_of_ambient_heat + input_of_solar_radiation),V(collective_geothermal_households_energetic;demand))
+,
+SUM(V(CHILDREN(V(heating_demand_households_energetic));demand))
+)

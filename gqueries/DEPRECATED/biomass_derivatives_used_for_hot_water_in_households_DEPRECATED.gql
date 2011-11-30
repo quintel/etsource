@@ -1,0 +1,15 @@
+- deprecated_key = biomass_derivatives_used_for_hot_water_in_households
+# including the green gas used in the gas burners
+
+- unit = mj
+
+SUM(
+V(Q(hot_water_converters_in_households);input_of_biomass),
+V(Q(hot_water_converters_in_households);input_of_biofuel),
+V(Q(hot_water_converters_in_households);input_of_greengas),
+V(Q(hot_water_converters_in_households);input_of_biodiesel),
+V(Q(hot_water_converters_in_households);input_of_bio_ethanol),
+V(Q(hot_water_converters_in_households);input_of_algae_diesel),
+V(Q(hot_water_converters_in_households);input_of_biogas),
+V(Q(hot_water_converters_in_households);input_of_natural_gas*sustainability_share)
+)

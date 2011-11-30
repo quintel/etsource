@@ -1,6 +1,6 @@
-- deprecated_key = oil_plants
-# 
+# Returns the converters which produce electricity using oil. It works by looking to converters directly fed by the "oil_distribution_energy" converter that have output of electricity.
 
+- deprecated_key = electricity_producing_converters_oil
 - unit = converters
 
-V(oil_plant_energy)
+FILTER(PARENTS(V(oil_distribution_energy )); electricity_output_conversion && electricity_output_conversion > 0)
