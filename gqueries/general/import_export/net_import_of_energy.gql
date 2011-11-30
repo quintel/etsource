@@ -7,11 +7,10 @@
 - unit = factor
 
 DIVIDE(
-
  SUM(
      V(G(energy_import);demand),
-     NEG(V(G(energy_export);demand))
+     NEG(SUM(V(G(energy_export);demand)))
     )
-,
- Q(total_primary_energy_supply)
+  ,
+  Q(total_primary_energy_supply)
 )
