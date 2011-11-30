@@ -1,0 +1,2408 @@
+hot_water_demand_households_energetic;	hot_water_demand;	households;	energetic;	useful consumption;	useful_demand
+hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic
+hot_water_demand_households_energetic-(hot_water) -- f --> (hot_water)-hot_water_devices_households_energetic
+(hot_water)-hot_water_demand_households_energetic # 0 links to: 
+
+other_appliances_households_energetic;	other_appliances;	households;	energetic;	technologies;	useful_demand
+other_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-other_appliances_households_energetic # 0 links to: 
+(loss)-other_appliances_households_energetic # 0 links to: 
+
+solar_panel_for_hot_water_households_energetic;	solar_panel_for_hot_water;	households;	energetic;	preferred technologies;	heat_production,decentral_production,cost_traditional_heat
+solar_panel_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_for_hot_water_households_energetic
+(loss)-solar_panel_for_hot_water_households_energetic # 0 links to: 
+(hot_water)-solar_panel_for_hot_water_households_energetic # 1 links to: hot_water_demand_households_energetic
+
+solar_pv_central_production_energy_energetic;	solar_pv_central_production;	energy;	energetic;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+solar_pv_central_production_energy_energetic-(solar_radiation) -- s --> (loss)-sun_environment_energetic
+(loss)-solar_pv_central_production_energy_energetic # 0 links to: 
+(electricity)-solar_pv_central_production_energy_energetic # 1 links to: hv_electricity_network_energy
+
+gas_conv_energy_energetic;	gas_conv;	energy;	energetic;	central power generation;	electricity_production,central_production,cost_electricity_production
+gas_conv_energy_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+(loss)-gas_conv_energy_energetic # 0 links to: 
+(steam_hot_water)-gas_conv_energy_energetic # 1 links to: heat_network_industry_energetic
+(electricity)-gas_conv_energy_energetic # 1 links to: hv_electricity_network_energy
+
+electricity_demand_industry_energetic;	electricity_demand;	industry;	energetic;	application;	useful_demand
+electricity_demand_industry_energetic-(electricity) -- s --> (electricity)-electricity_industry_energetic
+(electricity)-electricity_demand_industry_energetic # 0 links to: 
+
+heating_demand_industry_energetic;	heating_demand;	industry;	energetic;	useful consumption;	useful_demand
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_industry_energetic
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-coal_burner_industry_industry_energetic
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_industry_industry_energetic
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_industry_industry_energetic
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_industry_industry_energetic
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-biofuel_burner_industry_industry_energetic
+(useable_heat)-heating_demand_industry_energetic # 0 links to: 
+
+small_chp_industry_energetic;	small_chp;	industry;	energetic;	central CHPs;	electricity_production,network_converters,cost_chps
+small_chp_industry_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+(loss)-small_chp_industry_energetic # 0 links to: 
+(steam_hot_water)-small_chp_industry_energetic # 1 links to: local_w_production_industry
+(electricity)-small_chp_industry_energetic # 1 links to: local_e_production_industry
+
+large_chp_industry_energetic;	large_chp;	industry;	energetic;	central CHPs;	electricity_production,central_production,network_converters,cost_chps
+large_chp_industry_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+large_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+large_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+(loss)-large_chp_industry_energetic # 0 links to: 
+(steam_hot_water)-large_chp_industry_energetic # 1 links to: heat_network_industry_energetic
+(electricity)-large_chp_industry_energetic # 1 links to: hv_electricity_network_energy
+
+biomass_chp_industry_energetic;	biomass_chp;	industry;	energetic;	central CHPs;	electricity_production,central_production,network_converters,cost_chps
+biomass_chp_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(loss)-biomass_chp_industry_energetic # 0 links to: 
+(steam_hot_water)-biomass_chp_industry_energetic # 1 links to: local_w_production_industry
+(electricity)-biomass_chp_industry_energetic # 1 links to: local_e_production_industry
+
+trains_diesel_demand_transport_energetic;	trains_diesel_demand;	transport;	energetic;	technologies;	useful_demand
+trains_diesel_demand_transport_energetic-(diesel) -- s --> (diesel)-diesel_transport_energetic
+(loss)-trains_diesel_demand_transport_energetic # 0 links to: 
+
+truck_kms_demand_transport_energetic;	truck_kms_demand;	transport;	energetic;	useful consumption;	
+truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-electric_trucks_transport_energetic
+truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-diesel_trucks_transport_energetic
+truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-gasoline_trucks_transport_energetic
+truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-compressed_gas_trucks_transport_energetic
+truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-lpg_trucks_transport_energetic
+(loss)-truck_kms_demand_transport_energetic # 0 links to: 
+
+cars_kms_demand_transport_energetic;	cars_kms_demand;	transport;	energetic;	useful consumption;	
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-electric_cars_transport_energetic
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-diesel_cars_transport_energetic
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-gasoline_cars_transport_energetic
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-lpg_cars_transport_energetic
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-compressed_gas_cars_transport_energetic
+(loss)-cars_kms_demand_transport_energetic # 0 links to: 
+
+electric_trucks_transport_energetic;	electric_trucks;	transport;	energetic;	technologies;	useful_demand,network_converters,cost_other
+electric_trucks_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
+(truck_kms)-electric_trucks_transport_energetic # 1 links to: truck_kms_demand_transport_energetic
+
+diesel_trucks_transport_energetic;	diesel_trucks;	transport;	energetic;	technologies;	useful_demand,cost_other
+diesel_trucks_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
+(truck_kms)-diesel_trucks_transport_energetic # 1 links to: truck_kms_demand_transport_energetic
+
+gasoline_trucks_transport_energetic;	gasoline_trucks;	transport;	energetic;	technologies;	useful_demand,cost_other
+gasoline_trucks_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport
+(truck_kms)-gasoline_trucks_transport_energetic # 1 links to: truck_kms_demand_transport_energetic
+
+electric_cars_transport_energetic;	electric_cars;	transport;	energetic;	technologies;	useful_demand,network_converters,cost_other
+electric_cars_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
+(car_kms)-electric_cars_transport_energetic # 1 links to: cars_kms_demand_transport_energetic
+
+diesel_cars_transport_energetic;	diesel_cars;	transport;	energetic;	technologies;	useful_demand,cost_other
+diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
+(car_kms)-diesel_cars_transport_energetic # 1 links to: cars_kms_demand_transport_energetic
+
+gasoline_cars_transport_energetic;	gasoline_cars;	transport;	energetic;	technologies;	useful_demand,cost_other
+gasoline_cars_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport
+(car_kms)-gasoline_cars_transport_energetic # 1 links to: cars_kms_demand_transport_energetic
+
+lpg_cars_transport_energetic;	lpg_cars;	transport;	energetic;	technologies;	useful_demand,cost_other
+lpg_cars_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport
+(car_kms)-lpg_cars_transport_energetic # 1 links to: cars_kms_demand_transport_energetic
+
+compressed_gas_trucks_transport_energetic;	compressed_gas_trucks;	transport;	energetic;	technologies;	useful_demand,cost_other
+compressed_gas_trucks_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_distribution_transport_energetic
+(truck_kms)-compressed_gas_trucks_transport_energetic # 1 links to: truck_kms_demand_transport_energetic
+
+compressed_gas_cars_transport_energetic;	compressed_gas_cars;	transport;	energetic;	technologies;	useful_demand,cost_other
+compressed_gas_cars_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_distribution_transport_energetic
+(car_kms)-compressed_gas_cars_transport_energetic # 1 links to: cars_kms_demand_transport_energetic
+
+oil_demand_energy_non_energetic;	oil_demand;	energy;	non_energetic;	undefined;	useful_demand,non_energetic_use
+oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic
+(crude_oil)-oil_demand_energy_non_energetic # 0 links to: 
+
+cooling_demand_buildings_energetic;	cooling_demand;	buildings;	energetic;	before savings;	
+cooling_demand_buildings_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_buildings_energetic
+cooling_demand_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recirculation_buildings_energetic
+(cooling)-cooling_demand_buildings_energetic # 0 links to: 
+
+heating_other_buildings_energetic;	heating_other;	buildings;	energetic;	before savings;	
+heating_other_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic
+(useable_heat)-heating_other_buildings_energetic # 0 links to: 
+
+heating_demand_agriculture_energetic;	heating_demand;	agriculture;	energetic;	useful consumption;	useful_demand
+heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_agriculture_energetic
+heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_agri_agriculture_energetic
+heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_agri_agriculture_energetic
+heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_agri_agriculture_energetic
+heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-heat_pump_with_CHS_agri_agriculture_energetic
+heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-geothermal_agri_agriculture_energetic
+(useable_heat)-heating_demand_agriculture_energetic # 0 links to: 
+
+electricity_demand_agriculture_energetic;	electricity_demand;	agriculture;	energetic;	useful consumption;	useful_demand
+electricity_demand_agriculture_energetic-(electricity) -- s --> (electricity)-electricity_agriculture_energetic
+(electricity)-electricity_demand_agriculture_energetic # 0 links to: 
+
+electricity_demand_other_energetic;	electricity_demand;	other;	energetic;	application;	useful_demand
+electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electricity_other_energetic
+(electricity)-electricity_demand_other_energetic # 0 links to: 
+
+waste_incinerator_energy_energetic;	waste_incinerator;	energy;	energetic;	central power generation;	electricity_production,central_production,network_converters,cost_electricity_production
+waste_incinerator_energy_energetic-(waste) -- s --> (waste)-waste_distribution_energy
+(loss)-waste_incinerator_energy_energetic # 0 links to: 
+(steam_hot_water)-waste_incinerator_energy_energetic # 1 links to: heat_network_industry_energetic
+(electricity)-waste_incinerator_energy_energetic # 1 links to: hv_electricity_network_energy
+
+coal_pwd_energy;	coal_pwd;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_pwd_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_pwd_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_pwd_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_pwd_energy # 0 links to: 
+(steam_hot_water)-coal_pwd_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_pwd_energy # 1 links to: hv_electricity_network_energy
+
+coal_pwd_ccs_energy;	coal_pwd_ccs;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_pwd_ccs_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_pwd_ccs_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_pwd_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_pwd_ccs_energy # 0 links to: 
+(steam_hot_water)-coal_pwd_ccs_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_pwd_ccs_energy # 1 links to: hv_electricity_network_energy
+
+coal_conv_energy;	coal_conv;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_conv_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_conv_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_conv_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_conv_energy # 0 links to: 
+(steam_hot_water)-coal_conv_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_conv_energy # 1 links to: hv_electricity_network_energy
+
+coal_lignite_energy;	coal_lignite;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_lignite_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_lignite_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_lignite_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
+(loss)-coal_lignite_energy # 0 links to: 
+(steam_hot_water)-coal_lignite_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_lignite_energy # 1 links to: hv_electricity_network_energy
+
+coal_oxyfuel_ccs_energy;	coal_oxyfuel_ccs;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_oxyfuel_ccs_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_oxyfuel_ccs_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_oxyfuel_ccs_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
+(loss)-coal_oxyfuel_ccs_energy # 0 links to: 
+(steam_hot_water)-coal_oxyfuel_ccs_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_oxyfuel_ccs_energy # 1 links to: hv_electricity_network_energy
+
+coal_igcc_energy;	coal_igcc;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_igcc_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_igcc_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_igcc_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_igcc_energy # 0 links to: 
+(steam_hot_water)-coal_igcc_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_igcc_energy # 1 links to: hv_electricity_network_energy
+
+coal_igcc_ccs_energy;	coal_igcc_ccs;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+coal_igcc_ccs_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_igcc_ccs_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_igcc_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_igcc_ccs_energy # 0 links to: 
+(steam_hot_water)-coal_igcc_ccs_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_igcc_ccs_energy # 1 links to: hv_electricity_network_energy
+
+oil_plant_energy;	oil_plant;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+oil_plant_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(loss)-oil_plant_energy # 0 links to: 
+(steam_hot_water)-oil_plant_energy # 1 links to: heat_network_industry_energetic
+(electricity)-oil_plant_energy # 1 links to: hv_electricity_network_energy
+
+gas_ccgt_energy;	gas_ccgt;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+gas_ccgt_energy-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+gas_ccgt_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+gas_ccgt_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+(loss)-gas_ccgt_energy # 0 links to: 
+(steam_hot_water)-gas_ccgt_energy # 1 links to: heat_network_industry_energetic
+(electricity)-gas_ccgt_energy # 1 links to: hv_electricity_network_energy
+
+coal_chp_energy;	coal_chp;	energy;	undefined;	central CHPs;	electricity_production,central_production,cost_chps
+coal_chp_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_chp_energy-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_chp_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_chp_energy # 0 links to: 
+(steam_hot_water)-coal_chp_energy # 1 links to: heat_network_industry_energetic
+(electricity)-coal_chp_energy # 1 links to: hv_electricity_network_energy
+
+bio_oil_chp_industry_energetic;	bio_oil_chp;	industry;	energetic;	central CHPs;	electricity_production,central_production,network_converters,cost_chps
+bio_oil_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+(loss)-bio_oil_chp_industry_energetic # 0 links to: 
+(steam_hot_water)-bio_oil_chp_industry_energetic # 1 links to: local_w_production_industry
+(electricity)-bio_oil_chp_industry_energetic # 1 links to: local_e_production_industry
+
+nuclear_iii_energy;	nuclear_iii;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+nuclear_iii_energy-(uranium) -- s --> (uranium)-uranium_distribution_energy
+(loss)-nuclear_iii_energy # 0 links to: 
+(steam_hot_water)-nuclear_iii_energy # 1 links to: heat_network_industry_energetic
+(electricity)-nuclear_iii_energy # 1 links to: hv_electricity_network_energy
+
+wind_inland_energy;	wind_inland;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+wind_inland_energy-(wind) -- s --> (loss)-air_environment_energetic
+(loss)-wind_inland_energy # 0 links to: 
+(electricity)-wind_inland_energy # 1 links to: hv_electricity_network_energy
+
+wind_coastal_energy;	wind_coastal;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+wind_coastal_energy-(wind) -- s --> (loss)-air_environment_energetic
+(loss)-wind_coastal_energy # 0 links to: 
+(electricity)-wind_coastal_energy # 1 links to: hv_electricity_network_energy
+
+wind_offshore_energy;	wind_offshore;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,cost_electricity_production
+wind_offshore_energy-(wind) -- s --> (loss)-air_environment_energetic
+(loss)-wind_offshore_energy # 0 links to: 
+(electricity)-wind_offshore_energy # 1 links to: hv_electricity_network_energy
+
+co_firing_coal_energy;	co_firing_coal;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+co_firing_coal_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(loss)-co_firing_coal_energy # 0 links to: 
+(steam_hot_water)-co_firing_coal_energy # 1 links to: heat_network_industry_energetic
+(electricity)-co_firing_coal_energy # 1 links to: hv_electricity_network_energy
+
+co_firing_gas_energy;	co_firing_gas;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+co_firing_gas_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(loss)-co_firing_gas_energy # 0 links to: 
+(steam_hot_water)-co_firing_gas_energy # 1 links to: heat_network_industry_energetic
+(electricity)-co_firing_gas_energy # 1 links to: hv_electricity_network_energy
+
+solar_csp_energy;	solar_csp;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+solar_csp_energy-(solar_radiation) -- s --> (loss)-sun_environment_energetic
+(loss)-solar_csp_energy # 0 links to: 
+(electricity)-solar_csp_energy # 1 links to: hv_electricity_network_energy
+
+geothermal_heat_energy;	geothermal_heat;	energy;	undefined;	central heat generation;	heat_production,cost_traditional_heat
+geothermal_heat_energy-(ambient_heat) -- s --> (loss)-air_environment_energetic
+(steam_hot_water)-geothermal_heat_energy # 1 links to: heat_network_industry_energetic
+
+hydro_river_energy;	hydro_river;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+hydro_river_energy-(water) -- s --> (loss)-water_environment_energetic
+(loss)-hydro_river_energy # 0 links to: 
+(electricity)-hydro_river_energy # 1 links to: hv_electricity_network_energy
+
+hydro_mount_energy;	hydro_mount;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,cost_electricity_production
+hydro_mount_energy-(water) -- s --> (loss)-water_environment_energetic
+(loss)-hydro_mount_energy # 0 links to: 
+(electricity)-hydro_mount_energy # 1 links to: hv_electricity_network_energy
+
+blue_energy_energy;	blue_energy;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,cost_electricity_production
+blue_energy_energy-(water) -- s --> (loss)-water_environment_energetic
+(loss)-blue_energy_energy # 0 links to: 
+(electricity)-blue_energy_energy # 1 links to: hv_electricity_network_energy
+
+geothermal_electricity_energy;	geothermal_electricity;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+geothermal_electricity_energy-(ambient_heat) -- s --> (loss)-air_environment_energetic
+(loss)-geothermal_electricity_energy # 0 links to: 
+(electricity)-geothermal_electricity_energy # 1 links to: hv_electricity_network_energy
+
+gasoline_distribution_transport;	gasoline_distribution;	transport;	undefined;	subdistribution 2;	
+gasoline_distribution_transport-(gasoline) -- f --> (gasoline)-gasoline_import_export_transport
+gasoline_distribution_transport-(gasoline) -- s --> (gasoline)-gasoline_mixer_transport_energetic
+(gasoline)-gasoline_distribution_transport # 3 links to: gasoline_trucks_transport_energetic, gasoline_cars_transport_energetic, gasoline_export_energy
+(loss)-gasoline_distribution_transport # 0 links to: 
+
+bio_oil_production_energy;	bio_oil_production;	energy;	undefined;	growth and production;	primary_energy_demand,mining_and_extraction
+bio_oil_production_energy-(bio_oil)
+(bio_oil)-bio_oil_production_energy # 1 links to: bio_oil_distribution_energy
+
+biomass_residuals_energy;	biomass_residuals;	energy;	undefined;	growth and production;	primary_energy_demand,mining_and_extraction
+biomass_residuals_energy-(biomass)
+(biomass)-biomass_residuals_energy # 1 links to: biomass_distribution_energy
+
+gas_extraction_energy;	gas_extraction;	energy;	undefined;	extraction;	primary_energy_demand,mining_and_extraction
+gas_extraction_energy-(natural_gas)
+(natural_gas)-gas_extraction_energy # 1 links to: gas_treatment_energy
+
+oil_extraction_energy;	oil_extraction;	energy;	undefined;	extraction;	primary_energy_demand,mining_and_extraction
+oil_extraction_energy-(loss)
+oil_extraction_energy-(crude_oil)
+(loss)-oil_extraction_energy # 0 links to: 
+(crude_oil)-oil_extraction_energy # 1 links to: oil_distribution_energy
+
+coal_extraction_energy;	coal_extraction;	energy;	undefined;	extraction;	primary_energy_demand,mining_and_extraction
+coal_extraction_energy-(coal)
+(coal)-coal_extraction_energy # 1 links to: coal_distribution_energy
+(loss)-coal_extraction_energy # 0 links to: 
+
+compressed_gas_distribution_transport_energetic;	compressed_gas_distribution;	transport;	energetic;	distribution;	
+compressed_gas_distribution_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_production_transport_energetic
+(compressed_gas)-compressed_gas_distribution_transport_energetic # 2 links to: compressed_gas_trucks_transport_energetic, compressed_gas_cars_transport_energetic
+
+coal_demand_industry_non_energetic;	coal_demand;	industry;	non_energetic;	application;	useful_demand,non_energetic_use
+coal_demand_industry_non_energetic-(coal) -- s --> (coal)-coal_industry_non_energetic
+(coal)-coal_demand_industry_non_energetic # 0 links to: 
+
+bio_diesel_production_transport_energetic;	bio_diesel_production;	transport;	energetic;	undefined;	primary_energy_demand,final_demand_cbs,mining_and_extraction
+bio_diesel_production_transport_energetic-(biofuel)
+(biodiesel)-bio_diesel_production_transport_energetic # 1 links to: bio_diesel_distribution_transport
+
+bio_ethanol_production_transport_energetic;	bio_ethanol_production;	transport;	energetic;	refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
+bio_ethanol_production_transport_energetic-(biofuel)
+(bio_ethanol)-bio_ethanol_production_transport_energetic # 1 links to: bio_ethanol_distribution_transport
+
+biofuel_production_energy;	biofuel_production;	energy;	undefined;	growth and production;	primary_energy_demand,mining_and_extraction
+biofuel_production_energy-(biofuel)
+(biofuel)-biofuel_production_energy # 1 links to: biofuel_distribution_energy
+
+greengas_production_energy;	greengas_production;	energy;	undefined;	growth and production;	
+greengas_production_energy-(greengas)
+(greengas)-greengas_production_energy # 0 links to: 
+
+oil_treatment_energy;	oil_treatment;	energy;	undefined;	treatment;	
+oil_treatment_energy-(crude_oil)
+(crude_oil)-oil_treatment_energy # 0 links to: 
+(loss)-oil_treatment_energy # 0 links to: 
+
+planes_kerosine_demand_transport;	planes_kerosine_demand;	transport;	undefined;	technologies;	useful_demand
+planes_kerosine_demand_transport-(kerosine) -- s --> (kerosine)-kerosine_transport_energetic
+(loss)-planes_kerosine_demand_transport # 0 links to: 
+
+gasoline_import_export_transport;	gasoline_import_export;	transport;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+gasoline_import_export_transport-(gasoline)
+(gasoline)-gasoline_import_export_transport # 1 links to: gasoline_distribution_transport
+
+coal_demand_other_non_energetic;	coal_demand;	other;	non_energetic;	application;	useful_demand,non_energetic_use
+coal_demand_other_non_energetic-(coal) -- s --> (coal)-coal_other_non_energetic
+(coal)-coal_demand_other_non_energetic # 0 links to: 
+
+oil_demand_other_non_energetic;	oil_demand;	other;	non_energetic;	application;	useful_demand,non_energetic_use
+oil_demand_other_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_other_non_energetic
+(crude_oil)-oil_demand_other_non_energetic # 0 links to: 
+
+oil_demand_industry_non_energetic;	oil_demand;	industry;	non_energetic;	application;	useful_demand,non_energetic_use
+oil_demand_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_industry_non_energetic
+(crude_oil)-oil_demand_industry_non_energetic # 0 links to: 
+
+gas_demand_industry_non_energetic;	gas_demand;	industry;	non_energetic;	application;	useful_demand,non_energetic_use
+gas_demand_industry_non_energetic-(natural_gas) -- s --> (natural_gas)-gas_industry_non_energetic
+(natural_gas)-gas_demand_industry_non_energetic # 0 links to: 
+
+coal_demand_transport_transport_energetic;	coal_demand_transport;	transport;	energetic;	technologies;	useful_demand
+coal_demand_transport_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic
+(coal)-coal_demand_transport_transport_energetic # 0 links to: 
+
+biomass_demand_industry_non_energetic;	biomass_demand;	industry;	non_energetic;	application;	useful_demand,non_energetic_use
+biomass_demand_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_industry_non_energetic
+(biomass)-biomass_demand_industry_non_energetic # 0 links to: 
+
+biofuel_demand_industry_non_energetic;	biofuel_demand;	industry;	non_energetic;	application;	useful_demand,non_energetic_use
+biofuel_demand_industry_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_industry_non_energetic
+(biofuel)-biofuel_demand_industry_non_energetic # 0 links to: 
+
+gas_demand_other_non_energetic;	gas_demand;	other;	non_energetic;	application;	useful_demand,non_energetic_use
+gas_demand_other_non_energetic-(natural_gas) -- s --> (natural_gas)-gas_other_non_energetic
+(natural_gas)-gas_demand_other_non_energetic # 0 links to: 
+
+electricity_demand_industry_non_energetic;	electricity_demand;	industry;	non_energetic;	application;	useful_demand,non_energetic_use
+electricity_demand_industry_non_energetic-(electricity) -- s --> (electricity)-electricity_industry_non_energetic
+(loss)-electricity_demand_industry_non_energetic # 0 links to: 
+
+steam_hot_water_agriculture_energetic;	steam_hot_water;	agriculture;	energetic;	final consumption;	final_demand_cbs
+steam_hot_water_agriculture_energetic-(steam_hot_water) -- s --> (steam_hot_water)-local_w_production_agriculture
+(useable_heat)-steam_hot_water_agriculture_energetic # 1 links to: heating_demand_agriculture_energetic
+
+biofuel_demand_other_non_energetic;	biofuel_demand;	other;	non_energetic;	application;	useful_demand,non_energetic_use
+biofuel_demand_other_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_other_non_energetic
+(biofuel)-biofuel_demand_other_non_energetic # 0 links to: 
+
+electricity_industry_energetic;	electricity;	industry;	energetic;	final consumption;	final_demand_cbs,final_demand_electricity,cost_other
+electricity_industry_energetic-(electricity) -- s --> (electricity)-local_e_production_industry
+(electricity)-electricity_industry_energetic # 1 links to: electricity_demand_industry_energetic
+
+steam_hot_water_industry_energetic;	steam_hot_water;	industry;	energetic;	final consumption;	final_demand_cbs
+steam_hot_water_industry_energetic-(steam_hot_water) -- s --> (steam_hot_water)-local_w_production_industry
+(useable_heat)-steam_hot_water_industry_energetic # 1 links to: heating_demand_industry_energetic
+
+trains_oil_demand_transport_non_energetic;	trains_oil_demand;	transport;	non_energetic;	undefined;	useful_demand,non_energetic_use
+trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic
+(crude_oil)-trains_oil_demand_transport_non_energetic # 0 links to: 
+
+electricity_other_energetic;	electricity;	other;	energetic;	final consumption;	final_demand_cbs,final_demand_electricity,cost_other
+electricity_other_energetic-(electricity) -- s --> (electricity)-local_e_production_other
+(electricity)-electricity_other_energetic # 1 links to: electricity_demand_other_energetic
+
+biofuel_transport_energetic;	biofuel;	transport;	energetic;	final consumption;	final_demand_cbs
+biofuel_transport_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy
+(biofuel)-biofuel_transport_energetic # 0 links to: 
+
+diesel_transport_energetic;	diesel;	transport;	energetic;	undefined;	
+diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
+(diesel)-diesel_transport_energetic # 1 links to: trains_diesel_demand_transport_energetic
+
+diesel_distribution_transport;	diesel_distribution;	transport;	undefined;	subdistribution 2;	
+diesel_distribution_transport-(diesel) -- f --> (diesel)-diesel_import_export_transport
+diesel_distribution_transport-(diesel) -- s --> (diesel)-diesel_mixer_transport_energetic
+(diesel)-diesel_distribution_transport # 4 links to: diesel_trucks_transport_energetic, diesel_cars_transport_energetic, diesel_transport_energetic, diesel_export_energy
+(loss)-diesel_distribution_transport # 0 links to: 
+
+diesel_import_export_transport;	diesel_import_export;	transport;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+diesel_import_export_transport-(diesel)
+(diesel)-diesel_import_export_transport # 1 links to: diesel_distribution_transport
+
+kerosine_transport_energetic;	kerosine;	transport;	energetic;	undefined;	final_demand_cbs
+kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport
+(kerosine)-kerosine_transport_energetic # 1 links to: planes_kerosine_demand_transport
+
+kerosine_distribution_transport;	kerosine_distribution;	transport;	undefined;	distribution;	
+kerosine_distribution_transport-(kerosine) -- s --> (kerosine)-kerosine_production_transport
+kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_export_transport
+(kerosine)-kerosine_distribution_transport # 2 links to: kerosine_transport_energetic, kerosine_export_energy
+(loss)-kerosine_distribution_transport # 0 links to: 
+
+kerosine_production_transport;	kerosine_production;	transport;	undefined;	refinery;	
+kerosine_production_transport-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(loss)-kerosine_production_transport # 0 links to: 
+(kerosine)-kerosine_production_transport # 1 links to: kerosine_distribution_transport
+
+kerosine_import_export_transport;	kerosine_import_export;	transport;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+kerosine_import_export_transport-(kerosine)
+(kerosine)-kerosine_import_export_transport # 1 links to: kerosine_distribution_transport
+
+gas_agriculture_non_energetic;	gas;	agriculture;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+gas_agriculture_non_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_agriculture_non_energetic # 0 links to: 
+
+biofuel_industry_non_energetic;	biofuel;	industry;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+biofuel_industry_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy
+(biofuel)-biofuel_industry_non_energetic # 1 links to: biofuel_demand_industry_non_energetic
+
+biomass_industry_non_energetic;	biomass;	industry;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+biomass_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(biomass)-biomass_industry_non_energetic # 1 links to: biomass_demand_industry_non_energetic
+
+coal_industry_non_energetic;	coal;	industry;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+coal_industry_non_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_industry_non_energetic # 1 links to: coal_demand_industry_non_energetic
+
+electricity_industry_non_energetic;	electricity;	industry;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use,final_demand_electricity,cost_other
+electricity_industry_non_energetic-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic
+(electricity)-electricity_industry_non_energetic # 2 links to: mv_distribution_network_energy_energetic, electricity_demand_industry_non_energetic
+
+gas_industry_non_energetic;	gas;	industry;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+gas_industry_non_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_industry_non_energetic # 1 links to: gas_demand_industry_non_energetic
+
+oil_industry_non_energetic;	oil;	industry;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+oil_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_industry_non_energetic # 1 links to: oil_demand_industry_non_energetic
+
+biofuel_other_non_energetic;	biofuel;	other;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+biofuel_other_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy
+(biofuel)-biofuel_other_non_energetic # 1 links to: biofuel_demand_other_non_energetic
+
+coal_other_non_energetic;	coal;	other;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+coal_other_non_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_other_non_energetic # 1 links to: coal_demand_other_non_energetic
+
+gas_other_non_energetic;	gas;	other;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+gas_other_non_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_other_non_energetic # 1 links to: gas_demand_other_non_energetic
+
+oil_other_non_energetic;	oil;	other;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+oil_other_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_other_non_energetic # 1 links to: oil_demand_other_non_energetic
+
+oil_transport_non_energetic;	oil;	transport;	non_energetic;	final consumption;	final_demand_cbs,non_energetic_use
+oil_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_transport_non_energetic # 2 links to: oil_demand_energy_non_energetic, trains_oil_demand_transport_non_energetic
+
+effective_lighting_demand_households_energetic;	effective_lighting_demand;	households;	energetic;	useful consumption;	useful_demand
+effective_lighting_demand_households_energetic-(light) -- s --> (light)-led_lighting_households_energetic
+effective_lighting_demand_households_energetic-(light) -- s --> (light)-efficient_lighting_households_energetic
+effective_lighting_demand_households_energetic-(light) -- s --> (light)-traditional_lighting_households_energetic
+(loss)-effective_lighting_demand_households_energetic # 0 links to: 
+
+led_lighting_households_energetic;	led_lighting;	households;	energetic;	technologies;	
+led_lighting_households_energetic-(electricity) -- s --> (electricity)-electricity_for_lighting_households_energetic
+(loss)-led_lighting_households_energetic # 0 links to: 
+(light)-led_lighting_households_energetic # 1 links to: effective_lighting_demand_households_energetic
+
+efficient_lighting_households_energetic;	efficient_lighting;	households;	energetic;	technologies;	
+efficient_lighting_households_energetic-(electricity) -- s --> (electricity)-electricity_for_lighting_households_energetic
+(loss)-efficient_lighting_households_energetic # 0 links to: 
+(light)-efficient_lighting_households_energetic # 1 links to: effective_lighting_demand_households_energetic
+
+traditional_lighting_households_energetic;	traditional_lighting;	households;	energetic;	technologies;	
+traditional_lighting_households_energetic-(electricity) -- s --> (electricity)-electricity_for_lighting_households_energetic
+(loss)-traditional_lighting_households_energetic # 0 links to: 
+(light)-traditional_lighting_households_energetic # 1 links to: effective_lighting_demand_households_energetic
+
+electricity_demand_energy_energetic;	electricity_demand;	energy;	energetic;	undefined;	final_demand_cbs,useful_demand,final_demand_electricity,cost_other
+electricity_demand_energy_energetic-(electricity) -- s --> (electricity)-hv_electricity_network_energy
+(loss)-electricity_demand_energy_energetic # 0 links to: 
+
+oil_demand_energy_energetic;	oil_demand;	energy;	energetic;	undefined;	final_demand_cbs,useful_demand
+oil_demand_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(loss)-oil_demand_energy_energetic # 0 links to: 
+
+gas_demand_energy_energetic;	gas_demand;	energy;	energetic;	undefined;	final_demand_cbs,useful_demand
+gas_demand_energy_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(loss)-gas_demand_energy_energetic # 0 links to: 
+
+heat_demand_energy_energetic;	heat_demand;	energy;	energetic;	undefined;	final_demand_cbs,useful_demand
+heat_demand_energy_energetic-(steam_hot_water) -- s --> (steam_hot_water)-heat_network_industry_energetic
+(loss)-heat_demand_energy_energetic # 0 links to: 
+
+local_solar_pv_grid_connected_energy_energetic;	local_solar_pv_grid_connected;	energy;	energetic;	local power generation;	primary_energy_demand,sustainable_production,electricity_production,decentral_production,network_converters,cost_electricity_production
+local_solar_pv_grid_connected_energy_energetic-(solar_radiation) -- s --> (loss)-sun_environment_energetic
+(loss)-local_solar_pv_grid_connected_energy_energetic # 0 links to: 
+(electricity)-local_solar_pv_grid_connected_energy_energetic # 1 links to: available_electricity_households
+
+uranium_extraction_energy;	uranium_extraction;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
+uranium_extraction_energy-(uranium)
+(uranium)-uranium_extraction_energy # 1 links to: uranium_treatment_energy
+
+oil_storage_energy;	oil_storage;	energy;	undefined;	storage;	
+oil_storage_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_storage_energy # 0 links to: 
+
+earth_environment_energetic;	earth;	environment;	energetic;	environment;	final_demand_cbs
+earth_environment_energetic-(loss)
+(loss)-earth_environment_energetic # 0 links to: 
+
+water_environment_energetic;	water;	environment;	energetic;	environment;	final_demand_cbs
+water_environment_energetic-(loss)
+(loss)-water_environment_energetic # 0 links to: 
+
+CNG_distribution_transport_energetic;	CNG_distribution;	transport;	energetic;	distribution;	
+CNG_distribution_transport_energetic-(cng) -- s --> (cng)-CNG_production_transport_energetic
+(cng)-CNG_distribution_transport_energetic # 0 links to: 
+
+CNG_production_transport_energetic;	CNG_production;	transport;	energetic;	refinery;	
+CNG_production_transport_energetic-(natural_gas) -- s --> (natural_gas)-gas_demand_transport_energetic
+(cng)-CNG_production_transport_energetic # 1 links to: CNG_distribution_transport_energetic
+
+compressed_gas_production_transport_energetic;	compressed_gas_production;	transport;	energetic;	refinery;	
+compressed_gas_production_transport_energetic-(greengas) -- s --> (greengas)-greengas_transport_energetic
+compressed_gas_production_transport_energetic-(natural_gas) -- s --> (natural_gas)-gas_demand_transport_energetic
+(compressed_gas)-compressed_gas_production_transport_energetic # 1 links to: compressed_gas_distribution_transport_energetic
+
+gas_demand_transport_energetic;	gas_demand;	transport;	energetic;	final consumption;	final_demand_cbs
+gas_demand_transport_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_demand_transport_energetic # 2 links to: CNG_production_transport_energetic, compressed_gas_production_transport_energetic
+
+greengas_transport_energetic;	greengas;	transport;	energetic;	final consumption;	final_demand_cbs
+greengas_transport_energetic-(greengas) -- s --> (greengas)-greengas_distribution_energy
+(greengas)-greengas_transport_energetic # 1 links to: compressed_gas_production_transport_energetic
+
+algue_diesel_production_transport_energetic;	algue_diesel_production;	transport;	energetic;	refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
+algue_diesel_production_transport_energetic-(biofuel)
+(algae_diesel)-algue_diesel_production_transport_energetic # 1 links to: algue_diesel_distribution_transport_energetic
+
+sun_environment_energetic;	sun;	environment;	energetic;	environment;	
+sun_environment_energetic-(loss)
+(loss)-sun_environment_energetic # 0 links to: 
+
+air_environment_energetic;	air;	environment;	energetic;	environment;	
+air_environment_energetic-(loss)
+(loss)-air_environment_energetic # 0 links to: 
+
+biogas_plant_energy;	biogas_plant;	energy;	undefined;	undefined;	
+biogas_plant_energy-(biogas) -- s --> (biogas)-biogas_distribution_energy
+(electricity)-biogas_plant_energy # 1 links to: hv_electricity_network_energy
+(loss)-biogas_plant_energy # 0 links to: 
+
+chp_other_other_energetic;	chp_other;	other;	energetic;	central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
+chp_other_other_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+(loss)-chp_other_other_energetic # 0 links to: 
+(steam_hot_water)-chp_other_other_energetic # 1 links to: decentral_heat_other
+(electricity)-chp_other_other_energetic # 1 links to: local_e_production_other
+
+biomass_burner_agri_agriculture_energetic;	biomass_burner_agri;	agriculture;	energetic;	technologies;	heat_production,cost_traditional_heat
+biomass_burner_agri_agriculture_energetic-(biomass) -- s --> (biomass)-energetic_use_biomass_agriculture_agriculture_energetic
+(loss)-biomass_burner_agri_agriculture_energetic # 0 links to: 
+(useable_heat)-biomass_burner_agri_agriculture_energetic # 1 links to: heating_demand_agriculture_energetic
+
+oil_burner_agri_agriculture_energetic;	oil_burner_agri;	agriculture;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+oil_burner_agri_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_demand_agriculture_energetic
+(loss)-oil_burner_agri_agriculture_energetic # 0 links to: 
+(useable_heat)-oil_burner_agri_agriculture_energetic # 1 links to: heating_demand_agriculture_energetic
+
+oil_demand_agriculture_energetic;	oil_demand;	agriculture;	energetic;	application;	
+oil_demand_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_agriculture_energetic
+(crude_oil)-oil_demand_agriculture_energetic # 1 links to: oil_burner_agri_agriculture_energetic
+
+oil_agriculture_energetic;	oil;	agriculture;	energetic;	final consumption;	final_demand_cbs
+oil_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_agriculture_energetic # 1 links to: oil_demand_agriculture_energetic
+
+gas_burner_agri_agriculture_energetic;	gas_burner_agri;	agriculture;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+gas_burner_agri_agriculture_energetic-(natural_gas) -- s --> (natural_gas)-gas_demand_agriculture_energetic
+(loss)-gas_burner_agri_agriculture_energetic # 0 links to: 
+(useable_heat)-gas_burner_agri_agriculture_energetic # 1 links to: heating_demand_agriculture_energetic
+
+gas_demand_agriculture_energetic;	gas_demand;	agriculture;	energetic;	application;	
+gas_demand_agriculture_energetic-(natural_gas) -- s --> (natural_gas)-gas_agriculture_energetic
+(natural_gas)-gas_demand_agriculture_energetic # 1 links to: gas_burner_agri_agriculture_energetic
+
+gas_agriculture_energetic;	gas;	agriculture;	energetic;	final consumption;	final_demand_cbs
+gas_agriculture_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_agriculture_energetic # 1 links to: gas_demand_agriculture_energetic
+
+chp_agri_agriculture_energetic;	chp_agri;	agriculture;	energetic;	central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
+chp_agri_agriculture_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+(loss)-chp_agri_agriculture_energetic # 0 links to: 
+(steam_hot_water)-chp_agri_agriculture_energetic # 1 links to: local_w_production_agriculture
+(electricity)-chp_agri_agriculture_energetic # 1 links to: local_e_production_agriculture
+
+heat_demand_other_other_energetic;	heat_demand_other;	other;	energetic;	useful consumption;	useful_demand
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_other_energetic
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-coal_burner_other_other_energetic
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_other_other_energetic
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_other_other_energetic
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_other_other_energetic
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biofuel_burner_other_other_energetic
+(useable_heat)-heat_demand_other_other_energetic # 0 links to: 
+
+steam_hot_water_other_energetic;	steam_hot_water;	other;	energetic;	final consumption;	final_demand_cbs
+steam_hot_water_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-decentral_heat_other
+(useable_heat)-steam_hot_water_other_energetic # 1 links to: heat_demand_other_other_energetic
+
+coal_burner_other_other_energetic;	coal_burner_other;	other;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+coal_burner_other_other_energetic-(coal) -- s --> (coal)-coal_demand_other_energetic
+(useable_heat)-coal_burner_other_other_energetic # 1 links to: heat_demand_other_other_energetic
+(loss)-coal_burner_other_other_energetic # 0 links to: 
+
+coal_demand_other_energetic;	coal_demand;	other;	energetic;	application;	
+coal_demand_other_energetic-(coal) -- s --> (coal)-coal_other_energetic
+(coal)-coal_demand_other_energetic # 1 links to: coal_burner_other_other_energetic
+
+coal_other_energetic;	coal;	other;	energetic;	final consumption;	final_demand_cbs
+coal_other_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_other_energetic # 1 links to: coal_demand_other_energetic
+
+oil_burner_other_other_energetic;	oil_burner_other;	other;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+oil_burner_other_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_demand_other_energetic
+(useable_heat)-oil_burner_other_other_energetic # 1 links to: heat_demand_other_other_energetic
+(loss)-oil_burner_other_other_energetic # 0 links to: 
+
+oil_demand_other_energetic;	oil_demand;	other;	energetic;	application;	
+oil_demand_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_other_energetic
+(crude_oil)-oil_demand_other_energetic # 1 links to: oil_burner_other_other_energetic
+
+oil_other_energetic;	oil;	other;	energetic;	final consumption;	final_demand_cbs
+oil_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_other_energetic # 1 links to: oil_demand_other_energetic
+
+biomass_burner_other_other_energetic;	biomass_burner_other;	other;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+biomass_burner_other_other_energetic-(biomass) -- s --> (biomass)-biomass_demand_other_energetic
+(useable_heat)-biomass_burner_other_other_energetic # 1 links to: heat_demand_other_other_energetic
+(loss)-biomass_burner_other_other_energetic # 0 links to: 
+
+biomass_demand_other_energetic;	biomass_demand;	other;	energetic;	application;	
+biomass_demand_other_energetic-(biomass) -- s --> (biomass)-biomass_other_energetic
+(biomass)-biomass_demand_other_energetic # 1 links to: biomass_burner_other_other_energetic
+
+biomass_other_energetic;	biomass;	other;	energetic;	final consumption;	final_demand_cbs
+biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(biomass)-biomass_other_energetic # 1 links to: biomass_demand_other_energetic
+
+gas_burner_other_other_energetic;	gas_burner_other;	other;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+gas_burner_other_other_energetic-(natural_gas) -- s --> (natural_gas)-gas_demand_other_energetic
+(useable_heat)-gas_burner_other_other_energetic # 1 links to: heat_demand_other_other_energetic
+(loss)-gas_burner_other_other_energetic # 0 links to: 
+
+gas_demand_other_energetic;	gas_demand;	other;	energetic;	application;	
+gas_demand_other_energetic-(natural_gas) -- s --> (natural_gas)-gas_other_energetic
+(natural_gas)-gas_demand_other_energetic # 1 links to: gas_burner_other_other_energetic
+
+gas_other_energetic;	gas;	other;	energetic;	final consumption;	final_demand_cbs
+gas_other_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_other_energetic # 1 links to: gas_demand_other_energetic
+
+coal_burner_industry_industry_energetic;	coal_burner_industry;	industry;	energetic;	technologies;	heat_production,cost_traditional_heat
+coal_burner_industry_industry_energetic-(coal) -- s --> (coal)-coal_demand_industry_energetic
+(useable_heat)-coal_burner_industry_industry_energetic # 1 links to: heating_demand_industry_energetic
+(loss)-coal_burner_industry_industry_energetic # 0 links to: 
+
+coal_demand_industry_energetic;	coal_demand;	industry;	energetic;	application;	
+coal_demand_industry_energetic-(coal) -- s --> (coal)-coal_industry_energetic
+(coal)-coal_demand_industry_energetic # 1 links to: coal_burner_industry_industry_energetic
+
+coal_industry_energetic;	coal;	industry;	energetic;	final consumption;	final_demand_cbs
+coal_industry_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_industry_energetic # 1 links to: coal_demand_industry_energetic
+
+oil_burner_industry_industry_energetic;	oil_burner_industry;	industry;	energetic;	technologies;	heat_production,cost_traditional_heat
+oil_burner_industry_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_demand_industry_energetic
+(useable_heat)-oil_burner_industry_industry_energetic # 1 links to: heating_demand_industry_energetic
+(loss)-oil_burner_industry_industry_energetic # 0 links to: 
+
+oil_demand_industry_energetic;	oil_demand;	industry;	energetic;	application;	
+oil_demand_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_industry_energetic
+(crude_oil)-oil_demand_industry_energetic # 1 links to: oil_burner_industry_industry_energetic
+
+oil_industry_energetic;	oil;	industry;	energetic;	final consumption;	final_demand_cbs
+oil_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_industry_energetic # 1 links to: oil_demand_industry_energetic
+
+biomass_burner_industry_industry_energetic;	biomass_burner_industry;	industry;	energetic;	technologies;	heat_production,cost_traditional_heat
+biomass_burner_industry_industry_energetic-(biomass) -- s --> (biomass)-biomass_demand_industry
+(loss)-biomass_burner_industry_industry_energetic # 0 links to: 
+(useable_heat)-biomass_burner_industry_industry_energetic # 1 links to: heating_demand_industry_energetic
+
+biomass_demand_industry;	biomass_demand;	industry;	undefined;	application;	
+biomass_demand_industry-(biomass) -- s --> (biomass)-biomass_industry_energetic
+(biomass)-biomass_demand_industry # 1 links to: biomass_burner_industry_industry_energetic
+
+biomass_industry_energetic;	biomass;	industry;	energetic;	final consumption;	final_demand_cbs
+biomass_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(biomass)-biomass_industry_energetic # 1 links to: biomass_demand_industry
+
+gas_burner_industry_industry_energetic;	gas_burner_industry;	industry;	energetic;	technologies;	heat_production,cost_traditional_heat
+gas_burner_industry_industry_energetic-(natural_gas) -- s --> (natural_gas)-gas_demand_industry_energetic
+(loss)-gas_burner_industry_industry_energetic # 0 links to: 
+(useable_heat)-gas_burner_industry_industry_energetic # 1 links to: heating_demand_industry_energetic
+
+gas_demand_industry_energetic;	gas_demand;	industry;	energetic;	application;	
+gas_demand_industry_energetic-(natural_gas) -- s --> (natural_gas)-gas_industry_energetic
+(natural_gas)-gas_demand_industry_energetic # 1 links to: gas_burner_industry_industry_energetic
+
+gas_industry_energetic;	gas;	industry;	energetic;	final consumption;	final_demand_cbs
+gas_industry_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_industry_energetic # 1 links to: gas_demand_industry_energetic
+
+biofuel_burner_industry_industry_energetic;	biofuel_burner_industry;	industry;	energetic;	technologies;	heat_production,cost_traditional_heat
+biofuel_burner_industry_industry_energetic-(biofuel) -- s --> (biofuel)-biofuel_demand_industry
+(useable_heat)-biofuel_burner_industry_industry_energetic # 1 links to: heating_demand_industry_energetic
+(loss)-biofuel_burner_industry_industry_energetic # 0 links to: 
+
+biofuel_demand_industry;	biofuel_demand;	industry;	undefined;	application;	
+biofuel_demand_industry-(biofuel) -- s --> (biofuel)-biofuel_industry_energetic
+(biofuel)-biofuel_demand_industry # 1 links to: biofuel_burner_industry_industry_energetic
+
+biofuel_industry_energetic;	biofuel;	industry;	energetic;	final consumption;	final_demand_cbs
+biofuel_industry_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy
+(biofuel)-biofuel_industry_energetic # 1 links to: biofuel_demand_industry
+
+heat_pump_with_CHS_agri_agriculture_energetic;	heat_pump_with_CHS_agri;	agriculture;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+heat_pump_with_CHS_agri_agriculture_energetic-(electricity) -- s --> (electricity)-electricity_agriculture_energetic
+heat_pump_with_CHS_agri_agriculture_energetic-(ambient_heat) -- s --> (loss)-earth_environment_energetic
+(useable_heat)-heat_pump_with_CHS_agri_agriculture_energetic # 1 links to: heating_demand_agriculture_energetic
+
+geothermal_agri_agriculture_energetic;	geothermal_agri;	agriculture;	energetic;	technologies;	heat_production,cost_heat_pumps
+geothermal_agri_agriculture_energetic-(electricity) -- s --> (electricity)-electricity_agriculture_energetic
+geothermal_agri_agriculture_energetic-(ambient_heat) -- s --> (loss)-earth_environment_energetic
+(useable_heat)-geothermal_agri_agriculture_energetic # 1 links to: heating_demand_agriculture_energetic
+
+electricity_agriculture_energetic;	electricity;	agriculture;	energetic;	final consumption;	final_demand_cbs,final_demand_electricity,cost_other
+electricity_agriculture_energetic-(electricity) -- s --> (electricity)-local_e_production_agriculture
+(electricity)-electricity_agriculture_energetic # 3 links to: electricity_demand_agriculture_energetic, heat_pump_with_CHS_agri_agriculture_energetic, geothermal_agri_agriculture_energetic
+
+energetic_use_biomass_agriculture_agriculture_energetic;	energetic_use_biomass_agriculture;	agriculture;	energetic;	final consumption;	final_demand_cbs
+energetic_use_biomass_agriculture_agriculture_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(biomass)-energetic_use_biomass_agriculture_agriculture_energetic # 1 links to: biomass_burner_agri_agriculture_energetic
+
+heating_demand_with_current_insulation_households_energetic;	heating_demand_with_current_insulation;	households;	energetic;	before savings;	
+heating_demand_with_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic
+heating_demand_with_current_insulation_households_energetic-(useable_heat) -- s --> (useable_heat)-extra_insulation_savings_households_energetic
+(useable_heat)-heating_demand_with_current_insulation_households_energetic # 0 links to: 
+
+extra_insulation_savings_households_energetic;	extra_insulation_savings;	households;	energetic;	savings;	cost_other
+extra_insulation_savings_households_energetic-(useable_heat)
+(useable_heat)-extra_insulation_savings_households_energetic # 1 links to: heating_demand_with_current_insulation_households_energetic
+
+lpg_trucks_transport_energetic;	lpg_trucks;	transport;	energetic;	technologies;	useful_demand,cost_other
+lpg_trucks_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport
+(truck_kms)-lpg_trucks_transport_energetic # 1 links to: truck_kms_demand_transport_energetic
+
+lpg_distribution_transport;	lpg_distribution;	transport;	undefined;	distribution;	
+lpg_distribution_transport-(lpg) -- s --> (lpg)-lpg_production_transport
+lpg_distribution_transport-(lpg) -- f --> (lpg)-lpg_import_export_transport
+(lpg)-lpg_distribution_transport # 3 links to: lpg_cars_transport_energetic, lpg_trucks_transport_energetic, lpg_export_energy
+
+lpg_production_transport;	lpg_production;	transport;	undefined;	refinery;	
+lpg_production_transport-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(loss)-lpg_production_transport # 0 links to: 
+(lpg)-lpg_production_transport # 1 links to: lpg_distribution_transport
+
+lpg_import_export_transport;	lpg_import_export;	transport;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+lpg_import_export_transport-(lpg)
+(lpg)-lpg_import_export_transport # 1 links to: lpg_distribution_transport
+
+other_electric_transport_transport_energetic;	other_electric_transport;	transport;	energetic;	technologies;	useful_demand
+other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
+(electricity)-other_electric_transport_transport_energetic # 0 links to: 
+
+biofuel_burner_other_other_energetic;	biofuel_burner_other;	other;	energetic;	technologies;	cost_traditional_heat
+biofuel_burner_other_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_demand_other_energetic
+(useable_heat)-biofuel_burner_other_other_energetic # 1 links to: heat_demand_other_other_energetic
+(loss)-biofuel_burner_other_other_energetic # 0 links to: 
+
+biofuel_demand_other_energetic;	biofuel_demand;	other;	energetic;	application;	
+biofuel_demand_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_other_energetic
+(biofuel)-biofuel_demand_other_energetic # 1 links to: biofuel_burner_other_other_energetic
+
+biofuel_other_energetic;	biofuel;	other;	energetic;	final consumption;	final_demand_cbs
+biofuel_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy
+(biofuel)-biofuel_other_energetic # 1 links to: biofuel_demand_other_energetic
+
+biofuel_distribution_energy;	biofuel_distribution;	energy;	undefined;	distribution primary carriers;	
+biofuel_distribution_energy-(biofuel) -- c --> (biofuel)-biofuel_production_energy
+biofuel_distribution_energy-(biofuel) -- f --> (biofuel)-biofuel_import_export_energy
+(biofuel)-biofuel_distribution_energy # 5 links to: biofuel_industry_energetic, biofuel_other_energetic, biofuel_transport_energetic, biofuel_industry_non_energetic, biofuel_other_non_energetic
+
+biofuel_import_export_energy;	biofuel_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+biofuel_import_export_energy-(biofuel)
+(biofuel)-biofuel_import_export_energy # 1 links to: biofuel_distribution_energy
+
+diesel_mixer_transport_energetic;	diesel_mixer;	transport;	energetic;	subdistribution 1;	
+diesel_mixer_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-algue_diesel_distribution_transport_energetic
+diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport
+diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-diesel_production_transport
+(diesel)-diesel_mixer_transport_energetic # 1 links to: diesel_distribution_transport
+
+diesel_production_transport;	diesel_production;	transport;	undefined;	refinery;	
+diesel_production_transport-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(loss)-diesel_production_transport # 0 links to: 
+(diesel)-diesel_production_transport # 1 links to: diesel_mixer_transport_energetic
+
+algue_diesel_distribution_transport_energetic;	algue_diesel_distribution;	transport;	energetic;	distribution;	biofuel_distribution
+algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic
+algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_diesel)-algue_diesel_import_export_transport_energetic
+(algae_diesel)-algue_diesel_distribution_transport_energetic # 2 links to: diesel_mixer_transport_energetic, algue_diesel_export_energy
+
+algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;	undefined;	final_demand_cbs,energy_import_export,energy_import
+algue_diesel_import_export_transport_energetic-(biofuel)
+(algae_diesel)-algue_diesel_import_export_transport_energetic # 1 links to: algue_diesel_distribution_transport_energetic
+
+gasoline_mixer_transport_energetic;	gasoline_mixer;	transport;	energetic;	subdistribution 1;	
+gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport
+gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_production_transport
+(gasoline)-gasoline_mixer_transport_energetic # 1 links to: gasoline_distribution_transport
+
+gasoline_production_transport;	gasoline_production;	transport;	undefined;	refinery;	
+gasoline_production_transport-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(loss)-gasoline_production_transport # 0 links to: 
+(gasoline)-gasoline_production_transport # 1 links to: gasoline_mixer_transport_energetic
+
+heating_schools_current_insulation_buildings_energetic;	heating_schools_current_insulation;	buildings;	energetic;	before savings;	
+heating_schools_current_insulation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-insulation_savings_buildings_energetic
+heating_schools_current_insulation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic
+(useable_heat)-heating_schools_current_insulation_buildings_energetic # 0 links to: 
+
+heating_new_houses_current_insulation_households_energetic;	heating_new_houses_current_insulation;	households;	energetic;	before savings;	
+heating_new_houses_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic
+heating_new_houses_current_insulation_households_energetic-(useable_heat) -- s --> (useable_heat)-heating_savings_insulation_new_households_energetic
+(useable_heat)-heating_new_houses_current_insulation_households_energetic # 0 links to: 
+
+heating_demand_households_energetic;	heating_demand;	households;	energetic;	useful consumption;	useful_demand
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heat_pump_with_chs_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-solar_panel_for_heating_households_energetic
+heating_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-central_heating_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heater_on_biomass_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heater_on_coal_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heater_on_oil_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_addon_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heat_from_steam_hot_water_households_energetic
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-micro_CHP_production_households
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gas_fired_heater_households_energetic
+(useable_heat)-heating_demand_households_energetic # 2 links to: heating_demand_with_current_insulation_households_energetic, heating_new_houses_current_insulation_households_energetic
+
+heat_pump_with_chs_households_energetic;	heat_pump_with_chs;	households;	energetic;	technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
+heat_pump_with_chs_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic
+heat_pump_with_chs_households_energetic-(ambient_heat) -- s --> (loss)-air_environment_energetic
+(loss)-heat_pump_with_chs_households_energetic # 0 links to: 
+(useable_heat)-heat_pump_with_chs_households_energetic # 1 links to: heating_demand_households_energetic
+(cooling)-heat_pump_with_chs_households_energetic # 0 links to: 
+
+electric_heater_households_energetic;	electric_heater;	households;	energetic;	technologies;	heat_production,decentral_production,network_converters,cost_traditional_heat
+electric_heater_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic
+(loss)-electric_heater_households_energetic # 0 links to: 
+(useable_heat)-electric_heater_households_energetic # 1 links to: heating_demand_households_energetic
+
+solar_panel_for_heating_households_energetic;	solar_panel_for_heating;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+solar_panel_for_heating_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_for_heating_households_energetic
+(loss)-solar_panel_for_heating_households_energetic # 0 links to: 
+(useable_heat)-solar_panel_for_heating_households_energetic # 1 links to: heating_demand_households_energetic
+
+central_heating_households_energetic;	central_heating;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+central_heating_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_heating_households_energetic
+(loss)-central_heating_households_energetic # 0 links to: 
+(useable_heat)-central_heating_households_energetic # 1 links to: heating_demand_households_energetic
+
+heatpump_households_energetic;	heatpump;	households;	energetic;	technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
+heatpump_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic
+heatpump_households_energetic-(ambient_heat) -- s --> (loss)-air_environment_energetic
+(loss)-heatpump_households_energetic # 0 links to: 
+(useable_heat)-heatpump_households_energetic # 1 links to: heating_demand_households_energetic
+
+heater_on_biomass_households_energetic;	heater_on_biomass;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+heater_on_biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_for_heating_households_energetic
+(loss)-heater_on_biomass_households_energetic # 0 links to: 
+(useable_heat)-heater_on_biomass_households_energetic # 1 links to: heating_demand_households_energetic
+
+heater_on_coal_households_energetic;	heater_on_coal;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+heater_on_coal_households_energetic-(coal) -- s --> (coal)-coal_for_heating_households_energetic
+(loss)-heater_on_coal_households_energetic # 0 links to: 
+(useable_heat)-heater_on_coal_households_energetic # 1 links to: heating_demand_households_energetic
+
+heater_on_oil_households_energetic;	heater_on_oil;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+heater_on_oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_heating_households_energetic
+(loss)-heater_on_oil_households_energetic # 0 links to: 
+(useable_heat)-heater_on_oil_households_energetic # 1 links to: heating_demand_households_energetic
+
+gasheatpump_households_energetic;	gasheatpump;	households;	energetic;	technologies;	heat_production,decentral_production,cost_heat_pumps
+gasheatpump_households_energetic-(ambient_heat) -- s --> (loss)-air_environment_energetic
+gasheatpump_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_heating_households_energetic
+(loss)-gasheatpump_households_energetic # 0 links to: 
+(useable_heat)-gasheatpump_households_energetic # 1 links to: heating_demand_households_energetic
+
+heating_offices_current_insulation_buildings_energetic;	heating_offices_current_insulation;	buildings;	energetic;	before savings;	
+heating_offices_current_insulation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-insulation_savings_buildings_energetic
+heating_offices_current_insulation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic
+(useable_heat)-heating_offices_current_insulation_buildings_energetic # 0 links to: 
+
+heatpump_addon_households_energetic;	heatpump_addon;	households;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+heatpump_addon_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic
+heatpump_addon_households_energetic-(ambient_heat) -- s --> (loss)-air_environment_energetic
+(loss)-heatpump_addon_households_energetic # 0 links to: 
+(useable_heat)-heatpump_addon_households_energetic # 1 links to: heating_demand_households_energetic
+
+cooking_demand_households_energetic;	cooking_demand;	households;	energetic;	useful consumption;	useful_demand
+cooking_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-gas_stove_households_energetic
+cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_stove_households_energetic
+cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-halogen_stove_households_energetic
+cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-induction_stove_households_energetic
+cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-biomass_cooking_households_energetic
+(loss)-cooking_demand_households_energetic # 0 links to: 
+
+gas_stove_households_energetic;	gas_stove;	households;	energetic;	technologies;	
+gas_stove_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_cooking_households_energetic
+(useable_heat)-gas_stove_households_energetic # 1 links to: cooking_demand_households_energetic
+(loss)-gas_stove_households_energetic # 0 links to: 
+
+electric_stove_households_energetic;	electric_stove;	households;	energetic;	technologies;	
+electric_stove_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooking_households_energetic
+(useable_heat)-electric_stove_households_energetic # 1 links to: cooking_demand_households_energetic
+(loss)-electric_stove_households_energetic # 0 links to: 
+
+halogen_stove_households_energetic;	halogen_stove;	households;	energetic;	technologies;	
+halogen_stove_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooking_households_energetic
+(useable_heat)-halogen_stove_households_energetic # 1 links to: cooking_demand_households_energetic
+(loss)-halogen_stove_households_energetic # 0 links to: 
+
+induction_stove_households_energetic;	induction_stove;	households;	energetic;	technologies;	
+induction_stove_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooking_households_energetic
+(loss)-induction_stove_households_energetic # 0 links to: 
+(useable_heat)-induction_stove_households_energetic # 1 links to: cooking_demand_households_energetic
+
+dishwasher_households_energetic;	dishwasher;	households;	energetic;	technologies;	useful_demand
+dishwasher_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-dishwasher_households_energetic # 0 links to: 
+(loss)-dishwasher_households_energetic # 0 links to: 
+
+fridge_households_energetic;	fridge;	households;	energetic;	technologies;	useful_demand
+fridge_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-fridge_households_energetic # 0 links to: 
+(loss)-fridge_households_energetic # 0 links to: 
+
+vacuum_cleaner_households_energetic;	vacuum_cleaner;	households;	energetic;	technologies;	useful_demand
+vacuum_cleaner_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-vacuum_cleaner_households_energetic # 0 links to: 
+(loss)-vacuum_cleaner_households_energetic # 0 links to: 
+
+washing_machine_households_energetic;	washing_machine;	households;	energetic;	technologies;	useful_demand
+washing_machine_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-washing_machine_households_energetic # 0 links to: 
+(loss)-washing_machine_households_energetic # 0 links to: 
+
+clothes_dryer_households_energetic;	clothes_dryer;	households;	energetic;	technologies;	useful_demand
+clothes_dryer_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-clothes_dryer_households_energetic # 0 links to: 
+(loss)-clothes_dryer_households_energetic # 0 links to: 
+
+tv_households_energetic;	tv;	households;	energetic;	technologies;	useful_demand
+tv_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-tv_households_energetic # 0 links to: 
+(loss)-tv_households_energetic # 0 links to: 
+
+computer_households_energetic;	computer;	households;	energetic;	technologies;	useful_demand
+computer_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
+(notdefined)-computer_households_energetic # 0 links to: 
+(loss)-computer_households_energetic # 0 links to: 
+
+insulation_savings_buildings_energetic;	insulation_savings;	buildings;	energetic;	savings;	cost_other
+insulation_savings_buildings_energetic-(useable_heat)
+(useable_heat)-insulation_savings_buildings_energetic # 2 links to: heating_schools_current_insulation_buildings_energetic, heating_offices_current_insulation_buildings_energetic
+
+solar_panels_buildings_energetic;	solar_panels;	buildings;	energetic;	local power generation;	primary_energy_demand,sustainable_production,electricity_production,network_converters,cost_electricity_production
+solar_panels_buildings_energetic-(solar_radiation) -- s --> (loss)-sun_environment_energetic
+(loss)-solar_panels_buildings_energetic # 0 links to: 
+(electricity)-solar_panels_buildings_energetic # 1 links to: local_e_production_buildings
+
+building_related_buildings_energetic;	building_related;	buildings;	energetic;	useful consumption;	useful_demand
+building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_oil_buildings
+building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_gas_buildings
+building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_biomass_buildings
+building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_electric_buildings
+(notdefined)-building_related_buildings_energetic # 0 links to: 
+
+appliances_buildings_energetic;	appliances;	buildings;	energetic;	useful consumption;	useful_demand
+appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-oil_appliances_buildings
+appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-gas_appliances_buildings
+appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-biomass_appliances_buildings
+appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-electric_appliances_buildings
+(notdefined)-appliances_buildings_energetic # 0 links to: 
+
+cooling_current_insulation_old_households_energetic;	cooling_current_insulation_old;	households;	energetic;	before savings;	
+cooling_current_insulation_old_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic
+cooling_current_insulation_old_households_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_old_households_energetic
+(cooling)-cooling_current_insulation_old_households_energetic # 0 links to: 
+
+cooling_current_insulation_new_households_energetic;	cooling_current_insulation_new;	households;	energetic;	before savings;	
+cooling_current_insulation_new_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic
+cooling_current_insulation_new_households_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_new_households_energetic
+(cooling)-cooling_current_insulation_new_households_energetic # 0 links to: 
+
+cooling_demand_households_energetic;	cooling_demand;	households;	energetic;	useful consumption;	useful_demand
+cooling_demand_households_energetic-(cooling) -- f --> (cooling)-airco_households_energetic
+cooling_demand_households_energetic-(cooling) -- s --> (cooling)-heatpump_cooling_households_energetic
+cooling_demand_households_energetic-(cooling) -- s --> (cooling)-gasheatpump_cooling_households_energetic
+cooling_demand_households_energetic-(cooling) -- s --> (cooling)-heatpump_ts_cooling_households_energetic
+(cooling)-cooling_demand_households_energetic # 2 links to: cooling_current_insulation_old_households_energetic, cooling_current_insulation_new_households_energetic
+
+airco_households_energetic;	airco;	households;	energetic;	technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
+airco_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic
+airco_households_energetic-(ambient_cold) -- s --> (loss)-air_environment_energetic
+(loss)-airco_households_energetic # 0 links to: 
+(cooling)-airco_households_energetic # 1 links to: cooling_demand_households_energetic
+
+heatpump_cooling_households_energetic;	heatpump_cooling;	households;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+heatpump_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic
+heatpump_cooling_households_energetic-(ambient_cold) -- s --> (loss)-earth_environment_energetic
+(loss)-heatpump_cooling_households_energetic # 0 links to: 
+(cooling)-heatpump_cooling_households_energetic # 1 links to: cooling_demand_households_energetic
+
+gasheatpump_cooling_households_energetic;	gasheatpump_cooling;	households;	energetic;	technologies;	heat_production,cost_heat_pumps
+gasheatpump_cooling_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_cooling_households_energetic
+gasheatpump_cooling_households_energetic-(ambient_cold) -- s --> (loss)-air_environment_energetic
+(loss)-gasheatpump_cooling_households_energetic # 0 links to: 
+(cooling)-gasheatpump_cooling_households_energetic # 1 links to: cooling_demand_households_energetic
+
+heatpump_ts_cooling_households_energetic;	heatpump_ts_cooling;	households;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+heatpump_ts_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic
+heatpump_ts_cooling_households_energetic-(ambient_cold) -- s --> (loss)-air_environment_energetic
+(loss)-heatpump_ts_cooling_households_energetic # 0 links to: 
+(cooling)-heatpump_ts_cooling_households_energetic # 1 links to: cooling_demand_households_energetic
+
+cooling_savings_insulation_old_households_energetic;	cooling_savings_insulation_old;	households;	energetic;	before savings;	
+cooling_savings_insulation_old_households_energetic-(cooling)
+(cooling)-cooling_savings_insulation_old_households_energetic # 1 links to: cooling_current_insulation_old_households_energetic
+
+cooling_savings_insulation_new_households_energetic;	cooling_savings_insulation_new;	households;	energetic;	savings;	
+cooling_savings_insulation_new_households_energetic-(cooling)
+(cooling)-cooling_savings_insulation_new_households_energetic # 1 links to: cooling_current_insulation_new_households_energetic
+
+heating_savings_insulation_new_households_energetic;	heating_savings_insulation_new;	households;	energetic;	savings;	cost_other
+heating_savings_insulation_new_households_energetic-(useable_heat)
+(useable_heat)-heating_savings_insulation_new_households_energetic # 1 links to: heating_new_houses_current_insulation_households_energetic
+
+cooling_savings_insulation_buildings_energetic;	cooling_savings_insulation;	buildings;	energetic;	savings;	
+cooling_savings_insulation_buildings_energetic-(cooling)
+(cooling)-cooling_savings_insulation_buildings_energetic # 1 links to: cooling_demand_buildings_energetic
+
+heat_demand_before_recirculation_buildings_energetic;	heat_demand_before_recirculation;	buildings;	energetic;	before savings;	
+heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recovery_buildings_energetic
+heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_recirculation_savings_buildings_energetic
+(useable_heat)-heat_demand_before_recirculation_buildings_energetic # 3 links to: heating_other_buildings_energetic, heating_schools_current_insulation_buildings_energetic, heating_offices_current_insulation_buildings_energetic
+
+heat_demand_before_recovery_buildings_energetic;	heat_demand_before_recovery;	buildings;	energetic;	before savings;	
+heat_demand_before_recovery_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heating_buildings_energetic
+heat_demand_before_recovery_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_recovery_savings_buildings_energetic
+(useable_heat)-heat_demand_before_recovery_buildings_energetic # 1 links to: heat_demand_before_recirculation_buildings_energetic
+
+heating_buildings_energetic;	heating;	buildings;	energetic;	useful consumption;	useful_demand
+heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_heater_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-solarthermic_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_ts_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-biomass_fired_heater_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_ts_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-oil_heater_buildings_energetic
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-coal_heater_buildings_energetic
+(useable_heat)-heating_buildings_energetic # 1 links to: heat_demand_before_recovery_buildings_energetic
+
+gas_fired_heater_buildings_energetic;	gas_fired_heater;	buildings;	energetic;	technologies;	heat_production,cost_traditional_heat
+gas_fired_heater_buildings_energetic-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+(useable_heat)-gas_fired_heater_buildings_energetic # 1 links to: heating_buildings_energetic
+(loss)-gas_fired_heater_buildings_energetic # 0 links to: 
+
+electric_heater_buildings_energetic;	electric_heater;	buildings;	energetic;	technologies;	heat_production,network_converters,cost_traditional_heat
+electric_heater_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+(useable_heat)-electric_heater_buildings_energetic # 1 links to: heating_buildings_energetic
+(loss)-electric_heater_buildings_energetic # 0 links to: 
+
+solarthermic_buildings_energetic;	solarthermic;	buildings;	energetic;	technologies;	heat_production,cost_traditional_heat
+solarthermic_buildings_energetic-(solar_radiation) -- s --> (loss)-sun_environment_energetic
+(useable_heat)-solarthermic_buildings_energetic # 1 links to: heating_buildings_energetic
+(loss)-solarthermic_buildings_energetic # 0 links to: 
+
+gasheatpump_ts_buildings_energetic;	gasheatpump_ts;	buildings;	energetic;	technologies;	heat_production,cost_heat_pumps
+gasheatpump_ts_buildings_energetic-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+gasheatpump_ts_buildings_energetic-(ambient_heat) -- s --> (loss)-earth_environment_energetic
+(useable_heat)-gasheatpump_ts_buildings_energetic # 1 links to: heating_buildings_energetic
+(loss)-gasheatpump_ts_buildings_energetic # 0 links to: 
+
+biomass_fired_heater_buildings_energetic;	biomass_fired_heater;	buildings;	energetic;	technologies;	heat_production,cost_traditional_heat
+biomass_fired_heater_buildings_energetic-(biomass) -- s --> (biomass)-biomass_buildings_energetic
+(useable_heat)-biomass_fired_heater_buildings_energetic # 1 links to: heating_buildings_energetic
+(loss)-biomass_fired_heater_buildings_energetic # 0 links to: 
+
+heatpump_ts_buildings_energetic;	heatpump_ts;	buildings;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+heatpump_ts_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+heatpump_ts_buildings_energetic-(ambient_heat) -- s --> (loss)-earth_environment_energetic
+(useable_heat)-heatpump_ts_buildings_energetic # 1 links to: heating_buildings_energetic
+(loss)-heatpump_ts_buildings_energetic # 0 links to: 
+
+steam_hot_water_buildings_energetic;	steam_hot_water;	buildings;	energetic;	final consumption;	final_demand_cbs
+steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic
+steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic
+steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-coal_chp_buildings_energetic
+steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic
+(useable_heat)-steam_hot_water_buildings_energetic # 1 links to: heating_buildings_energetic
+
+local_heat_network_buildings_energetic;	local_heat_network;	buildings;	energetic;	locally available;	heat_production,cost_traditional_heat
+local_heat_network_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-heat_network_industry_energetic
+(steam_hot_water)-local_heat_network_buildings_energetic # 1 links to: steam_hot_water_buildings_energetic
+(loss)-local_heat_network_buildings_energetic # 0 links to: 
+
+gas_chp_buildings_energetic;	gas_chp;	buildings;	energetic;	central CHPs;	electricity_production,heat_production,network_converters,cost_chps
+gas_chp_buildings_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+(electricity)-gas_chp_buildings_energetic # 1 links to: local_e_production_buildings
+(steam_hot_water)-gas_chp_buildings_energetic # 1 links to: steam_hot_water_buildings_energetic
+(loss)-gas_chp_buildings_energetic # 0 links to: 
+
+coal_chp_buildings_energetic;	coal_chp;	buildings;	energetic;	central CHPs;	electricity_production,heat_production,network_converters,cost_chps
+coal_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_chp_buildings_energetic-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_chp_buildings_energetic-(coal) -- s --> (coal)-coal_distribution_energy
+(electricity)-coal_chp_buildings_energetic # 1 links to: local_e_production_buildings
+(steam_hot_water)-coal_chp_buildings_energetic # 1 links to: steam_hot_water_buildings_energetic
+(loss)-coal_chp_buildings_energetic # 0 links to: 
+
+biomass_chp_buildings_energetic;	biomass_chp;	buildings;	energetic;	central CHPs;	electricity_production,heat_production,network_converters,cost_chps
+biomass_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(electricity)-biomass_chp_buildings_energetic # 1 links to: local_e_production_buildings
+(steam_hot_water)-biomass_chp_buildings_energetic # 1 links to: steam_hot_water_buildings_energetic
+(loss)-biomass_chp_buildings_energetic # 0 links to: 
+
+oil_heater_buildings_energetic;	oil_heater;	buildings;	energetic;	technologies;	heat_production,cost_traditional_heat
+oil_heater_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+(loss)-oil_heater_buildings_energetic # 0 links to: 
+(useable_heat)-oil_heater_buildings_energetic # 1 links to: heating_buildings_energetic
+
+coal_heater_buildings_energetic;	coal_heater;	buildings;	energetic;	technologies;	heat_production,cost_traditional_heat
+coal_heater_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
+(loss)-coal_heater_buildings_energetic # 0 links to: 
+(useable_heat)-coal_heater_buildings_energetic # 1 links to: heating_buildings_energetic
+
+coal_buildings_energetic;	coal;	buildings;	energetic;	final consumption;	final_demand_cbs
+coal_buildings_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_buildings_energetic # 1 links to: coal_heater_buildings_energetic
+
+cold_demand_before_recirculation_buildings_energetic;	cold_demand_before_recirculation;	buildings;	energetic;	before savings;	
+cold_demand_before_recirculation_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recovery_buildings_energetic
+cold_demand_before_recirculation_buildings_energetic-(cooling) -- s --> (cooling)-cold_recirculation_savings_buildings_energetic
+(cooling)-cold_demand_before_recirculation_buildings_energetic # 1 links to: cooling_demand_buildings_energetic
+
+cold_demand_before_recovery_buildings_energetic;	cold_demand_before_recovery;	buildings;	energetic;	before savings;	
+cold_demand_before_recovery_buildings_energetic-(cooling) -- f --> (cooling)-cooling_buildings_energetic
+cold_demand_before_recovery_buildings_energetic-(cooling) -- s --> (cooling)-cold_recovery_savings_buildings_energetic
+(cooling)-cold_demand_before_recovery_buildings_energetic # 1 links to: cold_demand_before_recirculation_buildings_energetic
+
+cooling_buildings_energetic;	cooling;	buildings;	energetic;	useful consumption;	useful_demand
+cooling_buildings_energetic-(cooling) -- s --> (cooling)-city_cooling_network_buildings_energetic
+cooling_buildings_energetic-(cooling) -- s --> (cooling)-gasheatpump_cooling_buildings_energetic
+cooling_buildings_energetic-(cooling) -- s --> (cooling)-heatpump_ts_cooling_buildings_energetic
+cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic
+(cooling)-cooling_buildings_energetic # 1 links to: cold_demand_before_recovery_buildings_energetic
+
+city_cooling_network_buildings_energetic;	city_cooling_network;	buildings;	energetic;	technologies;	
+city_cooling_network_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+city_cooling_network_buildings_energetic-(ambient_cold) -- s --> (loss)-water_environment_energetic
+(cooling)-city_cooling_network_buildings_energetic # 1 links to: cooling_buildings_energetic
+
+gasheatpump_cooling_buildings_energetic;	gasheatpump_cooling;	buildings;	energetic;	technologies;	heat_production,cost_heat_pumps
+gasheatpump_cooling_buildings_energetic-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+gasheatpump_cooling_buildings_energetic-(ambient_cold) -- s --> (loss)-earth_environment_energetic
+(cooling)-gasheatpump_cooling_buildings_energetic # 1 links to: cooling_buildings_energetic
+(loss)-gasheatpump_cooling_buildings_energetic # 0 links to: 
+
+heatpump_ts_cooling_buildings_energetic;	heatpump_ts_cooling;	buildings;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+heatpump_ts_cooling_buildings_energetic-(ambient_cold) -- s --> (loss)-earth_environment_energetic
+(cooling)-heatpump_ts_cooling_buildings_energetic # 1 links to: cooling_buildings_energetic
+(loss)-heatpump_ts_cooling_buildings_energetic # 0 links to: 
+
+airco_buildings_energetic;	airco;	buildings;	energetic;	technologies;	heat_production,network_converters,cost_heat_pumps
+airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+airco_buildings_energetic-(ambient_cold) -- s --> (loss)-air_environment_energetic
+(cooling)-airco_buildings_energetic # 1 links to: cooling_buildings_energetic
+(loss)-airco_buildings_energetic # 0 links to: 
+
+heat_recirculation_savings_buildings_energetic;	heat_recirculation_savings;	buildings;	energetic;	savings;	
+heat_recirculation_savings_buildings_energetic-(useable_heat)
+(useable_heat)-heat_recirculation_savings_buildings_energetic # 1 links to: heat_demand_before_recirculation_buildings_energetic
+
+heat_recovery_savings_buildings_energetic;	heat_recovery_savings;	buildings;	energetic;	savings;	
+heat_recovery_savings_buildings_energetic-(useable_heat)
+(useable_heat)-heat_recovery_savings_buildings_energetic # 1 links to: heat_demand_before_recovery_buildings_energetic
+
+cold_recirculation_savings_buildings_energetic;	cold_recirculation_savings;	buildings;	energetic;	savings;	
+cold_recirculation_savings_buildings_energetic-(cooling)
+(cooling)-cold_recirculation_savings_buildings_energetic # 1 links to: cold_demand_before_recirculation_buildings_energetic
+
+cold_recovery_savings_buildings_energetic;	cold_recovery_savings;	buildings;	energetic;	savings;	
+cold_recovery_savings_buildings_energetic-(cooling)
+(cooling)-cold_recovery_savings_buildings_energetic # 1 links to: cold_demand_before_recovery_buildings_energetic
+
+lighting_without_motion_detection_buildings_energetic;	lighting_without_motion_detection;	buildings;	energetic;	before savings;	
+lighting_without_motion_detection_buildings_energetic-(light) -- f --> (light)-lighting_without_daylight_control_buildings_energetic
+lighting_without_motion_detection_buildings_energetic-(light) -- s --> (light)-motion_detection_savings_buildings_energetic
+(light)-lighting_without_motion_detection_buildings_energetic # 0 links to: 
+
+lighting_without_daylight_control_buildings_energetic;	lighting_without_daylight_control;	buildings;	energetic;	before savings;	
+lighting_without_daylight_control_buildings_energetic-(light) -- f --> (light)-lighting_buildings_energetic
+lighting_without_daylight_control_buildings_energetic-(light) -- s --> (light)-daylight_control_savings_buildings_energetic
+(light)-lighting_without_daylight_control_buildings_energetic # 1 links to: lighting_without_motion_detection_buildings_energetic
+
+lighting_buildings_energetic;	lighting;	buildings;	energetic;	useful consumption;	useful_demand
+lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic
+lighting_buildings_energetic-(light) -- s --> (light)-tl8_buildings_energetic
+lighting_buildings_energetic-(light) -- s --> (light)-led_buildings_energetic
+(light)-lighting_buildings_energetic # 1 links to: lighting_without_daylight_control_buildings_energetic
+
+tl5_buildings_energetic;	tl5;	buildings;	energetic;	technologies;	
+tl5_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(light)-tl5_buildings_energetic # 1 links to: lighting_buildings_energetic
+(loss)-tl5_buildings_energetic # 0 links to: 
+
+tl8_buildings_energetic;	tl8;	buildings;	energetic;	technologies;	
+tl8_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(light)-tl8_buildings_energetic # 1 links to: lighting_buildings_energetic
+(loss)-tl8_buildings_energetic # 0 links to: 
+
+led_buildings_energetic;	led;	buildings;	energetic;	technologies;	
+led_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(light)-led_buildings_energetic # 1 links to: lighting_buildings_energetic
+(loss)-led_buildings_energetic # 0 links to: 
+
+daylight_control_savings_buildings_energetic;	daylight_control_savings;	buildings;	energetic;	savings;	cost_other
+daylight_control_savings_buildings_energetic-(light)
+(light)-daylight_control_savings_buildings_energetic # 1 links to: lighting_without_daylight_control_buildings_energetic
+
+motion_detection_savings_buildings_energetic;	motion_detection_savings;	buildings;	energetic;	savings;	cost_other
+motion_detection_savings_buildings_energetic-(light)
+(light)-motion_detection_savings_buildings_energetic # 1 links to: lighting_without_motion_detection_buildings_energetic
+
+heat_from_steam_hot_water_households_energetic;	heat_from_steam_hot_water;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-monitized_heat_for_heating_households_energetic
+(useable_heat)-heat_from_steam_hot_water_households_energetic # 1 links to: heating_demand_households_energetic
+
+nuclear_conv_energy_energetic;	nuclear_conv;	energy;	energetic;	central power generation;	electricity_production,central_production,cost_electricity_production
+nuclear_conv_energy_energetic-(uranium) -- s --> (uranium)-uranium_distribution_energy
+(loss)-nuclear_conv_energy_energetic # 0 links to: 
+(steam_hot_water)-nuclear_conv_energy_energetic # 1 links to: heat_network_industry_energetic
+(electricity)-nuclear_conv_energy_energetic # 1 links to: hv_electricity_network_energy
+
+uranium_distribution_energy;	uranium_distribution;	energy;	undefined;	distribution primary carriers;	
+uranium_distribution_energy-(uranium) -- s --> (uranium)-uranium_treatment_energy
+(uranium)-uranium_distribution_energy # 3 links to: nuclear_iii_energy, nuclear_conv_energy_energetic, uranium_export_energy
+(loss)-uranium_distribution_energy # 0 links to: 
+
+uranium_treatment_energy;	uranium_treatment;	energy;	undefined;	treatment;	
+uranium_treatment_energy-(uranium) -- f --> (uranium)-uranium_import_energy
+uranium_treatment_energy-(uranium) -- c --> (uranium)-uranium_extraction_energy
+(uranium)-uranium_treatment_energy # 1 links to: uranium_distribution_energy
+(loss)-uranium_treatment_energy # 0 links to: 
+
+uranium_import_energy;	uranium_import;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+uranium_import_energy-(loss)
+uranium_import_energy-(uranium)
+(loss)-uranium_import_energy # 0 links to: 
+(uranium)-uranium_import_energy # 1 links to: uranium_treatment_energy
+
+hot_water_demand_buildings_energetic;	hot_water_demand;	buildings;	energetic;	useful consumption;	useful_demand
+hot_water_demand_buildings_energetic-(hot_water) -- s --> (hot_water)-hot_water_from_gas_buildings_energetic
+hot_water_demand_buildings_energetic-(hot_water) -- s --> (hot_water)-hot_water_from_electricity_buildings_energetic
+(hot_water)-hot_water_demand_buildings_energetic # 0 links to: 
+
+hot_water_from_gas_buildings_energetic;	hot_water_from_gas;	buildings;	energetic;	application;	
+hot_water_from_gas_buildings_energetic-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+(hot_water)-hot_water_from_gas_buildings_energetic # 1 links to: hot_water_demand_buildings_energetic
+
+hot_water_from_electricity_buildings_energetic;	hot_water_from_electricity;	buildings;	energetic;	application;	
+hot_water_from_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(hot_water)-hot_water_from_electricity_buildings_energetic # 1 links to: hot_water_demand_buildings_energetic
+
+cooking_buildings_energetic;	cooking;	buildings;	energetic;	useful consumption;	useful_demand
+cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_gas_buildings
+cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_electric_buildings
+(useable_heat)-cooking_buildings_energetic # 0 links to: 
+
+oil_appliances_buildings;	oil_appliances;	buildings;	undefined;	application;	
+oil_appliances_buildings-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+(notdefined)-oil_appliances_buildings # 1 links to: appliances_buildings_energetic
+
+gas_appliances_buildings;	gas_appliances;	buildings;	undefined;	application;	
+gas_appliances_buildings-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+(notdefined)-gas_appliances_buildings # 1 links to: appliances_buildings_energetic
+
+biomass_appliances_buildings;	biomass_appliances;	buildings;	undefined;	application;	
+biomass_appliances_buildings-(biomass) -- s --> (biomass)-biomass_buildings_energetic
+(notdefined)-biomass_appliances_buildings # 1 links to: appliances_buildings_energetic
+
+electric_appliances_buildings;	electric_appliances;	buildings;	undefined;	application;	
+electric_appliances_buildings-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(notdefined)-electric_appliances_buildings # 1 links to: appliances_buildings_energetic
+
+appliances_oil_buildings;	appliances_oil;	buildings;	undefined;	application;	
+appliances_oil_buildings-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+(notdefined)-appliances_oil_buildings # 1 links to: building_related_buildings_energetic
+
+oil_buildings_energetic;	oil;	buildings;	energetic;	final consumption;	final_demand_cbs
+oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_buildings_energetic # 3 links to: oil_heater_buildings_energetic, oil_appliances_buildings, appliances_oil_buildings
+
+appliances_gas_buildings;	appliances_gas;	buildings;	undefined;	application;	
+appliances_gas_buildings-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+(notdefined)-appliances_gas_buildings # 1 links to: building_related_buildings_energetic
+
+appliances_biomass_buildings;	appliances_biomass;	buildings;	undefined;	application;	
+appliances_biomass_buildings-(biomass) -- s --> (biomass)-biomass_buildings_energetic
+(notdefined)-appliances_biomass_buildings # 1 links to: building_related_buildings_energetic
+
+biomass_buildings_energetic;	biomass;	buildings;	energetic;	final consumption;	final_demand_cbs
+biomass_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(biomass)-biomass_buildings_energetic # 3 links to: biomass_fired_heater_buildings_energetic, biomass_appliances_buildings, appliances_biomass_buildings
+
+appliances_electric_buildings;	appliances_electric;	buildings;	undefined;	application;	
+appliances_electric_buildings-(electricity) -- s --> (electricity)-electricity_other_buildings_energetic
+(notdefined)-appliances_electric_buildings # 1 links to: building_related_buildings_energetic
+
+electricity_other_buildings_energetic;	electricity_other;	buildings;	energetic;	undefined;	
+electricity_other_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(electricity)-electricity_other_buildings_energetic # 1 links to: appliances_electric_buildings
+
+cooking_gas_buildings;	cooking_gas;	buildings;	undefined;	application;	
+cooking_gas_buildings-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+(useable_heat)-cooking_gas_buildings # 1 links to: cooking_buildings_energetic
+
+cooking_electric_buildings;	cooking_electric;	buildings;	undefined;	application;	
+cooking_electric_buildings-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+(useable_heat)-cooking_electric_buildings # 1 links to: cooking_buildings_energetic
+
+electricity_without_heating_buildings_energetic;	electricity_without_heating;	buildings;	energetic;	undefined;	
+electricity_without_heating_buildings_energetic-(electricity) -- f --> (electricity)-electricity_buildings_energetic
+(electricity)-electricity_without_heating_buildings_energetic # 10 links to: electricity_other_buildings_energetic, city_cooling_network_buildings_energetic, tl5_buildings_energetic, tl8_buildings_energetic, led_buildings_energetic, heatpump_ts_cooling_buildings_energetic, airco_buildings_energetic, hot_water_from_electricity_buildings_energetic, electric_appliances_buildings, cooking_electric_buildings
+
+ccgt_ccs_energy;	ccgt_ccs;	energy;	undefined;	central power generation;	electricity_production,central_production,cost_electricity_production
+ccgt_ccs_energy-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+ccgt_ccs_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+ccgt_ccs_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+(loss)-ccgt_ccs_energy # 0 links to: 
+(steam_hot_water)-ccgt_ccs_energy # 1 links to: heat_network_industry_energetic
+(electricity)-ccgt_ccs_energy # 1 links to: hv_electricity_network_energy
+
+local_e_production_agriculture;	local_e_production;	agriculture;	undefined;	local power generation;	
+local_e_production_agriculture-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic
+local_e_production_agriculture-(electricity) -- c --> (electricity)-chp_agri_agriculture_energetic
+(electricity)-local_e_production_agriculture # 2 links to: mv_distribution_network_energy_energetic, electricity_agriculture_energetic
+
+local_w_production_agriculture;	local_w_production;	agriculture;	undefined;	local power generation;	
+local_w_production_agriculture-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic
+local_w_production_agriculture-(steam_hot_water) -- d --> (steam_hot_water)-chp_agri_agriculture_energetic
+(steam_hot_water)-local_w_production_agriculture # 2 links to: steam_hot_water_agriculture_energetic, unused_CHPs_heat_agriculture_agriculture_energetic
+
+unused_CHPs_heat_agriculture_agriculture_energetic;	unused_CHPs_heat_agriculture;	agriculture;	energetic;	locally available;	
+unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_agriculture
+(steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic # 1 links to: restheat_decentral_production_energy
+
+local_e_production_industry;	local_e_production;	industry;	undefined;	local power generation;	
+local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic
+local_e_production_industry-(electricity) -- c --> (electricity)-small_chp_industry_energetic
+local_e_production_industry-(electricity) -- c --> (electricity)-biomass_chp_industry_energetic
+local_e_production_industry-(electricity) -- c --> (electricity)-bio_oil_chp_industry_energetic
+local_e_production_industry-(electricity) -- c --> (electricity)-coal_CHP_industry_energetic
+(electricity)-local_e_production_industry # 2 links to: mv_distribution_network_energy_energetic, electricity_industry_energetic
+
+micro_CHP_production_households;	micro_CHP_production;	households;	undefined;	local CHPs;	heat_production,decentral_production,network_converters,cost_chps
+micro_CHP_production_households-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+micro_CHP_production_households-(natural_gas) -- f --> (natural_gas)-gas_for_heating_households_energetic
+(loss)-micro_CHP_production_households # 0 links to: 
+(electricity)-micro_CHP_production_households # 1 links to: available_electricity_households
+(useable_heat)-micro_CHP_production_households # 1 links to: heating_demand_households_energetic
+
+local_e_production_other;	local_e_production;	other;	undefined;	local power generation;	
+local_e_production_other-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic
+local_e_production_other-(electricity) -- c --> (electricity)-chp_other_other_energetic
+local_e_production_other-(electricity) -- c --> (electricity)-biomass_CHP_other_energetic
+(electricity)-local_e_production_other # 2 links to: lv_electricity_network_energy_energetic, electricity_other_energetic
+
+steam_hot_water_difference_energy;	steam_hot_water_difference;	energy;	undefined;	undefined;	
+steam_hot_water_difference_energy-(steam_hot_water) -- s --> (steam_hot_water)-heat_network_industry_energetic
+(steam_hot_water)-steam_hot_water_difference_energy # 0 links to: 
+
+lignite_chp_energy;	lignite_chp;	energy;	undefined;	central CHPs;	electricity_production,central_production,cost_chps
+lignite_chp_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
+(electricity)-lignite_chp_energy # 1 links to: hv_electricity_network_energy
+(steam_hot_water)-lignite_chp_energy # 1 links to: heat_network_industry_energetic
+(loss)-lignite_chp_energy # 0 links to: 
+
+oil_chp_energy;	oil_chp;	energy;	undefined;	central CHPs;	electricity_production,central_production,cost_chps
+oil_chp_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(electricity)-oil_chp_energy # 1 links to: hv_electricity_network_energy
+(steam_hot_water)-oil_chp_energy # 1 links to: heat_network_industry_energetic
+(loss)-oil_chp_energy # 0 links to: 
+
+pumped_storage_energy;	pumped_storage;	energy;	undefined;	undefined;	
+pumped_storage_energy-(electricity) -- s --> (electricity)-hv_electricity_network_energy
+(loss)-pumped_storage_energy # 0 links to: 
+
+planes_transport_energetic;	planes;	transport;	energetic;	useful consumption;	useful_demand
+planes_transport_energetic-(notdefined) -- s --> (notdefined)-planes_oil_demand_transport_energetic
+planes_transport_energetic-(notdefined) -- s --> (notdefined)-planes_bio_ethanol_transport_energetic
+(notdefined)-planes_transport_energetic # 0 links to: 
+
+planes_oil_demand_transport_energetic;	planes_oil_demand;	transport;	energetic;	technologies;	
+planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(notdefined)-planes_oil_demand_transport_energetic # 1 links to: planes_transport_energetic
+
+planes_bio_ethanol_transport_energetic;	planes_bio_ethanol;	transport;	energetic;	technologies;	
+planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport
+(notdefined)-planes_bio_ethanol_transport_energetic # 1 links to: planes_transport_energetic
+
+bio_ethanol_distribution_transport;	bio_ethanol_distribution;	transport;	undefined;	distribution;	biofuel_distribution
+bio_ethanol_distribution_transport-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_transport_energetic
+bio_ethanol_distribution_transport-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_transport_energetic
+(bio_ethanol)-bio_ethanol_distribution_transport # 3 links to: gasoline_mixer_transport_energetic, planes_bio_ethanol_transport_energetic, bio_ethanol_export_energy
+(loss)-bio_ethanol_distribution_transport # 0 links to: 
+
+bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;	undefined;	final_demand_cbs,energy_import_export,energy_import
+bio_ethanol_import_export_transport_energetic-(biofuel)
+bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-foreign_bioethanol_production_neighbor
+(bio_ethanol)-bio_ethanol_import_export_transport_energetic # 1 links to: bio_ethanol_distribution_transport
+
+foreign_bioethanol_production_neighbor;	foreign_bioethanol_production;	neighbor;	undefined;	undefined;	primary_energy_demand
+foreign_bioethanol_production_neighbor-(bio_ethanol)
+(bio_ethanol)-foreign_bioethanol_production_neighbor # 1 links to: bio_ethanol_import_export_transport_energetic
+
+trains_transport_energetic;	trains;	transport;	energetic;	useful consumption;	useful_demand
+trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_electricity_demand_transport_energetic
+trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_coal_demand_transport_energetic
+trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_oil_demand_transport_energetic
+(notdefined)-trains_transport_energetic # 0 links to: 
+
+trains_electricity_demand_transport_energetic;	trains_electricity_demand;	transport;	energetic;	technologies;	
+trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
+(loss)-trains_electricity_demand_transport_energetic # 0 links to: 
+(notdefined)-trains_electricity_demand_transport_energetic # 1 links to: trains_transport_energetic
+
+electricity_distribution_transport_transport_energetic;	electricity_distribution_transport;	transport;	energetic;	distribution;	
+electricity_distribution_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_transport_energetic
+(electricity)-electricity_distribution_transport_transport_energetic # 4 links to: electric_trucks_transport_energetic, electric_cars_transport_energetic, trains_electricity_demand_transport_energetic, other_electric_transport_transport_energetic
+
+trains_coal_demand_transport_energetic;	trains_coal_demand;	transport;	energetic;	technologies;	
+trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic
+(loss)-trains_coal_demand_transport_energetic # 0 links to: 
+(notdefined)-trains_coal_demand_transport_energetic # 1 links to: trains_transport_energetic
+
+trains_oil_demand_transport_energetic;	trains_oil_demand;	transport;	energetic;	technologies;	
+trains_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(loss)-trains_oil_demand_transport_energetic # 0 links to: 
+(notdefined)-trains_oil_demand_transport_energetic # 1 links to: trains_transport_energetic
+
+coal_transport_energetic;	coal;	transport;	energetic;	final consumption;	final_demand_cbs
+coal_transport_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_transport_energetic # 2 links to: trains_coal_demand_transport_energetic, coal_demand_transport_transport_energetic
+
+electricity_transport_energetic;	electricity;	transport;	energetic;	final consumption;	final_demand_cbs,final_demand_electricity,cost_other
+electricity_transport_energetic-(electricity) -- s --> (electricity)-lv_electricity_network_energy_energetic
+(electricity)-electricity_transport_energetic # 1 links to: electricity_distribution_transport_transport_energetic
+
+ships_transport_energetic;	ships;	transport;	energetic;	useful consumption;	useful_demand
+ships_transport_energetic-(notdefined) -- s --> (notdefined)-ships_oil_demand_transport_energetic
+ships_transport_energetic-(notdefined) -- s --> (notdefined)-ships_diesel_demand_transport_energetic
+(notdefined)-ships_transport_energetic # 0 links to: 
+
+ships_oil_demand_transport_energetic;	ships_oil_demand;	transport;	energetic;	technologies;	
+ships_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
+(notdefined)-ships_oil_demand_transport_energetic # 1 links to: ships_transport_energetic
+
+ships_diesel_demand_transport_energetic;	ships_diesel_demand;	transport;	energetic;	technologies;	
+ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport
+(notdefined)-ships_diesel_demand_transport_energetic # 1 links to: ships_transport_energetic
+
+bio_diesel_distribution_transport;	bio_diesel_distribution;	transport;	undefined;	distribution;	biofuel_distribution
+bio_diesel_distribution_transport-(biodiesel) -- c --> (biodiesel)-bio_diesel_production_transport_energetic
+bio_diesel_distribution_transport-(biodiesel) -- f --> (biodiesel)-bio_diesel_import_export_transport_energetic
+(biodiesel)-bio_diesel_distribution_transport # 3 links to: ships_diesel_demand_transport_energetic, diesel_mixer_transport_energetic, bio_diesel_export_energy
+(loss)-bio_diesel_distribution_transport # 0 links to: 
+
+bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;	undefined;	final_demand_cbs,energy_import_export,energy_import
+bio_diesel_import_export_transport_energetic-(biofuel)
+bio_diesel_import_export_transport_energetic-(biodiesel) -- s --> (biodiesel)-foreign_bio_diesel_production_neighbor
+(biodiesel)-bio_diesel_import_export_transport_energetic # 1 links to: bio_diesel_distribution_transport
+
+oil_transport_energetic;	oil;	transport;	energetic;	final consumption;	final_demand_cbs
+oil_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_transport_energetic # 7 links to: ships_oil_demand_transport_energetic, trains_oil_demand_transport_energetic, lpg_production_transport, diesel_production_transport, gasoline_production_transport, kerosine_production_transport, planes_oil_demand_transport_energetic
+
+foreign_bio_diesel_production_neighbor;	foreign_bio_diesel_production;	neighbor;	undefined;	undefined;	primary_energy_demand
+foreign_bio_diesel_production_neighbor-(biodiesel)
+(biodiesel)-foreign_bio_diesel_production_neighbor # 1 links to: bio_diesel_import_export_transport_energetic
+
+district_heater_coal_energy_energetic;	district_heater_coal;	energy;	energetic;	central heat generation;	heat_production,central_production,cost_traditional_heat
+district_heater_coal_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+district_heater_coal_energy_energetic-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+district_heater_coal_energy_energetic-(coal) -- s --> (coal)-coal_distribution_energy
+(steam_hot_water)-district_heater_coal_energy_energetic # 1 links to: heat_network_industry_energetic
+(loss)-district_heater_coal_energy_energetic # 0 links to: 
+
+district_heater_lignite_energy_energetic;	district_heater_lignite;	energy;	energetic;	central heat generation;	heat_production,central_production,cost_traditional_heat
+district_heater_lignite_energy_energetic-(lignite) -- s --> (lignite)-lignite_distribution_energy
+(steam_hot_water)-district_heater_lignite_energy_energetic # 1 links to: heat_network_industry_energetic
+(loss)-district_heater_lignite_energy_energetic # 0 links to: 
+
+lignite_distribution_energy;	lignite_distribution;	energy;	undefined;	distribution primary carriers;	
+lignite_distribution_energy-(lignite) -- s --> (lignite)-lignite_extraction_energy_energetic
+(lignite)-lignite_distribution_energy # 4 links to: coal_lignite_energy, coal_oxyfuel_ccs_energy, lignite_chp_energy, district_heater_lignite_energy_energetic
+
+lignite_extraction_energy_energetic;	lignite_extraction;	energy;	energetic;	extraction;	primary_energy_demand,mining_and_extraction
+lignite_extraction_energy_energetic-(lignite)
+(lignite)-lignite_extraction_energy_energetic # 1 links to: lignite_distribution_energy
+
+district_heater_oil_energy_energetic;	district_heater_oil;	energy;	energetic;	central heat generation;	heat_production,central_production,cost_traditional_heat
+district_heater_oil_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(steam_hot_water)-district_heater_oil_energy_energetic # 1 links to: heat_network_industry_energetic
+(loss)-district_heater_oil_energy_energetic # 0 links to: 
+
+district_heater_gas_energy_energetic;	district_heater_gas;	energy;	energetic;	central heat generation;	heat_production,central_production,cost_traditional_heat
+district_heater_gas_energy_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(steam_hot_water)-district_heater_gas_energy_energetic # 1 links to: heat_network_industry_energetic
+(loss)-district_heater_gas_energy_energetic # 0 links to: 
+
+district_heater_waste_energy_energetic;	district_heater_waste;	energy;	energetic;	central heat generation;	heat_production,central_production,cost_traditional_heat
+district_heater_waste_energy_energetic-(waste) -- s --> (waste)-waste_distribution_energy
+(steam_hot_water)-district_heater_waste_energy_energetic # 1 links to: heat_network_industry_energetic
+(loss)-district_heater_waste_energy_energetic # 0 links to: 
+
+waste_distribution_energy;	waste_distribution;	energy;	undefined;	distribution primary carriers;	
+waste_distribution_energy-(waste) -- s --> (waste)-biogenic_waste_distribution_energy
+waste_distribution_energy-(waste) -- s --> (waste)-non_biogenic_waste_distribution_energy
+(waste)-waste_distribution_energy # 3 links to: waste_incinerator_energy_energetic, district_heater_waste_energy_energetic, waste_export_energy
+
+district_heater_biomass_energy_energetic;	district_heater_biomass;	energy;	energetic;	central heat generation;	heat_production,central_production,cost_traditional_heat
+district_heater_biomass_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(steam_hot_water)-district_heater_biomass_energy_energetic # 1 links to: heat_network_industry_energetic
+(loss)-district_heater_biomass_energy_energetic # 0 links to: 
+
+biomass_CHP_energy_energetic;	biomass_CHP;	energy;	energetic;	central CHPs;	electricity_production,central_production,cost_chps
+biomass_CHP_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(loss)-biomass_CHP_energy_energetic # 0 links to: 
+(steam_hot_water)-biomass_CHP_energy_energetic # 1 links to: heat_network_industry_energetic
+(electricity)-biomass_CHP_energy_energetic # 1 links to: hv_electricity_network_energy
+
+biomass_CHP_other_energetic;	biomass_CHP;	other;	energetic;	central CHPs;	electricity_production,decentral_production,cost_chps
+biomass_CHP_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(loss)-biomass_CHP_other_energetic # 0 links to: 
+(steam_hot_water)-biomass_CHP_other_energetic # 1 links to: decentral_heat_other
+(electricity)-biomass_CHP_other_energetic # 1 links to: local_e_production_other
+
+decentral_heat_other;	decentral_heat;	other;	undefined;	local power generation;	
+decentral_heat_other-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic
+decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-chp_other_other_energetic
+decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_other_energetic
+(steam_hot_water)-decentral_heat_other # 2 links to: steam_hot_water_other_energetic, unused_CHPs_heat_other_other_energetic
+
+unused_CHPs_heat_other_other_energetic;	unused_CHPs_heat_other;	other;	energetic;	undefined;	
+unused_CHPs_heat_other_other_energetic-(steam_hot_water) -- i --> (steam_hot_water)-decentral_heat_other
+(steam_hot_water)-unused_CHPs_heat_other_other_energetic # 0 links to: 
+
+coal_CHP_industry_energetic;	coal_CHP;	industry;	energetic;	central CHPs;	electricity_production,decentral_production,cost_chps
+coal_CHP_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_CHP_industry_energetic-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy
+coal_CHP_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy
+(loss)-coal_CHP_industry_energetic # 0 links to: 
+(steam_hot_water)-coal_CHP_industry_energetic # 1 links to: local_w_production_industry
+(electricity)-coal_CHP_industry_energetic # 1 links to: local_e_production_industry
+
+local_w_production_industry;	local_w_production;	industry;	undefined;	local power generation;	
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_chp_industry_energetic
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic
+local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_CHP_industry_energetic
+(steam_hot_water)-local_w_production_industry # 2 links to: steam_hot_water_industry_energetic, unused_CHPs_heat_industry_industry_energetic
+
+unused_CHPs_heat_industry_industry_energetic;	unused_CHPs_heat_industry;	industry;	energetic;	undefined;	
+unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_industry
+(steam_hot_water)-unused_CHPs_heat_industry_industry_energetic # 1 links to: restheat_decentral_production_energy
+
+biomass_cooking_households_energetic;	biomass_cooking;	households;	energetic;	technologies;	
+biomass_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_for_cooking_households_energetic
+(useable_heat)-biomass_cooking_households_energetic # 1 links to: cooking_demand_households_energetic
+(loss)-biomass_cooking_households_energetic # 0 links to: 
+
+gas_fired_heater_households_energetic;	gas_fired_heater;	households;	energetic;	technologies;	heat_production,cost_traditional_heat
+gas_fired_heater_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_heating_households_energetic
+(loss)-gas_fired_heater_households_energetic # 0 links to: 
+(useable_heat)-gas_fired_heater_households_energetic # 1 links to: heating_demand_households_energetic
+
+hot_water_devices_households_energetic;	hot_water_devices;	households;	energetic;	technology groups;	
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-heatpump_boiler_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-electric_boiler_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-heatpump_boiler_using_city_heat_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-cv_hot_water_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-biomass_boiler_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-coal_boiler_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-oil_boiler_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- f --> (hot_water)-gas_boiler_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-micro_chp_hot_water_households_energetic
+hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-fuel_cell_chp_households_energetic
+(hot_water)-hot_water_devices_households_energetic # 1 links to: hot_water_demand_households_energetic
+
+heatpump_boiler_households_energetic;	heatpump_boiler;	households;	energetic;	technologies;	heat_production,decentral_production,cost_heat_pumps
+heatpump_boiler_households_energetic-(electricity) -- s --> (electricity)-electricity_for_hot_water_households_energetic
+heatpump_boiler_households_energetic-(ambient_heat) -- s --> (loss)-air_environment_energetic
+(loss)-heatpump_boiler_households_energetic # 0 links to: 
+(hot_water)-heatpump_boiler_households_energetic # 1 links to: hot_water_devices_households_energetic
+
+electric_boiler_households_energetic;	electric_boiler;	households;	energetic;	technologies;	heat_production,decentral_production,network_converters,cost_traditional_heat
+electric_boiler_households_energetic-(electricity) -- s --> (electricity)-electricity_for_hot_water_households_energetic
+(loss)-electric_boiler_households_energetic # 0 links to: 
+(hot_water)-electric_boiler_households_energetic # 1 links to: hot_water_devices_households_energetic
+
+heatpump_boiler_using_city_heat_households_energetic;	heatpump_boiler_using_city_heat;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+heatpump_boiler_using_city_heat_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-monitized_heat_for_hot_water_households_energetic
+(hot_water)-heatpump_boiler_using_city_heat_households_energetic # 1 links to: hot_water_devices_households_energetic
+(loss)-heatpump_boiler_using_city_heat_households_energetic # 0 links to: 
+
+cv_hot_water_households_energetic;	cv_hot_water;	households;	energetic;	technologies;	heat_production,decentral_production,cost_traditional_heat
+cv_hot_water_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_hot_water_households_energetic
+(loss)-cv_hot_water_households_energetic # 0 links to: 
+(hot_water)-cv_hot_water_households_energetic # 1 links to: hot_water_devices_households_energetic
+
+biomass_boiler_households_energetic;	biomass_boiler;	households;	energetic;	technologies;	cost_traditional_heat
+biomass_boiler_households_energetic-(biomass) -- s --> (biomass)-biomass_for_hot_water_households_energetic
+(hot_water)-biomass_boiler_households_energetic # 1 links to: hot_water_devices_households_energetic
+(loss)-biomass_boiler_households_energetic # 0 links to: 
+
+coal_boiler_households_energetic;	coal_boiler;	households;	energetic;	technologies;	
+coal_boiler_households_energetic-(coal) -- s --> (coal)-coal_for_hot_water_households_energetic
+(hot_water)-coal_boiler_households_energetic # 1 links to: hot_water_devices_households_energetic
+(loss)-coal_boiler_households_energetic # 0 links to: 
+
+oil_boiler_households_energetic;	oil_boiler;	households;	energetic;	technologies;	
+oil_boiler_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_hot_water_households_energetic
+(hot_water)-oil_boiler_households_energetic # 1 links to: hot_water_devices_households_energetic
+(loss)-oil_boiler_households_energetic # 0 links to: 
+
+gas_boiler_households_energetic;	gas_boiler;	households;	energetic;	technologies;	heat_production,cost_traditional_heat
+gas_boiler_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_hot_water_households_energetic
+(loss)-gas_boiler_households_energetic # 0 links to: 
+(hot_water)-gas_boiler_households_energetic # 1 links to: hot_water_devices_households_energetic
+
+micro_chp_hot_water_households_energetic;	micro_chp_hot_water;	households;	energetic;	local CHPs;	heat_production,cost_chps
+micro_chp_hot_water_households_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+micro_chp_hot_water_households_energetic-(natural_gas) -- f --> (natural_gas)-gas_for_hot_water_households_energetic
+(loss)-micro_chp_hot_water_households_energetic # 0 links to: 
+(electricity)-micro_chp_hot_water_households_energetic # 1 links to: available_electricity_households
+(hot_water)-micro_chp_hot_water_households_energetic # 1 links to: hot_water_devices_households_energetic
+
+fuel_cell_chp_households_energetic;	fuel_cell_chp;	households;	energetic;	local CHPs;	electricity_production,time_curves,cost_chps
+fuel_cell_chp_households_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+fuel_cell_chp_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_for_hot_water_households_energetic
+(loss)-fuel_cell_chp_households_energetic # 0 links to: 
+(electricity)-fuel_cell_chp_households_energetic # 1 links to: available_electricity_households
+(hot_water)-fuel_cell_chp_households_energetic # 1 links to: hot_water_devices_households_energetic
+
+gas_use_public_buildings;	gas_use_public;	buildings;	undefined;	undefined;	
+gas_use_public_buildings-(natural_gas) -- s --> (natural_gas)-gas_buildings_energetic
+(natural_gas)-gas_use_public_buildings # 0 links to: 
+
+gas_buildings_energetic;	gas;	buildings;	energetic;	final consumption;	final_demand_cbs
+gas_buildings_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_buildings_energetic # 8 links to: gas_fired_heater_buildings_energetic, gasheatpump_ts_buildings_energetic, gasheatpump_cooling_buildings_energetic, hot_water_from_gas_buildings_energetic, gas_appliances_buildings, appliances_gas_buildings, cooking_gas_buildings, gas_use_public_buildings
+
+electricity_use_public_buildings;	electricity_use_public;	buildings;	undefined;	undefined;	
+electricity_use_public_buildings-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+(electricity)-electricity_use_public_buildings # 0 links to: 
+
+electricity_buildings_energetic;	electricity;	buildings;	energetic;	final consumption;	final_demand_cbs,final_demand_electricity,cost_other
+electricity_buildings_energetic-(electricity) -- s --> (electricity)-local_e_production_buildings
+(electricity)-electricity_buildings_energetic # 4 links to: electricity_without_heating_buildings_energetic, electric_heater_buildings_energetic, heatpump_ts_buildings_energetic, electricity_use_public_buildings
+
+local_e_production_buildings;	local_e_production;	buildings;	undefined;	locally available;	
+local_e_production_buildings-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic
+local_e_production_buildings-(electricity) -- c --> (electricity)-solar_panels_buildings_energetic
+local_e_production_buildings-(electricity) -- d --> (electricity)-gas_chp_buildings_energetic
+local_e_production_buildings-(electricity) -- d --> (electricity)-coal_chp_buildings_energetic
+local_e_production_buildings-(electricity) -- d --> (electricity)-biomass_chp_buildings_energetic
+(electricity)-local_e_production_buildings # 2 links to: lv_electricity_network_energy_energetic, electricity_buildings_energetic
+
+heat_use_public_buildings;	heat_use_public;	buildings;	undefined;	undefined;	
+heat_use_public_buildings-(steam_hot_water) -- s --> (useable_heat)-steam_hot_water_buildings_energetic
+(steam_hot_water)-heat_use_public_buildings # 0 links to: 
+
+biocoal_distribution_energy;	biocoal_distribution;	energy;	undefined;	undefined;	
+biocoal_distribution_energy-(biocoal) -- s --> (biocoal)-torrefaction_energy
+biocoal_distribution_energy-(biocoal) -- c --> (biocoal)-biocoal_import_energy
+(biocoal)-biocoal_distribution_energy # 11 links to: coal_pwd_energy, coal_pwd_ccs_energy, coal_conv_energy, coal_lignite_energy, coal_oxyfuel_ccs_energy, coal_igcc_energy, coal_igcc_ccs_energy, coal_chp_energy, coal_chp_buildings_energetic, district_heater_coal_energy_energetic, coal_CHP_industry_energetic
+
+torrefaction_energy;	torrefaction;	energy;	undefined;	undefined;	
+torrefaction_energy-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+torrefaction_energy-(woodpellets) -- s --> (woodpellets)-woodpellet_distribution_energy
+(biocoal)-torrefaction_energy # 1 links to: biocoal_distribution_energy
+(loss)-torrefaction_energy # 0 links to: 
+
+heat_import_energy;	heat_import;	energy;	undefined;	undefined;	energy_import_export
+heat_import_energy-(imported_steam_hot_water) -- s --> (imported_steam_hot_water)-foreign_heat_production_neighbor
+(steam_hot_water)-heat_import_energy # 1 links to: heat_network_industry_energetic
+
+foreign_heat_production_neighbor;	foreign_heat_production;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_heat_production_neighbor-(imported_steam_hot_water)
+(imported_steam_hot_water)-foreign_heat_production_neighbor # 1 links to: heat_import_energy
+
+biocoal_import_energy;	biocoal_import;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,biofuel_distribution,energy_import
+biocoal_import_energy-(biocoal)
+(biocoal)-biocoal_import_energy # 1 links to: biocoal_distribution_energy
+
+woodpellet_distribution_energy;	woodpellet_distribution;	energy;	undefined;	undefined;	biofuel_distribution
+woodpellet_distribution_energy-(woodpellets) -- c --> (woodpellets)-woodpellet_production_energy
+woodpellet_distribution_energy-(woodpellets) -- f --> (woodpellets)-woodpellet_import_energy
+(woodpellets)-woodpellet_distribution_energy # 1 links to: torrefaction_energy
+
+woodpellet_production_energy;	woodpellet_production;	energy;	undefined;	undefined;	
+woodpellet_production_energy-(wood) -- s --> (wood)-wood_distribution_energy
+(woodpellets)-woodpellet_production_energy # 1 links to: woodpellet_distribution_energy
+
+woodpellet_import_energy;	woodpellet_import;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+woodpellet_import_energy-(woodpellets)
+(woodpellets)-woodpellet_import_energy # 1 links to: woodpellet_distribution_energy
+
+wood_distribution_energy;	wood_distribution;	energy;	undefined;	undefined;	
+wood_distribution_energy-(wood) -- s --> (wood)-wood_growth_energy
+(wood)-wood_distribution_energy # 1 links to: woodpellet_production_energy
+
+wood_growth_energy;	wood_growth;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
+wood_growth_energy-(wood)
+(wood)-wood_growth_energy # 1 links to: wood_distribution_energy
+
+biogas_upgrade_energy;	biogas_upgrade;	energy;	undefined;	undefined;	
+biogas_upgrade_energy-(biogas) -- s --> (biogas)-biogas_distribution_energy
+(loss)-biogas_upgrade_energy # 0 links to: 
+(greengas)-biogas_upgrade_energy # 1 links to: greengas_distribution_energy
+
+uranium_export_energy;	uranium_export;	energy;	undefined;	undefined;	energy_export
+uranium_export_energy-(uranium) -- i --> (uranium)-uranium_distribution_energy
+(uranium)-uranium_export_energy # 0 links to: 
+
+diesel_export_energy;	diesel_export;	energy;	undefined;	undefined;	energy_export
+diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_transport
+(diesel)-diesel_export_energy # 0 links to: 
+
+gasoline_export_energy;	gasoline_export;	energy;	undefined;	undefined;	energy_export
+gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_transport
+(gasoline)-gasoline_export_energy # 0 links to: 
+
+kerosine_export_energy;	kerosine_export;	energy;	undefined;	undefined;	energy_export
+kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport
+(kerosine)-kerosine_export_energy # 0 links to: 
+
+biofuel_export_energy;	biofuel_export;	energy;	undefined;	undefined;	energy_export
+biofuel_export_energy-(biofuel) -- i --> (biodiesel)-bio_diesel_distribution_transport
+(biofuel)-biofuel_export_energy # 0 links to: 
+
+lpg_export_energy;	lpg_export;	energy;	undefined;	undefined;	energy_export
+lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_transport
+(lpg)-lpg_export_energy # 0 links to: 
+
+waste_export_energy;	waste_export;	energy;	undefined;	undefined;	energy_export
+waste_export_energy-(waste) -- i --> (waste)-waste_distribution_energy
+(waste)-waste_export_energy # 0 links to: 
+
+bio_diesel_export_energy;	bio_diesel_export;	energy;	undefined;	undefined;	energy_export
+bio_diesel_export_energy-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_transport
+(biodiesel)-bio_diesel_export_energy # 0 links to: 
+
+bio_ethanol_export_energy;	bio_ethanol_export;	energy;	undefined;	undefined;	energy_export
+bio_ethanol_export_energy-(bio_ethanol) -- i --> (bio_ethanol)-bio_ethanol_distribution_transport
+(bio_ethanol)-bio_ethanol_export_energy # 0 links to: 
+
+algue_diesel_export_energy;	algue_diesel_export;	energy;	undefined;	undefined;	energy_export
+algue_diesel_export_energy-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_distribution_transport_energetic
+(algae_diesel)-algue_diesel_export_energy # 0 links to: 
+
+biogenic_waste_collection_energy;	biogenic_waste_collection;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
+biogenic_waste_collection_energy-(biogenic_waste)
+(biogenic_waste)-biogenic_waste_collection_energy # 1 links to: biogenic_waste_distribution_energy
+
+biogenic_waste_distribution_energy;	biogenic_waste_distribution;	energy;	undefined;	undefined;	
+biogenic_waste_distribution_energy-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy
+biogenic_waste_distribution_energy-(biogenic_waste) -- c --> (biogenic_waste)-biogenic_waste_collection_energy
+(waste)-biogenic_waste_distribution_energy # 1 links to: waste_distribution_energy
+
+biogenic_waste_import_energy;	biogenic_waste_import;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+biogenic_waste_import_energy-(biogenic_waste)
+(biogenic_waste)-biogenic_waste_import_energy # 1 links to: biogenic_waste_distribution_energy
+
+non_biogenic_waste_collection_energy;	non_biogenic_waste_collection;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
+non_biogenic_waste_collection_energy-(non_biogenic_waste)
+(non_biogenic_waste)-non_biogenic_waste_collection_energy # 1 links to: non_biogenic_waste_distribution_energy
+
+non_biogenic_waste_distribution_energy;	non_biogenic_waste_distribution;	energy;	undefined;	undefined;	
+non_biogenic_waste_distribution_energy-(non_biogenic_waste) -- f --> (non_biogenic_waste)-non_biogenic_waste_import_energy
+non_biogenic_waste_distribution_energy-(non_biogenic_waste) -- c --> (non_biogenic_waste)-non_biogenic_waste_collection_energy
+(waste)-non_biogenic_waste_distribution_energy # 1 links to: waste_distribution_energy
+
+non_biogenic_waste_import_energy;	non_biogenic_waste_import;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+non_biogenic_waste_import_energy-(non_biogenic_waste)
+(non_biogenic_waste)-non_biogenic_waste_import_energy # 1 links to: non_biogenic_waste_distribution_energy
+
+demand_dishwasher_households_energetic;	demand_dishwasher;	households;	energetic;	useful consumption;	
+demand_dishwasher_households_energetic-(notdefined)
+(loss)-demand_dishwasher_households_energetic # 0 links to: 
+
+demand_fridge_freezer_households_energetic;	demand_fridge_freezer;	households;	energetic;	useful consumption;	
+demand_fridge_freezer_households_energetic-(notdefined)
+(loss)-demand_fridge_freezer_households_energetic # 0 links to: 
+
+demand_washing_machine_households_energetic;	demand_washing_machine;	households;	energetic;	useful consumption;	
+demand_washing_machine_households_energetic-(notdefined)
+(loss)-demand_washing_machine_households_energetic # 0 links to: 
+
+demand_clothes_dryer_households_energetic;	demand_clothes_dryer;	households;	energetic;	useful consumption;	
+demand_clothes_dryer_households_energetic-(notdefined)
+(loss)-demand_clothes_dryer_households_energetic # 0 links to: 
+
+demand_tv_households_energetic;	demand_tv;	households;	energetic;	useful consumption;	
+demand_tv_households_energetic-(notdefined)
+(loss)-demand_tv_households_energetic # 0 links to: 
+
+demand_computer_media_households_energetic;	demand_computer_media;	households;	energetic;	useful consumption;	
+demand_computer_media_households_energetic-(notdefined)
+(loss)-demand_computer_media_households_energetic # 0 links to: 
+
+demand_vacuum_cleaner_households_energetic;	demand_vacuum_cleaner;	households;	energetic;	useful consumption;	
+demand_vacuum_cleaner_households_energetic-(notdefined)
+(loss)-demand_vacuum_cleaner_households_energetic # 0 links to: 
+
+demand_other_appliances_households_energetic;	demand_other_appliances;	households;	energetic;	useful consumption;	
+demand_other_appliances_households_energetic-(notdefined)
+(loss)-demand_other_appliances_households_energetic # 0 links to: 
+
+solar_thermal_for_heating_households_energetic;	solar_thermal_for_heating;	households;	energetic;	application;	
+solar_thermal_for_heating_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_households_energetic
+(solar_thermal)-solar_thermal_for_heating_households_energetic # 1 links to: solar_panel_for_heating_households_energetic
+
+solar_thermal_for_hot_water_households_energetic;	solar_thermal_for_hot_water;	households;	energetic;	application;	
+solar_thermal_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_households_energetic
+(solar_thermal)-solar_thermal_for_hot_water_households_energetic # 1 links to: solar_panel_for_hot_water_households_energetic
+
+solar_thermal_households_energetic;	solar_thermal;	households;	energetic;	final consumption;	
+solar_thermal_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_production_energy_energetic
+(solar_thermal)-solar_thermal_households_energetic # 2 links to: solar_thermal_for_heating_households_energetic, solar_thermal_for_hot_water_households_energetic
+
+solar_thermal_production_energy_energetic;	solar_thermal_production;	energy;	energetic;	growth and production;	
+solar_thermal_production_energy_energetic-(solar_thermal) -- s --> (loss)-sun_environment_energetic
+(solar_thermal)-solar_thermal_production_energy_energetic # 1 links to: solar_thermal_households_energetic
+
+coal_for_heating_households_energetic;	coal_for_heating;	households;	energetic;	application;	
+coal_for_heating_households_energetic-(coal) -- s --> (coal)-coal_households_energetic
+(coal)-coal_for_heating_households_energetic # 1 links to: heater_on_coal_households_energetic
+
+coal_for_hot_water_households_energetic;	coal_for_hot_water;	households;	energetic;	application;	
+coal_for_hot_water_households_energetic-(coal) -- s --> (coal)-coal_households_energetic
+(coal)-coal_for_hot_water_households_energetic # 1 links to: coal_boiler_households_energetic
+
+coal_households_energetic;	coal;	households;	energetic;	final consumption;	final_demand_cbs
+coal_households_energetic-(coal) -- s --> (coal)-cokes_production_energy
+(coal)-coal_households_energetic # 2 links to: coal_for_heating_households_energetic, coal_for_hot_water_households_energetic
+
+cokes_production_energy;	cokes_production;	energy;	undefined;	refinery;	
+cokes_production_energy-(coal) -- s --> (coal)-coal_distribution_energy
+(coal)-cokes_production_energy # 7 links to: coal_households_energetic, coal_industry_energetic, coal_other_energetic, coal_transport_energetic, coal_industry_non_energetic, coal_other_non_energetic, coal_buildings_energetic
+(loss)-cokes_production_energy # 0 links to: 
+
+coal_distribution_energy;	coal_distribution;	energy;	undefined;	distribution primary carriers;	
+coal_distribution_energy-(loss)
+coal_distribution_energy-(coal) -- c --> (coal)-coal_extraction_energy
+coal_distribution_energy-(coal) -- f --> (coal)-coal_import_export_energy
+(loss)-coal_distribution_energy # 0 links to: 
+(coal)-coal_distribution_energy # 11 links to: coal_pwd_energy, coal_pwd_ccs_energy, coal_conv_energy, coal_igcc_energy, coal_igcc_ccs_energy, coal_chp_energy, cokes_production_energy, coal_chp_buildings_energetic, district_heater_coal_energy_energetic, coal_CHP_industry_energetic, coal_export_energy
+
+coal_import_export_energy;	coal_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+coal_import_export_energy-(coal)
+(coal)-coal_import_export_energy # 1 links to: coal_distribution_energy
+
+coal_export_energy;	coal_export;	energy;	undefined;	undefined;	energy_export
+coal_export_energy-(coal) -- i --> (coal)-coal_distribution_energy
+(coal)-coal_export_energy # 0 links to: 
+
+oil_for_heating_households_energetic;	oil_for_heating;	households;	energetic;	application;	
+oil_for_heating_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_households_energetic
+(crude_oil)-oil_for_heating_households_energetic # 1 links to: heater_on_oil_households_energetic
+
+oil_for_hot_water_households_energetic;	oil_for_hot_water;	households;	energetic;	application;	
+oil_for_hot_water_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_households_energetic
+(crude_oil)-oil_for_hot_water_households_energetic # 1 links to: oil_boiler_households_energetic
+
+oil_households_energetic;	oil;	households;	energetic;	final consumption;	final_demand_cbs
+oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_households_energetic # 2 links to: oil_for_heating_households_energetic, oil_for_hot_water_households_energetic
+
+gas_for_heating_households_energetic;	gas_for_heating;	households;	energetic;	application;	
+gas_for_heating_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_households_energetic
+(natural_gas)-gas_for_heating_households_energetic # 4 links to: central_heating_households_energetic, gasheatpump_households_energetic, micro_CHP_production_households, gas_fired_heater_households_energetic
+
+gas_for_cooling_households_energetic;	gas_for_cooling;	households;	energetic;	application;	
+gas_for_cooling_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_households_energetic
+(natural_gas)-gas_for_cooling_households_energetic # 1 links to: gasheatpump_cooling_households_energetic
+
+gas_for_hot_water_households_energetic;	gas_for_hot_water;	households;	energetic;	application;	
+gas_for_hot_water_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_households_energetic
+(natural_gas)-gas_for_hot_water_households_energetic # 4 links to: cv_hot_water_households_energetic, gas_boiler_households_energetic, micro_chp_hot_water_households_energetic, fuel_cell_chp_households_energetic
+
+gas_for_cooking_households_energetic;	gas_for_cooking;	households;	energetic;	application;	
+gas_for_cooking_households_energetic-(natural_gas) -- s --> (natural_gas)-gas_households_energetic
+(natural_gas)-gas_for_cooking_households_energetic # 1 links to: gas_stove_households_energetic
+
+gas_households_energetic;	gas;	households;	energetic;	final consumption;	final_demand_cbs
+gas_households_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_households_energetic # 4 links to: gas_for_heating_households_energetic, gas_for_cooling_households_energetic, gas_for_hot_water_households_energetic, gas_for_cooking_households_energetic
+
+biomass_for_heating_households_energetic;	biomass_for_heating;	households;	energetic;	application;	
+biomass_for_heating_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic
+(biomass)-biomass_for_heating_households_energetic # 1 links to: heater_on_biomass_households_energetic
+
+biomass_for_hot_water_households_energetic;	biomass_for_hot_water;	households;	energetic;	application;	
+biomass_for_hot_water_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic
+(biomass)-biomass_for_hot_water_households_energetic # 1 links to: biomass_boiler_households_energetic
+
+biomass_for_cooking_households_energetic;	biomass_for_cooking;	households;	energetic;	application;	
+biomass_for_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic
+(biomass)-biomass_for_cooking_households_energetic # 1 links to: biomass_cooking_households_energetic
+
+biomass_households_energetic;	biomass;	households;	energetic;	final consumption;	final_demand_cbs
+biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(biomass)-biomass_households_energetic # 3 links to: biomass_for_heating_households_energetic, biomass_for_hot_water_households_energetic, biomass_for_cooking_households_energetic
+
+electricity_for_heating_households_energetic;	electricity_for_heating;	households;	energetic;	application;	
+electricity_for_heating_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic
+(electricity)-electricity_for_heating_households_energetic # 4 links to: heat_pump_with_chs_households_energetic, electric_heater_households_energetic, heatpump_households_energetic, heatpump_addon_households_energetic
+
+electricity_for_cooling_households_energetic;	electricity_for_cooling;	households;	energetic;	application;	
+electricity_for_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic
+(electricity)-electricity_for_cooling_households_energetic # 3 links to: airco_households_energetic, heatpump_cooling_households_energetic, heatpump_ts_cooling_households_energetic
+
+electricity_for_hot_water_households_energetic;	electricity_for_hot_water;	households;	energetic;	application;	
+electricity_for_hot_water_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic
+(electricity)-electricity_for_hot_water_households_energetic # 2 links to: heatpump_boiler_households_energetic, electric_boiler_households_energetic
+
+electricity_for_cooking_households_energetic;	electricity_for_cooking;	households;	energetic;	application;	
+electricity_for_cooking_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic
+(electricity)-electricity_for_cooking_households_energetic # 3 links to: electric_stove_households_energetic, halogen_stove_households_energetic, induction_stove_households_energetic
+
+electricity_for_lighting_households_energetic;	electricity_for_lighting;	households;	energetic;	application;	
+electricity_for_lighting_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic
+(electricity)-electricity_for_lighting_households_energetic # 3 links to: led_lighting_households_energetic, efficient_lighting_households_energetic, traditional_lighting_households_energetic
+
+electricity_for_appliances_households_energetic;	electricity_for_appliances;	households;	energetic;	application;	
+electricity_for_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic
+(electricity)-electricity_for_appliances_households_energetic # 8 links to: other_appliances_households_energetic, dishwasher_households_energetic, fridge_households_energetic, vacuum_cleaner_households_energetic, washing_machine_households_energetic, clothes_dryer_households_energetic, tv_households_energetic, computer_households_energetic
+
+electricity_households_energetic;	electricity;	households;	energetic;	final consumption;	final_demand_cbs,final_demand_electricity,cost_other
+electricity_households_energetic-(electricity) -- s --> (electricity)-available_electricity_households
+(electricity)-electricity_households_energetic # 6 links to: electricity_for_heating_households_energetic, electricity_for_cooling_households_energetic, electricity_for_hot_water_households_energetic, electricity_for_cooking_households_energetic, electricity_for_lighting_households_energetic, electricity_for_appliances_households_energetic
+
+monitized_heat_for_heating_households_energetic;	monitized_heat_for_heating;	households;	energetic;	application;	
+monitized_heat_for_heating_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_households_energetic
+(steam_hot_water)-monitized_heat_for_heating_households_energetic # 1 links to: heat_from_steam_hot_water_households_energetic
+
+monitized_heat_for_hot_water_households_energetic;	monitized_heat_for_hot_water;	households;	energetic;	application;	
+monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_households_energetic
+(steam_hot_water)-monitized_heat_for_hot_water_households_energetic # 1 links to: heatpump_boiler_using_city_heat_households_energetic
+
+steam_hot_water_households_energetic;	steam_hot_water;	households;	energetic;	final consumption;	final_demand_cbs
+steam_hot_water_households_energetic-(steam_hot_water) -- f --> (steam_hot_water)-city_heating_network_energy_energetic
+steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_gas_chp_households_energetic
+steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_biomass_chp_households_energetic
+steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_households_energetic
+(steam_hot_water)-steam_hot_water_households_energetic # 2 links to: monitized_heat_for_heating_households_energetic, monitized_heat_for_hot_water_households_energetic
+
+city_heating_network_energy_energetic;	city_heating_network;	energy;	energetic;	local heat generation;	heat_production,decentral_production,cost_traditional_heat
+city_heating_network_energy_energetic-(steam_hot_water) -- s --> (steam_hot_water)-heat_network_industry_energetic
+(steam_hot_water)-city_heating_network_energy_energetic # 1 links to: steam_hot_water_households_energetic
+(loss)-city_heating_network_energy_energetic # 0 links to: 
+
+heat_network_industry_energetic;	heat_network;	industry;	energetic;	distribution;	
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_conv_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-large_chp_industry_energetic
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-waste_incinerator_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_ccs_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_conv_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_lignite_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_oxyfuel_ccs_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_ccs_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_plant_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_ccgt_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_iii_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_coal_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_gas_energy
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-geothermal_heat_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_conv_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-ccgt_ccs_energy
+heat_network_industry_energetic-(steam_hot_water) -- f --> (steam_hot_water)-used_restheat_decentral_production_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-lignite_chp_energy
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_chp_energy
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_coal_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_lignite_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_oil_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_gas_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_waste_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_biomass_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-heat_import_energy
+(steam_hot_water)-heat_network_industry_energetic # 8 links to: city_heating_network_energy_energetic, heat_demand_energy_energetic, heat_network_unused_energy_energetic, local_heat_network_buildings_energetic, local_w_production_agriculture, local_w_production_industry, decentral_heat_other, steam_hot_water_difference_energy
+(loss)-heat_network_industry_energetic # 1 links to: grid_losses_heat_network_energy
+
+grid_losses_heat_network_energy;	grid_losses_heat_network;	energy;	undefined;	undefined;	
+grid_losses_heat_network_energy-(loss) -- d --> (loss)-heat_network_industry_energetic
+(loss)-grid_losses_heat_network_energy # 0 links to: 
+
+heat_network_unused_energy_energetic;	heat_network_unused;	energy;	energetic;	undefined;	final_demand_cbs,useful_demand
+heat_network_unused_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-heat_network_industry_energetic
+(steam_hot_water)-heat_network_unused_energy_energetic # 0 links to: 
+
+collective_gas_chp_households_energetic;	collective_gas_chp;	households;	energetic;	local CHPs;	heat_production,network_converters,cost_chps
+collective_gas_chp_households_energetic-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(loss)-collective_gas_chp_households_energetic # 0 links to: 
+(steam_hot_water)-collective_gas_chp_households_energetic # 1 links to: steam_hot_water_households_energetic
+(electricity)-collective_gas_chp_households_energetic # 1 links to: available_electricity_households
+
+collective_biomass_chp_households_energetic;	collective_biomass_chp;	households;	energetic;	local CHPs;	heat_production,network_converters,cost_chps
+collective_biomass_chp_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+(loss)-collective_biomass_chp_households_energetic # 0 links to: 
+(steam_hot_water)-collective_biomass_chp_households_energetic # 1 links to: steam_hot_water_households_energetic
+(electricity)-collective_biomass_chp_households_energetic # 1 links to: available_electricity_households
+
+biomass_distribution_energy;	biomass_distribution;	energy;	undefined;	distribution primary carriers;	biofuel_distribution
+biomass_distribution_energy-(loss)
+biomass_distribution_energy-(biomass) -- c --> (biomass)-biomass_residuals_energy
+biomass_distribution_energy-(biomass) -- f --> (biomass)-biomass_import_export_energy
+(loss)-biomass_distribution_energy # 0 links to: 
+(biomass)-biomass_distribution_energy # 26 links to: biomass_chp_industry_energetic, coal_pwd_energy, coal_pwd_ccs_energy, coal_conv_energy, coal_lignite_energy, coal_oxyfuel_ccs_energy, coal_igcc_energy, coal_igcc_ccs_energy, coal_chp_energy, co_firing_coal_energy, co_firing_gas_energy, biomass_households_energetic, biomass_industry_energetic, biomass_other_energetic, biomass_industry_non_energetic, energetic_use_biomass_agriculture_agriculture_energetic, collective_biomass_chp_households_energetic, coal_chp_buildings_energetic, biomass_chp_buildings_energetic, biomass_buildings_energetic, district_heater_coal_energy_energetic, district_heater_biomass_energy_energetic, biomass_CHP_energy_energetic, biomass_CHP_other_energetic, coal_CHP_industry_energetic, biomass_export_energy
+
+biomass_import_export_energy;	biomass_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+biomass_import_export_energy-(biomass)
+(biomass)-biomass_import_export_energy # 1 links to: biomass_distribution_energy
+
+collective_geothermal_households_energetic;	collective_geothermal;	households;	energetic;	local heat generation;	heat_production,cost_heat_pumps
+collective_geothermal_households_energetic-(steam_hot_water)
+collective_geothermal_households_energetic-(ambient_heat) -- s --> (loss)-earth_environment_energetic
+(steam_hot_water)-collective_geothermal_households_energetic # 1 links to: steam_hot_water_households_energetic
+(ambient_heat)-collective_geothermal_households_energetic # 0 links to: 
+
+available_electricity_households;	available_electricity;	households;	undefined;	locally available;	
+available_electricity_households-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic
+available_electricity_households-(electricity) -- c --> (electricity)-local_solar_pv_grid_connected_energy_energetic
+available_electricity_households-(electricity) -- d --> (electricity)-collective_gas_chp_households_energetic
+available_electricity_households-(electricity) -- d --> (electricity)-collective_biomass_chp_households_energetic
+available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_hot_water_households_energetic
+available_electricity_households-(electricity) -- d --> (electricity)-micro_CHP_production_households
+available_electricity_households-(electricity) -- d --> (electricity)-fuel_cell_chp_households_energetic
+(electricity)-available_electricity_households # 2 links to: lv_electricity_network_energy_energetic, electricity_households_energetic
+
+lv_electricity_network_energy_energetic;	lv_electricity_network;	energy;	energetic;	subdistribution 3;	network_converters,cost_other
+lv_electricity_network_energy_energetic-(electricity) -- f --> (electricity)-lv_mv_transformer_energy
+lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-available_electricity_households
+lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_other
+lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_buildings
+(electricity)-lv_electricity_network_energy_energetic # 5 links to: electricity_transport_energetic, lv_mv_transformer_energy, available_electricity_households, local_e_production_other, local_e_production_buildings
+
+lv_mv_transformer_energy;	lv_mv_transformer;	energy;	undefined;	subdistribution 3;	network_converters,cost_other
+lv_mv_transformer_energy-(electricity) -- i --> (electricity)-lv_electricity_network_energy_energetic
+lv_mv_transformer_energy-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic
+(electricity)-lv_mv_transformer_energy # 2 links to: lv_electricity_network_energy_energetic, mv_distribution_network_energy_energetic
+
+mv_distribution_network_energy_energetic;	mv_distribution_network;	energy;	energetic;	subdistribution 3;	network_converters,cost_other
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-electricity_industry_non_energetic
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lv_mv_transformer_energy
+mv_distribution_network_energy_energetic-(electricity) -- f --> (electricity)-mv_transport_network_energy
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_agriculture
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_industry
+(electricity)-mv_distribution_network_energy_energetic # 5 links to: electricity_industry_non_energetic, lv_mv_transformer_energy, mv_transport_network_energy, local_e_production_agriculture, local_e_production_industry
+
+mv_transport_network_energy;	mv_transport_network;	energy;	undefined;	subdistribution 2;	network_converters,cost_other
+mv_transport_network_energy-(electricity) -- i --> (electricity)-mv_distribution_network_energy_energetic
+mv_transport_network_energy-(electricity) -- f --> (electricity)-mv_hv_transformer_energy
+(electricity)-mv_transport_network_energy # 2 links to: mv_distribution_network_energy_energetic, mv_hv_transformer_energy
+
+mv_hv_transformer_energy;	mv_hv_transformer;	energy;	undefined;	subdistribution 1;	network_converters,cost_other
+mv_hv_transformer_energy-(electricity) -- f --> (electricity)-hv_electricity_network_energy
+mv_hv_transformer_energy-(electricity) -- i --> (electricity)-mv_transport_network_energy
+(electricity)-mv_hv_transformer_energy # 2 links to: hv_electricity_network_energy, mv_transport_network_energy
+
+hv_electricity_network_energy;	hv_electricity_network;	energy;	undefined;	distribution;	cost_other
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-solar_pv_central_production_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_conv_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-large_chp_industry_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-waste_incinerator_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_pwd_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_pwd_ccs_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_conv_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_lignite_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_oxyfuel_ccs_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_igcc_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_igcc_ccs_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-oil_plant_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_ccgt_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_chp_energy
+hv_electricity_network_energy-(electricity) -- f --> (electricity)-interconnection_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-nuclear_iii_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_inland_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_coastal_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_offshore_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_coal_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_gas_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-solar_csp_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_river_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_mount_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-blue_energy_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-geothermal_electricity_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-biogas_plant_energy
+hv_electricity_network_energy-(electricity) -- i --> (electricity)-mv_hv_transformer_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-nuclear_conv_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-ccgt_ccs_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-lignite_chp_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-oil_chp_energy
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-biomass_CHP_energy_energetic
+(electricity)-hv_electricity_network_energy # 4 links to: electricity_demand_energy_energetic, mv_hv_transformer_energy, electricity_export_energy, pumped_storage_energy
+(loss)-hv_electricity_network_energy # 1 links to: grid_losses_electricity_energy
+
+interconnection_energy;	interconnection;	energy;	undefined;	undefined;	cost_other
+interconnection_energy-(imported_electricity) -- s --> (imported_electricity)-electricity_import_export_energy
+(electricity)-interconnection_energy # 1 links to: hv_electricity_network_energy
+
+grid_losses_electricity_energy;	grid_losses_electricity;	energy;	undefined;	undefined;	
+grid_losses_electricity_energy-(loss) -- d --> (loss)-hv_electricity_network_energy
+(electricity)-grid_losses_electricity_energy # 0 links to: 
+
+electricity_import_export_energy;	electricity_import_export;	energy;	undefined;	undefined;	energy_import_export
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_gas_power_energy
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_nuclear_power_energy
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_coal_power_energy
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_sustainable_power_energy
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_solar_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_waste_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_geothermal_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_oil_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_hydro_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_wind_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_biomass_power_neighbor
+electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor
+(imported_electricity)-electricity_import_export_energy # 1 links to: interconnection_energy
+
+foreign_gas_power_energy;	foreign_gas_power;	energy;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_gas_power_energy-(imported_electricity)
+(imported_electricity)-foreign_gas_power_energy # 1 links to: electricity_import_export_energy
+
+foreign_nuclear_power_energy;	foreign_nuclear_power;	energy;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_nuclear_power_energy-(imported_electricity)
+(imported_electricity)-foreign_nuclear_power_energy # 1 links to: electricity_import_export_energy
+
+foreign_coal_power_energy;	foreign_coal_power;	energy;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_coal_power_energy-(imported_electricity)
+(imported_electricity)-foreign_coal_power_energy # 1 links to: electricity_import_export_energy
+
+foreign_sustainable_power_energy;	foreign_sustainable_power;	energy;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_sustainable_power_energy-(electricity)
+(imported_electricity)-foreign_sustainable_power_energy # 1 links to: electricity_import_export_energy
+
+electricity_export_energy;	electricity_export;	energy;	undefined;	undefined;	energy_export
+electricity_export_energy-(electricity) -- i --> (electricity)-hv_electricity_network_energy
+(electricity)-electricity_export_energy # 0 links to: 
+
+used_restheat_decentral_production_energy;	used_restheat_decentral_production;	energy;	undefined;	undefined;	
+used_restheat_decentral_production_energy-(steam_hot_water) -- s --> (steam_hot_water)-restheat_decentral_production_energy
+(steam_hot_water)-used_restheat_decentral_production_energy # 1 links to: heat_network_industry_energetic
+
+restheat_decentral_production_energy;	restheat_decentral_production;	energy;	undefined;	undefined;	
+restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic
+restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic
+restheat_decentral_production_energy-(steam_hot_water) -- f --> (steam_hot_water)-backup_burner_heat_network_energy
+(steam_hot_water)-restheat_decentral_production_energy # 2 links to: used_restheat_decentral_production_energy, unused_restheat_decentral_production_energy_energetic
+
+backup_burner_heat_network_energy;	backup_burner_heat_network;	energy;	undefined;	undefined;	heat_production,cost_traditional_heat
+backup_burner_heat_network_energy-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+(loss)-backup_burner_heat_network_energy # 0 links to: 
+(steam_hot_water)-backup_burner_heat_network_energy # 1 links to: restheat_decentral_production_energy
+
+energy_sector_gas_mixer_energy;	energy_sector_gas_mixer;	energy;	undefined;	carrier mixing;	
+energy_sector_gas_mixer_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+energy_sector_gas_mixer_energy-(biogas) -- s --> (biogas)-biogas_distribution_energy
+energy_sector_gas_mixer_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+energy_sector_gas_mixer_energy-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
+(gasmix)-energy_sector_gas_mixer_energy # 9 links to: gas_conv_energy_energetic, small_chp_industry_energetic, large_chp_industry_energetic, gas_ccgt_energy, chp_other_other_energetic, chp_agri_agriculture_energetic, backup_burner_heat_network_energy, gas_chp_buildings_energetic, ccgt_ccs_energy
+
+national_gas_network_energy;	national_gas_network;	energy;	undefined;	undefined;	
+national_gas_network_energy-(greengas) -- s --> (greengas)-greengas_distribution_energy
+national_gas_network_energy-(natural_gas) -- s --> (natural_gas)-gas_treatment_energy
+(natural_gas)-national_gas_network_energy # 18 links to: gas_agriculture_energetic, gas_households_energetic, gas_industry_energetic, gas_other_energetic, gas_buildings_energetic, gas_agriculture_non_energetic, gas_industry_non_energetic, gas_other_non_energetic, gas_demand_transport_energetic, gas_demand_energy_energetic, energy_sector_gas_mixer_energy, collective_gas_chp_households_energetic, micro_chp_hot_water_households_energetic, micro_CHP_production_households, district_heater_gas_energy_energetic, fuel_cell_chp_households_energetic, torrefaction_energy, gas_export_energy
+(loss)-national_gas_network_energy # 1 links to: grid_losses_gas_energy
+
+gas_treatment_energy;	gas_treatment;	energy;	undefined;	treatment;	
+gas_treatment_energy-(natural_gas) -- c --> (natural_gas)-gas_extraction_energy
+gas_treatment_energy-(natural_gas) -- s --> (natural_gas)-lng_import_energy
+gas_treatment_energy-(natural_gas) -- f --> (natural_gas)-gas_import_export_energy
+(natural_gas)-gas_treatment_energy # 1 links to: national_gas_network_energy
+(loss)-gas_treatment_energy # 0 links to: 
+
+bio_oil_distribution_energy;	bio_oil_distribution;	energy;	undefined;	distribution primary carriers;	biofuel_distribution
+bio_oil_distribution_energy-(bio_oil) -- c --> (bio_oil)-bio_oil_production_energy
+bio_oil_distribution_energy-(bio_oil) -- f --> (bio_oil)-bio_oil_import_export_energy
+(bio_oil)-bio_oil_distribution_energy # 7 links to: gas_conv_energy_energetic, large_chp_industry_energetic, gas_ccgt_energy, bio_oil_chp_industry_energetic, energy_sector_gas_mixer_energy, ccgt_ccs_energy, bio_oil_export_energy
+
+lng_import_energy;	lng_import;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+lng_import_energy-(loss)
+lng_import_energy-(natural_gas)
+(loss)-lng_import_energy # 0 links to: 
+(natural_gas)-lng_import_energy # 1 links to: gas_treatment_energy
+
+oil_distribution_energy;	oil_distribution;	energy;	undefined;	distribution primary carriers;	
+oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy
+oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy
+(crude_oil)-oil_distribution_energy # 20 links to: gas_conv_energy_energetic, large_chp_industry_energetic, oil_plant_energy, gas_ccgt_energy, oil_agriculture_energetic, oil_households_energetic, oil_industry_energetic, oil_other_energetic, oil_transport_energetic, oil_industry_non_energetic, oil_other_non_energetic, oil_transport_non_energetic, oil_demand_energy_energetic, oil_storage_energy, energy_sector_gas_mixer_energy, oil_buildings_energetic, ccgt_ccs_energy, oil_chp_energy, district_heater_oil_energy_energetic, oil_export_energy
+(loss)-oil_distribution_energy # 1 links to: grid_losses_oil_energy
+
+greengas_distribution_energy;	greengas_distribution;	energy;	undefined;	distribution primary carriers;	
+greengas_distribution_energy-(loss)
+greengas_distribution_energy-(greengas) -- f --> (greengas)-greengas_import_export_energy
+greengas_distribution_energy-(greengas) -- c --> (greengas)-biogas_upgrade_energy
+(loss)-greengas_distribution_energy # 0 links to: 
+(greengas)-greengas_distribution_energy # 3 links to: national_gas_network_energy, greengas_transport_energetic, greengas_export_energy
+
+oil_import_export_energy;	oil_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+oil_import_export_energy-(crude_oil)
+(crude_oil)-oil_import_export_energy # 1 links to: oil_distribution_energy
+
+gas_import_export_energy;	gas_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+gas_import_export_energy-(natural_gas)
+(natural_gas)-gas_import_export_energy # 1 links to: gas_treatment_energy
+
+grid_losses_oil_energy;	grid_losses_oil;	energy;	undefined;	undefined;	
+grid_losses_oil_energy-(loss) -- d --> (loss)-oil_distribution_energy
+(loss)-grid_losses_oil_energy # 0 links to: 
+
+grid_losses_gas_energy;	grid_losses_gas;	energy;	undefined;	undefined;	
+grid_losses_gas_energy-(loss) -- d --> (loss)-national_gas_network_energy
+(loss)-grid_losses_gas_energy # 0 links to: 
+
+greengas_import_export_energy;	greengas_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,biofuel_distribution,energy_import
+greengas_import_export_energy-(greengas)
+(greengas)-greengas_import_export_energy # 1 links to: greengas_distribution_energy
+
+bio_oil_import_export_energy;	bio_oil_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+bio_oil_import_export_energy-(bio_oil)
+(bio_oil)-bio_oil_import_export_energy # 1 links to: bio_oil_distribution_energy
+
+unused_restheat_decentral_production_energy_energetic;	unused_restheat_decentral_production;	energy;	energetic;	undefined;	final_demand_cbs,useful_demand
+unused_restheat_decentral_production_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-restheat_decentral_production_energy
+(steam_hot_water)-unused_restheat_decentral_production_energy_energetic # 0 links to: 
+
+biogas_distribution_energy;	biogas_distribution;	energy;	undefined;	undefined;	biofuel_distribution
+biogas_distribution_energy-(biogas) -- s --> (biogas)-biogas_production_energy
+(biogas)-biogas_distribution_energy # 3 links to: biogas_plant_energy, energy_sector_gas_mixer_energy, biogas_upgrade_energy
+
+biogas_production_energy;	biogas_production;	energy;	undefined;	undefined;	
+biogas_production_energy-(manure) -- s --> (manure)-manure_collection_energy
+biogas_production_energy-(corn) -- s --> (corn)-corn_distribution_energy
+(biogas)-biogas_production_energy # 1 links to: biogas_distribution_energy
+
+foreign_solar_power_neighbor;	foreign_solar_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_solar_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_solar_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_waste_power_neighbor;	foreign_waste_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_waste_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_waste_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_geothermal_power_neighbor;	foreign_geothermal_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_geothermal_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_geothermal_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_oil_power_neighbor;	foreign_oil_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_oil_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_oil_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_hydro_power_neighbor;	foreign_hydro_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_hydro_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_hydro_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_wind_power_neighbor;	foreign_wind_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_wind_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_wind_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_biomass_power_neighbor;	foreign_biomass_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_biomass_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_biomass_power_neighbor # 1 links to: electricity_import_export_energy
+
+foreign_unspecified_power_neighbor;	foreign_unspecified_power;	neighbor;	undefined;	undefined;	primary_energy_demand,energy_import
+foreign_unspecified_power_neighbor-(imported_electricity)
+(imported_electricity)-foreign_unspecified_power_neighbor # 1 links to: electricity_import_export_energy
+
+manure_collection_energy;	manure_collection;	energy;	undefined;	undefined;	
+manure_collection_energy-(manure) -- s --> (manure)-available_manure_energy
+(manure)-manure_collection_energy # 1 links to: biogas_production_energy
+
+available_manure_energy;	available_manure;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
+available_manure_energy-(manure)
+(manure)-available_manure_energy # 1 links to: manure_collection_energy
+
+corn_distribution_energy;	corn_distribution;	energy;	undefined;	undefined;	
+corn_distribution_energy-(corn) -- s --> (corn)-corn_growth_energy
+(corn)-corn_distribution_energy # 1 links to: biogas_production_energy
+
+corn_growth_energy;	corn_growth;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
+corn_growth_energy-(corn)
+(corn)-corn_growth_energy # 1 links to: corn_distribution_energy
+
+lng_export_energy;	lng_export;	energy;	undefined;	undefined;	energy_export
+lng_export_energy-(lng) -- i --> (loss)-lng_import_energy
+(lng)-lng_export_energy # 0 links to: 
+
+oil_export_energy;	oil_export;	energy;	undefined;	undefined;	energy_export
+oil_export_energy-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_export_energy # 0 links to: 
+
+gas_export_energy;	gas_export;	energy;	undefined;	undefined;	energy_export
+gas_export_energy-(natural_gas) -- i --> (natural_gas)-national_gas_network_energy
+(natural_gas)-gas_export_energy # 0 links to: 
+
+biomass_export_energy;	biomass_export;	energy;	undefined;	undefined;	energy_export
+biomass_export_energy-(biomass) -- i --> (biomass)-biomass_distribution_energy
+(biomass)-biomass_export_energy # 0 links to: 
+
+greengas_export_energy;	greengas_export;	energy;	undefined;	undefined;	energy_export
+greengas_export_energy-(greengas) -- i --> (greengas)-greengas_distribution_energy
+(greengas)-greengas_export_energy # 0 links to: 
+
+bio_oil_export_energy;	bio_oil_export;	energy;	undefined;	undefined;	energy_export
+bio_oil_export_energy-(bio_oil) -- i --> (bio_oil)-bio_oil_distribution_energy
+(bio_oil)-bio_oil_export_energy # 0 links to: 
+
+foreign_production_algue_diesel_neighbor;	foreign_production_algue_diesel;	neighbor;	undefined;	undefined;	primary_energy_demand
+foreign_production_algue_diesel_neighbor-(algae_diesel)
+(algae_diesel)-foreign_production_algue_diesel_neighbor # 1 links to: algue_diesel_import_export_transport_energetic
+
