@@ -3,4 +3,15 @@
 
 - unit = pj
 
-DIVIDE(SUM(V(electricity_agriculture_energetic;demand),NEG(V(chp_agri_agriculture_energetic;output_of_electricity))),BILLIONS)
+DIVIDE(
+	MAX(
+        SUM(
+			V(electricity_agriculture_energetic;demand),
+			NEG(
+				V(chp_agri_agriculture_energetic;output_of_electricity)
+			)
+		),
+		0
+	),
+	BILLIONS
+)

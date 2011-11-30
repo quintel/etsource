@@ -1,6 +1,9 @@
+# Makes use of the new QUERY_PRESENT function
 - deprecated_key = policy_goal_total_energy_cost_target_value
-# 
-
 - unit = euro
 
-V(GOAL(total_cost);user_value)
+DIVIDE(
+        PRODUCT(
+        SUM(1,DIVIDE(GOAL_USER_VALUE(total_cost),100)),
+        QUERY_PRESENT(total_costs)
+        ),BILLIONS)

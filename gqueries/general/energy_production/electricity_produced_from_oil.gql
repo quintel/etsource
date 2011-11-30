@@ -1,0 +1,14 @@
+# Returns the produced electricity using oil.
+# 
+# It works by looking to converters directly fed by the "oil distribution" converter that have output of electricity.
+
+- unit = mj
+
+SUM(
+  V(
+     Q(electricity_producing_oil_converters)
+     ;output_of_electricity * crude_oil_input_conversion
+    )
+   )
+
+

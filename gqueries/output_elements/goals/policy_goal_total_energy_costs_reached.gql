@@ -1,6 +1,8 @@
-- deprecated_key = policy_goal_total_energy_cost_reached
 # 
+- deprecated_key = policy_goal_total_energy_cost_reached
+- unit = boolean
 
-- unit = 
-
-LESS_OR_EQUAL(UNIT(Q(total_costs);billions),V(GOAL(total_cost);user_value))
+LESS_OR_EQUAL(
+  UNIT(Q(total_costs);billions),
+  Q(policy_goal_total_energy_costs_target_value)
+)
