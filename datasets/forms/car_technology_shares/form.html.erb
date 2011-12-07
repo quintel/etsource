@@ -1,0 +1,32 @@
+<table>
+  <tbody id="car_technology_shares">
+    <tr>
+      <td>Gas:</td>
+      <td><input type="number" min="0" max="1.0" name="car_technology_shares[gas]" value="0.3"></td>  
+      <td>Description.....</td>
+    <tr>
+      <td>Diesel:</td>
+      <td><input type="number" min="0" max="1.0" name="car_technology_shares[diesel]" value="0.3"></td>  
+      <td>Description.....</td>
+    </tr>
+    <tr>
+      <td>Electricity:</td>
+      <td><input type="number" min="0" max="1.0" name="car_technology_shares[electricity]" value="0.4"></td>  
+      <td>Description.....</td>
+    </tr>
+  </tbody>
+  <tr>
+    <th>Total:</th>
+    <th><input type="number" min="0" max="1.0" name="total" id="total"></th>
+    <td>Description.....</td>
+  </tr>
+</table>
+
+<script>
+$('#car_technology_shares input').change(function() { 
+  var total = 0;
+  $('#car_technology_shares input').each(function(i, el) { total += parseFloat($(el).val())} )
+  console.log(total)
+  $('#total').val(total);
+} )
+</script>
