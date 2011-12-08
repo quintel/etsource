@@ -1,0 +1,14 @@
+# This is the available electricity production capacity minus three times the variability (i.e. 99%)
+ 
+
+- unit = MW
+
+SUM(
+  Q(available_electricity_production_capacity),
+  NEG(
+    PRODUCT(
+      Q(total_supply_and_demand_variability),
+      3
+    )
+  )
+)
