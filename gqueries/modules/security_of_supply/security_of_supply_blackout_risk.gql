@@ -1,8 +1,5 @@
-# calculates the % chance of a blackout: that supply is less than demand
+# calculates the % chance (factor between 0 and 1) of a blackout: that supply is less than demand
 
-- unit = %
+- unit = factor
 
-PRODUCT(
-    NORMCDF(Q(peak_electricity_demand),Q(available_electricity_production_capacity),Q(total_supply_and_demand_variability)),
-    100
-)
+NORMCDF(Q(peak_electricity_demand),Q(available_electricity_production_capacity),Q(total_supply_and_demand_variability))
