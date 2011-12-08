@@ -1,7 +1,12 @@
 ---
+# ------ Define global variables that are used within this template.
+#        This is meant to give the researchers some structure to work.
+:globals: 
+  :hh_hot_water_total: <%= set(hh_hot_water_total, get(households,hot_water,demand_total, default: 91.2) * BILLIONS) %>
+
 :steam_hot_water_households_energetic: 
   # ------ 
-  :demand_expected_value: <%= set(hh_hot_water_total, get(households,hot_water,demand_total, default: 91.2) * BILLIONS) %>
+  :demand_expected_value: <%= get(hh_hot_water_total) %>
   # ------ 
   :co2_free: 0.0
   
