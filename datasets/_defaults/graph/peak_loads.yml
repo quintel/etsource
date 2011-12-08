@@ -1,0 +1,44 @@
+# The idea is that we can make group the datasets into concerns.
+# So Chris could for example just work inside the peak_load files
+# to modify peak load calculations.
+#
+#:airco:
+#  :simult_sd: 1.0
+#  :simult_se: 1.0
+#  :simult_wd: 0.0
+#  :simult_we: 0.0 
+
+:defaults:
+  :simult_swde: &simult_swde
+    :simult_sd: 1.0
+    :simult_se: 1.0
+    :simult_wd: 1.0
+    :simult_we: 1.0
+
+
+  :include_peak_loads: &include_peak_loads
+    # Now we can choose to enable/disable peak loads for a country
+    # simply by including it with "<<: *include_peak_loads"
+    :gas_conv_energy_energetic: 
+      <<: *simult_swde
+
+    :waste_incinerator_energy_energetic: 
+      <<: *simult_swde
+
+    :coal_pwd_energy: 
+      <<: *simult_swde
+
+    :coal_conv_energy: 
+      <<: *simult_swde
+
+    :bio_oil_chp_industry_energetic: 
+      :simult_sd: 0.75
+      :simult_se: 0.75
+      :simult_wd: 0.75
+      :simult_we: 0.75
+
+    :wind_inland_energy: 
+      :simult_sd: 0.5
+      :simult_se: 0.5
+      :simult_wd: 0.5
+      :simult_we: 0.5
