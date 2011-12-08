@@ -1,10 +1,12 @@
---- 
+:steam_hot_water_households_energetic: 
+  :co2_free: 0.0
+
+
+
 :hot_water_demand_households_energetic: 
   :co2_free: 0.0
   :demand: 78436447600
   :preset_demand: 78436447600
-(hot_water)-hot_water_demand_households_energetic: {conversion: 1.0}
-hot_water_demand_households_energetic-(hot_water): {conversion: 1.0}
 hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: {share: 0.0104543}
 hot_water_demand_households_energetic-(hot_water) -- f --> (hot_water)-hot_water_devices_households_energetic: {}
  
@@ -13,10 +15,7 @@ hot_water_demand_households_energetic-(hot_water) -- f --> (hot_water)-hot_water
   :demand_expected_value: 3500750028
   :demand: 3500750028
   :preset_demand: 3500750028
-(notdefined)-other_appliances_households_energetic: {conversion: 1.0}
-(loss)-other_appliances_households_energetic: {conversion: 0.0}
-other_appliances_households_energetic-(electricity): {conversion: 1.0}
-other_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
+
  
 :solar_panel_for_hot_water_households_energetic: 
   :availability: 0.0
@@ -39,10 +38,6 @@ other_appliances_households_energetic-(electricity) -- s --> (electricity)-elect
   :technical_lifetime: 15.0
   :typical_nominal_input_capacity: 0.0042
   :wacc: 0.04
-(loss)-solar_panel_for_hot_water_households_energetic: {conversion: 0.0}
-(hot_water)-solar_panel_for_hot_water_households_energetic: {conversion: 1.0}
-solar_panel_for_hot_water_households_energetic-(solar_thermal): {conversion: 1.0}
-solar_panel_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_for_hot_water_households_energetic: {share: 1.0}
  
 :solar_pv_central_production_energy_energetic: 
   :availability: 0.99
@@ -6210,3 +6205,43 @@ bio_oil_export_energy-(bio_oil) -- i --> (bio_oil)-bio_oil_distribution_energy: 
   :preset_demand: 0
 (algae_diesel)-foreign_production_algue_diesel_neighbor: {conversion: 1.0}
 foreign_production_algue_diesel_neighbor-(algae_diesel): {conversion: 1.0}
+
+  
+(steam_hot_water)-steam_hot_water_households_energetic: {conversion: 1.0}
+steam_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
+steam_hot_water_households_energetic-(steam_hot_water) -- f --> (steam_hot_water)-city_heating_network_energy_energetic: {}
+steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_gas_chp_households_energetic: {share: 0.0}
+steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_biomass_chp_households_energetic: {share: 0.0}
+steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_households_energetic: {share: 0.0923246}
+
+:heat_from_steam_hot_water_households_energetic: 
+  # moved to purchase_prices.yml
+  # :purchase_price_per_mw_input: 605000.0
+  :availability: 0.0
+  :variability: 0.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.0
+  :decommissioning_costs_per_mw_input: 0.0
+  :decrease_in_nomimal_capacity_over_lifetime: 0.0
+  :full_load_hours: 2500.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 7000.0
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :residual_value_per_mw_input: 0.0
+  :technical_lifetime: 15.0
+  :typical_nominal_input_capacity: 0.01
+  :wacc: 0.06
+(useable_heat)-heat_from_steam_hot_water_households_energetic: {conversion: 1.0}
+heat_from_steam_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
+heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-monitized_heat_for_heating_households_energetic: {share: 1.0}
+ 
+
+:monitized_heat_for_hot_water_households_energetic: 
+  :co2_free: 0.0
+(steam_hot_water)-monitized_heat_for_hot_water_households_energetic: {conversion: 1.0}
+monitized_heat_for_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
+monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_households_energetic: {share: 1.0}
