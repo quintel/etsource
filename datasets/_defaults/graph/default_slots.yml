@@ -1,0 +1,16 @@
+# hot_water_demand_households_energetic
+(hot_water)-hot_water_demand_households_energetic: {conversion: 1.0}
+hot_water_demand_households_energetic-(hot_water): {conversion: 1.0}
+
+# other_appliances_households_energetic
+(notdefined)-other_appliances_households_energetic: {conversion: 1.0}
+(loss)-other_appliances_households_energetic: {conversion: 0.0}
+(loss)-other_appliances_households_energetic: {conversion: 0.0}
+other_appliances_households_energetic-(electricity): {conversion: 1.0}
+other_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
+
+# solar_panel_for_hot_water_households_energetic
+(loss)-solar_panel_for_hot_water_households_energetic: {conversion: 0.0}
+(hot_water)-solar_panel_for_hot_water_households_energetic: {conversion: 1.0}
+solar_panel_for_hot_water_households_energetic-(solar_thermal): {conversion: 1.0}
+solar_panel_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_for_hot_water_households_energetic: {share: 1.0}

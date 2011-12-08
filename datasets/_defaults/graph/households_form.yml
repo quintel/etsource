@@ -1,0 +1,21 @@
+# This is the "data"-file for the households form. Here rules are defined on how 
+# we want transform input data from 3rd parties into our "dataset".
+# 
+# The idea is that we only take care of the actual values/formulas and define all 
+# other "fixed" attributes in other files. 
+
+
+:globals: 
+  # Define global variables that are used within this template.
+  # This is meant to gives some structure to the files. 
+  # Also :globals: and :defaults: will not be interpreted as converters
+  :hh_hot_water_total: <%= set(hh_hot_water_total, get(households,hot_water,demand_total, default: 91.2) * BILLIONS) %>
+
+:steam_hot_water_households_energetic: 
+  :demand_expected_value: <%= get(hh_hot_water_total) %>
+  
+:heat_from_steam_hot_water_households_energetic: 
+  :demand_expected_value: <%= get(hh_hot_water_total) * (get(households,hot_water,split,space_heating) / 100) %>
+
+:monitized_heat_for_hot_water_households_energetic: 
+  :demand_expected_value: <%= get(hh_hot_water_total) * (get(households,hot_water,split,hot_water) / 100) %>
