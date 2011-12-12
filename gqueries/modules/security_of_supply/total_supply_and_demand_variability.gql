@@ -1,11 +1,16 @@
 # Total variability in both supply and demand
 # Variability is calculated as the root of the sum of squares of individual variabilities
+# 2011-12-12: The variability parameter is now 1-capacity credit. For wind this is 0.7 and solar 1.0
+# The sum of squares therefore now gives the total variation expected (approximately 3 standard deviations), and therefore it is divided by 3 
 
 - unit = mw
 
-SQRT(
-  SUM(
-    V(G(electricity_production);installed_production_capacity_in_mw_electricity*availability*variability*installed_production_capacity_in_mw_electricity*availability*variability),
-    V(G(final_demand_electricity);mw_input_capacity*variability*mw_input_capacity*variability)
-  )
+DIVIDE(
+  SQRT(
+    SUM(
+      V(G(electricity_production);installed_production_capacity_in_mw_electricity**2*[availability*variability]**2),
+      V(G(final_demand_electricity);mw_input_capacity**2*variability**2)
+    )
+  ),
+  3
 )
