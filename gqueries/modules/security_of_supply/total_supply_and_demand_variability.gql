@@ -6,11 +6,9 @@
 - unit = mw
 
 DIVIDE(
-  SQRT(
     SUM(
-      V(G(electricity_production);installed_production_capacity_in_mw_electricity**2*[availability*variability]**2),
-      V(G(final_demand_electricity);mw_input_capacity**2*variability**2)
-    )
-  ),
-  3
+      V(G(electricity_production);installed_production_capacity_in_mw_electricity*variability),
+      V(G(final_demand_electricity);mw_input_capacity*variability)
+    ),
+    3
 )
