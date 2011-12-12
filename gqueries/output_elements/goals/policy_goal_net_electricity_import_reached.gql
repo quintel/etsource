@@ -1,6 +1,7 @@
-
 # 
+- unit = boolean
 
-- unit = 
-
-LESS_OR_EQUAL(Q(net_import_of_electricity),V(GOAL(electricity_import);user_value))
+LESS_OR_EQUAL(
+  Q(net_import_of_electricity),
+  DIVIDE(GOAL_USER_VALUE(electricity_import),100)
+)
