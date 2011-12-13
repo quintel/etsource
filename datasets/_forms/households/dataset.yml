@@ -1,0 +1,28 @@
+# This is the "data"-file for the households form. Here rules are defined on how 
+# we want transform input data from 3rd parties into our "dataset".
+# 
+# The idea is that we only take care of the actual values/formulas and define all 
+# other "fixed" attributes in other files. 
+
+
+# Define global variables that are used within this template.
+# This is meant to gives some structure to the files. 
+# Also :globals: and :defaults: will not be interpreted as converters
+<% 
+set(:hh_hot_water_total, (get(:households, :hot_water, :demand_total, default: 91.2) * BILLIONS rescue  -1.0) ) 
+set(:hh_hot_water_gas, (get(:households, :hot_water, :demand_total, default: 91.2) * BILLIONS rescue  -1.0) ) 
+%>
+
+
+:steam_hot_water_households_energetic: 
+  :demand_expected_value: <%= get(:hh_hot_water_total) %>
+  
+:heat_from_steam_hot_water_households_energetic: 
+  :demand_expected_value: <%= get(:hh_hot_water_total) * (get(:households, :hot_water, :split, :space_heating) / 100) rescue -1.0 %>
+
+:monitized_heat_for_hot_water_households_energetic: 
+  :demand_expected_value: <%= get(:hh_hot_water_total) * (get(:households, :hot_water, :split, :hot_water) / 100) rescue -1.0 %>
+
+:gas_boiler_households_energetic:
+
+<%= val('(hot_water)-gas_boiler_households_energetic', :conversion) / val('gas_boiler_households_energetic-(natural_gas)', :conversion) rescue -1.0 %>

@@ -1,0 +1,123 @@
+- carriers = %w[coal crude_oil natural_gas biomass solar_thermal electricity hot_water notdefined]
+%h4{style:"color: #00c; border-bottom: 3px solid #00c; font-size: 18px"} Final Demands
+%table
+  %tr
+    %td Input
+    - carriers.each do |carrier|
+      %td= carrier
+    %td sum
+  
+  %tr
+    %td households
+    - carriers.each do |carrier|
+      %td= number_field(carrier, :demand_total)
+    %td 
+  
+  %tr
+    %th{colspan: 10}
+      %b application split
+  
+  %tr
+    %td space heating
+    - carriers[0...-1].each do |carrier|
+      %td= number_field(carrier, :split, :space_heating)
+    %td 
+    %td
+  %tr
+    %td hot water
+    - carriers[0...-1].each do |carrier|
+      %td= number_field(carrier, :split, :hot_water)
+    %td 
+    %td 
+  
+  %tr
+    %td cooking
+    %td 
+    %td 
+    %td= number_field(:natural_gas, :split, :cooking)
+    %td= number_field(:biomass, :split, :cooking)
+    %td 
+    %td= number_field(:electricity, :split, :cooking)
+    %td 
+    %td 
+    %td 
+  
+  %tr
+    %td lighting
+    %td 
+    %td 
+    %td 
+    %td 
+    %td 
+    %td= number_field(:electricity, :split, :lighting)
+    %td 
+    %td 
+    %td 
+  
+  %tr
+    %td cooling
+    %td 
+    %td 
+    %td= number_field(:natural_gas, :split, :cooling)
+    %td 
+    %td 
+    %td= number_field(:electricity, :split, :cooling)
+    %td 
+    %td 
+    %td 
+  
+  %tr
+    %td appliances
+    %td 
+    %td 
+    %td 
+    %td 
+    %td 
+    %td= number_field(:electricity, :split, :appliances)
+    %td 
+    %td 
+    %td 
+
+#hot_water
+  %h4{style:"color: #00c; border-bottom: 3px solid #00c; font-size: 18px"} hot water
+  %h5{style:"color: #00c"} Split for hot water technologies
+  %p= link_to 'Debug', "javascript:$('#hot_water .debug').toggle()"
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Split
+        %th.debug output share
+        %th.debug exp. demand
+    %tbody
+      %tr
+        %th Coal
+        %th All used
+        %th{:colspan => 2}
+      %tr
+        %th Coal
+        %th= number_field(:coal, :space_heating, :hot_water, :disabled => true, :value => 100.0)
+        %td.debug= @value_box.get(:households, :coal, :space_heating, :hot_water)
+
+      %tr
+        %th Oil
+        %th All used
+      %tr
+        %th oil
+        %th= number_field(:oil, :space_heating, :hot_water, :disabled => true, :value => 100.0)
+
+      %tr
+        %th Gas
+        %th What Percent
+      %tr
+        %th gas boiler
+        %th= number_field(:natural_gas, :space_heating, :gas_boiler)
+      %tr
+        %th gas hot water combi
+        %th= number_field(:natural_gas, :space_heating, :gas_hot_water_combi)
+      %tr
+        %th micro chp
+        %th= number_field(:natural_gas, :space_heating, :micro_chp)
+      %tr
+        %th fuel cell chp
+        %th= number_field(:natural_gas, :space_heating, :fuel_cell_chp)
