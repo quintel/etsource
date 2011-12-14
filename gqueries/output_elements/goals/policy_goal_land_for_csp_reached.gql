@@ -2,4 +2,7 @@
 
 - unit = boolean
 
-LESS_OR_EQUAL(V(solar_csp_energy;total_land_use),GOAL_USER_VALUE(land_for_csp))
+LESS_OR_EQUAL(
+  V(solar_csp_energy;total_land_use),
+  MAX(0,GOAL_USER_VALUE(land_for_csp))
+)
