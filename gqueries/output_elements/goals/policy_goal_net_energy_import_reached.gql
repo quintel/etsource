@@ -3,5 +3,8 @@
 
 LESS_OR_EQUAL(
   Q(net_import_of_energy),
-  DIVIDE(GOAL_USER_VALUE(energy_import),100)
+  DIVIDE(
+    MAX(0,GOAL_USER_VALUE(energy_import)),
+    100
+  )
 )
