@@ -109,15 +109,20 @@
       %tr
         %th Gas
         %th What Percent
+      - %w[gas_boiler_households_energetic cv_hot_water_households_energetic fuel_cell_chp_households_energetic micro_chp_hot_water_households_energetic].each do |converter|
+        %tr
+          %th= link_to converter, data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+          %th= number_field(:natural_gas, :hot_water, converter.to_sym)
+          %td
+          %td= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
+
       %tr
-        %th gas boiler
-        %th= number_field(:natural_gas, :space_heating, :gas_boiler)
-      %tr
-        %th gas hot water combi
-        %th= number_field(:natural_gas, :space_heating, :gas_hot_water_combi)
-      %tr
-        %th micro chp
-        %th= number_field(:natural_gas, :space_heating, :micro_chp)
-      %tr
-        %th fuel cell chp
-        %th= number_field(:natural_gas, :space_heating, :fuel_cell_chp)
+        %th Electricity
+        %th What Percent
+      - %w[electric_boiler_households_energetic heatpump_boiler_households_energetic].each do |converter|
+        %tr
+          %th= link_to converter, data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+          %th= number_field(:electricity, :hot_water, converter.to_sym)
+          %td= Current.gql.present_graph.converter(converter.to_sym).object_dataset.inspect
+          %td= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
+          
