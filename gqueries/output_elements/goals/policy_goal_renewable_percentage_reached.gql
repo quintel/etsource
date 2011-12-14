@@ -1,6 +1,7 @@
+# The MAX function is used to cast nil to zero
+- unit = boolean
 
-# 
-
-- unit = 
-
-GREATER_OR_EQUAL(Q(renewability),V(GOAL(renewable_percentage);user_value))
+GREATER_OR_EQUAL(
+  PRODUCT(100,Q(renewability)),
+  MAX(0,GOAL_USER_VALUE(renewable_percentage))
+)
