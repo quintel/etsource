@@ -4,25 +4,110 @@
 # The idea is that we only take care of the actual values/formulas and define all 
 # other "fixed" attributes in other files. 
 
+<% 
 
 # Define global variables that are used within this template.
 # This is meant to gives some structure to the files. 
 # Also :globals: and :defaults: will not be interpreted as converters
-<% 
-set(:hh_hot_water_total, (get(:households, :hot_water, :demand_total, default: 91.2) * BILLIONS rescue  -1.0) ) 
-set(:hh_hot_water_gas, (get(:households, :hot_water, :demand_total, default: 91.2) * BILLIONS rescue  -1.0) ) 
+
+section = :households
+
+total_of_carrier = lambda do |key|
+  (get(:households, key, :demand_total, default: 0.0) * BILLIONS) rescue -1.0
+end
+
+
+input_demand = lambda do |key1,key2| 
+  total = (get(section, key1, :demand_total) * BILLIONS) #rescue -1.0
+  total * (get(section, key1, :split, key2) / 100) #rescue -1.0
+end
+
+cell_u = lambda do |converter_key, input_carrier, output_carrier|
+  val("(#{output_carrier})-#{converter_key}", :conversion) 
+end
+
+cell_r = lambda do |converter_key, input_carrier, output_carrier|
+  val("#{converter_key}-(#{input_carrier})", :conversion) 
+end
+
+cell_h = lambda do |converter_key, input_carrier, output_carrier|
+  # rescue 0.0 because we assume 0.0 is default user entry
+  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
+end
+
+# Cell K
+cell_k = conversion = lambda do |converter_key, input_carrier, output_carrier|
+  args = [converter_key, input_carrier, output_carrier]
+  (cell_u.call(*args) / cell_r.call(*args)) #rescue 0.0 
+end
+
+# micro_CHP_production_households
+
+# Cell I # the individual split / whatever
+cell_i = input_split = lambda do |converter_key, input_carrier, output_carrier|
+  args = [converter_key, input_carrier, output_carrier]
+  h = cell_h.call(*args)
+  k = cell_k.call(*args)
+
+  converter_keys = get(section, input_carrier, output_carrier).andand.keys || []
+  sum = converter_keys.map do |key|
+    cell_h.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
+  end.sum
+
+
+  (h / k) * (1.0 / sum)
+end
+
+# Cell J (input)
+cell_j = input = lambda do |converter_key, input_carrier, output_carrier|
+  i = input_split.call(converter_key, input_carrier, output_carrier)
+  i * input_demand.call(input_carrier, output_carrier)
+end
+
+cell_l = lambda do |converter_key, input_carrier, output_carrier|
+  args = [converter_key, input_carrier, output_carrier]
+  cell_j.call(*args) * cell_k.call(*args)
+end
+
+cell_m = lambda do |converter_key, input_carrier, output_carrier|
+  args = [converter_key, input_carrier, output_carrier]
+  cell_l.call(*args) / 100.0
+end
+
+cell_n = lambda do |converter_key, input_carrier, output_carrier|
+  args = [converter_key, input_carrier, output_carrier]
+  cell_j.call(*args) / cell_r.call(*args)
+end
+
 %>
 
+# ---- Section: Final Demand --------------------------------------------------
+
+# ---- Section: Space heating -------------------------------------------------
+
+# ---- Section: Hot water -----------------------------------------------------
 
 :steam_hot_water_households_energetic: 
-  :demand_expected_value: <%= get(:hh_hot_water_total) %>
+  :demand_expected_value: <%= total_of_carrier.call(:hot_water) %>
   
 :heat_from_steam_hot_water_households_energetic: 
-  :demand_expected_value: <%= get(:hh_hot_water_total) * (get(:households, :hot_water, :split, :space_heating) / 100) rescue -1.0 %>
+  :demand_expected_value: <%= input_demand.call(:hot_water, :hot_water) %>
 
 :monitized_heat_for_hot_water_households_energetic: 
-  :demand_expected_value: <%= get(:hh_hot_water_total) * (get(:households, :hot_water, :split, :hot_water) / 100) rescue -1.0 %>
+  :demand_expected_value: <%= input_demand.call(:hot_water, :hot_water) %>
 
-:gas_boiler_households_energetic:
-
-<%= val('(hot_water)-gas_boiler_households_energetic', :conversion) / val('gas_boiler_households_energetic-(natural_gas)', :conversion) rescue -1.0 %>
+<% 
+{
+  :natural_gas => %w[gas_boiler_households_energetic cv_hot_water_households_energetic fuel_cell_chp_households_energetic micro_chp_hot_water_households_energetic],
+  :electricity => %w[heatpump_boiler_households_energetic electric_boiler_households_energetic]
+}.each do |carrier, converters| %>
+  <% converters.each do |converter| %>
+:<%= converter %>:
+  :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, :hot_water) %>
+  :cell_h:  <%= cell_h.call(converter.to_sym, carrier, :hot_water) %>
+  :cell_i:  <%= cell_i.call(converter.to_sym, carrier, :hot_water) %>
+  :cell_j:  <%= cell_j.call(converter.to_sym, carrier, :hot_water) %>
+  :cell_k:  <%= cell_k.call(converter.to_sym, carrier, :hot_water) %>
+  :cell_l:  <%= cell_l.call(converter.to_sym, carrier, :hot_water) %>
+  <% end %>
+<% end %>
