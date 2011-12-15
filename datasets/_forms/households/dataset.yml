@@ -5,16 +5,11 @@
 # other "fixed" attributes in other files. 
 
 <% 
-# Define global variables that are used within this template.
-# This is meant to gives some structure to the files. 
-# Also :globals: and :defaults: will not be interpreted as converters
-
 section = :households
 
 total_of_carrier = lambda do |key|
-  (get(:households, key, :demand_total, default: 0.0) * BILLIONS) rescue 0.0
+  (get(section, key, :demand_total, default: 0.0) * BILLIONS) rescue 0.0
 end
-
 
 input_demand = lambda do |key1,key2| 
   total = (get(section, key1, :demand_total) * BILLIONS) rescue 0.0
@@ -87,10 +82,6 @@ cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 
 # ---- Section: Final Demand --------------------------------------------------
 
-# ---- Section: Space heating -------------------------------------------------
-
-# ---- Section: Hot water -----------------------------------------------------
-
 :steam_hot_water_households_energetic: 
   :demand_expected_value: <%= total_of_carrier.call(:hot_water) %>
   
@@ -103,11 +94,18 @@ cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 <% 
 # Do not intend YAML lines, this would screw up the yaml structure
 Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters| %>
-# ----- #{section_carrier} ------------------------------------
+
+# ----- Section #{section_carrier} ----------------------------
+
   <% carrier_converters.each do |carrier, converters| %>
     <% converters.each do |converter| %>
 :<%= converter %>:
   :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, section_carrier)  %>
+  # ------ this are for debugging purposes only -----------
+  # you can see this values when you click on the debug button in the forms view.
+  # they are "stored" in the dataset, and can be retrieved like:
+  #
+  #     Current.gql.present_graph.converter(__key__).object_dataset[:__attr_key__]
   :output_share:  <%= cell_m.call(converter.to_sym, carrier, section_carrier) %>
   :cell_h:  <%= cell_h.call(converter.to_sym, carrier, section_carrier) %>
   :cell_i:  <%= cell_i.call(converter.to_sym, carrier, section_carrier) %>
