@@ -5,7 +5,6 @@
 # other "fixed" attributes in other files. 
 
 <% 
-
 # Define global variables that are used within this template.
 # This is meant to gives some structure to the files. 
 # Also :globals: and :defaults: will not be interpreted as converters
@@ -24,12 +23,15 @@ input_demand = lambda do |key1,key2|
   val.nan? ? 0.0 : val
 end
 
+
+#
+# ---- Excel function copied --------------------------------------------------
+#
+# for brevity, if we just pass on arguments, we simply write 'args'
+# args: converter_key, input_carrier, output_carrier
+
 cell_u = lambda do |converter_key, input_carrier, output_carrier|
-  begin
-    val("(#{output_carrier})-#{converter_key}", :conversion) 
-  rescue => e
-    raise [converter_key, input_carrier, output_carrier].join(',')
-  end
+  val("(#{output_carrier})-#{converter_key}", :conversion) 
 end
 
 cell_r = lambda do |converter_key, input_carrier, output_carrier|
@@ -37,18 +39,11 @@ cell_r = lambda do |converter_key, input_carrier, output_carrier|
 end
 
 cell_h = lambda do |converter_key, input_carrier, output_carrier|
-  # rescue 0.0 because we assume 0.0 is default user entry
   get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
 end
 
 # Cell K
-cell_k = conversion = lambda do |converter_key, input_carrier, output_carrier|
-  args = [converter_key, input_carrier, output_carrier]
-
-  (cell_u.call(*args) / cell_r.call(*args))
-end
-
-# micro_CHP_production_households
+cell_k = lambda { |*args| (cell_u.call(*args) / cell_r.call(*args)) }
 
 # Cell I # the individual split / whatever
 cell_i = lambda do |converter_key, input_carrier, output_carrier|
@@ -65,27 +60,28 @@ cell_i = lambda do |converter_key, input_carrier, output_carrier|
 end
 
 # Cell J (input)
-cell_j = input = lambda do |converter_key, input_carrier, output_carrier|
+cell_j = lambda do |converter_key, input_carrier, output_carrier|
   i = cell_i.call(converter_key, input_carrier, output_carrier) 
   val = i * input_demand.call(input_carrier, output_carrier)
-  val.nan? ? 0.0 : val
+  val.nan? ? 0.0 : val # this should already be checked in input_demand.
 end
 
-cell_l = lambda do |converter_key, input_carrier, output_carrier|
-  args = [converter_key, input_carrier, output_carrier]
-  cell_j.call(*args) * cell_k.call(*args)
-end
+cell_l = lambda { |*args| cell_j.call(*args) * cell_k.call(*args) }
 
 cell_m = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
-  value = cell_l.call(*args)
-  value == 0.0 ? 0.0 : 100.0
+  
+  converter_keys = get(section, input_carrier, output_carrier).keys rescue []
+  sum = converter_keys.map do |key|
+     cell_l.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
+  end.sum
+
+  v = cell_l.call(*args) / sum
+
+  v.nan? ? 0.0 : v
 end
 
-cell_n = lambda do |converter_key, input_carrier, output_carrier|
-  args = [converter_key, input_carrier, output_carrier]
-  cell_j.call(*args) / cell_r.call(*args)
-end
+cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 
 %>
 
@@ -105,15 +101,19 @@ end
   :demand_expected_value: <%= input_demand.call(:hot_water, :hot_water) %>
 
 <% 
-Etsource::Constants::HOUSEHOLDS_HOT_WATER.each do |carrier, converters| %>
-  <% converters.each do |converter| %>
+# Do not intend YAML lines, this would screw up the yaml structure
+Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters| %>
+# ----- #{section_carrier} ------------------------------------
+  <% carrier_converters.each do |carrier, converters| %>
+    <% converters.each do |converter| %>
 :<%= converter %>:
-  :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, :hot_water)  %>
-  :output_share:  <%= cell_m.call(converter.to_sym, carrier, :hot_water) %>
-  :cell_h:  <%= cell_h.call(converter.to_sym, carrier, :hot_water) %>
-  :cell_i:  <%= cell_i.call(converter.to_sym, carrier, :hot_water) %>
-  :cell_j:  <%= cell_j.call(converter.to_sym, carrier, :hot_water) %>
-  :cell_k:  <%= cell_k.call(converter.to_sym, carrier, :hot_water) %>
-  :cell_l:  <%= cell_u.call(converter.to_sym, carrier, :hot_water) %>
+  :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, section_carrier)  %>
+  :output_share:  <%= cell_m.call(converter.to_sym, carrier, section_carrier) %>
+  :cell_h:  <%= cell_h.call(converter.to_sym, carrier, section_carrier) %>
+  :cell_i:  <%= cell_i.call(converter.to_sym, carrier, section_carrier) %>
+  :cell_j:  <%= cell_j.call(converter.to_sym, carrier, section_carrier) %>
+  :cell_k:  <%= cell_k.call(converter.to_sym, carrier, section_carrier) %>
+  :cell_l:  <%= cell_u.call(converter.to_sym, carrier, section_carrier) %>
+    <% end %>
   <% end %>
 <% end %>
