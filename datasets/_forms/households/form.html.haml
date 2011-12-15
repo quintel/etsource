@@ -78,11 +78,10 @@
   - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
     %li{:class => section_carrier == :useable_heat ? 'active' : nil}= link_to section_carrier.to_s, "##{section_carrier}"
 
-#tab-content{'data-tabs' => 'tabs'}
+#tab-content.tab-content{'data-tabs' => 'tabs'}
   - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
-    %div{:id => section_carrier.to_s, :class => section_carrier == :useable_heat ? 'active' : nil}
-      %h3{style:"color: #00c; border-bottom: 3px solid #00c"}= section_carrier
-      %h5{style:"color: #00c"}== Split for #{section_carrier} technologies
+    %div.tab-pane{:id => section_carrier.to_s, :class => section_carrier == :useable_heat ? 'active' : nil}
+      %p== Split for #{section_carrier} technologies
       
       %table.condensed-table
         %thead
