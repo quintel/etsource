@@ -15,13 +15,14 @@
         %td= number_field(carrier, :demand_total)
     
     %tr
-      %th{colspan: 9}
-        %b application split
+      %th{:colspan => 9, :style => "background: #eee"}
+
+        %strong application split
     
     %tr
       %th space heating
       - carriers[0...-1].each do |carrier|
-        %td= number_field(carrier, :split, :space_heating)
+        %td= number_field(carrier, :split, :useable_heat)
       %td 
     %tr
       %th hot water
@@ -73,7 +74,55 @@
       %td 
       %td 
 
-#hot_water
+%ul.tabs{'data-tabs' => 'tabs'}
+  - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
+    %li{:class => section_carrier == :useable_heat ? 'active' : nil}= link_to section_carrier.to_s, "##{section_carrier}"
+
+#tab-content{'data-tabs' => 'tabs'}
+  - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
+    %div{:id => section_carrier.to_s, :class => section_carrier == :useable_heat ? 'active' : nil}
+      %h3{style:"color: #00c; border-bottom: 3px solid #00c"}= section_carrier
+      %h5{style:"color: #00c"}== Split for #{section_carrier} technologies
+      
+      %table.condensed-table
+        %thead
+          %tr
+            %th Name
+            %th Split
+            %th.debug Exp. demand
+            %th.debug Output Share
+            %th.debug Debug
+        %tbody
+          - carrier_converters.each do |carrier, converters| 
+            %tr
+              %th{:colspan => 5, :style => "background: #eee"}
+                = carrier
+              
+            - converters.each do |converter|
+              %tr
+                %th
+                  %label{:style => 'text-align:left'}
+                    = link_to converter.gsub('_households_energetic', ''), data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+                - if converters.length == 1
+                  %th= number_field(carrier, section_carrier, converter.to_sym, :disabled => true, :value => 100.0)
+                - else
+                  %th= number_field(carrier, section_carrier, converter.to_sym)
+                
+                %td.debug
+                  %label{:style => 'text-align:left'}= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
+                %td.debug
+                  %label= Current.gql.present_graph.converter(converter).object_dataset[:output_share].round(3) rescue -1.0
+                %td.debug
+                  %a.btn{:data => {:'controls-modal' => "debug_#{converter}", :backdrop => "true"}} Debug
+                  %div.modal.hide{:id => "debug_#{converter}"}
+                    .modal-header
+                      %a.close{:href => "#"} &times;
+                      %h3 Debug 
+                    .modal-body
+                      - InputTool::Form.all.inject({}) {|hsh,f| hsh.merge f.code => f.dataset_values}.each do |k,h|
+                        %code= Current.gql.present_graph.converter(converter.to_sym).object_dataset.inspect
+
+-#hot_water
   %h3{style:"color: #00c; border-bottom: 3px solid #00c"} hot water
   %h5{style:"color: #00c"} Split for hot water technologies
   
@@ -105,7 +154,8 @@
             
             %td.debug
               %label{:style => 'text-align:left'}= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
-            %td.debug n/a
+            %td.debug
+              %label{:style => 'text-align:left'}= (Current.gql.query("present:V(#{converter};output_share)") / BILLIONS).round(3) rescue -1.0
             %td.debug
               %a.btn{:data => {:'controls-modal' => "debug_#{converter}", :backdrop => "true"}} Debug
               %div.modal.hide{:id => "debug_#{converter}"}
