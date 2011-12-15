@@ -1,88 +1,83 @@
 - carriers = %w[coal crude_oil natural_gas biomass solar_thermal electricity hot_water notdefined]
-%h4{style:"color: #00c; border-bottom: 3px solid #00c; font-size: 18px"} Final Demands
-%table
-  %tr
-    %td Input
-    - carriers.each do |carrier|
-      %td= carrier
-    %td sum
-  
-  %tr
-    %td households
-    - carriers.each do |carrier|
-      %td= number_field(carrier, :demand_total)
-    %td 
-  
-  %tr
-    %th{colspan: 10}
-      %b application split
-  
-  %tr
-    %td space heating
-    - carriers[0...-1].each do |carrier|
-      %td= number_field(carrier, :split, :space_heating)
-    %td 
-    %td
-  %tr
-    %td hot water
-    - carriers[0...-1].each do |carrier|
-      %td= number_field(carrier, :split, :hot_water)
-    %td 
-    %td 
-  
-  %tr
-    %td cooking
-    %td 
-    %td 
-    %td= number_field(:natural_gas, :split, :cooking)
-    %td= number_field(:biomass, :split, :cooking)
-    %td 
-    %td= number_field(:electricity, :split, :cooking)
-    %td 
-    %td 
-    %td 
-  
-  %tr
-    %td lighting
-    %td 
-    %td 
-    %td 
-    %td 
-    %td 
-    %td= number_field(:electricity, :split, :lighting)
-    %td 
-    %td 
-    %td 
-  
-  %tr
-    %td cooling
-    %td 
-    %td 
-    %td= number_field(:natural_gas, :split, :cooling)
-    %td 
-    %td 
-    %td= number_field(:electricity, :split, :cooling)
-    %td 
-    %td 
-    %td 
-  
-  %tr
-    %td appliances
-    %td 
-    %td 
-    %td 
-    %td 
-    %td 
-    %td= number_field(:electricity, :split, :appliances)
-    %td 
-    %td 
-    %td 
+
+%h3{style:"color: #00c; border-bottom: 3px solid #00c"} Final Demands
+%br
+%table.condensed-table.bordered-table
+  %thead
+    %tr
+      %th Input
+      - carriers.each do |carrier|
+        %th= carrier
+  %tbody
+    %tr
+      %th households
+      - carriers.each do |carrier|
+        %td= number_field(carrier, :demand_total)
+    
+    %tr
+      %th{colspan: 9}
+        %b application split
+    
+    %tr
+      %th space heating
+      - carriers[0...-1].each do |carrier|
+        %td= number_field(carrier, :split, :space_heating)
+      %td 
+    %tr
+      %th hot water
+      - carriers[0...-1].each do |carrier|
+        %td= number_field(carrier, :split, :hot_water)
+      %td 
+    
+    %tr
+      %th cooking
+      %td 
+      %td 
+      %td= number_field(:natural_gas, :split, :cooking)
+      %td= number_field(:biomass, :split, :cooking)
+      %td 
+      %td= number_field(:electricity, :split, :cooking)
+      %td 
+      %td 
+    
+    %tr
+      %th lighting
+      %td 
+      %td 
+      %td 
+      %td 
+      %td 
+      %td= number_field(:electricity, :split, :lighting)
+      %td 
+      %td 
+    
+    %tr
+      %th cooling
+      %td 
+      %td 
+      %td= number_field(:natural_gas, :split, :cooling)
+      %td 
+      %td 
+      %td= number_field(:electricity, :split, :cooling)
+      %td 
+      %td 
+    
+    %tr
+      %th appliances
+      %td 
+      %td 
+      %td 
+      %td 
+      %td 
+      %td= number_field(:electricity, :split, :appliances)
+      %td 
+      %td 
 
 #hot_water
   %h4{style:"color: #00c; border-bottom: 3px solid #00c; font-size: 18px"} hot water
   %h5{style:"color: #00c"} Split for hot water technologies
   %p= link_to 'Debug', "javascript:$('#hot_water .debug').toggle()"
-  %table
+  %table.condensed-table
     %thead
       %tr
         %th Name
@@ -102,16 +97,21 @@
       %tr
         %th Oil
         %th All used
+        %th
+        %th
       %tr
         %th oil
         %th= number_field(:oil, :space_heating, :hot_water, :disabled => true, :value => 100.0)
-
+        %th
+        %th
       %tr
         %th Gas
         %th What Percent
+        %th
+        %th
       - %w[gas_boiler_households_energetic cv_hot_water_households_energetic fuel_cell_chp_households_energetic micro_chp_hot_water_households_energetic].each do |converter|
         %tr
-          %th= link_to converter, data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+          %th= link_to converter.gsub('_households_energetic', ''), data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
           %th= number_field(:natural_gas, :hot_water, converter.to_sym)
           %td
           %td= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
@@ -119,10 +119,22 @@
       %tr
         %th Electricity
         %th What Percent
+        %th
+        %th
       - %w[electric_boiler_households_energetic heatpump_boiler_households_energetic].each do |converter|
         %tr
-          %th= link_to converter, data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+          %th= link_to converter.gsub('_households_energetic', ''), data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
           %th= number_field(:electricity, :hot_water, converter.to_sym)
-          %td= Current.gql.present_graph.converter(converter.to_sym).object_dataset.inspect
+          %td
+            %a.btn{:data => {:'controls-modal' => "debug_#{converter}", :backdrop => "true"}} Debug
+            %div.modal.hide{:id => "debug_#{converter}"}
+              .modal-header
+                %a.close{:href => "#"} &times;
+                %h3 Debug 
+              .modal-body
+                - InputTool::Form.all.inject({}) {|hsh,f| hsh.merge f.code => f.dataset_values}.each do |k,h|
+                  %code= Current.gql.present_graph.converter(converter.to_sym).object_dataset.inspect
+            
+
           %td= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
           
