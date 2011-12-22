@@ -1,16 +1,16 @@
 %h3{style:"color: #00c; border-bottom: 3px solid #00c"} Area Data
 %br
-%table.condensed-table.bordered-table
-  %thead
-    %tr
-      %th
-      %th
-  %tbody
-    %tr
-      %th CO2 Price
-      %td= number_field(:co2_price, :type => 'text')
-    %tr
-      %th CO2 Free
-      %td= number_field(:co2_percentage_free, :type => 'text')
 
-%code= Current.gql.tap{|g| g.prepare }.future_graph.area.object_dataset rescue 'e'
+.clearfix
+  %label CO2 Price
+  .input= number_field(:co2_price, :type => 'text')
+
+.clearfix
+  %label CO2 Free
+  .input= number_field(:co2_percentage_free, :type => 'text')
+
+
+
+%h3 Area Data Debugger
+%code
+  = Current.gql.tap{|g| g.prepare }.future_graph.area.object_dataset #rescue 'e'
