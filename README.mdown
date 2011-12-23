@@ -111,25 +111,28 @@ The Graph dataset merges the default, country, wizard dataset together to the fi
 
 The purpose of a mixin is to summarize key value pairs that are often found together under a certain context. Hard to explain, easy to show:
 
-    # mixin:
-    :peak_load_normal: &peak_load_normal
-      :simult_sd: 1.0
-      :simult_se: 1.0
-      :simult_wd: 1.0
-      :simult_we: 1.0
+```yaml
 
-    :waste_incinerator_energy_energetic:
-      << *peak_load_normal
-      :simult_we: 0.5 # make an exception for simult_we
+# mixin:
+:peak_load_normal: &peak_load_normal
+  :simult_sd: 1.0
+  :simult_se: 1.0
+  :simult_wd: 1.0
+  :simult_we: 1.0
 
-    # Generates:
-    
-    :waste_incinerator_energy_energetic:
-      :simult_sd: 1.0
-      :simult_se: 1.0
-      :simult_wd: 1.0
-      :simult_we: 0.5
+:waste_incinerator_energy_energetic:
+  << *peak_load_normal
+  :simult_we: 0.5 # make an exception for simult_we
 
+# Generates:
+
+:waste_incinerator_energy_energetic:
+  :simult_sd: 1.0
+  :simult_se: 1.0
+  :simult_wd: 1.0
+  :simult_we: 0.5
+      
+```
 
 ## C) Dataset Wizard
 
