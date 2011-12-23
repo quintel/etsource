@@ -118,5 +118,5 @@
                       %a.close{:href => "#"} &times;
                       %h3 Debug 
                     .modal-body
-                      - InputTool::Form.all.inject({}) {|hsh,f| hsh.merge f.code => f.dataset_values}.each do |k,h|
+                      - InputTool::SavedWizard.all.inject({}) {|hsh,f| hsh.merge f.code => f.research_data_bucket}.each do |k,h|
                         %code= Current.gql.present_graph.converter(converter.to_sym).object_dataset.inspect
