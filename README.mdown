@@ -21,6 +21,9 @@ For example, if a query is changed, try to alter all queries and inputs related 
 
 # ETsource Form Wizards from the Bottom up
 
+## Glossary
+
+_virtual_: things that are not stored in this github project are called virtual. 
 
 ## A) Data Bucket
 
@@ -90,18 +93,42 @@ The Graph dataset merges the default, country, wizard dataset together to the fi
 ### Overwriting Rules
 
     # _defaults/area.yml
-    :co2_price: 0.002
-    :has_fce: false
+    ...
+    :area_data:
+      :co2_price: 0.002
+      :has_fce: false
 
     # nl/area.yml
-    :number_of_households: 100_000
-    :has_fce: true
+    ...
+    :area_data:
+      :number_of_households: 100_000
+      :has_fce: true
 
-    # => {:area: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
+    # => {:area_data: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
 
 
 ### Mixins
 
+The purpose of a mixin is to summarize key value pairs that are often found together under a certain context. Hard to explain, easy to show:
+
+    # mixin:
+    :peak_load_normal: &peak_load_normal
+      :simult_sd: 1.0
+      :simult_se: 1.0
+      :simult_wd: 1.0
+      :simult_we: 1.0
+
+    :waste_incinerator_energy_energetic:
+      << *peak_load_normal
+      :simult_we: 0.5 # make an exception for simult_we
+
+    # Generates:
+    
+    :waste_incinerator_energy_energetic:
+      :simult_sd: 1.0
+      :simult_se: 1.0
+      :simult_wd: 1.0
+      :simult_we: 0.5
 
 
 ## C) Dataset Wizard
