@@ -92,26 +92,29 @@ The Graph dataset merges the default, country, wizard dataset together to the fi
 
 ### Overwriting Rules
 
-    # _defaults/area.yml
-    ...
-    :area_data:
-      :co2_price: 0.002
-      :has_fce: false
+```yml
 
-    # nl/area.yml
-    ...
-    :area_data:
-      :number_of_households: 100_000
-      :has_fce: true
+# _defaults/area.yml
+...
+:area_data:
+  :co2_price: 0.002
+  :has_fce: false
 
-    # => {:area_data: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
+# nl/area.yml
+...
+:area_data:
+  :number_of_households: 100_000
+  :has_fce: true
 
+# => {:area_data: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
+
+```
 
 ### Mixins
 
 The purpose of a mixin is to summarize key value pairs that are often found together under a certain context. Hard to explain, easy to show:
 
-```yaml
+```yml
 
 # mixin:
 :peak_load_normal: &peak_load_normal
@@ -131,7 +134,7 @@ The purpose of a mixin is to summarize key value pairs that are often found toge
   :simult_se: 1.0
   :simult_wd: 1.0
   :simult_we: 0.5
-      
+
 ```
 
 ## C) Dataset Wizard
