@@ -1,0 +1,39 @@
+--- 
+attr_name:
+comments: Brutal solution for the etflex slider groups updates issue. The single slider will update also the other members of the group. Ugly and incomplete
+factor: 100.0
+id: 1005
+key: standalone_electric_cars_share
+keys: 
+label: ""
+label_query: ""
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Biocoal co-firing in coal plants
+query: |-
+  EACH(
+    UPDATE(
+      LINK(cars_kms_demand_transport_energetic, electric_cars_transport_energetic),
+      share,
+      DIVIDE(USER_INPUT(),100)
+    ),
+    UPDATE(
+      LINK(cars_kms_demand_transport_energetic, gasoline_cars_transport_energetic),
+      share,
+      DIVIDE(SUM(100,NEG(USER_INPUT())), 200)
+    ),
+    UPDATE(
+      LINK(cars_kms_demand_transport_energetic, diesel_cars_transport_energetic),
+      share,
+      DIVIDE(SUM(100,NEG(USER_INPUT())), 200)
+    )
+  )
+share_group: coal_plant_fuel
+start_value: 0.0
+start_value_gql: future:V( LINK(cars_kms_demand_transport_energetic, electric_cars_transport_energetic);share )
+unit: "%"
+update_type: 
+updateable_period: future
+v1_legacy_unit: 
