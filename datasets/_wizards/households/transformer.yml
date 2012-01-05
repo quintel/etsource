@@ -136,11 +136,7 @@ Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
 
 :<%= converter %>:
   :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, section_carrier)  %>
-  # ------ this are for debugging purposes only -----------
-  # you can see this values when you click on the debug button in the forms view.
-  # they are "stored" in the dataset, and can be retrieved like:
-  #
-  #     Current.gql.present_graph.converter(__key__).object_dataset[:__attr_key__]
+  # - debug ---
   :output_share:  <%= cell_m.call(converter.to_sym, carrier, section_carrier) %>
   :cell_h:  <%= cell_h.call(converter.to_sym, carrier, section_carrier) %>
   :cell_i:  <%= cell_i.call(converter.to_sym, carrier, section_carrier) %>
@@ -155,5 +151,13 @@ Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
 end # Etsource::Constants::HOUSEHOLDS.each 
 %>
 
-# ------- Output shares --------------------
-
+<% 
+Etsource::Constants::HOUSEHOLDS_HEATING.each do |carrier, converters|
+  converters.each do |converter| 
+%>
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_households_energetic: 
+  share: <%= cell_m.call(converter.to_sym, carrier, :useable_heat) %>
+<%
+  end # converters.each
+end # Etsource::Constants::HOUSEHOLDS_HEATING.each 
+%>
