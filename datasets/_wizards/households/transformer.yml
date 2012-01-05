@@ -18,8 +18,6 @@ input_demand = lambda do |key1,key2|
   val.nan? ? 0.0 : val
 end
 
-
-#
 # ---- Excel function copied --------------------------------------------------
 #
 # for brevity, if we just pass on arguments, we simply write 'args'
@@ -61,21 +59,54 @@ cell_j = lambda do |converter_key, input_carrier, output_carrier|
   val.nan? ? 0.0 : val # this should already be checked in input_demand.
 end
 
+# Cell L
 cell_l = lambda { |*args| cell_j.call(*args) * cell_k.call(*args) }
 
+# Cell M
 cell_m = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
   
-  converter_keys = get(section, input_carrier, output_carrier).keys rescue []
-  sum = converter_keys.map do |key|
-     cell_l.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
-  end.sum
+
+  # creating the sum is quite tricky indeed...
+  #
+  # get(section):
+  # 
+  # {"coal"=>
+  #   {"demand_total"=>"0.2",
+  #   "split"=>{"useable_heat"=>"100.0", "hot_water"=>"0.0"},
+  #   "useable_heat"=>{"heater_on_coal_households_energetic"=>"100.0"},
+  #   "hot_water"=>{"coal_boiler_households_energetic"=>"100.0"}},
+  # "crude_oil"=>
+  #  {"demand_total"=>"3.8",
+  #   "split"=>{"useable_heat"=>"100.0", "hot_water"=>"0.0"},
+  #   "useable_heat"=>{"heater_on_oil_households_energetic"=>"100.0"},
+  #   "hot_water"=>{"oil_boiler_households_energetic"=>"100.0"}},
+  #
+  # What we want is (for input_carrier: useable_heat): 
+  #
+  # => heater_on_coal_households_energetic, useable_heat, coal
+  # => heater_on_oil_households_energetic, useable_heat, crude_oil
+
+  sum = 0
+  input_carriers = keys_that_contain(section, output_carrier)
+  input_carriers.each do |_input_carrier|
+    converter_keys = get(section, _input_carrier, output_carrier).keys rescue []
+    converter_keys.each do |_converter|
+      sum += cell_l.call(_converter, _input_carrier, output_carrier)
+    end
+  end
+
+  # converter_keys = get(section, input_carrier, output_carrier).keys rescue []
+  # sum = converter_keys.map do |key|
+  #    cell_l.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
+  # end.sum
 
   v = cell_l.call(*args) / sum
 
   v.nan? ? 0.0 : v
 end
 
+# Cell 
 cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 
 %>
@@ -91,14 +122,18 @@ cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 :monitized_heat_for_hot_water_households_energetic: 
   :demand_expected_value: <%= input_demand.call(:hot_water, :hot_water) %>
 
+
 <% 
-# Do not intend YAML lines, this would screw up the yaml structure
-Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters| %>
+# Generate demand_expected_values for all the household converters.
+# This values are mostly for the researchers to debug and do not change
+# the calculation.
 
-# ----- Section #{section_carrier} ----------------------------
+Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|  
+  carrier_converters.each do |carrier, converters|
+    converters.each do |converter| 
+      # Do not intend YAML lines, this would screw up the yaml structure
+%>
 
-  <% carrier_converters.each do |carrier, converters| %>
-    <% converters.each do |converter| %>
 :<%= converter %>:
   :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, section_carrier)  %>
   # ------ this are for debugging purposes only -----------
@@ -111,7 +146,14 @@ Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters| %>
   :cell_i:  <%= cell_i.call(converter.to_sym, carrier, section_carrier) %>
   :cell_j:  <%= cell_j.call(converter.to_sym, carrier, section_carrier) %>
   :cell_k:  <%= cell_k.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_l:  <%= cell_u.call(converter.to_sym, carrier, section_carrier) %>
-    <% end %>
-  <% end %>
-<% end %>
+  :cell_l:  <%= cell_l.call(converter.to_sym, carrier, section_carrier) %>
+  :cell_m:  <%= cell_m.call(converter.to_sym, carrier, section_carrier) %>
+    
+<%
+    end # converters.each
+  end # carrier_converters.each
+end # Etsource::Constants::HOUSEHOLDS.each 
+%>
+
+# ------- Output shares --------------------
+

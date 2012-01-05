@@ -90,6 +90,13 @@
             %th Split
             %th.debug Exp. demand
             %th.debug Output Share
+            -# 
+              %th.debug i
+              %th.debug j
+              %th.debug k
+              %th.debug l
+              %th.debug m
+
             %th.debug Debug
         %tbody
           - carrier_converters.each do |carrier, converters| 
@@ -109,8 +116,22 @@
                 
                 %td.debug
                   %label{:style => 'text-align:left'}= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
+                - object_dataset = Current.gql.present_graph.converter(converter).object_dataset
                 %td.debug
-                  %label= Current.gql.present_graph.converter(converter).object_dataset[:output_share].round(3) rescue -1.0
+                  %label= object_dataset[:output_share].round(3) rescue -1.0
+                -#
+                  %td.debug
+                    %label= object_dataset[:cell_i]
+                  %td.debug
+                    %label= object_dataset[:cell_j]
+                  %td.debug
+                    %label= object_dataset[:cell_k]
+                  %td.debug
+                    %label= object_dataset[:cell_l]
+                  %td.debug
+                    %label= object_dataset[:cell_m]
+                
+
                 %td.debug
                   %a.btn{:data => {:'controls-modal' => "debug_#{converter}", :backdrop => "true"}} Debug
                   %div.modal.hide{:id => "debug_#{converter}"}
