@@ -1,9 +1,9 @@
 - deprecated_key = share_of_renewable_electricity
-# 
+# Renewable electricity according to the EU is the sustainable produced electricity divided by final demand of electricity
 
 - unit = factor
 
 DIVIDE(
   SUM(V( G(electricity_production); output_of_electricity * sustainability_share)),
-  SUM(V( G(electricity_production); output_of_electricity))
+  SUM(V( INTERSECTION(G(final_demand_electricity),USE(energetic)); demand))
 )
