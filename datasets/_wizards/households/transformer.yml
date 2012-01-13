@@ -23,6 +23,8 @@ end
 # for brevity, if we just pass on arguments, we simply write 'args'
 # args: converter_key, input_carrier, output_carrier
 
+# ? MdH: How do you know which carrier is input carrier? For example in the case 'heatpump_addon' there is an input of 'electricity' and of 'ambient heat'.
+
 cell_u = lambda do |converter_key, input_carrier, output_carrier|
   val("(#{output_carrier})-#{converter_key}", :conversion) 
 end
