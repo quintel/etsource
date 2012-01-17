@@ -96,11 +96,6 @@ cell_m = lambda do |converter_key, input_carrier, output_carrier|
     end
   end
 
-  # converter_keys = get(section, input_carrier, output_carrier).keys rescue []
-  # sum = converter_keys.map do |key|
-  #    cell_l.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
-  # end.sum
-
   v = cell_l.call(*args) / sum
 
   v.nan? ? 0.0 : v
