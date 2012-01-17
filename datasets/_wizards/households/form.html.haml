@@ -4,15 +4,21 @@
 %br
 %table.condensed-table.bordered-table
   %thead
+    -# Defines the header row
     %tr
+      -# Table row
       %th Input
+      -# Table cell for headers
       - carriers.each do |carrier|
         %th= carrier
   %tbody
+    -# defines main part of table
     %tr
       %th households
+      -# no indent because households in on same line (shortcut), header cell because you want it fat formatted
       - carriers.each do |carrier|
         %td= number_field(carrier, :demand_total)
+        -# normal cell. Access with: get(:households,:coal,:demand_total) : --> ''  , means a text string
     
     %tr
       %th{:colspan => 9, :style => "background: #eee"}
@@ -23,6 +29,7 @@
       %th space heating
       - carriers[0...-1].each do |carrier|
         %td= number_field(carrier, :split, :useable_heat)
+        -# :split maybe: :inputsplit etc. it's a free name'
       %td 
     %tr
       %th hot water
@@ -70,12 +77,16 @@
       %td 
       %td 
       %td 
-      %td= number_field(:electricity, :split, :appliances)
+      %td
+        = number_field(:electricity, :split, :appliances)
+        -# bla
       %td 
       %td 
 
 %ul.tabs{'data-tabs' => 'tabs'}
+  -# Make the tabs. Think of indentation as boxes
   - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
+    -# section carrier: useable_heat OR hot_water, carrier_converters: key, value pairs e.g.: :coal => %w[coal_boiler_households_energetic],
     %li{:class => section_carrier == :useable_heat ? 'active' : nil}= link_to section_carrier.to_s, "##{section_carrier}"
 
 #tab-content.tab-content{'data-tabs' => 'tabs'}
@@ -100,6 +111,8 @@
             %th.debug Debug
         %tbody
           - carrier_converters.each do |carrier, converters| 
+            -# carrier, converters <-- coal, coal_boiler_households
+            -# =======================================Till here ================
             %tr
               %th{:colspan => 5, :style => "background: #eee"}
                 = carrier
