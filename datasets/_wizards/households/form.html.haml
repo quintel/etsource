@@ -115,8 +115,8 @@
                   %th= number_field(carrier, section_carrier, converter.to_sym)
                 
                 %td.debug
-                  %label{:style => 'text-align:left'}= (Current.gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
-                - object_dataset = Current.gql.present_graph.converter(converter).object_dataset
+                  %label{:style => 'text-align:left'}= (@gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
+                - object_dataset = @gql.present_graph.converter(converter).object_dataset
                 %td.debug
                   %label= object_dataset[:output_share].round(3) rescue -1.0
                 -#
@@ -140,4 +140,4 @@
                       %h3 Debug 
                     .modal-body
                       - InputTool::SavedWizard.all.inject({}) {|hsh,f| hsh.merge f.code => f.research_data_bucket}.each do |k,h|
-                        %code= Current.gql.present_graph.converter(converter.to_sym).object_dataset.inspect
+                        %code= @gql.present_graph.converter(converter.to_sym).object_dataset.inspect
