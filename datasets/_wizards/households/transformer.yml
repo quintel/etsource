@@ -7,12 +7,13 @@
 <% 
 section = :households
 
+# A better name would be: final_energy_consumption
 total_of_carrier = lambda do |key|
   (get(section, key, :demand_total, default: 0.0) * BILLIONS) rescue 0.0
 end
 
-# What does this function do?
-input_demand = lambda do |key1,key2| 
+# A better name would be: 'carrier_for_application' as the associated converters are called, e.g. coal_for_heating
+input_demand = lambda do |key1,key2| # key1 = carrier, key2=application (but named by the useful carrier)
   total = (get(section, key1, :demand_total) * BILLIONS) rescue 0.0
   split = get(section, key1, :split, key2) || 0.0
   val = total * (split / 100)
