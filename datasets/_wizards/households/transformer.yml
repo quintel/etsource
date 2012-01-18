@@ -46,7 +46,6 @@ end
 # Cell K: Effective efficiency (efficiency between the useful output carrier and the leading input carrier)
 cell_k = lambda { |*args| (cell_u.call(*args) / cell_r.call(*args)) }
 
-# =======================MdH: Until here========================
 # Cell I: Input split
 cell_i = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
@@ -61,17 +60,17 @@ cell_i = lambda do |converter_key, input_carrier, output_carrier|
   (h / k) * (1.0 / sum)
 end
 
-# Cell J (input)
+# Cell J: Input
 cell_j = lambda do |converter_key, input_carrier, output_carrier|
   i = cell_i.call(converter_key, input_carrier, output_carrier) 
   val = i * input_demand.call(input_carrier, output_carrier)
-  val.nan? ? 0.0 : val # this should already be checked in input_demand.
+  val.nan? ? 0.0 : val # this should already be checked in input_demand. MdH: @Sebi the Not a Number check was only necessary in Excel
 end
 
-# Cell L
+# Cell L: Ouput
 cell_l = lambda { |*args| cell_j.call(*args) * cell_k.call(*args) }
 
-# Cell M
+# Cell M: Output share
 cell_m = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
   
@@ -96,6 +95,8 @@ cell_m = lambda do |converter_key, input_carrier, output_carrier|
   # => heater_on_coal_households_energetic, useable_heat, coal
   # => heater_on_oil_households_energetic, useable_heat, crude_oil
 
+  # MdH: would be useful to be able to acces the sum function outside of 'cell_m' as it is also used for expected demand of parent converter
+
   sum = 0
   input_carriers = keys_that_contain(section, output_carrier)
   input_carriers.each do |_input_carrier|
@@ -110,12 +111,13 @@ cell_m = lambda do |converter_key, input_carrier, output_carrier|
   v.nan? ? 0.0 : v
 end
 
-# Cell 
+# Cell N: expected demand 
 cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 
 %>
 
 # ---- Section: Final Demand --------------------------------------------------
+# MdH: @Sebi: What happens here?
 
 :steam_hot_water_households_energetic: 
   :demand_expected_value: <%= total_of_carrier.call(:hot_water) %>
@@ -154,11 +156,11 @@ Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
   end # carrier_converters.each
 end # Etsource::Constants::HOUSEHOLDS.each 
 %>
-
+# MdH @Sebi: What is this for?
 <% 
 Etsource::Constants::HOUSEHOLDS_HEATING.each do |carrier, converters|
   converters.each do |converter| 
-%>
+%> 
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_households_energetic: 
   share: <%= cell_m.call(converter.to_sym, carrier, :useable_heat) %>
 <%
