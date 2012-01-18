@@ -30,7 +30,7 @@ end
 # Cell U: Output conversion
 # Couldn't we instead use the GQL statement: V(converter_key;output_carrier_output_conversion)? Just an idea...
 cell_u = lambda do |converter_key, input_carrier, output_carrier|
-  val("(#{output_carrier})-#{converter_key}", :conversion) 
+  val("(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
 end
 
 # Cell R: Input conversion
@@ -41,7 +41,7 @@ end
 # Cell H: Output split
 # Does this work? What is the value it looks up?
 cell_h = lambda do |converter_key, input_carrier, output_carrier|
-  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
+  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 # get() looks up from form
 end
 
 # Cell K: Effective efficiency (efficiency between the useful output carrier and the leading input carrier)
@@ -53,8 +53,8 @@ cell_i = lambda do |converter_key, input_carrier, output_carrier|
   h = cell_h.call(*args)
   k = cell_k.call(*args)
 
-  converter_keys = get(section, input_carrier, output_carrier).keys rescue []
-  sum = converter_keys.map do |key|
+  converter_keys = get(section, input_carrier, output_carrier).keys rescue [] #.keys --> selects the key(s) from the key value pair e.g. "heater_on_oil_households_energetic"=>"100.0" returns heater_on_oil_households_energetic
+  sum = converter_keys.map do |key| #.map --> replaces the keys by what's behind the do
      cell_h.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
   end.sum
 
@@ -66,6 +66,7 @@ cell_j = lambda do |converter_key, input_carrier, output_carrier|
   i = cell_i.call(converter_key, input_carrier, output_carrier) 
   val = i * input_demand.call(input_carrier, output_carrier)
   val.nan? ? 0.0 : val # this should already be checked in input_demand. MdH: @Sebi the Not a Number check was only necessary in Excel
+  # return of the function is always last number in function
 end
 
 # Cell L: Ouput
@@ -117,24 +118,12 @@ cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 
 %>
 
-# ---- Section: Final Demand --------------------------------------------------
-# MdH: @Sebi: What happens here?
-
-:steam_hot_water_households_energetic: 
-  :demand_expected_value: <%= total_of_carrier.call(:hot_water) %>
-  
-:heat_from_steam_hot_water_households_energetic: 
-  :demand_expected_value: <%= input_demand.call(:hot_water, :hot_water) %>
-
-:monitized_heat_for_hot_water_households_energetic: 
-  :demand_expected_value: <%= input_demand.call(:hot_water, :hot_water) %>
-
-
 <% 
 # Generate demand_expected_values for all the household converters.
 # This values are mostly for the researchers to debug and do not change
 # the calculation.
 
+# Assign demand expected value
 Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|  
   carrier_converters.each do |carrier, converters|
     converters.each do |converter| 
@@ -157,7 +146,8 @@ Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
   end # carrier_converters.each
 end # Etsource::Constants::HOUSEHOLDS.each 
 %>
-# MdH @Sebi: What is this for?
+
+# Assign values to link shares
 <% 
 Etsource::Constants::HOUSEHOLDS_HEATING.each do |carrier, converters|
   converters.each do |converter| 
