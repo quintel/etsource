@@ -11,6 +11,7 @@ total_of_carrier = lambda do |key|
   (get(section, key, :demand_total, default: 0.0) * BILLIONS) rescue 0.0
 end
 
+# What does this function do?
 input_demand = lambda do |key1,key2| 
   total = (get(section, key1, :demand_total) * BILLIONS) rescue 0.0
   split = get(section, key1, :split, key2) || 0.0
@@ -23,24 +24,30 @@ end
 # for brevity, if we just pass on arguments, we simply write 'args'
 # args: converter_key, input_carrier, output_carrier
 
-# ? MdH: How do you know which carrier is input carrier? For example in the case 'heatpump_addon' there is an input of 'electricity' and of 'ambient heat'.
+# MdH: @Sebi: Wouldn't it be much more readable to replace the 'Cell X' functions by the name of the column, e.g. 'Output conversion'?
 
+# Cell U: Output conversion
+# Couldn't we instead use the GQL statement: 
 cell_u = lambda do |converter_key, input_carrier, output_carrier|
   val("(#{output_carrier})-#{converter_key}", :conversion) 
 end
 
+# Cell R: Input conversion
 cell_r = lambda do |converter_key, input_carrier, output_carrier|
   val("#{converter_key}-(#{input_carrier})", :conversion) 
 end
 
+# Cell H: Output split
+# Does this work? What is the value it looks up?
 cell_h = lambda do |converter_key, input_carrier, output_carrier|
   get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
 end
 
-# Cell K
+# Cell K: Effective efficiency (efficiency between the useful output carrier and the leading input carrier)
 cell_k = lambda { |*args| (cell_u.call(*args) / cell_r.call(*args)) }
 
-# Cell I # the individual split / whatever
+# =======================MdH: Until here========================
+# Cell I: Input split
 cell_i = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
   h = cell_h.call(*args)

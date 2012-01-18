@@ -123,14 +123,17 @@
                 %th
                   %label{:style => 'text-align:left'}
                     = link_to converter.gsub('_households_energetic', ''), data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+                    -# Write name of converter as link
                 - if converters.length == 1
                   %th= number_field(carrier, section_carrier, converter.to_sym, :disabled => true, :value => 100.0)
+                  -# What is 'converter.to_sym'?
                 - else
                   %th= number_field(carrier, section_carrier, converter.to_sym)
                 
                 %td.debug
                   %label{:style => 'text-align:left'}= (@gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
                 - object_dataset = @gql.present_graph.converter(converter).object_dataset
+                -# Do you calculate the demand expected value here, or do you display the value from the graph?
                 %td.debug
                   %label= object_dataset[:output_share].round(3) rescue -1.0
                 -#
@@ -147,6 +150,7 @@
                 
 
                 %td.debug
+                  -# to display debug button?x
                   %a.btn{:data => {:'controls-modal' => "debug_#{converter}", :backdrop => "true"}} Debug
                   %div.modal.hide{:id => "debug_#{converter}"}
                     .modal-header
