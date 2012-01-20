@@ -85,12 +85,12 @@
 
 %ul.tabs{'data-tabs' => 'tabs'}
   -# Make the tabs. Think of indentation as boxes
-  - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
+  - wizard_config[:households].each do |section_carrier, carrier_converters|
     -# section carrier: useable_heat OR hot_water, carrier_converters: key, value pairs e.g.: :coal => %w[coal_boiler_households_energetic],
     %li{:class => section_carrier == :useable_heat ? 'active' : nil}= link_to section_carrier.to_s, "##{section_carrier}"
 
 #tab-content.tab-content{'data-tabs' => 'tabs'}
-  - Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|
+  - wizard_config[:households].each do |section_carrier, carrier_converters|
     -# https://github.com/dennisschoenmakers/etengine/blob/edge/app/models/etsource/constants.rb
     %div.tab-pane{:id => section_carrier.to_s, :class => section_carrier == :useable_heat ? 'active' : nil}
       %p== Split for #{section_carrier} technologies

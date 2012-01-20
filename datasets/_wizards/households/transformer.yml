@@ -124,7 +124,7 @@ cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
 # the calculation.
 
 # Assign demand expected value
-Etsource::Constants::HOUSEHOLDS.each do |section_carrier, carrier_converters|  
+wizard_config[:households].each do |section_carrier, carrier_converters|
   carrier_converters.each do |carrier, converters|
     converters.each do |converter| 
       # Do not intend YAML lines, this would screw up the yaml structure
@@ -149,7 +149,7 @@ end # Etsource::Constants::HOUSEHOLDS.each
 
 # Assign values to link shares
 <% 
-Etsource::Constants::HOUSEHOLDS_HEATING.each do |carrier, converters|
+wizard_config[:households][:useable_heat].each do |carrier, converters|
   converters.each do |converter| 
 %> 
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_households_energetic: 
