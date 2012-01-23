@@ -4,18 +4,13 @@
 # The idea is that we only take care of the actual values/formulas and define all 
 # other "fixed" attributes in other files. 
 
+
 <% 
 section = :households
 
-# A better name would be: final_energy_consumption
-total_of_carrier = lambda do |key|
-  (get(section, key, :demand_total, default: 0.0) * BILLIONS) rescue 0.0
-end
-
-# A better name would be: 'carrier_for_application' as the associated converters are called, e.g. coal_for_heating
-input_demand = lambda do |key1,key2| # key1 = carrier, key2=application (but named by the useful carrier)
-  total = (get(section, key1, :demand_total) * BILLIONS) rescue 0.0
-  split = get(section, key1, :split, key2) || 0.0
+input_demand = lambda do |carrier, carrier_for_application|
+  total = (get(section, carrier, :demand_total) * BILLIONS) rescue 0.0
+  split = get(section, carrier, :split, carrier_for_application) || 0.0
   val = total * (split / 100)
   val.nan? ? 0.0 : val
 end
@@ -25,30 +20,26 @@ end
 # for brevity, if we just pass on arguments, we simply write 'args'
 # args: converter_key, input_carrier, output_carrier
 
-# MdH: @Sebi: Wouldn't it be much more readable to replace the 'Cell X' functions by the name of the column, e.g. 'Output conversion'?
-
-# Cell U: Output conversion
 # Couldn't we instead use the GQL statement: V(converter_key;output_carrier_output_conversion)? Just an idea...
-cell_u = lambda do |converter_key, input_carrier, output_carrier|
+# -> No: at this moment the GQL is not ready yet. To GQL actually needs the contents of this file to start.
+cell_u = output_conversion = lambda do |converter_key, input_carrier, output_carrier|
   val("(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
 end
 
-# Cell R: Input conversion
-cell_r = lambda do |converter_key, input_carrier, output_carrier|
+cell_r = input_conversion = lambda do |converter_key, input_carrier, output_carrier|
   val("#{converter_key}-(#{input_carrier})", :conversion) 
 end
 
-# Cell H: Output split
-# Does this work? What is the value it looks up?
-cell_h = lambda do |converter_key, input_carrier, output_carrier|
-  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 # get() looks up from form
+cell_h = output_split = lambda do |converter_key, input_carrier, output_carrier|
+  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
 end
 
-# Cell K: Effective efficiency (efficiency between the useful output carrier and the leading input carrier)
-cell_k = lambda { |*args| (cell_u.call(*args) / cell_r.call(*args)) }
+# (efficiency between the useful output carrier and the leading input carrier)
+cell_k = effective_efficiency = lambda do |*args| 
+  (cell_u.call(*args) / cell_r.call(*args)) 
+end
 
-# Cell I: Input split
-cell_i = lambda do |converter_key, input_carrier, output_carrier|
+cell_i = input_split = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
   h = cell_h.call(*args)
   k = cell_k.call(*args)
@@ -72,10 +63,8 @@ end
 # Cell L: Ouput
 cell_l = lambda { |*args| cell_j.call(*args) * cell_k.call(*args) }
 
-# Cell M: Output share
-cell_m = lambda do |converter_key, input_carrier, output_carrier|
+cell_m = output_share = lambda do |converter_key, input_carrier, output_carrier|
   args = [converter_key, input_carrier, output_carrier]
-  
 
   # creating the sum is quite tricky indeed...
   #
@@ -113,8 +102,9 @@ cell_m = lambda do |converter_key, input_carrier, output_carrier|
   v.nan? ? 0.0 : v
 end
 
-# Cell N: expected demand 
-cell_n = lambda { |*args| cell_j.call(*args) / cell_r.call(*args) }
+cell_n = expected_demand = lambda do |*args| 
+  cell_j.call(*args) / cell_r.call(*args) 
+end
 
 %>
 
