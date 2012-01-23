@@ -6,9 +6,14 @@
 
 
 <% 
-section = :households
 
-input_demand = lambda do |carrier, carrier_for_application|
+# --- START Function Definitions ------------------------------------
+
+def section
+  :households
+end
+
+def input_demand(carrier, carrier_for_application)
   total = (get(section, carrier, :demand_total) * BILLIONS) rescue 0.0
   split = get(section, carrier, :split, carrier_for_application) || 0.0
   val = total * (split / 100)
@@ -22,50 +27,68 @@ end
 
 # Couldn't we instead use the GQL statement: V(converter_key;output_carrier_output_conversion)? Just an idea...
 # -> No: at this moment the GQL is not ready yet. To GQL actually needs the contents of this file to start.
-cell_u = output_conversion = lambda do |converter_key, input_carrier, output_carrier|
+def cell_u(converter_key, input_carrier, output_carrier)
   val("(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
 end
+alias output_conversion cell_u
 
-cell_r = input_conversion = lambda do |converter_key, input_carrier, output_carrier|
+def cell_r(converter_key, input_carrier, output_carrier)
   val("#{converter_key}-(#{input_carrier})", :conversion) 
 end
+alias input_conversion cell_r
 
-cell_h = output_split = lambda do |converter_key, input_carrier, output_carrier|
+def cell_h(converter_key, input_carrier, output_carrier)
   get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
 end
+alias output_split cell_h
 
 # (efficiency between the useful output carrier and the leading input carrier)
-cell_k = effective_efficiency = lambda do |*args| 
-  (cell_u.call(*args) / cell_r.call(*args)) 
+def cell_k(*args)
+  (cell_u(*args) / cell_r(*args)) 
 end
+alias effective_efficiency cell_k
 
-cell_i = input_split = lambda do |converter_key, input_carrier, output_carrier|
+def cell_i(converter_key, input_carrier, output_carrier)
   args = [converter_key, input_carrier, output_carrier]
-  h = cell_h.call(*args)
-  k = cell_k.call(*args)
+  h = cell_h(*args)
+  k = cell_k(*args)
 
   converter_keys = get(section, input_carrier, output_carrier).keys rescue [] #.keys --> selects the key(s) from the key value pair e.g. "heater_on_oil_households_energetic"=>"100.0" returns heater_on_oil_households_energetic
   sum = converter_keys.map do |key| #.map --> replaces the keys by what's behind the do
-     cell_h.call(key, input_carrier, output_carrier) / cell_k.call(key, input_carrier, output_carrier) 
+     cell_h(key, input_carrier, output_carrier) / cell_k(key, input_carrier, output_carrier) 
   end.sum
 
   (h / k) * (1.0 / sum)
 end
+alias input_split cell_i
 
 # Cell J: Input
-cell_j = lambda do |converter_key, input_carrier, output_carrier|
-  i = cell_i.call(converter_key, input_carrier, output_carrier) 
-  val = i * input_demand.call(input_carrier, output_carrier)
+def cell_j(converter_key, input_carrier, output_carrier)
+  i = cell_i(converter_key, input_carrier, output_carrier) 
+  val = i * input_demand(input_carrier, output_carrier)
   val.nan? ? 0.0 : val # this should already be checked in input_demand. MdH: @Sebi the Not a Number check was only necessary in Excel
   # return of the function is always last number in function
 end
 
 # Cell L: Ouput
-cell_l = lambda { |*args| cell_j.call(*args) * cell_k.call(*args) }
+def cell_l(*args)
+  cell_j(*args) * cell_k(*args) 
+end
 
-cell_m = output_share = lambda do |converter_key, input_carrier, output_carrier|
+def output_share(converter_key, input_carrier, output_carrier)
   args = [converter_key, input_carrier, output_carrier]
 
+  v = cell_l(*args) / sum_of_cell_l(output_carrier)
+
+  v.nan? ? 0.0 : v
+end
+alias cell_m output_share
+
+def sum_of_cell_l(output_carrier)
+  # DEBT: memoize this function
+  #
+  # This represents L90
+  #
   # creating the sum is quite tricky indeed...
   #
   # get(section):
@@ -85,35 +108,33 @@ cell_m = output_share = lambda do |converter_key, input_carrier, output_carrier|
   #
   # => heater_on_coal_households_energetic, useable_heat, coal
   # => heater_on_oil_households_energetic, useable_heat, crude_oil
-
-  # MdH: would be useful to be able to acces the sum function outside of 'cell_m' as it is also used for expected demand of parent converter
-
   sum = 0
   input_carriers = keys_that_contain(section, output_carrier)
   input_carriers.each do |_input_carrier|
     converter_keys = get(section, _input_carrier, output_carrier).keys rescue []
     converter_keys.each do |_converter|
-      sum += cell_l.call(_converter, _input_carrier, output_carrier)
+      sum += cell_l(_converter, _input_carrier, output_carrier)
     end
   end
-
-  v = cell_l.call(*args) / sum
-
-  v.nan? ? 0.0 : v
+  sum
 end
 
-cell_n = expected_demand = lambda do |*args| 
-  cell_j.call(*args) / cell_r.call(*args) 
+def expected_demand(*args)
+  cell_j(*args) / cell_r(*args) 
 end
+alias cell_n expected_demand 
 
-%>
+# --- END Function Definitions ------------------------------------
 
-<% 
+
+
+
+
+# --- demand_expected_value -------------------------------
+
 # Generate demand_expected_values for all the household converters.
 # This values are mostly for the researchers to debug and do not change
 # the calculation.
-
-# Assign demand expected value
 wizard_config[:households].each do |section_carrier, carrier_converters|
   carrier_converters.each do |carrier, converters|
     converters.each do |converter| 
@@ -121,32 +142,96 @@ wizard_config[:households].each do |section_carrier, carrier_converters|
 %>
 
 :<%= converter %>:
-  :demand_expected_value: <%= cell_n.call(converter.to_sym, carrier, section_carrier)  %>
+  :demand_expected_value: <%= cell_n(converter.to_sym, carrier, section_carrier)  %>
   # - debug ---
-  :output_share:  <%= cell_m.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_h:  <%= cell_h.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_i:  <%= cell_i.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_j:  <%= cell_j.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_k:  <%= cell_k.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_l:  <%= cell_l.call(converter.to_sym, carrier, section_carrier) %>
-  :cell_m:  <%= cell_m.call(converter.to_sym, carrier, section_carrier) %>
+  :output_share:  <%= cell_m(converter.to_sym, carrier, section_carrier) %>
+  :cell_h:  <%= cell_h(converter.to_sym, carrier, section_carrier) %>
+  :cell_i:  <%= cell_i(converter.to_sym, carrier, section_carrier) %>
+  :cell_j:  <%= cell_j(converter.to_sym, carrier, section_carrier) %>
+  :cell_k:  <%= cell_k(converter.to_sym, carrier, section_carrier) %>
+  :cell_l:  <%= cell_l(converter.to_sym, carrier, section_carrier) %>
+  :cell_m:  <%= cell_m(converter.to_sym, carrier, section_carrier) %>
     
 <%
-    end # converters.each
-  end # carrier_converters.each
-end # Etsource::Constants::HOUSEHOLDS.each 
+    end # converters
+  end # carrier_converters
+end # wizard_config[:households]
 %>
 
-# Assign values to link shares
+# --- Assign values to link shares ------------------------------------
+
 <% 
+# In output_shares we define the "parent" converters for each application referenced
+# by the carrier. Iterate through all applications defined, then create a link
+# for every converter of that application.
 wizard_config['output_shares'].each do |application_carrier, left_converter|
   wizard_config[:households][application_carrier].each do |carrier, converters|
     converters.each do |converter|
 %> 
 <%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}:" %> 
-  share: <%= cell_m.call(converter.to_sym, carrier, application_carrier) %>
+  share: <%= cell_m(converter.to_sym, carrier, application_carrier) %>
 <%
-    end # carrier_converters.each
-  end # wizard_config[:households][application_carrier].each
-end # Etsource::Constants::HOUSEHOLDS_HEATING.each 
+    end # carrier_converters
+  end # wizard_config[:households][application_carrier]
+end # wizard_config[:households]
 %>
+
+# --- Exceptions ------------------------------------
+
+# --- HEATING -----
+
+# -- heating: total heat demand
+
+heating_demand_households_energetic:
+  :demand_expected_value: <%= sum_of_cell_l(:useable_heat)  %>
+
+# -- heating: ambient heat overview
+
+<%
+
+def ambient_heat_consumption(converter, carrier)
+  v = cell_j(converter.to_sym, carrier, :useable_heat) 
+  v = v / cell_r(converter.to_sym, carrier, :useable_heat)
+  v = v * cell_r(converter.to_sym, :ambient_heat, :useable_heat)
+  v
+end
+
+sum_of_ambient_heat = 0
+wizard_config[:heating_ambient_heat].each do |carrier, converters|
+  converters.each do |converter|
+    sum_of_ambient_heat += ambient_heat_consumption(converter,carrier)
+%>
+:<%= converter %>:
+  # give proper name here:
+  :cell_j_exception: <%= ambient_heat_consumption(converter,carrier) %>
+<%
+  end # converters
+end # wizard_config[:heating_ambient_heat]
+%>
+
+# What to do with the sum?
+<%= "# --- SUM: #{sum_of_ambient_heat}" %>
+ 
+
+# --- HOT WATER -----
+
+<%
+hot_water_total = sum_of_cell_l(:hot_water) + input_demand(:solar_thermal, :hot_water)
+%>
+
+hot_water_demand_households_energetic:
+  :expected_demand: <%= hot_water_total %>
+
+hot_water_devices_households_energetic:
+  :expected_demand: <%= sum_of_cell_l(:hot_water) %>
+
+hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-hot_water_devices_households_energetic: 
+  share: <%= sum_of_cell_l(:hot_water) / hot_water_total %>
+
+solar_panel_for_hot_water_households_energetic:
+  :expected_demand: <%= input_demand(:solar_thermal, :hot_water) %>
+
+hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: 
+  share: <%= input_demand(:solar_thermal, :hot_water) / hot_water_total %>
+
+
