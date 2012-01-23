@@ -149,12 +149,14 @@ end # Etsource::Constants::HOUSEHOLDS.each
 
 # Assign values to link shares
 <% 
-wizard_config[:households][:useable_heat].each do |carrier, converters|
-  converters.each do |converter| 
+wizard_config['output_shares'].each do |application_carrier, left_converter|
+  wizard_config[:households][application_carrier].each do |carrier, converters|
+    converters.each do |converter|
 %> 
-heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_households_energetic: 
-  share: <%= cell_m.call(converter.to_sym, carrier, :useable_heat) %>
+<%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}:" %> 
+  share: <%= cell_m.call(converter.to_sym, carrier, application_carrier) %>
 <%
-  end # converters.each
+    end # carrier_converters.each
+  end # wizard_config[:households][application_carrier].each
 end # Etsource::Constants::HOUSEHOLDS_HEATING.each 
 %>
