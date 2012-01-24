@@ -197,13 +197,13 @@ def ambient_heat_consumption(converter, carrier)
 end
 
 sum_of_ambient_heat = 0
-wizard_config[:heating_ambient_heat].each do |carrier, converters|
+wizard_config[:ambient_heat][:useable_heat].each do |carrier, converters|
   converters.each do |converter|
     sum_of_ambient_heat += ambient_heat_consumption(converter,carrier)
 %>
 :<%= converter %>:
-  # give proper name here:
-  :cell_j_exception: <%= ambient_heat_consumption(converter,carrier) %>
+  # have to define a name for this.
+  :ambient_heat_input: <%= ambient_heat_consumption(converter,carrier) %>
 <%
   end # converters
 end # wizard_config[:heating_ambient_heat]
