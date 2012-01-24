@@ -36,17 +36,22 @@ households:
       - heatpump_households_energetic
       - heat_pump_with_chs_households_energetic
 
-# put this in a separate namespace, so it doesnt mess up
-# when iterating over households
-output_shares:
-  useable_heat: heating_demand_households_energetic
-  hot_water: hot_water_devices_households_energetic    
-
-ambient_heat:
-  useable_heat:
+# Calculate ambient heat numbers for application
+ambient_heat:    
+  hot_water: # Application hot_water has output carrier hot_water
+    electricity:
+      - heatpump_boiler_households_energetic
+  useable_heat: # Application space_heating has output carrier useable_heat
     natural_gas:
       - gasheatpump_households_energetic
     electricity:
       - heatpump_addon_households_energetic
       - heatpump_households_energetic
       - heat_pump_with_chs_households_energetic
+  
+# put this in a separate namespace, so it doesnt mess up
+# when iterating over households
+output_shares:
+  hot_water: hot_water_devices_households_energetic    
+  useable_heat: heating_demand_households_energetic
+  
