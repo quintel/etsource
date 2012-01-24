@@ -1,4 +1,5 @@
 - carriers = %w[coal crude_oil natural_gas biomass solar_thermal electricity steam_hot_water notdefined]
+- @present = @gql.present_graph
 
 %h3{style:"color: #00c; border-bottom: 3px solid #00c"} Final Demands
 %br
@@ -92,7 +93,6 @@
 
 #tab-content.tab-content{'data-tabs' => 'tabs'}
   - wizard_config[:households].each do |section_carrier, carrier_converters|
-    -# https://github.com/dennisschoenmakers/etengine/blob/edge/app/models/etsource/constants.rb
     %div.tab-pane{:id => section_carrier.to_s, :class => section_carrier == :useable_heat ? 'active' : nil}
       %p== Split for #{section_carrier} technologies
       
@@ -103,59 +103,61 @@
             %th Split
             %th.debug Exp. demand
             %th.debug Output Share
-            -# 
-              %th.debug i
-              %th.debug j
-              %th.debug k
-              %th.debug l
-              %th.debug m
-
             %th.debug Debug
+        
         %tbody
-          - carrier_converters.each do |carrier, converters| 
-            -# carrier, converters <-- coal, coal_boiler_households
+          - carrier_converters.each do |carrier, converter_keys| # <-- coal, coal_boiler_households
             %tr
-              %th{:colspan => 5, :style => "background: #eee"}
-                = carrier
+              %th{:colspan => 5, :style => "background: #eee"}= carrier
               
-            - converters.each do |converter|
+            - converter_keys.each do |converter_key|
+              -# converter_key is simply the 
+              - converter = @present.converter(converter_key)
               %tr
                 %th
                   %label{:style => 'text-align:left'}
-                    = link_to converter.gsub('_households_energetic', ''), data_converter_path(:api_scenario_id => 'latest', :id => converter), :target => :_blank
+                    = link_to converter.key, data_converter_path(:api_scenario_id => 'latest', :id => converter_key), :target => :_blank
                     -# Write name of converter as link
-                - if converters.length == 1
-                  %th= number_field(carrier, section_carrier, converter.to_sym, :disabled => true, :value => 100.0)
-                  -# What is 'converter.to_sym'? turns a string into a symbol (quicker calculation)
+                - if converter_keys.length == 1
+                  %th= number_field(carrier, section_carrier, converter_key.to_sym, :disabled => true, :value => 100.0)
+                  -# converter_key.to_sym turns a string into a symbol (quicker calculation)
                 - else
-                  %th= number_field(carrier, section_carrier, converter.to_sym)
+                  %th= number_field(carrier, section_carrier, converter_key.to_sym)
                 
                 %td.debug
-                  %label{:style => 'text-align:left'}= (@gql.query("present:V(#{converter};demand_expected_value)") / BILLIONS).round(3) rescue -1.0
-                - object_dataset = @gql.present_graph.converter(converter).object_dataset
-                -# Do you calculate the demand expected value here, or do you display the value from the graph? Display the value from te graph that is calculated after 'save' button is clicked
-                %td.debug
-                  %label= object_dataset[:output_share].round(3) rescue -1.0
-                -#
-                  %td.debug
-                    %label= object_dataset[:cell_i]
-                  %td.debug
-                    %label= object_dataset[:cell_j]
-                  %td.debug
-                    %label= object_dataset[:cell_k]
-                  %td.debug
-                    %label= object_dataset[:cell_l]
-                  %td.debug
-                    %label= object_dataset[:cell_m]
+                  %label{style: 'text-align:left'}= (converter.demand_expected_value / BILLIONS).round(3) rescue 'Error'
                 
-
                 %td.debug
-                  -# to display debug button?x
-                  %a.btn{:data => {:'controls-modal' => "debug_#{converter}", :backdrop => "true"}} Debug
-                  %div.modal.hide{:id => "debug_#{converter}"}
+                  -# Display the value from the graph that is calculated after 'save' button is clicked
+                  %label= converter.dataset_get(:output_share).round(3) rescue 'n/a'
+                %td.debug
+                  %a.btn{data: {:'controls-modal' => "debug_#{converter_key}", :backdrop => "true"}} Debug
+                  %div.modal.hide{:id => "debug_#{converter_key}"}
                     .modal-header
                       %a.close{:href => "#"} &times;
                       %h3 Debug 
                     .modal-body
                       - InputTool::SavedWizard.all.inject({}) {|hsh,f| hsh.merge f.code => f.research_data_bucket}.each do |k,h|
-                        %code= @gql.present_graph.converter(converter.to_sym).object_dataset.inspect
+                        %code= converter.object_dataset.inspect
+
+          - if wizard_config[:ambient_heat][section_carrier]
+            - values = []
+            %tr
+              %th{:colspan => 5, :style => "background: #eee"} Ambient Heat
+
+            - wizard_config[:ambient_heat][section_carrier].each do |carrier, converter_keys|
+              - converter_keys.each do |converter_key|
+                - converter = @present.converter(converter_key)
+                - values << converter.dataset_get(:ambient_heat_input)
+                %tr
+                  %th
+                    %label{style: 'text-align:left'}= converter.key
+                  %th= converter.dataset_get(:ambient_heat_input).inspect
+            %tr
+              %th 
+                %label Total
+              %th= values.compact.sum
+
+
+
+
