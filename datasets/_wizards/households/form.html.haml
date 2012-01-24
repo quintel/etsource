@@ -87,14 +87,14 @@
 
 %ul.tabs{'data-tabs' => 'tabs'}
   -# Make the tabs. Think of indentation as boxes
-  - wizard_config[:households].each do |section_carrier, carrier_converters|
+  - wizard_config[:households].each do |application_carrier, carrier_converters|
     -# section carrier: useable_heat OR hot_water, carrier_converters: key, value pairs e.g.: :coal => %w[coal_boiler_households_energetic],
-    %li{:class => section_carrier == :useable_heat ? 'active' : nil}= link_to section_carrier.to_s, "##{section_carrier}"
+    %li{:class => application_carrier == :useable_heat ? 'active' : nil}= link_to application_carrier.to_s, "##{application_carrier}"
 
 #tab-content.tab-content{'data-tabs' => 'tabs'}
-  - wizard_config[:households].each do |section_carrier, carrier_converters|
-    %div.tab-pane{:id => section_carrier.to_s, :class => section_carrier == :useable_heat ? 'active' : nil}
-      %p== Split for #{section_carrier} technologies
+  - wizard_config[:households].each do |application_carrier, carrier_converters|
+    %div.tab-pane{:id => application_carrier.to_s, :class => application_carrier == :useable_heat ? 'active' : nil}
+      %p== Split for #{application_carrier} technologies
       
       %table.condensed-table
         %thead
@@ -103,7 +103,7 @@
             %th Split
             %th.debug Exp. demand
             %th.debug Output Share
-            %th.debug Debug
+            %th.debug Details
         
         %tbody
           - carrier_converters.each do |carrier, converter_keys| # <-- coal, coal_boiler_households
@@ -119,10 +119,10 @@
                     = link_to converter.key, data_converter_path(:api_scenario_id => 'latest', :id => converter_key), :target => :_blank
                     -# Write name of converter as link
                 - if converter_keys.length == 1
-                  %th= number_field(carrier, section_carrier, converter_key.to_sym, :disabled => true, :value => 100.0)
+                  %th= number_field(carrier, application_carrier, converter_key.to_sym, :disabled => true, :value => 100.0)
                   -# converter_key.to_sym turns a string into a symbol (quicker calculation)
                 - else
-                  %th= number_field(carrier, section_carrier, converter_key.to_sym)
+                  %th= number_field(carrier, application_carrier, converter_key.to_sym)
                 
                 %td.debug
                   %label{style: 'text-align:left'}= (converter.demand_expected_value / BILLIONS).round(3) rescue 'Error'
@@ -131,32 +131,54 @@
                   -# Display the value from the graph that is calculated after 'save' button is clicked
                   %label= converter.dataset_get(:output_share).round(3) rescue 'n/a'
                 %td.debug
-                  %a.btn{data: {:'controls-modal' => "debug_#{converter_key}", :backdrop => "true"}} Debug
+                  %a.btn{data: {:'controls-modal' => "debug_#{converter_key}", :backdrop => "true"}} Details}
                   %div.modal.hide{:id => "debug_#{converter_key}"}
                     .modal-header
                       %a.close{:href => "#"} &times;
-                      %h3 Debug 
+                      %h3 Details 
                     .modal-body
                       - InputTool::SavedWizard.all.inject({}) {|hsh,f| hsh.merge f.code => f.research_data_bucket}.each do |k,h|
                         %code= converter.object_dataset.inspect
 
-          - if wizard_config[:ambient_heat][section_carrier]
+          -# -------------------------------------------------------- AMBIENT HEAT
+
+          - if wizard_config[:ambient_heat][application_carrier]
             - values = []
             %tr
               %th{:colspan => 5, :style => "background: #eee"} Ambient Heat
 
-            - wizard_config[:ambient_heat][section_carrier].each do |carrier, converter_keys|
+            - wizard_config[:ambient_heat][application_carrier].each do |carrier, converter_keys|
+              
               - converter_keys.each do |converter_key|
                 - converter = @present.converter(converter_key)
                 - values << converter.dataset_get(:ambient_heat_input)
+
+                -# -------------------------------------------------- Ambient heat per converter
+
                 %tr
                   %th
                     %label{style: 'text-align:left'}= converter.key
                   %th= converter.dataset_get(:ambient_heat_input).inspect
+
+            -# ------------------------------------------------------ Ambient heat total
+
             %tr
               %th 
                 %label Total
               %th= values.compact.sum
+
+          -# -------------------------------------------------------- Total
+          
+          %tr
+            %th{:colspan => 5, :style => "background: #eee"} Total 
+
+          %tr
+            - converter = @present.converter(wizard_config[:application_parents][application_carrier])
+            %th
+              %label= converter.key
+            %th
+              %label{style: 'text-align:left'}= converter.dataset_get(:demand_expected_value)
+
 
 
 

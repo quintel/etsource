@@ -1,7 +1,8 @@
 # Configuration that are shared between transformer and form
 
 
-households:
+households: # This is the configuration needed to create the tabs.
+
   hot_water: # Application hot_water has output carrier hot_water
     coal: # These carriers should match the real carriers in the graph
       - coal_boiler_households_energetic
@@ -36,7 +37,14 @@ households:
       - heatpump_households_energetic
       - heat_pump_with_chs_households_energetic
 
-# Calculate ambient heat numbers for application
+# put this in a separate namespace, so it doesnt mess up
+# when iterating over households
+application_parents:
+  hot_water: hot_water_devices_households_energetic    
+  useable_heat: heating_demand_households_energetic
+  
+
+# Configure applications with ambient heat
 ambient_heat:    
   hot_water: # Application hot_water has output carrier hot_water
     electricity:
@@ -48,10 +56,4 @@ ambient_heat:
       - heatpump_addon_households_energetic
       - heatpump_households_energetic
       - heat_pump_with_chs_households_energetic
-  
-# put this in a separate namespace, so it doesnt mess up
-# when iterating over households
-output_shares:
-  hot_water: hot_water_devices_households_energetic    
-  useable_heat: heating_demand_households_energetic
   
