@@ -2,9 +2,8 @@
 
 
 households:
-  hot_water: # carrier used in application MdH: Could we change this into the name of the application: hot_water, space_heating (instead of useable_heat)
-    coal: # should these carriers match the real carriers in the graph, or the carriers = %w[coal crude_oil natural_gas biomass solar_thermal electricity steam_hot_water notdefined] in line 1 of form.html.haml?
-      - coal_boiler_households_energetic
+  hot_water: # Application hot_water has output carrier hot_water
+    coal: # These carriers should match the real carriers in the graph
     crude_oil: 
       - oil_boiler_households_energetic
     natural_gas:
@@ -20,7 +19,7 @@ households:
     steam_hot_water:
       - heatpump_boiler_using_city_heat_households_energetic  
 
-  useable_heat:
+  useable_heat: # Application space_heating has output carrier useable_heat
     coal:
       - heater_on_coal_households_energetic
     crude_oil:
