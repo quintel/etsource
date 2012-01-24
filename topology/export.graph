@@ -287,11 +287,6 @@ hydro_mount_energy-(water) -- s --> (loss)-water_environment_energetic
 (loss)-hydro_mount_energy # 0 links to: 
 (electricity)-hydro_mount_energy # 1 links to: hv_electricity_network_energy
 
-blue_energy_energy;	blue_energy;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,cost_electricity_production
-blue_energy_energy-(water) -- s --> (loss)-water_environment_energetic
-(loss)-blue_energy_energy # 0 links to: 
-(electricity)-blue_energy_energy # 1 links to: hv_electricity_network_energy
-
 geothermal_electricity_energy;	geothermal_electricity;	energy;	undefined;	central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
 geothermal_electricity_energy-(ambient_heat) -- s --> (loss)-air_environment_energetic
 (loss)-geothermal_electricity_energy # 0 links to: 
@@ -1759,7 +1754,7 @@ biocoal_distribution_energy-(biocoal) -- c --> (biocoal)-biocoal_import_energy
 
 torrefaction_energy;	torrefaction;	energy;	undefined;	undefined;	
 torrefaction_energy-(natural_gas) -- s --> (natural_gas)-national_gas_network_energy
-torrefaction_energy-(woodpellets) -- s --> (woodpellets)-woodpellet_distribution_energy
+torrefaction_energy-(wood) -- s --> (wood)-wood_distribution_energy
 (biocoal)-torrefaction_energy # 1 links to: biocoal_distribution_energy
 (loss)-torrefaction_energy # 0 links to: 
 
@@ -1778,7 +1773,7 @@ biocoal_import_energy-(biocoal)
 woodpellet_distribution_energy;	woodpellet_distribution;	energy;	undefined;	undefined;	biofuel_distribution
 woodpellet_distribution_energy-(woodpellets) -- c --> (woodpellets)-woodpellet_production_energy
 woodpellet_distribution_energy-(woodpellets) -- f --> (woodpellets)-woodpellet_import_energy
-(woodpellets)-woodpellet_distribution_energy # 1 links to: torrefaction_energy
+(woodpellets)-woodpellet_distribution_energy # 0 links to: 
 
 woodpellet_production_energy;	woodpellet_production;	energy;	undefined;	undefined;	
 woodpellet_production_energy-(wood) -- s --> (wood)-wood_distribution_energy
@@ -1790,7 +1785,7 @@ woodpellet_import_energy-(woodpellets)
 
 wood_distribution_energy;	wood_distribution;	energy;	undefined;	undefined;	
 wood_distribution_energy-(wood) -- s --> (wood)-wood_growth_energy
-(wood)-wood_distribution_energy # 1 links to: woodpellet_production_energy
+(wood)-wood_distribution_energy # 2 links to: torrefaction_energy, woodpellet_production_energy
 
 wood_growth_energy;	wood_growth;	energy;	undefined;	undefined;	primary_energy_demand,mining_and_extraction
 wood_growth_energy-(wood)
@@ -2091,7 +2086,7 @@ collective_gas_chp_households_energetic-(natural_gas) -- s --> (natural_gas)-nat
 (steam_hot_water)-collective_gas_chp_households_energetic # 1 links to: steam_hot_water_households_energetic
 (electricity)-collective_gas_chp_households_energetic # 1 links to: available_electricity_households
 
-collective_biomass_chp_households_energetic;	collective_biomass_chp;	households;	energetic;	local CHPs;	heat_production,network_converters,cost_chps
+collective_biomass_chp_households_energetic;	collective_biomass_chp;	households;	energetic;	local CHPs;	electricity_production,heat_production,network_converters,cost_chps
 collective_biomass_chp_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
 (loss)-collective_biomass_chp_households_energetic # 0 links to: 
 (steam_hot_water)-collective_biomass_chp_households_energetic # 1 links to: steam_hot_water_households_energetic
@@ -2179,7 +2174,6 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_gas
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-solar_csp_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_river_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_mount_energy
-hv_electricity_network_energy-(electricity) -- c --> (electricity)-blue_energy_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-geothermal_electricity_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-biogas_plant_energy
 hv_electricity_network_energy-(electricity) -- i --> (electricity)-mv_hv_transformer_energy
@@ -2188,6 +2182,8 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-ccgt_ccs_ener
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-lignite_chp_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-oil_chp_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-biomass_CHP_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-diesel_generator_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_turbine_energy_energetic
 (electricity)-hv_electricity_network_energy # 4 links to: electricity_demand_energy_energetic, mv_hv_transformer_energy, electricity_export_energy, pumped_storage_energy
 (loss)-hv_electricity_network_energy # 1 links to: grid_losses_electricity_energy
 
@@ -2280,12 +2276,6 @@ lng_import_energy-(natural_gas)
 (loss)-lng_import_energy # 0 links to: 
 (natural_gas)-lng_import_energy # 1 links to: gas_treatment_energy
 
-oil_distribution_energy;	oil_distribution;	energy;	undefined;	distribution primary carriers;	
-oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy
-oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy
-(crude_oil)-oil_distribution_energy # 20 links to: gas_conv_energy_energetic, large_chp_industry_energetic, oil_plant_energy, gas_ccgt_energy, oil_agriculture_energetic, oil_households_energetic, oil_industry_energetic, oil_other_energetic, oil_transport_energetic, oil_industry_non_energetic, oil_other_non_energetic, oil_transport_non_energetic, oil_demand_energy_energetic, oil_storage_energy, energy_sector_gas_mixer_energy, oil_buildings_energetic, ccgt_ccs_energy, oil_chp_energy, district_heater_oil_energy_energetic, oil_export_energy
-(loss)-oil_distribution_energy # 1 links to: grid_losses_oil_energy
-
 greengas_distribution_energy;	greengas_distribution;	energy;	undefined;	distribution primary carriers;	
 greengas_distribution_energy-(loss)
 greengas_distribution_energy-(greengas) -- f --> (greengas)-greengas_import_export_energy
@@ -2293,17 +2283,9 @@ greengas_distribution_energy-(greengas) -- c --> (greengas)-biogas_upgrade_energ
 (loss)-greengas_distribution_energy # 0 links to: 
 (greengas)-greengas_distribution_energy # 3 links to: national_gas_network_energy, greengas_transport_energetic, greengas_export_energy
 
-oil_import_export_energy;	oil_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
-oil_import_export_energy-(crude_oil)
-(crude_oil)-oil_import_export_energy # 1 links to: oil_distribution_energy
-
 gas_import_export_energy;	gas_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
 gas_import_export_energy-(natural_gas)
 (natural_gas)-gas_import_export_energy # 1 links to: gas_treatment_energy
-
-grid_losses_oil_energy;	grid_losses_oil;	energy;	undefined;	undefined;	
-grid_losses_oil_energy-(loss) -- d --> (loss)-oil_distribution_energy
-(loss)-grid_losses_oil_energy # 0 links to: 
 
 grid_losses_gas_energy;	grid_losses_gas;	energy;	undefined;	undefined;	
 grid_losses_gas_energy-(loss) -- d --> (loss)-national_gas_network_energy
@@ -2382,10 +2364,6 @@ lng_export_energy;	lng_export;	energy;	undefined;	undefined;	energy_export
 lng_export_energy-(lng) -- i --> (loss)-lng_import_energy
 (lng)-lng_export_energy # 0 links to: 
 
-oil_export_energy;	oil_export;	energy;	undefined;	undefined;	energy_export
-oil_export_energy-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy
-(crude_oil)-oil_export_energy # 0 links to: 
-
 gas_export_energy;	gas_export;	energy;	undefined;	undefined;	energy_export
 gas_export_energy-(natural_gas) -- i --> (natural_gas)-national_gas_network_energy
 (natural_gas)-gas_export_energy # 0 links to: 
@@ -2401,6 +2379,34 @@ greengas_export_energy-(greengas) -- i --> (greengas)-greengas_distribution_ener
 bio_oil_export_energy;	bio_oil_export;	energy;	undefined;	undefined;	energy_export
 bio_oil_export_energy-(bio_oil) -- i --> (bio_oil)-bio_oil_distribution_energy
 (bio_oil)-bio_oil_export_energy # 0 links to: 
+
+diesel_generator_energy_energetic;	diesel_generator;	energy;	energetic;	central power generation;	
+diesel_generator_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(electricity)-diesel_generator_energy_energetic # 1 links to: hv_electricity_network_energy
+(loss)-diesel_generator_energy_energetic # 0 links to: 
+
+oil_distribution_energy;	oil_distribution;	energy;	undefined;	distribution primary carriers;	
+oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy
+oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy
+(crude_oil)-oil_distribution_energy # 21 links to: gas_conv_energy_energetic, large_chp_industry_energetic, oil_plant_energy, gas_ccgt_energy, oil_agriculture_energetic, oil_households_energetic, oil_industry_energetic, oil_other_energetic, oil_transport_energetic, oil_industry_non_energetic, oil_other_non_energetic, oil_transport_non_energetic, oil_demand_energy_energetic, oil_storage_energy, energy_sector_gas_mixer_energy, oil_buildings_energetic, ccgt_ccs_energy, oil_chp_energy, district_heater_oil_energy_energetic, oil_export_energy, diesel_generator_energy_energetic
+(loss)-oil_distribution_energy # 1 links to: grid_losses_oil_energy
+
+oil_import_export_energy;	oil_import_export;	energy;	undefined;	undefined;	primary_energy_demand,energy_import_export,energy_import
+oil_import_export_energy-(crude_oil)
+(crude_oil)-oil_import_export_energy # 1 links to: oil_distribution_energy
+
+grid_losses_oil_energy;	grid_losses_oil;	energy;	undefined;	undefined;	
+grid_losses_oil_energy-(loss) -- d --> (loss)-oil_distribution_energy
+(loss)-grid_losses_oil_energy # 0 links to: 
+
+oil_export_energy;	oil_export;	energy;	undefined;	undefined;	energy_export
+oil_export_energy-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy
+(crude_oil)-oil_export_energy # 0 links to: 
+
+gas_turbine_energy_energetic;	gas_turbine;	energy;	energetic;	central power generation;	
+gas_turbine_energy_energetic-(natural_gas) -- s --> (gasmix)-energy_sector_gas_mixer_energy
+(electricity)-gas_turbine_energy_energetic # 1 links to: hv_electricity_network_energy
+(loss)-gas_turbine_energy_energetic # 0 links to: 
 
 foreign_production_algue_diesel_neighbor;	foreign_production_algue_diesel;	neighbor;	undefined;	undefined;	primary_energy_demand
 foreign_production_algue_diesel_neighbor-(algae_diesel)
