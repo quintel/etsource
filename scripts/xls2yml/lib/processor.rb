@@ -18,13 +18,15 @@ module ETE
           Dir::mkdir(destination_directory)
         end
 
-        area_export = ExcelAreaExport.new(area_path)
-        export_converters(area_export, destination_directory)
-        export_time_curves(area_export, destination_directory)
+        @area_export = ExcelAreaExport.new(area_path)
+        export_converters(@area_export, destination_directory)
+        export_time_curves(@area_export, destination_directory)
       end
+      # the topology is always the same, so we can reuse the last area export
+      export_topology(@area_export)
     end
 
-    # writes to export.yml
+    # writes to <area>/export.yml
     def export_converters(export, destination_directory)
       converter_exporter = ConverterExporter.new(export)
       raw = converter_exporter.export
@@ -44,7 +46,7 @@ module ETE
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
     end
 
-    # writes to time_curves.yml
+    # writes to <area>/time_curves.yml
     def export_time_curves(export, destination_directory)
       csv = export.csv_for(:time_curves)
       f = CSV.new(csv)
@@ -61,6 +63,26 @@ module ETE
       dest_file = "#{destination_directory}/time_curves.yml"
       puts "  Saving timecurves to #{dest_file}"
       File.open(dest_file, 'w') {|f| f.write(out.to_yaml)}
+    end
+
+    # writes to /export.graph
+    def export_topology(area_export)
+      puts "Generating shared topology"
+      converter_exporter = ConverterExporter.new(area_export)
+      raw = converter_exporter.export
+      dest_file = "#{@dest_dir}/export.graph"
+      lines = []
+      raw.each_pair do |key, values|
+        lines << values[:info]
+        values[:links_without_share].each do |link|
+          lines << link
+        end if values[:links_without_share].is_a?(Array)
+        values[:slots_without_conversion].each do |slot|
+          lines << slot
+        end if values[:slots_without_conversion].is_a?(Array)
+        lines << []
+      end
+      File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
     end
   end
 end

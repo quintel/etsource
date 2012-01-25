@@ -4,14 +4,16 @@ module ETE
   # export
   class ExcelAreaExport
     FileMappings = {
-      :groups      => 'groups',
-      :converters  => 'converters',
-      :carriers    => 'carriers',
-      :links       => 'links',
-      :sectors     => 'sectors',
-      :uses        => 'uses',
-      :time_curves => 'timecurves',
-      :slots       => 'conversions'
+      :groups                => 'groups',
+      :converters            => 'converters',
+      :converter_groups      => 'convertergroups',
+      :carriers              => 'carriers',
+      :links                 => 'links',
+      :sectors               => 'sectors',
+      :uses                  => 'uses',
+      :time_curves           => 'timecurves',
+      :slots                 => 'conversions',
+      :energy_balance_groups => 'energy_balance_groups'
     }
 
     def initialize(root_path)
