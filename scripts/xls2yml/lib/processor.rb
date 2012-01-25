@@ -26,7 +26,7 @@ module ETE
       export_topology(@area_export)
     end
 
-    # writes to <area>/export.yml
+    # writes to <area>/graph/export.yml
     def export_converters(export, destination_directory)
       converter_exporter = ConverterExporter.new(export)
       raw = converter_exporter.export
@@ -41,10 +41,11 @@ module ETE
         values[:links].each {|link| lines << link} if values[:links]
         lines << ''
       end
-      dest_file = "#{destination_directory}/export.yml"
+      dest_file = "#{destination_directory}/graph/export.yml"
       puts "  Saving converters to #{dest_file}"
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
     end
+
 
     # writes to <area>/time_curves.yml
     def export_time_curves(export, destination_directory)
