@@ -143,21 +143,30 @@ end
 # Generate demand_expected_values for all the household converters.
 # This values are mostly for the researchers to debug and do not change
 # the calculation.
-wizard_config[:households].each do |section_carrier, carrier_converters|
+wizard_config[:households].each do |application_carrier, carrier_converters|
   carrier_converters.each do |carrier, converters|
     converters.each do |converter| 
+      attrs = [converter.to_sym, carrier, application_carrier]
       # Do not intend YAML lines, this would screw up the yaml structure
 %>
 
 :<%= converter %>:
-  # - debug ---  
-  :output_split: <%= output_split(converter.to_sym, carrier, section_carrier) %>
-  :input_split:  <%= input_split(converter.to_sym, carrier, section_carrier) %>
-  :input:        <%= input(converter.to_sym, carrier, section_carrier) %>
-  :effective_efficiency:  <%= effective_efficiency(converter.to_sym, carrier, section_carrier) %>
-  :output:       <%= output(converter.to_sym, carrier, section_carrier) %>
+  # expected demand. thus not influence graph calculation
+  demand_expected_value: <%= expected_demand(*attrs) %>
+  <% if (wizard_config[:ambient_heat][application_carrier][carrier].include?(converter) rescue false) %>
+  ambient_heat_input: <%= ambient_heat_consumption(converter, carrier) rescue 'Error' %>
+  <% end %>
+  # -- adding results of helper calculations to converter, so we can debug values
+  # prepend names with debug_ so they will not mess up with other attributes
+  debug_output_split: <%= output_split(*attrs) %>
+  debug_input_demand:  <%= input_demand(carrier, application_carrier) %>
+  debug_input_split:  <%= input_split(converter.to_sym, carrier, application_carrier) %>
+  debug_input:        <%= input(converter.to_sym, carrier, application_carrier) %>
+  debug_effective_efficiency:  <%= effective_efficiency(converter.to_sym, carrier, application_carrier) %>
+  debug_output:       <%= output(converter.to_sym, carrier, application_carrier) %>
+  debug_output_share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
   
-    
+
 <%
     end # converters
   end # carrier_converters
@@ -165,51 +174,30 @@ end # wizard_config[:households]
 %>
 
 # --- Assign values to link shares ------------------------------------
-
-<% 
 # In output_shares we define the "parent" converters for each application referenced
 # by the carrier. Iterate through all applications defined, then create a link
 # for every converter of that application.
-wizard_config[:application_parents].each do |application_carrier, left_converter|
-  wizard_config[:households][application_carrier].each do |carrier, converters|
-    converters.each do |converter|
-%> 
-<%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}" %>:
-  share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
-  
+
+<% 
+wizard_config[:application_parents].each do |application_carrier, left_converter| %>
+
+# --- Application Parents with links ----------------------------------
 
 :<%= left_converter %>:
   :demand_expected_value: <%= sum_of_output(application_carrier)  %>
-
+  
 <%
-    end # carrier_converters
+  wizard_config[:households][application_carrier].each do |carrier, converters|
+    converters.each do |converter| %> 
+
+<%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}" %>:
+  share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
+  
+<%  end # carrier_converters
   end # wizard_config[:households][application_carrier]
-end # wizard_config[:households]
-%>
+end # wizard_config[:households] %>
 
-# --- Exceptions ------------------------------------
-
-# -- heating: ambient heat overview
-
-<%
-sum_of_ambient_heat = 0
-wizard_config[:ambient_heat][:useable_heat].each do |carrier, converters|
-  converters.each do |converter|
-    sum_of_ambient_heat += ambient_heat_consumption(converter,carrier)
-%>
-:<%= converter %>:
-  # have to define a better name for this.
-  :ambient_heat_input: <%= ambient_heat_consumption(converter,carrier) %>
-<%
-  end # converters
-end # wizard_config[:heating_ambient_heat]
-%>
-
-# What to do with the sum?
-<%= "# --- SUM: #{sum_of_ambient_heat}" %>
- 
-
-# --- HOT WATER -----
+# --- HOT WATER SPLIT -----
 
 <% hot_water_total = sum_of_output(:hot_water) + input_demand(:solar_thermal, :hot_water) %>
 
