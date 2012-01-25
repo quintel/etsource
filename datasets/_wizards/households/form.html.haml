@@ -119,7 +119,7 @@
                     = link_to converter.key, data_converter_path(:api_scenario_id => 'latest', :id => converter_key), :target => :_blank
                     -# Write name of converter as link
                 
-                -# -------------------------------------------------- Text fields -------
+                -# -------------------------------------------------- Text fields -----------------
                 
                 - if converter_keys.length == 1
                   %th= number_field(carrier, application_carrier, converter_key.to_sym, :disabled => true, :value => 100.0)
@@ -127,19 +127,19 @@
                 - else
                   %th= number_field(carrier, application_carrier, converter_key.to_sym)
                 
-                -# -------------------------------------------------- Demand expected ---
+                -# -------------------------------------------------- Demand expected -------------
                 %td.debug
                   %label{style: 'text-align:left'}= (converter.demand_expected_value / BILLIONS).round(3) rescue 'Error'
                 
-                -# -------------------------------------------------- Output Share ------
+                -# -------------------------------------------------- Output Share ----------------
                 %td.debug
                   -# Display the value from the graph that is calculated after 'save' button is clicked
                   %label= converter.dataset_get(:output_share).round(3) rescue 'n/a'
                 
-                -# -------------------------------------------------- Details popup -----
+                -# -------------------------------------------------- Details popup ---------------
 
                 %td.debug
-                  %a.btn{data: {:'controls-modal' => "debug_#{converter_key}", :backdrop => "true"}} Details}
+                  %a.btn{data: {:'controls-modal' => "debug_#{converter_key}", :backdrop => "true"}} Details
                   %div.modal.hide{:id => "debug_#{converter_key}"}
                     .modal-header
                       %a.close{:href => "#"} &times;
@@ -148,7 +148,7 @@
                       - InputTool::SavedWizard.all.inject({}) {|hsh,f| hsh.merge f.code => f.research_data_bucket}.each do |k,h|
                         %code= converter.object_dataset.inspect
 
-          -# -------------------------------------------------------- AMBIENT HEAT ------
+          -# -------------------------------------------------------- AMBIENT HEAT ----------------
 
           - if wizard_config[:ambient_heat][application_carrier]
             - values = []
@@ -161,21 +161,21 @@
                 - converter = @present.converter(converter_key)
                 - values << converter.dataset_get(:ambient_heat_input)
 
-                -# -------------------------------------------------- Ambient heat per converter
+                -# -------------------------------------------------- Ambient heat per converter --
 
                 %tr
                   %th
                     %label{style: 'text-align:left'}= converter.key
                   %th= converter.dataset_get(:ambient_heat_input).inspect
 
-            -# ------------------------------------------------------ Ambient heat total -
+            -# ------------------------------------------------------ Ambient heat total ----------
 
             %tr
               %th 
                 %label Total
               %th= values.compact.sum
 
-          -# -------------------------------------------------------- Total
+          -# -------------------------------------------------------- Total -----------------------
           
           %tr
             %th{:colspan => 5, :style => "background: #eee"} Total 
