@@ -125,16 +125,19 @@
                   %th= number_field(carrier, application_carrier, converter_key.to_sym, :disabled => true, :value => 100.0)
                   -# converter_key.to_sym turns a string into a symbol (quicker calculation)
                 - else
-                  %th= number_field(carrier, application_carrier, converter_key.to_sym)
+                  %th= number_field(carrier, application_carrier, converter_key.to_sym, type: 'text' )
                 
                 -# -------------------------------------------------- Demand expected -------------
                 %td.debug
-                  %label{style: 'text-align:left'}= (converter.demand_expected_value / BILLIONS).round(3) rescue 'Error'
+                  %label{style: 'text-align:left'}= (converter.dataset_get(:demand_expected_value) / BILLIONS).round(3) rescue 'error'
                 
                 -# -------------------------------------------------- Output Share ----------------
                 %td.debug
                   -# Display the value from the graph that is calculated after 'save' button is clicked
-                  %label= converter.dataset_get(:output_share).round(3) rescue 'n/a'
+                  %label
+                    = converter.dataset_get(:debug_output_share).andand.round(3) #rescue 'n/a'
+                    /
+                    = (converter.dataset_get(:debug_output)/BILLIONS).andand.round(1) rescue 'n/a'
                 
                 -# -------------------------------------------------- Details popup ---------------
 
@@ -186,8 +189,5 @@
               %label= converter.key
             %th
               %label{style: 'text-align:left'}= converter.dataset_get(:demand_expected_value)
-
-
-
 
 
