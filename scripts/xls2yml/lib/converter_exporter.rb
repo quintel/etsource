@@ -47,9 +47,16 @@ module ETE
     #   slots:
     #      - (loss)-heatpump_addon: {conversion: 0.0}
     #      ...
+    #   slots_without_conversion:
+    #      - (loss)-heatpump_addon
+    #      ...
     #   links:
     #      - coal_distribution-(coal) -- i --> (coal)-coal_export: {share: 0.0}
     #      ...
+    #   links_without_share:
+    #      - coal_distribution-(coal) -- i --> (coal)-coal_export
+    #      ...
+    #   info: key; full_key; sector; use; energy_balance_group; groups
     #  converter_key_2:
     #    ...
     #
@@ -57,17 +64,47 @@ module ETE
       # let's first collect all the items, individually grouped by converter
       # full_key
 
-      converter_data = parse_converters
-      slot_data      = parse_slots
-      link_data      = parse_links
+      converter_data                = parse_converters
+      converter_groups              = parse_converter_groups
+      # converter_info needs this list, so let's make it available
+      @cached_converter_groups      = converter_groups
+      converter_info                = parse_converter_info
+      slot_data                     = parse_slots
+      link_data                     = parse_links
+      links_without_share_data      = parse_links(false)
+      slots_without_conversion_data = parse_slots(false)
 
       out = {}
       converters.values.each do |converter_key|
         out[converter_key] = {
-          :attributes => converter_data[converter_key],
-          :slots      => slot_data[converter_key],
-          :links      => link_data[converter_key]
+          :attributes               => converter_data[converter_key],
+          :slots                    => slot_data[converter_key],
+          :slots_without_conversion => slots_without_conversion_data[converter_key],
+          :links                    => link_data[converter_key],
+          :links_without_share      => links_without_share_data[converter_key],
+          :info                     => converter_info[converter_key],
+          :groups                   => converter_groups[converter_key]
         }
+      end
+      out
+    end
+
+    # this builds the converter string used in export.graph
+    def parse_converter_info
+      out = {}
+      CSV.new(@excel_export.csv_for(:converters)).parse do |row|
+        key = row[:key]
+        use_id = row[:use_id].to_i
+        use    = uses[use_id]
+        sector_id = row[:sector_id].to_i
+        sector    = sectors[sector_id]
+        energy_balance_group_id = row[:energy_balance_group_id].to_i
+        energy_balance_group    = energy_balance_groups[energy_balance_group_id]
+
+        full_key = "#{key}_#{sector}_#{use}".to_sym
+        groups = @cached_converter_groups[full_key].compact.join(',') if @cached_converter_groups[full_key].is_a?(Array)
+        string = "#{full_key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
+        out[full_key] = string
       end
       out
     end
@@ -87,13 +124,27 @@ module ETE
       out
     end
 
+    def parse_converter_groups
+      out = {}
+      f = CSV.new(@excel_export.csv_for(:converter_groups))
+      f.parse do |row|
+        group_id = row[:definition_id].to_i
+        converter_id = row[:converter_id].to_i
+
+        key = converters[converter_id]
+        out[key] ||= []
+        out[key] << groups[group_id]
+      end
+      out
+    end
+
     # This will generate a hash in the format
     #
     # converter_full_key:
     #   - (carrier)-converter: {conversion: 1.00}, # for outputs
     #   - converter-(carrier): {conversion: 1.00}  # for inputs
     #
-    def parse_slots
+    def parse_slots(include_conversion = true)
       out = {}
       CSV.new(@excel_export.csv_for(:slots)).parse do |row|
         converter_id = row[:converter_id].to_i
@@ -103,10 +154,18 @@ module ETE
         out[converter] ||= []
 
         if row[:input]
-          out[converter] << "#{converter}-(#{carrier}): {conversion: #{row[:input].to_f}}"
+          if include_conversion
+            out[converter] << "#{converter}-(#{carrier}): {conversion: #{row[:input].to_f}}"
+          else
+            out[converter] << "#{converter}-(#{carrier})"
+          end
         end
         if row[:output]
-          out[converter] << "(#{carrier})-#{converter}: {conversion: #{row[:output].to_f}}"
+          if include_conversion
+            out[converter] << "(#{carrier})-#{converter}: {conversion: #{row[:output].to_f}}"
+          else
+            out[converter] << "(#{carrier})-#{converter}"
+          end
         end
       end
       out
@@ -115,7 +174,7 @@ module ETE
     # generates lines in the format
     # converter-(carrier) -- link_type --> (carrier)-converter: {share: 1.234}
     #
-    def parse_links
+    def parse_links(include_share = true)
       out = {}
       CSV.new(@excel_export.csv_for(:links)).parse do |row|
         parent = converters[row[:parent_id].to_i]
@@ -130,7 +189,11 @@ module ETE
         end
         share = row[:share].to_f
         out[parent] ||= []
-        out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
+        if include_share
+          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
+        else
+          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
+        end
       end
       out
     end
@@ -192,6 +255,30 @@ module ETE
       out = {}
       CSV.new(@excel_export.csv_for(:sectors)).parse do |row|
         out[row[:id].to_i] = row[:sector]
+      end
+      out
+    end
+
+    def groups
+      @_groups ||= build_groups
+    end
+
+    def build_groups
+      out = {}
+      CSV.new(@excel_export.csv_for(:groups)).parse do |row|
+        out[row[:id].to_i] = row[:key]
+      end
+      out
+    end
+
+    def energy_balance_groups
+      @_energy_balance_groups ||= build_energy_balance_groups
+    end
+
+    def build_energy_balance_groups
+      out = {}
+      CSV.new(@excel_export.csv_for(:energy_balance_groups)).parse do |row|
+        out[row[:group_id].to_i] = row[:name]
       end
       out
     end
