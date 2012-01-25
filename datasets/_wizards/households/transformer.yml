@@ -3,7 +3,31 @@
 # 
 # The idea is that we only take care of the actual values/formulas and define all 
 # other "fixed" attributes in other files. 
-
+#
+#
+# == A Limitation of yaml
+#
+# Be careful not to accidentaly overwrite key, value pairs within a .yml file.
+#
+#     converter_key_1:
+#       demand: 300
+#       …
+#
+# and then at a later point
+#
+#     converter_key_1:
+#       output_share: 0.4
+#
+# The second definition simply overwrites the first. It does not merge them, so "demand" 
+# is lost. This is how yaml works and cannot be changed in a trivial matter. When I added 
+# the ambient heat calculation I accidentally made above mistake :(. Fixed now.
+#
+# However, if the two definitions are spread out in two different files, this would work, 
+# because our import script merges the definitions (much like with the defaults and 
+# country datasets). 
+#
+# So if this becomes a problem, I could change the import script to allow for more 
+# transformers. But I leave it for now, so we don't have to introduce extra-complexity. 
 
 <% 
 
