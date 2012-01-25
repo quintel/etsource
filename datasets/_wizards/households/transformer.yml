@@ -150,13 +150,12 @@ wizard_config[:households].each do |section_carrier, carrier_converters|
 %>
 
 :<%= converter %>:
-  
-# - debug ---  
-  :output_spit:  <%= output_split(converter.to_sym, carrier, section_carrier) %>
-  :input_spit:  <%= input_split(converter.to_sym, carrier, section_carrier) %>
-  :input:  <%= input(converter.to_sym, carrier, section_carrier) %>
+  # - debug ---  
+  :output_split: <%= output_split(converter.to_sym, carrier, section_carrier) %>
+  :input_split:  <%= input_split(converter.to_sym, carrier, section_carrier) %>
+  :input:        <%= input(converter.to_sym, carrier, section_carrier) %>
   :effective_efficiency:  <%= effective_efficiency(converter.to_sym, carrier, section_carrier) %>
-  :output:  <%= output(converter.to_sym, carrier, section_carrier) %>
+  :output:       <%= output(converter.to_sym, carrier, section_carrier) %>
   
     
 <%
