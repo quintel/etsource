@@ -1,19 +1,24 @@
 - carriers = %w[coal crude_oil natural_gas biomass solar_thermal electricity steam_hot_water notdefined]
 - @present = @gql.present_graph
 
-%h3{style:"color: #00c; border-bottom: 3px solid #00c"} Final Demands
+%h3{style:"color: #00c; border-bottom: 3px solid #00c"} Final energy consumption and application split
 %br
 %table.condensed-table.bordered-table
   %thead
     -# Defines the header row
     %tr
       -# Table row
-      %th Input
+      %th
       -# Table cell for headers
       - carriers.each do |carrier|
         %th= carrier
   %tbody
     -# defines main part of table
+
+    %tr
+      %th{:colspan => 9, :style => "background: #eee"}
+        %strong Final energy consumption (PJ)
+
     %tr
       %th households
       -# no indent because households in on same line (shortcut), header cell because you want it fat formatted
@@ -24,7 +29,7 @@
     %tr
       %th{:colspan => 9, :style => "background: #eee"}
 
-        %strong application split
+        %strong Application split (%)
         -# Future feature: changes tabbing order in this specific part of the table to: top-to-bottom then left-to-right
     
     %tr
@@ -85,6 +90,9 @@
       %td 
       %td 
 
+%h3{style:"color: #00c; border-bottom: 3px solid #00c"} Technology splits
+%br
+
 %ul.tabs{'data-tabs' => 'tabs'}
   -# Make the tabs. Think of indentation as boxes
   - wizard_config[:households].each do |application_carrier, carrier_converters|
@@ -101,8 +109,8 @@
           %tr
             %th Name
             %th Split
-            %th.debug Exp. demand
-            %th.debug Output Share
+            %th.debug Exp. demand (PJ)
+            %th.debug Output Share (%)
             %th.debug Details
         
         %tbody

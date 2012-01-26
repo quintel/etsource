@@ -37,9 +37,16 @@ def section
   :households
 end
 
-def input_demand(carrier, carrier_for_application)
+# I have renamed:
+# carrier_for_application --> application_carrier
+# input_demand --> carrier_for_application
+# Furthermore I suggest to write down a comment for each function that shows the units (Unit: 1 means dimensionless)
+
+# Final energy consumption for a specific application. Unit: MJ
+# Excel range N45:U50
+def carrier_for_application(carrier, application_carrier)
   total = (get(section, carrier, :demand_total) * BILLIONS) rescue 0.0
-  split = get(section, carrier, :split, carrier_for_application) || 0.0
+  split = get(section, carrier, :split, application_carrier) || 0.0
   val = total * (split / 100)
   val.nan? ? 0.0 : val
 end
@@ -49,29 +56,32 @@ end
 # for brevity, if we just pass on arguments, we simply write 'args'
 # args: converter_key, input_carrier, output_carrier
 
-# Couldn't we instead use the GQL statement: V(converter_key;output_carrier_output_conversion)? Just an idea...
-# -> No: at this moment the GQL is not ready yet. To GQL actually needs the contents of this file to start.
-# cell U
+# Conversion of output slot. Unit: 1
+# Excel column U
 def output_conversion(converter_key, input_carrier, output_carrier)
   val("(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
 end
 
-# cell R:
+# Conversion of input slot. Unit: 1
+# Excel column R:
 def input_conversion(converter_key, input_carrier, output_carrier)
   val("#{converter_key}-(#{input_carrier})", :conversion) 
 end
 
-# cell H
-def output_split(converter_key, input_carrier, output_carrier)
-  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
-end
-
-# (efficiency between the useful output carrier and the leading input carrier)
-# cell K
+# Effective efficiency between the useful output carrier and the leading input carrier. Note: called effective because it can be >1 for heatpumps. Unit: 1
+# Excel column K
 def effective_efficiency(*args)
   (output_conversion(*args) / input_conversion(*args)) 
 end
 
+# Split of useful output energy relative to sum of converters on same (leading) input carrier. Unit: 1
+# Excel column H
+def output_split(converter_key, input_carrier, output_carrier)
+  get(section, input_carrier, output_carrier, converter_key) / 100.0 rescue 0.0 
+end
+
+# Split of (leading) input energy relative to sum of converters on same (leading) input carrier. Unit: 1
+# Excel column I
 def input_split(converter_key, input_carrier, output_carrier)
   args = [converter_key, input_carrier, output_carrier]
   h = output_split(*args)
@@ -85,20 +95,23 @@ def input_split(converter_key, input_carrier, output_carrier)
   (h / k) * (1.0 / sum)
 end
 
-# cell J
+# Input of energy (from leading carrier). Unit: MJ
+# Excel column J
 def input(converter_key, input_carrier, output_carrier)
   i = input_split(converter_key, input_carrier, output_carrier) 
-  val = i * input_demand(input_carrier, output_carrier)
-  val.nan? ? 0.0 : val # this should already be checked in input_demand. MdH: @Sebi the Not a Number check was only necessary in Excel
+  val = i * carrier_for_application(input_carrier, output_carrier)
+  val.nan? ? 0.0 : val # this should already be checked in carrier_for_application. MdH: @Sebi the Not a Number check was only necessary in Excel
   # return of the function is always last number in function
 end
 
-# cell L
+# Useful output energy. Unit: MJ
+# Excel column L
 def output(*args)
   input(*args) * effective_efficiency(*args) 
 end
 
-# cell M
+# Share of useful output energy relative to sum of converters that supply the same left converter. Unit: 1
+# Excel column M
 def output_share(converter_key, input_carrier, output_carrier)
   args = [converter_key, input_carrier, output_carrier]
 
@@ -107,7 +120,7 @@ def output_share(converter_key, input_carrier, output_carrier)
   v.nan? ? 0.0 : v
 end
 
-
+# Total useful energy output that supplies the same left converter. Unit: MJ
 def sum_of_output(output_carrier)
   # DEBT: memoize this function
   #
@@ -143,11 +156,14 @@ def sum_of_output(output_carrier)
   sum
 end
 
-# cell N
+# Expected demand. Unit: MJ
+# Excel column N
 def expected_demand(*args)
   input(*args) / input_conversion(*args) 
 end
 
+# Ambient heat consumption of heatpumps. Unit: MJ
+# Excel column J (only selection of rows)
 def ambient_heat_consumption(converter, carrier)
   v = input(converter.to_sym, carrier, :useable_heat) 
   v = v / input_conversion(converter.to_sym, carrier, :useable_heat)
@@ -183,7 +199,7 @@ wizard_config[:households].each do |application_carrier, carrier_converters|
   # -- adding results of helper calculations to converter, so we can debug values
   # prepend names with debug_ so they will not mess up with other attributes
   debug_output_split: <%= output_split(*attrs) %>
-  debug_input_demand:  <%= input_demand(carrier, application_carrier) %>
+  debug_carrier_for_application:  <%= carrier_for_application(carrier, application_carrier) %>
   debug_input_split:  <%= input_split(converter.to_sym, carrier, application_carrier) %>
   debug_input:        <%= input(converter.to_sym, carrier, application_carrier) %>
   debug_effective_efficiency:  <%= effective_efficiency(converter.to_sym, carrier, application_carrier) %>
@@ -223,7 +239,8 @@ end # wizard_config[:households] %>
 
 # --- HOT WATER SPLIT -----
 
-<% hot_water_total = sum_of_output(:hot_water) + input_demand(:solar_thermal, :hot_water) %>
+# MdH: HELP!! Now the use of :hot_water becomes very confusing "sum_of_output(:hot_water)"  I would expect to result in the value in cell L131, but it does give the value in cell L126. Which is correct here, just very confusing. Can we think of a smarter way? Maybe refer to the converter which demands the sum (hot_water_devices for L126, hot_water_demand_HH for L131)?
+<% hot_water_total = sum_of_output(:hot_water) + carrier_for_application(:solar_thermal, :hot_water) %>
 
 :hot_water_demand_households_energetic:
   :expected_demand: <%= hot_water_total %>
@@ -232,9 +249,9 @@ hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-hot_water
   share: <%= sum_of_output(:hot_water) / hot_water_total %>
 
 :solar_panel_for_hot_water_households_energetic:
-  :expected_demand: <%= input_demand(:solar_thermal, :hot_water) %>
+  :expected_demand: <%= carrier_for_application(:solar_thermal, :hot_water) %>
 
 hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: 
-  share: <%= input_demand(:solar_thermal, :hot_water) / hot_water_total %>
+  share: <%= carrier_for_application(:solar_thermal, :hot_water) / hot_water_total %>
 
 
