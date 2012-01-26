@@ -1,6 +1,15 @@
+
 module ETE
   class ConverterExporter
     # Attributes we're reading from the CSV file. We discard the others
+
+    # converter_id;name;key;use_id;sector_id;energy_balance_group_id;co2_free;preset_demand;demand_expected_value;
+    # network_capacity_available_in_mw;network_capacity_used_in_mw;technical_lifetime;
+    # decrease_in_nominal_capacity_over_lifetime;construction_time;costs_per_mj;
+    # network_expansion_costs_in_euro_per_mw;ccs_investment_per_mw_input;
+    # ccs_operation_and_maintenance_cost_per_full_load_hour;typical_nominal_input_capacity;decommissioning_costs_per_mw_input;
+    # full_load_hours;residual_value_per_mw_input;operation_and_maintenance_cost_fixed_per_mw_input;
+    # wacc;operation_and_maintenance_cost_variable_per_full_load_hour;land_use_per_unit;installing_costs_per_mw_input;purchase_price_per_mw_input;economic_lifetime;part_ets;simult_sd;simult_se;simult_wd;simult_we;peak_load_units_present;availability;variability;;;;;;;;;;;;;;;;;
     ATTRIBUTES = [
       :co2_free,
       :preset_demand,
@@ -25,12 +34,15 @@ module ETE
       :purchase_price_per_mw_input,
       :economic_lifetime,
       :part_ets,
-      :simult_sdsimult_se,
+      :simult_sd,
+      :simult_se,
       :simult_wd,
       :simult_we,
       :peak_load_units_present,
       :availability,
-      :variability
+      :variability,
+      :costs_per_mj,
+      :decrease_in_nominal_capacity_over_lifetime
     ]
 
     def initialize(excel_export)
