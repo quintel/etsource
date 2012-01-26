@@ -131,6 +131,7 @@ module ETE
         ATTRIBUTES.each do |attr|
           conv_attrs[attr] = row[attr].to_f if row[attr]
         end
+        conv_attrs[:demand] = conv_attrs[:preset_demand] if conv_attrs[:preset_demand]
         out[key] = conv_attrs
       end
       out
