@@ -455,7 +455,7 @@ heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-coal_bu
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_industry_industry_energetic: {share: 0.229578573641035}
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_industry_industry_energetic: {share: 0.0335016754580342}
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_industry_industry_energetic: {share: 0.422976353686562}
-heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-biofuel_burner_industry_industry_energetic: {share: 0.0}
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-: {share: 0.0}
 
 :mv_distribution_network_energy_energetic:
   :co2_free: 0.0
@@ -1529,11 +1529,11 @@ interconnection_energy_undefined-(imported_electricity) -- s --> (imported_elect
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0606060606060606
-nuclear_iii_energy_undefined-(uranium): {conversion: 1.0}
+nuclear_iii_energy_undefined-(uranium_oxide): {conversion: 1.0}
 (loss)-nuclear_iii_energy_undefined: {conversion: 0.64}
 (steam_hot_water)-nuclear_iii_energy_undefined: {conversion: 0.0}
 (electricity)-nuclear_iii_energy_undefined: {conversion: 0.36}
-nuclear_iii_energy_undefined-(uranium) -- s --> (uranium)-uranium_distribution_energy_undefined: {share: 1.0}
+nuclear_iii_energy_undefined-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy_undefined: {share: 1.0}
 
 :wind_inland_energy_undefined:
   :co2_free: 0.0
@@ -1915,13 +1915,6 @@ bio_ethanol_distribution_transport_undefined-(bio_ethanol): {conversion: 1.0}
 bio_ethanol_distribution_transport_undefined-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_transport_energetic: {share: 0.0}
 bio_ethanol_distribution_transport_undefined-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {share: 0.0}
 
-:biofuel_distribution_energy_undefined:
-  :co2_free: 0.0
-biofuel_distribution_energy_undefined-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_distribution_energy_undefined: {conversion: 1.0}
-biofuel_distribution_energy_undefined-(biofuel) -- c --> (biofuel)-biofuel_production_energy_undefined: {share: 0.0}
-biofuel_distribution_energy_undefined-(biofuel) -- f --> (biofuel)-biofuel_import_export_energy_undefined: {share: 0.0}
-
 :lpg_distribution_transport_undefined:
   :co2_free: 0.0
 lpg_distribution_transport_undefined-(lpg): {conversion: 1.0}
@@ -1985,8 +1978,8 @@ coal_extraction_energy_undefined-(coal): {conversion: 1.0}
   :co2_free: 0.0
 uranium_import_energy_undefined-(loss): {conversion: 0.0}
 (loss)-uranium_import_energy_undefined: {conversion: 0.0}
-uranium_import_energy_undefined-(uranium): {conversion: 1.0}
-(uranium)-uranium_import_energy_undefined: {conversion: 1.0}
+uranium_import_energy_undefined-(uranium_oxide): {conversion: 1.0}
+(uranium_oxide)-uranium_import_energy_undefined: {conversion: 1.0}
 
 :compressed_gas_distribution_transport_energetic:
   :co2_free: 0.0
@@ -2075,26 +2068,12 @@ biomass_demand_industry_undefined-(biomass): {conversion: 1.0}
 (biomass)-biomass_demand_industry_undefined: {conversion: 1.0}
 biomass_demand_industry_undefined-(biomass) -- s --> (biomass)-biomass_industry_energetic: {share: 1.0}
 
-:biofuel_demand_industry_undefined:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-biofuel_demand_industry_undefined-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_demand_industry_undefined: {conversion: 1.0}
-biofuel_demand_industry_undefined-(biofuel) -- s --> (biofuel)-biofuel_industry_energetic: {share: 1.0}
-
 :gas_demand_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 5103307419.01422
 gas_demand_other_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_other_energetic: {conversion: 1.0}
 gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energetic: {share: 1.0}
-
-:biofuel_demand_other_energetic:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-biofuel_demand_other_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_demand_other_energetic: {conversion: 1.0}
-biofuel_demand_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_other_energetic: {share: 1.0}
 
 :trains_oil_demand_transport_energetic:
   :co2_free: 0.0
@@ -2146,13 +2125,6 @@ bio_diesel_production_transport_energetic-(biofuel): {conversion: 1.0}
 bio_ethanol_production_transport_energetic-(biofuel): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_production_transport_energetic: {conversion: 1.0}
 
-:biofuel_production_energy_undefined:
-  :co2_free: 0.0
-  :preset_demand: 0.0
-  :demand: 0.0
-biofuel_production_energy_undefined-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_production_energy_undefined: {conversion: 1.0}
-
 :greengas_production_energy_undefined:
   :co2_free: 0.0
   :preset_demand: 1300000000.0
@@ -2168,18 +2140,18 @@ oil_treatment_energy_undefined-(crude_oil): {conversion: 1.0}
 
 :uranium_treatment_energy_undefined:
   :co2_free: 0.0
-uranium_treatment_energy_undefined-(uranium): {conversion: 1.0}
-(uranium)-uranium_treatment_energy_undefined: {conversion: 1.0}
+uranium_treatment_energy_undefined-(uranium_oxide): {conversion: 1.0}
+(uranium_oxide)-uranium_treatment_energy_undefined: {conversion: 1.0}
 (loss)-uranium_treatment_energy_undefined: {conversion: 0.0}
-uranium_treatment_energy_undefined-(uranium) -- f --> (uranium)-uranium_import_energy_undefined: {share: 0.0}
-uranium_treatment_energy_undefined-(uranium) -- c --> (uranium)-uranium_extraction_energy_undefined: {share: 0.0}
+uranium_treatment_energy_undefined-(uranium_oxide) -- f --> (uranium_oxide)-uranium_import_energy_undefined: {share: 0.0}
+uranium_treatment_energy_undefined-(uranium_oxide) -- c --> (uranium_oxide)-uranium_extraction_energy_undefined: {share: 0.0}
 
 :uranium_distribution_energy_undefined:
   :co2_free: 0.0
-uranium_distribution_energy_undefined-(uranium): {conversion: 1.0}
-(uranium)-uranium_distribution_energy_undefined: {conversion: 1.0}
+uranium_distribution_energy_undefined-(uranium_oxide): {conversion: 1.0}
+(uranium_oxide)-uranium_distribution_energy_undefined: {conversion: 1.0}
 (loss)-uranium_distribution_energy_undefined: {conversion: 0.0}
-uranium_distribution_energy_undefined-(uranium) -- s --> (uranium)-uranium_treatment_energy_undefined: {share: 1.0}
+uranium_distribution_energy_undefined-(uranium_oxide) -- s --> (uranium_oxide)-uranium_treatment_energy_undefined: {share: 1.0}
 
 :oil_import_export_energy_undefined:
   :co2_free: 0.0
@@ -2230,11 +2202,6 @@ bio_ethanol_import_export_transport_energetic-(biofuel): {conversion: 0.0}
 bio_ethanol_import_export_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {conversion: 1.0}
 bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-foreign_bioethanol_production_neighbor_undefined: {share: 1.0}
-
-:biofuel_import_export_energy_undefined:
-  :co2_free: 0.0
-biofuel_import_export_energy_undefined-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_import_export_energy_undefined: {conversion: 1.0}
 
 :lpg_import_export_transport_undefined:
   :co2_free: 0.0
@@ -2320,14 +2287,6 @@ cv_hot_water_households_energetic-(network_gas): {conversion: 1.0}
 (hot_water)-cv_hot_water_households_energetic: {conversion: 0.97}
 cv_hot_water_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_hot_water_households_energetic: {share: 1.0}
 
-:biofuel_demand_industry_non_energetic:
-  :co2_free: 1.0
-  :preset_demand: 0.0
-  :demand: 0.0
-biofuel_demand_industry_non_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_demand_industry_non_energetic: {conversion: 1.0}
-biofuel_demand_industry_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_industry_non_energetic: {share: 1.0}
-
 :gas_demand_other_non_energetic:
   :co2_free: 1.0
   :preset_demand: 0.0
@@ -2391,14 +2350,6 @@ steam_hot_water_agriculture_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_agriculture_energetic: {conversion: 1.0}
 steam_hot_water_agriculture_energetic-(steam_hot_water) -- s --> (steam_hot_water)-local_w_production_agriculture_undefined: {share: 1.0}
 
-:biofuel_demand_other_non_energetic:
-  :co2_free: 1.0
-  :preset_demand: 0.0
-  :demand: 0.0
-biofuel_demand_other_non_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_demand_other_non_energetic: {conversion: 1.0}
-biofuel_demand_other_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_other_non_energetic: {share: 1.0}
-
 :biomass_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 483839254.729258
@@ -2453,13 +2404,6 @@ steam_hot_water_households_energetic-(steam_hot_water) -- f --> (steam_hot_water
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_gas_chp_households_energetic: {share: 0.0}
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_biomass_chp_households_energetic: {share: 0.0}
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_households_energetic: {share: 0.0}
-
-:biofuel_industry_energetic:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-biofuel_industry_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_industry_energetic: {conversion: 1.0}
-biofuel_industry_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined: {share: 1.0}
 
 :biomass_industry_energetic:
   :co2_free: 0.0
@@ -2521,13 +2465,6 @@ trains_oil_demand_transport_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-trains_oil_demand_transport_non_energetic: {conversion: 1.0}
 trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic: {share: 1.0}
 
-:biofuel_other_energetic:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-biofuel_other_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_other_energetic: {conversion: 1.0}
-biofuel_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined: {share: 1.0}
-
 :biomass_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 763974970.608673
@@ -2587,12 +2524,6 @@ gas_buildings_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_buildings_energetic: {conversion: 1.0}
 gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
 
-:biofuel_transport_energetic:
-  :co2_free: 0.0
-biofuel_transport_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_transport_energetic: {conversion: 1.0}
-biofuel_transport_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined: {share: 1.0}
-
 :coal_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
@@ -2643,13 +2574,6 @@ oil_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 gas_agriculture_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_agriculture_non_energetic: {conversion: 1.0}
 gas_agriculture_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
-
-:biofuel_industry_non_energetic:
-  :co2_free: 1.0
-  :demand_expected_value: 0.0
-biofuel_industry_non_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_industry_non_energetic: {conversion: 1.0}
-biofuel_industry_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined: {share: 1.0}
 
 :biomass_industry_non_energetic:
   :co2_free: 1.0
@@ -2712,13 +2636,6 @@ oil_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_ene
 electricity_buildings_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_buildings_energetic: {conversion: 1.0}
 electricity_buildings_energetic-(electricity) -- s --> (electricity)-local_e_production_buildings_undefined: {share: 1.0}
-
-:biofuel_other_non_energetic:
-  :co2_free: 1.0
-  :demand_expected_value: 0.0
-biofuel_other_non_energetic-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_other_non_energetic: {conversion: 1.0}
-biofuel_other_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined: {share: 1.0}
 
 :coal_other_non_energetic:
   :co2_free: 1.0
@@ -3007,8 +2924,8 @@ gasheatpump_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_he
 
 :uranium_extraction_energy_undefined:
   :co2_free: 0.0
-uranium_extraction_energy_undefined-(uranium): {conversion: 1.0}
-(uranium)-uranium_extraction_energy_undefined: {conversion: 1.0}
+uranium_extraction_energy_undefined-(uranium_oxide): {conversion: 1.0}
+(uranium_oxide)-uranium_extraction_energy_undefined: {conversion: 1.0}
 
 :greengas_import_export_energy_undefined:
   :co2_free: 0.0
@@ -3263,7 +3180,6 @@ heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-coal_bu
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_other_other_energetic: {share: 0.141416142664418}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_other_other_energetic: {share: 0.0675401607438812}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_other_other_energetic: {share: 0.533694309314487}
-heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biofuel_burner_other_other_energetic: {share: 0.0}
 
 :coal_burner_other_other_energetic:
   :co2_free: 0.0
@@ -3509,32 +3425,6 @@ gas_burner_industry_industry_energetic-(network_gas): {conversion: 1.0}
 (useable_heat)-gas_burner_industry_industry_energetic: {conversion: 0.9}
 gas_burner_industry_industry_energetic-(network_gas) -- s --> (network_gas)-gas_demand_industry_energetic: {share: 1.0}
 
-:biofuel_burner_industry_industry_energetic:
-  :co2_free: 0.0
-  :technical_lifetime: 15.0
-  :construction_time: 0.0
-  :ccs_investment_per_mw_input: 0.0
-  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
-  :typical_nominal_input_capacity: 120.481927710843
-  :decommissioning_costs_per_mw_input: 0.0
-  :full_load_hours: 2190.0
-  :residual_value_per_mw_input: 0.0
-  :operation_and_maintenance_cost_fixed_per_mw_input: 830.0
-  :wacc: 0.1
-  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
-  :land_use_per_unit: 0.0
-  :installing_costs_per_mw_input: 0.0
-  :purchase_price_per_mw_input: 49800.0
-  :economic_lifetime: 15.0
-  :part_ets: 0.0
-  :availability: 0.0
-  :variability: 0.0
-  :decrease_in_nominal_capacity_over_lifetime: 0.0
-biofuel_burner_industry_industry_energetic-(biofuel): {conversion: 1.0}
-(useable_heat)-biofuel_burner_industry_industry_energetic: {conversion: 0.83}
-(loss)-biofuel_burner_industry_industry_energetic: {conversion: 0.17}
-biofuel_burner_industry_industry_energetic-(biofuel) -- s --> (biofuel)-biofuel_demand_industry_undefined: {share: 1.0}
-
 :heat_pump_with_CHS_agri_agriculture_energetic:
   :co2_free: 0.0
   :technical_lifetime: 15.0
@@ -3705,32 +3595,6 @@ oil_boiler_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_hot_wat
 other_electric_transport_transport_energetic-(electricity): {conversion: 1.0}
 (electricity)-other_electric_transport_transport_energetic: {conversion: 1.0}
 other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic: {share: 1.0}
-
-:biofuel_burner_other_other_energetic:
-  :co2_free: 0.0
-  :technical_lifetime: 15.0
-  :construction_time: 0.0
-  :ccs_investment_per_mw_input: 0.0
-  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
-  :typical_nominal_input_capacity: 6.33986928104575
-  :decommissioning_costs_per_mw_input: 0.0
-  :full_load_hours: 2190.0
-  :residual_value_per_mw_input: 0.0
-  :operation_and_maintenance_cost_fixed_per_mw_input: 788.659793814433
-  :wacc: 0.1
-  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
-  :land_use_per_unit: 0.0
-  :installing_costs_per_mw_input: 0.0
-  :purchase_price_per_mw_input: 47319.587628866
-  :economic_lifetime: 15.0
-  :part_ets: 0.0
-  :availability: 0.0
-  :variability: 0.0
-  :decrease_in_nominal_capacity_over_lifetime: 0.0
-biofuel_burner_other_other_energetic-(biofuel): {conversion: 1.0}
-(useable_heat)-biofuel_burner_other_other_energetic: {conversion: 0.788659793814433}
-(loss)-biofuel_burner_other_other_energetic: {conversion: 0.211340206185567}
-biofuel_burner_other_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_demand_other_energetic: {share: 1.0}
 
 :unused_CHPs_heat_industry_industry_energetic:
   :co2_free: 0.0
@@ -4516,15 +4380,11 @@ gas_chp_buildings_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_e
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-coal_chp_buildings_energetic-(biomass): {conversion: 0.0}
-coal_chp_buildings_energetic-(biocoal): {conversion: 0.0}
 coal_chp_buildings_energetic-(coal): {conversion: 1.0}
 (electricity)-coal_chp_buildings_energetic: {conversion: 0.36}
 (steam_hot_water)-coal_chp_buildings_energetic: {conversion: 0.3}
 (loss)-coal_chp_buildings_energetic: {conversion: 0.34}
-coal_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
 coal_chp_buildings_energetic-(coal) -- s --> (coal)-coal_distribution_energy_undefined: {share: 1.0}
-coal_chp_buildings_energetic-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy_undefined: {share: 1.0}
 
 :biomass_chp_buildings_energetic:
   :co2_free: 0.0
@@ -5138,11 +4998,11 @@ heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0606060606060606
-nuclear_conv_energy_energetic-(uranium): {conversion: 1.0}
+nuclear_conv_energy_energetic-(uranium_oxide): {conversion: 1.0}
 (loss)-nuclear_conv_energy_energetic: {conversion: 0.68}
 (steam_hot_water)-nuclear_conv_energy_energetic: {conversion: 0.0}
 (electricity)-nuclear_conv_energy_energetic: {conversion: 0.32}
-nuclear_conv_energy_energetic-(uranium) -- s --> (uranium)-uranium_distribution_energy_undefined: {share: 1.0}
+nuclear_conv_energy_energetic-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy_undefined: {share: 1.0}
 
 :available_electricity_households_undefined:
   :co2_free: 0.0
@@ -6027,9 +5887,9 @@ lng_export_energy_undefined-(lng) -- i --> (lng)-lng_import_energy_undefined: {s
 
 :uranium_export_energy_undefined:
   :co2_free: 0.0
-uranium_export_energy_undefined-(uranium): {conversion: 1.0}
-(uranium)-uranium_export_energy_undefined: {conversion: 1.0}
-uranium_export_energy_undefined-(uranium) -- i --> (uranium)-uranium_distribution_energy_undefined: {share: 0.0}
+uranium_export_energy_undefined-(uranium_oxide): {conversion: 1.0}
+(uranium_oxide)-uranium_export_energy_undefined: {conversion: 1.0}
+uranium_export_energy_undefined-(uranium_oxide) -- i --> (uranium_oxide)-uranium_distribution_energy_undefined: {share: 0.0}
 
 :oil_export_energy_undefined:
   :co2_free: 0.0
@@ -6066,12 +5926,6 @@ gasoline_export_energy_undefined-(gasoline) -- i --> (gasoline)-gasoline_distrib
 kerosine_export_energy_undefined-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_export_energy_undefined: {conversion: 1.0}
 kerosine_export_energy_undefined-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport_undefined: {share: 0.0}
-
-:biofuel_export_energy_undefined:
-  :co2_free: 0.0
-biofuel_export_energy_undefined-(biofuel): {conversion: 1.0}
-(biofuel)-biofuel_export_energy_undefined: {conversion: 1.0}
-biofuel_export_energy_undefined-(biofuel) -- i --> (biofuel)-bio_diesel_distribution_transport_undefined: {share: 0.0}
 
 :lpg_export_energy_undefined:
   :co2_free: 0.0
