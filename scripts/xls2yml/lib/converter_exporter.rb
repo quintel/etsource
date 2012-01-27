@@ -42,7 +42,6 @@ module ETE
       :peak_load_units_present,
       :availability,
       :variability,
-      :costs_per_mj,
       :decrease_in_nominal_capacity_over_lifetime
     ]
 
