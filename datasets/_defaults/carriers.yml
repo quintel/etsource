@@ -1,9 +1,24 @@
-:default_carriers: &default_carriers
-  :network_gas:
-    :cost_per_mj: 0.0
-    :sustainable: 0.0
-    :co2_conversion_per_mj: 0.0
-    :infinite: 0.0
+:defaults:
+  :oil_price_south_africa: &oil_price_south_africa
+    # insert following line in every country dataset that has this oil_price
+    # see nl for example
+    # :crude_oil:
+    #   <<: *oil_price_south_africa
+    #   :other_attributes: ...
+    :cost_per_mj: 0.0138798
+    :kg_per_liter: 0.8484
+    :mj_per_kg: 41.0
+
+  :oil_price_arabia: &oil_price_arabia
+    :cost_per_mj: 
+
+
+  :default_carriers: &default_carriers
+    :network_gas:
+      :cost_per_mj: 0.0
+      :sustainable: 0.0
+      :co2_conversion_per_mj: 0.0
+      :infinite: 0.0
 
 # :defaults: 
 #   :default_carrier_attributes: &default_carrier_attributes
