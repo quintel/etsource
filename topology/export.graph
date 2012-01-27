@@ -150,7 +150,7 @@ heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-coal_bu
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_industry_industry_energetic
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_industry_industry_energetic
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_industry_industry_energetic
-heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-biofuel_burner_industry_industry_energetic
+heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-
 heating_demand_industry_energetic-(useable_heat)
 (useable_heat)-heating_demand_industry_energetic
 
@@ -668,12 +668,6 @@ bio_ethanol_distribution_transport_undefined-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_distribution_transport_undefined
 (loss)-bio_ethanol_distribution_transport_undefined
 
-biofuel_distribution_energy_undefined;	biofuel_distribution;	energy;	undefined;distribution primary carriers;	
-biofuel_distribution_energy_undefined-(biofuel) -- c --> (biofuel)-biofuel_production_energy_undefined
-biofuel_distribution_energy_undefined-(biofuel) -- f --> (biofuel)-biofuel_import_export_energy_undefined
-biofuel_distribution_energy_undefined-(biofuel)
-(biofuel)-biofuel_distribution_energy_undefined
-
 lpg_distribution_transport_undefined;	lpg_distribution;	transport;	undefined;distribution;	
 lpg_distribution_transport_undefined-(lpg) -- s --> (lpg)-lpg_production_transport_undefined
 lpg_distribution_transport_undefined-(lpg) -- f --> (lpg)-lpg_import_export_transport_undefined
@@ -787,20 +781,10 @@ biomass_demand_industry_undefined-(biomass) -- s --> (biomass)-biomass_industry_
 biomass_demand_industry_undefined-(biomass)
 (biomass)-biomass_demand_industry_undefined
 
-biofuel_demand_industry_undefined;	biofuel_demand;	industry;	undefined;application;	
-biofuel_demand_industry_undefined-(biofuel) -- s --> (biofuel)-biofuel_industry_energetic
-biofuel_demand_industry_undefined-(biofuel)
-(biofuel)-biofuel_demand_industry_undefined
-
 gas_demand_other_energetic;	gas_demand;	other;	energetic;application;	
 gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energetic
 gas_demand_other_energetic-(network_gas)
 (network_gas)-gas_demand_other_energetic
-
-biofuel_demand_other_energetic;	biofuel_demand;	other;	energetic;application;	
-biofuel_demand_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_other_energetic
-biofuel_demand_other_energetic-(biofuel)
-(biofuel)-biofuel_demand_other_energetic
 
 trains_oil_demand_transport_energetic;	trains_oil_demand;	transport;	energetic;technologies;	
 trains_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
@@ -839,10 +823,6 @@ bio_diesel_production_transport_energetic-(biofuel)
 bio_ethanol_production_transport_energetic;	bio_ethanol_production;	transport;	energetic;refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
 bio_ethanol_production_transport_energetic-(biofuel)
 (bio_ethanol)-bio_ethanol_production_transport_energetic
-
-biofuel_production_energy_undefined;	biofuel_production;	energy;	undefined;growth and production;	primary_energy_demand,mining_and_extraction
-biofuel_production_energy_undefined-(biofuel)
-(biofuel)-biofuel_production_energy_undefined
 
 greengas_production_energy_undefined;	greengas_production;	energy;	undefined;growth and production;	
 greengas_production_energy_undefined-(greengas)
@@ -907,10 +887,6 @@ bio_ethanol_import_export_transport_energetic-(biofuel)
 bio_ethanol_import_export_transport_energetic-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic
 
-biofuel_import_export_energy_undefined;	biofuel_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-biofuel_import_export_energy_undefined-(biofuel)
-(biofuel)-biofuel_import_export_energy_undefined
-
 lpg_import_export_transport_undefined;	lpg_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 lpg_import_export_transport_undefined-(lpg)
 (lpg)-lpg_import_export_transport_undefined
@@ -956,11 +932,6 @@ cv_hot_water_households_energetic-(network_gas)
 (loss)-cv_hot_water_households_energetic
 (hot_water)-cv_hot_water_households_energetic
 
-biofuel_demand_industry_non_energetic;	biofuel_demand;	industry;	non_energetic;application;	useful_demand,non_energetic_use
-biofuel_demand_industry_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_industry_non_energetic
-biofuel_demand_industry_non_energetic-(biofuel)
-(biofuel)-biofuel_demand_industry_non_energetic
-
 gas_demand_other_non_energetic;	gas_demand;	other;	non_energetic;application;	useful_demand,non_energetic_use
 gas_demand_other_non_energetic-(network_gas) -- s --> (network_gas)-gas_other_non_energetic
 gas_demand_other_non_energetic-(network_gas)
@@ -996,11 +967,6 @@ steam_hot_water_agriculture_energetic-(steam_hot_water) -- s --> (steam_hot_wate
 steam_hot_water_agriculture_energetic-(steam_hot_water)
 (useable_heat)-steam_hot_water_agriculture_energetic
 
-biofuel_demand_other_non_energetic;	biofuel_demand;	other;	non_energetic;application;	useful_demand,non_energetic_use
-biofuel_demand_other_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_other_non_energetic
-biofuel_demand_other_non_energetic-(biofuel)
-(biofuel)-biofuel_demand_other_non_energetic
-
 biomass_households_energetic;	biomass;	households;	energetic;final consumption;	final_demand_cbs
 biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
 biomass_households_energetic-(biomass)
@@ -1033,11 +999,6 @@ steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_households_energetic
 steam_hot_water_households_energetic-(steam_hot_water)
 (steam_hot_water)-steam_hot_water_households_energetic
-
-biofuel_industry_energetic;	biofuel;	industry;	energetic;final consumption;	final_demand_cbs
-biofuel_industry_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined
-biofuel_industry_energetic-(biofuel)
-(biofuel)-biofuel_industry_energetic
 
 biomass_industry_energetic;	biomass;	industry;	energetic;final consumption;	final_demand_cbs
 biomass_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
@@ -1074,11 +1035,6 @@ trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_t
 trains_oil_demand_transport_non_energetic-(crude_oil)
 (crude_oil)-trains_oil_demand_transport_non_energetic
 
-biofuel_other_energetic;	biofuel;	other;	energetic;final consumption;	final_demand_cbs
-biofuel_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined
-biofuel_other_energetic-(biofuel)
-(biofuel)-biofuel_other_energetic
-
 biomass_other_energetic;	biomass;	other;	energetic;final consumption;	final_demand_cbs
 biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
 biomass_other_energetic-(biomass)
@@ -1114,11 +1070,6 @@ gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_networ
 gas_buildings_energetic-(network_gas)
 (network_gas)-gas_buildings_energetic
 
-biofuel_transport_energetic;	biofuel;	transport;	energetic;final consumption;	final_demand_cbs
-biofuel_transport_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined
-biofuel_transport_energetic-(biofuel)
-(biofuel)-biofuel_transport_energetic
-
 coal_transport_energetic;	coal;	transport;	energetic;final consumption;	final_demand_cbs
 coal_transport_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined
 coal_transport_energetic-(coal)
@@ -1149,11 +1100,6 @@ gas_agriculture_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_
 gas_agriculture_non_energetic-(network_gas)
 (network_gas)-gas_agriculture_non_energetic
 
-biofuel_industry_non_energetic;	biofuel;	industry;	non_energetic;final consumption;	final_demand_cbs,non_energetic_use
-biofuel_industry_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined
-biofuel_industry_non_energetic-(biofuel)
-(biofuel)-biofuel_industry_non_energetic
-
 biomass_industry_non_energetic;	biomass;	industry;	non_energetic;final consumption;	final_demand_cbs,non_energetic_use
 biomass_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
 biomass_industry_non_energetic-(biomass)
@@ -1183,11 +1129,6 @@ electricity_buildings_energetic;	electricity;	buildings;	energetic;final consump
 electricity_buildings_energetic-(electricity) -- s --> (electricity)-local_e_production_buildings_undefined
 electricity_buildings_energetic-(electricity)
 (electricity)-electricity_buildings_energetic
-
-biofuel_other_non_energetic;	biofuel;	other;	non_energetic;final consumption;	final_demand_cbs,non_energetic_use
-biofuel_other_non_energetic-(biofuel) -- s --> (biofuel)-biofuel_distribution_energy_undefined
-biofuel_other_non_energetic-(biofuel)
-(biofuel)-biofuel_other_non_energetic
 
 coal_other_non_energetic;	coal;	other;	non_energetic;final consumption;	final_demand_cbs,non_energetic_use
 coal_other_non_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined
@@ -1429,7 +1370,6 @@ heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-coal_bu
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_other_other_energetic
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_other_other_energetic
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_other_other_energetic
-heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biofuel_burner_other_other_energetic
 heat_demand_other_other_energetic-(useable_heat)
 (useable_heat)-heat_demand_other_other_energetic
 
@@ -1490,12 +1430,6 @@ gas_burner_industry_industry_energetic-(network_gas) -- s --> (network_gas)-gas_
 gas_burner_industry_industry_energetic-(network_gas)
 (loss)-gas_burner_industry_industry_energetic
 (useable_heat)-gas_burner_industry_industry_energetic
-
-biofuel_burner_industry_industry_energetic;	biofuel_burner_industry;	industry;	energetic;technologies;	heat_production,cost_traditional_heat
-biofuel_burner_industry_industry_energetic-(biofuel) -- s --> (biofuel)-biofuel_demand_industry_undefined
-biofuel_burner_industry_industry_energetic-(biofuel)
-(useable_heat)-biofuel_burner_industry_industry_energetic
-(loss)-biofuel_burner_industry_industry_energetic
 
 heat_pump_with_CHS_agri_agriculture_energetic;	heat_pump_with_CHS_agri;	agriculture;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 heat_pump_with_CHS_agri_agriculture_energetic-(electricity) -- s --> (electricity)-electricity_agriculture_energetic
@@ -1580,12 +1514,6 @@ other_electric_transport_transport_energetic;	other_electric_transport;	transpor
 other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
 other_electric_transport_transport_energetic-(electricity)
 (electricity)-other_electric_transport_transport_energetic
-
-biofuel_burner_other_other_energetic;	biofuel_burner_other;	other;	energetic;technologies;	cost_traditional_heat
-biofuel_burner_other_other_energetic-(biofuel) -- s --> (biofuel)-biofuel_demand_other_energetic
-biofuel_burner_other_other_energetic-(biofuel)
-(useable_heat)-biofuel_burner_other_other_energetic
-(loss)-biofuel_burner_other_other_energetic
 
 unused_CHPs_heat_industry_industry_energetic;	unused_CHPs_heat_industry;	industry;	energetic;;	
 unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_industry_undefined
@@ -2628,11 +2556,6 @@ kerosine_export_energy_undefined;	kerosine_export;	energy;	undefined;;	energy_ex
 kerosine_export_energy_undefined-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport_undefined
 kerosine_export_energy_undefined-(kerosine)
 (kerosine)-kerosine_export_energy_undefined
-
-biofuel_export_energy_undefined;	biofuel_export;	energy;	undefined;;	energy_export
-biofuel_export_energy_undefined-(biofuel) -- i --> (biofuel)-bio_diesel_distribution_transport_undefined
-biofuel_export_energy_undefined-(biofuel)
-(biofuel)-biofuel_export_energy_undefined
 
 lpg_export_energy_undefined;	lpg_export;	energy;	undefined;;	energy_export
 lpg_export_energy_undefined-(lpg) -- i --> (lpg)-lpg_distribution_transport_undefined
