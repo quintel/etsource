@@ -550,8 +550,8 @@ interconnection_energy_undefined-(imported_electricity)
 (electricity)-interconnection_energy_undefined
 
 nuclear_iii_energy_undefined;	nuclear_iii;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-nuclear_iii_energy_undefined-(uranium) -- s --> (uranium)-uranium_distribution_energy_undefined
-nuclear_iii_energy_undefined-(uranium)
+nuclear_iii_energy_undefined-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy_undefined
+nuclear_iii_energy_undefined-(uranium_oxide)
 (loss)-nuclear_iii_energy_undefined
 (steam_hot_water)-nuclear_iii_energy_undefined
 (electricity)-nuclear_iii_energy_undefined
@@ -718,8 +718,8 @@ coal_extraction_energy_undefined-(coal)
 uranium_import_energy_undefined;	uranium_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 uranium_import_energy_undefined-(loss)
 (loss)-uranium_import_energy_undefined
-uranium_import_energy_undefined-(uranium)
-(uranium)-uranium_import_energy_undefined
+uranium_import_energy_undefined-(uranium_oxide)
+(uranium_oxide)-uranium_import_energy_undefined
 
 compressed_gas_distribution_transport_energetic;	compressed_gas_distribution;	transport;	energetic;distribution;	
 compressed_gas_distribution_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_production_transport_energetic
@@ -854,16 +854,16 @@ oil_treatment_energy_undefined-(crude_oil)
 (loss)-oil_treatment_energy_undefined
 
 uranium_treatment_energy_undefined;	uranium_treatment;	energy;	undefined;treatment;	
-uranium_treatment_energy_undefined-(uranium) -- f --> (uranium)-uranium_import_energy_undefined
-uranium_treatment_energy_undefined-(uranium) -- c --> (uranium)-uranium_extraction_energy_undefined
-uranium_treatment_energy_undefined-(uranium)
-(uranium)-uranium_treatment_energy_undefined
+uranium_treatment_energy_undefined-(uranium_oxide) -- f --> (uranium_oxide)-uranium_import_energy_undefined
+uranium_treatment_energy_undefined-(uranium_oxide) -- c --> (uranium_oxide)-uranium_extraction_energy_undefined
+uranium_treatment_energy_undefined-(uranium_oxide)
+(uranium_oxide)-uranium_treatment_energy_undefined
 (loss)-uranium_treatment_energy_undefined
 
 uranium_distribution_energy_undefined;	uranium_distribution;	energy;	undefined;distribution primary carriers;	
-uranium_distribution_energy_undefined-(uranium) -- s --> (uranium)-uranium_treatment_energy_undefined
-uranium_distribution_energy_undefined-(uranium)
-(uranium)-uranium_distribution_energy_undefined
+uranium_distribution_energy_undefined-(uranium_oxide) -- s --> (uranium_oxide)-uranium_treatment_energy_undefined
+uranium_distribution_energy_undefined-(uranium_oxide)
+(uranium_oxide)-uranium_distribution_energy_undefined
 (loss)-uranium_distribution_energy_undefined
 
 oil_import_export_energy_undefined;	oil_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
@@ -1312,8 +1312,8 @@ gasheatpump_households_energetic-(network_gas)
 (useable_heat)-gasheatpump_households_energetic
 
 uranium_extraction_energy_undefined;	uranium_extraction;	energy;	undefined;;	primary_energy_demand,mining_and_extraction
-uranium_extraction_energy_undefined-(uranium)
-(uranium)-uranium_extraction_energy_undefined
+uranium_extraction_energy_undefined-(uranium_oxide)
+(uranium_oxide)-uranium_extraction_energy_undefined
 
 greengas_import_export_energy_undefined;	greengas_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,biofuel_distribution,energy_import
 greengas_import_export_energy_undefined-(greengas)
@@ -1902,11 +1902,7 @@ gas_chp_buildings_energetic-(gasmix)
 (loss)-gas_chp_buildings_energetic
 
 coal_chp_buildings_energetic;	coal_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
-coal_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
 coal_chp_buildings_energetic-(coal) -- s --> (coal)-coal_distribution_energy_undefined
-coal_chp_buildings_energetic-(biocoal) -- s --> (biocoal)-biocoal_distribution_energy_undefined
-coal_chp_buildings_energetic-(biomass)
-coal_chp_buildings_energetic-(biocoal)
 coal_chp_buildings_energetic-(coal)
 (electricity)-coal_chp_buildings_energetic
 (steam_hot_water)-coal_chp_buildings_energetic
@@ -2130,8 +2126,8 @@ heat_from_steam_hot_water_households_energetic-(steam_hot_water)
 (useable_heat)-heat_from_steam_hot_water_households_energetic
 
 nuclear_conv_energy_energetic;	nuclear_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
-nuclear_conv_energy_energetic-(uranium) -- s --> (uranium)-uranium_distribution_energy_undefined
-nuclear_conv_energy_energetic-(uranium)
+nuclear_conv_energy_energetic-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy_undefined
+nuclear_conv_energy_energetic-(uranium_oxide)
 (loss)-nuclear_conv_energy_energetic
 (steam_hot_water)-nuclear_conv_energy_energetic
 (electricity)-nuclear_conv_energy_energetic
@@ -2599,9 +2595,9 @@ lng_export_energy_undefined-(lng)
 (lng)-lng_export_energy_undefined
 
 uranium_export_energy_undefined;	uranium_export;	energy;	undefined;;	energy_export
-uranium_export_energy_undefined-(uranium) -- i --> (uranium)-uranium_distribution_energy_undefined
-uranium_export_energy_undefined-(uranium)
-(uranium)-uranium_export_energy_undefined
+uranium_export_energy_undefined-(uranium_oxide) -- i --> (uranium_oxide)-uranium_distribution_energy_undefined
+uranium_export_energy_undefined-(uranium_oxide)
+(uranium_oxide)-uranium_export_energy_undefined
 
 oil_export_energy_undefined;	oil_export;	energy;	undefined;;	energy_export
 oil_export_energy_undefined-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy_undefined
