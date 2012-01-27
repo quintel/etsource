@@ -47,7 +47,6 @@ module ETE
     end
 
 
-
     # writes to <area>/time_curves.yml
     def export_time_curves(export, destination_directory)
       csv = export.csv_for(:time_curves)
@@ -59,27 +58,8 @@ module ETE
         year         = row[:year].to_i
         value        = row[:value].to_f
         out[converter_id] ||= {}
-        out[converter_id][value_type] ||= []
-        out[converter_id][value_type] << {year => value}
-      end
-      dest_file = "#{destination_directory}/time_curves.yml"
-      puts "  Saving timecurves to #{dest_file}"
-      File.open(dest_file, 'w') {|f| f.write(out.to_yaml)}
-    end
-
-    # writes to <area>/time_curves.yml
-    def export_time_curves(export, destination_directory)
-      csv = export.csv_for(:time_curves)
-      f = CSV.new(csv)
-      out = {}
-      f.parse do |row|
-        converter_id = row[:converter_id].to_i
-        value_type   = row[:value_type]
-        year         = row[:year].to_i
-        value        = row[:value].to_f
-        out[converter_id] ||= {}
-        out[converter_id][value_type] ||= []
-        out[converter_id][value_type] << {year => value}
+        out[converter_id][value_type] ||= {}
+        out[converter_id][value_type][year] = value
       end
       dest_file = "#{destination_directory}/time_curves.yml"
       puts "  Saving timecurves to #{dest_file}"
