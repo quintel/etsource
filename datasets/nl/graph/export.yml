@@ -1002,11 +1002,11 @@ heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-hea
   :availability: 0.9
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0600000000000001
-waste_incinerator_energy_energetic-(waste): {conversion: 1.0}
+waste_incinerator_energy_energetic-(waste_mix): {conversion: 1.0}
 (loss)-waste_incinerator_energy_energetic: {conversion: 0.71423}
 (steam_hot_water)-waste_incinerator_energy_energetic: {conversion: 0.0}
 (electricity)-waste_incinerator_energy_energetic: {conversion: 0.28577}
-waste_incinerator_energy_energetic-(waste) -- s --> (waste)-waste_distribution_energy_undefined: {share: 1.0}
+waste_incinerator_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy_undefined: {share: 1.0}
 
 :hv_electricity_network_energy_undefined:
   :co2_free: 0.0
@@ -3496,10 +3496,10 @@ lignite_distribution_energy_undefined-(lignite) -- s --> (lignite)-lignite_extra
 :waste_distribution_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 28046109955.927
-waste_distribution_energy_undefined-(waste): {conversion: 1.0}
-(waste)-waste_distribution_energy_undefined: {conversion: 1.0}
-waste_distribution_energy_undefined-(waste) -- s --> (waste)-biogenic_waste_distribution_energy_undefined: {share: 0.0}
-waste_distribution_energy_undefined-(waste) -- s --> (waste)-non_biogenic_waste_distribution_energy_undefined: {share: 1.0}
+waste_distribution_energy_undefined-(waste_mix): {conversion: 1.0}
+(waste_mix)-waste_distribution_energy_undefined: {conversion: 1.0}
+waste_distribution_energy_undefined-(waste_mix) -- s --> (waste_mix)-biogenic_waste_distribution_energy_undefined: {share: 0.0}
+waste_distribution_energy_undefined-(waste_mix) -- s --> (waste_mix)-non_biogenic_waste_distribution_energy_undefined: {share: 1.0}
 
 :heating_demand_with_current_insulation_households_energetic:
   :co2_free: 0.0
@@ -5498,10 +5498,10 @@ district_heater_gas_energy_energetic-(network_gas) -- s --> (network_gas)-nation
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-district_heater_waste_energy_energetic-(waste): {conversion: 1.0}
+district_heater_waste_energy_energetic-(waste_mix): {conversion: 1.0}
 (steam_hot_water)-district_heater_waste_energy_energetic: {conversion: 0.7}
 (loss)-district_heater_waste_energy_energetic: {conversion: 0.3}
-district_heater_waste_energy_energetic-(waste) -- s --> (waste)-waste_distribution_energy_undefined: {share: 1.0}
+district_heater_waste_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy_undefined: {share: 1.0}
 
 :district_heater_biomass_energy_energetic:
   :co2_free: 0.0
@@ -5950,9 +5950,9 @@ bio_oil_export_energy_undefined-(bio_oil) -- i --> (bio_oil)-bio_oil_distributio
 
 :waste_export_energy_undefined:
   :co2_free: 0.0
-waste_export_energy_undefined-(waste): {conversion: 1.0}
-(waste)-waste_export_energy_undefined: {conversion: 1.0}
-waste_export_energy_undefined-(waste) -- i --> (waste)-waste_distribution_energy_undefined: {share: 0.0}
+waste_export_energy_undefined-(waste_mix): {conversion: 1.0}
+(waste_mix)-waste_export_energy_undefined: {conversion: 1.0}
+waste_export_energy_undefined-(waste_mix) -- i --> (waste_mix)-waste_distribution_energy_undefined: {share: 0.0}
 
 :bio_diesel_export_energy_undefined:
   :co2_free: 0.0
@@ -5976,14 +5976,14 @@ algue_diesel_export_energy_undefined-(algae_diesel) -- i --> (algae_diesel)-algu
   :co2_free: 0.0
   :demand_expected_value: 0.0
 biogenic_waste_distribution_energy_undefined-(biogenic_waste): {conversion: 1.0}
-(waste)-biogenic_waste_distribution_energy_undefined: {conversion: 1.0}
+(waste_mix)-biogenic_waste_distribution_energy_undefined: {conversion: 1.0}
 biogenic_waste_distribution_energy_undefined-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy_undefined: {share: 0.0}
 biogenic_waste_distribution_energy_undefined-(biogenic_waste) -- c --> (biogenic_waste)-biogenic_waste_collection_energy_undefined: {share: 0.0}
 
 :non_biogenic_waste_distribution_energy_undefined:
   :co2_free: 0.0
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste): {conversion: 1.0}
-(waste)-non_biogenic_waste_distribution_energy_undefined: {conversion: 1.0}
+(waste_mix)-non_biogenic_waste_distribution_energy_undefined: {conversion: 1.0}
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste) -- f --> (non_biogenic_waste)-non_biogenic_waste_import_energy_undefined: {share: 0.0}
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste) -- c --> (non_biogenic_waste)-non_biogenic_waste_collection_energy_undefined: {share: 0.0}
 
