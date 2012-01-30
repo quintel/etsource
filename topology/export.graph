@@ -379,8 +379,8 @@ heat_network_industry_energetic-(steam_hot_water)
 (loss)-heat_network_industry_energetic
 
 waste_incinerator_energy_energetic;	waste_incinerator;	energy;	energetic;central power generation;	electricity_production,central_production,network_converters,cost_electricity_production
-waste_incinerator_energy_energetic-(waste) -- s --> (waste)-waste_distribution_energy_undefined
-waste_incinerator_energy_energetic-(waste)
+waste_incinerator_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy_undefined
+waste_incinerator_energy_energetic-(waste_mix)
 (loss)-waste_incinerator_energy_energetic
 (steam_hot_water)-waste_incinerator_energy_energetic
 (electricity)-waste_incinerator_energy_energetic
@@ -1453,10 +1453,10 @@ lignite_distribution_energy_undefined-(lignite)
 (lignite)-lignite_distribution_energy_undefined
 
 waste_distribution_energy_undefined;	waste_distribution;	energy;	undefined;distribution primary carriers;	
-waste_distribution_energy_undefined-(waste) -- s --> (waste)-biogenic_waste_distribution_energy_undefined
-waste_distribution_energy_undefined-(waste) -- s --> (waste)-non_biogenic_waste_distribution_energy_undefined
-waste_distribution_energy_undefined-(waste)
-(waste)-waste_distribution_energy_undefined
+waste_distribution_energy_undefined-(waste_mix) -- s --> (waste_mix)-biogenic_waste_distribution_energy_undefined
+waste_distribution_energy_undefined-(waste_mix) -- s --> (waste_mix)-non_biogenic_waste_distribution_energy_undefined
+waste_distribution_energy_undefined-(waste_mix)
+(waste_mix)-waste_distribution_energy_undefined
 
 heating_demand_with_current_insulation_households_energetic;	heating_demand_with_current_insulation;	households;	energetic;before savings;	
 heating_demand_with_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic
@@ -2306,8 +2306,8 @@ district_heater_gas_energy_energetic-(network_gas)
 (loss)-district_heater_gas_energy_energetic
 
 district_heater_waste_energy_energetic;	district_heater_waste;	energy;	energetic;central heat generation;	heat_production,central_production,cost_traditional_heat
-district_heater_waste_energy_energetic-(waste) -- s --> (waste)-waste_distribution_energy_undefined
-district_heater_waste_energy_energetic-(waste)
+district_heater_waste_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy_undefined
+district_heater_waste_energy_energetic-(waste_mix)
 (steam_hot_water)-district_heater_waste_energy_energetic
 (loss)-district_heater_waste_energy_energetic
 
@@ -2575,9 +2575,9 @@ bio_oil_export_energy_undefined-(bio_oil)
 (bio_oil)-bio_oil_export_energy_undefined
 
 waste_export_energy_undefined;	waste_export;	energy;	undefined;;	energy_export
-waste_export_energy_undefined-(waste) -- i --> (waste)-waste_distribution_energy_undefined
-waste_export_energy_undefined-(waste)
-(waste)-waste_export_energy_undefined
+waste_export_energy_undefined-(waste_mix) -- i --> (waste_mix)-waste_distribution_energy_undefined
+waste_export_energy_undefined-(waste_mix)
+(waste_mix)-waste_export_energy_undefined
 
 bio_diesel_export_energy_undefined;	bio_diesel_export;	energy;	undefined;;	energy_export
 bio_diesel_export_energy_undefined-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_transport_undefined
@@ -2598,13 +2598,13 @@ biogenic_waste_distribution_energy_undefined;	biogenic_waste_distribution;	energ
 biogenic_waste_distribution_energy_undefined-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy_undefined
 biogenic_waste_distribution_energy_undefined-(biogenic_waste) -- c --> (biogenic_waste)-biogenic_waste_collection_energy_undefined
 biogenic_waste_distribution_energy_undefined-(biogenic_waste)
-(waste)-biogenic_waste_distribution_energy_undefined
+(waste_mix)-biogenic_waste_distribution_energy_undefined
 
 non_biogenic_waste_distribution_energy_undefined;	non_biogenic_waste_distribution;	energy;	undefined;;	
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste) -- f --> (non_biogenic_waste)-non_biogenic_waste_import_energy_undefined
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste) -- c --> (non_biogenic_waste)-non_biogenic_waste_collection_energy_undefined
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste)
-(waste)-non_biogenic_waste_distribution_energy_undefined
+(waste_mix)-non_biogenic_waste_distribution_energy_undefined
 
 biogenic_waste_import_energy_undefined;	biogenic_waste_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 biogenic_waste_import_energy_undefined-(biogenic_waste)
