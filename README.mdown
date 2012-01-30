@@ -18,6 +18,19 @@ Rules and best practices
 Try to make one commit for each batch of changes you make to the files, related to one issue.
 For example, if a query is changed, try to alter all queries and inputs related to the query in a single commit.
 
+# Etsource update guide
+
+Uploading Zip files. You have to copy the zip file to the etsource directory and enter the following command in your terminal (make sure to write the correct zip file name):
+
+    $ cd your-etsource-directory
+    $ ruby scripts/xls2yml/xls2yml.rb v1426.zip datasets
+
+If you changed anything converter keys, naming, structure, in general to the topology, you have to export all countries. If you only update a country dataset with new numbers, you don't have to update all countries.
+
+After this you can commit your changes. 
+
+Adding or updating carriers, you have to do in etsource/datasets/.../carriers.yml. 
+
 
 # ETsource Form Wizards from the Bottom up
 
