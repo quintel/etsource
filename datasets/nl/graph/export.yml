@@ -772,9 +772,9 @@ lpg_cars_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport_und
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-compressed_gas_trucks_transport_energetic-(compressed_gas): {conversion: 1.0}
+compressed_gas_trucks_transport_energetic-(compressed_network_gas): {conversion: 1.0}
 (truck_kms)-compressed_gas_trucks_transport_energetic: {conversion: 0.4}
-compressed_gas_trucks_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_distribution_transport_energetic: {share: 1.0}
+compressed_gas_trucks_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_distribution_transport_energetic: {share: 1.0}
 
 :compressed_gas_cars_transport_energetic:
   :co2_free: 0.0
@@ -791,9 +791,9 @@ compressed_gas_trucks_transport_energetic-(compressed_gas) -- s --> (compressed_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-compressed_gas_cars_transport_energetic-(compressed_gas): {conversion: 1.0}
+compressed_gas_cars_transport_energetic-(compressed_network_gas): {conversion: 1.0}
 (car_kms)-compressed_gas_cars_transport_energetic: {conversion: 0.4}
-compressed_gas_cars_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_distribution_transport_energetic: {share: 1.0}
+compressed_gas_cars_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_distribution_transport_energetic: {share: 1.0}
 
 :electricity_distribution_transport_transport_energetic:
   :co2_free: 0.0
@@ -1983,9 +1983,9 @@ uranium_import_energy_undefined-(uranium_oxide): {conversion: 1.0}
 :compressed_gas_distribution_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 30000000.0
-compressed_gas_distribution_transport_energetic-(compressed_gas): {conversion: 1.0}
-(compressed_gas)-compressed_gas_distribution_transport_energetic: {conversion: 1.0}
-compressed_gas_distribution_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_production_transport_energetic: {share: 1.0}
+compressed_gas_distribution_transport_energetic-(compressed_network_gas): {conversion: 1.0}
+(compressed_network_gas)-compressed_gas_distribution_transport_energetic: {conversion: 1.0}
+compressed_gas_distribution_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_production_transport_energetic: {share: 1.0}
 
 :oil_distribution_energy_undefined:
   :co2_free: 0.0
@@ -2991,7 +2991,7 @@ greengas_transport_energetic-(greengas) -- s --> (greengas)-greengas_distributio
   :demand_expected_value: 30000000.0
 compressed_gas_production_transport_energetic-(greengas): {conversion: 0.0}
 compressed_gas_production_transport_energetic-(network_gas): {conversion: 1.0}
-(compressed_gas)-compressed_gas_production_transport_energetic: {conversion: 1.0}
+(compressed_network_gas)-compressed_gas_production_transport_energetic: {conversion: 1.0}
 compressed_gas_production_transport_energetic-(network_gas) -- s --> (network_gas)-gas_demand_transport_energetic: {share: 1.0}
 compressed_gas_production_transport_energetic-(greengas) -- s --> (greengas)-greengas_transport_energetic: {share: 1.0}
 

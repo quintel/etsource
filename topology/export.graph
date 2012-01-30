@@ -246,13 +246,13 @@ lpg_cars_transport_energetic-(lpg)
 (car_kms)-lpg_cars_transport_energetic
 
 compressed_gas_trucks_transport_energetic;	compressed_gas_trucks;	transport;	energetic;technologies;	useful_demand,cost_other
-compressed_gas_trucks_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_distribution_transport_energetic
-compressed_gas_trucks_transport_energetic-(compressed_gas)
+compressed_gas_trucks_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_distribution_transport_energetic
+compressed_gas_trucks_transport_energetic-(compressed_network_gas)
 (truck_kms)-compressed_gas_trucks_transport_energetic
 
 compressed_gas_cars_transport_energetic;	compressed_gas_cars;	transport;	energetic;technologies;	useful_demand,cost_other
-compressed_gas_cars_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_distribution_transport_energetic
-compressed_gas_cars_transport_energetic-(compressed_gas)
+compressed_gas_cars_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_distribution_transport_energetic
+compressed_gas_cars_transport_energetic-(compressed_network_gas)
 (car_kms)-compressed_gas_cars_transport_energetic
 
 electricity_distribution_transport_transport_energetic;	electricity_distribution_transport;	transport;	energetic;distribution;	
@@ -715,9 +715,9 @@ uranium_import_energy_undefined-(uranium_oxide)
 (uranium_oxide)-uranium_import_energy_undefined
 
 compressed_gas_distribution_transport_energetic;	compressed_gas_distribution;	transport;	energetic;distribution;	
-compressed_gas_distribution_transport_energetic-(compressed_gas) -- s --> (compressed_gas)-compressed_gas_production_transport_energetic
-compressed_gas_distribution_transport_energetic-(compressed_gas)
-(compressed_gas)-compressed_gas_distribution_transport_energetic
+compressed_gas_distribution_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_production_transport_energetic
+compressed_gas_distribution_transport_energetic-(compressed_network_gas)
+(compressed_network_gas)-compressed_gas_distribution_transport_energetic
 
 oil_distribution_energy_undefined;	oil_distribution;	energy;	undefined;distribution primary carriers;	
 oil_distribution_energy_undefined-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy_undefined
@@ -1309,7 +1309,7 @@ compressed_gas_production_transport_energetic-(network_gas) -- s --> (network_ga
 compressed_gas_production_transport_energetic-(greengas) -- s --> (greengas)-greengas_transport_energetic
 compressed_gas_production_transport_energetic-(greengas)
 compressed_gas_production_transport_energetic-(network_gas)
-(compressed_gas)-compressed_gas_production_transport_energetic
+(compressed_network_gas)-compressed_gas_production_transport_energetic
 
 algue_diesel_production_transport_energetic;	algue_diesel_production;	transport;	energetic;refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
 algue_diesel_production_transport_energetic-(algae_diesel)
