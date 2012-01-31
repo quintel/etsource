@@ -2,7 +2,7 @@ module ETE
   class Processor
     def initialize(opts = {})
       source_dir = opts[:source]
-      @dest_dir = "#{opts[:dest]}/datasets"
+      @etsource_dir = opts[:dest]
       @export = ExcelExport.new(source_dir)
     end
 
@@ -11,7 +11,7 @@ module ETE
         puts "Processing #{area_path}"
         # create the destination directory
         area_code = area_path.split('/')[-1]
-        destination_directory = "#{@dest_dir}/#{area_code}".gsub('//', '/')
+        destination_directory = "#{@etsource_dir}/datasets/#{area_code}".gsub('//', '/')
 
         unless File.directory?(destination_directory)
           puts "  Creating #{destination_directory}"
@@ -26,7 +26,7 @@ module ETE
       export_topology(@area_export)
     end
 
-    # writes to <area>/graph/export.yml
+    # writes to ETSOURCE/datasets/<area>/graph/export.yml
     def export_converters(export, destination_directory)
       converter_exporter = ConverterExporter.new(export)
       raw = converter_exporter.export
@@ -48,7 +48,7 @@ module ETE
     end
 
 
-    # writes to <area>/time_curves.yml
+    # writes to ETSOURCE/datasets/<area>/time_curves.yml
     def export_time_curves(export, destination_directory)
       csv = export.csv_for(:time_curves)
       f = CSV.new(csv)
@@ -67,13 +67,13 @@ module ETE
       File.open(dest_file, 'w') {|f| f.write(out.to_yaml)}
     end
 
-    # writes to /export.graph
+    # writes to ETSOURCE/topology/export.graph
     def export_topology(area_export)
       puts "Generating shared topology"
       converter_exporter = ConverterExporter.new(area_export)
       raw = converter_exporter.export
-      FileUtils.mkdir_p "#{@dest_dir}/../topology"
-      dest_file = "#{@dest_dir}/../topology/export.graph"
+      FileUtils.mkdir_p "#{@etsource_dir}/topology"
+      dest_file = "#{@etsource_dir}/topology/export.graph"
       puts "  Topology file: #{dest_file}"
       lines = []
       raw.each_pair do |key, values|
