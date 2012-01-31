@@ -132,7 +132,6 @@ module ETE
           conv_attrs[attr] = row[attr].to_f if row[attr]
         end
         conv_attrs[:demand] = conv_attrs[:preset_demand] if conv_attrs[:preset_demand]
-        conv_attrs[:excel_id] = converter_id
         out[key] = conv_attrs
       end
       out
@@ -212,8 +211,6 @@ module ETE
       out
     end
 
-    private
-
     # Most CSV files use object ids and export using the object key.
     # These methods create a fast lookup map
     #
@@ -221,6 +218,8 @@ module ETE
     def converters
       @_converters ||= build_converters
     end
+
+    private
 
     # creates a hash in the format
     # converter.id => converter.full_key (including used and sector)

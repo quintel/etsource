@@ -24,6 +24,7 @@ module ETE
       end
       # the topology is always the same, so we can reuse the last area export
       export_topology(@area_export)
+      export_excel_ids(@area_export)
     end
 
     # writes to ETSOURCE/datasets/<area>/graph/export.yml
@@ -87,6 +88,20 @@ module ETE
         lines << []
       end
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+    end
+
+    # writes to ETSOURCE/datasets/_default/graph/export.yml
+    def export_excel_ids(area_export)
+      output_file = "#{@etsource_dir}/datasets/_defaults/graph/export.yml"
+      puts "  Generating excel ids in #{output_file}"
+      converter_exporter = ConverterExporter.new(area_export)
+      raw = converter_exporter.converters
+      lines = []
+      raw.each_pair do |excel_id, key|
+        excel_id =
+        lines << "#{key}: {excel_id: #{excel_id}}"
+      end
+      File.open(output_file, 'w') {|f| f.write(lines.join("\n"))}
     end
   end
 end
