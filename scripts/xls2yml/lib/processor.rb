@@ -2,7 +2,7 @@ module ETE
   class Processor
     def initialize(opts = {})
       source_dir = opts[:source]
-      @dest_dir = opts[:dest] || 'output'
+      @dest_dir = "#{opts[:dest]}/datasets"
       @export = ExcelExport.new(source_dir)
     end
 
@@ -74,6 +74,7 @@ module ETE
       raw = converter_exporter.export
       FileUtils.mkdir_p "#{@dest_dir}/../topology"
       dest_file = "#{@dest_dir}/../topology/export.graph"
+      puts "  Topology file: #{dest_file}"
       lines = []
       raw.each_pair do |key, values|
         lines << values[:info]
