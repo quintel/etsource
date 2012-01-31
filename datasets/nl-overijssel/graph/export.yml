@@ -2,6 +2,7 @@
   :co2_free: 0.0
   :preset_demand: 5904873687.44764
   :demand: 5904873687.44764
+  :excel_id: 1
 hot_water_demand_households_energetic-(hot_water): {conversion: 1.0}
 (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0}
 hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: {share: 0.0115723615694936}
@@ -9,6 +10,7 @@ hot_water_demand_households_energetic-(hot_water) -- f --> (hot_water)-hot_water
 
 :cooling_demand_households_energetic:
   :co2_free: 0.0
+  :excel_id: 2
 cooling_demand_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_demand_households_energetic: {conversion: 1.0}
 cooling_demand_households_energetic-(cooling) -- f --> (cooling)-airco_households_energetic: {share: 0.0}
@@ -19,6 +21,7 @@ cooling_demand_households_energetic-(cooling) -- s --> (cooling)-heatpump_ts_coo
 :heating_demand_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 19210667178.5616
+  :excel_id: 4
 heating_demand_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_demand_households_energetic: {conversion: 1.0}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heat_pump_with_chs_households_energetic: {share: 0.0}
@@ -38,6 +41,7 @@ heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gas_f
 :led_lighting_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 6
 led_lighting_households_energetic-(electricity): {conversion: 1.0}
 (loss)-led_lighting_households_energetic: {conversion: 0.5}
 (light)-led_lighting_households_energetic: {conversion: 0.5}
@@ -46,6 +50,7 @@ led_lighting_households_energetic-(electricity) -- s --> (electricity)-electrici
 :efficient_lighting_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 10345894.9104895
+  :excel_id: 7
 efficient_lighting_households_energetic-(electricity): {conversion: 1.0}
 (loss)-efficient_lighting_households_energetic: {conversion: 0.75}
 (light)-efficient_lighting_households_energetic: {conversion: 0.25}
@@ -54,6 +59,7 @@ efficient_lighting_households_energetic-(electricity) -- s --> (electricity)-ele
 :traditional_lighting_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 982860016.496506
+  :excel_id: 8
 traditional_lighting_households_energetic-(electricity): {conversion: 1.0}
 (loss)-traditional_lighting_households_energetic: {conversion: 0.95}
 (light)-traditional_lighting_households_energetic: {conversion: 0.05}
@@ -64,6 +70,7 @@ traditional_lighting_households_energetic-(electricity) -- s --> (electricity)-e
   :preset_demand: 247527952.998628
   :demand_expected_value: 247527952.998628
   :demand: 247527952.998628
+  :excel_id: 10
 other_appliances_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-other_appliances_households_energetic: {conversion: 1.0}
 (loss)-other_appliances_households_energetic: {conversion: 0.0}
@@ -91,6 +98,7 @@ other_appliances_households_energetic-(electricity) -- s --> (electricity)-elect
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 11
 solar_panel_for_hot_water_households_energetic-(solar_thermal): {conversion: 1.0}
 (loss)-solar_panel_for_hot_water_households_energetic: {conversion: 0.0}
 (hot_water)-solar_panel_for_hot_water_households_energetic: {conversion: 1.0}
@@ -123,6 +131,7 @@ solar_panel_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar_t
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 12
 heatpump_boiler_households_energetic-(electricity): {conversion: 0.210526315789474}
 heatpump_boiler_households_energetic-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-heatpump_boiler_households_energetic: {conversion: 0.0}
@@ -157,6 +166,7 @@ heatpump_boiler_households_energetic-(electricity) -- s --> (electricity)-electr
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 13
 electric_boiler_households_energetic-(electricity): {conversion: 1.0}
 (loss)-electric_boiler_households_energetic: {conversion: 0.05}
 (hot_water)-electric_boiler_households_energetic: {conversion: 0.95}
@@ -189,6 +199,7 @@ electric_boiler_households_energetic-(electricity) -- s --> (electricity)-electr
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 14
 heat_pump_with_chs_households_energetic-(electricity): {conversion: 0.111111111111111}
 heat_pump_with_chs_households_energetic-(ambient_heat): {conversion: 0.888888888888889}
 (loss)-heat_pump_with_chs_households_energetic: {conversion: 0.0}
@@ -224,6 +235,7 @@ heat_pump_with_chs_households_energetic-(electricity) -- s --> (electricity)-ele
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 15
 airco_households_energetic-(electricity): {conversion: 0.25}
 airco_households_energetic-(ambient_cold): {conversion: 0.75}
 (loss)-airco_households_energetic: {conversion: 0.0}
@@ -258,6 +270,7 @@ airco_households_energetic-(electricity) -- s --> (electricity)-electricity_for_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 16
 electric_heater_households_energetic-(electricity): {conversion: 1.0}
 (loss)-electric_heater_households_energetic: {conversion: 0.0}
 (useable_heat)-electric_heater_households_energetic: {conversion: 1.0}
@@ -285,6 +298,7 @@ electric_heater_households_energetic-(electricity) -- s --> (electricity)-electr
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 17
 solar_panel_for_heating_households_energetic-(solar_thermal): {conversion: 1.0}
 (loss)-solar_panel_for_heating_households_energetic: {conversion: 0.0}
 (useable_heat)-solar_panel_for_heating_households_energetic: {conversion: 1.0}
@@ -312,6 +326,7 @@ solar_panel_for_heating_households_energetic-(solar_thermal) -- s --> (solar_the
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 19
 central_heating_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-central_heating_households_energetic: {conversion: -0.0669999999999999}
 (useable_heat)-central_heating_households_energetic: {conversion: 1.067}
@@ -343,6 +358,7 @@ central_heating_households_energetic-(network_gas) -- s --> (network_gas)-gas_fo
   :availability: 0.98
   :variability: 1.0
   :decrease_in_nominal_capacity_over_lifetime: 0.4
+  :excel_id: 20
 solar_pv_central_production_energy_energetic-(solar_radiation): {conversion: 1.0}
 (loss)-solar_pv_central_production_energy_energetic: {conversion: 0.84}
 (electricity)-solar_pv_central_production_energy_energetic: {conversion: 0.16}
@@ -365,6 +381,7 @@ solar_pv_central_production_energy_energetic-(solar_radiation) -- s --> (solar_r
   :peak_load_units_present: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 21
 lv_electricity_network_energy_energetic-(electricity): {conversion: 1.0}
 (electricity)-lv_electricity_network_energy_energetic: {conversion: 1.0}
 lv_electricity_network_energy_energetic-(electricity) -- f --> (electricity)-lv_mv_transformer_energy_undefined: {share: 0.0}
@@ -394,6 +411,7 @@ lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-loc
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 22
 city_heating_network_energy_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-city_heating_network_energy_energetic: {conversion: 1.0}
 (loss)-city_heating_network_energy_energetic: {conversion: 0.0}
@@ -426,6 +444,7 @@ city_heating_network_energy_energetic-(steam_hot_water) -- s --> (steam_hot_wate
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.02
+  :excel_id: 23
 gas_conv_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
 gas_conv_energy_energetic-(crude_oil): {conversion: 0.0}
 gas_conv_energy_energetic-(bio_oil): {conversion: 0.0}
@@ -440,6 +459,7 @@ gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energ
   :co2_free: 0.0
   :preset_demand: 3179340285.13971
   :demand: 3179340285.13971
+  :excel_id: 24
 electricity_demand_industry_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_demand_industry_energetic: {conversion: 1.0}
 electricity_demand_industry_energetic-(electricity) -- s --> (electricity)-electricity_industry_energetic: {share: 1.0}
@@ -448,6 +468,7 @@ electricity_demand_industry_energetic-(electricity) -- s --> (electricity)-elect
   :co2_free: 0.0
   :preset_demand: 9669401406.06759
   :demand: 9669401406.06759
+  :excel_id: 25
 heating_demand_industry_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_demand_industry_energetic: {conversion: 1.0}
 heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_industry_energetic: {share: 0.261469558414111}
@@ -473,6 +494,7 @@ heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-gas_bur
   :peak_load_units_present: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 26
 mv_distribution_network_energy_energetic-(electricity): {conversion: 1.0}
 (electricity)-mv_distribution_network_energy_energetic: {conversion: 1.0}
 mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-electricity_industry_non_energetic: {share: 0.0}
@@ -508,6 +530,7 @@ mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lo
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 27
 small_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-small_chp_industry_energetic: {conversion: 0.2752}
 (steam_hot_water)-small_chp_industry_energetic: {conversion: 0.4729}
@@ -541,6 +564,7 @@ small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-en
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
+  :excel_id: 28
 large_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
 large_chp_industry_energetic-(crude_oil): {conversion: 0.0}
 large_chp_industry_energetic-(bio_oil): {conversion: 0.0}
@@ -578,6 +602,7 @@ large_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-en
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 29
 biomass_chp_industry_energetic-(biomass): {conversion: 1.0}
 (loss)-biomass_chp_industry_energetic: {conversion: 0.142}
 (steam_hot_water)-biomass_chp_industry_energetic: {conversion: 0.432}
@@ -586,6 +611,7 @@ biomass_chp_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution
 
 :trains_diesel_demand_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 31
 trains_diesel_demand_transport_energetic-(diesel): {conversion: 1.0}
 (loss)-trains_diesel_demand_transport_energetic: {conversion: 1.0}
 trains_diesel_demand_transport_energetic-(diesel) -- s --> (diesel)-diesel_transport_energetic: {share: 1.0}
@@ -594,6 +620,7 @@ trains_diesel_demand_transport_energetic-(diesel) -- s --> (diesel)-diesel_trans
   :co2_free: 0.0
   :preset_demand: 2717414665.96613
   :demand: 2717414665.96613
+  :excel_id: 32
 truck_kms_demand_transport_energetic-(truck_kms): {conversion: 1.0}
 (loss)-truck_kms_demand_transport_energetic: {conversion: 1.0}
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-electric_trucks_transport_energetic: {share: 0.0}
@@ -606,6 +633,7 @@ truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-lpg_trucks
   :co2_free: 0.0
   :preset_demand: 7265232438.69925
   :demand: 7265232438.69925
+  :excel_id: 33
 cars_kms_demand_transport_energetic-(car_kms): {conversion: 1.0}
 (loss)-cars_kms_demand_transport_energetic: {conversion: 1.0}
 cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-electric_cars_transport_energetic: {share: 0.0}
@@ -634,6 +662,7 @@ cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-compressed_gas_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 34
 electric_trucks_transport_energetic-(electricity): {conversion: 1.0}
 (truck_kms)-electric_trucks_transport_energetic: {conversion: 1.18203309692671}
 electric_trucks_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic: {share: 1.0}
@@ -653,6 +682,7 @@ electric_trucks_transport_energetic-(electricity) -- s --> (electricity)-electri
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 35
 diesel_trucks_transport_energetic-(diesel): {conversion: 1.0}
 (truck_kms)-diesel_trucks_transport_energetic: {conversion: 0.409500409500409}
 diesel_trucks_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport_undefined: {share: 1.0}
@@ -672,6 +702,7 @@ diesel_trucks_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 36
 gasoline_trucks_transport_energetic-(gasoline): {conversion: 1.0}
 (truck_kms)-gasoline_trucks_transport_energetic: {conversion: 0.349167091001673}
 gasoline_trucks_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport_undefined: {share: 1.0}
@@ -696,6 +727,7 @@ gasoline_trucks_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_dist
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 37
 electric_cars_transport_energetic-(electricity): {conversion: 1.0}
 (car_kms)-electric_cars_transport_energetic: {conversion: 1.18203309692671}
 electric_cars_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic: {share: 1.0}
@@ -715,6 +747,7 @@ electric_cars_transport_energetic-(electricity) -- s --> (electricity)-electrici
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 38
 diesel_cars_transport_energetic-(diesel): {conversion: 1.0}
 (car_kms)-diesel_cars_transport_energetic: {conversion: 0.409500409500409}
 diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport_undefined: {share: 1.0}
@@ -734,6 +767,7 @@ diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_t
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 39
 gasoline_cars_transport_energetic-(gasoline): {conversion: 1.0}
 (car_kms)-gasoline_cars_transport_energetic: {conversion: 0.349167091001673}
 gasoline_cars_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport_undefined: {share: 1.0}
@@ -753,6 +787,7 @@ gasoline_cars_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distri
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 40
 lpg_cars_transport_energetic-(lpg): {conversion: 1.0}
 (car_kms)-lpg_cars_transport_energetic: {conversion: 0.448979591836735}
 lpg_cars_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport_undefined: {share: 1.0}
@@ -772,6 +807,7 @@ lpg_cars_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport_und
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 41
 compressed_gas_trucks_transport_energetic-(compressed_network_gas): {conversion: 1.0}
 (truck_kms)-compressed_gas_trucks_transport_energetic: {conversion: 0.4}
 compressed_gas_trucks_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_distribution_transport_energetic: {share: 1.0}
@@ -791,12 +827,14 @@ compressed_gas_trucks_transport_energetic-(compressed_network_gas) -- s --> (com
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 42
 compressed_gas_cars_transport_energetic-(compressed_network_gas): {conversion: 1.0}
 (car_kms)-compressed_gas_cars_transport_energetic: {conversion: 0.4}
 compressed_gas_cars_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_distribution_transport_energetic: {share: 1.0}
 
 :electricity_distribution_transport_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 43
 electricity_distribution_transport_transport_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_distribution_transport_transport_energetic: {conversion: 1.0}
 electricity_distribution_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_transport_energetic: {share: 1.0}
@@ -805,6 +843,7 @@ electricity_distribution_transport_transport_energetic-(electricity) -- s --> (e
   :co2_free: 1.0
   :preset_demand: 192380979.4512
   :demand: 192380979.4512
+  :excel_id: 44
 oil_demand_energy_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_demand_energy_non_energetic: {conversion: 1.0}
 oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic: {share: 1.0}
@@ -812,6 +851,7 @@ oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_n
 :ships_oil_demand_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1843208637.84058
+  :excel_id: 46
 ships_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
 (not_defined)-ships_oil_demand_transport_energetic: {conversion: 1.0}
 ships_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic: {share: 1.0}
@@ -819,6 +859,7 @@ ships_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transp
 :ships_diesel_demand_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 47
 ships_diesel_demand_transport_energetic-(biodiesel): {conversion: 1.0}
 (not_defined)-ships_diesel_demand_transport_energetic: {conversion: 1.0}
 ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport_undefined: {share: 1.0}
@@ -826,6 +867,7 @@ ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_die
 :trains_electricity_demand_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 388439153.678256
+  :excel_id: 48
 trains_electricity_demand_transport_energetic-(electricity): {conversion: 1.0}
 (loss)-trains_electricity_demand_transport_energetic: {conversion: 0.1}
 (not_defined)-trains_electricity_demand_transport_energetic: {conversion: 0.9}
@@ -835,6 +877,7 @@ trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricit
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 49
 cooling_demand_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_demand_buildings_energetic: {conversion: 1.0}
 cooling_demand_buildings_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_buildings_energetic: {share: 0.0}
@@ -844,12 +887,14 @@ cooling_demand_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_befo
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 50
 heating_other_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_other_buildings_energetic: {conversion: 1.0}
 heating_other_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {share: 1.0}
 
 :electricity_other_buildings_energetic:
   :co2_free: 0.0
+  :excel_id: 51
 electricity_other_buildings_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_other_buildings_energetic: {conversion: 1.0}
 electricity_other_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
@@ -881,6 +926,7 @@ electricity_other_buildings_energetic-(electricity) -- s --> (electricity)-elect
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 52
 heatpump_households_energetic-(electricity): {conversion: 0.210526315789474}
 heatpump_households_energetic-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-heatpump_households_energetic: {conversion: 0.0}
@@ -890,6 +936,7 @@ heatpump_households_energetic-(electricity) -- s --> (electricity)-electricity_f
 
 :city_cooling_network_buildings_energetic:
   :co2_free: 0.0
+  :excel_id: 55
 city_cooling_network_buildings_energetic-(electricity): {conversion: 0.1}
 city_cooling_network_buildings_energetic-(ambient_cold): {conversion: 0.9}
 (cooling)-city_cooling_network_buildings_energetic: {conversion: 1.0}
@@ -900,6 +947,7 @@ city_cooling_network_buildings_energetic-(electricity) -- s --> (electricity)-el
   :co2_free: 0.0
   :preset_demand: 5651240590.03678
   :demand: 5651240590.03678
+  :excel_id: 56
 heating_demand_agriculture_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_demand_agriculture_energetic: {conversion: 1.0}
 heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_agriculture_energetic: {share: 0.261469790689715}
@@ -912,6 +960,7 @@ heating_demand_agriculture_energetic-(useable_heat) -- s --> (useable_heat)-geot
 :gas_demand_agriculture_energetic:
   :co2_free: 0.0
   :demand_expected_value: 4124554936.02555
+  :excel_id: 57
 gas_demand_agriculture_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_agriculture_energetic: {conversion: 1.0}
 gas_demand_agriculture_energetic-(network_gas) -- s --> (network_gas)-gas_agriculture_energetic: {share: 1.0}
@@ -920,12 +969,14 @@ gas_demand_agriculture_energetic-(network_gas) -- s --> (network_gas)-gas_agricu
   :co2_free: 0.0
   :preset_demand: 797471394.699912
   :demand: 797471394.699912
+  :excel_id: 58
 electricity_demand_agriculture_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_demand_agriculture_energetic: {conversion: 1.0}
 electricity_demand_agriculture_energetic-(electricity) -- s --> (electricity)-electricity_agriculture_energetic: {share: 1.0}
 
 :trains_coal_demand_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 61
 trains_coal_demand_transport_energetic-(coal): {conversion: 1.0}
 (loss)-trains_coal_demand_transport_energetic: {conversion: 0.7}
 (not_defined)-trains_coal_demand_transport_energetic: {conversion: 0.3}
@@ -935,12 +986,14 @@ trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-coal_transport_ene
   :co2_free: 0.0
   :preset_demand: 6080719384.58682
   :demand: 6080719384.58682
+  :excel_id: 62
 electricity_demand_other_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_demand_other_energetic: {conversion: 1.0}
 electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electricity_other_energetic: {share: 1.0}
 
 :heat_network_industry_energetic:
   :co2_free: 0.0
+  :excel_id: 63
 heat_network_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_industry_energetic: {conversion: 0.983964531964923}
 (loss)-heat_network_industry_energetic: {conversion: 0.0160354680350772}
@@ -1002,6 +1055,7 @@ heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-hea
   :availability: 0.9
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0600000000000001
+  :excel_id: 64
 waste_incinerator_energy_energetic-(waste_mix): {conversion: 1.0}
 (loss)-waste_incinerator_energy_energetic: {conversion: 0.75}
 (steam_hot_water)-waste_incinerator_energy_energetic: {conversion: 0.0}
@@ -1021,6 +1075,7 @@ waste_incinerator_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distri
   :economic_lifetime: 40.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 65
 hv_electricity_network_energy_undefined-(electricity): {conversion: 1.0}
 (electricity)-hv_electricity_network_energy_undefined: {conversion: 0.930165567042623}
 (loss)-hv_electricity_network_energy_undefined: {conversion: 0.069834432957377}
@@ -1086,6 +1141,7 @@ hv_electricity_network_energy_undefined-(electricity) -- c --> (electricity)-gas
   :availability: 0.88
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.02
+  :excel_id: 66
 coal_pwd_energy_undefined-(biomass): {conversion: 0.0}
 coal_pwd_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_pwd_energy_undefined-(coal): {conversion: 1.0}
@@ -1123,6 +1179,7 @@ coal_pwd_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_biomas
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0376766091051806
+  :excel_id: 67
 coal_pwd_ccs_energy_undefined-(biomass): {conversion: 0.0}
 coal_pwd_ccs_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_pwd_ccs_energy_undefined-(coal): {conversion: 1.0}
@@ -1160,6 +1217,7 @@ coal_pwd_ccs_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_bi
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0249999999999999
+  :excel_id: 68
 coal_conv_energy_undefined-(biomass): {conversion: 0.0}
 coal_conv_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_conv_energy_undefined-(coal): {conversion: 1.0}
@@ -1197,6 +1255,7 @@ coal_conv_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_bioma
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0249999999999999
+  :excel_id: 69
 coal_lignite_energy_undefined-(biomass): {conversion: 0.0}
 coal_lignite_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_lignite_energy_undefined-(lignite): {conversion: 1.0}
@@ -1234,6 +1293,7 @@ coal_lignite_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_bi
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0606060606060606
+  :excel_id: 70
 coal_oxyfuel_ccs_energy_undefined-(biomass): {conversion: 0.0}
 coal_oxyfuel_ccs_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_oxyfuel_ccs_energy_undefined-(lignite): {conversion: 1.0}
@@ -1271,6 +1331,7 @@ coal_oxyfuel_ccs_energy_undefined-(torrified_biomass_pellets) -- s --> (torrifie
   :availability: 0.9
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
+  :excel_id: 71
 coal_igcc_energy_undefined-(biomass): {conversion: 0.0}
 coal_igcc_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_igcc_energy_undefined-(coal): {conversion: 1.0}
@@ -1308,6 +1369,7 @@ coal_igcc_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_bioma
   :availability: 0.87
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0378563712366726
+  :excel_id: 72
 coal_igcc_ccs_energy_undefined-(biomass): {conversion: 0.0}
 coal_igcc_ccs_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_igcc_ccs_energy_undefined-(coal): {conversion: 1.0}
@@ -1345,6 +1407,7 @@ coal_igcc_ccs_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_b
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
+  :excel_id: 73
 oil_plant_energy_undefined-(crude_oil): {conversion: 1.0}
 (loss)-oil_plant_energy_undefined: {conversion: 0.55}
 (steam_hot_water)-oil_plant_energy_undefined: {conversion: 0.0}
@@ -1378,6 +1441,7 @@ oil_plant_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_ene
   :availability: 0.9
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
+  :excel_id: 74
 gas_ccgt_energy_undefined-(gas_power_fuelmix): {conversion: 1.0}
 gas_ccgt_energy_undefined-(crude_oil): {conversion: 0.0}
 gas_ccgt_energy_undefined-(bio_oil): {conversion: 0.0}
@@ -1415,6 +1479,7 @@ gas_ccgt_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energ
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.02
+  :excel_id: 75
 coal_chp_energy_undefined-(biomass): {conversion: 0.0}
 coal_chp_energy_undefined-(torrified_biomass_pellets): {conversion: 0.0}
 coal_chp_energy_undefined-(coal): {conversion: 1.0}
@@ -1447,6 +1512,7 @@ coal_chp_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_biomas
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 76
 heatpump_boiler_using_city_heat_households_energetic-(steam_hot_water): {conversion: 1.0}
 (hot_water)-heatpump_boiler_using_city_heat_households_energetic: {conversion: 1.0}
 (loss)-heatpump_boiler_using_city_heat_households_energetic: {conversion: 0.0}
@@ -1479,6 +1545,7 @@ heatpump_boiler_using_city_heat_households_energetic-(steam_hot_water) -- s --> 
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 77
 bio_oil_chp_industry_energetic-(bio_oil): {conversion: 1.0}
 (loss)-bio_oil_chp_industry_energetic: {conversion: 0.16}
 (steam_hot_water)-bio_oil_chp_industry_energetic: {conversion: 0.38}
@@ -1497,6 +1564,7 @@ bio_oil_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution
   :economic_lifetime: 40.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 78
 interconnection_energy_undefined-(imported_electricity): {conversion: 1.0}
 (electricity)-interconnection_energy_undefined: {conversion: 1.0}
 interconnection_energy_undefined-(imported_electricity) -- s --> (imported_electricity)-electricity_import_export_energy_undefined: {share: 1.0}
@@ -1528,6 +1596,7 @@ interconnection_energy_undefined-(imported_electricity) -- s --> (imported_elect
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0606060606060606
+  :excel_id: 79
 nuclear_iii_energy_undefined-(uranium_oxide): {conversion: 1.0}
 (loss)-nuclear_iii_energy_undefined: {conversion: 0.64}
 (steam_hot_water)-nuclear_iii_energy_undefined: {conversion: 0.0}
@@ -1561,6 +1630,7 @@ nuclear_iii_energy_undefined-(uranium_oxide) -- s --> (uranium_oxide)-uranium_di
   :availability: 0.95
   :variability: 0.7
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 80
 wind_inland_energy_undefined-(wind): {conversion: 1.0}
 (loss)-wind_inland_energy_undefined: {conversion: 0.03}
 (electricity)-wind_inland_energy_undefined: {conversion: 0.97}
@@ -1593,6 +1663,7 @@ wind_inland_energy_undefined-(wind) -- s --> (wind)-air_environment_energetic: {
   :availability: 0.95
   :variability: 0.7
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 81
 wind_coastal_energy_undefined-(wind): {conversion: 1.0}
 (loss)-wind_coastal_energy_undefined: {conversion: 0.03}
 (electricity)-wind_coastal_energy_undefined: {conversion: 0.97}
@@ -1625,6 +1696,7 @@ wind_coastal_energy_undefined-(wind) -- s --> (wind)-air_environment_energetic: 
   :availability: 0.92
   :variability: 0.7
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 82
 wind_offshore_energy_undefined-(wind): {conversion: 1.0}
 (loss)-wind_offshore_energy_undefined: {conversion: 0.03}
 (electricity)-wind_offshore_energy_undefined: {conversion: 0.97}
@@ -1657,6 +1729,7 @@ wind_offshore_energy_undefined-(wind) -- s --> (wind)-air_environment_energetic:
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.02
+  :excel_id: 83
 co_firing_coal_energy_undefined-(biomass): {conversion: 1.0}
 (loss)-co_firing_coal_energy_undefined: {conversion: 0.67}
 (steam_hot_water)-co_firing_coal_energy_undefined: {conversion: 0.0}
@@ -1690,6 +1763,7 @@ co_firing_coal_energy_undefined-(biomass) -- s --> (biomass)-biomass_distributio
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
+  :excel_id: 84
 co_firing_gas_energy_undefined-(biomass): {conversion: 1.0}
 (loss)-co_firing_gas_energy_undefined: {conversion: 0.42}
 (steam_hot_water)-co_firing_gas_energy_undefined: {conversion: 0.0}
@@ -1723,6 +1797,7 @@ co_firing_gas_energy_undefined-(biomass) -- s --> (biomass)-biomass_distribution
   :availability: 0.99
   :variability: 0.015
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 85
 solar_csp_energy_undefined-(solar_radiation): {conversion: 1.0}
 (loss)-solar_csp_energy_undefined: {conversion: 0.65}
 (electricity)-solar_csp_energy_undefined: {conversion: 0.35}
@@ -1750,6 +1825,7 @@ solar_csp_energy_undefined-(solar_radiation) -- s --> (solar_radiation)-sun_envi
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 86
 geothermal_heat_energy_undefined-(ambient_heat): {conversion: 1.0}
 (steam_hot_water)-geothermal_heat_energy_undefined: {conversion: 1.0}
 geothermal_heat_energy_undefined-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic: {share: 1.0}
@@ -1781,6 +1857,7 @@ geothermal_heat_energy_undefined-(ambient_heat) -- s --> (ambient_heat)-air_envi
   :availability: 0.98
   :variability: 0.015
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 87
 hydro_river_energy_undefined-(water): {conversion: 1.0}
 (loss)-hydro_river_energy_undefined: {conversion: 0.02}
 (electricity)-hydro_river_energy_undefined: {conversion: 0.98}
@@ -1813,6 +1890,7 @@ hydro_river_energy_undefined-(water) -- s --> (water)-water_environment_energeti
   :availability: 0.98
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 88
 hydro_mount_energy_undefined-(water): {conversion: 1.0}
 (loss)-hydro_mount_energy_undefined: {conversion: 0.02}
 (electricity)-hydro_mount_energy_undefined: {conversion: 0.98}
@@ -1845,6 +1923,7 @@ hydro_mount_energy_undefined-(water) -- s --> (water)-water_environment_energeti
   :availability: 0.95
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 90
 geothermal_electricity_energy_undefined-(ambient_heat): {conversion: 1.0}
 (loss)-geothermal_electricity_energy_undefined: {conversion: 0.75}
 (electricity)-geothermal_electricity_energy_undefined: {conversion: 0.25}
@@ -1853,6 +1932,7 @@ geothermal_electricity_energy_undefined-(ambient_heat) -- s --> (ambient_heat)-a
 :national_gas_network_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 60115295838.9662
+  :excel_id: 91
 national_gas_network_energy_undefined-(greengas): {conversion: 0.0}
 (network_gas)-national_gas_network_energy_undefined: {conversion: 0.998926892391304}
 national_gas_network_energy_undefined-(natural_gas): {conversion: 1.0}
@@ -1862,6 +1942,7 @@ national_gas_network_energy_undefined-(greengas) -- s --> (greengas)-greengas_di
 
 :gas_treatment_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 92
 gas_treatment_energy_undefined-(natural_gas): {conversion: 1.0}
 (natural_gas)-gas_treatment_energy_undefined: {conversion: 0.987012987012987}
 (loss)-gas_treatment_energy_undefined: {conversion: 0.012987012987013}
@@ -1872,6 +1953,7 @@ gas_treatment_energy_undefined-(natural_gas) -- f --> (natural_gas)-gas_import_e
 :diesel_distribution_transport_undefined:
   :co2_free: 0.0
   :demand_expected_value: 15048826276.8087
+  :excel_id: 93
 diesel_distribution_transport_undefined-(diesel): {conversion: 1.0}
 (diesel)-diesel_distribution_transport_undefined: {conversion: 1.0}
 (loss)-diesel_distribution_transport_undefined: {conversion: 0.0}
@@ -1881,6 +1963,7 @@ diesel_distribution_transport_undefined-(diesel) -- s --> (diesel)-diesel_mixer_
 :gasoline_distribution_transport_undefined:
   :co2_free: 0.0
   :demand_expected_value: 9866629889.21185
+  :excel_id: 94
 gasoline_distribution_transport_undefined-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_distribution_transport_undefined: {conversion: 1.0}
 (loss)-gasoline_distribution_transport_undefined: {conversion: 0.0}
@@ -1890,6 +1973,7 @@ gasoline_distribution_transport_undefined-(gasoline) -- s --> (gasoline)-gasolin
 :kerosine_distribution_transport_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 95
 kerosine_distribution_transport_undefined-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_distribution_transport_undefined: {conversion: 1.0}
 (loss)-kerosine_distribution_transport_undefined: {conversion: 0.0}
@@ -1899,6 +1983,7 @@ kerosine_distribution_transport_undefined-(kerosine) -- f --> (kerosine)-kerosin
 :bio_diesel_distribution_transport_undefined:
   :co2_free: 0.0
   :demand_expected_value: 636521382.934281
+  :excel_id: 96
 bio_diesel_distribution_transport_undefined-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_distribution_transport_undefined: {conversion: 1.0}
 (loss)-bio_diesel_distribution_transport_undefined: {conversion: 0.0}
@@ -1908,6 +1993,7 @@ bio_diesel_distribution_transport_undefined-(biodiesel) -- f --> (biodiesel)-bio
 :bio_ethanol_distribution_transport_undefined:
   :co2_free: 0.0
   :demand_expected_value: 252314782.4244
+  :excel_id: 97
 bio_ethanol_distribution_transport_undefined-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_distribution_transport_undefined: {conversion: 1.0}
 (loss)-bio_ethanol_distribution_transport_undefined: {conversion: 0.0}
@@ -1916,6 +2002,7 @@ bio_ethanol_distribution_transport_undefined-(bio_ethanol) -- f --> (bio_ethanol
 
 :lpg_distribution_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 99
 lpg_distribution_transport_undefined-(lpg): {conversion: 1.0}
 (lpg)-lpg_distribution_transport_undefined: {conversion: 1.0}
 lpg_distribution_transport_undefined-(lpg) -- s --> (lpg)-lpg_production_transport_undefined: {share: 1.0}
@@ -1925,6 +2012,7 @@ lpg_distribution_transport_undefined-(lpg) -- f --> (lpg)-lpg_import_export_tran
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 100
 bio_oil_production_energy_undefined-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_production_energy_undefined: {conversion: 1.0}
 
@@ -1932,6 +2020,7 @@ bio_oil_production_energy_undefined-(bio_oil): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 979628311.216818
   :demand: 979628311.216818
+  :excel_id: 101
 biomass_residuals_energy_undefined-(biomass): {conversion: 1.0}
 (biomass)-biomass_residuals_energy_undefined: {conversion: 1.0}
 
@@ -1939,11 +2028,13 @@ biomass_residuals_energy_undefined-(biomass): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 191000000000.0
   :demand: 191000000000.0
+  :excel_id: 102
 gas_extraction_energy_undefined-(natural_gas): {conversion: 1.0}
 (natural_gas)-gas_extraction_energy_undefined: {conversion: 1.0}
 
 :bio_oil_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 103
 bio_oil_distribution_energy_undefined-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_distribution_energy_undefined: {conversion: 1.0}
 bio_oil_distribution_energy_undefined-(bio_oil) -- c --> (bio_oil)-bio_oil_production_energy_undefined: {share: 0.0}
@@ -1953,6 +2044,7 @@ bio_oil_distribution_energy_undefined-(bio_oil) -- f --> (bio_oil)-bio_oil_impor
   :co2_free: 0.0
   :preset_demand: 6581872288.46375
   :demand: 6581872288.46375
+  :excel_id: 104
 oil_extraction_energy_undefined-(loss): {conversion: 0.0}
 (loss)-oil_extraction_energy_undefined: {conversion: 0.0}
 oil_extraction_energy_undefined-(crude_oil): {conversion: 1.0}
@@ -1960,6 +2052,7 @@ oil_extraction_energy_undefined-(crude_oil): {conversion: 1.0}
 
 :lng_import_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 105
 lng_import_energy_undefined-(loss): {conversion: 0.0}
 (loss)-lng_import_energy_undefined: {conversion: 0.0}
 lng_import_energy_undefined-(natural_gas): {conversion: 1.0}
@@ -1969,12 +2062,14 @@ lng_import_energy_undefined-(natural_gas): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 106
 coal_extraction_energy_undefined-(coal): {conversion: 1.0}
 (coal)-coal_extraction_energy_undefined: {conversion: 1.0}
 (loss)-coal_extraction_energy_undefined: {conversion: 0.0}
 
 :uranium_import_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 107
 uranium_import_energy_undefined-(loss): {conversion: 0.0}
 (loss)-uranium_import_energy_undefined: {conversion: 0.0}
 uranium_import_energy_undefined-(uranium_oxide): {conversion: 1.0}
@@ -1983,6 +2078,7 @@ uranium_import_energy_undefined-(uranium_oxide): {conversion: 1.0}
 :compressed_gas_distribution_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1717687.31652857
+  :excel_id: 108
 compressed_gas_distribution_transport_energetic-(compressed_network_gas): {conversion: 1.0}
 (compressed_network_gas)-compressed_gas_distribution_transport_energetic: {conversion: 1.0}
 compressed_gas_distribution_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_production_transport_energetic: {share: 1.0}
@@ -1990,6 +2086,7 @@ compressed_gas_distribution_transport_energetic-(compressed_network_gas) -- s --
 :oil_distribution_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 46289117809.6917
+  :excel_id: 109
 oil_distribution_energy_undefined-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_distribution_energy_undefined: {conversion: 0.999941661748497}
 (loss)-oil_distribution_energy_undefined: {conversion: 5.83382515028006e-05}
@@ -1998,6 +2095,7 @@ oil_distribution_energy_undefined-(crude_oil) -- f --> (crude_oil)-oil_import_ex
 
 :biomass_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 111
 biomass_distribution_energy_undefined-(loss): {conversion: 0.0}
 (loss)-biomass_distribution_energy_undefined: {conversion: 0.0}
 biomass_distribution_energy_undefined-(biomass): {conversion: 1.0}
@@ -2007,6 +2105,7 @@ biomass_distribution_energy_undefined-(biomass) -- f --> (biomass)-biomass_impor
 
 :greengas_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 112
 greengas_distribution_energy_undefined-(loss): {conversion: 0.0}
 (loss)-greengas_distribution_energy_undefined: {conversion: 0.0}
 greengas_distribution_energy_undefined-(greengas): {conversion: 1.0}
@@ -2016,6 +2115,7 @@ greengas_distribution_energy_undefined-(greengas) -- c --> (greengas)-biogas_upg
 
 :coal_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 113
 coal_distribution_energy_undefined-(loss): {conversion: 0.0}
 (loss)-coal_distribution_energy_undefined: {conversion: 0.0}
 coal_distribution_energy_undefined-(coal): {conversion: 1.0}
@@ -2026,6 +2126,7 @@ coal_distribution_energy_undefined-(coal) -- f --> (coal)-coal_import_export_ene
 :coal_demand_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 23218305.3581108
+  :excel_id: 114
 coal_demand_other_energetic-(coal): {conversion: 1.0}
 (coal)-coal_demand_other_energetic: {conversion: 1.0}
 coal_demand_other_energetic-(coal) -- s --> (coal)-coal_other_energetic: {share: 1.0}
@@ -2033,6 +2134,7 @@ coal_demand_other_energetic-(coal) -- s --> (coal)-coal_other_energetic: {share:
 :oil_demand_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1875954642.73405
+  :excel_id: 115
 oil_demand_other_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_demand_other_energetic: {conversion: 1.0}
 oil_demand_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_other_energetic: {share: 1.0}
@@ -2040,6 +2142,7 @@ oil_demand_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_other_energetic:
 :oil_demand_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2770278442.53714
+  :excel_id: 116
 oil_demand_industry_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_demand_industry_energetic: {conversion: 1.0}
 oil_demand_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_industry_energetic: {share: 1.0}
@@ -2047,6 +2150,7 @@ oil_demand_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_industry_ener
 :gas_demand_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 4503573744.62151
+  :excel_id: 117
 gas_demand_industry_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_industry_energetic: {conversion: 1.0}
 gas_demand_industry_energetic-(network_gas) -- s --> (network_gas)-gas_industry_energetic: {share: 1.0}
@@ -2056,6 +2160,7 @@ gas_demand_industry_energetic-(network_gas) -- s --> (network_gas)-gas_industry_
   :preset_demand: 1573144992.5394
   :demand_expected_value: 1573144992.5394
   :demand: 1573144992.5394
+  :excel_id: 119
 coal_demand_industry_non_energetic-(coal): {conversion: 1.0}
 (coal)-coal_demand_industry_non_energetic: {conversion: 1.0}
 coal_demand_industry_non_energetic-(coal) -- s --> (coal)-coal_industry_non_energetic: {share: 1.0}
@@ -2063,6 +2168,7 @@ coal_demand_industry_non_energetic-(coal) -- s --> (coal)-coal_industry_non_ener
 :biomass_demand_industry_undefined:
   :co2_free: 0.0
   :demand_expected_value: 394931797.290225
+  :excel_id: 120
 biomass_demand_industry_undefined-(biomass): {conversion: 1.0}
 (biomass)-biomass_demand_industry_undefined: {conversion: 1.0}
 biomass_demand_industry_undefined-(biomass) -- s --> (biomass)-biomass_industry_energetic: {share: 1.0}
@@ -2070,6 +2176,7 @@ biomass_demand_industry_undefined-(biomass) -- s --> (biomass)-biomass_industry_
 :gas_demand_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 6203876019.47645
+  :excel_id: 123
 gas_demand_other_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_other_energetic: {conversion: 1.0}
 gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energetic: {share: 1.0}
@@ -2077,6 +2184,7 @@ gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energe
 :trains_oil_demand_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 87245208.8577876
+  :excel_id: 125
 trains_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
 (loss)-trains_oil_demand_transport_energetic: {conversion: 0.7}
 (not_defined)-trains_oil_demand_transport_energetic: {conversion: 0.3}
@@ -2084,6 +2192,7 @@ trains_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_trans
 
 :lpg_production_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 126
 lpg_production_transport_undefined-(crude_oil): {conversion: 1.0}
 (loss)-lpg_production_transport_undefined: {conversion: 0.00560000000000005}
 (lpg)-lpg_production_transport_undefined: {conversion: 0.9944}
@@ -2091,6 +2200,7 @@ lpg_production_transport_undefined-(crude_oil) -- s --> (crude_oil)-oil_transpor
 
 :diesel_production_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 127
 diesel_production_transport_undefined-(crude_oil): {conversion: 1.0}
 (loss)-diesel_production_transport_undefined: {conversion: 0.00560000000000005}
 (diesel)-diesel_production_transport_undefined: {conversion: 0.9944}
@@ -2098,6 +2208,7 @@ diesel_production_transport_undefined-(crude_oil) -- s --> (crude_oil)-oil_trans
 
 :gasoline_production_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 128
 gasoline_production_transport_undefined-(crude_oil): {conversion: 1.0}
 (loss)-gasoline_production_transport_undefined: {conversion: 0.00560000000000005}
 (gasoline)-gasoline_production_transport_undefined: {conversion: 0.9944}
@@ -2105,6 +2216,7 @@ gasoline_production_transport_undefined-(crude_oil) -- s --> (crude_oil)-oil_tra
 
 :kerosine_production_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 129
 kerosine_production_transport_undefined-(crude_oil): {conversion: 1.0}
 (loss)-kerosine_production_transport_undefined: {conversion: 0.0}
 (kerosine)-kerosine_production_transport_undefined: {conversion: 1.0}
@@ -2114,6 +2226,7 @@ kerosine_production_transport_undefined-(crude_oil) -- s --> (crude_oil)-oil_tra
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 130
 bio_diesel_production_transport_energetic-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_production_transport_energetic: {conversion: 1.0}
 
@@ -2121,6 +2234,7 @@ bio_diesel_production_transport_energetic-(biodiesel): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 131
 bio_ethanol_production_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_production_transport_energetic: {conversion: 1.0}
 
@@ -2128,17 +2242,20 @@ bio_ethanol_production_transport_energetic-(bio_ethanol): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 514294089.517379
   :demand: 514294089.517379
+  :excel_id: 133
 greengas_production_energy_undefined-(greengas): {conversion: 1.0}
 (greengas)-greengas_production_energy_undefined: {conversion: 1.0}
 
 :oil_treatment_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 134
 oil_treatment_energy_undefined-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_treatment_energy_undefined: {conversion: 1.0}
 (loss)-oil_treatment_energy_undefined: {conversion: 0.0}
 
 :uranium_treatment_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 136
 uranium_treatment_energy_undefined-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-uranium_treatment_energy_undefined: {conversion: 1.0}
 (loss)-uranium_treatment_energy_undefined: {conversion: 0.0}
@@ -2147,6 +2264,7 @@ uranium_treatment_energy_undefined-(uranium_oxide) -- c --> (uranium_oxide)-uran
 
 :uranium_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 137
 uranium_distribution_energy_undefined-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-uranium_distribution_energy_undefined: {conversion: 1.0}
 (loss)-uranium_distribution_energy_undefined: {conversion: 0.0}
@@ -2154,59 +2272,70 @@ uranium_distribution_energy_undefined-(uranium_oxide) -- s --> (uranium_oxide)-u
 
 :oil_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 138
 oil_import_export_energy_undefined-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_import_export_energy_undefined: {conversion: 1.0}
 
 :gas_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 139
 gas_import_export_energy_undefined-(natural_gas): {conversion: 1.0}
 (natural_gas)-gas_import_export_energy_undefined: {conversion: 1.0}
 
 :biomass_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 140
 biomass_import_export_energy_undefined-(biomass): {conversion: 1.0}
 (biomass)-biomass_import_export_energy_undefined: {conversion: 1.0}
 
 :planes_kerosine_demand_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 141
 planes_kerosine_demand_transport_undefined-(kerosine): {conversion: 1.0}
 (loss)-planes_kerosine_demand_transport_undefined: {conversion: 1.0}
 planes_kerosine_demand_transport_undefined-(kerosine) -- s --> (kerosine)-kerosine_transport_energetic: {share: 1.0}
 
 :diesel_import_export_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 142
 diesel_import_export_transport_undefined-(diesel): {conversion: 1.0}
 (diesel)-diesel_import_export_transport_undefined: {conversion: 1.0}
 
 :gasoline_import_export_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 143
 gasoline_import_export_transport_undefined-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_import_export_transport_undefined: {conversion: 1.0}
 
 :kerosine_import_export_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 144
 kerosine_import_export_transport_undefined-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_import_export_transport_undefined: {conversion: 1.0}
 
 :bio_diesel_import_export_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 145
 bio_diesel_import_export_transport_energetic-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_import_export_transport_energetic: {conversion: 1.0}
 bio_diesel_import_export_transport_energetic-(biodiesel) -- s --> (biodiesel)-foreign_bio_diesel_production_neighbor_undefined: {share: 1.0}
 
 :bio_ethanol_import_export_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 146
 bio_ethanol_import_export_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {conversion: 1.0}
 bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-foreign_bioethanol_production_neighbor_undefined: {share: 1.0}
 
 :lpg_import_export_transport_undefined:
   :co2_free: 0.0
+  :excel_id: 148
 lpg_import_export_transport_undefined-(lpg): {conversion: 1.0}
 (lpg)-lpg_import_export_transport_undefined: {conversion: 1.0}
 
 :planes_oil_demand_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 149
 planes_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
 (not_defined)-planes_oil_demand_transport_energetic: {conversion: 1.0}
 planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic: {share: 1.0}
@@ -2215,6 +2344,7 @@ planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_trans
   :co2_free: 1.0
   :preset_demand: 249828965.653272
   :demand: 249828965.653272
+  :excel_id: 150
 coal_demand_other_non_energetic-(coal): {conversion: 1.0}
 (coal)-coal_demand_other_non_energetic: {conversion: 1.0}
 coal_demand_other_non_energetic-(coal) -- s --> (coal)-coal_other_non_energetic: {share: 1.0}
@@ -2223,6 +2353,7 @@ coal_demand_other_non_energetic-(coal) -- s --> (coal)-coal_other_non_energetic:
   :co2_free: 1.0
   :preset_demand: 757381120.781574
   :demand: 757381120.781574
+  :excel_id: 151
 oil_demand_other_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_demand_other_non_energetic: {conversion: 1.0}
 oil_demand_other_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_other_non_energetic: {share: 1.0}
@@ -2231,6 +2362,7 @@ oil_demand_other_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_other_non_en
   :co2_free: 1.0
   :preset_demand: 12229194747.0242
   :demand: 12229194747.0242
+  :excel_id: 152
 oil_demand_industry_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_demand_industry_non_energetic: {conversion: 1.0}
 oil_demand_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_industry_non_energetic: {share: 1.0}
@@ -2239,12 +2371,14 @@ oil_demand_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_industry_
   :co2_free: 1.0
   :preset_demand: 2162646521.96127
   :demand: 2162646521.96127
+  :excel_id: 153
 gas_demand_industry_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_industry_non_energetic: {conversion: 1.0}
 gas_demand_industry_non_energetic-(network_gas) -- s --> (network_gas)-gas_industry_non_energetic: {share: 1.0}
 
 :coal_demand_transport_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 155
 coal_demand_transport_transport_energetic-(coal): {conversion: 1.0}
 (coal)-coal_demand_transport_transport_energetic: {conversion: 1.0}
 coal_demand_transport_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic: {share: 1.0}
@@ -2253,6 +2387,7 @@ coal_demand_transport_transport_energetic-(coal) -- s --> (coal)-coal_transport_
   :co2_free: 1.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 156
 biomass_demand_industry_non_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_demand_industry_non_energetic: {conversion: 1.0}
 biomass_demand_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_industry_non_energetic: {share: 1.0}
@@ -2279,6 +2414,7 @@ biomass_demand_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_indus
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 157
 cv_hot_water_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-cv_hot_water_households_energetic: {conversion: -0.0669999999999999}
 (hot_water)-cv_hot_water_households_energetic: {conversion: 1.067}
@@ -2288,6 +2424,7 @@ cv_hot_water_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_h
   :co2_free: 1.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 159
 gas_demand_other_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_other_non_energetic: {conversion: 1.0}
 gas_demand_other_non_energetic-(network_gas) -- s --> (network_gas)-gas_other_non_energetic: {share: 1.0}
@@ -2295,6 +2432,7 @@ gas_demand_other_non_energetic-(network_gas) -- s --> (network_gas)-gas_other_no
 :coal_demand_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 590817968.746176
+  :excel_id: 160
 coal_demand_industry_energetic-(coal): {conversion: 1.0}
 (coal)-coal_demand_industry_energetic: {conversion: 1.0}
 coal_demand_industry_energetic-(coal) -- s --> (coal)-coal_industry_energetic: {share: 1.0}
@@ -2303,6 +2441,7 @@ coal_demand_industry_energetic-(coal) -- s --> (coal)-coal_industry_energetic: {
   :co2_free: 1.0
   :preset_demand: 751160278.446008
   :demand: 751160278.446008
+  :excel_id: 161
 electricity_demand_industry_non_energetic-(electricity): {conversion: 1.0}
 (loss)-electricity_demand_industry_non_energetic: {conversion: 1.0}
 electricity_demand_industry_non_energetic-(electricity) -- s --> (electricity)-electricity_industry_non_energetic: {share: 1.0}
@@ -2322,6 +2461,7 @@ electricity_demand_industry_non_energetic-(electricity) -- s --> (electricity)-e
   :availability: 0.0
   :variability: 0.08
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 162
 electricity_agriculture_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_agriculture_energetic: {conversion: 1.0}
 electricity_agriculture_energetic-(electricity) -- s --> (electricity)-local_e_production_agriculture_undefined: {share: 1.0}
@@ -2329,6 +2469,7 @@ electricity_agriculture_energetic-(electricity) -- s --> (electricity)-local_e_p
 :gas_agriculture_energetic:
   :co2_free: 0.0
   :demand_expected_value: 4124554936.02555
+  :excel_id: 163
 gas_agriculture_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_agriculture_energetic: {conversion: 1.0}
 gas_agriculture_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2336,6 +2477,7 @@ gas_agriculture_energetic-(network_gas) -- s --> (network_gas)-national_gas_netw
 :oil_agriculture_energetic:
   :co2_free: 0.0
   :demand_expected_value: 585185725.225694
+  :excel_id: 164
 oil_agriculture_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_agriculture_energetic: {conversion: 1.0}
 oil_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2343,6 +2485,7 @@ oil_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_ener
 :steam_hot_water_agriculture_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1477628694.21414
+  :excel_id: 165
 steam_hot_water_agriculture_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_agriculture_energetic: {conversion: 1.0}
 steam_hot_water_agriculture_energetic-(steam_hot_water) -- s --> (steam_hot_water)-local_w_production_agriculture_undefined: {share: 1.0}
@@ -2350,6 +2493,7 @@ steam_hot_water_agriculture_energetic-(steam_hot_water) -- s --> (steam_hot_wate
 :biomass_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1030760832.04623
+  :excel_id: 167
 biomass_households_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_households_energetic: {conversion: 1.0}
 biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
@@ -2357,6 +2501,7 @@ biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_e
 :coal_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 13743477.7606164
+  :excel_id: 168
 coal_households_energetic-(coal): {conversion: 1.0}
 (coal)-coal_households_energetic: {conversion: 1.0}
 coal_households_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -2374,6 +2519,7 @@ coal_households_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefin
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.08
+  :excel_id: 169
 electricity_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_households_energetic: {conversion: 1.0}
 electricity_households_energetic-(electricity) -- s --> (electricity)-available_electricity_households_undefined: {share: 1.0}
@@ -2381,6 +2527,7 @@ electricity_households_energetic-(electricity) -- s --> (electricity)-available_
 :gas_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 21353241396.6698
+  :excel_id: 170
 gas_households_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_households_energetic: {conversion: 1.0}
 gas_households_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2388,6 +2535,7 @@ gas_households_energetic-(network_gas) -- s --> (network_gas)-national_gas_netwo
 :oil_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 262500425.227774
+  :excel_id: 172
 oil_households_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_households_energetic: {conversion: 1.0}
 oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2395,6 +2543,7 @@ oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energ
 :steam_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1390839949.37438
+  :excel_id: 173
 steam_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_households_energetic: {conversion: 1.0}
 steam_hot_water_households_energetic-(steam_hot_water) -- f --> (steam_hot_water)-city_heating_network_energy_energetic: {share: 0.0}
@@ -2405,6 +2554,7 @@ steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water
 :biomass_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 394931797.290225
+  :excel_id: 175
 biomass_industry_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_industry_energetic: {conversion: 1.0}
 biomass_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
@@ -2412,6 +2562,7 @@ biomass_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_ene
 :coal_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 590817968.746176
+  :excel_id: 176
 coal_industry_energetic-(coal): {conversion: 1.0}
 (coal)-coal_industry_energetic: {conversion: 1.0}
 coal_industry_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -2429,6 +2580,7 @@ coal_industry_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.08
+  :excel_id: 177
 electricity_industry_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_industry_energetic: {conversion: 1.0}
 electricity_industry_energetic-(electricity) -- s --> (electricity)-local_e_production_industry_undefined: {share: 1.0}
@@ -2436,6 +2588,7 @@ electricity_industry_energetic-(electricity) -- s --> (electricity)-local_e_prod
 :gas_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 4503573744.62151
+  :excel_id: 178
 gas_industry_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_industry_energetic: {conversion: 1.0}
 gas_industry_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2443,6 +2596,7 @@ gas_industry_energetic-(network_gas) -- s --> (network_gas)-national_gas_network
 :oil_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2770278442.53714
+  :excel_id: 180
 oil_industry_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_industry_energetic: {conversion: 1.0}
 oil_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2450,6 +2604,7 @@ oil_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_
 :steam_hot_water_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2528254115.77328
+  :excel_id: 181
 steam_hot_water_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_industry_energetic: {conversion: 1.0}
 steam_hot_water_industry_energetic-(steam_hot_water) -- s --> (steam_hot_water)-local_w_production_industry_undefined: {share: 1.0}
@@ -2458,6 +2613,7 @@ steam_hot_water_industry_energetic-(steam_hot_water) -- s --> (steam_hot_water)-
   :co2_free: 1.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 182
 trains_oil_demand_transport_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-trains_oil_demand_transport_non_energetic: {conversion: 1.0}
 trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic: {share: 1.0}
@@ -2465,6 +2621,7 @@ trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_t
 :biomass_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 928732214.324431
+  :excel_id: 184
 biomass_other_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_other_energetic: {conversion: 1.0}
 biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
@@ -2472,6 +2629,7 @@ biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
 :coal_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 23218305.3581108
+  :excel_id: 185
 coal_other_energetic-(coal): {conversion: 1.0}
 (coal)-coal_other_energetic: {conversion: 1.0}
 coal_other_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -2489,6 +2647,7 @@ coal_other_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.08
+  :excel_id: 186
 electricity_other_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_other_energetic: {conversion: 1.0}
 electricity_other_energetic-(electricity) -- s --> (electricity)-local_e_production_other_undefined: {share: 1.0}
@@ -2496,6 +2655,7 @@ electricity_other_energetic-(electricity) -- s --> (electricity)-local_e_product
 :gas_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 6203876019.47645
+  :excel_id: 187
 gas_other_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_other_energetic: {conversion: 1.0}
 gas_other_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2503,6 +2663,7 @@ gas_other_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_en
 :oil_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1875954642.73405
+  :excel_id: 188
 oil_other_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_other_energetic: {conversion: 1.0}
 oil_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2510,6 +2671,7 @@ oil_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_und
 :steam_hot_water_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2673804303.81607
+  :excel_id: 189
 steam_hot_water_other_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_other_energetic: {conversion: 1.0}
 steam_hot_water_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-decentral_heat_other_undefined: {share: 1.0}
@@ -2517,6 +2679,7 @@ steam_hot_water_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-dec
 :gas_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 190
 gas_buildings_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_buildings_energetic: {conversion: 1.0}
 gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2524,6 +2687,7 @@ gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_networ
 :coal_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 192
 coal_transport_energetic-(coal): {conversion: 1.0}
 (coal)-coal_transport_energetic: {conversion: 1.0}
 coal_transport_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -2541,18 +2705,21 @@ coal_transport_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefine
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.08
+  :excel_id: 193
 electricity_transport_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_transport_energetic: {conversion: 1.0}
 electricity_transport_energetic-(electricity) -- s --> (electricity)-lv_electricity_network_energy_energetic: {share: 1.0}
 
 :diesel_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 194
 diesel_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-diesel_transport_energetic: {conversion: 1.0}
 diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport_undefined: {share: 1.0}
 
 :kerosine_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 195
 kerosine_transport_energetic-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_transport_energetic: {conversion: 1.0}
 kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport_undefined: {share: 1.0}
@@ -2560,6 +2727,7 @@ kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distributio
 :oil_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 27613541300.5134
+  :excel_id: 196
 oil_transport_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_transport_energetic: {conversion: 1.0}
 oil_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2568,6 +2736,7 @@ oil_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
   :co2_free: 1.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 197
 gas_agriculture_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_agriculture_non_energetic: {conversion: 1.0}
 gas_agriculture_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2575,6 +2744,7 @@ gas_agriculture_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_
 :biomass_industry_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 0.0
+  :excel_id: 200
 biomass_industry_non_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_industry_non_energetic: {conversion: 1.0}
 biomass_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
@@ -2582,6 +2752,7 @@ biomass_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_distribution
 :coal_industry_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 1573144992.5394
+  :excel_id: 201
 coal_industry_non_energetic-(coal): {conversion: 1.0}
 (coal)-coal_industry_non_energetic: {conversion: 1.0}
 coal_industry_non_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -2599,6 +2770,7 @@ coal_industry_non_energetic-(coal) -- s --> (coal)-cokes_production_energy_undef
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.08
+  :excel_id: 202
 electricity_industry_non_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_industry_non_energetic: {conversion: 1.0}
 electricity_industry_non_energetic-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
@@ -2606,6 +2778,7 @@ electricity_industry_non_energetic-(electricity) -- f --> (electricity)-mv_distr
 :gas_industry_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 2162646521.96127
+  :excel_id: 203
 gas_industry_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_industry_non_energetic: {conversion: 1.0}
 gas_industry_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2613,6 +2786,7 @@ gas_industry_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_net
 :oil_industry_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 12229194747.0242
+  :excel_id: 205
 oil_industry_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_industry_non_energetic: {conversion: 1.0}
 oil_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2630,6 +2804,7 @@ oil_industry_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_ene
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.08
+  :excel_id: 206
 electricity_buildings_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_buildings_energetic: {conversion: 1.0}
 electricity_buildings_energetic-(electricity) -- s --> (electricity)-local_e_production_buildings_undefined: {share: 1.0}
@@ -2637,6 +2812,7 @@ electricity_buildings_energetic-(electricity) -- s --> (electricity)-local_e_pro
 :coal_other_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 249828965.653272
+  :excel_id: 208
 coal_other_non_energetic-(coal): {conversion: 1.0}
 (coal)-coal_other_non_energetic: {conversion: 1.0}
 coal_other_non_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -2644,6 +2820,7 @@ coal_other_non_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefine
 :gas_other_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 0.0
+  :excel_id: 209
 gas_other_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_other_non_energetic: {conversion: 1.0}
 gas_other_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2651,6 +2828,7 @@ gas_other_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_networ
 :oil_other_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 757381120.781574
+  :excel_id: 210
 oil_other_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_other_non_energetic: {conversion: 1.0}
 oil_other_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2658,6 +2836,7 @@ oil_other_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 :oil_transport_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 192380979.4512
+  :excel_id: 211
 oil_transport_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_transport_non_energetic: {conversion: 1.0}
 oil_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2684,6 +2863,7 @@ oil_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_en
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 212
 heater_on_biomass_households_energetic-(biomass): {conversion: 1.0}
 (loss)-heater_on_biomass_households_energetic: {conversion: 0.18}
 (useable_heat)-heater_on_biomass_households_energetic: {conversion: 0.82}
@@ -2711,6 +2891,7 @@ heater_on_biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_for_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 213
 heater_on_coal_households_energetic-(coal): {conversion: 1.0}
 (loss)-heater_on_coal_households_energetic: {conversion: 0.2}
 (useable_heat)-heater_on_coal_households_energetic: {conversion: 0.8}
@@ -2738,6 +2919,7 @@ heater_on_coal_households_energetic-(coal) -- s --> (coal)-coal_for_heating_hous
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 215
 heater_on_oil_households_energetic-(crude_oil): {conversion: 1.0}
 (loss)-heater_on_oil_households_energetic: {conversion: 0.15}
 (useable_heat)-heater_on_oil_households_energetic: {conversion: 0.85}
@@ -2746,6 +2928,7 @@ heater_on_oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_heat
 :gas_demand_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1717687.31652857
+  :excel_id: 216
 gas_demand_transport_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_demand_transport_energetic: {conversion: 1.0}
 gas_demand_transport_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2754,6 +2937,7 @@ gas_demand_transport_energetic-(network_gas) -- s --> (network_gas)-national_gas
   :co2_free: 0.0
   :preset_demand: 51729474.5524477
   :demand: 51729474.5524477
+  :excel_id: 217
 effective_lighting_demand_households_energetic-(light): {conversion: 1.0}
 (loss)-effective_lighting_demand_households_energetic: {conversion: 1.0}
 effective_lighting_demand_households_energetic-(light) -- s --> (light)-led_lighting_households_energetic: {share: 0.0}
@@ -2763,6 +2947,7 @@ effective_lighting_demand_households_energetic-(light) -- s --> (light)-traditio
 :oil_demand_agriculture_energetic:
   :co2_free: 0.0
   :demand_expected_value: 585185725.225694
+  :excel_id: 218
 oil_demand_agriculture_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_demand_agriculture_energetic: {conversion: 1.0}
 oil_demand_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_agriculture_energetic: {share: 1.0}
@@ -2770,6 +2955,7 @@ oil_demand_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_agricultur
 :biomass_demand_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 928732214.324431
+  :excel_id: 220
 biomass_demand_other_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_demand_other_energetic: {conversion: 1.0}
 biomass_demand_other_energetic-(biomass) -- s --> (biomass)-biomass_other_energetic: {share: 1.0}
@@ -2777,6 +2963,7 @@ biomass_demand_other_energetic-(biomass) -- s --> (biomass)-biomass_other_energe
 :grid_losses_electricity_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 588992958.219334
+  :excel_id: 223
 grid_losses_electricity_energy_undefined-(loss): {conversion: 1.0}
 (electricity)-grid_losses_electricity_energy_undefined: {conversion: 1.0}
 grid_losses_electricity_energy_undefined-(loss) -- d --> (loss)-hv_electricity_network_energy_undefined: {share: 0.0}
@@ -2784,6 +2971,7 @@ grid_losses_electricity_energy_undefined-(loss) -- d --> (loss)-hv_electricity_n
 :grid_losses_oil_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 2700426.19662456
+  :excel_id: 224
 grid_losses_oil_energy_undefined-(loss): {conversion: 1.0}
 (loss)-grid_losses_oil_energy_undefined: {conversion: 1.0}
 grid_losses_oil_energy_undefined-(loss) -- d --> (loss)-oil_distribution_energy_undefined: {share: 0.0}
@@ -2791,6 +2979,7 @@ grid_losses_oil_energy_undefined-(loss) -- d --> (loss)-oil_distribution_energy_
 :grid_losses_gas_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 64510181.3638089
+  :excel_id: 225
 grid_losses_gas_energy_undefined-(loss): {conversion: 1.0}
 (loss)-grid_losses_gas_energy_undefined: {conversion: 1.0}
 grid_losses_gas_energy_undefined-(loss) -- d --> (loss)-national_gas_network_energy_undefined: {share: 0.0}
@@ -2798,6 +2987,7 @@ grid_losses_gas_energy_undefined-(loss) -- d --> (loss)-national_gas_network_ene
 :grid_losses_heat_network_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 127820173.306896
+  :excel_id: 226
 grid_losses_heat_network_energy_undefined-(loss): {conversion: 1.0}
 (loss)-grid_losses_heat_network_energy_undefined: {conversion: 1.0}
 grid_losses_heat_network_energy_undefined-(loss) -- d --> (loss)-heat_network_industry_energetic: {share: 0.0}
@@ -2817,6 +3007,7 @@ grid_losses_heat_network_energy_undefined-(loss) -- d --> (loss)-heat_network_in
   :availability: 0.0
   :variability: 0.08
   :demand: 0.0
+  :excel_id: 227
 electricity_demand_energy_energetic-(electricity): {conversion: 1.0}
 (loss)-electricity_demand_energy_energetic: {conversion: 1.0}
 electricity_demand_energy_energetic-(electricity) -- s --> (electricity)-hv_electricity_network_energy_undefined: {share: 1.0}
@@ -2826,6 +3017,7 @@ electricity_demand_energy_energetic-(electricity) -- s --> (electricity)-hv_elec
   :preset_demand: 0.0
   :demand_expected_value: 0.0
   :demand: 0.0
+  :excel_id: 228
 oil_demand_energy_energetic-(crude_oil): {conversion: 1.0}
 (loss)-oil_demand_energy_energetic: {conversion: 1.0}
 oil_demand_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -2835,6 +3027,7 @@ oil_demand_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_en
   :preset_demand: 0.0
   :demand_expected_value: 0.0
   :demand: 0.0
+  :excel_id: 229
 gas_demand_energy_energetic-(network_gas): {conversion: 1.0}
 (loss)-gas_demand_energy_energetic: {conversion: 1.0}
 gas_demand_energy_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
@@ -2844,6 +3037,7 @@ gas_demand_energy_energetic-(network_gas) -- s --> (network_gas)-national_gas_ne
   :preset_demand: 0.0
   :demand_expected_value: 0.0
   :demand: 0.0
+  :excel_id: 230
 heat_demand_energy_energetic-(steam_hot_water): {conversion: 1.0}
 (loss)-heat_demand_energy_energetic: {conversion: 1.0}
 heat_demand_energy_energetic-(steam_hot_water) -- s --> (steam_hot_water)-heat_network_industry_energetic: {share: 1.0}
@@ -2875,6 +3069,7 @@ heat_demand_energy_energetic-(steam_hot_water) -- s --> (steam_hot_water)-heat_n
   :availability: 0.98
   :variability: 1.0
   :decrease_in_nominal_capacity_over_lifetime: 0.4
+  :excel_id: 231
 local_solar_pv_grid_connected_energy_energetic-(solar_radiation): {conversion: 1.0}
 (loss)-local_solar_pv_grid_connected_energy_energetic: {conversion: 0.84}
 (electricity)-local_solar_pv_grid_connected_energy_energetic: {conversion: 0.16}
@@ -2882,11 +3077,13 @@ local_solar_pv_grid_connected_energy_energetic-(solar_radiation) -- s --> (solar
 
 :foreign_bioethanol_production_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 235
 foreign_bioethanol_production_neighbor_undefined-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-foreign_bioethanol_production_neighbor_undefined: {conversion: 1.0}
 
 :foreign_bio_diesel_production_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 236
 foreign_bio_diesel_production_neighbor_undefined-(biodiesel): {conversion: 1.0}
 (biodiesel)-foreign_bio_diesel_production_neighbor_undefined: {conversion: 1.0}
 
@@ -2912,6 +3109,7 @@ foreign_bio_diesel_production_neighbor_undefined-(biodiesel): {conversion: 1.0}
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 239
 gasheatpump_households_energetic-(ambient_heat): {conversion: 0.5}
 gasheatpump_households_energetic-(network_gas): {conversion: 0.5}
 (loss)-gasheatpump_households_energetic: {conversion: 0.0698917252941138}
@@ -2921,27 +3119,32 @@ gasheatpump_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_he
 
 :uranium_extraction_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 240
 uranium_extraction_energy_undefined-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-uranium_extraction_energy_undefined: {conversion: 1.0}
 
 :greengas_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 242
 greengas_import_export_energy_undefined-(greengas): {conversion: 1.0}
 (greengas)-greengas_import_export_energy_undefined: {conversion: 1.0}
 
 :coal_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 243
 coal_import_export_energy_undefined-(coal): {conversion: 1.0}
 (coal)-coal_import_export_energy_undefined: {conversion: 1.0}
 
 :heat_network_unused_energy_energetic:
   :co2_free: 0.0
+  :excel_id: 245
 heat_network_unused_energy_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_unused_energy_energetic: {conversion: 1.0}
 heat_network_unused_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
 
 :bio_oil_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 246
 bio_oil_import_export_energy_undefined-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_import_export_energy_undefined: {conversion: 1.0}
 
@@ -2949,12 +3152,14 @@ bio_oil_import_export_energy_undefined-(bio_oil): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 247
 oil_storage_energy_undefined-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_storage_energy_undefined: {conversion: 1.0}
 oil_storage_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
 
 :electricity_import_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 249
 electricity_import_export_energy_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-electricity_import_export_energy_undefined: {conversion: 1.0}
 electricity_import_export_energy_undefined-(imported_electricity) -- s --> (imported_electricity)-foreign_gas_power_energy_undefined: {share: 0.0}
@@ -2972,16 +3177,19 @@ electricity_import_export_energy_undefined-(imported_electricity) -- f --> (impo
 
 :earth_environment_energetic:
   :co2_free: 0.0
+  :excel_id: 250
 earth_environment_energetic-(loss): {conversion: 1.0}
 (loss)-earth_environment_energetic: {conversion: 1.0}
 
 :water_environment_energetic:
   :co2_free: 0.0
+  :excel_id: 251
 water_environment_energetic-(loss): {conversion: 1.0}
 (loss)-water_environment_energetic: {conversion: 1.0}
 
 :greengas_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 254
 greengas_transport_energetic-(greengas): {conversion: 1.0}
 (greengas)-greengas_transport_energetic: {conversion: 1.0}
 greengas_transport_energetic-(greengas) -- s --> (greengas)-greengas_distribution_energy_undefined: {share: 1.0}
@@ -2989,6 +3197,7 @@ greengas_transport_energetic-(greengas) -- s --> (greengas)-greengas_distributio
 :compressed_gas_production_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1717687.31652857
+  :excel_id: 255
 compressed_gas_production_transport_energetic-(greengas): {conversion: 0.0}
 compressed_gas_production_transport_energetic-(network_gas): {conversion: 1.0}
 (compressed_network_gas)-compressed_gas_production_transport_energetic: {conversion: 1.0}
@@ -2999,21 +3208,25 @@ compressed_gas_production_transport_energetic-(greengas) -- s --> (greengas)-gre
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 256
 algue_diesel_production_transport_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_production_transport_energetic: {conversion: 1.0}
 
 :sun_environment_energetic:
   :co2_free: 0.0
+  :excel_id: 257
 sun_environment_energetic-(loss): {conversion: 1.0}
 (loss)-sun_environment_energetic: {conversion: 1.0}
 
 :air_environment_energetic:
   :co2_free: 0.0
+  :excel_id: 258
 air_environment_energetic-(loss): {conversion: 1.0}
 (loss)-air_environment_energetic: {conversion: 1.0}
 
 :biogas_plant_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 260
 biogas_plant_energy_undefined-(biogas): {conversion: 1.0}
 (electricity)-biogas_plant_energy_undefined: {conversion: 0.4}
 (loss)-biogas_plant_energy_undefined: {conversion: 0.6}
@@ -3046,6 +3259,7 @@ biogas_plant_energy_undefined-(biogas) -- s --> (biogas)-biogas_distribution_ene
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.469483568075118
+  :excel_id: 261
 chp_other_other_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-chp_other_other_energetic: {conversion: 0.0564}
 (steam_hot_water)-chp_other_other_energetic: {conversion: 0.5763}
@@ -3074,6 +3288,7 @@ chp_other_other_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energ
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 262
 biomass_burner_agri_agriculture_energetic-(biomass): {conversion: 1.0}
 (loss)-biomass_burner_agri_agriculture_energetic: {conversion: 0.239175257731959}
 (useable_heat)-biomass_burner_agri_agriculture_energetic: {conversion: 0.760824742268041}
@@ -3101,6 +3316,7 @@ biomass_burner_agri_agriculture_energetic-(biomass) -- s --> (biomass)-energetic
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 263
 oil_burner_agri_agriculture_energetic-(crude_oil): {conversion: 1.0}
 (loss)-oil_burner_agri_agriculture_energetic: {conversion: 0.211340206185567}
 (useable_heat)-oil_burner_agri_agriculture_energetic: {conversion: 0.788659793814433}
@@ -3128,6 +3344,7 @@ oil_burner_agri_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_deman
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 264
 gas_burner_agri_agriculture_energetic-(network_gas): {conversion: 1.0}
 (loss)-gas_burner_agri_agriculture_energetic: {conversion: 0.1}
 (useable_heat)-gas_burner_agri_agriculture_energetic: {conversion: 0.9}
@@ -3160,6 +3377,7 @@ gas_burner_agri_agriculture_energetic-(network_gas) -- s --> (network_gas)-gas_d
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 265
 chp_agri_agriculture_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-chp_agri_agriculture_energetic: {conversion: 0.1609}
 (steam_hot_water)-chp_agri_agriculture_energetic: {conversion: 0.4808}
@@ -3170,6 +3388,7 @@ chp_agri_agriculture_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-
   :co2_free: 0.0
   :preset_demand: 10461959814.9746
   :demand: 10461959814.9746
+  :excel_id: 266
 heat_demand_other_other_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_demand_other_other_energetic: {conversion: 1.0}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_other_energetic: {share: 0.25557394131728}
@@ -3200,6 +3419,7 @@ heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-gas_bur
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 267
 coal_burner_other_other_energetic-(coal): {conversion: 1.0}
 (useable_heat)-coal_burner_other_other_energetic: {conversion: 0.8}
 (loss)-coal_burner_other_other_energetic: {conversion: 0.2}
@@ -3227,6 +3447,7 @@ coal_burner_other_other_energetic-(coal) -- s --> (coal)-coal_demand_other_energ
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 268
 oil_burner_other_other_energetic-(crude_oil): {conversion: 1.0}
 (useable_heat)-oil_burner_other_other_energetic: {conversion: 0.788659793814433}
 (loss)-oil_burner_other_other_energetic: {conversion: 0.211340206185567}
@@ -3254,6 +3475,7 @@ oil_burner_other_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_demand_oth
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 269
 biomass_burner_other_other_energetic-(biomass): {conversion: 1.0}
 (useable_heat)-biomass_burner_other_other_energetic: {conversion: 0.760824742268041}
 (loss)-biomass_burner_other_other_energetic: {conversion: 0.239175257731959}
@@ -3281,6 +3503,7 @@ biomass_burner_other_other_energetic-(biomass) -- s --> (biomass)-biomass_demand
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 270
 gas_burner_other_other_energetic-(network_gas): {conversion: 1.0}
 (useable_heat)-gas_burner_other_other_energetic: {conversion: 0.9}
 (loss)-gas_burner_other_other_energetic: {conversion: 0.1}
@@ -3308,6 +3531,7 @@ gas_burner_other_other_energetic-(network_gas) -- s --> (network_gas)-gas_demand
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 271
 biomass_boiler_households_energetic-(biomass): {conversion: 1.0}
 (hot_water)-biomass_boiler_households_energetic: {conversion: 0.82}
 (loss)-biomass_boiler_households_energetic: {conversion: 0.18}
@@ -3315,6 +3539,7 @@ biomass_boiler_households_energetic-(biomass) -- s --> (biomass)-biomass_for_hot
 
 :lignite_extraction_energy_energetic:
   :co2_free: 0.0
+  :excel_id: 272
 lignite_extraction_energy_energetic-(lignite): {conversion: 1.0}
 (lignite)-lignite_extraction_energy_energetic: {conversion: 1.0}
 
@@ -3339,6 +3564,7 @@ lignite_extraction_energy_energetic-(lignite): {conversion: 1.0}
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 273
 coal_burner_industry_industry_energetic-(coal): {conversion: 1.0}
 (useable_heat)-coal_burner_industry_industry_energetic: {conversion: 0.8}
 (loss)-coal_burner_industry_industry_energetic: {conversion: 0.2}
@@ -3365,6 +3591,7 @@ coal_burner_industry_industry_energetic-(coal) -- s --> (coal)-coal_demand_indus
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 274
 oil_burner_industry_industry_energetic-(crude_oil): {conversion: 1.0}
 (useable_heat)-oil_burner_industry_industry_energetic: {conversion: 0.83}
 (loss)-oil_burner_industry_industry_energetic: {conversion: 0.17}
@@ -3391,6 +3618,7 @@ oil_burner_industry_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_dema
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 275
 biomass_burner_industry_industry_energetic-(biomass): {conversion: 1.0}
 (loss)-biomass_burner_industry_industry_energetic: {conversion: 0.2}
 (useable_heat)-biomass_burner_industry_industry_energetic: {conversion: 0.8}
@@ -3417,6 +3645,7 @@ biomass_burner_industry_industry_energetic-(biomass) -- s --> (biomass)-biomass_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 276
 gas_burner_industry_industry_energetic-(network_gas): {conversion: 1.0}
 (loss)-gas_burner_industry_industry_energetic: {conversion: 0.1}
 (useable_heat)-gas_burner_industry_industry_energetic: {conversion: 0.9}
@@ -3448,6 +3677,7 @@ gas_burner_industry_industry_energetic-(network_gas) -- s --> (network_gas)-gas_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 279
 heat_pump_with_CHS_agri_agriculture_energetic-(electricity): {conversion: 0.0434782608695652}
 heat_pump_with_CHS_agri_agriculture_energetic-(ambient_heat): {conversion: 0.956521739130435}
 (useable_heat)-heat_pump_with_CHS_agri_agriculture_energetic: {conversion: 1.0}
@@ -3475,6 +3705,7 @@ heat_pump_with_CHS_agri_agriculture_energetic-(ambient_heat) -- s --> (ambient_h
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 280
 geothermal_agri_agriculture_energetic-(electricity): {conversion: 0.0416666666666667}
 geothermal_agri_agriculture_energetic-(ambient_heat): {conversion: 0.958333333333333}
 (useable_heat)-geothermal_agri_agriculture_energetic: {conversion: 1.0}
@@ -3483,12 +3714,14 @@ geothermal_agri_agriculture_energetic-(ambient_heat) -- s --> (ambient_heat)-ear
 
 :energetic_use_biomass_agriculture_agriculture_energetic:
   :co2_free: 0.0
+  :excel_id: 281
 energetic_use_biomass_agriculture_agriculture_energetic-(biomass): {conversion: 1.0}
 (biomass)-energetic_use_biomass_agriculture_agriculture_energetic: {conversion: 1.0}
 energetic_use_biomass_agriculture_agriculture_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
 
 :lignite_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 283
 lignite_distribution_energy_undefined-(lignite): {conversion: 1.0}
 (lignite)-lignite_distribution_energy_undefined: {conversion: 1.0}
 lignite_distribution_energy_undefined-(lignite) -- s --> (lignite)-lignite_extraction_energy_energetic: {share: 1.0}
@@ -3496,6 +3729,7 @@ lignite_distribution_energy_undefined-(lignite) -- s --> (lignite)-lignite_extra
 :waste_distribution_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 2750400000.0
+  :excel_id: 284
 waste_distribution_energy_undefined-(waste_mix): {conversion: 1.0}
 (waste_mix)-waste_distribution_energy_undefined: {conversion: 1.0}
 waste_distribution_energy_undefined-(waste_mix) -- s --> (waste_mix)-biogenic_waste_distribution_energy_undefined: {share: 0.38}
@@ -3505,6 +3739,7 @@ waste_distribution_energy_undefined-(waste_mix) -- s --> (waste_mix)-non_biogeni
   :co2_free: 0.0
   :preset_demand: 17329902559.6815
   :demand: 17329902559.6815
+  :excel_id: 285
 heating_demand_with_current_insulation_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_demand_with_current_insulation_households_energetic: {conversion: 1.0}
 heating_demand_with_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic: {share: 0.0}
@@ -3522,12 +3757,14 @@ heating_demand_with_current_insulation_households_energetic-(useable_heat) -- s 
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 286
 extra_insulation_savings_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-extra_insulation_savings_households_energetic: {conversion: 1.0}
 
 :energy_sector_gas_mixer_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 21715682363.3922
+  :excel_id: 287
 energy_sector_gas_mixer_energy_undefined-(bio_oil): {conversion: 0.0}
 energy_sector_gas_mixer_energy_undefined-(biogas): {conversion: 0.0}
 energy_sector_gas_mixer_energy_undefined-(crude_oil): {conversion: 0.0}
@@ -3540,6 +3777,7 @@ energy_sector_gas_mixer_energy_undefined-(biogas) -- s --> (biogas)-biogas_distr
 
 :algue_diesel_distribution_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 289
 algue_diesel_distribution_transport_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_distribution_transport_energetic: {conversion: 1.0}
 algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic: {share: 0.0}
@@ -3547,6 +3785,7 @@ algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_die
 
 :algue_diesel_import_export_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 290
 algue_diesel_import_export_transport_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_import_export_transport_energetic: {conversion: 1.0}
 algue_diesel_import_export_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-foreign_production_algue_diesel_neighbor_undefined: {share: 1.0}
@@ -3565,6 +3804,7 @@ algue_diesel_import_export_transport_energetic-(algae_diesel) -- s --> (algae_di
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 291
 lpg_trucks_transport_energetic-(lpg): {conversion: 1.0}
 (truck_kms)-lpg_trucks_transport_energetic: {conversion: 0.448979591836735}
 lpg_trucks_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport_undefined: {share: 1.0}
@@ -3572,6 +3812,7 @@ lpg_trucks_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport_u
 :coal_boiler_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 293
 coal_boiler_households_energetic-(coal): {conversion: 1.0}
 (hot_water)-coal_boiler_households_energetic: {conversion: 0.6}
 (loss)-coal_boiler_households_energetic: {conversion: 0.4}
@@ -3580,6 +3821,7 @@ coal_boiler_households_energetic-(coal) -- s --> (coal)-coal_for_hot_water_house
 :oil_boiler_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 294
 oil_boiler_households_energetic-(crude_oil): {conversion: 1.0}
 (hot_water)-oil_boiler_households_energetic: {conversion: 0.6}
 (loss)-oil_boiler_households_energetic: {conversion: 0.4}
@@ -3589,24 +3831,28 @@ oil_boiler_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_hot_wat
   :co2_free: 0.0
   :preset_demand: -56352939.1493985
   :demand: -56352939.1493985
+  :excel_id: 295
 other_electric_transport_transport_energetic-(electricity): {conversion: 1.0}
 (electricity)-other_electric_transport_transport_energetic: {conversion: 1.0}
 other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic: {share: 1.0}
 
 :unused_CHPs_heat_industry_industry_energetic:
   :co2_free: 0.0
+  :excel_id: 298
 unused_CHPs_heat_industry_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic: {conversion: 1.0}
 unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_industry_undefined: {share: 0.0}
 
 :unused_CHPs_heat_other_other_energetic:
   :co2_free: 0.0
+  :excel_id: 299
 unused_CHPs_heat_other_other_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_CHPs_heat_other_other_energetic: {conversion: 1.0}
 unused_CHPs_heat_other_other_energetic-(steam_hot_water) -- i --> (steam_hot_water)-decentral_heat_other_undefined: {share: 0.0}
 
 :unused_CHPs_heat_agriculture_agriculture_energetic:
   :co2_free: 0.0
+  :excel_id: 300
 unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic: {conversion: 1.0}
 unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_agriculture_undefined: {share: 0.0}
@@ -3628,6 +3874,7 @@ unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water) -- i --> (s
   :peak_load_units_present: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 301
 lv_mv_transformer_energy_undefined-(electricity): {conversion: 1.0}
 (electricity)-lv_mv_transformer_energy_undefined: {conversion: 1.0}
 lv_mv_transformer_energy_undefined-(electricity) -- i --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
@@ -3650,6 +3897,7 @@ lv_mv_transformer_energy_undefined-(electricity) -- f --> (electricity)-mv_distr
   :peak_load_units_present: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 302
 mv_transport_network_energy_undefined-(electricity): {conversion: 1.0}
 (electricity)-mv_transport_network_energy_undefined: {conversion: 1.0}
 mv_transport_network_energy_undefined-(electricity) -- i --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
@@ -3672,6 +3920,7 @@ mv_transport_network_energy_undefined-(electricity) -- f --> (electricity)-mv_hv
   :peak_load_units_present: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 303
 mv_hv_transformer_energy_undefined-(electricity): {conversion: 1.0}
 (electricity)-mv_hv_transformer_energy_undefined: {conversion: 1.0}
 mv_hv_transformer_energy_undefined-(electricity) -- f --> (electricity)-hv_electricity_network_energy_undefined: {share: 0.0}
@@ -3679,21 +3928,25 @@ mv_hv_transformer_energy_undefined-(electricity) -- i --> (electricity)-mv_trans
 
 :foreign_gas_power_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 304
 foreign_gas_power_energy_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_gas_power_energy_undefined: {conversion: 1.0}
 
 :foreign_nuclear_power_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 305
 foreign_nuclear_power_energy_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_nuclear_power_energy_undefined: {conversion: 1.0}
 
 :foreign_coal_power_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 306
 foreign_coal_power_energy_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_coal_power_energy_undefined: {conversion: 1.0}
 
 :foreign_sustainable_power_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 307
 foreign_sustainable_power_energy_undefined-(electricity): {conversion: 1.0}
 (imported_electricity)-foreign_sustainable_power_energy_undefined: {conversion: 1.0}
 
@@ -3719,6 +3972,7 @@ foreign_sustainable_power_energy_undefined-(electricity): {conversion: 1.0}
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 308
 backup_burner_heat_network_energy_undefined-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-backup_burner_heat_network_energy_undefined: {conversion: 0.1}
 (steam_hot_water)-backup_burner_heat_network_energy_undefined: {conversion: 0.9}
@@ -3726,6 +3980,7 @@ backup_burner_heat_network_energy_undefined-(gas_power_fuelmix) -- s --> (gas_po
 
 :diesel_mixer_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 309
 diesel_mixer_transport_energetic-(algae_diesel): {conversion: 0.0}
 diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0422970782721578}
 diesel_mixer_transport_energetic-(diesel): {conversion: 0.957702921727842}
@@ -3736,6 +3991,7 @@ diesel_mixer_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-algue_di
 
 :gasoline_mixer_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 310
 gasoline_mixer_transport_energetic-(bio_ethanol): {conversion: 0.025572539484863}
 gasoline_mixer_transport_energetic-(gasoline): {conversion: 0.974427460515137}
 (gasoline)-gasoline_mixer_transport_energetic: {conversion: 1.0}
@@ -3744,6 +4000,7 @@ gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_produ
 
 :cokes_production_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 311
 cokes_production_energy_undefined-(coal): {conversion: 1.0}
 (coal)-cokes_production_energy_undefined: {conversion: 0.838517889372545}
 (loss)-cokes_production_energy_undefined: {conversion: 0.161482110627455}
@@ -3751,6 +4008,7 @@ cokes_production_energy_undefined-(coal) -- s --> (coal)-coal_distribution_energ
 
 :electricity_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 312
 electricity_export_energy_undefined-(electricity): {conversion: 1.0}
 (electricity)-electricity_export_energy_undefined: {conversion: 1.0}
 electricity_export_energy_undefined-(electricity) -- i --> (electricity)-hv_electricity_network_energy_undefined: {share: 0.0}
@@ -3759,6 +4017,7 @@ electricity_export_energy_undefined-(electricity) -- i --> (electricity)-hv_elec
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 313
 heating_schools_current_insulation_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_schools_current_insulation_buildings_energetic: {conversion: 1.0}
 heating_schools_current_insulation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-insulation_savings_buildings_energetic: {share: 0.0}
@@ -3768,6 +4027,7 @@ heating_schools_current_insulation_buildings_energetic-(useable_heat) -- f --> (
   :co2_free: 0.0
   :preset_demand: 1880764618.88016
   :demand: 1880764618.88016
+  :excel_id: 314
 heating_new_houses_current_insulation_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_new_houses_current_insulation_households_energetic: {conversion: 1.0}
 heating_new_houses_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic: {share: 0.0}
@@ -3777,6 +4037,7 @@ heating_new_houses_current_insulation_households_energetic-(useable_heat) -- s -
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 315
 heating_offices_current_insulation_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_offices_current_insulation_buildings_energetic: {conversion: 1.0}
 heating_offices_current_insulation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-insulation_savings_buildings_energetic: {share: 0.0}
@@ -3809,6 +4070,7 @@ heating_offices_current_insulation_buildings_energetic-(useable_heat) -- f --> (
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 316
 heatpump_addon_households_energetic-(electricity): {conversion: 0.25}
 heatpump_addon_households_energetic-(ambient_heat): {conversion: 0.75}
 (loss)-heatpump_addon_households_energetic: {conversion: 0.0}
@@ -3843,6 +4105,7 @@ heatpump_addon_households_energetic-(electricity) -- s --> (electricity)-electri
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 318
 collective_gas_chp_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-collective_gas_chp_households_energetic: {conversion: 0.2}
 (steam_hot_water)-collective_gas_chp_households_energetic: {conversion: 0.45}
@@ -3876,6 +4139,7 @@ collective_gas_chp_households_energetic-(network_gas) -- s --> (network_gas)-nat
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 319
 collective_biomass_chp_households_energetic-(biomass): {conversion: 1.0}
 (loss)-collective_biomass_chp_households_energetic: {conversion: 0.3}
 (steam_hot_water)-collective_biomass_chp_households_energetic: {conversion: 0.4}
@@ -3904,6 +4168,7 @@ collective_biomass_chp_households_energetic-(biomass) -- s --> (biomass)-biomass
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 320
 collective_geothermal_households_energetic-(steam_hot_water): {conversion: 0.0}
 (steam_hot_water)-collective_geothermal_households_energetic: {conversion: 1.0}
 collective_geothermal_households_energetic-(ambient_heat): {conversion: 1.0}
@@ -3937,6 +4202,7 @@ collective_geothermal_households_energetic-(ambient_heat) -- s --> (ambient_heat
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 321
 heatpump_cooling_households_energetic-(electricity): {conversion: 0.173913043478261}
 heatpump_cooling_households_energetic-(ambient_cold): {conversion: 0.826086956521739}
 (loss)-heatpump_cooling_households_energetic: {conversion: 0.0}
@@ -3966,6 +4232,7 @@ heatpump_cooling_households_energetic-(electricity) -- s --> (electricity)-elect
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 322
 gasheatpump_cooling_households_energetic-(network_gas): {conversion: 0.588235294117647}
 gasheatpump_cooling_households_energetic-(ambient_cold): {conversion: 0.411764705882353}
 (loss)-gasheatpump_cooling_households_energetic: {conversion: 0.0}
@@ -4000,6 +4267,7 @@ gasheatpump_cooling_households_energetic-(network_gas) -- s --> (network_gas)-ga
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 323
 heatpump_ts_cooling_households_energetic-(electricity): {conversion: 0.1}
 heatpump_ts_cooling_households_energetic-(ambient_cold): {conversion: 0.9}
 (loss)-heatpump_ts_cooling_households_energetic: {conversion: 0.0}
@@ -4011,6 +4279,7 @@ heatpump_ts_cooling_households_energetic-(electricity) -- s --> (electricity)-el
   :co2_free: 0.0
   :preset_demand: 458309882.837206
   :demand: 458309882.837206
+  :excel_id: 324
 cooking_demand_households_energetic-(useable_heat): {conversion: 1.0}
 (loss)-cooking_demand_households_energetic: {conversion: 1.0}
 cooking_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-gas_stove_households_energetic: {share: 0.0}
@@ -4022,6 +4291,7 @@ cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-bioma
 :gas_stove_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 640597241.900093
+  :excel_id: 325
 gas_stove_households_energetic-(network_gas): {conversion: 1.0}
 (useable_heat)-gas_stove_households_energetic: {conversion: 0.4}
 (loss)-gas_stove_households_energetic: {conversion: 0.6}
@@ -4030,6 +4300,7 @@ gas_stove_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_cook
 :electric_stove_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 146960717.147032
+  :excel_id: 326
 electric_stove_households_energetic-(electricity): {conversion: 1.0}
 (useable_heat)-electric_stove_households_energetic: {conversion: 0.55}
 (loss)-electric_stove_households_energetic: {conversion: 0.45}
@@ -4038,6 +4309,7 @@ electric_stove_households_energetic-(electricity) -- s --> (electricity)-electri
 :halogen_stove_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 67356995.3590563
+  :excel_id: 327
 halogen_stove_households_energetic-(electricity): {conversion: 1.0}
 (useable_heat)-halogen_stove_households_energetic: {conversion: 0.6}
 (loss)-halogen_stove_households_energetic: {conversion: 0.4}
@@ -4046,6 +4318,7 @@ halogen_stove_households_energetic-(electricity) -- s --> (electricity)-electric
 :induction_stove_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 95092228.7421971
+  :excel_id: 328
 induction_stove_households_energetic-(electricity): {conversion: 1.0}
 (loss)-induction_stove_households_energetic: {conversion: 0.15}
 (useable_heat)-induction_stove_households_energetic: {conversion: 0.85}
@@ -4056,6 +4329,7 @@ induction_stove_households_energetic-(electricity) -- s --> (electricity)-electr
   :preset_demand: 386762426.560356
   :demand_expected_value: 386762426.560356
   :demand: 386762426.560356
+  :excel_id: 329
 dishwasher_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-dishwasher_households_energetic: {conversion: 1.0}
 (loss)-dishwasher_households_energetic: {conversion: 0.0}
@@ -4066,6 +4340,7 @@ dishwasher_households_energetic-(electricity) -- s --> (electricity)-electricity
   :preset_demand: 1065917247.60034
   :demand_expected_value: 1065917247.60034
   :demand: 1065917247.60034
+  :excel_id: 330
 fridge_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-fridge_households_energetic: {conversion: 1.0}
 (loss)-fridge_households_energetic: {conversion: 0.0}
@@ -4076,6 +4351,7 @@ fridge_households_energetic-(electricity) -- s --> (electricity)-electricity_for
   :preset_demand: 386762426.560356
   :demand_expected_value: 386762426.560356
   :demand: 386762426.560356
+  :excel_id: 332
 vacuum_cleaner_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-vacuum_cleaner_households_energetic: {conversion: 1.0}
 (loss)-vacuum_cleaner_households_energetic: {conversion: 0.0}
@@ -4086,6 +4362,7 @@ vacuum_cleaner_households_energetic-(electricity) -- s --> (electricity)-electri
   :preset_demand: 386762426.560356
   :demand_expected_value: 386762426.560356
   :demand: 386762426.560356
+  :excel_id: 333
 washing_machine_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-washing_machine_households_energetic: {conversion: 1.0}
 (loss)-washing_machine_households_energetic: {conversion: 0.0}
@@ -4096,6 +4373,7 @@ washing_machine_households_energetic-(electricity) -- s --> (electricity)-electr
   :preset_demand: 386762426.560356
   :demand_expected_value: 386762426.560356
   :demand: 386762426.560356
+  :excel_id: 334
 clothes_dryer_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-clothes_dryer_households_energetic: {conversion: 1.0}
 (loss)-clothes_dryer_households_energetic: {conversion: 0.0}
@@ -4106,6 +4384,7 @@ clothes_dryer_households_energetic-(electricity) -- s --> (electricity)-electric
   :preset_demand: 541467397.184499
   :demand_expected_value: 541467397.184499
   :demand: 541467397.184499
+  :excel_id: 335
 tv_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-tv_households_energetic: {conversion: 1.0}
 (loss)-tv_households_energetic: {conversion: 0.0}
@@ -4116,6 +4395,7 @@ tv_households_energetic-(electricity) -- s --> (electricity)-electricity_for_app
   :preset_demand: 402232923.622771
   :demand_expected_value: 402232923.622771
   :demand: 402232923.622771
+  :excel_id: 337
 computer_households_energetic-(electricity): {conversion: 1.0}
 (not_defined)-computer_households_energetic: {conversion: 1.0}
 (loss)-computer_households_energetic: {conversion: 0.0}
@@ -4133,12 +4413,14 @@ computer_households_energetic-(electricity) -- s --> (electricity)-electricity_f
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 338
 insulation_savings_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-insulation_savings_buildings_energetic: {conversion: 1.0}
 
 :heating_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 339
 heating_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_buildings_energetic: {conversion: 1.0}
 heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_heater_buildings_energetic: {share: 0.0}
@@ -4154,6 +4436,7 @@ heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-coal_heater_b
 :cooling_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 340
 cooling_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_buildings_energetic: {conversion: 1.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-city_cooling_network_buildings_energetic: {share: 0.0}
@@ -4163,6 +4446,7 @@ cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energet
 
 :electricity_without_heating_buildings_energetic:
   :co2_free: 0.0
+  :excel_id: 341
 electricity_without_heating_buildings_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_without_heating_buildings_energetic: {conversion: 1.0}
 electricity_without_heating_buildings_energetic-(electricity) -- f --> (electricity)-electricity_buildings_energetic: {share: 0.0}
@@ -4170,6 +4454,7 @@ electricity_without_heating_buildings_energetic-(electricity) -- f --> (electric
 :lighting_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 342
 lighting_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_buildings_energetic: {conversion: 1.0}
 lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic: {share: 0.0}
@@ -4179,6 +4464,7 @@ lighting_buildings_energetic-(light) -- s --> (light)-led_buildings_energetic: {
 :tl5_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 343
 tl5_buildings_energetic-(electricity): {conversion: 1.0}
 (light)-tl5_buildings_energetic: {conversion: 0.16}
 (loss)-tl5_buildings_energetic: {conversion: 0.84}
@@ -4187,6 +4473,7 @@ tl5_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without
 :tl8_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 344
 tl8_buildings_energetic-(electricity): {conversion: 1.0}
 (light)-tl8_buildings_energetic: {conversion: 0.2}
 (loss)-tl8_buildings_energetic: {conversion: 0.8}
@@ -4195,6 +4482,7 @@ tl8_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without
 :led_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 345
 led_buildings_energetic-(electricity): {conversion: 1.0}
 (light)-led_buildings_energetic: {conversion: 0.45}
 (loss)-led_buildings_energetic: {conversion: 0.55}
@@ -4227,6 +4515,7 @@ led_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without
   :availability: 0.98
   :variability: 1.0
   :decrease_in_nominal_capacity_over_lifetime: 0.4
+  :excel_id: 346
 solar_panels_buildings_energetic-(solar_radiation): {conversion: 1.0}
 (loss)-solar_panels_buildings_energetic: {conversion: 0.84}
 (electricity)-solar_panels_buildings_energetic: {conversion: 0.16}
@@ -4254,6 +4543,7 @@ solar_panels_buildings_energetic-(solar_radiation) -- s --> (solar_radiation)-su
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 347
 local_heat_network_buildings_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-local_heat_network_buildings_energetic: {conversion: 1.0}
 (loss)-local_heat_network_buildings_energetic: {conversion: 0.0}
@@ -4280,6 +4570,7 @@ local_heat_network_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_wat
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 348
 gas_fired_heater_buildings_energetic-(network_gas): {conversion: 1.0}
 (useable_heat)-gas_fired_heater_buildings_energetic: {conversion: 1.067}
 (loss)-gas_fired_heater_buildings_energetic: {conversion: -0.0669999999999999}
@@ -4312,6 +4603,7 @@ gas_fired_heater_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_bu
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 349
 electric_heater_buildings_energetic-(electricity): {conversion: 1.0}
 (useable_heat)-electric_heater_buildings_energetic: {conversion: 1.0}
 (loss)-electric_heater_buildings_energetic: {conversion: 0.0}
@@ -4344,6 +4636,7 @@ electric_heater_buildings_energetic-(electricity) -- s --> (electricity)-electri
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 350
 gas_chp_buildings_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (electricity)-gas_chp_buildings_energetic: {conversion: 0.37}
 (steam_hot_water)-gas_chp_buildings_energetic: {conversion: 0.35}
@@ -4377,6 +4670,7 @@ gas_chp_buildings_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-ene
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 351
 coal_chp_buildings_energetic-(coal): {conversion: 1.0}
 (electricity)-coal_chp_buildings_energetic: {conversion: 0.36}
 (steam_hot_water)-coal_chp_buildings_energetic: {conversion: 0.3}
@@ -4410,6 +4704,7 @@ coal_chp_buildings_energetic-(coal) -- s --> (coal)-coal_distribution_energy_und
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 352
 biomass_chp_buildings_energetic-(biomass): {conversion: 1.0}
 (electricity)-biomass_chp_buildings_energetic: {conversion: 0.23}
 (steam_hot_water)-biomass_chp_buildings_energetic: {conversion: 0.35}
@@ -4438,6 +4733,7 @@ biomass_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distributio
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 353
 solarthermic_buildings_energetic-(solar_radiation): {conversion: 1.0}
 (useable_heat)-solarthermic_buildings_energetic: {conversion: 0.95}
 (loss)-solarthermic_buildings_energetic: {conversion: 0.05}
@@ -4465,6 +4761,7 @@ solarthermic_buildings_energetic-(solar_radiation) -- s --> (solar_radiation)-su
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 354
 gasheatpump_ts_buildings_energetic-(network_gas): {conversion: 0.5}
 gasheatpump_ts_buildings_energetic-(ambient_heat): {conversion: 0.5}
 (useable_heat)-gasheatpump_ts_buildings_energetic: {conversion: 1.0}
@@ -4494,6 +4791,7 @@ gasheatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 355
 biomass_fired_heater_buildings_energetic-(biomass): {conversion: 1.0}
 (useable_heat)-biomass_fired_heater_buildings_energetic: {conversion: 0.82}
 (loss)-biomass_fired_heater_buildings_energetic: {conversion: 0.18}
@@ -4526,6 +4824,7 @@ biomass_fired_heater_buildings_energetic-(biomass) -- s --> (biomass)-biomass_bu
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 356
 heatpump_ts_buildings_energetic-(electricity): {conversion: 0.111111111111111}
 heatpump_ts_buildings_energetic-(ambient_heat): {conversion: 0.888888888888889}
 (useable_heat)-heatpump_ts_buildings_energetic: {conversion: 1.0}
@@ -4554,6 +4853,7 @@ heatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_env
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 357
 gasheatpump_cooling_buildings_energetic-(network_gas): {conversion: 0.588235294117647}
 gasheatpump_cooling_buildings_energetic-(ambient_cold): {conversion: 0.411764705882353}
 (cooling)-gasheatpump_cooling_buildings_energetic: {conversion: 1.0}
@@ -4587,6 +4887,7 @@ gasheatpump_cooling_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-e
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 358
 heatpump_ts_cooling_buildings_energetic-(electricity): {conversion: 0.1}
 heatpump_ts_cooling_buildings_energetic-(ambient_cold): {conversion: 0.9}
 (cooling)-heatpump_ts_cooling_buildings_energetic: {conversion: 1.0}
@@ -4598,6 +4899,7 @@ heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-ele
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 359
 building_related_buildings_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-building_related_buildings_energetic: {conversion: 1.0}
 building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_oil_buildings_undefined: {share: 0.0}
@@ -4631,6 +4933,7 @@ building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-applia
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 360
 airco_buildings_energetic-(electricity): {conversion: 0.222222222222222}
 airco_buildings_energetic-(ambient_cold): {conversion: 0.777777777777778}
 (cooling)-airco_buildings_energetic: {conversion: 1.0}
@@ -4642,6 +4945,7 @@ airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_witho
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 361
 appliances_buildings_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-appliances_buildings_energetic: {conversion: 1.0}
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings_undefined: {share: 0.0}
@@ -4652,6 +4956,7 @@ appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_app
 :biomass_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 362
 biomass_buildings_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_buildings_energetic: {conversion: 1.0}
 biomass_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined: {share: 1.0}
@@ -4659,6 +4964,7 @@ biomass_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_en
 :coal_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 363
 coal_buildings_energetic-(coal): {conversion: 1.0}
 (coal)-coal_buildings_energetic: {conversion: 1.0}
 coal_buildings_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefined: {share: 1.0}
@@ -4666,6 +4972,7 @@ coal_buildings_energetic-(coal) -- s --> (coal)-cokes_production_energy_undefine
 :oil_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 364
 oil_buildings_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_buildings_energetic: {conversion: 1.0}
 oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -4673,6 +4980,7 @@ oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 :steam_hot_water_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 366
 steam_hot_water_buildings_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_buildings_energetic: {conversion: 1.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: 0.0}
@@ -4684,6 +4992,7 @@ steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)
   :co2_free: 0.0
   :preset_demand: 415769608.552383
   :demand: 415769608.552383
+  :excel_id: 367
 cooling_current_insulation_old_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_current_insulation_old_households_energetic: {conversion: 1.0}
 cooling_current_insulation_old_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic: {share: 0.0}
@@ -4693,6 +5002,7 @@ cooling_current_insulation_old_households_energetic-(cooling) -- s --> (cooling)
   :co2_free: 0.0
   :preset_demand: 203050273.944187
   :demand: 203050273.944187
+  :excel_id: 368
 cooling_current_insulation_new_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_current_insulation_new_households_energetic: {conversion: 1.0}
 cooling_current_insulation_new_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic: {share: 0.0}
@@ -4700,11 +5010,13 @@ cooling_current_insulation_new_households_energetic-(cooling) -- s --> (cooling)
 
 :cooling_savings_insulation_old_households_energetic:
   :co2_free: 0.0
+  :excel_id: 369
 cooling_savings_insulation_old_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_savings_insulation_old_households_energetic: {conversion: 1.0}
 
 :cooling_savings_insulation_new_households_energetic:
   :co2_free: 0.0
+  :excel_id: 370
 cooling_savings_insulation_new_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_savings_insulation_new_households_energetic: {conversion: 1.0}
 
@@ -4720,11 +5032,13 @@ cooling_savings_insulation_new_households_energetic-(cooling): {conversion: 1.0}
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 371
 heating_savings_insulation_new_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_savings_insulation_new_households_energetic: {conversion: 1.0}
 
 :cooling_savings_insulation_buildings_energetic:
   :co2_free: 0.0
+  :excel_id: 374
 cooling_savings_insulation_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_savings_insulation_buildings_energetic: {conversion: 1.0}
 
@@ -4750,6 +5064,7 @@ cooling_savings_insulation_buildings_energetic-(cooling): {conversion: 1.0}
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 375
 gas_boiler_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-gas_boiler_households_energetic: {conversion: 0.285}
 (hot_water)-gas_boiler_households_energetic: {conversion: 0.715}
@@ -4782,6 +5097,7 @@ gas_boiler_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_hot
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 376
 micro_chp_hot_water_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-micro_chp_hot_water_households_energetic: {conversion: -0.0670000000000002}
 (electricity)-micro_chp_hot_water_households_energetic: {conversion: 0.174922}
@@ -4811,6 +5127,7 @@ micro_chp_hot_water_households_energetic-(network_gas) -- f --> (network_gas)-ga
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 377
 oil_heater_buildings_energetic-(crude_oil): {conversion: 1.0}
 (loss)-oil_heater_buildings_energetic: {conversion: 0.15}
 (useable_heat)-oil_heater_buildings_energetic: {conversion: 0.85}
@@ -4838,6 +5155,7 @@ oil_heater_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_buildings_en
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 378
 coal_heater_buildings_energetic-(coal): {conversion: 1.0}
 (loss)-coal_heater_buildings_energetic: {conversion: 0.2}
 (useable_heat)-coal_heater_buildings_energetic: {conversion: 0.8}
@@ -4846,6 +5164,7 @@ coal_heater_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic:
 :heat_demand_before_recirculation_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 379
 heat_demand_before_recirculation_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {conversion: 1.0}
 heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recovery_buildings_energetic: {share: 0.0}
@@ -4854,6 +5173,7 @@ heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- s --> (us
 :heat_demand_before_recovery_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 380
 heat_demand_before_recovery_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_demand_before_recovery_buildings_energetic: {conversion: 1.0}
 heat_demand_before_recovery_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heating_buildings_energetic: {share: 0.0}
@@ -4862,6 +5182,7 @@ heat_demand_before_recovery_buildings_energetic-(useable_heat) -- s --> (useable
 :cold_demand_before_recirculation_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 381
 cold_demand_before_recirculation_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cold_demand_before_recirculation_buildings_energetic: {conversion: 1.0}
 cold_demand_before_recirculation_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recovery_buildings_energetic: {share: 0.0}
@@ -4870,6 +5191,7 @@ cold_demand_before_recirculation_buildings_energetic-(cooling) -- s --> (cooling
 :cold_demand_before_recovery_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 382
 cold_demand_before_recovery_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cold_demand_before_recovery_buildings_energetic: {conversion: 1.0}
 cold_demand_before_recovery_buildings_energetic-(cooling) -- f --> (cooling)-cooling_buildings_energetic: {share: 0.0}
@@ -4878,30 +5200,35 @@ cold_demand_before_recovery_buildings_energetic-(cooling) -- s --> (cooling)-col
 :heat_recirculation_savings_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 383
 heat_recirculation_savings_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_recirculation_savings_buildings_energetic: {conversion: 1.0}
 
 :heat_recovery_savings_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 384
 heat_recovery_savings_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_recovery_savings_buildings_energetic: {conversion: 1.0}
 
 :cold_recirculation_savings_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 385
 cold_recirculation_savings_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cold_recirculation_savings_buildings_energetic: {conversion: 1.0}
 
 :cold_recovery_savings_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 386
 cold_recovery_savings_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cold_recovery_savings_buildings_energetic: {conversion: 1.0}
 
 :lighting_without_daylight_control_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 387
 lighting_without_daylight_control_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_without_daylight_control_buildings_energetic: {conversion: 1.0}
 lighting_without_daylight_control_buildings_energetic-(light) -- f --> (light)-lighting_buildings_energetic: {share: 0.0}
@@ -4911,6 +5238,7 @@ lighting_without_daylight_control_buildings_energetic-(light) -- s --> (light)-d
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 388
 lighting_without_motion_detection_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_without_motion_detection_buildings_energetic: {conversion: 1.0}
 lighting_without_motion_detection_buildings_energetic-(light) -- f --> (light)-lighting_without_daylight_control_buildings_energetic: {share: 0.0}
@@ -4929,6 +5257,7 @@ lighting_without_motion_detection_buildings_energetic-(light) -- s --> (light)-m
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 389
 daylight_control_savings_buildings_energetic-(light): {conversion: 1.0}
 (light)-daylight_control_savings_buildings_energetic: {conversion: 1.0}
 
@@ -4945,6 +5274,7 @@ daylight_control_savings_buildings_energetic-(light): {conversion: 1.0}
   :economic_lifetime: 0.0
   :availability: 0.0
   :variability: 0.0
+  :excel_id: 390
 motion_detection_savings_buildings_energetic-(light): {conversion: 1.0}
 (light)-motion_detection_savings_buildings_energetic: {conversion: 1.0}
 
@@ -4970,6 +5300,7 @@ motion_detection_savings_buildings_energetic-(light): {conversion: 1.0}
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 391
 heat_from_steam_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-heat_from_steam_hot_water_households_energetic: {conversion: 1.0}
 heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-monitized_heat_for_heating_households_energetic: {share: 1.0}
@@ -4995,6 +5326,7 @@ heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0606060606060606
+  :excel_id: 392
 nuclear_conv_energy_energetic-(uranium_oxide): {conversion: 1.0}
 (loss)-nuclear_conv_energy_energetic: {conversion: 0.68}
 (steam_hot_water)-nuclear_conv_energy_energetic: {conversion: 0.0}
@@ -5003,6 +5335,7 @@ nuclear_conv_energy_energetic-(uranium_oxide) -- s --> (uranium_oxide)-uranium_d
 
 :available_electricity_households_undefined:
   :co2_free: 0.0
+  :excel_id: 394
 available_electricity_households_undefined-(electricity): {conversion: 1.0}
 (electricity)-available_electricity_households_undefined: {conversion: 1.0}
 available_electricity_households_undefined-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
@@ -5016,6 +5349,7 @@ available_electricity_households_undefined-(electricity) -- d --> (electricity)-
 :hot_water_from_gas_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 395
 hot_water_from_gas_buildings_energetic-(network_gas): {conversion: 1.0}
 (hot_water)-hot_water_from_gas_buildings_energetic: {conversion: 1.0}
 hot_water_from_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
@@ -5023,6 +5357,7 @@ hot_water_from_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_
 :hot_water_from_electricity_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 396
 hot_water_from_electricity_buildings_energetic-(electricity): {conversion: 1.0}
 (hot_water)-hot_water_from_electricity_buildings_energetic: {conversion: 1.0}
 hot_water_from_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
@@ -5031,6 +5366,7 @@ hot_water_from_electricity_buildings_energetic-(electricity) -- s --> (electrici
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 397
 hot_water_demand_buildings_energetic-(hot_water): {conversion: 1.0}
 (hot_water)-hot_water_demand_buildings_energetic: {conversion: 1.0}
 hot_water_demand_buildings_energetic-(hot_water) -- s --> (hot_water)-hot_water_from_gas_buildings_energetic: {share: 0.0}
@@ -5040,6 +5376,7 @@ hot_water_demand_buildings_energetic-(hot_water) -- s --> (hot_water)-hot_water_
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 398
 cooking_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-cooking_buildings_energetic: {conversion: 1.0}
 cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_gas_buildings_undefined: {share: 0.0}
@@ -5048,6 +5385,7 @@ cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_elect
 :oil_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 399
 oil_appliances_buildings_undefined-(crude_oil): {conversion: 1.0}
 (not_defined)-oil_appliances_buildings_undefined: {conversion: 1.0}
 oil_appliances_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic: {share: 1.0}
@@ -5055,6 +5393,7 @@ oil_appliances_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_building
 :gas_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 400
 gas_appliances_buildings_undefined-(network_gas): {conversion: 1.0}
 (not_defined)-gas_appliances_buildings_undefined: {conversion: 1.0}
 gas_appliances_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
@@ -5062,6 +5401,7 @@ gas_appliances_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buil
 :biomass_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 401
 biomass_appliances_buildings_undefined-(biomass): {conversion: 1.0}
 (not_defined)-biomass_appliances_buildings_undefined: {conversion: 1.0}
 biomass_appliances_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
@@ -5069,6 +5409,7 @@ biomass_appliances_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buil
 :electric_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 402
 electric_appliances_buildings_undefined-(electricity): {conversion: 1.0}
 (not_defined)-electric_appliances_buildings_undefined: {conversion: 1.0}
 electric_appliances_buildings_undefined-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
@@ -5076,6 +5417,7 @@ electric_appliances_buildings_undefined-(electricity) -- s --> (electricity)-ele
 :appliances_oil_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 403
 appliances_oil_buildings_undefined-(crude_oil): {conversion: 1.0}
 (not_defined)-appliances_oil_buildings_undefined: {conversion: 1.0}
 appliances_oil_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic: {share: 1.0}
@@ -5083,6 +5425,7 @@ appliances_oil_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_building
 :appliances_gas_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 404
 appliances_gas_buildings_undefined-(network_gas): {conversion: 1.0}
 (not_defined)-appliances_gas_buildings_undefined: {conversion: 1.0}
 appliances_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
@@ -5090,6 +5433,7 @@ appliances_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buil
 :appliances_biomass_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 405
 appliances_biomass_buildings_undefined-(biomass): {conversion: 1.0}
 (not_defined)-appliances_biomass_buildings_undefined: {conversion: 1.0}
 appliances_biomass_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
@@ -5097,6 +5441,7 @@ appliances_biomass_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buil
 :appliances_electric_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 406
 appliances_electric_buildings_undefined-(electricity): {conversion: 1.0}
 (not_defined)-appliances_electric_buildings_undefined: {conversion: 1.0}
 appliances_electric_buildings_undefined-(electricity) -- s --> (electricity)-electricity_other_buildings_energetic: {share: 1.0}
@@ -5104,6 +5449,7 @@ appliances_electric_buildings_undefined-(electricity) -- s --> (electricity)-ele
 :cooking_gas_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 407
 cooking_gas_buildings_undefined-(network_gas): {conversion: 1.0}
 (useable_heat)-cooking_gas_buildings_undefined: {conversion: 1.0}
 cooking_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
@@ -5111,6 +5457,7 @@ cooking_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildin
 :cooking_electric_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 408
 cooking_electric_buildings_undefined-(electricity): {conversion: 1.0}
 (useable_heat)-cooking_electric_buildings_undefined: {conversion: 1.0}
 cooking_electric_buildings_undefined-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
@@ -5141,6 +5488,7 @@ cooking_electric_buildings_undefined-(electricity) -- s --> (electricity)-electr
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0417484388938434
+  :excel_id: 409
 ccgt_ccs_energy_undefined-(gas_power_fuelmix): {conversion: 1.0}
 ccgt_ccs_energy_undefined-(crude_oil): {conversion: 0.0}
 ccgt_ccs_energy_undefined-(bio_oil): {conversion: 0.0}
@@ -5153,6 +5501,7 @@ ccgt_ccs_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energ
 
 :local_e_production_agriculture_undefined:
   :co2_free: 0.0
+  :excel_id: 410
 local_e_production_agriculture_undefined-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_agriculture_undefined: {conversion: 1.0}
 local_e_production_agriculture_undefined-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
@@ -5160,6 +5509,7 @@ local_e_production_agriculture_undefined-(electricity) -- c --> (electricity)-ch
 
 :local_w_production_agriculture_undefined:
   :co2_free: 0.0
+  :excel_id: 411
 local_w_production_agriculture_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-local_w_production_agriculture_undefined: {conversion: 1.0}
 local_w_production_agriculture_undefined-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
@@ -5167,6 +5517,7 @@ local_w_production_agriculture_undefined-(steam_hot_water) -- d --> (steam_hot_w
 
 :local_e_production_industry_undefined:
   :co2_free: 0.0
+  :excel_id: 412
 local_e_production_industry_undefined-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_industry_undefined: {conversion: 1.0}
 local_e_production_industry_undefined-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
@@ -5177,6 +5528,7 @@ local_e_production_industry_undefined-(electricity) -- c --> (electricity)-coal_
 
 :local_w_production_industry_undefined:
   :co2_free: 0.0
+  :excel_id: 413
 local_w_production_industry_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-local_w_production_industry_undefined: {conversion: 1.0}
 local_w_production_industry_undefined-(steam_hot_water) -- d --> (steam_hot_water)-small_chp_industry_energetic: {share: 0.0}
@@ -5187,18 +5539,21 @@ local_w_production_industry_undefined-(steam_hot_water) -- d --> (steam_hot_wate
 
 :used_restheat_decentral_production_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 414
 used_restheat_decentral_production_energy_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-used_restheat_decentral_production_energy_undefined: {conversion: 1.0}
 used_restheat_decentral_production_energy_undefined-(steam_hot_water) -- s --> (steam_hot_water)-restheat_decentral_production_energy_undefined: {share: 1.0}
 
 :unused_restheat_decentral_production_energy_energetic:
   :co2_free: 0.0
+  :excel_id: 415
 unused_restheat_decentral_production_energy_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_restheat_decentral_production_energy_energetic: {conversion: 1.0}
 unused_restheat_decentral_production_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-restheat_decentral_production_energy_undefined: {share: 0.0}
 
 :restheat_decentral_production_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 416
 restheat_decentral_production_energy_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-restheat_decentral_production_energy_undefined: {conversion: 1.0}
 restheat_decentral_production_energy_undefined-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic: {share: 0.0}
@@ -5232,6 +5587,7 @@ restheat_decentral_production_energy_undefined-(steam_hot_water) -- f --> (steam
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 417
 micro_CHP_production_households_undefined-(network_gas): {conversion: 1.0}
 (loss)-micro_CHP_production_households_undefined: {conversion: -0.0670000000000002}
 (electricity)-micro_CHP_production_households_undefined: {conversion: 0.174922}
@@ -5241,6 +5597,7 @@ micro_CHP_production_households_undefined-(network_gas) -- f --> (network_gas)-g
 
 :decentral_heat_other_undefined:
   :co2_free: 0.0
+  :excel_id: 419
 decentral_heat_other_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-decentral_heat_other_undefined: {conversion: 1.0}
 decentral_heat_other_undefined-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
@@ -5249,6 +5606,7 @@ decentral_heat_other_undefined-(steam_hot_water) -- d --> (steam_hot_water)-biom
 
 :local_e_production_other_undefined:
   :co2_free: 0.0
+  :excel_id: 420
 local_e_production_other_undefined-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_other_undefined: {conversion: 1.0}
 local_e_production_other_undefined-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
@@ -5257,6 +5615,7 @@ local_e_production_other_undefined-(electricity) -- c --> (electricity)-biomass_
 
 :local_e_production_buildings_undefined:
   :co2_free: 0.0
+  :excel_id: 421
 local_e_production_buildings_undefined-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_buildings_undefined: {conversion: 1.0}
 local_e_production_buildings_undefined-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
@@ -5269,6 +5628,7 @@ local_e_production_buildings_undefined-(electricity) -- d --> (electricity)-biom
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 422
 steam_hot_water_difference_energy_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_difference_energy_undefined: {conversion: 1.0}
 steam_hot_water_difference_energy_undefined-(steam_hot_water) -- s --> (steam_hot_water)-heat_network_industry_energetic: {share: 1.0}
@@ -5294,6 +5654,7 @@ steam_hot_water_difference_energy_undefined-(steam_hot_water) -- s --> (steam_ho
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.02
+  :excel_id: 423
 lignite_chp_energy_undefined-(lignite): {conversion: 1.0}
 (electricity)-lignite_chp_energy_undefined: {conversion: 0.31}
 (steam_hot_water)-lignite_chp_energy_undefined: {conversion: 0.4}
@@ -5321,6 +5682,7 @@ lignite_chp_energy_undefined-(lignite) -- s --> (lignite)-lignite_distribution_e
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
+  :excel_id: 424
 oil_chp_energy_undefined-(crude_oil): {conversion: 1.0}
 (electricity)-oil_chp_energy_undefined: {conversion: 0.38}
 (steam_hot_water)-oil_chp_energy_undefined: {conversion: 0.3}
@@ -5331,6 +5693,7 @@ oil_chp_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energ
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 425
 pumped_storage_energy_undefined-(electricity): {conversion: 1.0}
 (loss)-pumped_storage_energy_undefined: {conversion: 1.0}
 pumped_storage_energy_undefined-(electricity) -- s --> (electricity)-hv_electricity_network_energy_undefined: {share: 1.0}
@@ -5339,6 +5702,7 @@ pumped_storage_energy_undefined-(electricity) -- s --> (electricity)-hv_electric
   :co2_free: 0.0
   :preset_demand: 682669865.866883
   :demand: 682669865.866883
+  :excel_id: 426
 planes_transport_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-planes_transport_energetic: {conversion: 1.0}
 planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_oil_demand_transport_energetic: {share: 1.0}
@@ -5346,6 +5710,7 @@ planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_bio_ethan
 
 :planes_bio_ethanol_transport_energetic:
   :co2_free: 0.0
+  :excel_id: 427
 planes_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (not_defined)-planes_bio_ethanol_transport_energetic: {conversion: 1.0}
 planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport_undefined: {share: 1.0}
@@ -5354,6 +5719,7 @@ planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_
   :co2_free: 0.0
   :preset_demand: 375768800.967767
   :demand: 375768800.967767
+  :excel_id: 428
 trains_transport_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-trains_transport_energetic: {conversion: 1.0}
 trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_electricity_demand_transport_energetic: {share: 0.930346631785481}
@@ -5364,6 +5730,7 @@ trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_oil_deman
   :co2_free: 0.0
   :preset_demand: 1843208637.84058
   :demand: 1843208637.84058
+  :excel_id: 429
 ships_transport_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-ships_transport_energetic: {conversion: 1.0}
 ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_oil_demand_transport_energetic: {share: 1.0}
@@ -5390,6 +5757,7 @@ ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_diesel_dema
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 430
 district_heater_coal_energy_energetic-(biomass): {conversion: 0.0}
 district_heater_coal_energy_energetic-(torrified_biomass_pellets): {conversion: 0.0}
 district_heater_coal_energy_energetic-(coal): {conversion: 1.0}
@@ -5420,6 +5788,7 @@ district_heater_coal_energy_energetic-(torrified_biomass_pellets) -- s --> (torr
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 431
 district_heater_lignite_energy_energetic-(lignite): {conversion: 1.0}
 (steam_hot_water)-district_heater_lignite_energy_energetic: {conversion: 0.7}
 (loss)-district_heater_lignite_energy_energetic: {conversion: 0.3}
@@ -5446,6 +5815,7 @@ district_heater_lignite_energy_energetic-(lignite) -- s --> (lignite)-lignite_di
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 432
 district_heater_oil_energy_energetic-(crude_oil): {conversion: 1.0}
 (steam_hot_water)-district_heater_oil_energy_energetic: {conversion: 0.7}
 (loss)-district_heater_oil_energy_energetic: {conversion: 0.3}
@@ -5472,6 +5842,7 @@ district_heater_oil_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distri
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 433
 district_heater_gas_energy_energetic-(network_gas): {conversion: 1.0}
 (steam_hot_water)-district_heater_gas_energy_energetic: {conversion: 0.75}
 (loss)-district_heater_gas_energy_energetic: {conversion: 0.25}
@@ -5498,6 +5869,7 @@ district_heater_gas_energy_energetic-(network_gas) -- s --> (network_gas)-nation
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 434
 district_heater_waste_energy_energetic-(waste_mix): {conversion: 1.0}
 (steam_hot_water)-district_heater_waste_energy_energetic: {conversion: 0.7}
 (loss)-district_heater_waste_energy_energetic: {conversion: 0.3}
@@ -5524,6 +5896,7 @@ district_heater_waste_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_di
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 435
 district_heater_biomass_energy_energetic-(biomass): {conversion: 1.0}
 (steam_hot_water)-district_heater_biomass_energy_energetic: {conversion: 0.812}
 (loss)-district_heater_biomass_energy_energetic: {conversion: 0.188}
@@ -5550,6 +5923,7 @@ district_heater_biomass_energy_energetic-(biomass) -- s --> (biomass)-biomass_di
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 436
 biomass_CHP_energy_energetic-(biomass): {conversion: 1.0}
 (loss)-biomass_CHP_energy_energetic: {conversion: 0.35}
 (steam_hot_water)-biomass_CHP_energy_energetic: {conversion: 0.35}
@@ -5577,6 +5951,7 @@ biomass_CHP_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_e
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 437
 biomass_CHP_other_energetic-(biomass): {conversion: 1.0}
 (loss)-biomass_CHP_other_energetic: {conversion: 0.418}
 (steam_hot_water)-biomass_CHP_other_energetic: {conversion: 0.35}
@@ -5604,6 +5979,7 @@ biomass_CHP_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_en
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 438
 coal_CHP_industry_energetic-(biomass): {conversion: 0.0}
 coal_CHP_industry_energetic-(torrified_biomass_pellets): {conversion: 0.0}
 coal_CHP_industry_energetic-(coal): {conversion: 1.0}
@@ -5617,6 +5993,7 @@ coal_CHP_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biom
 :biomass_cooking_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 439
 biomass_cooking_households_energetic-(biomass): {conversion: 1.0}
 (useable_heat)-biomass_cooking_households_energetic: {conversion: 0.3}
 (loss)-biomass_cooking_households_energetic: {conversion: 0.7}
@@ -5644,6 +6021,7 @@ biomass_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_for_co
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 440
 gas_fired_heater_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-gas_fired_heater_households_energetic: {conversion: 0.2}
 (useable_heat)-gas_fired_heater_households_energetic: {conversion: 0.8}
@@ -5676,6 +6054,7 @@ gas_fired_heater_households_energetic-(network_gas) -- s --> (network_gas)-gas_f
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
+  :excel_id: 441
 fuel_cell_chp_households_energetic-(network_gas): {conversion: 1.0}
 (loss)-fuel_cell_chp_households_energetic: {conversion: 0.2}
 (electricity)-fuel_cell_chp_households_energetic: {conversion: 0.6}
@@ -5686,6 +6065,7 @@ fuel_cell_chp_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_
 :hot_water_devices_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 5836540354.11431
+  :excel_id: 442
 hot_water_devices_households_energetic-(hot_water): {conversion: 1.0}
 (hot_water)-hot_water_devices_households_energetic: {conversion: 1.0}
 hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-heatpump_boiler_households_energetic: {share: 0.0}
@@ -5703,6 +6083,7 @@ hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-fuel_cel
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 473
 gas_use_public_buildings_undefined-(network_gas): {conversion: 1.0}
 (network_gas)-gas_use_public_buildings_undefined: {conversion: 1.0}
 gas_use_public_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
@@ -5711,6 +6092,7 @@ gas_use_public_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buil
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 474
 electricity_use_public_buildings_undefined-(electricity): {conversion: 1.0}
 (electricity)-electricity_use_public_buildings_undefined: {conversion: 1.0}
 electricity_use_public_buildings_undefined-(electricity) -- s --> (electricity)-electricity_buildings_energetic: {share: 1.0}
@@ -5719,6 +6101,7 @@ electricity_use_public_buildings_undefined-(electricity) -- s --> (electricity)-
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 475
 heat_use_public_buildings_undefined-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_use_public_buildings_undefined: {conversion: 1.0}
 heat_use_public_buildings_undefined-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_buildings_energetic: {share: 1.0}
@@ -5727,11 +6110,13 @@ heat_use_public_buildings_undefined-(steam_hot_water) -- s --> (steam_hot_water)
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 476
 foreign_production_algue_diesel_neighbor_undefined-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-foreign_production_algue_diesel_neighbor_undefined: {conversion: 1.0}
 
 :biogas_production_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 477
 (biogas)-biogas_production_energy_undefined: {conversion: 1.0}
 biogas_production_energy_undefined-(manure): {conversion: 0.5}
 biogas_production_energy_undefined-(corn): {conversion: 0.5}
@@ -5740,47 +6125,56 @@ biogas_production_energy_undefined-(corn) -- s --> (corn)-corn_distribution_ener
 
 :biogas_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 478
 biogas_distribution_energy_undefined-(biogas): {conversion: 1.0}
 (biogas)-biogas_distribution_energy_undefined: {conversion: 1.0}
 biogas_distribution_energy_undefined-(biogas) -- s --> (biogas)-biogas_production_energy_undefined: {share: 1.0}
 
 :foreign_solar_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 479
 foreign_solar_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_solar_power_neighbor_undefined: {conversion: 1.0}
 
 :foreign_waste_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 480
 foreign_waste_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_waste_power_neighbor_undefined: {conversion: 1.0}
 
 :foreign_geothermal_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 481
 foreign_geothermal_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_geothermal_power_neighbor_undefined: {conversion: 1.0}
 
 :foreign_oil_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 482
 foreign_oil_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_oil_power_neighbor_undefined: {conversion: 1.0}
 
 :foreign_hydro_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 483
 foreign_hydro_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_hydro_power_neighbor_undefined: {conversion: 1.0}
 
 :foreign_wind_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 484
 foreign_wind_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_wind_power_neighbor_undefined: {conversion: 1.0}
 
 :foreign_biomass_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 485
 foreign_biomass_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_biomass_power_neighbor_undefined: {conversion: 1.0}
 
 :biocoal_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 486
 biocoal_distribution_energy_undefined-(torrified_biomass_pellets): {conversion: 1.0}
 (torrified_biomass_pellets)-biocoal_distribution_energy_undefined: {conversion: 1.0}
 biocoal_distribution_energy_undefined-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-torrefaction_energy_undefined: {share: 1.0}
@@ -5788,6 +6182,7 @@ biocoal_distribution_energy_undefined-(torrified_biomass_pellets) -- c --> (torr
 
 :torrefaction_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 487
 torrefaction_energy_undefined-(network_gas): {conversion: 0.052993333}
 torrefaction_energy_undefined-(wood): {conversion: 0.947006667}
 (torrified_biomass_pellets)-torrefaction_energy_undefined: {conversion: 0.91}
@@ -5797,6 +6192,7 @@ torrefaction_energy_undefined-(wood) -- s --> (wood)-wood_distribution_energy_un
 
 :foreign_unspecified_power_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 488
 foreign_unspecified_power_neighbor_undefined-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-foreign_unspecified_power_neighbor_undefined: {conversion: 1.0}
 
@@ -5804,22 +6200,26 @@ foreign_unspecified_power_neighbor_undefined-(imported_electricity): {conversion
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 489
 heat_import_energy_undefined-(imported_steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_import_energy_undefined: {conversion: 1.0}
 heat_import_energy_undefined-(imported_steam_hot_water) -- s --> (imported_steam_hot_water)-foreign_heat_production_neighbor_undefined: {share: 1.0}
 
 :foreign_heat_production_neighbor_undefined:
   :co2_free: 0.0
+  :excel_id: 490
 foreign_heat_production_neighbor_undefined-(imported_steam_hot_water): {conversion: 1.0}
 (imported_steam_hot_water)-foreign_heat_production_neighbor_undefined: {conversion: 1.0}
 
 :biocoal_import_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 491
 biocoal_import_energy_undefined-(torrified_biomass_pellets): {conversion: 1.0}
 (torrified_biomass_pellets)-biocoal_import_energy_undefined: {conversion: 1.0}
 
 :woodpellet_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 492
 woodpellet_distribution_energy_undefined-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-woodpellet_distribution_energy_undefined: {conversion: 1.0}
 woodpellet_distribution_energy_undefined-(wood_pellets) -- c --> (wood_pellets)-woodpellet_production_energy_undefined: {share: 0.0}
@@ -5827,28 +6227,33 @@ woodpellet_distribution_energy_undefined-(wood_pellets) -- f --> (wood_pellets)-
 
 :woodpellet_production_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 493
 (wood_pellets)-woodpellet_production_energy_undefined: {conversion: 1.0}
 woodpellet_production_energy_undefined-(wood): {conversion: 1.0}
 woodpellet_production_energy_undefined-(wood) -- s --> (wood)-wood_distribution_energy_undefined: {share: 1.0}
 
 :woodpellet_import_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 494
 woodpellet_import_energy_undefined-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-woodpellet_import_energy_undefined: {conversion: 1.0}
 
 :wood_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 495
 wood_distribution_energy_undefined-(wood): {conversion: 1.0}
 (wood)-wood_distribution_energy_undefined: {conversion: 1.0}
 wood_distribution_energy_undefined-(wood) -- s --> (wood)-wood_growth_energy_undefined: {share: 1.0}
 
 :wood_growth_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 496
 wood_growth_energy_undefined-(wood): {conversion: 1.0}
 (wood)-wood_growth_energy_undefined: {conversion: 1.0}
 
 :biogas_upgrade_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 497
 biogas_upgrade_energy_undefined-(biogas): {conversion: 1.0}
 (loss)-biogas_upgrade_energy_undefined: {conversion: 0.08}
 (greengas)-biogas_upgrade_energy_undefined: {conversion: 0.92}
@@ -5856,118 +6261,138 @@ biogas_upgrade_energy_undefined-(biogas) -- s --> (biogas)-biogas_distribution_e
 
 :manure_collection_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 498
 manure_collection_energy_undefined-(manure): {conversion: 1.0}
 (manure)-manure_collection_energy_undefined: {conversion: 1.0}
 manure_collection_energy_undefined-(manure) -- s --> (manure)-available_manure_energy_undefined: {share: 1.0}
 
 :available_manure_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 499
 available_manure_energy_undefined-(manure): {conversion: 1.0}
 (manure)-available_manure_energy_undefined: {conversion: 1.0}
 
 :corn_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 500
 corn_distribution_energy_undefined-(corn): {conversion: 1.0}
 (corn)-corn_distribution_energy_undefined: {conversion: 1.0}
 corn_distribution_energy_undefined-(corn) -- s --> (corn)-corn_growth_energy_undefined: {share: 1.0}
 
 :corn_growth_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 501
 corn_growth_energy_undefined-(corn): {conversion: 1.0}
 (corn)-corn_growth_energy_undefined: {conversion: 1.0}
 
 :lng_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 502
 lng_export_energy_undefined-(lng): {conversion: 1.0}
 (lng)-lng_export_energy_undefined: {conversion: 1.0}
 lng_export_energy_undefined-(lng) -- i --> (lng)-lng_import_energy_undefined: {share: 0.0}
 
 :uranium_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 503
 uranium_export_energy_undefined-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-uranium_export_energy_undefined: {conversion: 1.0}
 uranium_export_energy_undefined-(uranium_oxide) -- i --> (uranium_oxide)-uranium_distribution_energy_undefined: {share: 0.0}
 
 :oil_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 504
 oil_export_energy_undefined-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_export_energy_undefined: {conversion: 1.0}
 oil_export_energy_undefined-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy_undefined: {share: 0.0}
 
 :gas_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 505
 gas_export_energy_undefined-(network_gas): {conversion: 1.0}
 (network_gas)-gas_export_energy_undefined: {conversion: 1.0}
 gas_export_energy_undefined-(network_gas) -- i --> (network_gas)-national_gas_network_energy_undefined: {share: 0.0}
 
 :biomass_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 506
 biomass_export_energy_undefined-(biomass): {conversion: 1.0}
 (biomass)-biomass_export_energy_undefined: {conversion: 1.0}
 biomass_export_energy_undefined-(biomass) -- i --> (biomass)-biomass_distribution_energy_undefined: {share: 0.0}
 
 :diesel_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 507
 diesel_export_energy_undefined-(diesel): {conversion: 1.0}
 (diesel)-diesel_export_energy_undefined: {conversion: 1.0}
 diesel_export_energy_undefined-(diesel) -- i --> (diesel)-diesel_distribution_transport_undefined: {share: 0.0}
 
 :gasoline_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 508
 gasoline_export_energy_undefined-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_export_energy_undefined: {conversion: 1.0}
 gasoline_export_energy_undefined-(gasoline) -- i --> (gasoline)-gasoline_distribution_transport_undefined: {share: 0.0}
 
 :kerosine_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 509
 kerosine_export_energy_undefined-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_export_energy_undefined: {conversion: 1.0}
 kerosine_export_energy_undefined-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport_undefined: {share: 0.0}
 
 :lpg_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 511
 lpg_export_energy_undefined-(lpg): {conversion: 1.0}
 (lpg)-lpg_export_energy_undefined: {conversion: 1.0}
 lpg_export_energy_undefined-(lpg) -- i --> (lpg)-lpg_distribution_transport_undefined: {share: 0.0}
 
 :greengas_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 512
 greengas_export_energy_undefined-(greengas): {conversion: 1.0}
 (greengas)-greengas_export_energy_undefined: {conversion: 1.0}
 greengas_export_energy_undefined-(greengas) -- i --> (greengas)-greengas_distribution_energy_undefined: {share: 0.0}
 
 :coal_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 513
 coal_export_energy_undefined-(coal): {conversion: 1.0}
 (coal)-coal_export_energy_undefined: {conversion: 1.0}
 coal_export_energy_undefined-(coal) -- i --> (coal)-coal_distribution_energy_undefined: {share: 0.0}
 
 :bio_oil_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 514
 bio_oil_export_energy_undefined-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_export_energy_undefined: {conversion: 1.0}
 bio_oil_export_energy_undefined-(bio_oil) -- i --> (bio_oil)-bio_oil_distribution_energy_undefined: {share: 0.0}
 
 :waste_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 515
 waste_export_energy_undefined-(waste_mix): {conversion: 1.0}
 (waste_mix)-waste_export_energy_undefined: {conversion: 1.0}
 waste_export_energy_undefined-(waste_mix) -- i --> (waste_mix)-waste_distribution_energy_undefined: {share: 0.0}
 
 :bio_diesel_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 516
 bio_diesel_export_energy_undefined-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_export_energy_undefined: {conversion: 1.0}
 bio_diesel_export_energy_undefined-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_transport_undefined: {share: 0.0}
 
 :bio_ethanol_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 517
 bio_ethanol_export_energy_undefined-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_export_energy_undefined: {conversion: 1.0}
 bio_ethanol_export_energy_undefined-(bio_ethanol) -- i --> (bio_ethanol)-bio_ethanol_distribution_transport_undefined: {share: 0.0}
 
 :algue_diesel_export_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 518
 algue_diesel_export_energy_undefined-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_export_energy_undefined: {conversion: 1.0}
 algue_diesel_export_energy_undefined-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_distribution_transport_energetic: {share: 0.0}
@@ -5975,6 +6400,7 @@ algue_diesel_export_energy_undefined-(algae_diesel) -- i --> (algae_diesel)-algu
 :biogenic_waste_distribution_energy_undefined:
   :co2_free: 0.0
   :demand_expected_value: 1037658196.11766
+  :excel_id: 519
 biogenic_waste_distribution_energy_undefined-(biogenic_waste): {conversion: 1.0}
 (waste_mix)-biogenic_waste_distribution_energy_undefined: {conversion: 1.0}
 biogenic_waste_distribution_energy_undefined-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy_undefined: {share: 0.0}
@@ -5982,6 +6408,7 @@ biogenic_waste_distribution_energy_undefined-(biogenic_waste) -- c --> (biogenic
 
 :non_biogenic_waste_distribution_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 520
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste): {conversion: 1.0}
 (waste_mix)-non_biogenic_waste_distribution_energy_undefined: {conversion: 1.0}
 non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste) -- f --> (non_biogenic_waste)-non_biogenic_waste_import_energy_undefined: {share: 0.0}
@@ -5989,11 +6416,13 @@ non_biogenic_waste_distribution_energy_undefined-(non_biogenic_waste) -- c --> (
 
 :biogenic_waste_import_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 521
 biogenic_waste_import_energy_undefined-(biogenic_waste): {conversion: 1.0}
 (biogenic_waste)-biogenic_waste_import_energy_undefined: {conversion: 1.0}
 
 :non_biogenic_waste_import_energy_undefined:
   :co2_free: 0.0
+  :excel_id: 522
 non_biogenic_waste_import_energy_undefined-(non_biogenic_waste): {conversion: 1.0}
 (non_biogenic_waste)-non_biogenic_waste_import_energy_undefined: {conversion: 1.0}
 
@@ -6001,6 +6430,7 @@ non_biogenic_waste_import_energy_undefined-(non_biogenic_waste): {conversion: 1.
   :co2_free: 0.0
   :preset_demand: 1037658196.11766
   :demand: 1037658196.11766
+  :excel_id: 523
 biogenic_waste_collection_energy_undefined-(biogenic_waste): {conversion: 1.0}
 (biogenic_waste)-biogenic_waste_collection_energy_undefined: {conversion: 1.0}
 
@@ -6009,6 +6439,7 @@ biogenic_waste_collection_energy_undefined-(biogenic_waste): {conversion: 1.0}
   :preset_demand: 1693021267.34987
   :demand_expected_value: 1693021267.34987
   :demand: 1693021267.34987
+  :excel_id: 524
 non_biogenic_waste_collection_energy_undefined-(non_biogenic_waste): {conversion: 1.0}
 (non_biogenic_waste)-non_biogenic_waste_collection_energy_undefined: {conversion: 1.0}
 
@@ -6016,6 +6447,7 @@ non_biogenic_waste_collection_energy_undefined-(non_biogenic_waste): {conversion
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 525
 demand_dishwasher_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_dishwasher_households_energetic: {conversion: 1.0}
 
@@ -6023,6 +6455,7 @@ demand_dishwasher_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 526
 demand_fridge_freezer_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_fridge_freezer_households_energetic: {conversion: 1.0}
 
@@ -6030,6 +6463,7 @@ demand_fridge_freezer_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 527
 demand_washing_machine_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_washing_machine_households_energetic: {conversion: 1.0}
 
@@ -6037,6 +6471,7 @@ demand_washing_machine_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 528
 demand_clothes_dryer_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_clothes_dryer_households_energetic: {conversion: 1.0}
 
@@ -6044,6 +6479,7 @@ demand_clothes_dryer_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 529
 demand_tv_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_tv_households_energetic: {conversion: 1.0}
 
@@ -6051,6 +6487,7 @@ demand_tv_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 530
 demand_computer_media_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_computer_media_households_energetic: {conversion: 1.0}
 
@@ -6058,6 +6495,7 @@ demand_computer_media_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 531
 demand_vacuum_cleaner_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_vacuum_cleaner_households_energetic: {conversion: 1.0}
 
@@ -6065,12 +6503,14 @@ demand_vacuum_cleaner_households_energetic-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
+  :excel_id: 532
 demand_other_appliances_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_other_appliances_households_energetic: {conversion: 1.0}
 
 :solar_thermal_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 533
 solar_thermal_for_heating_households_energetic-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-solar_thermal_for_heating_households_energetic: {conversion: 1.0}
 solar_thermal_for_heating_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_households_energetic: {share: 1.0}
@@ -6078,6 +6518,7 @@ solar_thermal_for_heating_households_energetic-(solar_thermal) -- s --> (solar_t
 :solar_thermal_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 68333333.3333333
+  :excel_id: 534
 solar_thermal_for_hot_water_households_energetic-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-solar_thermal_for_hot_water_households_energetic: {conversion: 1.0}
 solar_thermal_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_households_energetic: {share: 1.0}
@@ -6085,12 +6526,14 @@ solar_thermal_for_hot_water_households_energetic-(solar_thermal) -- s --> (solar
 :solar_thermal_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 68333333.3333333
+  :excel_id: 535
 solar_thermal_households_energetic-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-solar_thermal_households_energetic: {conversion: 1.0}
 solar_thermal_households_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_production_energy_energetic: {share: 1.0}
 
 :solar_thermal_production_energy_energetic:
   :co2_free: 0.0
+  :excel_id: 536
 solar_thermal_production_energy_energetic-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-solar_thermal_production_energy_energetic: {conversion: 1.0}
 solar_thermal_production_energy_energetic-(solar_thermal) -- s --> (solar_thermal)-sun_environment_energetic: {share: 1.0}
@@ -6098,6 +6541,7 @@ solar_thermal_production_energy_energetic-(solar_thermal) -- s --> (solar_therma
 :coal_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 13743477.7606164
+  :excel_id: 537
 coal_for_heating_households_energetic-(coal): {conversion: 1.0}
 (coal)-coal_for_heating_households_energetic: {conversion: 1.0}
 coal_for_heating_households_energetic-(coal) -- s --> (coal)-coal_households_energetic: {share: 1.0}
@@ -6105,6 +6549,7 @@ coal_for_heating_households_energetic-(coal) -- s --> (coal)-coal_households_ene
 :coal_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 538
 coal_for_hot_water_households_energetic-(coal): {conversion: 1.0}
 (coal)-coal_for_hot_water_households_energetic: {conversion: 1.0}
 coal_for_hot_water_households_energetic-(coal) -- s --> (coal)-coal_households_energetic: {share: 1.0}
@@ -6112,6 +6557,7 @@ coal_for_hot_water_households_energetic-(coal) -- s --> (coal)-coal_households_e
 :oil_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 262500425.227774
+  :excel_id: 539
 oil_for_heating_households_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_for_heating_households_energetic: {conversion: 1.0}
 oil_for_heating_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_households_energetic: {share: 1.0}
@@ -6119,6 +6565,7 @@ oil_for_heating_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_househ
 :oil_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 540
 oil_for_hot_water_households_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_for_hot_water_households_energetic: {conversion: 1.0}
 oil_for_hot_water_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_households_energetic: {share: 1.0}
@@ -6126,6 +6573,7 @@ oil_for_hot_water_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_hous
 :gas_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 15587866219.5689
+  :excel_id: 541
 gas_for_heating_households_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_for_heating_households_energetic: {conversion: 1.0}
 gas_for_heating_households_energetic-(network_gas) -- s --> (network_gas)-gas_households_energetic: {share: 1.0}
@@ -6133,6 +6581,7 @@ gas_for_heating_households_energetic-(network_gas) -- s --> (network_gas)-gas_ho
 :gas_for_cooling_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 542
 gas_for_cooling_households_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_for_cooling_households_energetic: {conversion: 1.0}
 gas_for_cooling_households_energetic-(network_gas) -- s --> (network_gas)-gas_households_energetic: {share: 1.0}
@@ -6140,6 +6589,7 @@ gas_for_cooling_households_energetic-(network_gas) -- s --> (network_gas)-gas_ho
 :gas_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 5124777935.20074
+  :excel_id: 543
 gas_for_hot_water_households_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_for_hot_water_households_energetic: {conversion: 1.0}
 gas_for_hot_water_households_energetic-(network_gas) -- s --> (network_gas)-gas_households_energetic: {share: 1.0}
@@ -6147,6 +6597,7 @@ gas_for_hot_water_households_energetic-(network_gas) -- s --> (network_gas)-gas_
 :gas_for_cooking_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 640597241.900093
+  :excel_id: 544
 gas_for_cooking_households_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-gas_for_cooking_households_energetic: {conversion: 1.0}
 gas_for_cooking_households_energetic-(network_gas) -- s --> (network_gas)-gas_households_energetic: {share: 1.0}
@@ -6154,6 +6605,7 @@ gas_for_cooking_households_energetic-(network_gas) -- s --> (network_gas)-gas_ho
 :biomass_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1030760832.04623
+  :excel_id: 545
 biomass_for_heating_households_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_for_heating_households_energetic: {conversion: 1.0}
 biomass_for_heating_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic: {share: 1.0}
@@ -6161,6 +6613,7 @@ biomass_for_heating_households_energetic-(biomass) -- s --> (biomass)-biomass_ho
 :biomass_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 546
 biomass_for_hot_water_households_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_for_hot_water_households_energetic: {conversion: 1.0}
 biomass_for_hot_water_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic: {share: 1.0}
@@ -6168,6 +6621,7 @@ biomass_for_hot_water_households_energetic-(biomass) -- s --> (biomass)-biomass_
 :biomass_for_cooking_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 547
 biomass_for_cooking_households_energetic-(biomass): {conversion: 1.0}
 (biomass)-biomass_for_cooking_households_energetic: {conversion: 1.0}
 biomass_for_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic: {share: 1.0}
@@ -6175,6 +6629,7 @@ biomass_for_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_ho
 :electricity_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 380375485.285029
+  :excel_id: 548
 electricity_for_heating_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_heating_households_energetic: {conversion: 1.0}
 electricity_for_heating_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic: {share: 1.0}
@@ -6182,6 +6637,7 @@ electricity_for_heating_households_energetic-(electricity) -- s --> (electricity
 :electricity_for_cooling_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 154704970.624143
+  :excel_id: 549
 electricity_for_cooling_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_cooling_households_energetic: {conversion: 1.0}
 electricity_for_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic: {share: 1.0}
@@ -6189,6 +6645,7 @@ electricity_for_cooling_households_energetic-(electricity) -- s --> (electricity
 :electricity_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 490807077.787134
+  :excel_id: 550
 electricity_for_hot_water_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_hot_water_households_energetic: {conversion: 1.0}
 electricity_for_hot_water_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic: {share: 1.0}
@@ -6196,6 +6653,7 @@ electricity_for_hot_water_households_energetic-(electricity) -- s --> (electrici
 :electricity_for_cooking_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 309409941.248285
+  :excel_id: 551
 electricity_for_cooking_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_cooking_households_energetic: {conversion: 1.0}
 electricity_for_cooking_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic: {share: 1.0}
@@ -6203,6 +6661,7 @@ electricity_for_cooking_households_energetic-(electricity) -- s --> (electricity
 :electricity_for_lighting_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 993205911.406995
+  :excel_id: 552
 electricity_for_lighting_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_lighting_households_energetic: {conversion: 1.0}
 electricity_for_lighting_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic: {share: 1.0}
@@ -6210,6 +6669,7 @@ electricity_for_lighting_households_energetic-(electricity) -- s --> (electricit
 :electricity_for_appliances_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 3804195227.64767
+  :excel_id: 553
 electricity_for_appliances_households_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_appliances_households_energetic: {conversion: 1.0}
 electricity_for_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_households_energetic: {share: 1.0}
@@ -6217,6 +6677,7 @@ electricity_for_appliances_households_energetic-(electricity) -- s --> (electric
 :monitized_heat_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1112671959.49951
+  :excel_id: 554
 monitized_heat_for_heating_households_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-monitized_heat_for_heating_households_energetic: {conversion: 1.0}
 monitized_heat_for_heating_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_households_energetic: {share: 1.0}
@@ -6224,6 +6685,7 @@ monitized_heat_for_heating_households_energetic-(steam_hot_water) -- s --> (stea
 :monitized_heat_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 278167989.874877
+  :excel_id: 555
 monitized_heat_for_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-monitized_heat_for_hot_water_households_energetic: {conversion: 1.0}
 monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_households_energetic: {share: 1.0}
@@ -6231,6 +6693,7 @@ monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (st
 :diesel_generator_energy_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 556
 diesel_generator_energy_energetic-(crude_oil): {conversion: 1.0}
 (electricity)-diesel_generator_energy_energetic: {conversion: 0.0}
 (loss)-diesel_generator_energy_energetic: {conversion: 1.0}
@@ -6239,6 +6702,7 @@ diesel_generator_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribut
 :gas_turbine_energy_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+  :excel_id: 557
 gas_turbine_energy_energetic-(natural_gas): {conversion: 1.0}
 (electricity)-gas_turbine_energy_energetic: {conversion: 0.0}
 (loss)-gas_turbine_energy_energetic: {conversion: 1.0}
