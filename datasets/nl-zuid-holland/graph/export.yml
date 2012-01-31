@@ -65,7 +65,7 @@ traditional_lighting_households_energetic-(electricity) -- s --> (electricity)-e
   :demand_expected_value: 711957834.483387
   :demand: 711957834.483387
 other_appliances_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-other_appliances_households_energetic: {conversion: 1.0}
+(not_defined)-other_appliances_households_energetic: {conversion: 1.0}
 (loss)-other_appliances_households_energetic: {conversion: 0.0}
 other_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -426,7 +426,7 @@ city_heating_network_energy_energetic-(steam_hot_water) -- s --> (steam_hot_wate
   :availability: 0.89
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.02
-gas_conv_energy_energetic-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+gas_conv_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
 gas_conv_energy_energetic-(crude_oil): {conversion: 0.0}
 gas_conv_energy_energetic-(bio_oil): {conversion: 0.0}
 (loss)-gas_conv_energy_energetic: {conversion: 0.6}
@@ -434,7 +434,7 @@ gas_conv_energy_energetic-(bio_oil): {conversion: 0.0}
 (electricity)-gas_conv_energy_energetic: {conversion: 0.4}
 gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined: {share: 1.0}
 gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
-gas_conv_energy_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :electricity_demand_industry_energetic:
   :co2_free: 0.0
@@ -508,11 +508,11 @@ mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lo
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-small_chp_industry_energetic-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+small_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-small_chp_industry_energetic: {conversion: 0.2752}
 (steam_hot_water)-small_chp_industry_energetic: {conversion: 0.4729}
 (electricity)-small_chp_industry_energetic: {conversion: 0.2519}
-small_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :large_chp_industry_energetic:
   :co2_free: 0.0
@@ -541,7 +541,7 @@ small_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_fo
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
-large_chp_industry_energetic-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+large_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
 large_chp_industry_energetic-(crude_oil): {conversion: 0.0}
 large_chp_industry_energetic-(bio_oil): {conversion: 0.0}
 (loss)-large_chp_industry_energetic: {conversion: 0.23}
@@ -549,7 +549,7 @@ large_chp_industry_energetic-(bio_oil): {conversion: 0.0}
 (electricity)-large_chp_industry_energetic: {conversion: 0.32}
 large_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined: {share: 1.0}
 large_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
-large_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+large_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :biomass_chp_industry_energetic:
   :co2_free: 0.0
@@ -813,14 +813,14 @@ oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_n
   :co2_free: 0.0
   :demand_expected_value: 5702006583.00389
 ships_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
-(notdefined)-ships_oil_demand_transport_energetic: {conversion: 1.0}
+(not_defined)-ships_oil_demand_transport_energetic: {conversion: 1.0}
 ships_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic: {share: 1.0}
 
 :ships_diesel_demand_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 ships_diesel_demand_transport_energetic-(biodiesel): {conversion: 1.0}
-(notdefined)-ships_diesel_demand_transport_energetic: {conversion: 1.0}
+(not_defined)-ships_diesel_demand_transport_energetic: {conversion: 1.0}
 ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport_undefined: {share: 1.0}
 
 :trains_electricity_demand_transport_energetic:
@@ -828,7 +828,7 @@ ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_die
   :demand_expected_value: 1201645091.01082
 trains_electricity_demand_transport_energetic-(electricity): {conversion: 1.0}
 (loss)-trains_electricity_demand_transport_energetic: {conversion: 0.1}
-(notdefined)-trains_electricity_demand_transport_energetic: {conversion: 0.9}
+(not_defined)-trains_electricity_demand_transport_energetic: {conversion: 0.9}
 trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic: {share: 1.0}
 
 :cooling_demand_buildings_energetic:
@@ -928,7 +928,7 @@ electricity_demand_agriculture_energetic-(electricity) -- s --> (electricity)-el
   :co2_free: 0.0
 trains_coal_demand_transport_energetic-(coal): {conversion: 1.0}
 (loss)-trains_coal_demand_transport_energetic: {conversion: 0.7}
-(notdefined)-trains_coal_demand_transport_energetic: {conversion: 0.3}
+(not_defined)-trains_coal_demand_transport_energetic: {conversion: 0.3}
 trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic: {share: 1.0}
 
 :electricity_demand_other_energetic:
@@ -1378,7 +1378,7 @@ oil_plant_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_ene
   :availability: 0.9
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.04
-gas_ccgt_energy_undefined-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+gas_ccgt_energy_undefined-(gas_power_fuelmix): {conversion: 1.0}
 gas_ccgt_energy_undefined-(crude_oil): {conversion: 0.0}
 gas_ccgt_energy_undefined-(bio_oil): {conversion: 0.0}
 (loss)-gas_ccgt_energy_undefined: {conversion: 0.42}
@@ -1386,7 +1386,7 @@ gas_ccgt_energy_undefined-(bio_oil): {conversion: 0.0}
 (electricity)-gas_ccgt_energy_undefined: {conversion: 0.58}
 gas_ccgt_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined: {share: 1.0}
 gas_ccgt_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
-gas_ccgt_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+gas_ccgt_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :coal_chp_energy_undefined:
   :co2_free: 0.0
@@ -2079,7 +2079,7 @@ gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energe
   :demand_expected_value: 269894978.262184
 trains_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
 (loss)-trains_oil_demand_transport_energetic: {conversion: 0.7}
-(notdefined)-trains_oil_demand_transport_energetic: {conversion: 0.3}
+(not_defined)-trains_oil_demand_transport_energetic: {conversion: 0.3}
 trains_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic: {share: 1.0}
 
 :lpg_production_transport_undefined:
@@ -2208,7 +2208,7 @@ lpg_import_export_transport_undefined-(lpg): {conversion: 1.0}
 :planes_oil_demand_transport_energetic:
   :co2_free: 0.0
 planes_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
-(notdefined)-planes_oil_demand_transport_energetic: {conversion: 1.0}
+(not_defined)-planes_oil_demand_transport_energetic: {conversion: 1.0}
 planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic: {share: 1.0}
 
 :coal_demand_other_non_energetic:
@@ -3046,11 +3046,11 @@ biogas_plant_energy_undefined-(biogas) -- s --> (biogas)-biogas_distribution_ene
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.469483568075118
-chp_other_other_energetic-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+chp_other_other_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-chp_other_other_energetic: {conversion: 0.0564}
 (steam_hot_water)-chp_other_other_energetic: {conversion: 0.5763}
 (electricity)-chp_other_other_energetic: {conversion: 0.3673}
-chp_other_other_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+chp_other_other_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :biomass_burner_agri_agriculture_energetic:
   :co2_free: 0.0
@@ -3160,11 +3160,11 @@ gas_burner_agri_agriculture_energetic-(network_gas) -- s --> (network_gas)-gas_d
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-chp_agri_agriculture_energetic-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+chp_agri_agriculture_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-chp_agri_agriculture_energetic: {conversion: 0.1609}
 (steam_hot_water)-chp_agri_agriculture_energetic: {conversion: 0.4808}
 (electricity)-chp_agri_agriculture_energetic: {conversion: 0.3583}
-chp_agri_agriculture_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+chp_agri_agriculture_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :heat_demand_other_other_energetic:
   :co2_free: 0.0
@@ -3532,7 +3532,7 @@ energy_sector_gas_mixer_energy_undefined-(bio_oil): {conversion: 0.0}
 energy_sector_gas_mixer_energy_undefined-(biogas): {conversion: 0.0}
 energy_sector_gas_mixer_energy_undefined-(crude_oil): {conversion: 0.0}
 energy_sector_gas_mixer_energy_undefined-(network_gas): {conversion: 1.0}
-(fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {conversion: 1.0}
+(gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {conversion: 1.0}
 energy_sector_gas_mixer_energy_undefined-(network_gas) -- s --> (network_gas)-national_gas_network_energy_undefined: {share: 1.0}
 energy_sector_gas_mixer_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined: {share: 1.0}
 energy_sector_gas_mixer_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
@@ -3719,10 +3719,10 @@ foreign_sustainable_power_energy_undefined-(electricity): {conversion: 1.0}
   :availability: 0.0
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-backup_burner_heat_network_energy_undefined-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+backup_burner_heat_network_energy_undefined-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-backup_burner_heat_network_energy_undefined: {conversion: 0.1}
 (steam_hot_water)-backup_burner_heat_network_energy_undefined: {conversion: 0.9}
-backup_burner_heat_network_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+backup_burner_heat_network_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :diesel_mixer_transport_energetic:
   :co2_free: 0.0
@@ -4057,7 +4057,7 @@ induction_stove_households_energetic-(electricity) -- s --> (electricity)-electr
   :demand_expected_value: 1112434116.38029
   :demand: 1112434116.38029
 dishwasher_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-dishwasher_households_energetic: {conversion: 1.0}
+(not_defined)-dishwasher_households_energetic: {conversion: 1.0}
 (loss)-dishwasher_households_energetic: {conversion: 0.0}
 dishwasher_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4067,7 +4067,7 @@ dishwasher_households_energetic-(electricity) -- s --> (electricity)-electricity
   :demand_expected_value: 3065868424.74408
   :demand: 3065868424.74408
 fridge_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-fridge_households_energetic: {conversion: 1.0}
+(not_defined)-fridge_households_energetic: {conversion: 1.0}
 (loss)-fridge_households_energetic: {conversion: 0.0}
 fridge_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4077,7 +4077,7 @@ fridge_households_energetic-(electricity) -- s --> (electricity)-electricity_for
   :demand_expected_value: 1112434116.38029
   :demand: 1112434116.38029
 vacuum_cleaner_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-vacuum_cleaner_households_energetic: {conversion: 1.0}
+(not_defined)-vacuum_cleaner_households_energetic: {conversion: 1.0}
 (loss)-vacuum_cleaner_households_energetic: {conversion: 0.0}
 vacuum_cleaner_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4087,7 +4087,7 @@ vacuum_cleaner_households_energetic-(electricity) -- s --> (electricity)-electri
   :demand_expected_value: 1112434116.38029
   :demand: 1112434116.38029
 washing_machine_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-washing_machine_households_energetic: {conversion: 1.0}
+(not_defined)-washing_machine_households_energetic: {conversion: 1.0}
 (loss)-washing_machine_households_energetic: {conversion: 0.0}
 washing_machine_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4097,7 +4097,7 @@ washing_machine_households_energetic-(electricity) -- s --> (electricity)-electr
   :demand_expected_value: 1112434116.38029
   :demand: 1112434116.38029
 clothes_dryer_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-clothes_dryer_households_energetic: {conversion: 1.0}
+(not_defined)-clothes_dryer_households_energetic: {conversion: 1.0}
 (loss)-clothes_dryer_households_energetic: {conversion: 0.0}
 clothes_dryer_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4107,7 +4107,7 @@ clothes_dryer_households_energetic-(electricity) -- s --> (electricity)-electric
   :demand_expected_value: 1557407762.93241
   :demand: 1557407762.93241
 tv_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-tv_households_energetic: {conversion: 1.0}
+(not_defined)-tv_households_energetic: {conversion: 1.0}
 (loss)-tv_households_energetic: {conversion: 0.0}
 tv_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4117,7 +4117,7 @@ tv_households_energetic-(electricity) -- s --> (electricity)-electricity_for_app
   :demand_expected_value: 1156931481.0355
   :demand: 1156931481.0355
 computer_households_energetic-(electricity): {conversion: 1.0}
-(notdefined)-computer_households_energetic: {conversion: 1.0}
+(not_defined)-computer_households_energetic: {conversion: 1.0}
 (loss)-computer_households_energetic: {conversion: 0.0}
 computer_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic: {share: 1.0}
 
@@ -4344,11 +4344,11 @@ electric_heater_buildings_energetic-(electricity) -- s --> (electricity)-electri
   :availability: 0.97
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0
-gas_chp_buildings_energetic-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+gas_chp_buildings_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (electricity)-gas_chp_buildings_energetic: {conversion: 0.37}
 (steam_hot_water)-gas_chp_buildings_energetic: {conversion: 0.35}
 (loss)-gas_chp_buildings_energetic: {conversion: 0.28}
-gas_chp_buildings_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+gas_chp_buildings_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :coal_chp_buildings_energetic:
   :co2_free: 0.0
@@ -4598,12 +4598,12 @@ heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-ele
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-building_related_buildings_energetic-(notdefined): {conversion: 1.0}
-(notdefined)-building_related_buildings_energetic: {conversion: 1.0}
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_oil_buildings_undefined: {share: 0.0}
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_gas_buildings_undefined: {share: 0.0}
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_biomass_buildings_undefined: {share: 0.0}
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_electric_buildings_undefined: {share: 0.0}
+building_related_buildings_energetic-(not_defined): {conversion: 1.0}
+(not_defined)-building_related_buildings_energetic: {conversion: 1.0}
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_oil_buildings_undefined: {share: 0.0}
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_gas_buildings_undefined: {share: 0.0}
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_biomass_buildings_undefined: {share: 0.0}
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_electric_buildings_undefined: {share: 0.0}
 
 :airco_buildings_energetic:
   :co2_free: 0.0
@@ -4642,12 +4642,12 @@ airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_witho
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-appliances_buildings_energetic-(notdefined): {conversion: 1.0}
-(notdefined)-appliances_buildings_energetic: {conversion: 1.0}
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-oil_appliances_buildings_undefined: {share: 0.0}
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-gas_appliances_buildings_undefined: {share: 0.0}
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-biomass_appliances_buildings_undefined: {share: 0.0}
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-electric_appliances_buildings_undefined: {share: 0.0}
+appliances_buildings_energetic-(not_defined): {conversion: 1.0}
+(not_defined)-appliances_buildings_energetic: {conversion: 1.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings_undefined: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings_undefined: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-biomass_appliances_buildings_undefined: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings_undefined: {share: 0.0}
 
 :biomass_buildings_energetic:
   :co2_free: 0.0
@@ -5049,56 +5049,56 @@ cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_elect
   :co2_free: 0.0
   :demand_expected_value: 0.0
 oil_appliances_buildings_undefined-(crude_oil): {conversion: 1.0}
-(notdefined)-oil_appliances_buildings_undefined: {conversion: 1.0}
+(not_defined)-oil_appliances_buildings_undefined: {conversion: 1.0}
 oil_appliances_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic: {share: 1.0}
 
 :gas_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 gas_appliances_buildings_undefined-(network_gas): {conversion: 1.0}
-(notdefined)-gas_appliances_buildings_undefined: {conversion: 1.0}
+(not_defined)-gas_appliances_buildings_undefined: {conversion: 1.0}
 gas_appliances_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
 
 :biomass_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 biomass_appliances_buildings_undefined-(biomass): {conversion: 1.0}
-(notdefined)-biomass_appliances_buildings_undefined: {conversion: 1.0}
+(not_defined)-biomass_appliances_buildings_undefined: {conversion: 1.0}
 biomass_appliances_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
 
 :electric_appliances_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 electric_appliances_buildings_undefined-(electricity): {conversion: 1.0}
-(notdefined)-electric_appliances_buildings_undefined: {conversion: 1.0}
+(not_defined)-electric_appliances_buildings_undefined: {conversion: 1.0}
 electric_appliances_buildings_undefined-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 
 :appliances_oil_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 appliances_oil_buildings_undefined-(crude_oil): {conversion: 1.0}
-(notdefined)-appliances_oil_buildings_undefined: {conversion: 1.0}
+(not_defined)-appliances_oil_buildings_undefined: {conversion: 1.0}
 appliances_oil_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic: {share: 1.0}
 
 :appliances_gas_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 appliances_gas_buildings_undefined-(network_gas): {conversion: 1.0}
-(notdefined)-appliances_gas_buildings_undefined: {conversion: 1.0}
+(not_defined)-appliances_gas_buildings_undefined: {conversion: 1.0}
 appliances_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
 
 :appliances_biomass_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 appliances_biomass_buildings_undefined-(biomass): {conversion: 1.0}
-(notdefined)-appliances_biomass_buildings_undefined: {conversion: 1.0}
+(not_defined)-appliances_biomass_buildings_undefined: {conversion: 1.0}
 appliances_biomass_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
 
 :appliances_electric_buildings_undefined:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 appliances_electric_buildings_undefined-(electricity): {conversion: 1.0}
-(notdefined)-appliances_electric_buildings_undefined: {conversion: 1.0}
+(not_defined)-appliances_electric_buildings_undefined: {conversion: 1.0}
 appliances_electric_buildings_undefined-(electricity) -- s --> (electricity)-electricity_other_buildings_energetic: {share: 1.0}
 
 :cooking_gas_buildings_undefined:
@@ -5141,7 +5141,7 @@ cooking_electric_buildings_undefined-(electricity) -- s --> (electricity)-electr
   :availability: 0.85
   :variability: 0.0
   :decrease_in_nominal_capacity_over_lifetime: 0.0417484388938434
-ccgt_ccs_energy_undefined-(fuelmix_for_gas_power_plants): {conversion: 1.0}
+ccgt_ccs_energy_undefined-(gas_power_fuelmix): {conversion: 1.0}
 ccgt_ccs_energy_undefined-(crude_oil): {conversion: 0.0}
 ccgt_ccs_energy_undefined-(bio_oil): {conversion: 0.0}
 (loss)-ccgt_ccs_energy_undefined: {conversion: 0.51}
@@ -5149,7 +5149,7 @@ ccgt_ccs_energy_undefined-(bio_oil): {conversion: 0.0}
 (electricity)-ccgt_ccs_energy_undefined: {conversion: 0.49}
 ccgt_ccs_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined: {share: 1.0}
 ccgt_ccs_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined: {share: 1.0}
-ccgt_ccs_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
+ccgt_ccs_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined: {share: 1.0}
 
 :local_e_production_agriculture_undefined:
   :co2_free: 0.0
@@ -5339,35 +5339,35 @@ pumped_storage_energy_undefined-(electricity) -- s --> (electricity)-hv_electric
   :co2_free: 0.0
   :preset_demand: 2111854290.00144
   :demand: 2111854290.00144
-planes_transport_energetic-(notdefined): {conversion: 1.0}
-(notdefined)-planes_transport_energetic: {conversion: 1.0}
-planes_transport_energetic-(notdefined) -- s --> (notdefined)-planes_oil_demand_transport_energetic: {share: 1.0}
-planes_transport_energetic-(notdefined) -- s --> (notdefined)-planes_bio_ethanol_transport_energetic: {share: 0.0}
+planes_transport_energetic-(not_defined): {conversion: 1.0}
+(not_defined)-planes_transport_energetic: {conversion: 1.0}
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_oil_demand_transport_energetic: {share: 1.0}
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_bio_ethanol_transport_energetic: {share: 0.0}
 
 :planes_bio_ethanol_transport_energetic:
   :co2_free: 0.0
 planes_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
-(notdefined)-planes_bio_ethanol_transport_energetic: {conversion: 1.0}
+(not_defined)-planes_bio_ethanol_transport_energetic: {conversion: 1.0}
 planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport_undefined: {share: 1.0}
 
 :trains_transport_energetic:
   :co2_free: 0.0
   :preset_demand: 1162449075.38839
   :demand: 1162449075.38839
-trains_transport_energetic-(notdefined): {conversion: 1.0}
-(notdefined)-trains_transport_energetic: {conversion: 1.0}
-trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_electricity_demand_transport_energetic: {share: 0.930346631785481}
-trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_coal_demand_transport_energetic: {share: 0.0}
-trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_oil_demand_transport_energetic: {share: 0.0696533682145193}
+trains_transport_energetic-(not_defined): {conversion: 1.0}
+(not_defined)-trains_transport_energetic: {conversion: 1.0}
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_electricity_demand_transport_energetic: {share: 0.930346631785481}
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_coal_demand_transport_energetic: {share: 0.0}
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_oil_demand_transport_energetic: {share: 0.0696533682145193}
 
 :ships_transport_energetic:
   :co2_free: 0.0
   :preset_demand: 5702006583.00389
   :demand: 5702006583.00389
-ships_transport_energetic-(notdefined): {conversion: 1.0}
-(notdefined)-ships_transport_energetic: {conversion: 1.0}
-ships_transport_energetic-(notdefined) -- s --> (notdefined)-ships_oil_demand_transport_energetic: {share: 1.0}
-ships_transport_energetic-(notdefined) -- s --> (notdefined)-ships_diesel_demand_transport_energetic: {share: 0.0}
+ships_transport_energetic-(not_defined): {conversion: 1.0}
+(not_defined)-ships_transport_energetic: {conversion: 1.0}
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_oil_demand_transport_energetic: {share: 1.0}
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_diesel_demand_transport_energetic: {share: 0.0}
 
 :district_heater_coal_energy_energetic:
   :co2_free: 0.0
@@ -6016,56 +6016,56 @@ non_biogenic_waste_collection_energy_undefined-(non_biogenic_waste): {conversion
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_dishwasher_households_energetic-(notdefined): {conversion: 1.0}
+demand_dishwasher_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_dishwasher_households_energetic: {conversion: 1.0}
 
 :demand_fridge_freezer_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_fridge_freezer_households_energetic-(notdefined): {conversion: 1.0}
+demand_fridge_freezer_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_fridge_freezer_households_energetic: {conversion: 1.0}
 
 :demand_washing_machine_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_washing_machine_households_energetic-(notdefined): {conversion: 1.0}
+demand_washing_machine_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_washing_machine_households_energetic: {conversion: 1.0}
 
 :demand_clothes_dryer_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_clothes_dryer_households_energetic-(notdefined): {conversion: 1.0}
+demand_clothes_dryer_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_clothes_dryer_households_energetic: {conversion: 1.0}
 
 :demand_tv_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_tv_households_energetic-(notdefined): {conversion: 1.0}
+demand_tv_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_tv_households_energetic: {conversion: 1.0}
 
 :demand_computer_media_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_computer_media_households_energetic-(notdefined): {conversion: 1.0}
+demand_computer_media_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_computer_media_households_energetic: {conversion: 1.0}
 
 :demand_vacuum_cleaner_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_vacuum_cleaner_households_energetic-(notdefined): {conversion: 1.0}
+demand_vacuum_cleaner_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_vacuum_cleaner_households_energetic: {conversion: 1.0}
 
 :demand_other_appliances_households_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-demand_other_appliances_households_energetic-(notdefined): {conversion: 1.0}
+demand_other_appliances_households_energetic-(not_defined): {conversion: 1.0}
 (loss)-demand_other_appliances_households_energetic: {conversion: 1.0}
 
 :solar_thermal_for_heating_households_energetic:
