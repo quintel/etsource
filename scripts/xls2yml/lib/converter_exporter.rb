@@ -132,6 +132,7 @@ module ETE
           conv_attrs[attr] = row[attr].to_f if row[attr]
         end
         conv_attrs[:demand] = conv_attrs[:preset_demand] if conv_attrs[:preset_demand]
+        conv_attrs[:excel_id] = converter_id
         out[key] = conv_attrs
       end
       out

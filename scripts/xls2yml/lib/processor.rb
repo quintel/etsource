@@ -41,6 +41,7 @@ module ETE
         values[:links].each {|link| lines << link} if values[:links]
         lines << ''
       end
+      FileUtils.mkdir_p "#{destination_directory}/graph"
       dest_file = "#{destination_directory}/graph/export.yml"
       puts "  Saving converters to #{dest_file}"
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
@@ -71,6 +72,7 @@ module ETE
       puts "Generating shared topology"
       converter_exporter = ConverterExporter.new(area_export)
       raw = converter_exporter.export
+      FileUtils.mkdir_p "#{@dest_dir}/../topology"
       dest_file = "#{@dest_dir}/../topology/export.graph"
       lines = []
       raw.each_pair do |key, values|
