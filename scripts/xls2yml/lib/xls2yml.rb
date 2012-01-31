@@ -11,6 +11,7 @@ class Xls2yml
     setup_cli
     parse_args
     run
+    clean_up
   end
 
   def setup_cli
@@ -43,8 +44,11 @@ destination directory.
     @source = ARGV[0]
     @dest   = ARGV[1]
 
-    @source = expand_zip(@source) unless File.directory?(@source)
-
+    unless File.directory?(@source)
+      @zip_root = expand_zip(@source)
+      # The zip file usually contains a subfolder, let's return that
+      @source = Dir.glob("#{@zip_root}/*/")[0]
+    end
     FileUtils.mkdir_p(@dest) unless File.directory?(@dest)
   end
 
@@ -52,7 +56,7 @@ destination directory.
     ETE::Processor.new(:source => @source, :dest => @dest).export_all
   end
 
-  # Returns the expanded files directory
+  # Returns the expanded files directory root
   #
   def expand_zip(zipfile)
     destination = "tmp_#{Time.new.to_i}"
@@ -63,11 +67,14 @@ destination directory.
         zip.extract(f, path) unless File.exist?(path)
       end
     end
-    # The zip file usually contains a subfolder, let's return that
-    subfolder = Dir.glob("#{destination}/*/")[0]
-    subfolder
+    destination
   rescue
     puts "Error uncompressing the zip file"
+    FileUtils.rm_rf(destination)
     exit
+  end
+
+  def clean_up
+    FileUtils.rm_rf @zip_root if @zip_root
   end
 end
