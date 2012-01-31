@@ -27,29 +27,26 @@ to be used by etsource.
 
   Usage:
 
-  xls2etsource.rb <source> [output_directory]
+  xls2etsource.rb <source>
 
-Source can be a zip file or an existing directory.
-If the output_directory parameter is missing then the script will write files
-to the local output directory. The script *will overwrite* the files in the
-destination directory.
+Source can be a zip file or an existing directory. The output files will be in
+the main etsource directory. *Old files will be overwritten*.
 
       EOS
     end
   end
 
   def parse_args
-    Trollop::die "Please set the source directory or a zip file" if ARGV.size < 1
+    Trollop::die "Please set the source directory or a zip file" if ARGV.size != 1
 
     @source = ARGV[0]
-    @dest   = ARGV[1]
+    @dest   = File.expand_path('../..')
 
     unless File.directory?(@source)
       @zip_root = expand_zip(@source)
       # The zip file usually contains a subfolder, let's return that
       @source = Dir.glob("#{@zip_root}/*/")[0]
     end
-    FileUtils.mkdir_p(@dest) unless File.directory?(@dest)
   end
 
   def run
