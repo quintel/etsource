@@ -40,7 +40,7 @@ the main etsource directory. *Old files will be overwritten*.
     Trollop::die "Please set the source directory or a zip file" if ARGV.size != 1
 
     @source = ARGV[0]
-    @dest   = File.expand_path('../..')
+    @dest   = File.expand_path("#{File.dirname(__FILE__)}/../../..")
 
     unless File.directory?(@source)
       @zip_root = expand_zip(@source)
