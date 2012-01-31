@@ -131,8 +131,8 @@ city_heating_network_energy_energetic-(steam_hot_water)
 gas_conv_energy_energetic;	gas_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
 gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-gas_conv_energy_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-gas_conv_energy_energetic-(gasmix)
+gas_conv_energy_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+gas_conv_energy_energetic-(fuelmix_for_gas_power_plants)
 gas_conv_energy_energetic-(crude_oil)
 gas_conv_energy_energetic-(bio_oil)
 (loss)-gas_conv_energy_energetic
@@ -163,8 +163,8 @@ mv_distribution_network_energy_energetic-(electricity)
 (electricity)-mv_distribution_network_energy_energetic
 
 small_chp_industry_energetic;	small_chp;	industry;	energetic;central CHPs;	electricity_production,network_converters,cost_chps
-small_chp_industry_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-small_chp_industry_energetic-(gasmix)
+small_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+small_chp_industry_energetic-(fuelmix_for_gas_power_plants)
 (loss)-small_chp_industry_energetic
 (steam_hot_water)-small_chp_industry_energetic
 (electricity)-small_chp_industry_energetic
@@ -172,8 +172,8 @@ small_chp_industry_energetic-(gasmix)
 large_chp_industry_energetic;	large_chp;	industry;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps
 large_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 large_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-large_chp_industry_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-large_chp_industry_energetic-(gasmix)
+large_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+large_chp_industry_energetic-(fuelmix_for_gas_power_plants)
 large_chp_industry_energetic-(crude_oil)
 large_chp_industry_energetic-(bio_oil)
 (loss)-large_chp_industry_energetic
@@ -511,8 +511,8 @@ oil_plant_energy_undefined-(crude_oil)
 gas_ccgt_energy_undefined;	gas_ccgt;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
 gas_ccgt_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 gas_ccgt_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-gas_ccgt_energy_undefined-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-gas_ccgt_energy_undefined-(gasmix)
+gas_ccgt_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+gas_ccgt_energy_undefined-(fuelmix_for_gas_power_plants)
 gas_ccgt_energy_undefined-(crude_oil)
 gas_ccgt_energy_undefined-(bio_oil)
 (loss)-gas_ccgt_energy_undefined
@@ -1330,8 +1330,8 @@ biogas_plant_energy_undefined-(biogas)
 (loss)-biogas_plant_energy_undefined
 
 chp_other_other_energetic;	chp_other;	other;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
-chp_other_other_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-chp_other_other_energetic-(gasmix)
+chp_other_other_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+chp_other_other_energetic-(fuelmix_for_gas_power_plants)
 (loss)-chp_other_other_energetic
 (steam_hot_water)-chp_other_other_energetic
 (electricity)-chp_other_other_energetic
@@ -1355,8 +1355,8 @@ gas_burner_agri_agriculture_energetic-(network_gas)
 (useable_heat)-gas_burner_agri_agriculture_energetic
 
 chp_agri_agriculture_energetic;	chp_agri;	agriculture;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
-chp_agri_agriculture_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-chp_agri_agriculture_energetic-(gasmix)
+chp_agri_agriculture_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+chp_agri_agriculture_energetic-(fuelmix_for_gas_power_plants)
 (loss)-chp_agri_agriculture_energetic
 (steam_hot_water)-chp_agri_agriculture_energetic
 (electricity)-chp_agri_agriculture_energetic
@@ -1477,7 +1477,7 @@ energy_sector_gas_mixer_energy_undefined-(bio_oil)
 energy_sector_gas_mixer_energy_undefined-(biogas)
 energy_sector_gas_mixer_energy_undefined-(crude_oil)
 energy_sector_gas_mixer_energy_undefined-(network_gas)
-(gasmix)-energy_sector_gas_mixer_energy_undefined
+(fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
 
 algue_diesel_distribution_transport_energetic;	algue_diesel_distribution;	transport;	energetic;distribution;	biofuel_distribution
 algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic
@@ -1562,8 +1562,8 @@ foreign_sustainable_power_energy_undefined-(electricity)
 (imported_electricity)-foreign_sustainable_power_energy_undefined
 
 backup_burner_heat_network_energy_undefined;	backup_burner_heat_network;	energy;	undefined;;	heat_production,cost_traditional_heat
-backup_burner_heat_network_energy_undefined-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-backup_burner_heat_network_energy_undefined-(gasmix)
+backup_burner_heat_network_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+backup_burner_heat_network_energy_undefined-(fuelmix_for_gas_power_plants)
 (loss)-backup_burner_heat_network_energy_undefined
 (steam_hot_water)-backup_burner_heat_network_energy_undefined
 
@@ -1820,8 +1820,8 @@ electric_heater_buildings_energetic-(electricity)
 (loss)-electric_heater_buildings_energetic
 
 gas_chp_buildings_energetic;	gas_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
-gas_chp_buildings_energetic-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-gas_chp_buildings_energetic-(gasmix)
+gas_chp_buildings_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+gas_chp_buildings_energetic-(fuelmix_for_gas_power_plants)
 (electricity)-gas_chp_buildings_energetic
 (steam_hot_water)-gas_chp_buildings_energetic
 (loss)-gas_chp_buildings_energetic
@@ -2143,8 +2143,8 @@ cooking_electric_buildings_undefined-(electricity)
 ccgt_ccs_energy_undefined;	ccgt_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
 ccgt_ccs_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 ccgt_ccs_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-ccgt_ccs_energy_undefined-(gasmix) -- s --> (gasmix)-energy_sector_gas_mixer_energy_undefined
-ccgt_ccs_energy_undefined-(gasmix)
+ccgt_ccs_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+ccgt_ccs_energy_undefined-(fuelmix_for_gas_power_plants)
 ccgt_ccs_energy_undefined-(crude_oil)
 ccgt_ccs_energy_undefined-(bio_oil)
 (loss)-ccgt_ccs_energy_undefined
