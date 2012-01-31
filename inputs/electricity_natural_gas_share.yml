@@ -1,6 +1,6 @@
 --- 
-attr_name: fuelmix_for_gas_power_plants_input_conversion_conversion
-comments: Is actually fuelmix_for_gas_power_plants instead of natural gas share!
+attr_name: gas_power_fuelmix_input_conversion_conversion
+comments: Is actually gas_power_fuelmix instead of natural gas share!
 factor: 100.0
 id: 561
 key: electricity_natural_gas_share
@@ -18,10 +18,10 @@ query: |-
     V(
   gas_ccgt_energy,gas_conv_energy_energetic,ccgt_ccs_energy,large_chp_industry_energetic
   );
-  fuelmix_for_gas_power_plants), conversion, DIVIDE(USER_INPUT(),100))
+  gas_power_fuelmix), conversion, DIVIDE(USER_INPUT(),100))
 share_group: energy_sector_gas
 start_value: 0.0
-start_value_gql: present:V(gas_ccgt_energy;fuelmix_for_gas_power_plants_input_conversion)
+start_value_gql: present:V(gas_ccgt_energy;gas_power_fuelmix_input_conversion)
 unit: "%"
 update_type: converters
 updateable_period: future

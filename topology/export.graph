@@ -50,7 +50,7 @@ traditional_lighting_households_energetic-(electricity)
 other_appliances_households_energetic;	other_appliances;	households;	energetic;technologies;	useful_demand
 other_appliances_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 other_appliances_households_energetic-(electricity)
-(notdefined)-other_appliances_households_energetic
+(not_defined)-other_appliances_households_energetic
 (loss)-other_appliances_households_energetic
 
 solar_panel_for_hot_water_households_energetic;	solar_panel_for_hot_water;	households;	energetic;preferred technologies;	heat_production,decentral_production,cost_traditional_heat
@@ -131,8 +131,8 @@ city_heating_network_energy_energetic-(steam_hot_water)
 gas_conv_energy_energetic;	gas_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
 gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-gas_conv_energy_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-gas_conv_energy_energetic-(fuelmix_for_gas_power_plants)
+gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+gas_conv_energy_energetic-(gas_power_fuelmix)
 gas_conv_energy_energetic-(crude_oil)
 gas_conv_energy_energetic-(bio_oil)
 (loss)-gas_conv_energy_energetic
@@ -163,8 +163,8 @@ mv_distribution_network_energy_energetic-(electricity)
 (electricity)-mv_distribution_network_energy_energetic
 
 small_chp_industry_energetic;	small_chp;	industry;	energetic;central CHPs;	electricity_production,network_converters,cost_chps
-small_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-small_chp_industry_energetic-(fuelmix_for_gas_power_plants)
+small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+small_chp_industry_energetic-(gas_power_fuelmix)
 (loss)-small_chp_industry_energetic
 (steam_hot_water)-small_chp_industry_energetic
 (electricity)-small_chp_industry_energetic
@@ -172,8 +172,8 @@ small_chp_industry_energetic-(fuelmix_for_gas_power_plants)
 large_chp_industry_energetic;	large_chp;	industry;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps
 large_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 large_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-large_chp_industry_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-large_chp_industry_energetic-(fuelmix_for_gas_power_plants)
+large_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+large_chp_industry_energetic-(gas_power_fuelmix)
 large_chp_industry_energetic-(crude_oil)
 large_chp_industry_energetic-(bio_oil)
 (loss)-large_chp_industry_energetic
@@ -268,18 +268,18 @@ oil_demand_energy_non_energetic-(crude_oil)
 ships_oil_demand_transport_energetic;	ships_oil_demand;	transport;	energetic;technologies;	
 ships_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
 ships_oil_demand_transport_energetic-(crude_oil)
-(notdefined)-ships_oil_demand_transport_energetic
+(not_defined)-ships_oil_demand_transport_energetic
 
 ships_diesel_demand_transport_energetic;	ships_diesel_demand;	transport;	energetic;technologies;	
 ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport_undefined
 ships_diesel_demand_transport_energetic-(biodiesel)
-(notdefined)-ships_diesel_demand_transport_energetic
+(not_defined)-ships_diesel_demand_transport_energetic
 
 trains_electricity_demand_transport_energetic;	trains_electricity_demand;	transport;	energetic;technologies;	
 trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
 trains_electricity_demand_transport_energetic-(electricity)
 (loss)-trains_electricity_demand_transport_energetic
-(notdefined)-trains_electricity_demand_transport_energetic
+(not_defined)-trains_electricity_demand_transport_energetic
 
 cooling_demand_buildings_energetic;	cooling_demand;	buildings;	energetic;before savings;	
 cooling_demand_buildings_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_buildings_energetic
@@ -336,7 +336,7 @@ trains_coal_demand_transport_energetic;	trains_coal_demand;	transport;	energetic
 trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic
 trains_coal_demand_transport_energetic-(coal)
 (loss)-trains_coal_demand_transport_energetic
-(notdefined)-trains_coal_demand_transport_energetic
+(not_defined)-trains_coal_demand_transport_energetic
 
 electricity_demand_other_energetic;	electricity_demand;	other;	energetic;application;	useful_demand
 electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electricity_other_energetic
@@ -511,8 +511,8 @@ oil_plant_energy_undefined-(crude_oil)
 gas_ccgt_energy_undefined;	gas_ccgt;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
 gas_ccgt_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 gas_ccgt_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-gas_ccgt_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-gas_ccgt_energy_undefined-(fuelmix_for_gas_power_plants)
+gas_ccgt_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+gas_ccgt_energy_undefined-(gas_power_fuelmix)
 gas_ccgt_energy_undefined-(crude_oil)
 gas_ccgt_energy_undefined-(bio_oil)
 (loss)-gas_ccgt_energy_undefined
@@ -789,7 +789,7 @@ trains_oil_demand_transport_energetic;	trains_oil_demand;	transport;	energetic;t
 trains_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
 trains_oil_demand_transport_energetic-(crude_oil)
 (loss)-trains_oil_demand_transport_energetic
-(notdefined)-trains_oil_demand_transport_energetic
+(not_defined)-trains_oil_demand_transport_energetic
 
 lpg_production_transport_undefined;	lpg_production;	transport;	undefined;refinery;	
 lpg_production_transport_undefined-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
@@ -891,7 +891,7 @@ lpg_import_export_transport_undefined-(lpg)
 planes_oil_demand_transport_energetic;	planes_oil_demand;	transport;	energetic;technologies;	
 planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
 planes_oil_demand_transport_energetic-(crude_oil)
-(notdefined)-planes_oil_demand_transport_energetic
+(not_defined)-planes_oil_demand_transport_energetic
 
 coal_demand_other_non_energetic;	coal_demand;	other;	non_energetic;application;	useful_demand,non_energetic_use
 coal_demand_other_non_energetic-(coal) -- s --> (coal)-coal_other_non_energetic
@@ -1330,8 +1330,8 @@ biogas_plant_energy_undefined-(biogas)
 (loss)-biogas_plant_energy_undefined
 
 chp_other_other_energetic;	chp_other;	other;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
-chp_other_other_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-chp_other_other_energetic-(fuelmix_for_gas_power_plants)
+chp_other_other_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+chp_other_other_energetic-(gas_power_fuelmix)
 (loss)-chp_other_other_energetic
 (steam_hot_water)-chp_other_other_energetic
 (electricity)-chp_other_other_energetic
@@ -1355,8 +1355,8 @@ gas_burner_agri_agriculture_energetic-(network_gas)
 (useable_heat)-gas_burner_agri_agriculture_energetic
 
 chp_agri_agriculture_energetic;	chp_agri;	agriculture;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
-chp_agri_agriculture_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-chp_agri_agriculture_energetic-(fuelmix_for_gas_power_plants)
+chp_agri_agriculture_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+chp_agri_agriculture_energetic-(gas_power_fuelmix)
 (loss)-chp_agri_agriculture_energetic
 (steam_hot_water)-chp_agri_agriculture_energetic
 (electricity)-chp_agri_agriculture_energetic
@@ -1477,7 +1477,7 @@ energy_sector_gas_mixer_energy_undefined-(bio_oil)
 energy_sector_gas_mixer_energy_undefined-(biogas)
 energy_sector_gas_mixer_energy_undefined-(crude_oil)
 energy_sector_gas_mixer_energy_undefined-(network_gas)
-(fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
+(gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
 
 algue_diesel_distribution_transport_energetic;	algue_diesel_distribution;	transport;	energetic;distribution;	biofuel_distribution
 algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic
@@ -1562,8 +1562,8 @@ foreign_sustainable_power_energy_undefined-(electricity)
 (imported_electricity)-foreign_sustainable_power_energy_undefined
 
 backup_burner_heat_network_energy_undefined;	backup_burner_heat_network;	energy;	undefined;;	heat_production,cost_traditional_heat
-backup_burner_heat_network_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-backup_burner_heat_network_energy_undefined-(fuelmix_for_gas_power_plants)
+backup_burner_heat_network_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+backup_burner_heat_network_energy_undefined-(gas_power_fuelmix)
 (loss)-backup_burner_heat_network_energy_undefined
 (steam_hot_water)-backup_burner_heat_network_energy_undefined
 
@@ -1701,43 +1701,43 @@ induction_stove_households_energetic-(electricity)
 dishwasher_households_energetic;	dishwasher;	households;	energetic;technologies;	useful_demand
 dishwasher_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 dishwasher_households_energetic-(electricity)
-(notdefined)-dishwasher_households_energetic
+(not_defined)-dishwasher_households_energetic
 (loss)-dishwasher_households_energetic
 
 fridge_households_energetic;	fridge;	households;	energetic;technologies;	useful_demand
 fridge_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 fridge_households_energetic-(electricity)
-(notdefined)-fridge_households_energetic
+(not_defined)-fridge_households_energetic
 (loss)-fridge_households_energetic
 
 vacuum_cleaner_households_energetic;	vacuum_cleaner;	households;	energetic;technologies;	useful_demand
 vacuum_cleaner_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 vacuum_cleaner_households_energetic-(electricity)
-(notdefined)-vacuum_cleaner_households_energetic
+(not_defined)-vacuum_cleaner_households_energetic
 (loss)-vacuum_cleaner_households_energetic
 
 washing_machine_households_energetic;	washing_machine;	households;	energetic;technologies;	useful_demand
 washing_machine_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 washing_machine_households_energetic-(electricity)
-(notdefined)-washing_machine_households_energetic
+(not_defined)-washing_machine_households_energetic
 (loss)-washing_machine_households_energetic
 
 clothes_dryer_households_energetic;	clothes_dryer;	households;	energetic;technologies;	useful_demand
 clothes_dryer_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 clothes_dryer_households_energetic-(electricity)
-(notdefined)-clothes_dryer_households_energetic
+(not_defined)-clothes_dryer_households_energetic
 (loss)-clothes_dryer_households_energetic
 
 tv_households_energetic;	tv;	households;	energetic;technologies;	useful_demand
 tv_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 tv_households_energetic-(electricity)
-(notdefined)-tv_households_energetic
+(not_defined)-tv_households_energetic
 (loss)-tv_households_energetic
 
 computer_households_energetic;	computer;	households;	energetic;technologies;	useful_demand
 computer_households_energetic-(electricity) -- s --> (electricity)-electricity_for_appliances_households_energetic
 computer_households_energetic-(electricity)
-(notdefined)-computer_households_energetic
+(not_defined)-computer_households_energetic
 (loss)-computer_households_energetic
 
 insulation_savings_buildings_energetic;	insulation_savings;	buildings;	energetic;savings;	cost_other
@@ -1820,8 +1820,8 @@ electric_heater_buildings_energetic-(electricity)
 (loss)-electric_heater_buildings_energetic
 
 gas_chp_buildings_energetic;	gas_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
-gas_chp_buildings_energetic-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-gas_chp_buildings_energetic-(fuelmix_for_gas_power_plants)
+gas_chp_buildings_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+gas_chp_buildings_energetic-(gas_power_fuelmix)
 (electricity)-gas_chp_buildings_energetic
 (steam_hot_water)-gas_chp_buildings_energetic
 (loss)-gas_chp_buildings_energetic
@@ -1885,12 +1885,12 @@ heatpump_ts_cooling_buildings_energetic-(ambient_cold)
 (loss)-heatpump_ts_cooling_buildings_energetic
 
 building_related_buildings_energetic;	building_related;	buildings;	energetic;useful consumption;	useful_demand
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_oil_buildings_undefined
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_gas_buildings_undefined
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_biomass_buildings_undefined
-building_related_buildings_energetic-(notdefined) -- s --> (notdefined)-appliances_electric_buildings_undefined
-building_related_buildings_energetic-(notdefined)
-(notdefined)-building_related_buildings_energetic
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_oil_buildings_undefined
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_gas_buildings_undefined
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_biomass_buildings_undefined
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_electric_buildings_undefined
+building_related_buildings_energetic-(not_defined)
+(not_defined)-building_related_buildings_energetic
 
 airco_buildings_energetic;	airco;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 airco_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-air_environment_energetic
@@ -1901,12 +1901,12 @@ airco_buildings_energetic-(ambient_cold)
 (loss)-airco_buildings_energetic
 
 appliances_buildings_energetic;	appliances;	buildings;	energetic;useful consumption;	useful_demand
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-oil_appliances_buildings_undefined
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-gas_appliances_buildings_undefined
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-biomass_appliances_buildings_undefined
-appliances_buildings_energetic-(notdefined) -- s --> (notdefined)-electric_appliances_buildings_undefined
-appliances_buildings_energetic-(notdefined)
-(notdefined)-appliances_buildings_energetic
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings_undefined
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings_undefined
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-biomass_appliances_buildings_undefined
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings_undefined
+appliances_buildings_energetic-(not_defined)
+(not_defined)-appliances_buildings_energetic
 
 biomass_buildings_energetic;	biomass;	buildings;	energetic;final consumption;	final_demand_cbs
 biomass_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
@@ -2093,42 +2093,42 @@ cooking_buildings_energetic-(useable_heat)
 oil_appliances_buildings_undefined;	oil_appliances;	buildings;	undefined;application;	
 oil_appliances_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
 oil_appliances_buildings_undefined-(crude_oil)
-(notdefined)-oil_appliances_buildings_undefined
+(not_defined)-oil_appliances_buildings_undefined
 
 gas_appliances_buildings_undefined;	gas_appliances;	buildings;	undefined;application;	
 gas_appliances_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
 gas_appliances_buildings_undefined-(network_gas)
-(notdefined)-gas_appliances_buildings_undefined
+(not_defined)-gas_appliances_buildings_undefined
 
 biomass_appliances_buildings_undefined;	biomass_appliances;	buildings;	undefined;application;	
 biomass_appliances_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buildings_energetic
 biomass_appliances_buildings_undefined-(biomass)
-(notdefined)-biomass_appliances_buildings_undefined
+(not_defined)-biomass_appliances_buildings_undefined
 
 electric_appliances_buildings_undefined;	electric_appliances;	buildings;	undefined;application;	
 electric_appliances_buildings_undefined-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
 electric_appliances_buildings_undefined-(electricity)
-(notdefined)-electric_appliances_buildings_undefined
+(not_defined)-electric_appliances_buildings_undefined
 
 appliances_oil_buildings_undefined;	appliances_oil;	buildings;	undefined;application;	
 appliances_oil_buildings_undefined-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
 appliances_oil_buildings_undefined-(crude_oil)
-(notdefined)-appliances_oil_buildings_undefined
+(not_defined)-appliances_oil_buildings_undefined
 
 appliances_gas_buildings_undefined;	appliances_gas;	buildings;	undefined;application;	
 appliances_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
 appliances_gas_buildings_undefined-(network_gas)
-(notdefined)-appliances_gas_buildings_undefined
+(not_defined)-appliances_gas_buildings_undefined
 
 appliances_biomass_buildings_undefined;	appliances_biomass;	buildings;	undefined;application;	
 appliances_biomass_buildings_undefined-(biomass) -- s --> (biomass)-biomass_buildings_energetic
 appliances_biomass_buildings_undefined-(biomass)
-(notdefined)-appliances_biomass_buildings_undefined
+(not_defined)-appliances_biomass_buildings_undefined
 
 appliances_electric_buildings_undefined;	appliances_electric;	buildings;	undefined;application;	
 appliances_electric_buildings_undefined-(electricity) -- s --> (electricity)-electricity_other_buildings_energetic
 appliances_electric_buildings_undefined-(electricity)
-(notdefined)-appliances_electric_buildings_undefined
+(not_defined)-appliances_electric_buildings_undefined
 
 cooking_gas_buildings_undefined;	cooking_gas;	buildings;	undefined;application;	
 cooking_gas_buildings_undefined-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
@@ -2143,8 +2143,8 @@ cooking_electric_buildings_undefined-(electricity)
 ccgt_ccs_energy_undefined;	ccgt_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
 ccgt_ccs_energy_undefined-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy_undefined
 ccgt_ccs_energy_undefined-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy_undefined
-ccgt_ccs_energy_undefined-(fuelmix_for_gas_power_plants) -- s --> (fuelmix_for_gas_power_plants)-energy_sector_gas_mixer_energy_undefined
-ccgt_ccs_energy_undefined-(fuelmix_for_gas_power_plants)
+ccgt_ccs_energy_undefined-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy_undefined
+ccgt_ccs_energy_undefined-(gas_power_fuelmix)
 ccgt_ccs_energy_undefined-(crude_oil)
 ccgt_ccs_energy_undefined-(bio_oil)
 (loss)-ccgt_ccs_energy_undefined
@@ -2254,28 +2254,28 @@ pumped_storage_energy_undefined-(electricity)
 (loss)-pumped_storage_energy_undefined
 
 planes_transport_energetic;	planes;	transport;	energetic;useful consumption;	useful_demand
-planes_transport_energetic-(notdefined) -- s --> (notdefined)-planes_oil_demand_transport_energetic
-planes_transport_energetic-(notdefined) -- s --> (notdefined)-planes_bio_ethanol_transport_energetic
-planes_transport_energetic-(notdefined)
-(notdefined)-planes_transport_energetic
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_oil_demand_transport_energetic
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_bio_ethanol_transport_energetic
+planes_transport_energetic-(not_defined)
+(not_defined)-planes_transport_energetic
 
 planes_bio_ethanol_transport_energetic;	planes_bio_ethanol;	transport;	energetic;technologies;	
 planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport_undefined
 planes_bio_ethanol_transport_energetic-(bio_ethanol)
-(notdefined)-planes_bio_ethanol_transport_energetic
+(not_defined)-planes_bio_ethanol_transport_energetic
 
 trains_transport_energetic;	trains;	transport;	energetic;useful consumption;	useful_demand
-trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_electricity_demand_transport_energetic
-trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_coal_demand_transport_energetic
-trains_transport_energetic-(notdefined) -- s --> (notdefined)-trains_oil_demand_transport_energetic
-trains_transport_energetic-(notdefined)
-(notdefined)-trains_transport_energetic
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_electricity_demand_transport_energetic
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_coal_demand_transport_energetic
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_oil_demand_transport_energetic
+trains_transport_energetic-(not_defined)
+(not_defined)-trains_transport_energetic
 
 ships_transport_energetic;	ships;	transport;	energetic;useful consumption;	useful_demand
-ships_transport_energetic-(notdefined) -- s --> (notdefined)-ships_oil_demand_transport_energetic
-ships_transport_energetic-(notdefined) -- s --> (notdefined)-ships_diesel_demand_transport_energetic
-ships_transport_energetic-(notdefined)
-(notdefined)-ships_transport_energetic
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_oil_demand_transport_energetic
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_diesel_demand_transport_energetic
+ships_transport_energetic-(not_defined)
+(not_defined)-ships_transport_energetic
 
 district_heater_coal_energy_energetic;	district_heater_coal;	energy;	energetic;central heat generation;	heat_production,central_production,cost_traditional_heat
 district_heater_coal_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy_undefined
@@ -2623,35 +2623,35 @@ non_biogenic_waste_collection_energy_undefined-(non_biogenic_waste)
 (non_biogenic_waste)-non_biogenic_waste_collection_energy_undefined
 
 demand_dishwasher_households_energetic;	demand_dishwasher;	households;	energetic;useful consumption;	
-demand_dishwasher_households_energetic-(notdefined)
+demand_dishwasher_households_energetic-(not_defined)
 (loss)-demand_dishwasher_households_energetic
 
 demand_fridge_freezer_households_energetic;	demand_fridge_freezer;	households;	energetic;useful consumption;	
-demand_fridge_freezer_households_energetic-(notdefined)
+demand_fridge_freezer_households_energetic-(not_defined)
 (loss)-demand_fridge_freezer_households_energetic
 
 demand_washing_machine_households_energetic;	demand_washing_machine;	households;	energetic;useful consumption;	
-demand_washing_machine_households_energetic-(notdefined)
+demand_washing_machine_households_energetic-(not_defined)
 (loss)-demand_washing_machine_households_energetic
 
 demand_clothes_dryer_households_energetic;	demand_clothes_dryer;	households;	energetic;useful consumption;	
-demand_clothes_dryer_households_energetic-(notdefined)
+demand_clothes_dryer_households_energetic-(not_defined)
 (loss)-demand_clothes_dryer_households_energetic
 
 demand_tv_households_energetic;	demand_tv;	households;	energetic;useful consumption;	
-demand_tv_households_energetic-(notdefined)
+demand_tv_households_energetic-(not_defined)
 (loss)-demand_tv_households_energetic
 
 demand_computer_media_households_energetic;	demand_computer_media;	households;	energetic;useful consumption;	
-demand_computer_media_households_energetic-(notdefined)
+demand_computer_media_households_energetic-(not_defined)
 (loss)-demand_computer_media_households_energetic
 
 demand_vacuum_cleaner_households_energetic;	demand_vacuum_cleaner;	households;	energetic;useful consumption;	
-demand_vacuum_cleaner_households_energetic-(notdefined)
+demand_vacuum_cleaner_households_energetic-(not_defined)
 (loss)-demand_vacuum_cleaner_households_energetic
 
 demand_other_appliances_households_energetic;	demand_other_appliances;	households;	energetic;useful consumption;	
-demand_other_appliances_households_energetic-(notdefined)
+demand_other_appliances_households_energetic-(not_defined)
 (loss)-demand_other_appliances_households_energetic
 
 solar_thermal_for_heating_households_energetic;	solar_thermal_for_heating;	households;	energetic;application;	
