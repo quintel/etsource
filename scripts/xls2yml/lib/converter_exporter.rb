@@ -163,7 +163,7 @@ module ETE
         converter_id = row[:converter_id].to_i
         converter    = converters[converter_id]
         carrier_id   = row[:carrier_id].to_i
-        carrier      = carriers[carrier_id]
+        carrier      = carriers(carrier_id)
         out[converter] ||= []
 
         if row[:input]
@@ -192,7 +192,7 @@ module ETE
       CSV.new(@excel_export.csv_for(:links)).parse do |row|
         parent = converters[row[:parent_id].to_i]
         child  = converters[row[:child_id].to_i]
-        carrier = carriers[row[:carrier_id].to_i]
+        carrier = carriers( row[:carrier_id].to_i )
         link_type = case row[:link_type].to_i
         when 1 then 's'
         when 2 then 'd'
@@ -236,8 +236,11 @@ module ETE
       out
     end
 
-    def carriers
+    def carriers(id)
       @_carriers ||= build_carriers
+      c = @_carriers[id]
+      raise "Missing carrier! #{c} ##{id}" if !c || !predefined_carriers.include?(c.to_sym)
+      c
     end
 
     def build_carriers
@@ -246,6 +249,15 @@ module ETE
         out[row[:carrier_id].to_i] = row[:key]
       end
       out
+    end
+
+    # To prevent using bad carrier names let's compare the string we want to use
+    # with those defined in datasets/nl/carriers.yml. It would be nicer to use a
+    # generic locations such as datasets/_defaults or something similar
+    def predefined_carriers
+      full_yaml = File.read('../../datasets/_defaults/carriers.yml') + "\n" +
+                  File.read('../../datasets/nl/carriers.yml')
+      @predefined_carriers ||= YAML::load(full_yaml)[:carriers].keys
     end
 
     def uses
