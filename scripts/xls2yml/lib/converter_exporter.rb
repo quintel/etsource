@@ -205,12 +205,16 @@ module ETE
         when 4 then 'c'
         when 5 then 'i'
         end
+
+        # AIIIIII. do not convert to_f. Cause that'll make 0.0 from a nil value.
+        # instead check for a nil value
         share = row[:share].to_f
+
         out[parent] ||= []
         if include_share
           out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
         else
-          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
+          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}:"
         end
       end
       out
