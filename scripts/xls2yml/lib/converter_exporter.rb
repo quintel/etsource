@@ -45,8 +45,9 @@ module ETE
       :decrease_in_nominal_capacity_over_lifetime
     ]
 
-    def initialize(excel_export)
+    def initialize(excel_export, opts = {})
       @excel_export = excel_export
+      @etsource_root = opts[:etsource_root] || File.expand_path("#{File.dirname(__FILE__)}/../../../")
       build_converters
     end
 
@@ -260,8 +261,8 @@ module ETE
     # with those defined in datasets/nl/carriers.yml. It would be nicer to use a
     # generic locations such as datasets/_defaults or something similar
     def predefined_carriers
-      full_yaml = File.read('../../datasets/_defaults/carriers.yml') + "\n" +
-                  File.read('../../datasets/nl/carriers.yml')
+      full_yaml = File.read("#{@etsource_root}/datasets/_defaults/carriers.yml") + "\n" +
+                  File.read("#{@etsource_root}/datasets/nl/carriers.yml")
       @predefined_carriers ||= YAML::load(full_yaml)[:carriers].keys
     end
 
