@@ -208,11 +208,7 @@ module ETE
         share = row[:share].nil? ? nil : row[:share].to_f
         out[parent] ||= []
         if include_share
-          if share
-            out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
-          else
-            out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}:"
-          end
+          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share || 'nil'}}"
         else
           out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
         end
