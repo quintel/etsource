@@ -214,8 +214,7 @@ module ETE
         if include_share
           out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
         else
-          # I add an empty {} at the end, just to make it specific.
-          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {}"
+          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
         end
       end
       out
