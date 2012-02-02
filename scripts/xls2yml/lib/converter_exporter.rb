@@ -113,7 +113,12 @@ module ETE
         energy_balance_group_id = row[:energy_balance_group_id].to_i
         energy_balance_group    = energy_balance_groups[energy_balance_group_id]
 
-        full_key = "#{key}_#{sector}_#{use}".to_sym
+        if use == 'undefined'
+          full_key = "#{key}_#{sector}".to_sym
+        else
+          full_key = "#{key}_#{sector}_#{use}".to_sym
+        end
+        
         groups = @cached_converter_groups[full_key].compact.join(',') if @cached_converter_groups[full_key].is_a?(Array)
         string = "#{full_key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
         out[full_key] = string
