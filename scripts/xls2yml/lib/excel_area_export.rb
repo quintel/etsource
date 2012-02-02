@@ -17,7 +17,7 @@ module ETE
     }
 
     def initialize(root_path)
-      @root = root_path
+      @root = root_path.gsub(/\/$/, '')
     end
 
     def csv_for(key)

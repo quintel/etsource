@@ -8,6 +8,7 @@ require 'zip/zip'
 
 class Xls2yml
   def initialize
+    @etsource_root = File.expand_path("#{File.dirname(__FILE__)}/../../..")
     setup_cli
     parse_args
     run
@@ -16,7 +17,7 @@ class Xls2yml
 
   def setup_cli
     opts = Trollop::options do
-      version 'xls2yml 0.0.1'
+      version 'xls2yml 0.0.2'
       banner <<-EOS
 
 XLS2YML
@@ -27,21 +28,19 @@ to be used by etsource.
 
   Usage:
 
-  xls2etsource.rb <source>
+  xls2etsource.rb [source]
 
-Source can be a zip file or an existing directory. The output files will be in
-the main etsource directory. *Old files will be overwritten*.
+The source parameter is optional. If missing the script will use ETSOURCE/csv_files
+as excel export directory. If you specify the source parameter then it should be a
+zip file or an existing directory.
+The script will output files in the main etsource directory. *Old files will be overwritten*.
 
       EOS
     end
   end
 
   def parse_args
-    Trollop::die "Please set the source directory or a zip file" if ARGV.size != 1
-
-    @source = ARGV[0]
-    @dest   = File.expand_path("#{File.dirname(__FILE__)}/../../..")
-
+    @source = ARGV[0] || "#{@etsource_root}/csv_files"
     unless File.directory?(@source)
       @zip_root = expand_zip(@source)
       # The zip file usually contains a subfolder, let's return that
@@ -50,7 +49,7 @@ the main etsource directory. *Old files will be overwritten*.
   end
 
   def run
-    ETE::Processor.new(:source => @source, :dest => @dest).export_all
+    ETE::Processor.new(:source => @source, :dest => @etsource_root).export_all
   end
 
   # Returns the expanded files directory root
