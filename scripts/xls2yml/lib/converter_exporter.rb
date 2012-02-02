@@ -118,7 +118,7 @@ module ETE
         else
           full_key = "#{key}_#{sector}_#{use}".to_sym
         end
-        
+
         groups = @cached_converter_groups[full_key].compact.join(',') if @cached_converter_groups[full_key].is_a?(Array)
         string = "#{full_key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
         out[full_key] = string
@@ -205,14 +205,14 @@ module ETE
         when 4 then 'c'
         when 5 then 'i'
         end
-
-        # AIIIIII. do not convert to_f. Cause that'll make 0.0 from a nil value.
-        # instead check for a nil value
-        share = row[:share].to_f
-
+        share = row[:share].nil? ? nil : row[:share].to_f
         out[parent] ||= []
         if include_share
-          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
+          if share
+            out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
+          else
+            out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}:"
+          end
         else
           out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
         end
