@@ -236,7 +236,13 @@ module ETE
         key = row[:key]
         use_id    = row[:use_id].to_i
         sector_id = row[:sector_id].to_i
-        full_key = "#{key}_#{sectors[sector_id]}_#{uses[use_id]}".to_sym
+        sector_name = sectors[sector_id]
+        use_name = uses[use_id]
+        if use_name == 'undefined'
+          full_key = "#{key}_#{sector_name}"
+        else
+          full_key = "#{key}_#{sector_name}_#{use_name}"
+        end
         out[row[:converter_id].to_i] = full_key.to_sym
       end
       out
