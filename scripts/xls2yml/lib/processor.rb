@@ -25,6 +25,8 @@ module ETE
       # the topology is always the same, so we can reuse the last area export
       export_topology(@area_export)
       export_excel_ids(@area_export)
+    rescue Exception => e
+      puts "Export error: #{e}" and exit
     end
 
     # writes to ETSOURCE/datasets/<area>/graph/export.yml
