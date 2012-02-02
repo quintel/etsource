@@ -5,13 +5,13 @@
 hot_water_demand_households_energetic-(hot_water): {conversion: 1.0}
 (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0}
 hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: {share: 0.245418363487435}
-hot_water_demand_households_energetic-(hot_water) -- f --> (hot_water)-hot_water_devices_households_energetic: {share: 0.0}
+hot_water_demand_households_energetic-(hot_water) -- f --> (hot_water)-hot_water_devices_households_energetic: {share: nil}
 
 :cooling_demand_households_energetic:
   :co2_free: 0.0
 cooling_demand_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_demand_households_energetic: {conversion: 1.0}
-cooling_demand_households_energetic-(cooling) -- f --> (cooling)-airco_households_energetic: {share: 0.0}
+cooling_demand_households_energetic-(cooling) -- f --> (cooling)-airco_households_energetic: {share: nil}
 cooling_demand_households_energetic-(cooling) -- s --> (cooling)-heatpump_cooling_households_energetic: {share: 0.271077479408023}
 cooling_demand_households_energetic-(cooling) -- s --> (cooling)-gasheatpump_cooling_households_energetic: {share: 0.178553092702962}
 cooling_demand_households_energetic-(cooling) -- s --> (cooling)-heatpump_ts_cooling_households_energetic: {share: 0.279291948480993}
@@ -24,7 +24,7 @@ heating_demand_households_energetic-(useable_heat): {conversion: 1.0}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heat_pump_with_chs_households_energetic: {share: 0.0526805613894906}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_households_energetic: {share: 0.0526805613894906}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-solar_panel_for_heating_households_energetic: {share: 0.215611307161087}
-heating_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-central_heating_households_energetic: {share: 0.0}
+heating_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-central_heating_households_energetic: {share: nil}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_households_energetic: {share: 0.0526805613894906}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heater_on_biomass_households_energetic: {share: 0.093351071548464}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heater_on_coal_households_energetic: {share: 0.0344978091457739}
@@ -367,10 +367,10 @@ solar_pv_central_production_energy_energetic-(solar_radiation) -- s --> (solar_r
   :variability: 0.0
 lv_electricity_network_energy_energetic-(electricity): {conversion: 1.0}
 (electricity)-lv_electricity_network_energy_energetic: {conversion: 1.0}
-lv_electricity_network_energy_energetic-(electricity) -- f --> (electricity)-lv_mv_transformer_energy: {share: 0.0}
-lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-available_electricity_households: {share: 0.0}
-lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_other: {share: 0.0}
-lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_buildings: {share: 0.0}
+lv_electricity_network_energy_energetic-(electricity) -- f --> (electricity)-lv_mv_transformer_energy: {share: nil}
+lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-available_electricity_households: {share: nil}
+lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_other: {share: nil}
+lv_electricity_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_buildings: {share: nil}
 
 :city_heating_network_energy_energetic:
   :co2_free: 0.0
@@ -475,11 +475,11 @@ heating_demand_industry_energetic-(useable_heat) -- s --> (useable_heat)-gas_bur
   :variability: 0.0
 mv_distribution_network_energy_energetic-(electricity): {conversion: 1.0}
 (electricity)-mv_distribution_network_energy_energetic: {conversion: 1.0}
-mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-electricity_industry_non_energetic: {share: 0.0}
-mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lv_mv_transformer_energy: {share: 0.0}
-mv_distribution_network_energy_energetic-(electricity) -- f --> (electricity)-mv_transport_network_energy: {share: 0.0}
-mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_agriculture: {share: 0.0}
-mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_industry: {share: 0.0}
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-electricity_industry_non_energetic: {share: nil}
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lv_mv_transformer_energy: {share: nil}
+mv_distribution_network_energy_energetic-(electricity) -- f --> (electricity)-mv_transport_network_energy: {share: nil}
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_agriculture: {share: nil}
+mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-local_e_production_industry: {share: nil}
 
 :small_chp_industry_energetic:
   :co2_free: 0.0
@@ -838,7 +838,7 @@ trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricit
 cooling_demand_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_demand_buildings_energetic: {conversion: 1.0}
 cooling_demand_buildings_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_buildings_energetic: {share: 0.0}
-cooling_demand_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recirculation_buildings_energetic: {share: 0.0}
+cooling_demand_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recirculation_buildings_energetic: {share: nil}
 
 :heating_other_buildings_energetic:
   :co2_free: 0.0
@@ -944,36 +944,36 @@ electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electric
 heat_network_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_industry_energetic: {conversion: 0.890240905073945}
 (loss)-heat_network_industry_energetic: {conversion: 0.109759094926055}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_conv_energy_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-large_chp_industry_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-waste_incinerator_energy_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_ccs_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_conv_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_lignite_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_oxyfuel_ccs_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_ccs_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_plant_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_ccgt_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_iii_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_coal_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_gas_energy: {share: 0.0}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_conv_energy_energetic: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-large_chp_industry_energetic: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-waste_incinerator_energy_energetic: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_ccs_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_conv_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_lignite_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_oxyfuel_ccs_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_ccs_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_plant_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_ccgt_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_iii_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_coal_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_gas_energy: {share: nil}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-geothermal_heat_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_conv_energy_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-ccgt_ccs_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- f --> (steam_hot_water)-used_restheat_decentral_production_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-lignite_chp_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_chp_energy: {share: 0.0}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_conv_energy_energetic: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-ccgt_ccs_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- f --> (steam_hot_water)-used_restheat_decentral_production_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-lignite_chp_energy: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_chp_energy: {share: nil}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_coal_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_lignite_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_oil_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_gas_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_waste_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_biomass_energy_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_energy_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-heat_import_energy: {share: 0.0}
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_energy_energetic: {share: nil}
+heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-heat_import_energy: {share: nil}
 
 :waste_incinerator_energy_energetic:
   :co2_free: 0.0
@@ -1038,7 +1038,7 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_igcc_ccs
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-oil_plant_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_ccgt_energy: {share: 54481648351.6484}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_chp_energy: {share: 44133403166.8783}
-hv_electricity_network_energy-(electricity) -- f --> (electricity)-interconnection_energy: {share: 0.0}
+hv_electricity_network_energy-(electricity) -- f --> (electricity)-interconnection_energy: {share: nil}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-nuclear_iii_energy: {share: 15294000000.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_inland_energy: {share: 11365164000.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_coastal_energy: {share: 2469636000.0}
@@ -1050,7 +1050,7 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_river_e
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_mount_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-geothermal_electricity_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-biogas_plant_energy: {share: 0.0}
-hv_electricity_network_energy-(electricity) -- i --> (electricity)-mv_hv_transformer_energy: {share: 0.0}
+hv_electricity_network_energy-(electricity) -- i --> (electricity)-mv_hv_transformer_energy: {share: nil}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-nuclear_conv_energy_energetic: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-ccgt_ccs_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-lignite_chp_energy: {share: 0.0}
@@ -1865,9 +1865,9 @@ national_gas_network_energy-(greengas) -- s --> (greengas)-greengas_distribution
 gas_treatment_energy-(natural_gas): {conversion: 1.0}
 (natural_gas)-gas_treatment_energy: {conversion: 0.985966611861181}
 (loss)-gas_treatment_energy: {conversion: 0.0140333881388193}
-gas_treatment_energy-(natural_gas) -- c --> (natural_gas)-gas_extraction_energy: {share: 0.0}
+gas_treatment_energy-(natural_gas) -- c --> (natural_gas)-gas_extraction_energy: {share: nil}
 gas_treatment_energy-(natural_gas) -- s --> (natural_gas)-lng_import_energy: {share: 0.0}
-gas_treatment_energy-(natural_gas) -- f --> (natural_gas)-gas_import_export_energy: {share: 0.0}
+gas_treatment_energy-(natural_gas) -- f --> (natural_gas)-gas_import_export_energy: {share: nil}
 
 :diesel_distribution_transport:
   :co2_free: 0.0
@@ -1875,7 +1875,7 @@ gas_treatment_energy-(natural_gas) -- f --> (natural_gas)-gas_import_export_ener
 diesel_distribution_transport-(diesel): {conversion: 1.0}
 (diesel)-diesel_distribution_transport: {conversion: 1.0}
 (loss)-diesel_distribution_transport: {conversion: 0.0}
-diesel_distribution_transport-(diesel) -- f --> (diesel)-diesel_import_export_transport: {share: 0.0}
+diesel_distribution_transport-(diesel) -- f --> (diesel)-diesel_import_export_transport: {share: nil}
 diesel_distribution_transport-(diesel) -- s --> (diesel)-diesel_mixer_transport_energetic: {share: 1.0}
 
 :gasoline_distribution_transport:
@@ -1884,7 +1884,7 @@ diesel_distribution_transport-(diesel) -- s --> (diesel)-diesel_mixer_transport_
 gasoline_distribution_transport-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_distribution_transport: {conversion: 1.0}
 (loss)-gasoline_distribution_transport: {conversion: 0.0}
-gasoline_distribution_transport-(gasoline) -- f --> (gasoline)-gasoline_import_export_transport: {share: 0.0}
+gasoline_distribution_transport-(gasoline) -- f --> (gasoline)-gasoline_import_export_transport: {share: nil}
 gasoline_distribution_transport-(gasoline) -- s --> (gasoline)-gasoline_mixer_transport_energetic: {share: 1.0}
 
 :kerosine_distribution_transport:
@@ -1894,7 +1894,7 @@ kerosine_distribution_transport-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_distribution_transport: {conversion: 1.0}
 (loss)-kerosine_distribution_transport: {conversion: 0.0}
 kerosine_distribution_transport-(kerosine) -- s --> (kerosine)-kerosine_production_transport: {share: 1.0}
-kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_export_transport: {share: 0.0}
+kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_export_transport: {share: nil}
 
 :bio_diesel_distribution_transport:
   :co2_free: 0.0
@@ -1902,8 +1902,8 @@ kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_e
 bio_diesel_distribution_transport-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_distribution_transport: {conversion: 1.0}
 (loss)-bio_diesel_distribution_transport: {conversion: 0.0}
-bio_diesel_distribution_transport-(biodiesel) -- c --> (biodiesel)-bio_diesel_production_transport_energetic: {share: 0.0}
-bio_diesel_distribution_transport-(biodiesel) -- f --> (biodiesel)-bio_diesel_import_export_transport_energetic: {share: 0.0}
+bio_diesel_distribution_transport-(biodiesel) -- c --> (biodiesel)-bio_diesel_production_transport_energetic: {share: nil}
+bio_diesel_distribution_transport-(biodiesel) -- f --> (biodiesel)-bio_diesel_import_export_transport_energetic: {share: nil}
 
 :bio_ethanol_distribution_transport:
   :co2_free: 0.0
@@ -1911,15 +1911,15 @@ bio_diesel_distribution_transport-(biodiesel) -- f --> (biodiesel)-bio_diesel_im
 bio_ethanol_distribution_transport-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_distribution_transport: {conversion: 1.0}
 (loss)-bio_ethanol_distribution_transport: {conversion: 0.0}
-bio_ethanol_distribution_transport-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_transport_energetic: {share: 0.0}
-bio_ethanol_distribution_transport-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {share: 0.0}
+bio_ethanol_distribution_transport-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_transport_energetic: {share: nil}
+bio_ethanol_distribution_transport-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {share: nil}
 
 :lpg_distribution_transport:
   :co2_free: 0.0
 lpg_distribution_transport-(lpg): {conversion: 1.0}
 (lpg)-lpg_distribution_transport: {conversion: 1.0}
 lpg_distribution_transport-(lpg) -- s --> (lpg)-lpg_production_transport: {share: 1.0}
-lpg_distribution_transport-(lpg) -- f --> (lpg)-lpg_import_export_transport: {share: 0.0}
+lpg_distribution_transport-(lpg) -- f --> (lpg)-lpg_import_export_transport: {share: nil}
 
 :bio_oil_production_energy:
   :co2_free: 0.0
@@ -1946,8 +1946,8 @@ gas_extraction_energy-(natural_gas): {conversion: 1.0}
   :co2_free: 0.0
 bio_oil_distribution_energy-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_distribution_energy: {conversion: 1.0}
-bio_oil_distribution_energy-(bio_oil) -- c --> (bio_oil)-bio_oil_production_energy: {share: 0.0}
-bio_oil_distribution_energy-(bio_oil) -- f --> (bio_oil)-bio_oil_import_export_energy: {share: 0.0}
+bio_oil_distribution_energy-(bio_oil) -- c --> (bio_oil)-bio_oil_production_energy: {share: nil}
+bio_oil_distribution_energy-(bio_oil) -- f --> (bio_oil)-bio_oil_import_export_energy: {share: nil}
 
 :oil_extraction_energy:
   :co2_free: 0.0
@@ -1993,8 +1993,8 @@ compressed_gas_distribution_transport_energetic-(compressed_network_gas) -- s --
 oil_distribution_energy-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_distribution_energy: {conversion: 1.0}
 (loss)-oil_distribution_energy: {conversion: 0.0}
-oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy: {share: 0.0}
-oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy: {share: 0.0}
+oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy: {share: nil}
+oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy: {share: nil}
 
 :biomass_distribution_energy:
   :co2_free: 0.0
@@ -2002,8 +2002,8 @@ biomass_distribution_energy-(loss): {conversion: 0.0}
 (loss)-biomass_distribution_energy: {conversion: 0.0}
 biomass_distribution_energy-(biomass): {conversion: 1.0}
 (biomass)-biomass_distribution_energy: {conversion: 1.0}
-biomass_distribution_energy-(biomass) -- c --> (biomass)-biomass_residuals_energy: {share: 0.0}
-biomass_distribution_energy-(biomass) -- f --> (biomass)-biomass_import_export_energy: {share: 0.0}
+biomass_distribution_energy-(biomass) -- c --> (biomass)-biomass_residuals_energy: {share: nil}
+biomass_distribution_energy-(biomass) -- f --> (biomass)-biomass_import_export_energy: {share: nil}
 
 :greengas_distribution_energy:
   :co2_free: 0.0
@@ -2011,7 +2011,7 @@ greengas_distribution_energy-(loss): {conversion: 0.0}
 (loss)-greengas_distribution_energy: {conversion: 0.0}
 greengas_distribution_energy-(greengas): {conversion: 1.0}
 (greengas)-greengas_distribution_energy: {conversion: 1.0}
-greengas_distribution_energy-(greengas) -- f --> (greengas)-greengas_import_export_energy: {share: 0.0}
+greengas_distribution_energy-(greengas) -- f --> (greengas)-greengas_import_export_energy: {share: nil}
 greengas_distribution_energy-(greengas) -- c --> (greengas)-biogas_upgrade_energy: {share: 10967320000.0}
 
 :coal_distribution_energy:
@@ -2020,8 +2020,8 @@ coal_distribution_energy-(loss): {conversion: 0.0}
 (loss)-coal_distribution_energy: {conversion: 0.0}
 coal_distribution_energy-(coal): {conversion: 1.0}
 (coal)-coal_distribution_energy: {conversion: 1.0}
-coal_distribution_energy-(coal) -- c --> (coal)-coal_extraction_energy: {share: 0.0}
-coal_distribution_energy-(coal) -- f --> (coal)-coal_import_export_energy: {share: 0.0}
+coal_distribution_energy-(coal) -- c --> (coal)-coal_extraction_energy: {share: nil}
+coal_distribution_energy-(coal) -- f --> (coal)-coal_import_export_energy: {share: nil}
 
 :coal_demand_other_energetic:
   :co2_free: 0.0
@@ -2142,8 +2142,8 @@ oil_treatment_energy-(crude_oil): {conversion: 1.0}
 uranium_treatment_energy-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-uranium_treatment_energy: {conversion: 1.0}
 (loss)-uranium_treatment_energy: {conversion: 0.0}
-uranium_treatment_energy-(uranium_oxide) -- f --> (uranium_oxide)-uranium_import_energy: {share: 0.0}
-uranium_treatment_energy-(uranium_oxide) -- c --> (uranium_oxide)-uranium_extraction_energy: {share: 0.0}
+uranium_treatment_energy-(uranium_oxide) -- f --> (uranium_oxide)-uranium_import_energy: {share: nil}
+uranium_treatment_energy-(uranium_oxide) -- c --> (uranium_oxide)-uranium_extraction_energy: {share: nil}
 
 :uranium_distribution_energy:
   :co2_free: 0.0
@@ -2397,7 +2397,7 @@ oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energ
   :demand_expected_value: 70000000000.0
 steam_hot_water_households_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_households_energetic: {conversion: 1.0}
-steam_hot_water_households_energetic-(steam_hot_water) -- f --> (steam_hot_water)-city_heating_network_energy_energetic: {share: 0.0}
+steam_hot_water_households_energetic-(steam_hot_water) -- f --> (steam_hot_water)-city_heating_network_energy_energetic: {share: nil}
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_gas_chp_households_energetic: {share: 0.0}
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_biomass_chp_households_energetic: {share: 0.0}
 steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_households_energetic: {share: 0.0120285714285714}
@@ -2601,7 +2601,7 @@ coal_industry_non_energetic-(coal) -- s --> (coal)-cokes_production_energy: {sha
   :variability: 0.08
 electricity_industry_non_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_industry_non_energetic: {conversion: 1.0}
-electricity_industry_non_energetic-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
+electricity_industry_non_energetic-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: nil}
 
 :gas_industry_non_energetic:
   :co2_free: 1.0
@@ -2779,28 +2779,28 @@ biomass_demand_other_energetic-(biomass) -- s --> (biomass)-biomass_other_energe
   :demand_expected_value: 16760000000.0
 grid_losses_electricity_energy-(loss): {conversion: 1.0}
 (electricity)-grid_losses_electricity_energy: {conversion: 1.0}
-grid_losses_electricity_energy-(loss) -- d --> (loss)-hv_electricity_network_energy: {share: 0.0}
+grid_losses_electricity_energy-(loss) -- d --> (loss)-hv_electricity_network_energy: {share: nil}
 
 :grid_losses_oil_energy:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 grid_losses_oil_energy-(loss): {conversion: 1.0}
 (loss)-grid_losses_oil_energy: {conversion: 1.0}
-grid_losses_oil_energy-(loss) -- d --> (loss)-oil_distribution_energy: {share: 0.0}
+grid_losses_oil_energy-(loss) -- d --> (loss)-oil_distribution_energy: {share: nil}
 
 :grid_losses_gas_energy:
   :co2_free: 0.0
   :demand_expected_value: 1810000000.0
 grid_losses_gas_energy-(loss): {conversion: 1.0}
 (loss)-grid_losses_gas_energy: {conversion: 1.0}
-grid_losses_gas_energy-(loss) -- d --> (loss)-national_gas_network_energy: {share: 0.0}
+grid_losses_gas_energy-(loss) -- d --> (loss)-national_gas_network_energy: {share: nil}
 
 :grid_losses_heat_network_energy:
   :co2_free: 0.0
   :demand_expected_value: 4020000000.0
 grid_losses_heat_network_energy-(loss): {conversion: 1.0}
 (loss)-grid_losses_heat_network_energy: {conversion: 1.0}
-grid_losses_heat_network_energy-(loss) -- d --> (loss)-heat_network_industry_energetic: {share: 0.0}
+grid_losses_heat_network_energy-(loss) -- d --> (loss)-heat_network_industry_energetic: {share: nil}
 
 :electricity_demand_energy_energetic:
   :co2_free: 0.0
@@ -2938,7 +2938,7 @@ coal_import_export_energy-(coal): {conversion: 1.0}
   :co2_free: 0.0
 heat_network_unused_energy_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_unused_energy_energetic: {conversion: 1.0}
-heat_network_unused_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
+heat_network_unused_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-heat_network_industry_energetic: {share: nil}
 
 :bio_oil_import_export_energy:
   :co2_free: 0.0
@@ -2968,7 +2968,7 @@ electricity_import_export_energy-(imported_electricity) -- s --> (imported_elect
 electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_hydro_power_neighbor: {share: 0.0}
 electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_wind_power_neighbor: {share: 0.0}
 electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_biomass_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor: {share: 0.0}
+electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor: {share: nil}
 
 :earth_environment_energetic:
   :co2_free: 0.0
@@ -3507,7 +3507,7 @@ waste_distribution_energy-(waste_mix) -- s --> (waste_mix)-non_biogenic_waste_di
   :demand: 69569635273.3174
 heating_demand_with_current_insulation_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_demand_with_current_insulation_households_energetic: {conversion: 1.0}
-heating_demand_with_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic: {share: 0.0}
+heating_demand_with_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic: {share: nil}
 heating_demand_with_current_insulation_households_energetic-(useable_heat) -- s --> (useable_heat)-extra_insulation_savings_households_energetic: {share: 0.0}
 
 :extra_insulation_savings_households_energetic:
@@ -3542,8 +3542,8 @@ energy_sector_gas_mixer_energy-(biogas) -- s --> (biogas)-biogas_distribution_en
   :co2_free: 0.0
 algue_diesel_distribution_transport_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_distribution_transport_energetic: {conversion: 1.0}
-algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic: {share: 0.0}
-algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_diesel)-algue_diesel_import_export_transport_energetic: {share: 0.0}
+algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic: {share: nil}
+algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_diesel)-algue_diesel_import_export_transport_energetic: {share: nil}
 
 :algue_diesel_import_export_transport_energetic:
   :co2_free: 0.0
@@ -3597,19 +3597,19 @@ other_electric_transport_transport_energetic-(electricity) -- s --> (electricity
   :co2_free: 0.0
 unused_CHPs_heat_industry_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic: {conversion: 1.0}
-unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_industry: {share: 0.0}
+unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_industry: {share: nil}
 
 :unused_CHPs_heat_other_other_energetic:
   :co2_free: 0.0
 unused_CHPs_heat_other_other_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_CHPs_heat_other_other_energetic: {conversion: 1.0}
-unused_CHPs_heat_other_other_energetic-(steam_hot_water) -- i --> (steam_hot_water)-decentral_heat_other: {share: 0.0}
+unused_CHPs_heat_other_other_energetic-(steam_hot_water) -- i --> (steam_hot_water)-decentral_heat_other: {share: nil}
 
 :unused_CHPs_heat_agriculture_agriculture_energetic:
   :co2_free: 0.0
 unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic: {conversion: 1.0}
-unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_agriculture: {share: 0.0}
+unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_agriculture: {share: nil}
 
 :lv_mv_transformer_energy:
   :co2_free: 0.0
@@ -3630,8 +3630,8 @@ unused_CHPs_heat_agriculture_agriculture_energetic-(steam_hot_water) -- i --> (s
   :variability: 0.0
 lv_mv_transformer_energy-(electricity): {conversion: 1.0}
 (electricity)-lv_mv_transformer_energy: {conversion: 1.0}
-lv_mv_transformer_energy-(electricity) -- i --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
-lv_mv_transformer_energy-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
+lv_mv_transformer_energy-(electricity) -- i --> (electricity)-lv_electricity_network_energy_energetic: {share: nil}
+lv_mv_transformer_energy-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: nil}
 
 :mv_transport_network_energy:
   :co2_free: 0.0
@@ -3652,8 +3652,8 @@ lv_mv_transformer_energy-(electricity) -- f --> (electricity)-mv_distribution_ne
   :variability: 0.0
 mv_transport_network_energy-(electricity): {conversion: 1.0}
 (electricity)-mv_transport_network_energy: {conversion: 1.0}
-mv_transport_network_energy-(electricity) -- i --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
-mv_transport_network_energy-(electricity) -- f --> (electricity)-mv_hv_transformer_energy: {share: 0.0}
+mv_transport_network_energy-(electricity) -- i --> (electricity)-mv_distribution_network_energy_energetic: {share: nil}
+mv_transport_network_energy-(electricity) -- f --> (electricity)-mv_hv_transformer_energy: {share: nil}
 
 :mv_hv_transformer_energy:
   :co2_free: 0.0
@@ -3674,8 +3674,8 @@ mv_transport_network_energy-(electricity) -- f --> (electricity)-mv_hv_transform
   :variability: 0.0
 mv_hv_transformer_energy-(electricity): {conversion: 1.0}
 (electricity)-mv_hv_transformer_energy: {conversion: 1.0}
-mv_hv_transformer_energy-(electricity) -- f --> (electricity)-hv_electricity_network_energy: {share: 0.0}
-mv_hv_transformer_energy-(electricity) -- i --> (electricity)-mv_transport_network_energy: {share: 0.0}
+mv_hv_transformer_energy-(electricity) -- f --> (electricity)-hv_electricity_network_energy: {share: nil}
+mv_hv_transformer_energy-(electricity) -- i --> (electricity)-mv_transport_network_energy: {share: nil}
 
 :foreign_gas_power_energy:
   :co2_free: 0.0
@@ -3753,7 +3753,7 @@ cokes_production_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share:
   :co2_free: 0.0
 electricity_export_energy-(electricity): {conversion: 1.0}
 (electricity)-electricity_export_energy: {conversion: 1.0}
-electricity_export_energy-(electricity) -- i --> (electricity)-hv_electricity_network_energy: {share: 0.0}
+electricity_export_energy-(electricity) -- i --> (electricity)-hv_electricity_network_energy: {share: nil}
 
 :heating_schools_current_insulation_buildings_energetic:
   :co2_free: 0.0
@@ -3762,7 +3762,7 @@ electricity_export_energy-(electricity) -- i --> (electricity)-hv_electricity_ne
 heating_schools_current_insulation_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_schools_current_insulation_buildings_energetic: {conversion: 1.0}
 heating_schools_current_insulation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-insulation_savings_buildings_energetic: {share: 0.0}
-heating_schools_current_insulation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {share: 0.0}
+heating_schools_current_insulation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {share: nil}
 
 :heating_new_houses_current_insulation_households_energetic:
   :co2_free: 0.0
@@ -3770,7 +3770,7 @@ heating_schools_current_insulation_buildings_energetic-(useable_heat) -- f --> (
   :demand: 46379756848.8783
 heating_new_houses_current_insulation_households_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_new_houses_current_insulation_households_energetic: {conversion: 1.0}
-heating_new_houses_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic: {share: 0.0}
+heating_new_houses_current_insulation_households_energetic-(useable_heat) -- f --> (useable_heat)-heating_demand_households_energetic: {share: nil}
 heating_new_houses_current_insulation_households_energetic-(useable_heat) -- s --> (useable_heat)-heating_savings_insulation_new_households_energetic: {share: 0.0}
 
 :heating_offices_current_insulation_buildings_energetic:
@@ -3780,7 +3780,7 @@ heating_new_houses_current_insulation_households_energetic-(useable_heat) -- s -
 heating_offices_current_insulation_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_offices_current_insulation_buildings_energetic: {conversion: 1.0}
 heating_offices_current_insulation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-insulation_savings_buildings_energetic: {share: 0.0}
-heating_offices_current_insulation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {share: 0.0}
+heating_offices_current_insulation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {share: nil}
 
 :heatpump_addon_households_energetic:
   :co2_free: 0.0
@@ -4013,7 +4013,7 @@ heatpump_ts_cooling_households_energetic-(electricity) -- s --> (electricity)-el
   :demand: 13660645161.2903
 cooking_demand_households_energetic-(useable_heat): {conversion: 1.0}
 (loss)-cooking_demand_households_energetic: {conversion: 1.0}
-cooking_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-gas_stove_households_energetic: {share: 0.0}
+cooking_demand_households_energetic-(useable_heat) -- f --> (useable_heat)-gas_stove_households_energetic: {share: nil}
 cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-electric_stove_households_energetic: {share: 0.158968546330405}
 cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-halogen_stove_households_energetic: {share: 0.158968546330405}
 cooking_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-induction_stove_households_energetic: {share: 0.163785775007084}
@@ -4141,7 +4141,7 @@ insulation_savings_buildings_energetic-(useable_heat): {conversion: 1.0}
   :demand_expected_value: 147047122000.0
 heating_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_buildings_energetic: {conversion: 1.0}
-heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_heater_buildings_energetic: {share: 0.0}
+heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_heater_buildings_energetic: {share: nil}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_buildings_energetic: {share: 0.0128785247493656}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-solarthermic_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_ts_buildings_energetic: {share: 0.0249443848346791}
@@ -4159,20 +4159,20 @@ cooling_buildings_energetic-(cooling): {conversion: 1.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-city_cooling_network_buildings_energetic: {share: 0.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-gasheatpump_cooling_buildings_energetic: {share: 0.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-heatpump_ts_cooling_buildings_energetic: {share: 0.0}
-cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic: {share: 0.0}
+cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic: {share: nil}
 
 :electricity_without_heating_buildings_energetic:
   :co2_free: 0.0
 electricity_without_heating_buildings_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_without_heating_buildings_energetic: {conversion: 1.0}
-electricity_without_heating_buildings_energetic-(electricity) -- f --> (electricity)-electricity_buildings_energetic: {share: 0.0}
+electricity_without_heating_buildings_energetic-(electricity) -- f --> (electricity)-electricity_buildings_energetic: {share: nil}
 
 :lighting_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 12243550082.2562
 lighting_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_buildings_energetic: {conversion: 1.0}
-lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic: {share: 0.0}
+lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic: {share: nil}
 lighting_buildings_energetic-(light) -- s --> (light)-tl8_buildings_energetic: {share: 0.24}
 lighting_buildings_energetic-(light) -- s --> (light)-led_buildings_energetic: {share: 0.01}
 
@@ -4675,7 +4675,7 @@ oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
   :demand_expected_value: 9000000000.0
 steam_hot_water_buildings_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_buildings_energetic: {conversion: 1.0}
-steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: 0.0}
+steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: nil}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic: {share: 0.890520729684909}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-coal_chp_buildings_energetic: {share: 0.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic: {share: 0.0}
@@ -4686,7 +4686,7 @@ steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)
   :demand: 17851833041.6302
 cooling_current_insulation_old_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_current_insulation_old_households_energetic: {conversion: 1.0}
-cooling_current_insulation_old_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic: {share: 0.0}
+cooling_current_insulation_old_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic: {share: nil}
 cooling_current_insulation_old_households_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_old_households_energetic: {share: 0.0}
 
 :cooling_current_insulation_new_households_energetic:
@@ -4695,7 +4695,7 @@ cooling_current_insulation_old_households_energetic-(cooling) -- s --> (cooling)
   :demand: 53555499124.8906
 cooling_current_insulation_new_households_energetic-(cooling): {conversion: 1.0}
 (cooling)-cooling_current_insulation_new_households_energetic: {conversion: 1.0}
-cooling_current_insulation_new_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic: {share: 0.0}
+cooling_current_insulation_new_households_energetic-(cooling) -- f --> (cooling)-cooling_demand_households_energetic: {share: nil}
 cooling_current_insulation_new_households_energetic-(cooling) -- s --> (cooling)-cooling_savings_insulation_new_households_energetic: {share: 0.0}
 
 :cooling_savings_insulation_old_households_energetic:
@@ -4787,7 +4787,7 @@ micro_chp_hot_water_households_energetic-(network_gas): {conversion: 1.0}
 (electricity)-micro_chp_hot_water_households_energetic: {conversion: 0.174922}
 (hot_water)-micro_chp_hot_water_households_energetic: {conversion: 0.892078}
 micro_chp_hot_water_households_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 0.163938144329897}
-micro_chp_hot_water_households_energetic-(network_gas) -- f --> (network_gas)-gas_for_hot_water_households_energetic: {share: 0.0}
+micro_chp_hot_water_households_energetic-(network_gas) -- f --> (network_gas)-gas_for_hot_water_households_energetic: {share: nil}
 
 :oil_heater_buildings_energetic:
   :co2_free: 0.0
@@ -4848,7 +4848,7 @@ coal_heater_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic:
   :demand_expected_value: 204232113888.889
 heat_demand_before_recirculation_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {conversion: 1.0}
-heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recovery_buildings_energetic: {share: 0.0}
+heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heat_demand_before_recovery_buildings_energetic: {share: nil}
 heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_recirculation_savings_buildings_energetic: {share: 0.1}
 
 :heat_demand_before_recovery_buildings_energetic:
@@ -4856,7 +4856,7 @@ heat_demand_before_recirculation_buildings_energetic-(useable_heat) -- s --> (us
   :demand_expected_value: 183808902500.0
 heat_demand_before_recovery_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_demand_before_recovery_buildings_energetic: {conversion: 1.0}
-heat_demand_before_recovery_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heating_buildings_energetic: {share: 0.0}
+heat_demand_before_recovery_buildings_energetic-(useable_heat) -- f --> (useable_heat)-heating_buildings_energetic: {share: nil}
 heat_demand_before_recovery_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_recovery_savings_buildings_energetic: {share: 0.2}
 
 :cold_demand_before_recirculation_buildings_energetic:
@@ -4864,7 +4864,7 @@ heat_demand_before_recovery_buildings_energetic-(useable_heat) -- s --> (useable
   :demand_expected_value: 71078625000.0
 cold_demand_before_recirculation_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cold_demand_before_recirculation_buildings_energetic: {conversion: 1.0}
-cold_demand_before_recirculation_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recovery_buildings_energetic: {share: 0.0}
+cold_demand_before_recirculation_buildings_energetic-(cooling) -- f --> (cooling)-cold_demand_before_recovery_buildings_energetic: {share: nil}
 cold_demand_before_recirculation_buildings_energetic-(cooling) -- s --> (cooling)-cold_recirculation_savings_buildings_energetic: {share: 0.1}
 
 :cold_demand_before_recovery_buildings_energetic:
@@ -4872,7 +4872,7 @@ cold_demand_before_recirculation_buildings_energetic-(cooling) -- s --> (cooling
   :demand_expected_value: 63970762500.0
 cold_demand_before_recovery_buildings_energetic-(cooling): {conversion: 1.0}
 (cooling)-cold_demand_before_recovery_buildings_energetic: {conversion: 1.0}
-cold_demand_before_recovery_buildings_energetic-(cooling) -- f --> (cooling)-cooling_buildings_energetic: {share: 0.0}
+cold_demand_before_recovery_buildings_energetic-(cooling) -- f --> (cooling)-cooling_buildings_energetic: {share: nil}
 cold_demand_before_recovery_buildings_energetic-(cooling) -- s --> (cooling)-cold_recovery_savings_buildings_energetic: {share: 0.2}
 
 :heat_recirculation_savings_buildings_energetic:
@@ -4904,7 +4904,7 @@ cold_recovery_savings_buildings_energetic-(cooling): {conversion: 1.0}
   :demand_expected_value: 12928322947.7915
 lighting_without_daylight_control_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_without_daylight_control_buildings_energetic: {conversion: 1.0}
-lighting_without_daylight_control_buildings_energetic-(light) -- f --> (light)-lighting_buildings_energetic: {share: 0.0}
+lighting_without_daylight_control_buildings_energetic-(light) -- f --> (light)-lighting_buildings_energetic: {share: nil}
 lighting_without_daylight_control_buildings_energetic-(light) -- s --> (light)-daylight_control_savings_buildings_energetic: {share: 0.052966875}
 
 :lighting_without_motion_detection_buildings_energetic:
@@ -4913,7 +4913,7 @@ lighting_without_daylight_control_buildings_energetic-(light) -- s --> (light)-d
   :demand: 13452359616.6584
 lighting_without_motion_detection_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_without_motion_detection_buildings_energetic: {conversion: 1.0}
-lighting_without_motion_detection_buildings_energetic-(light) -- f --> (light)-lighting_without_daylight_control_buildings_energetic: {share: 0.0}
+lighting_without_motion_detection_buildings_energetic-(light) -- f --> (light)-lighting_without_daylight_control_buildings_energetic: {share: nil}
 lighting_without_motion_detection_buildings_energetic-(light) -- s --> (light)-motion_detection_savings_buildings_energetic: {share: 0.038955}
 
 :daylight_control_savings_buildings_energetic:
@@ -5005,13 +5005,13 @@ nuclear_conv_energy_energetic-(uranium_oxide) -- s --> (uranium_oxide)-uranium_d
   :co2_free: 0.0
 available_electricity_households-(electricity): {conversion: 1.0}
 (electricity)-available_electricity_households: {conversion: 1.0}
-available_electricity_households-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
+available_electricity_households-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: nil}
 available_electricity_households-(electricity) -- c --> (electricity)-local_solar_pv_grid_connected_energy_energetic: {share: 166000000.0}
-available_electricity_households-(electricity) -- d --> (electricity)-collective_gas_chp_households_energetic: {share: 0.0}
-available_electricity_households-(electricity) -- d --> (electricity)-collective_biomass_chp_households_energetic: {share: 0.0}
-available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_hot_water_households_energetic: {share: 0.0}
-available_electricity_households-(electricity) -- d --> (electricity)-micro_CHP_production_households: {share: 0.0}
-available_electricity_households-(electricity) -- d --> (electricity)-fuel_cell_chp_households_energetic: {share: 0.0}
+available_electricity_households-(electricity) -- d --> (electricity)-collective_gas_chp_households_energetic: {share: nil}
+available_electricity_households-(electricity) -- d --> (electricity)-collective_biomass_chp_households_energetic: {share: nil}
+available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_hot_water_households_energetic: {share: nil}
+available_electricity_households-(electricity) -- d --> (electricity)-micro_CHP_production_households: {share: nil}
+available_electricity_households-(electricity) -- d --> (electricity)-fuel_cell_chp_households_energetic: {share: nil}
 
 :hot_water_from_gas_buildings_energetic:
   :co2_free: 0.0
@@ -5155,21 +5155,21 @@ ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_g
   :co2_free: 0.0
 local_e_production_agriculture-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_agriculture: {conversion: 1.0}
-local_e_production_agriculture-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
+local_e_production_agriculture-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: nil}
 local_e_production_agriculture-(electricity) -- c --> (electricity)-chp_agri_agriculture_energetic: {share: 42232000000.0}
 
 :local_w_production_agriculture:
   :co2_free: 0.0
 local_w_production_agriculture-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-local_w_production_agriculture: {conversion: 1.0}
-local_w_production_agriculture-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
-local_w_production_agriculture-(steam_hot_water) -- d --> (steam_hot_water)-chp_agri_agriculture_energetic: {share: 0.0}
+local_w_production_agriculture-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: nil}
+local_w_production_agriculture-(steam_hot_water) -- d --> (steam_hot_water)-chp_agri_agriculture_energetic: {share: nil}
 
 :local_e_production_industry:
   :co2_free: 0.0
 local_e_production_industry-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_industry: {conversion: 1.0}
-local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: 0.0}
+local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: nil}
 local_e_production_industry-(electricity) -- c --> (electricity)-small_chp_industry_energetic: {share: 71232000000.0}
 local_e_production_industry-(electricity) -- c --> (electricity)-biomass_chp_industry_energetic: {share: 3222000000.0}
 local_e_production_industry-(electricity) -- c --> (electricity)-bio_oil_chp_industry_energetic: {share: 0.0}
@@ -5179,11 +5179,11 @@ local_e_production_industry-(electricity) -- c --> (electricity)-coal_CHP_indust
   :co2_free: 0.0
 local_w_production_industry-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-local_w_production_industry: {conversion: 1.0}
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_chp_industry_energetic: {share: 0.0}
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic: {share: 0.0}
-local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic: {share: 0.0}
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_CHP_industry_energetic: {share: 0.0}
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_chp_industry_energetic: {share: nil}
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic: {share: nil}
+local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: nil}
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic: {share: nil}
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_CHP_industry_energetic: {share: nil}
 
 :used_restheat_decentral_production_energy:
   :co2_free: 0.0
@@ -5195,15 +5195,15 @@ used_restheat_decentral_production_energy-(steam_hot_water) -- s --> (steam_hot_
   :co2_free: 0.0
 unused_restheat_decentral_production_energy_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-unused_restheat_decentral_production_energy_energetic: {conversion: 1.0}
-unused_restheat_decentral_production_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-restheat_decentral_production_energy: {share: 0.0}
+unused_restheat_decentral_production_energy_energetic-(steam_hot_water) -- i --> (steam_hot_water)-restheat_decentral_production_energy: {share: nil}
 
 :restheat_decentral_production_energy:
   :co2_free: 0.0
 restheat_decentral_production_energy-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-restheat_decentral_production_energy: {conversion: 1.0}
-restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic: {share: 0.0}
-restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic: {share: 0.0}
-restheat_decentral_production_energy-(steam_hot_water) -- f --> (steam_hot_water)-backup_burner_heat_network_energy: {share: 0.0}
+restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic: {share: nil}
+restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic: {share: nil}
+restheat_decentral_production_energy-(steam_hot_water) -- f --> (steam_hot_water)-backup_burner_heat_network_energy: {share: nil}
 
 :micro_CHP_production_households:
   :co2_free: 0.0
@@ -5237,21 +5237,21 @@ micro_CHP_production_households-(network_gas): {conversion: 1.0}
 (electricity)-micro_CHP_production_households: {conversion: 0.174922}
 (useable_heat)-micro_CHP_production_households: {conversion: 0.892078}
 micro_CHP_production_households-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 0.163938144329897}
-micro_CHP_production_households-(network_gas) -- f --> (network_gas)-gas_for_heating_households_energetic: {share: 0.0}
+micro_CHP_production_households-(network_gas) -- f --> (network_gas)-gas_for_heating_households_energetic: {share: nil}
 
 :decentral_heat_other:
   :co2_free: 0.0
 decentral_heat_other-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-decentral_heat_other: {conversion: 1.0}
-decentral_heat_other-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: 0.0}
-decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-chp_other_other_energetic: {share: 0.0}
-decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_other_energetic: {share: 0.0}
+decentral_heat_other-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: nil}
+decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-chp_other_other_energetic: {share: nil}
+decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_other_energetic: {share: nil}
 
 :local_e_production_other:
   :co2_free: 0.0
 local_e_production_other-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_other: {conversion: 1.0}
-local_e_production_other-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
+local_e_production_other-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: nil}
 local_e_production_other-(electricity) -- c --> (electricity)-chp_other_other_energetic: {share: 0.0}
 local_e_production_other-(electricity) -- c --> (electricity)-biomass_CHP_other_energetic: {share: 0.0}
 
@@ -5259,11 +5259,11 @@ local_e_production_other-(electricity) -- c --> (electricity)-biomass_CHP_other_
   :co2_free: 0.0
 local_e_production_buildings-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_buildings: {conversion: 1.0}
-local_e_production_buildings-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: 0.0}
+local_e_production_buildings-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: nil}
 local_e_production_buildings-(electricity) -- c --> (electricity)-solar_panels_buildings_energetic: {share: 0.0}
-local_e_production_buildings-(electricity) -- d --> (electricity)-gas_chp_buildings_energetic: {share: 0.0}
-local_e_production_buildings-(electricity) -- d --> (electricity)-coal_chp_buildings_energetic: {share: 0.0}
-local_e_production_buildings-(electricity) -- d --> (electricity)-biomass_chp_buildings_energetic: {share: 0.0}
+local_e_production_buildings-(electricity) -- d --> (electricity)-gas_chp_buildings_energetic: {share: nil}
+local_e_production_buildings-(electricity) -- d --> (electricity)-coal_chp_buildings_energetic: {share: nil}
+local_e_production_buildings-(electricity) -- d --> (electricity)-biomass_chp_buildings_energetic: {share: nil}
 
 :steam_hot_water_difference_energy:
   :co2_free: 0.0
@@ -5823,7 +5823,7 @@ biocoal_import_energy-(torrified_biomass_pellets): {conversion: 1.0}
 woodpellet_distribution_energy-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-woodpellet_distribution_energy: {conversion: 1.0}
 woodpellet_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-woodpellet_production_energy: {share: 0.0}
-woodpellet_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-woodpellet_import_energy: {share: 0.0}
+woodpellet_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-woodpellet_import_energy: {share: nil}
 
 :woodpellet_production_energy:
   :co2_free: 0.0
@@ -5880,112 +5880,112 @@ corn_growth_energy-(corn): {conversion: 1.0}
   :co2_free: 0.0
 lng_export_energy-(lng): {conversion: 1.0}
 (lng)-lng_export_energy: {conversion: 1.0}
-lng_export_energy-(lng) -- i --> (lng)-lng_import_energy: {share: 0.0}
+lng_export_energy-(lng) -- i --> (lng)-lng_import_energy: {share: nil}
 
 :uranium_export_energy:
   :co2_free: 0.0
 uranium_export_energy-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-uranium_export_energy: {conversion: 1.0}
-uranium_export_energy-(uranium_oxide) -- i --> (uranium_oxide)-uranium_distribution_energy: {share: 0.0}
+uranium_export_energy-(uranium_oxide) -- i --> (uranium_oxide)-uranium_distribution_energy: {share: nil}
 
 :oil_export_energy:
   :co2_free: 0.0
 oil_export_energy-(crude_oil): {conversion: 1.0}
 (crude_oil)-oil_export_energy: {conversion: 1.0}
-oil_export_energy-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy: {share: 0.0}
+oil_export_energy-(crude_oil) -- i --> (crude_oil)-oil_distribution_energy: {share: nil}
 
 :gas_export_energy:
   :co2_free: 0.0
 gas_export_energy-(network_gas): {conversion: 1.0}
 (network_gas)-gas_export_energy: {conversion: 1.0}
-gas_export_energy-(network_gas) -- i --> (network_gas)-national_gas_network_energy: {share: 0.0}
+gas_export_energy-(network_gas) -- i --> (network_gas)-national_gas_network_energy: {share: nil}
 
 :biomass_export_energy:
   :co2_free: 0.0
 biomass_export_energy-(biomass): {conversion: 1.0}
 (biomass)-biomass_export_energy: {conversion: 1.0}
-biomass_export_energy-(biomass) -- i --> (biomass)-biomass_distribution_energy: {share: 0.0}
+biomass_export_energy-(biomass) -- i --> (biomass)-biomass_distribution_energy: {share: nil}
 
 :diesel_export_energy:
   :co2_free: 0.0
 diesel_export_energy-(diesel): {conversion: 1.0}
 (diesel)-diesel_export_energy: {conversion: 1.0}
-diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_transport: {share: 0.0}
+diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_transport: {share: nil}
 
 :gasoline_export_energy:
   :co2_free: 0.0
 gasoline_export_energy-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_export_energy: {conversion: 1.0}
-gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_transport: {share: 0.0}
+gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_transport: {share: nil}
 
 :kerosine_export_energy:
   :co2_free: 0.0
 kerosine_export_energy-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_export_energy: {conversion: 1.0}
-kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport: {share: 0.0}
+kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport: {share: nil}
 
 :lpg_export_energy:
   :co2_free: 0.0
 lpg_export_energy-(lpg): {conversion: 1.0}
 (lpg)-lpg_export_energy: {conversion: 1.0}
-lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_transport: {share: 0.0}
+lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_transport: {share: nil}
 
 :greengas_export_energy:
   :co2_free: 0.0
 greengas_export_energy-(greengas): {conversion: 1.0}
 (greengas)-greengas_export_energy: {conversion: 1.0}
-greengas_export_energy-(greengas) -- i --> (greengas)-greengas_distribution_energy: {share: 0.0}
+greengas_export_energy-(greengas) -- i --> (greengas)-greengas_distribution_energy: {share: nil}
 
 :coal_export_energy:
   :co2_free: 0.0
 coal_export_energy-(coal): {conversion: 1.0}
 (coal)-coal_export_energy: {conversion: 1.0}
-coal_export_energy-(coal) -- i --> (coal)-coal_distribution_energy: {share: 0.0}
+coal_export_energy-(coal) -- i --> (coal)-coal_distribution_energy: {share: nil}
 
 :bio_oil_export_energy:
   :co2_free: 0.0
 bio_oil_export_energy-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_export_energy: {conversion: 1.0}
-bio_oil_export_energy-(bio_oil) -- i --> (bio_oil)-bio_oil_distribution_energy: {share: 0.0}
+bio_oil_export_energy-(bio_oil) -- i --> (bio_oil)-bio_oil_distribution_energy: {share: nil}
 
 :waste_export_energy:
   :co2_free: 0.0
 waste_export_energy-(waste_mix): {conversion: 1.0}
 (waste_mix)-waste_export_energy: {conversion: 1.0}
-waste_export_energy-(waste_mix) -- i --> (waste_mix)-waste_distribution_energy: {share: 0.0}
+waste_export_energy-(waste_mix) -- i --> (waste_mix)-waste_distribution_energy: {share: nil}
 
 :bio_diesel_export_energy:
   :co2_free: 0.0
 bio_diesel_export_energy-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_export_energy: {conversion: 1.0}
-bio_diesel_export_energy-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_transport: {share: 0.0}
+bio_diesel_export_energy-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_transport: {share: nil}
 
 :bio_ethanol_export_energy:
   :co2_free: 0.0
 bio_ethanol_export_energy-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_export_energy: {conversion: 1.0}
-bio_ethanol_export_energy-(bio_ethanol) -- i --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: 0.0}
+bio_ethanol_export_energy-(bio_ethanol) -- i --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: nil}
 
 :algue_diesel_export_energy:
   :co2_free: 0.0
 algue_diesel_export_energy-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_export_energy: {conversion: 1.0}
-algue_diesel_export_energy-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_distribution_transport_energetic: {share: 0.0}
+algue_diesel_export_energy-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_distribution_transport_energetic: {share: nil}
 
 :biogenic_waste_distribution_energy:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 biogenic_waste_distribution_energy-(biogenic_waste): {conversion: 1.0}
 (waste_mix)-biogenic_waste_distribution_energy: {conversion: 1.0}
-biogenic_waste_distribution_energy-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy: {share: 0.0}
-biogenic_waste_distribution_energy-(biogenic_waste) -- c --> (biogenic_waste)-biogenic_waste_collection_energy: {share: 0.0}
+biogenic_waste_distribution_energy-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy: {share: nil}
+biogenic_waste_distribution_energy-(biogenic_waste) -- c --> (biogenic_waste)-biogenic_waste_collection_energy: {share: nil}
 
 :non_biogenic_waste_distribution_energy:
   :co2_free: 0.0
 non_biogenic_waste_distribution_energy-(non_biogenic_waste): {conversion: 1.0}
 (waste_mix)-non_biogenic_waste_distribution_energy: {conversion: 1.0}
-non_biogenic_waste_distribution_energy-(non_biogenic_waste) -- f --> (non_biogenic_waste)-non_biogenic_waste_import_energy: {share: 0.0}
-non_biogenic_waste_distribution_energy-(non_biogenic_waste) -- c --> (non_biogenic_waste)-non_biogenic_waste_collection_energy: {share: 0.0}
+non_biogenic_waste_distribution_energy-(non_biogenic_waste) -- f --> (non_biogenic_waste)-non_biogenic_waste_import_energy: {share: nil}
+non_biogenic_waste_distribution_energy-(non_biogenic_waste) -- c --> (non_biogenic_waste)-non_biogenic_waste_collection_energy: {share: nil}
 
 :biogenic_waste_import_energy:
   :co2_free: 0.0
