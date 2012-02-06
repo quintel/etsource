@@ -2801,6 +2801,46 @@ final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kero
 final_demand_of_kerosine_transport_energetic-(kerosine)
 (kerosine)-final_demand_of_kerosine_transport_energetic
 
+final_demand_of_diesel_transport_energetic;	final_demand_of_diesel;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
+final_demand_of_diesel_transport_energetic-(diesel)
+(diesel)-final_demand_of_diesel_transport_energetic
+
+final_demand_of_heavy_fuel_oil_transport_energetic;	final_demand_of_heavy_fuel_oil;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-distribution_of_heavy_fuel_oil_energy
+final_demand_of_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil)
+(heavy_fuel_oil)-final_demand_of_heavy_fuel_oil_transport_energetic
+
+final_demand_of_network_gas_transport_energetic;	final_demand_of_network_gas;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_network_gas_transport_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy
+final_demand_of_network_gas_transport_energetic-(network_gas)
+(network_gas)-final_demand_of_network_gas_transport_energetic
+
+final_demand_of_bio_ethanol_transport_energetic;	final_demand_of_bio_ethanol;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport
+final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol)
+(bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic
+
+final_demand_of_biodiesel_transport_energetic;	final_demand_of_biodiesel;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport
+final_demand_of_biodiesel_transport_energetic-(biodiesel)
+(biodiesel)-final_demand_of_biodiesel_transport_energetic
+
+final_demand_of_electricity_transport_energetic;	final_demand_of_electricity;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_electricity_transport_energetic-(electricity) -- s --> (electricity)-mv_distribution_network_energy_energetic
+final_demand_of_electricity_transport_energetic-(electricity)
+(electricity)-final_demand_of_electricity_transport_energetic
+
+distribution_of_heavy_fuel_oil_energy;	distribution_of_heavy_fuel_oil;	energy;	undefined;subdistribution 1;	
+distribution_of_heavy_fuel_oil_energy-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-production_of_heavy_fuel_oil_energy
+distribution_of_heavy_fuel_oil_energy-(heavy_fuel_oil)
+(heavy_fuel_oil)-distribution_of_heavy_fuel_oil_energy
+
+production_of_heavy_fuel_oil_energy;	production_of_heavy_fuel_oil;	energy;	undefined;refinery;	
+production_of_heavy_fuel_oil_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+(heavy_fuel_oil)-production_of_heavy_fuel_oil_energy
+production_of_heavy_fuel_oil_energy-(crude_oil)
+
 road_lpg_transport_energetic;	road_lpg;	transport;	energetic;application;	
 road_lpg_transport_energetic-(lpg) -- s --> (lpg)-final_demand_of_lpg_transport_energetic
 road_lpg_transport_energetic-(lpg)
@@ -2812,27 +2852,27 @@ road_gasoline_transport_energetic-(gasoline)
 (gasoline)-road_gasoline_transport_energetic
 
 road_diesel_transport_energetic;	road_diesel;	transport;	energetic;application;	
-road_diesel_transport_energetic-(diesel) -- s --> (diesel)-
+road_diesel_transport_energetic-(diesel) -- s --> (diesel)-final_demand_of_diesel_transport_energetic
 road_diesel_transport_energetic-(diesel)
 (diesel)-road_diesel_transport_energetic
 
 road_network_gas_transport_energetic;	road_network_gas;	transport;	energetic;application;	
-road_network_gas_transport_energetic-(network_gas) -- s --> (network_gas)-
+road_network_gas_transport_energetic-(network_gas) -- s --> (network_gas)-final_demand_of_network_gas_transport_energetic
 road_network_gas_transport_energetic-(network_gas)
 (network_gas)-road_network_gas_transport_energetic
 
 road_bio_ethanol_transport_energetic;	road_bio_ethanol;	transport;	energetic;application;	
-road_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-
+road_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic
 road_bio_ethanol_transport_energetic-(bio_ethanol)
 (bio_ethanol)-road_bio_ethanol_transport_energetic
 
 road_biodiesel_transport_energetic;	road_biodiesel;	transport;	energetic;application;	
-road_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-
+road_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic
 road_biodiesel_transport_energetic-(biodiesel)
 (biodiesel)-road_biodiesel_transport_energetic
 
 road_electricity_transport_energetic;	road_electricity;	transport;	energetic;application;	
-road_electricity_transport_energetic-(electricity) -- s --> (electricity)-
+road_electricity_transport_energetic-(electricity) -- s --> (electricity)-final_demand_of_electricity_transport_energetic
 road_electricity_transport_energetic-(electricity)
 (electricity)-road_electricity_transport_energetic
 
@@ -2842,27 +2882,27 @@ rail_coal_transport_energetic-(coal)
 (coal)-rail_coal_transport_energetic
 
 rail_diesel_transport_energetic;	rail_diesel;	transport;	energetic;application;	
-rail_diesel_transport_energetic-(diesel) -- s --> (diesel)-
+rail_diesel_transport_energetic-(diesel) -- s --> (diesel)-final_demand_of_diesel_transport_energetic
 rail_diesel_transport_energetic-(diesel)
 (diesel)-rail_diesel_transport_energetic
 
 rail_biodiesel_transport_energetic;	rail_biodiesel;	transport;	energetic;application;	
-rail_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-
+rail_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic
 rail_biodiesel_transport_energetic-(biodiesel)
 (biodiesel)-rail_biodiesel_transport_energetic
 
 rail_electricity_transport_energetic;	rail_electricity;	transport;	energetic;application;	
-rail_electricity_transport_energetic-(electricity) -- s --> (electricity)-
+rail_electricity_transport_energetic-(electricity) -- s --> (electricity)-final_demand_of_electricity_transport_energetic
 rail_electricity_transport_energetic-(electricity)
 (electricity)-rail_electricity_transport_energetic
 
 navigation_diesel_transport_energetic;	navigation_diesel;	transport;	energetic;application;	
-navigation_diesel_transport_energetic-(diesel) -- s --> (diesel)-
+navigation_diesel_transport_energetic-(diesel) -- s --> (diesel)-final_demand_of_diesel_transport_energetic
 navigation_diesel_transport_energetic-(diesel)
 (diesel)-navigation_diesel_transport_energetic
 
 navigation_heavy_fuel_oil_transport_energetic;	navigation_heavy_fuel_oil;	transport;	energetic;application;	
-navigation_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-
+navigation_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-final_demand_of_heavy_fuel_oil_transport_energetic
 navigation_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil)
 (heavy_fuel_oil)-navigation_heavy_fuel_oil_transport_energetic
 
