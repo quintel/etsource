@@ -198,6 +198,7 @@ module ETE
       CSV.new(@excel_export.csv_for(:links)).parse do |row|
         parent = converters[row[:parent_id].to_i]
         child  = converters[row[:child_id].to_i]
+        raise "Missing converter! Id: #{row[:child_id]}" unless child
         carrier = carriers( row[:carrier_id].to_i )
         link_type = case row[:link_type].to_i
         when 1 then 's'
