@@ -298,7 +298,7 @@ electricity_other_buildings_energetic-(electricity)
 (electricity)-electricity_other_buildings_energetic
 
 heatpump_households_energetic;	heatpump;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
-heatpump_households_energetic-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic
+heatpump_households_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic
 heatpump_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic
 heatpump_households_energetic-(electricity)
 heatpump_households_energetic-(ambient_heat)
@@ -2780,3 +2780,23 @@ gas_turbine_energy_energetic-(natural_gas) -- s --> (natural_gas)-energy_sector_
 gas_turbine_energy_energetic-(natural_gas)
 (electricity)-gas_turbine_energy_energetic
 (loss)-gas_turbine_energy_energetic
+
+final_demand_of_coal_transport_energetic;	final_demand_of_coal;	transport;	energetic;final consumption;	
+final_demand_of_coal_transport_energetic-(coal) -- s --> (coal)-coal_distribution_energy
+final_demand_of_coal_transport_energetic-(coal)
+(coal)-final_demand_of_coal_transport_energetic
+
+final_demand_of_lpg_transport_energetic;	final_demand_of_lpg;	transport;	energetic;final consumption;	
+final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport
+final_demand_of_lpg_transport_energetic-(lpg)
+(lpg)-final_demand_of_lpg_transport_energetic
+
+final_demand_of_gasoline_transport_energetic;	final_demand_of_gasoline;	transport;	energetic;final consumption;	
+final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport
+final_demand_of_gasoline_transport_energetic-(gasoline)
+(gasoline)-final_demand_of_gasoline_transport_energetic
+
+final_demand_of_kerosine_transport_energetic;	final_demand_of_kerosine;	transport;	energetic;final consumption;	
+final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport
+final_demand_of_kerosine_transport_energetic-(kerosine)
+(kerosine)-final_demand_of_kerosine_transport_energetic
