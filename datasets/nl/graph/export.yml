@@ -885,7 +885,7 @@ heatpump_households_energetic-(electricity): {conversion: 0.210526315789474}
 heatpump_households_energetic-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-heatpump_households_energetic: {conversion: 0.0}
 (useable_heat)-heatpump_households_energetic: {conversion: 1.0}
-heatpump_households_energetic-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic: {share: 1.0}
+heatpump_households_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic: {share: 1.0}
 heatpump_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 
 :city_cooling_network_buildings_energetic:
@@ -6243,3 +6243,31 @@ gas_turbine_energy_energetic-(natural_gas): {conversion: 1.0}
 (electricity)-gas_turbine_energy_energetic: {conversion: 0.0}
 (loss)-gas_turbine_energy_energetic: {conversion: 1.0}
 gas_turbine_energy_energetic-(natural_gas) -- s --> (natural_gas)-energy_sector_gas_mixer_energy: {share: 1.0}
+
+:final_demand_of_coal_transport_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+final_demand_of_coal_transport_energetic-(coal): {conversion: 1.0}
+(coal)-final_demand_of_coal_transport_energetic: {conversion: 1.0}
+final_demand_of_coal_transport_energetic-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
+
+:final_demand_of_lpg_transport_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+final_demand_of_lpg_transport_energetic-(lpg): {conversion: 1.0}
+(lpg)-final_demand_of_lpg_transport_energetic: {conversion: 1.0}
+final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport: {share: 1.0}
+
+:final_demand_of_gasoline_transport_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+final_demand_of_gasoline_transport_energetic-(gasoline): {conversion: 1.0}
+(gasoline)-final_demand_of_gasoline_transport_energetic: {conversion: 1.0}
+final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport: {share: 1.0}
+
+:final_demand_of_kerosine_transport_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+final_demand_of_kerosine_transport_energetic-(kerosine): {conversion: 1.0}
+(kerosine)-final_demand_of_kerosine_transport_energetic: {conversion: 1.0}
+final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport: {share: 1.0}
