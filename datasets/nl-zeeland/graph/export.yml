@@ -959,7 +959,6 @@ heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_iii_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_coal_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_gas_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-geothermal_heat_energy: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_conv_energy_energetic: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-ccgt_ccs_energy: {share: }
@@ -1044,7 +1043,6 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_inland_e
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_coastal_energy: {share: 432216000.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_offshore_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_coal_energy: {share: 0.0}
-hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_gas_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-solar_csp_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_river_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_mount_energy: {share: 0.0}
@@ -1662,39 +1660,6 @@ co_firing_coal_energy-(biomass): {conversion: 1.0}
 (steam_hot_water)-co_firing_coal_energy: {conversion: 0.0}
 (electricity)-co_firing_coal_energy: {conversion: 0.33}
 co_firing_coal_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
-
-:co_firing_gas_energy:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-  :technical_lifetime: 30.0
-  :construction_time: 2.5
-  :ccs_investment_per_mw_input: 0.0
-  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
-  :typical_nominal_input_capacity: 1379.31034482759
-  :decommissioning_costs_per_mw_input: 0.0
-  :full_load_hours: 6329.1
-  :residual_value_per_mw_input: 0.0
-  :operation_and_maintenance_cost_fixed_per_mw_input: 4775.32853427896
-  :wacc: 0.1
-  :operation_and_maintenance_cost_variable_per_full_load_hour: 2400.0
-  :land_use_per_unit: 0.11
-  :installing_costs_per_mw_input: 0.0
-  :purchase_price_per_mw_input: 315121.25
-  :economic_lifetime: 30.0
-  :part_ets: 1.0
-  :simult_sd: 1.0
-  :simult_se: 1.0
-  :simult_wd: 1.0
-  :simult_we: 1.0
-  :peak_load_units_present: 0.0
-  :availability: 0.89
-  :variability: 0.0
-  :decrease_in_nominal_capacity_over_lifetime: 0.04
-co_firing_gas_energy-(biomass): {conversion: 1.0}
-(loss)-co_firing_gas_energy: {conversion: 0.42}
-(steam_hot_water)-co_firing_gas_energy: {conversion: 0.0}
-(electricity)-co_firing_gas_energy: {conversion: 0.58}
-co_firing_gas_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
 
 :solar_csp_energy:
   :co2_free: 0.0
