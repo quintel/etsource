@@ -359,7 +359,6 @@ heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_iii_energy
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_coal_energy
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_gas_energy
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-geothermal_heat_energy
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_conv_energy_energetic
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-ccgt_ccs_energy
@@ -406,7 +405,6 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_inland_e
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_coastal_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-wind_offshore_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_coal_energy
-hv_electricity_network_energy-(electricity) -- c --> (electricity)-co_firing_gas_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-solar_csp_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_river_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-hydro_mount_energy
@@ -579,13 +577,6 @@ co_firing_coal_energy-(biomass)
 (loss)-co_firing_coal_energy
 (steam_hot_water)-co_firing_coal_energy
 (electricity)-co_firing_coal_energy
-
-co_firing_gas_energy;	co_firing_gas;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-co_firing_gas_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
-co_firing_gas_energy-(biomass)
-(loss)-co_firing_gas_energy
-(steam_hot_water)-co_firing_gas_energy
-(electricity)-co_firing_gas_energy
 
 solar_csp_energy;	solar_csp;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
 solar_csp_energy-(solar_radiation) -- s --> (solar_radiation)-sun_environment_energetic
