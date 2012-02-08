@@ -187,11 +187,6 @@ biomass_chp_industry_energetic-(biomass)
 (steam_hot_water)-biomass_chp_industry_energetic
 (electricity)-biomass_chp_industry_energetic
 
-trains_diesel_demand_transport_energetic;	trains_diesel_demand;	transport;	energetic;technologies;	useful_demand
-trains_diesel_demand_transport_energetic-(diesel) -- s --> (diesel)-diesel_transport_energetic
-trains_diesel_demand_transport_energetic-(diesel)
-(loss)-trains_diesel_demand_transport_energetic
-
 truck_kms_demand_transport_energetic;	truck_kms_demand;	transport;	energetic;useful consumption;	
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-electric_trucks_transport_energetic
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-diesel_trucks_transport_energetic
@@ -254,11 +249,6 @@ compressed_gas_cars_transport_energetic;	compressed_gas_cars;	transport;	energet
 compressed_gas_cars_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-road_network_gas_compression_transport_energetic
 compressed_gas_cars_transport_energetic-(compressed_network_gas)
 (car_kms)-compressed_gas_cars_transport_energetic
-
-electricity_distribution_transport_transport_energetic;	electricity_distribution_transport;	transport;	energetic;distribution;	
-electricity_distribution_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_transport_energetic
-electricity_distribution_transport_transport_energetic-(electricity)
-(electricity)-electricity_distribution_transport_transport_energetic
 
 oil_demand_energy_non_energetic;	oil_demand;	energy;	non_energetic;;	useful_demand,non_energetic_use
 oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic
@@ -904,11 +894,6 @@ gas_demand_industry_non_energetic-(network_gas) -- s --> (network_gas)-gas_indus
 gas_demand_industry_non_energetic-(network_gas)
 (network_gas)-gas_demand_industry_non_energetic
 
-coal_demand_transport_transport_energetic;	coal_demand_transport;	transport;	energetic;technologies;	useful_demand
-coal_demand_transport_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic
-coal_demand_transport_transport_energetic-(coal)
-(coal)-coal_demand_transport_transport_energetic
-
 biomass_demand_industry_non_energetic;	biomass_demand;	industry;	non_energetic;application;	useful_demand,non_energetic_use
 biomass_demand_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_industry_non_energetic
 biomass_demand_industry_non_energetic-(biomass)
@@ -1057,21 +1042,6 @@ gas_buildings_energetic;	gas;	buildings;	energetic;final consumption;	final_dema
 gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy
 gas_buildings_energetic-(network_gas)
 (network_gas)-gas_buildings_energetic
-
-coal_transport_energetic;	coal;	transport;	energetic;final consumption;	final_demand_cbs
-coal_transport_energetic-(coal) -- s --> (coal)-cokes_production_energy
-coal_transport_energetic-(coal)
-(coal)-coal_transport_energetic
-
-electricity_transport_energetic;	electricity;	transport;	energetic;final consumption;	final_demand_cbs,final_demand_electricity,cost_other
-electricity_transport_energetic-(electricity) -- s --> (electricity)-lv_electricity_network_energy_energetic
-electricity_transport_energetic-(electricity)
-(electricity)-electricity_transport_energetic
-
-diesel_transport_energetic;	diesel;	transport;	energetic;;	
-diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
-diesel_transport_energetic-(diesel)
-(diesel)-diesel_transport_energetic
 
 kerosine_transport_energetic;	kerosine;	transport;	energetic;;	final_demand_cbs
 kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport
@@ -1499,7 +1469,7 @@ oil_boiler_households_energetic-(crude_oil)
 (loss)-oil_boiler_households_energetic
 
 other_electric_transport_transport_energetic;	other_electric_transport;	transport;	energetic;technologies;	useful_demand
-other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
+other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-final_demand_of_electricity_transport_energetic
 other_electric_transport_transport_energetic-(electricity)
 (electricity)-other_electric_transport_transport_energetic
 
@@ -2817,7 +2787,7 @@ final_demand_of_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-b
 final_demand_of_biodiesel_transport_energetic-(biodiesel)
 (biodiesel)-final_demand_of_biodiesel_transport_energetic
 
-final_demand_of_electricity_transport_energetic;	final_demand_of_electricity;	transport;	energetic;final consumption;	final_demand_cbs
+final_demand_of_electricity_transport_energetic;	final_demand_of_electricity;	transport;	energetic;final consumption;	final_demand_cbs,cost_other
 final_demand_of_electricity_transport_energetic-(electricity) -- s --> (electricity)-mv_distribution_network_energy_energetic
 final_demand_of_electricity_transport_energetic-(electricity)
 (electricity)-final_demand_of_electricity_transport_energetic
