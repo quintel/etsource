@@ -796,11 +796,11 @@ kerosine_production_transport-(crude_oil)
 (loss)-kerosine_production_transport
 (kerosine)-kerosine_production_transport
 
-bio_diesel_production_transport_energetic;	bio_diesel_production;	transport;	energetic;;	primary_energy_demand,final_demand_cbs,mining_and_extraction
+bio_diesel_production_transport_energetic;	bio_diesel_production;	transport;	energetic;;	primary_energy_demand,mining_and_extraction
 bio_diesel_production_transport_energetic-(biodiesel)
 (biodiesel)-bio_diesel_production_transport_energetic
 
-bio_ethanol_production_transport_energetic;	bio_ethanol_production;	transport;	energetic;refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
+bio_ethanol_production_transport_energetic;	bio_ethanol_production;	transport;	energetic;refinery;	primary_energy_demand,mining_and_extraction
 bio_ethanol_production_transport_energetic-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_production_transport_energetic
 
@@ -838,11 +838,6 @@ biomass_import_export_energy;	biomass_import_export;	energy;	undefined;;	primary
 biomass_import_export_energy-(biomass)
 (biomass)-biomass_import_export_energy
 
-planes_kerosine_demand_transport;	planes_kerosine_demand;	transport;	undefined;technologies;	useful_demand
-planes_kerosine_demand_transport-(kerosine) -- s --> (kerosine)-kerosine_transport_energetic
-planes_kerosine_demand_transport-(kerosine)
-(loss)-planes_kerosine_demand_transport
-
 diesel_import_export_transport;	diesel_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 diesel_import_export_transport-(diesel)
 (diesel)-diesel_import_export_transport
@@ -855,12 +850,12 @@ kerosine_import_export_transport;	kerosine_import_export;	transport;	undefined;;
 kerosine_import_export_transport-(kerosine)
 (kerosine)-kerosine_import_export_transport
 
-bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;;	final_demand_cbs,energy_import_export,energy_import
+bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import
 bio_diesel_import_export_transport_energetic-(biodiesel) -- s --> (biodiesel)-foreign_bio_diesel_production_neighbor
 bio_diesel_import_export_transport_energetic-(biodiesel)
 (biodiesel)-bio_diesel_import_export_transport_energetic
 
-bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;;	final_demand_cbs,energy_import_export,energy_import
+bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;;	energy_import_export,energy_import
 bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-foreign_bioethanol_production_neighbor
 bio_ethanol_import_export_transport_energetic-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic
@@ -869,10 +864,10 @@ lpg_import_export_transport;	lpg_import_export;	transport;	undefined;;	primary_e
 lpg_import_export_transport-(lpg)
 (lpg)-lpg_import_export_transport
 
-planes_oil_demand_transport_energetic;	planes_oil_demand;	transport;	energetic;technologies;	
-planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
-planes_oil_demand_transport_energetic-(crude_oil)
-(not_defined)-planes_oil_demand_transport_energetic
+planes_gasoline_transport_energetic;	planes_gasoline;	transport;	energetic;technologies;	
+planes_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-aviation_gasoline_transport_energetic
+planes_gasoline_transport_energetic-(gasoline)
+(not_defined)-planes_gasoline_transport_energetic
 
 coal_demand_other_non_energetic;	coal_demand;	other;	non_energetic;application;	useful_demand,non_energetic_use
 coal_demand_other_non_energetic-(coal) -- s --> (coal)-coal_other_non_energetic
@@ -1527,22 +1522,6 @@ backup_burner_heat_network_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmi
 backup_burner_heat_network_energy-(gas_power_fuelmix)
 (loss)-backup_burner_heat_network_energy
 (steam_hot_water)-backup_burner_heat_network_energy
-
-diesel_mixer_transport_energetic;	diesel_mixer;	transport;	energetic;subdistribution 1;	
-diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport
-diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-diesel_production_transport
-diesel_mixer_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-algue_diesel_distribution_transport_energetic
-diesel_mixer_transport_energetic-(algae_diesel)
-diesel_mixer_transport_energetic-(biodiesel)
-diesel_mixer_transport_energetic-(diesel)
-(diesel)-diesel_mixer_transport_energetic
-
-gasoline_mixer_transport_energetic;	gasoline_mixer;	transport;	energetic;subdistribution 1;	
-gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport
-gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_production_transport
-gasoline_mixer_transport_energetic-(bio_ethanol)
-gasoline_mixer_transport_energetic-(gasoline)
-(gasoline)-gasoline_mixer_transport_energetic
 
 cokes_production_energy;	cokes_production;	energy;	undefined;refinery;	
 cokes_production_energy-(coal) -- s --> (coal)-coal_distribution_energy
@@ -2215,13 +2194,14 @@ pumped_storage_energy-(electricity)
 (loss)-pumped_storage_energy
 
 planes_transport_energetic;	planes;	transport;	energetic;useful consumption;	useful_demand
-planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_oil_demand_transport_energetic
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_gasoline_transport_energetic
 planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_bio_ethanol_transport_energetic
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_kerosine_transport_energetic
 planes_transport_energetic-(not_defined)
 (not_defined)-planes_transport_energetic
 
 planes_bio_ethanol_transport_energetic;	planes_bio_ethanol;	transport;	energetic;technologies;	
-planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport
+planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-aviation_bio_ethanol_transport_energetic
 planes_bio_ethanol_transport_energetic-(bio_ethanol)
 (not_defined)-planes_bio_ethanol_transport_energetic
 
@@ -2903,12 +2883,17 @@ rail_diesel_mixer_transport_energetic-(diesel)
 (diesel)-rail_diesel_mixer_transport_energetic
 rail_diesel_mixer_transport_energetic-(biodiesel)
 
-navigation_bio_diesel_agriculture_energetic;	navigation_bio_diesel;	agriculture;	energetic;application;	
-navigation_bio_diesel_agriculture_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic
-navigation_bio_diesel_agriculture_energetic-(biodiesel)
-(biodiesel)-navigation_bio_diesel_agriculture_energetic
+navigation_bio_diesel_transport_energetic;	navigation_bio_diesel;	transport;	energetic;application;	
+navigation_bio_diesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic
+navigation_bio_diesel_transport_energetic-(biodiesel)
+(biodiesel)-navigation_bio_diesel_transport_energetic
 
-aviation_bio_ethanol_agriculture_energetic;	aviation_bio_ethanol;	agriculture;	energetic;application;	
-aviation_bio_ethanol_agriculture_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic
-aviation_bio_ethanol_agriculture_energetic-(bio_ethanol)
-(bio_ethanol)-aviation_bio_ethanol_agriculture_energetic
+aviation_bio_ethanol_transport_energetic;	aviation_bio_ethanol;	transport;	energetic;application;	
+aviation_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic
+aviation_bio_ethanol_transport_energetic-(bio_ethanol)
+(bio_ethanol)-aviation_bio_ethanol_transport_energetic
+
+planes_kerosine_transport_energetic;	planes_kerosine;	transport;	energetic;technologies;	
+planes_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-aviation_kerosine_transport_energetic
+planes_kerosine_transport_energetic-(kerosine)
+(not_defined)-planes_kerosine_transport_energetic

@@ -2120,12 +2120,6 @@ gas_import_export_energy-(natural_gas): {conversion: 1.0}
 biomass_import_export_energy-(biomass): {conversion: 1.0}
 (biomass)-biomass_import_export_energy: {conversion: 1.0}
 
-:planes_kerosine_demand_transport:
-  :co2_free: 0.0
-planes_kerosine_demand_transport-(kerosine): {conversion: 1.0}
-(loss)-planes_kerosine_demand_transport: {conversion: 1.0}
-planes_kerosine_demand_transport-(kerosine) -- s --> (kerosine)-kerosine_transport_energetic: {share: 1.0}
-
 :diesel_import_export_transport:
   :co2_free: 0.0
 diesel_import_export_transport-(diesel): {conversion: 1.0}
@@ -2158,11 +2152,11 @@ bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethano
 lpg_import_export_transport-(lpg): {conversion: 1.0}
 (lpg)-lpg_import_export_transport: {conversion: 1.0}
 
-:planes_oil_demand_transport_energetic:
+:planes_gasoline_transport_energetic:
   :co2_free: 0.0
-planes_oil_demand_transport_energetic-(crude_oil): {conversion: 1.0}
-(not_defined)-planes_oil_demand_transport_energetic: {conversion: 1.0}
-planes_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic: {share: 1.0}
+planes_gasoline_transport_energetic-(gasoline): {conversion: 1.0}
+(not_defined)-planes_gasoline_transport_energetic: {conversion: 1.0}
+planes_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-aviation_gasoline_transport_energetic: {share: 1.0}
 
 :coal_demand_other_non_energetic:
   :co2_free: 1.0
@@ -3640,28 +3634,6 @@ backup_burner_heat_network_energy-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-backup_burner_heat_network_energy: {conversion: 0.1}
 (steam_hot_water)-backup_burner_heat_network_energy: {conversion: 0.9}
 backup_burner_heat_network_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
-
-:diesel_mixer_transport_energetic:
-  :co2_free: 0.0
-  :preset_demand: 0.0
-  :demand: 0.0
-diesel_mixer_transport_energetic-(algae_diesel): {conversion: 0.0}
-diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0}
-diesel_mixer_transport_energetic-(diesel): {conversion: 1.0}
-(diesel)-diesel_mixer_transport_energetic: {conversion: 1.0}
-diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport: {share: 1.0}
-diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-diesel_production_transport: {share: 1.0}
-diesel_mixer_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-algue_diesel_distribution_transport_energetic: {share: 1.0}
-
-:gasoline_mixer_transport_energetic:
-  :co2_free: 0.0
-  :preset_demand: 0.0
-  :demand: 0.0
-gasoline_mixer_transport_energetic-(bio_ethanol): {conversion: 0.0}
-gasoline_mixer_transport_energetic-(gasoline): {conversion: 1.0}
-(gasoline)-gasoline_mixer_transport_energetic: {conversion: 1.0}
-gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: 1.0}
-gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_production_transport: {share: 1.0}
 
 :cokes_production_energy:
   :co2_free: 0.0
@@ -5262,14 +5234,15 @@ pumped_storage_energy-(electricity) -- s --> (electricity)-hv_electricity_networ
   :demand: 0.0
 planes_transport_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-planes_transport_energetic: {conversion: 1.0}
-planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_oil_demand_transport_energetic: {share: 1.0}
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_gasoline_transport_energetic: {share: 1.0}
 planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_bio_ethanol_transport_energetic: {share: 0.0}
+planes_transport_energetic-(not_defined) -- s --> (not_defined)-planes_kerosine_transport_energetic: {share: 0.0}
 
 :planes_bio_ethanol_transport_energetic:
   :co2_free: 0.0
 planes_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (not_defined)-planes_bio_ethanol_transport_energetic: {conversion: 1.0}
-planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: 1.0}
+planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-aviation_bio_ethanol_transport_energetic: {share: 1.0}
 
 :trains_transport_energetic:
   :co2_free: 0.0
@@ -6406,20 +6379,29 @@ rail_diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0}
 rail_diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_transport_energetic: {share: 1.0}
 rail_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-rail_biodiesel_transport_energetic: {share: 1.0}
 
-:navigation_bio_diesel_agriculture_energetic:
+:navigation_bio_diesel_transport_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand_expected_value: 0.0
   :demand: 0.0
-navigation_bio_diesel_agriculture_energetic-(biodiesel): {conversion: 1.0}
-(biodiesel)-navigation_bio_diesel_agriculture_energetic: {conversion: 1.0}
-navigation_bio_diesel_agriculture_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic: {share: 1.0}
+navigation_bio_diesel_transport_energetic-(biodiesel): {conversion: 1.0}
+(biodiesel)-navigation_bio_diesel_transport_energetic: {conversion: 1.0}
+navigation_bio_diesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic: {share: 1.0}
 
-:aviation_bio_ethanol_agriculture_energetic:
+:aviation_bio_ethanol_transport_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand_expected_value: 0.0
   :demand: 0.0
-aviation_bio_ethanol_agriculture_energetic-(bio_ethanol): {conversion: 1.0}
-(bio_ethanol)-aviation_bio_ethanol_agriculture_energetic: {conversion: 1.0}
-aviation_bio_ethanol_agriculture_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic: {share: 1.0}
+aviation_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
+(bio_ethanol)-aviation_bio_ethanol_transport_energetic: {conversion: 1.0}
+aviation_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic: {share: 1.0}
+
+:planes_kerosine_transport_energetic:
+  :co2_free: 0.0
+  :preset_demand: 0.0
+  :demand_expected_value: 0.0
+  :demand: 0.0
+planes_kerosine_transport_energetic-(kerosine): {conversion: 1.0}
+(not_defined)-planes_kerosine_transport_energetic: {conversion: 1.0}
+planes_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-aviation_kerosine_transport_energetic: {share: 1.0}
