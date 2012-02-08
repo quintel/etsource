@@ -255,15 +255,15 @@ oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_n
 oil_demand_energy_non_energetic-(crude_oil)
 (crude_oil)-oil_demand_energy_non_energetic
 
-ships_oil_demand_transport_energetic;	ships_oil_demand;	transport;	energetic;technologies;	
-ships_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
-ships_oil_demand_transport_energetic-(crude_oil)
-(not_defined)-ships_oil_demand_transport_energetic
+ships_diesel_transport_energetic;	ships_diesel;	transport;	energetic;technologies;	
+ships_diesel_transport_energetic-(diesel) -- s --> (diesel)-navigation_diesel_transport_energetic
+ships_diesel_transport_energetic-(diesel)
+(not_defined)-ships_diesel_transport_energetic
 
-ships_diesel_demand_transport_energetic;	ships_diesel_demand;	transport;	energetic;technologies;	
-ships_diesel_demand_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport
-ships_diesel_demand_transport_energetic-(biodiesel)
-(not_defined)-ships_diesel_demand_transport_energetic
+ships_biodiesel_transport_energetic;	ships_biodiesel;	transport;	energetic;technologies;	
+ships_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-navigation_bio_diesel_transport_energetic
+ships_biodiesel_transport_energetic-(biodiesel)
+(not_defined)-ships_biodiesel_transport_energetic
 
 trains_electricity_demand_transport_energetic;	trains_electricity_demand;	transport;	energetic;technologies;	
 trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricity)-rail_electricity_transport_energetic
@@ -695,11 +695,6 @@ uranium_import_energy-(loss)
 uranium_import_energy-(uranium_oxide)
 (uranium_oxide)-uranium_import_energy
 
-compressed_gas_distribution_transport_energetic;	compressed_gas_distribution;	transport;	energetic;distribution;	
-compressed_gas_distribution_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-compressed_gas_production_transport_energetic
-compressed_gas_distribution_transport_energetic-(compressed_network_gas)
-(compressed_network_gas)-compressed_gas_distribution_transport_energetic
-
 oil_distribution_energy;	oil_distribution;	energy;	undefined;distribution primary carriers;	
 oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy
 oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy
@@ -1028,16 +1023,6 @@ gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_networ
 gas_buildings_energetic-(network_gas)
 (network_gas)-gas_buildings_energetic
 
-kerosine_transport_energetic;	kerosine;	transport;	energetic;;	final_demand_cbs
-kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport
-kerosine_transport_energetic-(kerosine)
-(kerosine)-kerosine_transport_energetic
-
-oil_transport_energetic;	oil;	transport;	energetic;final consumption;	final_demand_cbs
-oil_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
-oil_transport_energetic-(crude_oil)
-(crude_oil)-oil_transport_energetic
-
 gas_agriculture_non_energetic;	gas;	agriculture;	non_energetic;final consumption;	final_demand_cbs,non_energetic_use
 gas_agriculture_non_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy
 gas_agriculture_non_energetic-(network_gas)
@@ -1100,11 +1085,6 @@ heater_on_oil_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_heat
 heater_on_oil_households_energetic-(crude_oil)
 (loss)-heater_on_oil_households_energetic
 (useable_heat)-heater_on_oil_households_energetic
-
-gas_demand_transport_energetic;	gas_demand;	transport;	energetic;final consumption;	final_demand_cbs
-gas_demand_transport_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy
-gas_demand_transport_energetic-(network_gas)
-(network_gas)-gas_demand_transport_energetic
 
 effective_lighting_demand_households_energetic;	effective_lighting_demand;	households;	energetic;useful consumption;	useful_demand
 effective_lighting_demand_households_energetic-(light) -- s --> (light)-led_lighting_households_energetic
@@ -1234,18 +1214,6 @@ earth_environment_energetic-(loss)
 water_environment_energetic;	water;	environment;	energetic;environment;	final_demand_cbs
 water_environment_energetic-(loss)
 (loss)-water_environment_energetic
-
-greengas_transport_energetic;	greengas;	transport;	energetic;final consumption;	final_demand_cbs
-greengas_transport_energetic-(greengas) -- s --> (greengas)-greengas_distribution_energy
-greengas_transport_energetic-(greengas)
-(greengas)-greengas_transport_energetic
-
-compressed_gas_production_transport_energetic;	compressed_gas_production;	transport;	energetic;refinery;	
-compressed_gas_production_transport_energetic-(network_gas) -- s --> (network_gas)-gas_demand_transport_energetic
-compressed_gas_production_transport_energetic-(greengas) -- s --> (greengas)-greengas_transport_energetic
-compressed_gas_production_transport_energetic-(greengas)
-compressed_gas_production_transport_energetic-(network_gas)
-(compressed_network_gas)-compressed_gas_production_transport_energetic
 
 algue_diesel_production_transport_energetic;	algue_diesel_production;	transport;	energetic;refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
 algue_diesel_production_transport_energetic-(algae_diesel)
@@ -2193,8 +2161,9 @@ trains_transport_energetic-(not_defined)
 (not_defined)-trains_transport_energetic
 
 ships_transport_energetic;	ships;	transport;	energetic;useful consumption;	useful_demand
-ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_oil_demand_transport_energetic
-ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_diesel_demand_transport_energetic
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_diesel_transport_energetic
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_biodiesel_transport_energetic
+ships_transport_energetic-(not_defined) -- s --> (not_defined)-ships_heavy_fuel_oil_transport_energetic
 ships_transport_energetic-(not_defined)
 (not_defined)-ships_transport_energetic
 
@@ -2877,3 +2846,8 @@ planes_kerosine_transport_energetic;	planes_kerosine;	transport;	energetic;techn
 planes_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-aviation_kerosine_transport_energetic
 planes_kerosine_transport_energetic-(kerosine)
 (not_defined)-planes_kerosine_transport_energetic
+
+ships_heavy_fuel_oil_transport_energetic;	ships_heavy_fuel_oil;	transport;	energetic;technologies;	
+ships_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-navigation_heavy_fuel_oil_transport_energetic
+(not_defined)-ships_heavy_fuel_oil_transport_energetic
+ships_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil)
