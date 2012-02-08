@@ -164,10 +164,10 @@ end
 
 # Ambient heat consumption of heatpumps. Unit: MJ
 # Excel column J (only selection of rows)
-def ambient_heat_consumption(converter, carrier)
-  v = input(converter.to_sym, carrier, :useable_heat) 
-  v = v / input_conversion(converter.to_sym, carrier, :useable_heat)
-  v = v * input_conversion(converter.to_sym, :ambient_heat, :useable_heat)
+def ambient_heat_consumption(converter, application_carrier, carrier)
+  v = input(converter.to_sym, application_carrier, carrier) 
+  v = v / input_conversion(converter.to_sym, application_carrier, carrier)
+  v = v * input_conversion(converter.to_sym, :ambient_heat, carrier)
   v
 end
 
@@ -194,7 +194,7 @@ wizard_config[:households].each do |application_carrier, carrier_converters|
   # expected demand. thus not influence graph calculation
   demand_expected_value: <%= expected_demand(*attrs) %>
   <% if (wizard_config[:ambient_heat][application_carrier][carrier].include?(converter) rescue false) %>
-  ambient_heat_input: <%= ambient_heat_consumption(converter, carrier) rescue 'Error' %>
+  ambient_heat_input: <%= ambient_heat_consumption(converter, carrier, application_carrier) %>
   <% end %>
   # -- adding results of helper calculations to converter, so we can debug values
   # prepend names with debug_ so they will not mess up with other attributes
@@ -239,7 +239,8 @@ end # wizard_config[:households] %>
 
 # --- HOT WATER SPLIT -----
 
-# MdH: HELP!! Now the use of :hot_water becomes very confusing "sum_of_output(:hot_water)"  I would expect to result in the value in cell L131, but it does give the value in cell L126. Which is correct here, just very confusing. Can we think of a smarter way? Maybe refer to the converter which demands the sum (hot_water_devices for L126, hot_water_demand_HH for L131)?
+# MdH: HELP!! Now the use of :hot_water becomes very confusing "sum_of_output(:hot_water)"  
+# I would expect to result in the value in cell L131, but it does give the value in cell L126. Which is correct here, just very confusing. Can we think of a smarter way? Maybe refer to the converter which demands the sum (hot_water_devices for L126, hot_water_demand_HH for L131)?
 <% hot_water_total = sum_of_output(:hot_water) + carrier_for_application(:solar_thermal, :hot_water) %>
 
 :hot_water_demand_households_energetic:
