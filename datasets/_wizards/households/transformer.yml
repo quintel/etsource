@@ -183,7 +183,10 @@ end
 # Generate demand_expected_values for all the household converters.
 # This values are mostly for the researchers to debug and do not change
 # the calculation.
-wizard_config[:households].each do |application_carrier, carrier_converters|
+wizard_config[:households].each do |application, config|
+  application_carrier = config[:carrier]
+  carrier_converters  = config[:section]
+
   carrier_converters.each do |carrier, converters|
     converters.each do |converter| 
       attrs = [converter.to_sym, carrier, application_carrier]
@@ -193,7 +196,7 @@ wizard_config[:households].each do |application_carrier, carrier_converters|
 :<%= converter %>:
   # expected demand. thus not influence graph calculation
   demand_expected_value: <%= expected_demand(*attrs) %>
-  <% if (wizard_config[:ambient_heat][application_carrier][carrier].include?(converter) rescue false) %>
+  <% if (wizard_config[:ambient_heat][application][carrier].include?(converter) rescue false) %>
   ambient_heat_input: <%= ambient_heat_consumption(converter, carrier, application_carrier) %>
   <% end %>
   # -- adding results of helper calculations to converter, so we can debug values
@@ -219,22 +222,24 @@ end # wizard_config[:households]
 # for every converter of that application.
 
 <% 
-wizard_config[:application_parents].each do |application_carrier, left_converter| %>
+wizard_config[:households].each do |application, config|
+  config[:parents].each do |application_carrier, left_converter| %>
 
 # --- Application Parents with links ----------------------------------
 
 :<%= left_converter %>:
   :demand_expected_value: <%= sum_of_output(application_carrier)  %>
   
-<%
-  wizard_config[:households][application_carrier].each do |carrier, converters|
+  <%
+  config[:section].each do |carrier, converters|
     converters.each do |converter| %> 
 
 <%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}" %>:
   share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
   
-<%  end # carrier_converters
-  end # wizard_config[:households][application_carrier]
+<%    end # converters
+    end # wizard_config[:households][application][:section]
+  end # config[:parents]
 end # wizard_config[:households] %>
 
 # --- HOT WATER SPLIT -----

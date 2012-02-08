@@ -95,14 +95,21 @@
 
 %ul.tabs{'data-tabs' => 'tabs'}
   -# Make the tabs. Think of indentation as boxes
-  - wizard_config[:households].each do |application_carrier, carrier_converters|
+  - wizard_config[:households].each do |application, config|
+    - application_carrier = config[:carrier]
+    
     -# section carrier: useable_heat OR hot_water, carrier_converters: key, value pairs e.g.: :coal => %w[coal_boiler_households_energetic],
-    %li{:class => application_carrier == :useable_heat ? 'active' : nil}= link_to application_carrier.to_s, "##{application_carrier}"
+    %li{:class => application_carrier == :useable_heat ? 'active' : nil}
+      = link_to application.to_s, "##{application}"
 
 #tab-content.tab-content{'data-tabs' => 'tabs'}
-  - wizard_config[:households].each do |application_carrier, carrier_converters|
-    %div.tab-pane{:id => application_carrier.to_s, :class => application_carrier == :useable_heat ? 'active' : nil}
-      %p== Split for #{application_carrier} technologies
+  - wizard_config[:households].each do |application, config|
+
+    - application_carrier = config[:carrier]
+    - carrier_converters = config[:section]
+
+    %div.tab-pane{:id => application.to_s}
+      %p== Split for #{application} technologies
       
       %table.condensed-table
         %thead
@@ -159,12 +166,12 @@
 
           -# -------------------------------------------------------- AMBIENT HEAT ----------------
 
-          - if wizard_config[:ambient_heat][application_carrier]
+          - if ambient_config = wizard_config[:ambient_heat][application]
             - values = []
             %tr
               %th{:colspan => 5, :style => "background: #eee"} Ambient Heat
 
-            - wizard_config[:ambient_heat][application_carrier].each do |carrier, converter_keys|
+            - ambient_config.each do |carrier, converter_keys|
               
               - converter_keys.each do |converter_key|
                 - converter = @present.converter(converter_key)
@@ -190,7 +197,7 @@
             %th{:colspan => 5, :style => "background: #eee"} Total 
 
           %tr
-            - converter = @present.converter(wizard_config[:application_parents][application_carrier])
+            - converter = @present.converter(wizard_config[:households][application][:parents][application_carrier])
             %th
               %label= converter.key
             %th
