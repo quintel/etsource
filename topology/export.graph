@@ -276,7 +276,7 @@ ships_diesel_demand_transport_energetic-(biodiesel)
 (not_defined)-ships_diesel_demand_transport_energetic
 
 trains_electricity_demand_transport_energetic;	trains_electricity_demand;	transport;	energetic;technologies;	
-trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricity)-electricity_distribution_transport_transport_energetic
+trains_electricity_demand_transport_energetic-(electricity) -- s --> (electricity)-rail_electricity_transport_energetic
 trains_electricity_demand_transport_energetic-(electricity)
 (loss)-trains_electricity_demand_transport_energetic
 (not_defined)-trains_electricity_demand_transport_energetic
@@ -333,7 +333,7 @@ electricity_demand_agriculture_energetic-(electricity)
 (electricity)-electricity_demand_agriculture_energetic
 
 trains_coal_demand_transport_energetic;	trains_coal_demand;	transport;	energetic;technologies;	
-trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-coal_transport_energetic
+trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-rail_coal_transport_energetic
 trains_coal_demand_transport_energetic-(coal)
 (loss)-trains_coal_demand_transport_energetic
 (not_defined)-trains_coal_demand_transport_energetic
@@ -776,11 +776,11 @@ gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energe
 gas_demand_other_energetic-(network_gas)
 (network_gas)-gas_demand_other_energetic
 
-trains_oil_demand_transport_energetic;	trains_oil_demand;	transport;	energetic;technologies;	
-trains_oil_demand_transport_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_energetic
-trains_oil_demand_transport_energetic-(crude_oil)
-(loss)-trains_oil_demand_transport_energetic
-(not_defined)-trains_oil_demand_transport_energetic
+trains_diesel_transport_energetic;	trains_diesel;	transport;	energetic;technologies;	
+trains_diesel_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_mixer_transport_energetic
+trains_diesel_transport_energetic-(diesel)
+(loss)-trains_diesel_transport_energetic
+(not_defined)-trains_diesel_transport_energetic
 
 lpg_production_transport;	lpg_production;	transport;	undefined;refinery;	
 lpg_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
@@ -2258,7 +2258,7 @@ planes_bio_ethanol_transport_energetic-(bio_ethanol)
 trains_transport_energetic;	trains;	transport;	energetic;useful consumption;	useful_demand
 trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_electricity_demand_transport_energetic
 trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_coal_demand_transport_energetic
-trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_oil_demand_transport_energetic
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_diesel_transport_energetic
 trains_transport_energetic-(not_defined)
 (not_defined)-trains_transport_energetic
 
@@ -2932,3 +2932,13 @@ rail_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-rail_biod
 rail_diesel_mixer_transport_energetic-(diesel)
 (diesel)-rail_diesel_mixer_transport_energetic
 rail_diesel_mixer_transport_energetic-(biodiesel)
+
+navigation_bio_diesel_agriculture_energetic;	navigation_bio_diesel;	agriculture;	energetic;application;	
+navigation_bio_diesel_agriculture_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic
+navigation_bio_diesel_agriculture_energetic-(biodiesel)
+(biodiesel)-navigation_bio_diesel_agriculture_energetic
+
+aviation_bio_ethanol_agriculture_energetic;	aviation_bio_ethanol;	agriculture;	energetic;application;	
+aviation_bio_ethanol_agriculture_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic
+aviation_bio_ethanol_agriculture_energetic-(bio_ethanol)
+(bio_ethanol)-aviation_bio_ethanol_agriculture_energetic
