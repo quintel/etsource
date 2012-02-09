@@ -925,7 +925,7 @@ trains_coal_demand_transport_energetic-(coal) -- s --> (coal)-rail_coal_transpor
   :demand: 14096074989.7398
 electricity_demand_other_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_demand_other_energetic: {conversion: 1.0}
-electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electricity_other_energetic: {share: 1.0}
+electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electricity_for_electricity_other_energetic: {share: 1.0}
 
 :heat_network_industry_energetic:
   :co2_free: 0.0
@@ -6341,3 +6341,9 @@ heat_exchanger_district_heating_other_energetic-(steam_hot_water) -- s --> (stea
 steam_hot_water_for_heat_other_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_for_heat_other_energetic: {conversion: 1.0}
 steam_hot_water_for_heat_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_other_energetic: {share: 1.0}
+
+:electricity_for_electricity_other_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+electricity_for_electricity_other_energetic-(electricity): {conversion: 1.0}
+(electricity)-electricity_for_electricity_other_energetic: {conversion: 1.0}
