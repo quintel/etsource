@@ -3011,11 +3011,11 @@ chp_agri_agriculture_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-
   :demand: 56684577319.5876
 heat_demand_other_other_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_demand_other_other_energetic: {conversion: 1.0}
-heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_other_energetic: {share: 0.173768606308303}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-coal_burner_other_other_energetic: {share: 0.000423395588974546}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-oil_burner_other_other_energetic: {share: 0.191444644664161}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-biomass_burner_other_other_energetic: {share: 0.0751636293004297}
 heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-gas_burner_other_other_energetic: {share: 0.559199724138132}
+heat_demand_other_other_energetic-(useable_heat) -- s --> (useable_heat)-heat_exchanger_district_heating_other_energetic: {share: 0.173768606308303}
 
 :coal_burner_other_other_energetic:
   :co2_free: 0.0
@@ -6327,3 +6327,17 @@ planes_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-aviation_kero
 (not_defined)-ships_heavy_fuel_oil_transport_energetic: {conversion: 1.0}
 ships_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil): {conversion: 1.0}
 ships_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-navigation_heavy_fuel_oil_transport_energetic: {share: 1.0}
+
+:heat_exchanger_district_heating_other_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+heat_exchanger_district_heating_other_energetic-(steam_hot_water): {conversion: 1.0}
+(steam_hot_water)-heat_exchanger_district_heating_other_energetic: {conversion: 1.0}
+heat_exchanger_district_heating_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_for_heat_other_energetic: {share: 1.0}
+
+:steam_hot_water_for_heat_other_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+steam_hot_water_for_heat_other_energetic-(steam_hot_water): {conversion: 1.0}
+(steam_hot_water)-steam_hot_water_for_heat_other_energetic: {conversion: 1.0}
+steam_hot_water_for_heat_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_other_energetic: {share: 1.0}
