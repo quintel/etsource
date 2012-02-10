@@ -1,0 +1,12 @@
+# This returns the imbalance between production and demand, as a percentage of demand.
+# 
+
+- unit = %
+
+SUM(
+  1,
+  NEG(
+    DIVIDE(
+      Q(total_electricity_produced), Q(final_demand_of_electricity))
+  )
+)
