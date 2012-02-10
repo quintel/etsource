@@ -424,10 +424,8 @@ coal_pwd_energy-(coal)
 (electricity)-coal_pwd_energy
 
 coal_pwd_ccs_energy;	coal_pwd_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_pwd_ccs_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_pwd_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_pwd_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_pwd_ccs_energy-(biomass)
 coal_pwd_ccs_energy-(torrified_biomass_pellets)
 coal_pwd_ccs_energy-(coal)
 (loss)-coal_pwd_ccs_energy
@@ -435,10 +433,8 @@ coal_pwd_ccs_energy-(coal)
 (electricity)-coal_pwd_ccs_energy
 
 coal_conv_energy;	coal_conv;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_conv_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_conv_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_conv_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_conv_energy-(biomass)
 coal_conv_energy-(torrified_biomass_pellets)
 coal_conv_energy-(coal)
 (loss)-coal_conv_energy
@@ -446,10 +442,8 @@ coal_conv_energy-(coal)
 (electricity)-coal_conv_energy
 
 coal_lignite_energy;	coal_lignite;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_lignite_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_lignite_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
 coal_lignite_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_lignite_energy-(biomass)
 coal_lignite_energy-(torrified_biomass_pellets)
 coal_lignite_energy-(lignite)
 (loss)-coal_lignite_energy
@@ -457,10 +451,8 @@ coal_lignite_energy-(lignite)
 (electricity)-coal_lignite_energy
 
 coal_oxyfuel_ccs_energy;	coal_oxyfuel_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_oxyfuel_ccs_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_oxyfuel_ccs_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
 coal_oxyfuel_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_oxyfuel_ccs_energy-(biomass)
 coal_oxyfuel_ccs_energy-(torrified_biomass_pellets)
 coal_oxyfuel_ccs_energy-(lignite)
 (loss)-coal_oxyfuel_ccs_energy
@@ -468,10 +460,8 @@ coal_oxyfuel_ccs_energy-(lignite)
 (electricity)-coal_oxyfuel_ccs_energy
 
 coal_igcc_energy;	coal_igcc;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_igcc_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_igcc_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_igcc_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_igcc_energy-(biomass)
 coal_igcc_energy-(torrified_biomass_pellets)
 coal_igcc_energy-(coal)
 (loss)-coal_igcc_energy
@@ -479,10 +469,8 @@ coal_igcc_energy-(coal)
 (electricity)-coal_igcc_energy
 
 coal_igcc_ccs_energy;	coal_igcc_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_igcc_ccs_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_igcc_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_igcc_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_igcc_ccs_energy-(biomass)
 coal_igcc_ccs_energy-(torrified_biomass_pellets)
 coal_igcc_ccs_energy-(coal)
 (loss)-coal_igcc_ccs_energy
@@ -508,10 +496,8 @@ gas_ccgt_energy-(bio_oil)
 (electricity)-gas_ccgt_energy
 
 coal_chp_energy;	coal_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps
-coal_chp_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_chp_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_chp_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_chp_energy-(biomass)
 coal_chp_energy-(torrified_biomass_pellets)
 coal_chp_energy-(coal)
 (loss)-coal_chp_energy
@@ -1233,7 +1219,7 @@ biogas_plant_energy-(biogas)
 (electricity)-biogas_plant_energy
 (loss)-biogas_plant_energy
 
-chp_other_other_energetic;	chp_other;	other;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
+chp_other_other_energetic;	chp_other;	other;	energetic;local CHPs;	electricity_production,decentral_production,network_converters,cost_chps
 chp_other_other_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 chp_other_other_energetic-(gas_power_fuelmix)
 (loss)-chp_other_other_energetic
@@ -1421,7 +1407,7 @@ unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_h
 unused_CHPs_heat_industry_industry_energetic-(steam_hot_water)
 (steam_hot_water)-unused_CHPs_heat_industry_industry_energetic
 
-unused_CHPs_heat_other_other_energetic;	unused_CHPs_heat_other;	other;	energetic;;	
+unused_CHPs_heat_other_other_energetic;	unused_CHPs_heat_other;	other;	energetic;undefined;	
 unused_CHPs_heat_other_other_energetic-(steam_hot_water) -- i --> (steam_hot_water)-decentral_heat_other
 unused_CHPs_heat_other_other_energetic-(steam_hot_water)
 (steam_hot_water)-unused_CHPs_heat_other_other_energetic
@@ -2168,11 +2154,7 @@ ships_transport_energetic-(not_defined)
 (not_defined)-ships_transport_energetic
 
 district_heater_coal_energy_energetic;	district_heater_coal;	energy;	energetic;central heat generation;	heat_production,central_production,cost_traditional_heat
-district_heater_coal_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
 district_heater_coal_energy_energetic-(coal) -- s --> (coal)-coal_distribution_energy
-district_heater_coal_energy_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-district_heater_coal_energy_energetic-(biomass)
-district_heater_coal_energy_energetic-(torrified_biomass_pellets)
 district_heater_coal_energy_energetic-(coal)
 (steam_hot_water)-district_heater_coal_energy_energetic
 (loss)-district_heater_coal_energy_energetic
@@ -2214,7 +2196,7 @@ biomass_CHP_energy_energetic-(biomass)
 (steam_hot_water)-biomass_CHP_energy_energetic
 (electricity)-biomass_CHP_energy_energetic
 
-biomass_CHP_other_energetic;	biomass_CHP;	other;	energetic;central CHPs;	electricity_production,decentral_production,cost_chps
+biomass_CHP_other_energetic;	biomass_CHP;	other;	energetic;local CHPs;	electricity_production,decentral_production,cost_chps
 biomass_CHP_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
 biomass_CHP_other_energetic-(biomass)
 (loss)-biomass_CHP_other_energetic
@@ -2222,10 +2204,8 @@ biomass_CHP_other_energetic-(biomass)
 (electricity)-biomass_CHP_other_energetic
 
 coal_CHP_industry_energetic;	coal_CHP;	industry;	energetic;central CHPs;	electricity_production,decentral_production,cost_chps
-coal_CHP_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
 coal_CHP_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy
 coal_CHP_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_CHP_industry_energetic-(biomass)
 coal_CHP_industry_energetic-(torrified_biomass_pellets)
 coal_CHP_industry_energetic-(coal)
 (loss)-coal_CHP_industry_energetic
