@@ -1,13 +1,25 @@
-# Score calculated for et
-# TODO: make it dependent on Security of Supply and Electricity Balance
-# 
-# Still used in old scenarios
+# Score calculated for etflex.
+# It is 1000, minus costs in billions, minus CO2 emissions in Mton. This number is divided by 2 if there is 100% loss_of_load, and multiplied the % imbalance in electricity production
+#
+# Old name still used in old scenarios
 
 - deprecated_key = score
 - unit = #
 
-SUM (
-  1000,
-  NEG( DIVIDE( Q(total_costs), BILLIONS )),
-  NEG( DIVIDE( Q(total_co2_emissions), BILLIONS ))
+PRODUCT(
+    SUM (
+      1000,
+      NEG( DIVIDE( Q(total_costs), BILLIONS )),
+      NEG( DIVIDE( Q(total_co2_emissions), BILLIONS ))
+    )
+,
+SUM(
+  1,
+  PRODUCT(Q(security_of_supply_loss_of_load_probability),V(-0.5))
+  )
+,
+SUM(
+  1,
+  NEG(ABS(Q(electricity_imbalance)))
+  )
 )
