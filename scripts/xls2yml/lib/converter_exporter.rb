@@ -42,7 +42,8 @@ module ETE
       :peak_load_units_present,
       :availability,
       :variability,
-      :decrease_in_nominal_capacity_over_lifetime
+      :decrease_in_nominal_capacity_over_lifetime,
+      :average_effective_output_of_nominal_capacity_over_lifetime
     ]
 
     def initialize(excel_export, opts = {})
