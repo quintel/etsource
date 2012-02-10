@@ -21,10 +21,12 @@ module ETE
         @area_export = ExcelAreaExport.new(area_path)
         export_converters(@area_export, destination_directory)
         export_time_curves(@area_export, destination_directory)
+
+        if @area_export.country == 'nl'
+          export_topology(@area_export)
+          export_excel_ids(@area_export)
+        end
       end
-      # the topology is always the same, so we can reuse the last area export
-      export_topology(@area_export)
-      export_excel_ids(@area_export)
     rescue Exception => e
       puts "Export error: #{e}" and exit
     end

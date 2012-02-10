@@ -23,5 +23,9 @@ module ETE
     def csv_for(key)
       "#{@root}/#{FileMappings[key]}.csv"
     end
+
+    def country
+     @root.split('/')[-1]
+    end
   end
 end
