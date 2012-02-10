@@ -6,20 +6,4 @@
 - deprecated_key = score
 - unit = #
 
-PRODUCT(
-    SUM (
-      1000,
-      NEG( DIVIDE( Q(total_costs), BILLIONS )),
-      NEG( DIVIDE( Q(total_co2_emissions), BILLIONS ))
-    )
-,
-SUM(
-  1,
-  PRODUCT(Q(security_of_supply_loss_of_load_probability),V(-0.5))
-  )
-,
-SUM(
-  1,
-  NEG(ABS(Q(electricity_imbalance)))
-  )
-)
+Q(etflex_score)
