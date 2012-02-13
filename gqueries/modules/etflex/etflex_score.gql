@@ -1,25 +1,28 @@
 # Score calculated for etflex.
-# It is 1000, minus costs in billions, minus CO2 emissions in Mton.
-# This number is divided by 2 if there is 100% loss_of_load, and multiplied by
-# the percentage of imbalance in electricity production
-#
+# The basis of the score is 1000, minus 4 times the costs in billions, minus the CO2 emissions in Mton.
+# This number is multiplied by 3 factors:
+# the reliability of the electricity production squared,
+# the percentage of imbalance in electricity production,
+# the percentage renewability of the scenario
 
 - unit = #
 
 PRODUCT(
     SUM (
       1000,
-      NEG( DIVIDE( Q(total_costs), BILLIONS )),
+      PRODUCT(4,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
       NEG( DIVIDE( Q(total_co2_emissions), BILLIONS ))
     )
 ,
 SUM(
   1,
-  PRODUCT(Q(security_of_supply_loss_of_load_probability),V(-0.5))
+  NEG(PRODUCT(Q(security_of_supply_reliability),Q(security_of_supply_reliability)))
   )
 ,
 SUM(
   1,
   NEG(ABS(Q(electricity_imbalance)))
   )
+,
+Q(renewability)
 )
