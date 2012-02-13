@@ -1,5 +1,5 @@
 # Score calculated for etflex.
-# The basis of the score is 1000, minus 4 times the costs in billions, minus the CO2 emissions in Mton.
+# The basis of the score is 1000, minus 10 times the costs in billions, minus the CO2 emissions in Mton.
 # This number is multiplied by 3 factors:
 # the reliability of the electricity production squared,
 # the percentage of imbalance in electricity production,
@@ -10,7 +10,7 @@
 PRODUCT(
     SUM (
       1000,
-      PRODUCT(4,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
+      PRODUCT(10,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
       NEG( DIVIDE( Q(total_co2_emissions), BILLIONS ))
     )
 ,
