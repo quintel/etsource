@@ -1,16 +1,16 @@
 # Score calculated for etflex.
-# The basis of the score is 1000, minus 10 times the costs in billions, minus the CO2 emissions in Mton,
+# The basis of the score is 1000, minus 5 times the costs in billions, minus the CO2 emissions in Mton,
 # plus 5x the percentage renewability of the scenario
 # This number is multiplied by 2 factors:
-# the reliability of the electricity production squared,
-# the percentage of imbalance in electricity production,
+# - the reliability of the electricity production squared,
+# - the percentage of imbalance in electricity production.
 
 - unit = #
 
 PRODUCT(
     SUM (
       1000,
-      PRODUCT(10,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
+      PRODUCT(5,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
       NEG( DIVIDE( Q(total_co2_emissions), BILLIONS )),
       PRODUCT(500,Q(renewability))
     )
