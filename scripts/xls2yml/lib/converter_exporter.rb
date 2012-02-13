@@ -1,4 +1,3 @@
-
 module ETE
   class ConverterExporter
     # Attributes we're reading from the CSV file. We discard the others
@@ -17,7 +16,6 @@ module ETE
       :network_capacity_available_in_mw,
       :network_capacity_used_in_mw,
       :technical_lifetime,
-      :decrease_in_nomimal_capacity_over_lifetime,
       :construction_time,
       :costs_per_mj,
       :network_expansion_costs_in_euro_per_mw,
