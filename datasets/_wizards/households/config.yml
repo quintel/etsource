@@ -4,28 +4,6 @@
 
 
 households: # This is the configuration needed to create the tabs.
-  hot_water:
-    carrier: hot_water # Application hot_water has output carrier hot_water
-    parents: 
-      hot_water: hot_water_devices_households_energetic
-    section:
-      coal: # These carriers should match the real carriers in the graph
-        - coal_boiler_households_energetic
-      crude_oil: 
-        - oil_boiler_households_energetic
-      network_gas:
-        - gas_boiler_households_energetic 
-        - cv_hot_water_households_energetic 
-        - fuel_cell_chp_households_energetic 
-        - micro_chp_hot_water_households_energetic
-      biomass:
-        - biomass_boiler_households_energetic
-      electricity:
-        - heatpump_boiler_households_energetic 
-        - electric_boiler_households_energetic
-      steam_hot_water:
-        - heatpump_boiler_using_city_heat_households_energetic  
-
   space_heating: 
     carrier: useable_heat
     parents:
@@ -52,6 +30,28 @@ households: # This is the configuration needed to create the tabs.
       steam_hot_water:
         - heat_from_steam_hot_water_households_energetic
 
+  hot_water:
+    carrier: hot_water # Application hot_water has output carrier hot_water
+    parents: 
+      hot_water: hot_water_devices_households_energetic
+    section:
+      coal: # These carriers should match the real carriers in the graph
+        - coal_boiler_households_energetic
+      crude_oil: 
+        - oil_boiler_households_energetic
+      network_gas:
+        - gas_boiler_households_energetic 
+        - cv_hot_water_households_energetic 
+        - fuel_cell_chp_households_energetic 
+        - micro_chp_hot_water_households_energetic
+      biomass:
+        - biomass_boiler_households_energetic
+      electricity:
+        - heatpump_boiler_households_energetic 
+        - electric_boiler_households_energetic
+      steam_hot_water:
+        - heatpump_boiler_using_city_heat_households_energetic  
+
   cooking:
     carrier: useable_heat
     parents:
@@ -73,9 +73,7 @@ households: # This is the configuration needed to create the tabs.
     section:
       electricity:
         - traditional_lighting_households_energetic
-        # other_appliances_households_energetic has no light output slot
-        # fix in etsource please!
-        #- other_appliances_households_energetic
+        - efficient_lighting_households_energetic
         - led_lighting_households_energetic
 
   cooling:
