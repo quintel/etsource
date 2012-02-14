@@ -192,7 +192,6 @@ truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-electric_t
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-diesel_trucks_transport_energetic
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-gasoline_trucks_transport_energetic
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-compressed_gas_trucks_transport_energetic
-truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-lpg_trucks_transport_energetic
 truck_kms_demand_transport_energetic-(truck_kms)
 (loss)-truck_kms_demand_transport_energetic
 
@@ -250,10 +249,10 @@ compressed_gas_cars_transport_energetic-(compressed_network_gas) -- s --> (compr
 compressed_gas_cars_transport_energetic-(compressed_network_gas)
 (car_kms)-compressed_gas_cars_transport_energetic
 
-oil_demand_energy_non_energetic;	oil_demand;	energy;	non_energetic;;	useful_demand,non_energetic_use
-oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic
-oil_demand_energy_non_energetic-(crude_oil)
-(crude_oil)-oil_demand_energy_non_energetic
+oil_demand_transport_non_energetic;	oil_demand;	transport;	non_energetic;;	useful_demand,non_energetic_use
+oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic
+oil_demand_transport_non_energetic-(crude_oil)
+(crude_oil)-oil_demand_transport_non_energetic
 
 ships_diesel_transport_energetic;	ships_diesel;	transport;	energetic;technologies;	
 ships_diesel_transport_energetic-(diesel) -- s --> (diesel)-navigation_diesel_transport_energetic
@@ -969,11 +968,6 @@ steam_hot_water_industry_energetic-(steam_hot_water) -- s --> (steam_hot_water)-
 steam_hot_water_industry_energetic-(steam_hot_water)
 (useable_heat)-steam_hot_water_industry_energetic
 
-trains_oil_demand_transport_non_energetic;	trains_oil_demand;	transport;	non_energetic;;	useful_demand,non_energetic_use
-trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic
-trains_oil_demand_transport_non_energetic-(crude_oil)
-(crude_oil)-trains_oil_demand_transport_non_energetic
-
 biomass_other_energetic;	biomass;	other;	energetic;final consumption;	final_demand_cbs
 biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
 biomass_other_energetic-(biomass)
@@ -1196,7 +1190,7 @@ water_environment_energetic;	water;	environment;	energetic;environment;	final_de
 water_environment_energetic-(loss)
 (loss)-water_environment_energetic
 
-algue_diesel_production_transport_energetic;	algue_diesel_production;	transport;	energetic;refinery;	primary_energy_demand,final_demand_cbs,mining_and_extraction
+algue_diesel_production_transport_energetic;	algue_diesel_production;	transport;	energetic;refinery;	primary_energy_demand,mining_and_extraction
 algue_diesel_production_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_production_transport_energetic
 
@@ -1370,15 +1364,10 @@ algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_die
 algue_diesel_distribution_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_distribution_transport_energetic
 
-algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	final_demand_cbs,energy_import_export,energy_import
+algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import
 algue_diesel_import_export_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-foreign_production_algue_diesel_neighbor
 algue_diesel_import_export_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_import_export_transport_energetic
-
-lpg_trucks_transport_energetic;	lpg_trucks;	transport;	energetic;technologies;	useful_demand,cost_other
-lpg_trucks_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport
-lpg_trucks_transport_energetic-(lpg)
-(truck_kms)-lpg_trucks_transport_energetic
 
 coal_boiler_households_energetic;	coal_boiler;	households;	energetic;technologies;	
 coal_boiler_households_energetic-(coal) -- s --> (coal)-coal_for_hot_water_households_energetic
@@ -1391,11 +1380,6 @@ oil_boiler_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_hot_wat
 oil_boiler_households_energetic-(crude_oil)
 (hot_water)-oil_boiler_households_energetic
 (loss)-oil_boiler_households_energetic
-
-other_electric_transport_transport_energetic;	other_electric_transport;	transport;	energetic;technologies;	useful_demand
-other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-final_demand_of_electricity_transport_energetic
-other_electric_transport_transport_energetic-(electricity)
-(electricity)-other_electric_transport_transport_energetic
 
 unused_CHPs_heat_industry_industry_energetic;	unused_CHPs_heat_industry;	industry;	energetic;;	
 unused_CHPs_heat_industry_industry_energetic-(steam_hot_water) -- i --> (steam_hot_water)-local_w_production_industry
