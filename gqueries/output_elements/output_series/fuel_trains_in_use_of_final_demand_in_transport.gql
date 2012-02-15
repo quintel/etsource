@@ -3,4 +3,6 @@
 - deprecated_key = chart_fuel_trains_b_23_final_energy_demand_206
 - unit = pj
 
-DIVIDE(SUM(V(trains_transport_energetic;final_demand),NEG(Q(electricity_trains_in_use_of_final_demand_in_transport))),BILLIONS)
+SUM(DIVIDE(V(trains_transport_energetic;final_demand),BILLIONS),
+NEG(Q(electricity_trains_in_use_of_final_demand_in_transport)))
+  
