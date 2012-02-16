@@ -5,7 +5,7 @@
 # - (0.02 points for each percentage of LEDs or solar heater)^2
 # - (0.03 points for each percentage of electric car or heatpump)^2
 # - (0.5 points for each percentage point of green gas)^2
-# - ((absolute difference between production and demand of electricity)^2)/5.
+# - ((absolute difference between production and demand of electricity)^2)/100.
 
 # The result is multiplied by a factor:
 # - the reliability of the electricity production squared,
@@ -25,7 +25,7 @@ PRODUCT(
           PRODUCT(2, 2, Q(market_penetration_of_solar_heater_for_hot_water_in_households),Q(market_penetration_of_solar_heater_for_hot_water_in_households)),
           PRODUCT(2, 2, V(led_lighting_households_energetic;share_of_effective_lighting_demand_households_energetic),V(led_lighting_households_energetic;share_of_effective_lighting_demand_households_energetic)),
           PRODUCT(50,50,Q(share_of_greengas_in_gas_network),Q(share_of_greengas_in_gas_network)),
-          PRODUCT(0.2,  PRODUCT(DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS),DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS)))
+          PRODUCT(0.01,  PRODUCT(DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS),DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS)))
           )
         )
       )
