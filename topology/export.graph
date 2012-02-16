@@ -737,9 +737,9 @@ coal_demand_industry_non_energetic-(coal)
 (coal)-coal_demand_industry_non_energetic
 
 biomass_demand_industry;	biomass_demand;	industry;	undefined;application;	
-biomass_demand_industry-(biomass) -- s --> (biomass)-biomass_industry_energetic
-biomass_demand_industry-(biomass)
-(biomass)-biomass_demand_industry
+biomass_demand_industry-(wood_pellets) -- s --> (wood_pellets)-biomass_industry_energetic
+biomass_demand_industry-(wood_pellets)
+(wood_pellets)-biomass_demand_industry
 
 gas_demand_other_energetic;	gas_demand;	other;	energetic;application;	
 gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energetic
@@ -939,9 +939,9 @@ steam_hot_water_households_energetic-(steam_hot_water)
 (steam_hot_water)-steam_hot_water_households_energetic
 
 biomass_industry_energetic;	biomass;	industry;	energetic;final consumption;	final_demand_cbs
-biomass_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-biomass_industry_energetic-(biomass)
-(biomass)-biomass_industry_energetic
+biomass_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+biomass_industry_energetic-(wood_pellets)
+(wood_pellets)-biomass_industry_energetic
 
 coal_industry_energetic;	coal;	industry;	energetic;final consumption;	final_demand_cbs
 coal_industry_energetic-(coal) -- s --> (coal)-cokes_production_energy
@@ -969,9 +969,9 @@ steam_hot_water_industry_energetic-(steam_hot_water)
 (useable_heat)-steam_hot_water_industry_energetic
 
 biomass_other_energetic;	biomass;	other;	energetic;final consumption;	final_demand_cbs
-biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-biomass_other_energetic-(biomass)
-(biomass)-biomass_other_energetic
+biomass_other_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+biomass_other_energetic-(wood_pellets)
+(wood_pellets)-biomass_other_energetic
 
 coal_other_energetic;	coal;	other;	energetic;final consumption;	final_demand_cbs
 coal_other_energetic-(coal) -- s --> (coal)-cokes_production_energy
@@ -1074,9 +1074,9 @@ oil_demand_agriculture_energetic-(crude_oil)
 (crude_oil)-oil_demand_agriculture_energetic
 
 biomass_demand_other_energetic;	biomass_demand;	other;	energetic;application;	
-biomass_demand_other_energetic-(biomass) -- s --> (biomass)-biomass_other_energetic
-biomass_demand_other_energetic-(biomass)
-(biomass)-biomass_demand_other_energetic
+biomass_demand_other_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_other_energetic
+biomass_demand_other_energetic-(wood_pellets)
+(wood_pellets)-biomass_demand_other_energetic
 
 grid_losses_electricity_energy;	grid_losses_electricity;	energy;	undefined;;	
 grid_losses_electricity_energy-(loss) -- d --> (loss)-hv_electricity_network_energy
@@ -1262,8 +1262,8 @@ oil_burner_other_other_energetic-(crude_oil)
 (loss)-oil_burner_other_other_energetic
 
 biomass_burner_other_other_energetic;	biomass_burner_other;	other;	energetic;technologies;	heat_production,decentral_production,cost_traditional_heat
-biomass_burner_other_other_energetic-(biomass) -- s --> (biomass)-biomass_demand_other_energetic
-biomass_burner_other_other_energetic-(biomass)
+biomass_burner_other_other_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_demand_other_energetic
+biomass_burner_other_other_energetic-(wood_pellets)
 (useable_heat)-biomass_burner_other_other_energetic
 (loss)-biomass_burner_other_other_energetic
 
@@ -1296,8 +1296,8 @@ oil_burner_industry_industry_energetic-(crude_oil)
 (loss)-oil_burner_industry_industry_energetic
 
 biomass_burner_industry_industry_energetic;	biomass_burner_industry;	industry;	energetic;technologies;	heat_production,cost_traditional_heat
-biomass_burner_industry_industry_energetic-(biomass) -- s --> (biomass)-biomass_demand_industry
-biomass_burner_industry_industry_energetic-(biomass)
+biomass_burner_industry_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_demand_industry
+biomass_burner_industry_industry_energetic-(wood_pellets)
 (loss)-biomass_burner_industry_industry_energetic
 (useable_heat)-biomass_burner_industry_industry_energetic
 

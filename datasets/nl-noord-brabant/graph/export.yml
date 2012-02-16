@@ -1994,9 +1994,9 @@ coal_demand_industry_non_energetic-(coal) -- s --> (coal)-coal_industry_non_ener
 :biomass_demand_industry:
   :co2_free: 0.0
   :demand_expected_value: 2139188978.49865
-biomass_demand_industry-(biomass): {conversion: 1.0}
-(biomass)-biomass_demand_industry: {conversion: 1.0}
-biomass_demand_industry-(biomass) -- s --> (biomass)-biomass_industry_energetic: {share: 1.0}
+biomass_demand_industry-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_demand_industry: {conversion: 1.0}
+biomass_demand_industry-(wood_pellets) -- s --> (wood_pellets)-biomass_industry_energetic: {share: 1.0}
 
 :gas_demand_other_energetic:
   :co2_free: 0.0
@@ -2253,9 +2253,9 @@ steam_hot_water_agriculture_energetic-(steam_hot_water) -- s --> (steam_hot_wate
 :biomass_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2265239147.51961
-biomass_households_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_households_energetic: {conversion: 1.0}
-biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+biomass_households_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_households_energetic: {conversion: 1.0}
+biomass_households_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :coal_households_energetic:
   :co2_free: 0.0
@@ -2308,9 +2308,9 @@ steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam_hot_water
 :biomass_industry_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2139188978.49865
-biomass_industry_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_industry_energetic: {conversion: 1.0}
-biomass_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+biomass_industry_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_industry_energetic: {conversion: 1.0}
+biomass_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :coal_industry_energetic:
   :co2_free: 0.0
@@ -2360,9 +2360,9 @@ steam_hot_water_industry_energetic-(steam_hot_water) -- s --> (steam_hot_water)-
 :biomass_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 3021783330.76685
-biomass_other_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_other_energetic: {conversion: 1.0}
-biomass_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+biomass_other_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_other_energetic: {conversion: 1.0}
+biomass_other_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :coal_other_energetic:
   :co2_free: 0.0
@@ -2514,10 +2514,10 @@ oil_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_en
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-heater_on_biomass_households_energetic-(biomass): {conversion: 1.0}
+heater_on_biomass_households_energetic-(wood_pellets): {conversion: 1.0}
 (loss)-heater_on_biomass_households_energetic: {conversion: 0.18}
 (useable_heat)-heater_on_biomass_households_energetic: {conversion: 0.82}
-heater_on_biomass_households_energetic-(biomass) -- s --> (biomass)-biomass_for_heating_households_energetic: {share: 1.0}
+heater_on_biomass_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_for_heating_households_energetic: {share: 1.0}
 
 :heater_on_coal_households_energetic:
   :co2_free: 0.0
@@ -2593,9 +2593,9 @@ oil_demand_agriculture_energetic-(crude_oil) -- s --> (crude_oil)-oil_agricultur
 :biomass_demand_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 3021783330.76685
-biomass_demand_other_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_demand_other_energetic: {conversion: 1.0}
-biomass_demand_other_energetic-(biomass) -- s --> (biomass)-biomass_other_energetic: {share: 1.0}
+biomass_demand_other_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_demand_other_energetic: {conversion: 1.0}
+biomass_demand_other_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_other_energetic: {share: 1.0}
 
 :grid_losses_electricity_energy:
   :co2_free: 0.0
@@ -3062,10 +3062,10 @@ oil_burner_other_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_demand_oth
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_burner_other_other_energetic-(biomass): {conversion: 1.0}
+biomass_burner_other_other_energetic-(wood_pellets): {conversion: 1.0}
 (useable_heat)-biomass_burner_other_other_energetic: {conversion: 0.760824742268041}
 (loss)-biomass_burner_other_other_energetic: {conversion: 0.239175257731959}
-biomass_burner_other_other_energetic-(biomass) -- s --> (biomass)-biomass_demand_other_energetic: {share: 1.0}
+biomass_burner_other_other_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_demand_other_energetic: {share: 1.0}
 
 :gas_burner_other_other_energetic:
   :co2_free: 0.0
@@ -3116,10 +3116,10 @@ gas_burner_other_other_energetic-(network_gas) -- s --> (network_gas)-gas_demand
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_boiler_households_energetic-(biomass): {conversion: 1.0}
+biomass_boiler_households_energetic-(wood_pellets): {conversion: 1.0}
 (hot_water)-biomass_boiler_households_energetic: {conversion: 0.82}
 (loss)-biomass_boiler_households_energetic: {conversion: 0.18}
-biomass_boiler_households_energetic-(biomass) -- s --> (biomass)-biomass_for_hot_water_households_energetic: {share: 1.0}
+biomass_boiler_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_for_hot_water_households_energetic: {share: 1.0}
 
 :lignite_extraction_energy_energetic:
   :co2_free: 0.0
@@ -3199,10 +3199,10 @@ oil_burner_industry_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_dema
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_burner_industry_industry_energetic-(biomass): {conversion: 1.0}
+biomass_burner_industry_industry_energetic-(wood_pellets): {conversion: 1.0}
 (loss)-biomass_burner_industry_industry_energetic: {conversion: 0.2}
 (useable_heat)-biomass_burner_industry_industry_energetic: {conversion: 0.8}
-biomass_burner_industry_industry_energetic-(biomass) -- s --> (biomass)-biomass_demand_industry: {share: 1.0}
+biomass_burner_industry_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_demand_industry: {share: 1.0}
 
 :gas_burner_industry_industry_energetic:
   :co2_free: 0.0
@@ -5377,10 +5377,10 @@ coal_CHP_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biom
 :biomass_cooking_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-biomass_cooking_households_energetic-(biomass): {conversion: 1.0}
+biomass_cooking_households_energetic-(wood_pellets): {conversion: 1.0}
 (useable_heat)-biomass_cooking_households_energetic: {conversion: 0.3}
 (loss)-biomass_cooking_households_energetic: {conversion: 0.7}
-biomass_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_for_cooking_households_energetic: {share: 1.0}
+biomass_cooking_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_for_cooking_households_energetic: {share: 1.0}
 
 :gas_fired_heater_households_energetic:
   :co2_free: 0.0
@@ -5914,23 +5914,23 @@ gas_for_cooking_households_energetic-(network_gas) -- s --> (network_gas)-gas_ho
 :biomass_for_heating_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 2265239147.51961
-biomass_for_heating_households_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_for_heating_households_energetic: {conversion: 1.0}
-biomass_for_heating_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic: {share: 1.0}
+biomass_for_heating_households_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_for_heating_households_energetic: {conversion: 1.0}
+biomass_for_heating_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_households_energetic: {share: 1.0}
 
 :biomass_for_hot_water_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-biomass_for_hot_water_households_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_for_hot_water_households_energetic: {conversion: 1.0}
-biomass_for_hot_water_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic: {share: 1.0}
+biomass_for_hot_water_households_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_for_hot_water_households_energetic: {conversion: 1.0}
+biomass_for_hot_water_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_households_energetic: {share: 1.0}
 
 :biomass_for_cooking_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-biomass_for_cooking_households_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_for_cooking_households_energetic: {conversion: 1.0}
-biomass_for_cooking_households_energetic-(biomass) -- s --> (biomass)-biomass_households_energetic: {share: 1.0}
+biomass_for_cooking_households_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_for_cooking_households_energetic: {conversion: 1.0}
+biomass_for_cooking_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_households_energetic: {share: 1.0}
 
 :electricity_for_heating_households_energetic:
   :co2_free: 0.0
