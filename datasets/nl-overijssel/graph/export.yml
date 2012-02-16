@@ -514,7 +514,7 @@ small_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (electricity)-small_chp_industry_energetic: {conversion: 0.2519}
 small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
-:large_chp_industry_energetic:
+:central_gas_chp_energy_energetic:
   :co2_free: 0.0
   :demand_expected_value: 6248785061.64854
   :technical_lifetime: 30.0
@@ -541,15 +541,15 @@ small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-en
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
-large_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
-large_chp_industry_energetic-(crude_oil): {conversion: 0.0}
-large_chp_industry_energetic-(bio_oil): {conversion: 0.0}
-(loss)-large_chp_industry_energetic: {conversion: 0.23}
-(steam_hot_water)-large_chp_industry_energetic: {conversion: 0.45}
-(electricity)-large_chp_industry_energetic: {conversion: 0.32}
-large_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
-large_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-large_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
+central_gas_chp_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
+central_gas_chp_energy_energetic-(crude_oil): {conversion: 0.0}
+central_gas_chp_energy_energetic-(bio_oil): {conversion: 0.0}
+(loss)-central_gas_chp_energy_energetic: {conversion: 0.23}
+(steam_hot_water)-central_gas_chp_energy_energetic: {conversion: 0.45}
+(electricity)-central_gas_chp_energy_energetic: {conversion: 0.32}
+central_gas_chp_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
+central_gas_chp_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+central_gas_chp_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :biomass_chp_industry_energetic:
   :co2_free: 0.0
@@ -586,27 +586,26 @@ biomass_chp_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution
 
 :truck_kms_demand_transport_energetic:
   :co2_free: 0.0
-  :preset_demand: 2717414665.96613
-  :demand: 2717414665.96613
+  :preset_demand: 2732070604.62743
+  :demand: 2732070604.62743
 truck_kms_demand_transport_energetic-(truck_kms): {conversion: 1.0}
 (loss)-truck_kms_demand_transport_energetic: {conversion: 1.0}
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-electric_trucks_transport_energetic: {share: 0.0}
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-diesel_trucks_transport_energetic: {share: 1.0}
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-gasoline_trucks_transport_energetic: {share: 0.0}
 truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-compressed_gas_trucks_transport_energetic: {share: 0.0}
-truck_kms_demand_transport_energetic-(truck_kms) -- s --> (truck_kms)-lpg_trucks_transport_energetic: {share: 0.0}
 
 :cars_kms_demand_transport_energetic:
   :co2_free: 0.0
-  :preset_demand: 7265232438.69925
-  :demand: 7265232438.69925
+  :preset_demand: 7304826242.36235
+  :demand: 7304826242.36235
 cars_kms_demand_transport_energetic-(car_kms): {conversion: 1.0}
 (loss)-cars_kms_demand_transport_energetic: {conversion: 1.0}
 cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-electric_cars_transport_energetic: {share: 0.0}
-cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-diesel_cars_transport_energetic: {share: 0.47418797484535}
-cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-gasoline_cars_transport_energetic: {share: 0.474190259633739}
-cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-lpg_cars_transport_energetic: {share: 0.0515271952600958}
-cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-compressed_gas_cars_transport_energetic: {share: 9.45702608152812e-05}
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-diesel_cars_transport_energetic: {share: 0.474161363745982}
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-gasoline_cars_transport_energetic: {share: 0.474208067870151}
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-lpg_cars_transport_energetic: {share: 0.0515365107151677}
+cars_kms_demand_transport_energetic-(car_kms) -- s --> (car_kms)-compressed_gas_cars_transport_energetic: {share: 9.40576686994861e-05}
 
 :electric_trucks_transport_energetic:
   :co2_free: 0.0
@@ -634,7 +633,7 @@ electric_trucks_transport_energetic-(electricity) -- s --> (electricity)-road_el
 
 :diesel_trucks_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 6635926614.28929
+  :demand_expected_value: 6671716416.50018
   :network_capacity_available_in_mw: 0.0
   :network_capacity_used_in_mw: 0.0
   :technical_lifetime: 0.0
@@ -696,7 +695,7 @@ electric_cars_transport_energetic-(electricity) -- s --> (electricity)-road_elec
 
 :diesel_cars_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 8412899662.51937
+  :demand_expected_value: 8458273282.88058
   :network_capacity_available_in_mw: 0.0
   :network_capacity_used_in_mw: 0.0
   :technical_lifetime: 0.0
@@ -715,7 +714,7 @@ diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_tra
 
 :gasoline_cars_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 9866629889.21185
+  :demand_expected_value: 9920773256.66761
   :network_capacity_available_in_mw: 0.0
   :network_capacity_used_in_mw: 0.0
   :technical_lifetime: 0.0
@@ -734,7 +733,7 @@ gasoline_cars_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_m
 
 :lpg_cars_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 833795248.793777
+  :demand_expected_value: 838490797.258424
   :network_capacity_available_in_mw: 0.0
   :network_capacity_used_in_mw: 0.0
   :technical_lifetime: 0.0
@@ -789,13 +788,13 @@ compressed_gas_cars_transport_energetic-(compressed_network_gas): {conversion: 1
 (car_kms)-compressed_gas_cars_transport_energetic: {conversion: 0.4}
 compressed_gas_cars_transport_energetic-(compressed_network_gas) -- s --> (compressed_network_gas)-road_network_gas_compression_transport_energetic: {share: 1.0}
 
-:oil_demand_energy_non_energetic:
+:oil_demand_transport_non_energetic:
   :co2_free: 1.0
   :preset_demand: 192380979.4512
   :demand: 192380979.4512
-oil_demand_energy_non_energetic-(crude_oil): {conversion: 1.0}
-(crude_oil)-oil_demand_energy_non_energetic: {conversion: 1.0}
-oil_demand_energy_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic: {share: 1.0}
+oil_demand_transport_non_energetic-(crude_oil): {conversion: 1.0}
+(crude_oil)-oil_demand_transport_non_energetic: {conversion: 1.0}
+oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic: {share: 1.0}
 
 :ships_diesel_transport_energetic:
   :co2_free: 0.0
@@ -813,7 +812,7 @@ ships_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-navigation_
 
 :trains_electricity_demand_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 388439153.678256
+  :demand_expected_value: 332086214.528858
 trains_electricity_demand_transport_energetic-(electricity): {conversion: 1.0}
 (loss)-trains_electricity_demand_transport_energetic: {conversion: 0.1}
 (not_defined)-trains_electricity_demand_transport_energetic: {conversion: 0.9}
@@ -933,7 +932,7 @@ heat_network_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_industry_energetic: {conversion: 0.983964531964923}
 (loss)-heat_network_industry_energetic: {conversion: 0.0160354680350772}
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_conv_energy_energetic: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-large_chp_industry_energetic: {share: }
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-central_gas_chp_energy_energetic: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-waste_incinerator_energy_energetic: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_ccs_energy: {share: }
@@ -1013,7 +1012,7 @@ hv_electricity_network_energy-(electricity): {conversion: 1.0}
 (loss)-hv_electricity_network_energy: {conversion: 0.069834432957377}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-solar_pv_central_production_energy_energetic: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_conv_energy_energetic: {share: 56562080.2443402}
-hv_electricity_network_energy-(electricity) -- c --> (electricity)-large_chp_industry_energetic: {share: 1999611219.72753}
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-central_gas_chp_energy_energetic: {share: 1999611219.72753}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-waste_incinerator_energy_energetic: {share: 687600000.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_pwd_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-coal_pwd_ccs_energy: {share: 0.0}
@@ -1810,7 +1809,7 @@ gas_treatment_energy-(natural_gas) -- f --> (natural_gas)-gas_import_export_ener
 
 :diesel_distribution_transport:
   :co2_free: 0.0
-  :demand_expected_value: 15048826276.8087
+  :demand_expected_value: 20711452793.5488
 diesel_distribution_transport-(diesel): {conversion: 1.0}
 (diesel)-diesel_distribution_transport: {conversion: 1.0}
 (loss)-diesel_distribution_transport: {conversion: 0.0}
@@ -1819,7 +1818,7 @@ diesel_distribution_transport-(diesel) -- f --> (diesel)-diesel_import_export_tr
 
 :gasoline_distribution_transport:
   :co2_free: 0.0
-  :demand_expected_value: 9866629889.21185
+  :demand_expected_value: 12528630446.3354
 gasoline_distribution_transport-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_distribution_transport: {conversion: 1.0}
 (loss)-gasoline_distribution_transport: {conversion: 0.0}
@@ -1828,7 +1827,7 @@ gasoline_distribution_transport-(gasoline) -- f --> (gasoline)-gasoline_import_e
 
 :kerosine_distribution_transport:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 682669865.866883
 kerosine_distribution_transport-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_distribution_transport: {conversion: 1.0}
 (loss)-kerosine_distribution_transport: {conversion: 0.0}
@@ -2358,14 +2357,6 @@ steam_hot_water_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (useable_heat)-steam_hot_water_industry_energetic: {conversion: 1.0}
 steam_hot_water_industry_energetic-(steam_hot_water) -- s --> (steam_hot_water)-local_w_production_industry: {share: 1.0}
 
-:trains_oil_demand_transport_non_energetic:
-  :co2_free: 1.0
-  :preset_demand: 0.0
-  :demand: 0.0
-trains_oil_demand_transport_non_energetic-(crude_oil): {conversion: 1.0}
-(crude_oil)-trains_oil_demand_transport_non_energetic: {conversion: 1.0}
-trains_oil_demand_transport_non_energetic-(crude_oil) -- s --> (crude_oil)-oil_transport_non_energetic: {share: 1.0}
-
 :biomass_other_energetic:
   :co2_free: 0.0
   :demand_expected_value: 928732214.324431
@@ -2415,7 +2406,7 @@ oil_other_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {s
   :co2_free: 0.0
   :demand_expected_value: 2673804303.81607
 steam_hot_water_other_energetic-(steam_hot_water): {conversion: 1.0}
-(useable_heat)-steam_hot_water_other_energetic: {conversion: 1.0}
+(steam_hot_water)-steam_hot_water_other_energetic: {conversion: 1.0}
 steam_hot_water_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-decentral_heat_other: {share: 1.0}
 
 :gas_buildings_energetic:
@@ -3368,24 +3359,6 @@ algue_diesel_import_export_transport_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_import_export_transport_energetic: {conversion: 1.0}
 algue_diesel_import_export_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-foreign_production_algue_diesel_neighbor: {share: 1.0}
 
-:lpg_trucks_transport_energetic:
-  :co2_free: 0.0
-  :network_capacity_available_in_mw: 0.0
-  :network_capacity_used_in_mw: 0.0
-  :technical_lifetime: 0.0
-  :costs_per_mj: 0.0
-  :network_expansion_costs_in_euro_per_mw: 0.0
-  :typical_nominal_input_capacity: 0.01
-  :full_load_hours: 0.0
-  :wacc: 0.0
-  :economic_lifetime: 0.0
-  :availability: 0.0
-  :variability: 0.0
-  :average_effective_output_of_nominal_capacity_over_lifetime: 0.0
-lpg_trucks_transport_energetic-(lpg): {conversion: 1.0}
-(truck_kms)-lpg_trucks_transport_energetic: {conversion: 0.448979591836735}
-lpg_trucks_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport: {share: 1.0}
-
 :coal_boiler_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
@@ -3401,14 +3374,6 @@ oil_boiler_households_energetic-(crude_oil): {conversion: 1.0}
 (hot_water)-oil_boiler_households_energetic: {conversion: 0.6}
 (loss)-oil_boiler_households_energetic: {conversion: 0.4}
 oil_boiler_households_energetic-(crude_oil) -- s --> (crude_oil)-oil_for_hot_water_households_energetic: {share: 1.0}
-
-:other_electric_transport_transport_energetic:
-  :co2_free: 0.0
-  :preset_demand: -56352939.1493985
-  :demand: -56352939.1493985
-other_electric_transport_transport_energetic-(electricity): {conversion: 1.0}
-(electricity)-other_electric_transport_transport_energetic: {conversion: 1.0}
-other_electric_transport_transport_energetic-(electricity) -- s --> (electricity)-final_demand_of_electricity_transport_energetic: {share: 1.0}
 
 :unused_CHPs_heat_industry_industry_energetic:
   :co2_free: 0.0
@@ -5152,13 +5117,13 @@ planes_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-avia
 
 :trains_transport_energetic:
   :co2_free: 0.0
-  :preset_demand: 375768800.967767
-  :demand: 375768800.967767
+  :preset_demand: 325051155.733308
+  :demand: 325051155.733308
 trains_transport_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-trains_transport_energetic: {conversion: 1.0}
-trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_electricity_demand_transport_energetic: {share: 0.930346631785481}
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_electricity_demand_transport_energetic: {share: 0.919478635298837}
 trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_coal_demand_transport_energetic: {share: 0.0}
-trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_diesel_transport_energetic: {share: 0.0696533682145193}
+trains_transport_energetic-(not_defined) -- s --> (not_defined)-trains_diesel_transport_energetic: {share: 0.0805213647011631}
 
 :ships_transport_energetic:
   :co2_free: 0.0
@@ -5472,7 +5437,7 @@ gas_fired_heater_households_energetic-(network_gas) -- s --> (network_gas)-gas_f
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
 fuel_cell_chp_households_energetic-(network_gas): {conversion: 1.0}
-(loss)-fuel_cell_chp_households_energetic: {conversion: 0.2}
+(loss)-fuel_cell_chp_households_energetic: {conversion: 0.1}
 (electricity)-fuel_cell_chp_households_energetic: {conversion: 0.6}
 (hot_water)-fuel_cell_chp_households_energetic: {conversion: 0.3}
 fuel_cell_chp_households_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 0.666666666666667}
@@ -5769,7 +5734,7 @@ algue_diesel_export_energy-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_d
 
 :biogenic_waste_distribution_energy:
   :co2_free: 0.0
-  :demand_expected_value: 1037658196.11766
+  :demand_expected_value: 1045152000.0
 biogenic_waste_distribution_energy-(biogenic_waste): {conversion: 1.0}
 (waste_mix)-biogenic_waste_distribution_energy: {conversion: 1.0}
 biogenic_waste_distribution_energy-(biogenic_waste) -- f --> (biogenic_waste)-biogenic_waste_import_energy: {share: }
@@ -6048,28 +6013,28 @@ final_demand_of_coal_transport_energetic-(coal) -- s --> (coal)-coal_distributio
 
 :final_demand_of_lpg_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 1086537358.51373
 final_demand_of_lpg_transport_energetic-(lpg): {conversion: 1.0}
 (lpg)-final_demand_of_lpg_transport_energetic: {conversion: 1.0}
 final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport: {share: 1.0}
 
 :final_demand_of_gasoline_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 12528630446.3354
 final_demand_of_gasoline_transport_energetic-(gasoline): {conversion: 1.0}
 (gasoline)-final_demand_of_gasoline_transport_energetic: {conversion: 1.0}
 final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport: {share: 1.0}
 
 :final_demand_of_kerosine_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 682669865.866883
 final_demand_of_kerosine_transport_energetic-(kerosine): {conversion: 1.0}
 (kerosine)-final_demand_of_kerosine_transport_energetic: {conversion: 1.0}
 final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport: {share: 1.0}
 
 :final_demand_of_diesel_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 20711452793.5488
 final_demand_of_diesel_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-final_demand_of_diesel_transport_energetic: {conversion: 1.0}
 final_demand_of_diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport: {share: 1.0}
@@ -6083,21 +6048,21 @@ final_demand_of_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (he
 
 :final_demand_of_network_gas_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 1717687.31652857
+  :demand_expected_value: 2116276.58418734
 final_demand_of_network_gas_transport_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-final_demand_of_network_gas_transport_energetic: {conversion: 1.0}
 final_demand_of_network_gas_transport_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 1.0}
 
 :final_demand_of_bio_ethanol_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 252314782.4244
 final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic: {conversion: 1.0}
 final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: 1.0}
 
 :final_demand_of_biodiesel_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 636521382.934281
 final_demand_of_biodiesel_transport_energetic-(biodiesel): {conversion: 1.0}
 (biodiesel)-final_demand_of_biodiesel_transport_energetic: {conversion: 1.0}
 final_demand_of_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport: {share: 1.0}
@@ -6121,56 +6086,54 @@ final_demand_of_electricity_transport_energetic-(electricity) -- s --> (electric
 
 :distribution_of_heavy_fuel_oil_energy:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
 distribution_of_heavy_fuel_oil_energy-(heavy_fuel_oil): {conversion: 1.0}
 (heavy_fuel_oil)-distribution_of_heavy_fuel_oil_energy: {conversion: 1.0}
 distribution_of_heavy_fuel_oil_energy-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-production_of_heavy_fuel_oil_energy: {share: 1.0}
 
 :production_of_heavy_fuel_oil_energy:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
 (heavy_fuel_oil)-production_of_heavy_fuel_oil_energy: {conversion: 1.0}
 production_of_heavy_fuel_oil_energy-(crude_oil): {conversion: 1.0}
 production_of_heavy_fuel_oil_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
 :road_lpg_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 1086537358.51373
 road_lpg_transport_energetic-(lpg): {conversion: 1.0}
 (lpg)-road_lpg_transport_energetic: {conversion: 1.0}
 road_lpg_transport_energetic-(lpg) -- s --> (lpg)-final_demand_of_lpg_transport_energetic: {share: 1.0}
 
 :road_gasoline_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 12528630446.3354
 road_gasoline_transport_energetic-(gasoline): {conversion: 1.0}
 (gasoline)-road_gasoline_transport_energetic: {conversion: 1.0}
 road_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-final_demand_of_gasoline_transport_energetic: {share: 1.0}
 
 :road_diesel_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 18780998946.8504
 road_diesel_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-road_diesel_transport_energetic: {conversion: 1.0}
 road_diesel_transport_energetic-(diesel) -- s --> (diesel)-final_demand_of_diesel_transport_energetic: {share: 1.0}
 
 :road_network_gas_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 1717687.31652857
+  :demand_expected_value: 2116276.58418734
 road_network_gas_transport_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-road_network_gas_transport_energetic: {conversion: 1.0}
 road_network_gas_transport_energetic-(network_gas) -- s --> (network_gas)-final_demand_of_network_gas_transport_energetic: {share: 1.0}
 
 :road_bio_ethanol_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 252314782.4244
 road_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-road_bio_ethanol_transport_energetic: {conversion: 1.0}
 road_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic: {share: 1.0}
 
 :road_biodiesel_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 636521382.934281
 road_biodiesel_transport_energetic-(biodiesel): {conversion: 1.0}
 (biodiesel)-road_biodiesel_transport_energetic: {conversion: 1.0}
 road_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-final_demand_of_biodiesel_transport_energetic: {share: 1.0}
@@ -6191,7 +6154,7 @@ rail_coal_transport_energetic-(coal) -- s --> (coal)-final_demand_of_coal_transp
 
 :rail_diesel_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 87245208.8577876
 rail_diesel_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-rail_diesel_transport_energetic: {conversion: 1.0}
 rail_diesel_transport_energetic-(diesel) -- s --> (diesel)-final_demand_of_diesel_transport_energetic: {share: 1.0}
@@ -6205,14 +6168,14 @@ rail_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-final_demand
 
 :rail_electricity_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 332086214.528858
 rail_electricity_transport_energetic-(electricity): {conversion: 1.0}
 (electricity)-rail_electricity_transport_energetic: {conversion: 1.0}
 rail_electricity_transport_energetic-(electricity) -- s --> (electricity)-final_demand_of_electricity_transport_energetic: {share: 1.0}
 
 :navigation_diesel_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 1843208637.84058
 navigation_diesel_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-navigation_diesel_transport_energetic: {conversion: 1.0}
 navigation_diesel_transport_energetic-(diesel) -- s --> (diesel)-final_demand_of_diesel_transport_energetic: {share: 1.0}
@@ -6233,39 +6196,39 @@ aviation_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-final_deman
 
 :aviation_kerosine_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 682669865.866883
 aviation_kerosine_transport_energetic-(kerosine): {conversion: 1.0}
 (kerosine)-aviation_kerosine_transport_energetic: {conversion: 1.0}
 aviation_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-final_demand_of_kerosine_transport_energetic: {share: 1.0}
 
 :road_gasoline_mixer_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
-road_gasoline_mixer_transport_energetic-(gasoline): {conversion: 0.974427460515137}
+  :demand_expected_value: 12780945228.7598
+road_gasoline_mixer_transport_energetic-(gasoline): {conversion: 0.97456702457595}
 (gasoline)-road_gasoline_mixer_transport_energetic: {conversion: 1.0}
-road_gasoline_mixer_transport_energetic-(bio_ethanol): {conversion: 0.025572539484863}
+road_gasoline_mixer_transport_energetic-(bio_ethanol): {conversion: 0.02543297542405}
 road_gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_transport_energetic: {share: 1.0}
 road_gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-road_bio_ethanol_transport_energetic: {share: 1.0}
 
 :road_diesel_mixer_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
-road_diesel_mixer_transport_energetic-(diesel): {conversion: 0.957702921727842}
+  :demand_expected_value: 19417520329.7847
+road_diesel_mixer_transport_energetic-(diesel): {conversion: 0.957929820470378}
 (diesel)-road_diesel_mixer_transport_energetic: {conversion: 1.0}
-road_diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0422970782721578}
+road_diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0420701795296221}
 road_diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_transport_energetic: {share: 1.0}
 road_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-road_biodiesel_transport_energetic: {share: 1.0}
 
 :road_network_gas_compression_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 1717687.31652857
+  :demand_expected_value: 2116276.58418734
 road_network_gas_compression_transport_energetic-(network_gas): {conversion: 1.0}
 (compressed_network_gas)-road_network_gas_compression_transport_energetic: {conversion: 1.0}
 road_network_gas_compression_transport_energetic-(network_gas) -- s --> (network_gas)-road_network_gas_transport_energetic: {share: 1.0}
 
 :rail_diesel_mixer_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 87245208.8577876
 rail_diesel_mixer_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-rail_diesel_mixer_transport_energetic: {conversion: 1.0}
 rail_diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0}
@@ -6288,7 +6251,7 @@ aviation_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-fi
 
 :planes_kerosine_transport_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 682669865.866883
 planes_kerosine_transport_energetic-(kerosine): {conversion: 1.0}
 (not_defined)-planes_kerosine_transport_energetic: {conversion: 1.0}
 planes_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-aviation_kerosine_transport_energetic: {share: 1.0}
@@ -6302,21 +6265,21 @@ ships_heavy_fuel_oil_transport_energetic-(heavy_fuel_oil) -- s --> (heavy_fuel_o
 
 :heat_exchanger_district_heating_other_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 2673804303.81607
 heat_exchanger_district_heating_other_energetic-(steam_hot_water): {conversion: 1.0}
-(steam_hot_water)-heat_exchanger_district_heating_other_energetic: {conversion: 1.0}
+(useable_heat)-heat_exchanger_district_heating_other_energetic: {conversion: 1.0}
 heat_exchanger_district_heating_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_for_heat_other_energetic: {share: 1.0}
 
 :steam_hot_water_for_heat_other_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 2673804303.81607
 steam_hot_water_for_heat_other_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_for_heat_other_energetic: {conversion: 1.0}
 steam_hot_water_for_heat_other_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_other_energetic: {share: 1.0}
 
 :electricity_for_electricity_other_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 6080719384.58682
 electricity_for_electricity_other_energetic-(electricity): {conversion: 1.0}
 (electricity)-electricity_for_electricity_other_energetic: {conversion: 1.0}
 electricity_for_electricity_other_energetic-(electricity) -- s --> (electricity)-electricity_other_energetic: {share: 1.0}
