@@ -1,37 +1,34 @@
 # Score calculated for etflex.
-# The basis of the score is 1000, minus 5 times the costs in billions, minus the CO2 emissions in Mton,
-# plus 5x the percentage renewability of the scenario, minus 10x the number of nuclear power plants (because of nuclear waste).
+# The basis of the score is 1000, minus 10 times the costs in billions, minus the CO2 emissions in Mton,
+# plus 4x the percentage renewability of the scenario, minus 5x the number of nuclear power plants (because of nuclear waste).
 # There are additional minus points for sliders:
-# - 0.02 points for each percentage of LEDs or solar heater
-# - 0.10 points for each percentage of fuel cell, electric car or heatpump
-# The result is multiplied by 2 factors:
+# - (0.02 points for each percentage of LEDs or solar heater)^2
+# - (0.03 points for each percentage of electric car or heatpump)^2
+# - (0.5 points for each percentage point of green gas)^2
+# - ((absolute difference between production and demand of electricity)^2)/5.
+
+# The result is multiplied by a factor:
 # - the reliability of the electricity production squared,
-# - the balance in electricity production.
 
 - unit = #
 
 PRODUCT(
     SUM (
       1000,
-      PRODUCT(5,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
+      PRODUCT(10,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
       NEG( DIVIDE( Q(total_co2_emissions), BILLIONS )),
-      PRODUCT(500,Q(renewability)),
-      PRODUCT(10,NEG(V(nuclear_iii_energy;number_of_units))),
+      PRODUCT(400,Q(renewability)),
+      PRODUCT(5,NEG(V(nuclear_iii_energy;number_of_units))),
       NEG(SUM(
-          PRODUCT(10,SUM(
-                  V(electric_cars_transport_energetic;share_of_cars_kms_demand_transport_energetic),
-                  Q(share_of_fuel_cell_in_hot_water_production_in_households),
-                  V(heatpump_households_energetic;share_of_heating_demand_households_energetic))),
-          PRODUCT(2,SUM(
-                  Q(market_penetration_of_solar_heater_for_hot_water_in_households),
-                  V(led_lighting_households_energetic;share_of_effective_lighting_demand_households_energetic)))
-        ))
+          PRODUCT(3, 3, V(electric_cars_transport_energetic;share_of_cars_kms_demand_transport_energetic),V(electric_cars_transport_energetic;share_of_cars_kms_demand_transport_energetic)),
+          PRODUCT(3, 3, V(heatpump_households_energetic;share_of_heating_demand_households_energetic),V(heatpump_households_energetic;share_of_heating_demand_households_energetic)),
+          PRODUCT(2, 2, Q(market_penetration_of_solar_heater_for_hot_water_in_households),Q(market_penetration_of_solar_heater_for_hot_water_in_households)),
+          PRODUCT(2, 2, V(led_lighting_households_energetic;share_of_effective_lighting_demand_households_energetic),V(led_lighting_households_energetic;share_of_effective_lighting_demand_households_energetic)),
+          PRODUCT(50,50,Q(share_of_greengas_in_gas_network),Q(share_of_greengas_in_gas_network)),
+          PRODUCT(0.2,  PRODUCT(DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS),DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS)))
+          )
+        )
       )
 ,
 PRODUCT(Q(security_of_supply_reliability),Q(security_of_supply_reliability))
-,
-SUM(
-  1,
-  NEG(ABS(Q(electricity_imbalance)))
-  )
 )
