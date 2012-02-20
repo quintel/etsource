@@ -1,0 +1,5 @@
+# Returns the converters which produce electricity using wood_pellets. It works by looking to converters directly fed by the "wood_pellets_distribution" converter that have output of electricity.
+
+- unit = converters
+
+FILTER(PARENTS(V(wood_pellets_distribution_energy ));electricity_output_conversion && electricity_output_conversion > 0)
