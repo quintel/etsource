@@ -1,8 +1,9 @@
 # Group of attributes to include the effects of 
-# different technologies on employment in the Netherlands
+# different technologies on employment in the Netherlands.
+# Now all just 1's to start testing
 
 :defaults:
-  :employment: &employment
+  :gas_conv_energy_energetic: 
     :hours_prep_nl: 1.0
     :hours_prep_abroad: 1.0
     :hours_prod_nl: 1.0
@@ -14,18 +15,38 @@
     :hours_remov_nl: 1.0
     :hours_remov_abroad: 1.0
 
-  :include_employment: &include_employment
-    # Now we can choose to enable/disable employment estimates for a converter
-    # simply by including it with "<<: *include_employment"
-    :gas_conv_energy_energetic: 
-      <<: *employement
+  :waste_incinerator_energy_energetic: 
+    :hours_prep_nl: 1.0
+    :hours_prep_abroad: 1.0
+    :hours_prod_nl: 1.0
+    :hours_prod_abroad: 1.0
+    :hours_place_nl: 1.0
+    :hours_place_abroad: 1.0
+    :hours_maint_nl: 1.0
+    :hours_maint_abroad: 1.0
+    :hours_remov_nl: 1.0
+    :hours_remov_abroad: 1.0
 
-    :waste_incinerator_energy_energetic: 
-      <<: *employement
+  :coal_pwd_energy: 
+    :hours_prep_nl: 1.0
+    :hours_prep_abroad: 1.0
+    :hours_prod_nl: 1.0
+    :hours_prod_abroad: 1.0
+    :hours_place_nl: 1.0
+    :hours_place_abroad: 1.0
+    :hours_maint_nl: 1.0
+    :hours_maint_abroad: 1.0
+    :hours_remov_nl: 1.0
+    :hours_remov_abroad: 1.0
 
-    :coal_pwd_energy: 
-      <<: *employement
-
-    :coal_conv_energy: 
-      <<: *employement
-
+  :coal_conv_energy: 
+    :hours_prep_nl: 1.0
+    :hours_prep_abroad: 1.0
+    :hours_prod_nl: 1.0
+    :hours_prod_abroad: 1.0
+    :hours_place_nl: 1.0
+    :hours_place_abroad: 1.0
+    :hours_maint_nl: 1.0
+    :hours_maint_abroad: 1.0
+    :hours_remov_nl: 1.0
+    :hours_remov_abroad: 1.0
