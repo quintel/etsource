@@ -2164,9 +2164,9 @@ gas_demand_industry_non_energetic-(network_gas) -- s --> (network_gas)-gas_indus
   :co2_free: 1.0
   :preset_demand: 0.0
   :demand: 0.0
-biomass_demand_industry_non_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_demand_industry_non_energetic: {conversion: 1.0}
-biomass_demand_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_industry_non_energetic: {share: 1.0}
+biomass_demand_industry_non_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_demand_industry_non_energetic: {conversion: 1.0}
+biomass_demand_industry_non_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_industry_non_energetic: {share: 1.0}
 
 :cv_hot_water_households_energetic:
   :co2_free: 0.0
@@ -2419,9 +2419,9 @@ gas_buildings_energetic-(network_gas) -- s --> (network_gas)-national_gas_networ
 :biomass_industry_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 0.0
-biomass_industry_non_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_industry_non_energetic: {conversion: 1.0}
-biomass_industry_non_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+biomass_industry_non_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-biomass_industry_non_energetic: {conversion: 1.0}
+biomass_industry_non_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :coal_industry_non_energetic:
   :co2_free: 1.0
@@ -2882,10 +2882,10 @@ chp_other_other_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energ
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_burner_agri_agriculture_energetic-(biomass): {conversion: 1.0}
+biomass_burner_agri_agriculture_energetic-(wood_pellets): {conversion: 1.0}
 (loss)-biomass_burner_agri_agriculture_energetic: {conversion: 0.239175257731959}
 (useable_heat)-biomass_burner_agri_agriculture_energetic: {conversion: 0.760824742268041}
-biomass_burner_agri_agriculture_energetic-(biomass) -- s --> (biomass)-energetic_use_biomass_agriculture_agriculture_energetic: {share: 1.0}
+biomass_burner_agri_agriculture_energetic-(wood_pellets) -- s --> (wood_pellets)-energetic_use_biomass_agriculture_agriculture_energetic: {share: 1.0}
 
 :oil_burner_agri_agriculture_energetic:
   :co2_free: 0.0
@@ -3291,9 +3291,9 @@ geothermal_agri_agriculture_energetic-(ambient_heat) -- s --> (ambient_heat)-ear
 
 :energetic_use_biomass_agriculture_agriculture_energetic:
   :co2_free: 0.0
-energetic_use_biomass_agriculture_agriculture_energetic-(biomass): {conversion: 1.0}
-(biomass)-energetic_use_biomass_agriculture_agriculture_energetic: {conversion: 1.0}
-energetic_use_biomass_agriculture_agriculture_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+energetic_use_biomass_agriculture_agriculture_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-energetic_use_biomass_agriculture_agriculture_energetic: {conversion: 1.0}
+energetic_use_biomass_agriculture_agriculture_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :lignite_distribution_energy:
   :co2_free: 0.0
@@ -3909,7 +3909,7 @@ heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_hea
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_buildings_energetic: {share: 0.179243775271607}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-solarthermic_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_ts_buildings_energetic: {share: 0.0}
-heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-biomass_fired_heater_buildings_energetic: {share: 0.0202707241554483}
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-wood_pellets_fired_heater_buildings_energetic: {share: 0.0202707241554483}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_ts_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_buildings_energetic: {share: 0.0590763785036628}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-oil_heater_buildings_energetic: {share: 0.0823350542047182}
@@ -4174,7 +4174,7 @@ coal_chp_buildings_energetic-(coal) -- s --> (coal)-coal_distribution_energy: {s
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_chp_buildings_energetic-(biomass): {conversion: 1.0}
+biomass_chp_buildings_energetic-(wood_pellets): {conversion: 1.0}
 (electricity)-biomass_chp_buildings_energetic: {conversion: 0.23}
 (steam_hot_water)-biomass_chp_buildings_energetic: {conversion: 0.41}
 (loss)-biomass_chp_buildings_energetic: {conversion: 0.36}
@@ -4236,7 +4236,7 @@ gasheatpump_ts_buildings_energetic-(ambient_heat): {conversion: 0.5}
 gasheatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic: {share: 1.0}
 gasheatpump_ts_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
 
-:biomass_fired_heater_buildings_energetic:
+:wood_pellets_fired_heater_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 6879176756.56948
   :technical_lifetime: 15.0
@@ -4258,10 +4258,10 @@ gasheatpump_ts_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buil
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_fired_heater_buildings_energetic-(biomass): {conversion: 1.0}
-(useable_heat)-biomass_fired_heater_buildings_energetic: {conversion: 0.82}
-(loss)-biomass_fired_heater_buildings_energetic: {conversion: 0.18}
-biomass_fired_heater_buildings_energetic-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
+wood_pellets_fired_heater_buildings_energetic-(biomass): {conversion: 1.0}
+(useable_heat)-wood_pellets_fired_heater_buildings_energetic: {conversion: 0.82}
+(loss)-wood_pellets_fired_heater_buildings_energetic: {conversion: 0.18}
+wood_pellets_fired_heater_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic: {share: 1.0}
 
 :heatpump_ts_buildings_energetic:
   :co2_free: 0.0
@@ -4366,7 +4366,7 @@ building_related_buildings_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-building_related_buildings_energetic: {conversion: 1.0}
 building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_oil_buildings: {share: 0.00544290203676469}
 building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_gas_buildings: {share: 0.0733580634925352}
-building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_biomass_buildings: {share: 0.0}
+building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_wood_pellets_buildings: {share: 0.0}
 building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_electric_buildings: {share: 0.9211990344707}
 
 :airco_buildings_energetic:
@@ -4410,15 +4410,15 @@ appliances_buildings_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-appliances_buildings_energetic: {conversion: 1.0}
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings: {share: 0.0}
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings: {share: 0.0}
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-biomass_appliances_buildings: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-wood_pellets_appliances_buildings: {share: 0.0}
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings: {share: 1.0}
 
-:biomass_buildings_energetic:
+:final_demand_of_wood_pellets_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 6879176756.56948
-biomass_buildings_energetic-(biomass): {conversion: 1.0}
-(biomass)-biomass_buildings_energetic: {conversion: 1.0}
-biomass_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+final_demand_of_wood_pellets_buildings_energetic-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-final_demand_of_wood_pellets_buildings_energetic: {conversion: 1.0}
+final_demand_of_wood_pellets_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :coal_buildings_energetic:
   :co2_free: 0.0
@@ -4823,12 +4823,12 @@ gas_appliances_buildings-(network_gas): {conversion: 1.0}
 (not_defined)-gas_appliances_buildings: {conversion: 1.0}
 gas_appliances_buildings-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
 
-:biomass_appliances_buildings:
+:wood_pellets_appliances_buildings:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-biomass_appliances_buildings-(biomass): {conversion: 1.0}
-(not_defined)-biomass_appliances_buildings: {conversion: 1.0}
-biomass_appliances_buildings-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
+wood_pellets_appliances_buildings-(wood_pellets): {conversion: 1.0}
+(not_defined)-wood_pellets_appliances_buildings: {conversion: 1.0}
+wood_pellets_appliances_buildings-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic: {share: 1.0}
 
 :electric_appliances_buildings:
   :co2_free: 0.0
@@ -4851,12 +4851,12 @@ appliances_gas_buildings-(network_gas): {conversion: 1.0}
 (not_defined)-appliances_gas_buildings: {conversion: 1.0}
 appliances_gas_buildings-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
 
-:appliances_biomass_buildings:
+:appliances_wood_pellets_buildings:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-appliances_biomass_buildings-(biomass): {conversion: 1.0}
-(not_defined)-appliances_biomass_buildings: {conversion: 1.0}
-appliances_biomass_buildings-(biomass) -- s --> (biomass)-biomass_buildings_energetic: {share: 1.0}
+appliances_wood_pellets_buildings-(wood_pellets): {conversion: 1.0}
+(not_defined)-appliances_wood_pellets_buildings: {conversion: 1.0}
+appliances_wood_pellets_buildings-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic: {share: 1.0}
 
 :appliances_electric_buildings:
   :co2_free: 0.0
