@@ -127,8 +127,8 @@ heatpump_boiler_households_energetic-(electricity): {conversion: 0.2105263157894
 heatpump_boiler_households_energetic-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-heatpump_boiler_households_energetic: {conversion: 0.0}
 (hot_water)-heatpump_boiler_households_energetic: {conversion: 1.0}
-heatpump_boiler_households_energetic-(electricity) -- s --> (electricity)-electricity_for_hot_water_households_energetic: {share: 1.0}
 heatpump_boiler_households_energetic-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic: {share: 1.0}
+heatpump_boiler_households_energetic-(electricity) -- s --> (electricity)-electricity_for_hot_water_households_energetic: {share: 1.0}
 
 :electric_boiler_households_energetic:
   :co2_free: 0.0
@@ -194,8 +194,8 @@ heat_pump_with_chs_households_energetic-(ambient_heat): {conversion: 0.888888888
 (loss)-heat_pump_with_chs_households_energetic: {conversion: 0.0}
 (useable_heat)-heat_pump_with_chs_households_energetic: {conversion: 1.0}
 (cooling)-heat_pump_with_chs_households_energetic: {conversion: 0.0}
-heat_pump_with_chs_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 heat_pump_with_chs_households_energetic-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic: {share: 1.0}
+heat_pump_with_chs_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 
 :airco_households_energetic:
   :co2_free: 0.0
@@ -228,8 +228,8 @@ airco_households_energetic-(electricity): {conversion: 0.25}
 airco_households_energetic-(ambient_cold): {conversion: 0.75}
 (loss)-airco_households_energetic: {conversion: 0.0}
 (cooling)-airco_households_energetic: {conversion: 1.0}
-airco_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic: {share: 1.0}
 airco_households_energetic-(ambient_cold) -- s --> (ambient_cold)-air_environment_energetic: {share: 1.0}
+airco_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic: {share: 1.0}
 
 :electric_heater_households_energetic:
   :co2_free: 0.0
@@ -432,8 +432,8 @@ gas_conv_energy_energetic-(bio_oil): {conversion: 0.0}
 (loss)-gas_conv_energy_energetic: {conversion: 0.6}
 (steam_hot_water)-gas_conv_energy_energetic: {conversion: 0.0}
 (electricity)-gas_conv_energy_energetic: {conversion: 0.4}
-gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :electricity_demand_industry_energetic:
@@ -547,8 +547,8 @@ central_gas_chp_energy_energetic-(bio_oil): {conversion: 0.0}
 (loss)-central_gas_chp_energy_energetic: {conversion: 0.351301607471374}
 (steam_hot_water)-central_gas_chp_energy_energetic: {conversion: 0.21}
 (electricity)-central_gas_chp_energy_energetic: {conversion: 0.438698392528626}
-central_gas_chp_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 central_gas_chp_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+central_gas_chp_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 central_gas_chp_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :biomass_chp_industry_energetic:
@@ -872,16 +872,16 @@ heatpump_households_energetic-(electricity): {conversion: 0.210526315789474}
 heatpump_households_energetic-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-heatpump_households_energetic: {conversion: 0.0}
 (useable_heat)-heatpump_households_energetic: {conversion: 1.0}
-heatpump_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 heatpump_households_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic: {share: 1.0}
+heatpump_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 
 :city_cooling_network_buildings_energetic:
   :co2_free: 0.0
 city_cooling_network_buildings_energetic-(electricity): {conversion: 0.1}
 city_cooling_network_buildings_energetic-(ambient_cold): {conversion: 0.9}
 (cooling)-city_cooling_network_buildings_energetic: {conversion: 1.0}
-city_cooling_network_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 city_cooling_network_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-water_environment_energetic: {share: 1.0}
+city_cooling_network_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 
 :heating_demand_agriculture_energetic:
   :co2_free: 0.0
@@ -1077,9 +1077,9 @@ coal_pwd_energy-(coal): {conversion: 1.0}
 (loss)-coal_pwd_energy: {conversion: 0.54}
 (steam_hot_water)-coal_pwd_energy: {conversion: 0.0}
 (electricity)-coal_pwd_energy: {conversion: 0.46}
-coal_pwd_energy-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy: {share: 1.0}
 coal_pwd_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_pwd_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
+coal_pwd_energy-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy: {share: 1.0}
 
 :coal_pwd_ccs_energy:
   :co2_free: 0.85
@@ -1357,8 +1357,8 @@ gas_ccgt_energy-(bio_oil): {conversion: 0.0}
 (loss)-gas_ccgt_energy: {conversion: 0.42}
 (steam_hot_water)-gas_ccgt_energy: {conversion: 0.0}
 (electricity)-gas_ccgt_energy: {conversion: 0.58}
-gas_ccgt_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 gas_ccgt_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+gas_ccgt_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 gas_ccgt_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :coal_chp_energy:
@@ -3343,10 +3343,9 @@ energy_sector_gas_mixer_energy-(biogas): {conversion: 0.0}
 energy_sector_gas_mixer_energy-(crude_oil): {conversion: 0.0}
 energy_sector_gas_mixer_energy-(network_gas): {conversion: 1.0}
 (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {conversion: 1.0}
-energy_sector_gas_mixer_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
-energy_sector_gas_mixer_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-energy_sector_gas_mixer_energy-(biogas) -- s --> (biogas)-biogas_distribution_energy: {share: 1.0}
 energy_sector_gas_mixer_energy-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 1.0}
+energy_sector_gas_mixer_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+energy_sector_gas_mixer_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
 :algue_diesel_distribution_transport_energetic:
   :co2_free: 0.0
@@ -3579,8 +3578,8 @@ heatpump_addon_households_energetic-(electricity): {conversion: 0.25}
 heatpump_addon_households_energetic-(ambient_heat): {conversion: 0.75}
 (loss)-heatpump_addon_households_energetic: {conversion: 0.0}
 (useable_heat)-heatpump_addon_households_energetic: {conversion: 1.0}
-heatpump_addon_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 heatpump_addon_households_energetic-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic: {share: 1.0}
+heatpump_addon_households_energetic-(electricity) -- s --> (electricity)-electricity_for_heating_households_energetic: {share: 1.0}
 
 :collective_gas_chp_households_energetic:
   :co2_free: 0.0
@@ -3707,8 +3706,8 @@ heatpump_cooling_households_energetic-(electricity): {conversion: 0.173913043478
 heatpump_cooling_households_energetic-(ambient_cold): {conversion: 0.826086956521739}
 (loss)-heatpump_cooling_households_energetic: {conversion: 0.0}
 (cooling)-heatpump_cooling_households_energetic: {conversion: 1.0}
-heatpump_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic: {share: 1.0}
 heatpump_cooling_households_energetic-(ambient_cold) -- s --> (ambient_cold)-earth_environment_energetic: {share: 1.0}
+heatpump_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic: {share: 1.0}
 
 :gasheatpump_cooling_households_energetic:
   :co2_free: 0.0
@@ -3770,8 +3769,8 @@ heatpump_ts_cooling_households_energetic-(electricity): {conversion: 0.1}
 heatpump_ts_cooling_households_energetic-(ambient_cold): {conversion: 0.9}
 (loss)-heatpump_ts_cooling_households_energetic: {conversion: 0.0}
 (cooling)-heatpump_ts_cooling_households_energetic: {conversion: 1.0}
-heatpump_ts_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic: {share: 1.0}
 heatpump_ts_cooling_households_energetic-(ambient_cold) -- s --> (ambient_cold)-air_environment_energetic: {share: 1.0}
+heatpump_ts_cooling_households_energetic-(electricity) -- s --> (electricity)-electricity_for_cooling_households_energetic: {share: 1.0}
 
 :cooking_demand_households_energetic:
   :co2_free: 0.0
@@ -4235,8 +4234,8 @@ gasheatpump_ts_buildings_energetic-(network_gas): {conversion: 0.5}
 gasheatpump_ts_buildings_energetic-(ambient_heat): {conversion: 0.5}
 (useable_heat)-gasheatpump_ts_buildings_energetic: {conversion: 1.0}
 (loss)-gasheatpump_ts_buildings_energetic: {conversion: 0.0}
-gasheatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic: {share: 1.0}
 gasheatpump_ts_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
+gasheatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic: {share: 1.0}
 
 :wood_pellets_fired_heater_buildings_energetic:
   :co2_free: 0.0
@@ -4324,8 +4323,8 @@ gasheatpump_cooling_buildings_energetic-(network_gas): {conversion: 0.5882352941
 gasheatpump_cooling_buildings_energetic-(ambient_cold): {conversion: 0.411764705882353}
 (cooling)-gasheatpump_cooling_buildings_energetic: {conversion: 1.0}
 (loss)-gasheatpump_cooling_buildings_energetic: {conversion: 0.0}
-gasheatpump_cooling_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-earth_environment_energetic: {share: 1.0}
 gasheatpump_cooling_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
+gasheatpump_cooling_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-earth_environment_energetic: {share: 1.0}
 
 :heatpump_ts_cooling_buildings_energetic:
   :co2_free: 0.0
@@ -4357,8 +4356,8 @@ heatpump_ts_cooling_buildings_energetic-(electricity): {conversion: 0.1}
 heatpump_ts_cooling_buildings_energetic-(ambient_cold): {conversion: 0.9}
 (cooling)-heatpump_ts_cooling_buildings_energetic: {conversion: 1.0}
 (loss)-heatpump_ts_cooling_buildings_energetic: {conversion: 0.0}
-heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 heatpump_ts_cooling_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-earth_environment_energetic: {share: 1.0}
+heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 
 :building_related_buildings_energetic:
   :co2_free: 0.0
@@ -4401,8 +4400,8 @@ airco_buildings_energetic-(electricity): {conversion: 0.222222222222222}
 airco_buildings_energetic-(ambient_cold): {conversion: 0.777777777777778}
 (cooling)-airco_buildings_energetic: {conversion: 1.0}
 (loss)-airco_buildings_energetic: {conversion: 0.0}
-airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 airco_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-air_environment_energetic: {share: 1.0}
+airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
 
 :appliances_buildings_energetic:
   :co2_free: 0.0
@@ -4913,8 +4912,8 @@ ccgt_ccs_energy-(bio_oil): {conversion: 0.0}
 (loss)-ccgt_ccs_energy: {conversion: 0.51}
 (steam_hot_water)-ccgt_ccs_energy: {conversion: 0.0}
 (electricity)-ccgt_ccs_energy: {conversion: 0.49}
-ccgt_ccs_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 ccgt_ccs_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+ccgt_ccs_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :local_e_production_agriculture:
@@ -5497,8 +5496,8 @@ foreign_production_algue_diesel_neighbor-(algae_diesel): {conversion: 1.0}
 (biogas)-biogas_production_energy: {conversion: 1.0}
 biogas_production_energy-(manure): {conversion: 0.5}
 biogas_production_energy-(corn): {conversion: 0.5}
-biogas_production_energy-(corn) -- s --> (corn)-corn_distribution_energy: {share: 1.0}
 biogas_production_energy-(manure) -- s --> (manure)-manure_collection_energy: {share: 1.0}
+biogas_production_energy-(corn) -- s --> (corn)-corn_distribution_energy: {share: 1.0}
 
 :biogas_distribution_energy:
   :co2_free: 0.0
@@ -5545,8 +5544,8 @@ foreign_biomass_power_neighbor-(imported_electricity): {conversion: 1.0}
   :co2_free: 0.0
 biocoal_distribution_energy-(torrified_biomass_pellets): {conversion: 1.0}
 (torrified_biomass_pellets)-biocoal_distribution_energy: {conversion: 1.0}
-biocoal_distribution_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-torrefaction_energy: {share: 1.0}
-biocoal_distribution_energy-(torrified_biomass_pellets) -- c --> (torrified_biomass_pellets)-biocoal_import_energy: {share: 0.0}
+biocoal_distribution_energy-(torrified_biomass_pellets) -- c --> (torrified_biomass_pellets)-torrefaction_energy: {share: 0.0}
+biocoal_distribution_energy-(torrified_biomass_pellets) -- f --> (torrified_biomass_pellets)-biocoal_import_energy: {share: }
 
 :torrefaction_energy:
   :co2_free: 0.0
@@ -5554,8 +5553,8 @@ torrefaction_energy-(network_gas): {conversion: 0.052993333}
 torrefaction_energy-(wood): {conversion: 0.947006667}
 (torrified_biomass_pellets)-torrefaction_energy: {conversion: 0.91}
 (loss)-torrefaction_energy: {conversion: 0.09}
-torrefaction_energy-(wood) -- s --> (wood)-wood_distribution_energy: {share: 1.0}
 torrefaction_energy-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 1.0}
+torrefaction_energy-(wood) -- s --> (wood)-wood_distribution_energy: {share: 1.0}
 
 :foreign_unspecified_power_neighbor:
   :co2_free: 0.0
