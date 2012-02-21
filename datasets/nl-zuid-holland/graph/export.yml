@@ -1866,12 +1866,12 @@ lpg_distribution_transport-(lpg) -- f --> (lpg)-lpg_import_export_transport: {sh
 bio_oil_production_energy-(bio_oil): {conversion: 1.0}
 (bio_oil)-bio_oil_production_energy: {conversion: 1.0}
 
-:biomass_residuals_energy:
+:bio_residues_production_energy:
   :co2_free: 0.0
   :preset_demand: 791598799.673303
   :demand: 791598799.673303
-biomass_residuals_energy-(biomass): {conversion: 1.0}
-(biomass)-biomass_residuals_energy: {conversion: 1.0}
+bio_residues_production_energy-(bio_residues_for_firing): {conversion: 1.0}
+(bio_residues_for_firing)-bio_residues_production_energy: {conversion: 1.0}
 
 :gas_extraction_energy:
   :co2_free: 0.0
@@ -1927,16 +1927,16 @@ oil_distribution_energy-(crude_oil): {conversion: 1.0}
 oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy: {share: }
 oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy: {share: }
 
-:biomass_distribution_energy:
+:bio_residues_distribution_energy:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-biomass_distribution_energy-(loss): {conversion: 0.0}
-(loss)-biomass_distribution_energy: {conversion: 0.0}
-biomass_distribution_energy-(biomass): {conversion: 1.0}
-(biomass)-biomass_distribution_energy: {conversion: 1.0}
-biomass_distribution_energy-(biomass) -- c --> (biomass)-biomass_residuals_energy: {share: }
-biomass_distribution_energy-(biomass) -- f --> (biomass)-biomass_import_export_energy: {share: }
+bio_residues_distribution_energy-(loss): {conversion: 0.0}
+(loss)-bio_residues_distribution_energy: {conversion: 0.0}
+bio_residues_distribution_energy-(bio_residues_for_firing): {conversion: 1.0}
+(bio_residues_for_firing)-bio_residues_distribution_energy: {conversion: 1.0}
+bio_residues_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_production_energy: {share: }
+bio_residues_distribution_energy-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-bio_residues_import_energy: {share: }
 
 :greengas_distribution_energy:
   :co2_free: 0.0
@@ -2018,22 +2018,22 @@ trains_diesel_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_mixer_t
 :lpg_production_transport:
   :co2_free: 0.0
 lpg_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-lpg_production_transport: {conversion: 0.00560000000000005}
-(lpg)-lpg_production_transport: {conversion: 0.9944}
+(loss)-lpg_production_transport: {conversion: 0.104099709294738}
+(lpg)-lpg_production_transport: {conversion: 0.895900290705262}
 lpg_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
 :diesel_production_transport:
   :co2_free: 0.0
 diesel_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-diesel_production_transport: {conversion: 0.00560000000000005}
-(diesel)-diesel_production_transport: {conversion: 0.9944}
+(loss)-diesel_production_transport: {conversion: 0.104099709294738}
+(diesel)-diesel_production_transport: {conversion: 0.895900290705262}
 diesel_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
 :gasoline_production_transport:
   :co2_free: 0.0
 gasoline_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-gasoline_production_transport: {conversion: 0.00560000000000005}
-(gasoline)-gasoline_production_transport: {conversion: 0.9944}
+(loss)-gasoline_production_transport: {conversion: 0.104099709294738}
+(gasoline)-gasoline_production_transport: {conversion: 0.895900290705262}
 gasoline_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
 :kerosine_production_transport:
@@ -2095,10 +2095,10 @@ oil_import_export_energy-(crude_oil): {conversion: 1.0}
 gas_import_export_energy-(natural_gas): {conversion: 1.0}
 (natural_gas)-gas_import_export_energy: {conversion: 1.0}
 
-:biomass_import_export_energy:
+:bio_residues_import_energy:
   :co2_free: 0.0
-biomass_import_export_energy-(biomass): {conversion: 1.0}
-(biomass)-biomass_import_export_energy: {conversion: 1.0}
+bio_residues_import_energy-(bio_residues_for_firing): {conversion: 1.0}
+(bio_residues_for_firing)-bio_residues_import_energy: {conversion: 1.0}
 
 :diesel_import_export_transport:
   :co2_free: 0.0
@@ -5662,11 +5662,11 @@ gas_export_energy-(network_gas): {conversion: 1.0}
 (network_gas)-gas_export_energy: {conversion: 1.0}
 gas_export_energy-(network_gas) -- i --> (network_gas)-national_gas_network_energy: {share: }
 
-:biomass_export_energy:
+:bio_residues_export_energy:
   :co2_free: 0.0
-biomass_export_energy-(biomass): {conversion: 1.0}
-(biomass)-biomass_export_energy: {conversion: 1.0}
-biomass_export_energy-(biomass) -- i --> (biomass)-biomass_distribution_energy: {share: }
+bio_residues_export_energy-(bio_residues_for_firing): {conversion: 1.0}
+(bio_residues_for_firing)-bio_residues_export_energy: {conversion: 1.0}
+bio_residues_export_energy-(bio_residues_for_firing) -- i --> (bio_residues_for_firing)-bio_residues_distribution_energy: {share: }
 
 :diesel_export_energy:
   :co2_free: 0.0

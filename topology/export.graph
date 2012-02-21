@@ -643,9 +643,9 @@ bio_oil_production_energy;	bio_oil_production;	energy;	undefined;growth and prod
 bio_oil_production_energy-(bio_oil)
 (bio_oil)-bio_oil_production_energy
 
-biomass_residuals_energy;	biomass_residuals;	energy;	undefined;growth and production;	primary_energy_demand,mining_and_extraction
-biomass_residuals_energy-(biomass)
-(biomass)-biomass_residuals_energy
+bio_residues_production_energy;	bio_residues_production;	energy;	undefined;growth and production;	primary_energy_demand,mining_and_extraction
+bio_residues_production_energy-(bio_residues_for_firing)
+(bio_residues_for_firing)-bio_residues_production_energy
 
 gas_extraction_energy;	gas_extraction;	energy;	undefined;extraction;	primary_energy_demand,mining_and_extraction
 gas_extraction_energy-(natural_gas)
@@ -687,13 +687,13 @@ oil_distribution_energy-(crude_oil)
 (crude_oil)-oil_distribution_energy
 (loss)-oil_distribution_energy
 
-biomass_distribution_energy;	biomass_distribution;	energy;	undefined;distribution primary carriers;	biofuel_distribution
-biomass_distribution_energy-(biomass) -- c --> (biomass)-biomass_residuals_energy
-biomass_distribution_energy-(biomass) -- f --> (biomass)-biomass_import_export_energy
-biomass_distribution_energy-(loss)
-(loss)-biomass_distribution_energy
-biomass_distribution_energy-(biomass)
-(biomass)-biomass_distribution_energy
+bio_residues_distribution_energy;	bio_residues_distribution;	energy;	undefined;distribution primary carriers;	biofuel_distribution
+bio_residues_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_production_energy
+bio_residues_distribution_energy-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-bio_residues_import_energy
+bio_residues_distribution_energy-(loss)
+(loss)-bio_residues_distribution_energy
+bio_residues_distribution_energy-(bio_residues_for_firing)
+(bio_residues_for_firing)-bio_residues_distribution_energy
 
 greengas_distribution_energy;	greengas_distribution;	energy;	undefined;distribution primary carriers;	
 greengas_distribution_energy-(greengas) -- f --> (greengas)-greengas_import_export_energy
@@ -814,9 +814,9 @@ gas_import_export_energy;	gas_import_export;	energy;	undefined;;	primary_energy_
 gas_import_export_energy-(natural_gas)
 (natural_gas)-gas_import_export_energy
 
-biomass_import_export_energy;	biomass_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-biomass_import_export_energy-(biomass)
-(biomass)-biomass_import_export_energy
+bio_residues_import_energy;	bio_residues_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+bio_residues_import_energy-(bio_residues_for_firing)
+(bio_residues_for_firing)-bio_residues_import_energy
 
 diesel_import_export_transport;	diesel_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 diesel_import_export_transport-(diesel)
@@ -2383,10 +2383,10 @@ gas_export_energy-(network_gas) -- i --> (network_gas)-national_gas_network_ener
 gas_export_energy-(network_gas)
 (network_gas)-gas_export_energy
 
-biomass_export_energy;	biomass_export;	energy;	undefined;;	energy_export
-biomass_export_energy-(biomass) -- i --> (biomass)-biomass_distribution_energy
-biomass_export_energy-(biomass)
-(biomass)-biomass_export_energy
+bio_residues_export_energy;	bio_residues_export;	energy;	undefined;;	energy_export
+bio_residues_export_energy-(bio_residues_for_firing) -- i --> (bio_residues_for_firing)-bio_residues_distribution_energy
+bio_residues_export_energy-(bio_residues_for_firing)
+(bio_residues_for_firing)-bio_residues_export_energy
 
 diesel_export_energy;	diesel_export;	energy;	undefined;;	energy_export
 diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_transport
