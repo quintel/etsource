@@ -15,31 +15,31 @@ name: Initial
 query: |
   EACH(
     UPDATE(
-      OUTPUT_SLOTS(micro_CHP_production_households;electricity), conversion,   
+      OUTPUT_SLOTS(micro_chp_space_heating_households;electricity), conversion,   
       TIME_SERIE_VALUE(417,electricity_output_slot_conversion,USER_INPUT())
     ),
     UPDATE(
-      OUTPUT_SLOTS(micro_CHP_production_households;useable_heat), conversion,   
+      OUTPUT_SLOTS(micro_chp_space_heating_households;useable_heat), conversion,   
       TIME_SERIE_VALUE(417,useable_heat_output_slot_conversion,USER_INPUT())
     ),
     UPDATE(
-      OUTPUT_SLOTS(micro_CHP_production_households;loss), conversion,   
+      OUTPUT_SLOTS(micro_chp_space_heating_households;loss), conversion,   
       TIME_SERIE_VALUE(417,loss_output_slot_conversion,USER_INPUT())
     ),
     UPDATE(
-      V(micro_CHP_production_households), full_load_hours, 
+      V(micro_chp_space_heating_households), full_load_hours, 
       TIME_SERIE_VALUE(417,full_load_hours,USER_INPUT())
     ),
     UPDATE(
-      V(micro_CHP_production_households), typical_nominal_input_capacity, 
+      V(micro_chp_space_heating_households), typical_nominal_input_capacity, 
       TIME_SERIE_VALUE(417,typical_nominal_input_capacity,USER_INPUT())
     ),
     UPDATE(
-      V(micro_CHP_production_households), purchase_price_per_mw_input, 
+      V(micro_chp_space_heating_households), purchase_price_per_mw_input, 
       TIME_SERIE_VALUE(417,purchase_price_per_mw_input,USER_INPUT())
     ),
     UPDATE(
-      V(micro_CHP_production_households), operation_and_maintenance_cost_fixed_per_mw_input, 
+      V(micro_chp_space_heating_households), operation_and_maintenance_cost_fixed_per_mw_input, 
       TIME_SERIE_VALUE(417,operation_and_maintenance_cost_fixed_per_mw_input,USER_INPUT())
     )
   )

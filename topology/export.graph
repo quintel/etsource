@@ -24,7 +24,7 @@ heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heate
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_households_energetic
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_addon_households_energetic
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heat_from_steam_hot_water_households_energetic
-heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-micro_CHP_production_households
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-micro_chp_space_heating_households
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gas_fired_heater_households_energetic
 heating_demand_households_energetic-(useable_heat)
 (useable_heat)-heating_demand_households_energetic
@@ -181,8 +181,8 @@ central_gas_chp_energy_energetic-(bio_oil)
 (electricity)-central_gas_chp_energy_energetic
 
 biomass_chp_industry_energetic;	biomass_chp;	industry;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps
-biomass_chp_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-biomass_chp_industry_energetic-(biomass)
+biomass_chp_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+biomass_chp_industry_energetic-(wood_pellets)
 (loss)-biomass_chp_industry_energetic
 (steam_hot_water)-biomass_chp_industry_energetic
 (electricity)-biomass_chp_industry_energetic
@@ -360,7 +360,7 @@ heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-dis
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_gas_energy_energetic
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_waste_energy_energetic
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_biomass_energy_energetic
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_energy_energetic
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-wood_pellets_chp_energy_energetic
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-heat_import_energy
 heat_network_industry_energetic-(steam_hot_water)
 (steam_hot_water)-heat_network_industry_energetic
@@ -404,7 +404,7 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-nuclear_conv_
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-ccgt_ccs_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-lignite_chp_energy
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-oil_chp_energy
-hv_electricity_network_energy-(electricity) -- c --> (electricity)-biomass_CHP_energy_energetic
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-wood_pellets_chp_energy_energetic
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-diesel_generator_energy_energetic
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_turbine_energy_energetic
 hv_electricity_network_energy-(electricity)
@@ -412,10 +412,10 @@ hv_electricity_network_energy-(electricity)
 (loss)-hv_electricity_network_energy
 
 coal_pwd_energy;	coal_pwd;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-coal_pwd_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
+coal_pwd_energy-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
 coal_pwd_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_pwd_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_pwd_energy-(biomass)
+coal_pwd_energy-(wood_pellets)
 coal_pwd_energy-(torrified_biomass_pellets)
 coal_pwd_energy-(coal)
 (loss)-coal_pwd_energy
@@ -547,8 +547,8 @@ wind_offshore_energy-(wind)
 (electricity)-wind_offshore_energy
 
 co_firing_coal_energy;	co_firing_coal;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
-co_firing_coal_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy
-co_firing_coal_energy-(biomass)
+co_firing_coal_energy-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+co_firing_coal_energy-(wood_pellets)
 (loss)-co_firing_coal_energy
 (steam_hot_water)-co_firing_coal_energy
 (electricity)-co_firing_coal_energy
@@ -1481,8 +1481,8 @@ collective_gas_chp_households_energetic-(network_gas)
 (electricity)-collective_gas_chp_households_energetic
 
 collective_biomass_chp_households_energetic;	collective_biomass_chp;	households;	energetic;local CHPs;	electricity_production,heat_production,network_converters,cost_chps
-collective_biomass_chp_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-collective_biomass_chp_households_energetic-(biomass)
+collective_biomass_chp_households_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+collective_biomass_chp_households_energetic-(wood_pellets)
 (loss)-collective_biomass_chp_households_energetic
 (steam_hot_water)-collective_biomass_chp_households_energetic
 (electricity)-collective_biomass_chp_households_energetic
@@ -1687,7 +1687,7 @@ coal_chp_buildings_energetic-(coal)
 (loss)-coal_chp_buildings_energetic
 
 biomass_chp_buildings_energetic;	biomass_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
-biomass_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
+biomass_chp_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
 biomass_chp_buildings_energetic-(wood_pellets)
 (electricity)-biomass_chp_buildings_energetic
 (steam_hot_water)-biomass_chp_buildings_energetic
@@ -1709,7 +1709,7 @@ gasheatpump_ts_buildings_energetic-(ambient_heat)
 
 wood_pellets_fired_heater_buildings_energetic;	wood_pellets_fired_heater;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
 wood_pellets_fired_heater_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic
-wood_pellets_fired_heater_buildings_energetic-(biomass)
+wood_pellets_fired_heater_buildings_energetic-(wood_pellets)
 (useable_heat)-wood_pellets_fired_heater_buildings_energetic
 (loss)-wood_pellets_fired_heater_buildings_energetic
 
@@ -1916,7 +1916,7 @@ available_electricity_households-(electricity) -- c --> (electricity)-local_sola
 available_electricity_households-(electricity) -- d --> (electricity)-collective_gas_chp_households_energetic
 available_electricity_households-(electricity) -- d --> (electricity)-collective_biomass_chp_households_energetic
 available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_hot_water_households_energetic
-available_electricity_households-(electricity) -- d --> (electricity)-micro_CHP_production_households
+available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_space_heating_households
 available_electricity_households-(electricity) -- d --> (electricity)-fuel_cell_chp_households_energetic
 available_electricity_households-(electricity)
 (electricity)-available_electricity_households
@@ -2021,7 +2021,7 @@ local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution
 local_e_production_industry-(electricity) -- c --> (electricity)-small_chp_industry_energetic
 local_e_production_industry-(electricity) -- c --> (electricity)-biomass_chp_industry_energetic
 local_e_production_industry-(electricity) -- c --> (electricity)-bio_oil_chp_industry_energetic
-local_e_production_industry-(electricity) -- c --> (electricity)-coal_CHP_industry_energetic
+local_e_production_industry-(electricity) -- c --> (electricity)-coal_chp_industry_energetic
 local_e_production_industry-(electricity)
 (electricity)-local_e_production_industry
 
@@ -2030,7 +2030,7 @@ local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_c
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic
 local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_CHP_industry_energetic
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_industry_energetic
 local_w_production_industry-(steam_hot_water)
 (steam_hot_water)-local_w_production_industry
 
@@ -2051,25 +2051,25 @@ restheat_decentral_production_energy-(steam_hot_water) -- f --> (steam_hot_water
 restheat_decentral_production_energy-(steam_hot_water)
 (steam_hot_water)-restheat_decentral_production_energy
 
-micro_CHP_production_households;	micro_CHP_production;	households;	undefined;local CHPs;	heat_production,decentral_production,network_converters,cost_chps
-micro_CHP_production_households-(network_gas) -- s --> (network_gas)-national_gas_network_energy
-micro_CHP_production_households-(network_gas) -- f --> (network_gas)-gas_for_heating_households_energetic
-micro_CHP_production_households-(network_gas)
-(loss)-micro_CHP_production_households
-(electricity)-micro_CHP_production_households
-(useable_heat)-micro_CHP_production_households
+micro_chp_space_heating_households;	micro_chp_space_heating;	households;	undefined;local CHPs;	heat_production,decentral_production,network_converters,cost_chps
+micro_chp_space_heating_households-(network_gas) -- s --> (network_gas)-national_gas_network_energy
+micro_chp_space_heating_households-(network_gas) -- f --> (network_gas)-gas_for_heating_households_energetic
+micro_chp_space_heating_households-(network_gas)
+(loss)-micro_chp_space_heating_households
+(electricity)-micro_chp_space_heating_households
+(useable_heat)-micro_chp_space_heating_households
 
 decentral_heat_other;	decentral_heat;	other;	undefined;local power generation;	
 decentral_heat_other-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic
 decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-chp_other_other_energetic
-decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_other_energetic
+decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-wood_pellets_chp_other_energetic
 decentral_heat_other-(steam_hot_water)
 (steam_hot_water)-decentral_heat_other
 
 local_e_production_other;	local_e_production;	other;	undefined;local power generation;	
 local_e_production_other-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic
 local_e_production_other-(electricity) -- c --> (electricity)-chp_other_other_energetic
-local_e_production_other-(electricity) -- c --> (electricity)-biomass_CHP_other_energetic
+local_e_production_other-(electricity) -- c --> (electricity)-wood_pellets_chp_other_energetic
 local_e_production_other-(electricity)
 (electricity)-local_e_production_other
 
@@ -2163,33 +2163,33 @@ district_heater_waste_energy_energetic-(waste_mix)
 (loss)-district_heater_waste_energy_energetic
 
 district_heater_biomass_energy_energetic;	district_heater_biomass;	energy;	energetic;central heat generation;	heat_production,central_production,cost_traditional_heat
-district_heater_biomass_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-district_heater_biomass_energy_energetic-(biomass)
+district_heater_biomass_energy_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+district_heater_biomass_energy_energetic-(wood_pellets)
 (steam_hot_water)-district_heater_biomass_energy_energetic
 (loss)-district_heater_biomass_energy_energetic
 
-biomass_CHP_energy_energetic;	biomass_CHP;	energy;	energetic;central CHPs;	electricity_production,central_production,cost_chps
-biomass_CHP_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-biomass_CHP_energy_energetic-(biomass)
-(loss)-biomass_CHP_energy_energetic
-(steam_hot_water)-biomass_CHP_energy_energetic
-(electricity)-biomass_CHP_energy_energetic
+wood_pellets_chp_energy_energetic;	wood_pellets_chp;	energy;	energetic;central CHPs;	electricity_production,central_production,cost_chps
+wood_pellets_chp_energy_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+wood_pellets_chp_energy_energetic-(wood_pellets)
+(loss)-wood_pellets_chp_energy_energetic
+(steam_hot_water)-wood_pellets_chp_energy_energetic
+(electricity)-wood_pellets_chp_energy_energetic
 
-biomass_CHP_other_energetic;	biomass_CHP;	other;	energetic;local CHPs;	electricity_production,decentral_production,cost_chps
-biomass_CHP_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy
-biomass_CHP_other_energetic-(biomass)
-(loss)-biomass_CHP_other_energetic
-(steam_hot_water)-biomass_CHP_other_energetic
-(electricity)-biomass_CHP_other_energetic
+wood_pellets_chp_other_energetic;	wood_pellets_chp;	other;	energetic;local CHPs;	electricity_production,decentral_production,cost_chps
+wood_pellets_chp_other_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy
+wood_pellets_chp_other_energetic-(wood_pellets)
+(loss)-wood_pellets_chp_other_energetic
+(steam_hot_water)-wood_pellets_chp_other_energetic
+(electricity)-wood_pellets_chp_other_energetic
 
-coal_CHP_industry_energetic;	coal_CHP;	industry;	energetic;central CHPs;	electricity_production,decentral_production,cost_chps
-coal_CHP_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy
-coal_CHP_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
-coal_CHP_industry_energetic-(torrified_biomass_pellets)
-coal_CHP_industry_energetic-(coal)
-(loss)-coal_CHP_industry_energetic
-(steam_hot_water)-coal_CHP_industry_energetic
-(electricity)-coal_CHP_industry_energetic
+coal_chp_industry_energetic;	coal_chp;	industry;	energetic;central CHPs;	electricity_production,decentral_production,cost_chps
+coal_chp_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy
+coal_chp_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
+coal_chp_industry_energetic-(torrified_biomass_pellets)
+coal_chp_industry_energetic-(coal)
+(loss)-coal_chp_industry_energetic
+(steam_hot_water)-coal_chp_industry_energetic
+(electricity)-coal_chp_industry_energetic
 
 biomass_cooking_households_energetic;	biomass_cooking;	households;	energetic;technologies;	
 biomass_cooking_households_energetic-(wood_pellets) -- s --> (wood_pellets)-biomass_for_cooking_households_energetic

@@ -32,7 +32,7 @@ heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heate
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_households_energetic: {share: 5.06175980460324e-06}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_addon_households_energetic: {share: 0.000236724242305426}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-heat_from_steam_hot_water_households_energetic: {share: 0.255114969595747}
-heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-micro_CHP_production_households: {share: 0.0}
+heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-micro_chp_space_heating_households: {share: 0.0}
 heating_demand_households_energetic-(useable_heat) -- s --> (useable_heat)-gas_fired_heater_households_energetic: {share: 0.0}
 
 :led_lighting_households_energetic:
@@ -578,11 +578,11 @@ central_gas_chp_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_chp_industry_energetic-(biomass): {conversion: 1.0}
+biomass_chp_industry_energetic-(wood_pellets): {conversion: 1.0}
 (loss)-biomass_chp_industry_energetic: {conversion: 0.142}
 (steam_hot_water)-biomass_chp_industry_energetic: {conversion: 0.432}
 (electricity)-biomass_chp_industry_energetic: {conversion: 0.426}
-biomass_chp_industry_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+biomass_chp_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :truck_kms_demand_transport_energetic:
   :co2_free: 0.0
@@ -958,7 +958,7 @@ heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-dis
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_gas_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_waste_energy_energetic: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-district_heater_biomass_energy_energetic: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_energy_energetic: {share: }
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-wood_pellets_chp_energy_energetic: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-heat_import_energy: {share: }
 
 :waste_incinerator_energy_energetic:
@@ -1040,7 +1040,7 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-nuclear_conv_
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-ccgt_ccs_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-lignite_chp_energy: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-oil_chp_energy: {share: 0.0}
-hv_electricity_network_energy-(electricity) -- c --> (electricity)-biomass_CHP_energy_energetic: {share: 0.0}
+hv_electricity_network_energy-(electricity) -- c --> (electricity)-wood_pellets_chp_energy_energetic: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-diesel_generator_energy_energetic: {share: 0.0}
 hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_turbine_energy_energetic: {share: 0.0}
 
@@ -1071,13 +1071,13 @@ hv_electricity_network_energy-(electricity) -- c --> (electricity)-gas_turbine_e
   :availability: 0.88
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
-coal_pwd_energy-(biomass): {conversion: 0.0}
+coal_pwd_energy-(wood_pellets): {conversion: 0.0}
 coal_pwd_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_pwd_energy-(coal): {conversion: 1.0}
 (loss)-coal_pwd_energy: {conversion: 0.54}
 (steam_hot_water)-coal_pwd_energy: {conversion: 0.0}
 (electricity)-coal_pwd_energy: {conversion: 0.46}
-coal_pwd_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+coal_pwd_energy-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 coal_pwd_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_pwd_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
 
@@ -1628,11 +1628,11 @@ wind_offshore_energy-(wind) -- s --> (wind)-air_environment_energetic: {share: 1
   :availability: 0.89
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
-co_firing_coal_energy-(biomass): {conversion: 1.0}
+co_firing_coal_energy-(wood_pellets): {conversion: 1.0}
 (loss)-co_firing_coal_energy: {conversion: 0.67}
 (steam_hot_water)-co_firing_coal_energy: {conversion: 0.0}
 (electricity)-co_firing_coal_energy: {conversion: 0.33}
-co_firing_coal_energy-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+co_firing_coal_energy-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :solar_csp_energy:
   :co2_free: 0.0
@@ -3640,11 +3640,11 @@ collective_gas_chp_households_energetic-(network_gas) -- s --> (network_gas)-nat
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-collective_biomass_chp_households_energetic-(biomass): {conversion: 1.0}
+collective_biomass_chp_households_energetic-(wood_pellets): {conversion: 1.0}
 (loss)-collective_biomass_chp_households_energetic: {conversion: 0.3}
 (steam_hot_water)-collective_biomass_chp_households_energetic: {conversion: 0.4}
 (electricity)-collective_biomass_chp_households_energetic: {conversion: 0.3}
-collective_biomass_chp_households_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+collective_biomass_chp_households_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :collective_geothermal_households_energetic:
   :co2_free: 0.0
@@ -4178,7 +4178,7 @@ biomass_chp_buildings_energetic-(wood_pellets): {conversion: 1.0}
 (electricity)-biomass_chp_buildings_energetic: {conversion: 0.23}
 (steam_hot_water)-biomass_chp_buildings_energetic: {conversion: 0.35}
 (loss)-biomass_chp_buildings_energetic: {conversion: 0.42}
-biomass_chp_buildings_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+biomass_chp_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
 :solarthermic_buildings_energetic:
   :co2_free: 0.0
@@ -4258,7 +4258,7 @@ gasheatpump_ts_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buil
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-wood_pellets_fired_heater_buildings_energetic-(biomass): {conversion: 1.0}
+wood_pellets_fired_heater_buildings_energetic-(wood_pellets): {conversion: 1.0}
 (useable_heat)-wood_pellets_fired_heater_buildings_energetic: {conversion: 0.82}
 (loss)-wood_pellets_fired_heater_buildings_energetic: {conversion: 0.18}
 wood_pellets_fired_heater_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic: {share: 1.0}
@@ -4774,7 +4774,7 @@ available_electricity_households-(electricity) -- c --> (electricity)-local_sola
 available_electricity_households-(electricity) -- d --> (electricity)-collective_gas_chp_households_energetic: {share: }
 available_electricity_households-(electricity) -- d --> (electricity)-collective_biomass_chp_households_energetic: {share: }
 available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_hot_water_households_energetic: {share: }
-available_electricity_households-(electricity) -- d --> (electricity)-micro_CHP_production_households: {share: }
+available_electricity_households-(electricity) -- d --> (electricity)-micro_chp_space_heating_households: {share: }
 available_electricity_households-(electricity) -- d --> (electricity)-fuel_cell_chp_households_energetic: {share: }
 
 :hot_water_from_gas_buildings_energetic:
@@ -4937,7 +4937,7 @@ local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution
 local_e_production_industry-(electricity) -- c --> (electricity)-small_chp_industry_energetic: {share: 0.0}
 local_e_production_industry-(electricity) -- c --> (electricity)-biomass_chp_industry_energetic: {share: 828000000.0}
 local_e_production_industry-(electricity) -- c --> (electricity)-bio_oil_chp_industry_energetic: {share: 0.0}
-local_e_production_industry-(electricity) -- c --> (electricity)-coal_CHP_industry_energetic: {share: 0.0}
+local_e_production_industry-(electricity) -- c --> (electricity)-coal_chp_industry_energetic: {share: 0.0}
 
 :local_w_production_industry:
   :co2_free: 0.0
@@ -4947,7 +4947,7 @@ local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_c
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic: {share: }
 local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: }
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic: {share: }
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_CHP_industry_energetic: {share: }
+local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_industry_energetic: {share: }
 
 :used_restheat_decentral_production_energy:
   :co2_free: 0.0
@@ -4969,7 +4969,7 @@ restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water
 restheat_decentral_production_energy-(steam_hot_water) -- i --> (steam_hot_water)-unused_CHPs_heat_agriculture_agriculture_energetic: {share: }
 restheat_decentral_production_energy-(steam_hot_water) -- f --> (steam_hot_water)-backup_burner_heat_network_energy: {share: }
 
-:micro_CHP_production_households:
+:micro_chp_space_heating_households:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 15.0
@@ -4996,12 +4996,12 @@ restheat_decentral_production_energy-(steam_hot_water) -- f --> (steam_hot_water
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-micro_CHP_production_households-(network_gas): {conversion: 1.0}
-(loss)-micro_CHP_production_households: {conversion: -0.0670000000000002}
-(electricity)-micro_CHP_production_households: {conversion: 0.174922}
-(useable_heat)-micro_CHP_production_households: {conversion: 0.892078}
-micro_CHP_production_households-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 0.163938144329897}
-micro_CHP_production_households-(network_gas) -- f --> (network_gas)-gas_for_heating_households_energetic: {share: }
+micro_chp_space_heating_households-(network_gas): {conversion: 1.0}
+(loss)-micro_chp_space_heating_households: {conversion: -0.0670000000000002}
+(electricity)-micro_chp_space_heating_households: {conversion: 0.174922}
+(useable_heat)-micro_chp_space_heating_households: {conversion: 0.892078}
+micro_chp_space_heating_households-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 0.163938144329897}
+micro_chp_space_heating_households-(network_gas) -- f --> (network_gas)-gas_for_heating_households_energetic: {share: }
 
 :decentral_heat_other:
   :co2_free: 0.0
@@ -5009,7 +5009,7 @@ decentral_heat_other-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-decentral_heat_other: {conversion: 1.0}
 decentral_heat_other-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: }
 decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-chp_other_other_energetic: {share: }
-decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-biomass_CHP_other_energetic: {share: }
+decentral_heat_other-(steam_hot_water) -- d --> (steam_hot_water)-wood_pellets_chp_other_energetic: {share: }
 
 :local_e_production_other:
   :co2_free: 0.0
@@ -5017,7 +5017,7 @@ local_e_production_other-(electricity): {conversion: 1.0}
 (electricity)-local_e_production_other: {conversion: 1.0}
 local_e_production_other-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic: {share: }
 local_e_production_other-(electricity) -- c --> (electricity)-chp_other_other_energetic: {share: 0.0}
-local_e_production_other-(electricity) -- c --> (electricity)-biomass_CHP_other_energetic: {share: 0.0}
+local_e_production_other-(electricity) -- c --> (electricity)-wood_pellets_chp_other_energetic: {share: 0.0}
 
 :local_e_production_buildings:
   :co2_free: 0.0
@@ -5286,12 +5286,12 @@ district_heater_waste_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_di
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-district_heater_biomass_energy_energetic-(biomass): {conversion: 1.0}
+district_heater_biomass_energy_energetic-(wood_pellets): {conversion: 1.0}
 (steam_hot_water)-district_heater_biomass_energy_energetic: {conversion: 0.812}
 (loss)-district_heater_biomass_energy_energetic: {conversion: 0.188}
-district_heater_biomass_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+district_heater_biomass_energy_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
-:biomass_CHP_energy_energetic:
+:wood_pellets_chp_energy_energetic:
   :co2_free: 0.0
   :technical_lifetime: 15.0
   :construction_time: 0.0
@@ -5312,13 +5312,13 @@ district_heater_biomass_energy_energetic-(biomass) -- s --> (biomass)-biomass_di
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_CHP_energy_energetic-(biomass): {conversion: 1.0}
-(loss)-biomass_CHP_energy_energetic: {conversion: 0.35}
-(steam_hot_water)-biomass_CHP_energy_energetic: {conversion: 0.35}
-(electricity)-biomass_CHP_energy_energetic: {conversion: 0.3}
-biomass_CHP_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+wood_pellets_chp_energy_energetic-(wood_pellets): {conversion: 1.0}
+(loss)-wood_pellets_chp_energy_energetic: {conversion: 0.35}
+(steam_hot_water)-wood_pellets_chp_energy_energetic: {conversion: 0.35}
+(electricity)-wood_pellets_chp_energy_energetic: {conversion: 0.3}
+wood_pellets_chp_energy_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
-:biomass_CHP_other_energetic:
+:wood_pellets_chp_other_energetic:
   :co2_free: 0.0
   :technical_lifetime: 15.0
   :construction_time: 0.0
@@ -5339,13 +5339,13 @@ biomass_CHP_energy_energetic-(biomass) -- s --> (biomass)-biomass_distribution_e
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-biomass_CHP_other_energetic-(biomass): {conversion: 1.0}
-(loss)-biomass_CHP_other_energetic: {conversion: 0.418}
-(steam_hot_water)-biomass_CHP_other_energetic: {conversion: 0.35}
-(electricity)-biomass_CHP_other_energetic: {conversion: 0.232}
-biomass_CHP_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_energy: {share: 1.0}
+wood_pellets_chp_other_energetic-(wood_pellets): {conversion: 1.0}
+(loss)-wood_pellets_chp_other_energetic: {conversion: 0.418}
+(steam_hot_water)-wood_pellets_chp_other_energetic: {conversion: 0.35}
+(electricity)-wood_pellets_chp_other_energetic: {conversion: 0.232}
+wood_pellets_chp_other_energetic-(wood_pellets) -- s --> (wood_pellets)-woodpellet_distribution_energy: {share: 1.0}
 
-:coal_CHP_industry_energetic:
+:coal_chp_industry_energetic:
   :co2_free: 0.0
   :technical_lifetime: 15.0
   :construction_time: 0.0
@@ -5366,13 +5366,13 @@ biomass_CHP_other_energetic-(biomass) -- s --> (biomass)-biomass_distribution_en
   :availability: 0.97
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-coal_CHP_industry_energetic-(torrified_biomass_pellets): {conversion: 0.0}
-coal_CHP_industry_energetic-(coal): {conversion: 1.0}
-(loss)-coal_CHP_industry_energetic: {conversion: 0.418}
-(steam_hot_water)-coal_CHP_industry_energetic: {conversion: 0.35}
-(electricity)-coal_CHP_industry_energetic: {conversion: 0.232}
-coal_CHP_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
-coal_CHP_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
+coal_chp_industry_energetic-(torrified_biomass_pellets): {conversion: 0.0}
+coal_chp_industry_energetic-(coal): {conversion: 1.0}
+(loss)-coal_chp_industry_energetic: {conversion: 0.418}
+(steam_hot_water)-coal_chp_industry_energetic: {conversion: 0.35}
+(electricity)-coal_chp_industry_energetic: {conversion: 0.232}
+coal_chp_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
+coal_chp_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
 
 :biomass_cooking_households_energetic:
   :co2_free: 0.0
