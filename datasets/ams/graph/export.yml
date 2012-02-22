@@ -1929,13 +1929,10 @@ oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energ
 
 :bio_residues_distribution_energy:
   :co2_free: 0.0
-  :preset_demand: 0.0
-  :demand: 0.0
-bio_residues_distribution_energy-(loss): {conversion: 0.0}
-(loss)-bio_residues_distribution_energy: {conversion: 0.0}
+bio_residues_distribution_energy-(wood_pellets): {conversion: 0.0}
+(wood_pellets)-bio_residues_distribution_energy: {conversion: 1.0}
 bio_residues_distribution_energy-(bio_residues_for_firing): {conversion: 1.0}
-(bio_residues_for_firing)-bio_residues_distribution_energy: {conversion: 1.0}
-bio_residues_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_production_energy: {share: }
+bio_residues_distribution_energy-(bio_residues_for_firing) -- s --> (bio_residues_for_firing)-bio_residues_production_energy: {share: 1.0}
 bio_residues_distribution_energy-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-bio_residues_import_energy: {share: }
 
 :greengas_distribution_energy:
@@ -5578,6 +5575,7 @@ wood_pellets_distribution_energy-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-wood_pellets_distribution_energy: {conversion: 1.0}
 wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-wood_pellets_production_energy: {share: 0.0}
 wood_pellets_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-wood_pellets_import_energy: {share: }
+wood_pellets_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_distribution_energy: {share: }
 
 :wood_pellets_production_energy:
   :co2_free: 0.0
@@ -5987,19 +5985,26 @@ monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (st
   :demand_expected_value: 0.0
   :technical_lifetime: 30.0
   :construction_time: 2.5
+  :ccs_investment_per_mw_input: 0.0
   :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :typical_nominal_input_capacity: 1777.77777777778
+  :decommissioning_costs_per_mw_input: 0.0
   :full_load_hours: 3504.0
+  :residual_value_per_mw_input: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 8471.03758269265
   :wacc: 0.1
   :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :land_use_per_unit: 0.3
+  :installing_costs_per_mw_input: 0.0
+  :purchase_price_per_mw_input: 220500.0
   :economic_lifetime: 30.0
   :part_ets: 1.0
   :availability: 0.89
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
 diesel_generator_energy_energetic-(diesel): {conversion: 1.0}
-(electricity)-diesel_generator_energy_energetic: {conversion: 0.0}
-(loss)-diesel_generator_energy_energetic: {conversion: 1.0}
+(electricity)-diesel_generator_energy_energetic: {conversion: 0.45}
+(loss)-diesel_generator_energy_energetic: {conversion: 0.55}
 diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport: {share: 1.0}
 
 :gas_turbine_energy_energetic:
@@ -6007,19 +6012,26 @@ diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution
   :demand_expected_value: 0.0
   :technical_lifetime: 50.0
   :construction_time: 1.0
+  :ccs_investment_per_mw_input: 0.0
   :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :typical_nominal_input_capacity: 441.176470588235
+  :decommissioning_costs_per_mw_input: 0.0
   :full_load_hours: 1000.0
+  :residual_value_per_mw_input: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 2452.08
   :wacc: 0.1
   :operation_and_maintenance_cost_variable_per_full_load_hour: 454.0
   :land_use_per_unit: 0.1
+  :installing_costs_per_mw_input: 0.0
+  :purchase_price_per_mw_input: 204000.0
   :economic_lifetime: 50.0
   :part_ets: 1.0
   :availability: 0.89
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
 gas_turbine_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
-(electricity)-gas_turbine_energy_energetic: {conversion: 0.0}
-(loss)-gas_turbine_energy_energetic: {conversion: 1.0}
+(electricity)-gas_turbine_energy_energetic: {conversion: 0.34}
+(loss)-gas_turbine_energy_energetic: {conversion: 0.66}
 gas_turbine_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :final_demand_of_coal_transport_energetic:
