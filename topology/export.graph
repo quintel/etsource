@@ -688,12 +688,11 @@ oil_distribution_energy-(crude_oil)
 (loss)-oil_distribution_energy
 
 bio_residues_distribution_energy;	bio_residues_distribution;	energy;	undefined;distribution primary carriers;	biofuel_distribution
-bio_residues_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_production_energy
+bio_residues_distribution_energy-(bio_residues_for_firing) -- s --> (bio_residues_for_firing)-bio_residues_production_energy
 bio_residues_distribution_energy-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-bio_residues_import_energy
-bio_residues_distribution_energy-(loss)
-(loss)-bio_residues_distribution_energy
+bio_residues_distribution_energy-(wood_pellets)
+(wood_pellets)-bio_residues_distribution_energy
 bio_residues_distribution_energy-(bio_residues_for_firing)
-(bio_residues_for_firing)-bio_residues_distribution_energy
 
 greengas_distribution_energy;	greengas_distribution;	energy;	undefined;distribution primary carriers;	
 greengas_distribution_energy-(greengas) -- f --> (greengas)-greengas_import_export_energy
@@ -2317,6 +2316,7 @@ biocoal_import_energy-(torrified_biomass_pellets)
 wood_pellets_distribution_energy;	wood_pellets_distribution;	energy;	undefined;;	biofuel_distribution
 wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-wood_pellets_production_energy
 wood_pellets_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-wood_pellets_import_energy
+wood_pellets_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_distribution_energy
 wood_pellets_distribution_energy-(wood_pellets)
 (wood_pellets)-wood_pellets_distribution_energy
 

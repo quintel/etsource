@@ -1929,13 +1929,10 @@ oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energ
 
 :bio_residues_distribution_energy:
   :co2_free: 0.0
-  :preset_demand: 0.0
-  :demand: 0.0
-bio_residues_distribution_energy-(loss): {conversion: 0.0}
-(loss)-bio_residues_distribution_energy: {conversion: 0.0}
+bio_residues_distribution_energy-(wood_pellets): {conversion: 0.0}
+(wood_pellets)-bio_residues_distribution_energy: {conversion: 1.0}
 bio_residues_distribution_energy-(bio_residues_for_firing): {conversion: 1.0}
-(bio_residues_for_firing)-bio_residues_distribution_energy: {conversion: 1.0}
-bio_residues_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_production_energy: {share: }
+bio_residues_distribution_energy-(bio_residues_for_firing) -- s --> (bio_residues_for_firing)-bio_residues_production_energy: {share: 1.0}
 bio_residues_distribution_energy-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-bio_residues_import_energy: {share: }
 
 :greengas_distribution_energy:
@@ -5585,6 +5582,7 @@ wood_pellets_distribution_energy-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-wood_pellets_distribution_energy: {conversion: 1.0}
 wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-wood_pellets_production_energy: {share: 0.0}
 wood_pellets_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-wood_pellets_import_energy: {share: }
+wood_pellets_distribution_energy-(bio_residues_for_firing) -- c --> (bio_residues_for_firing)-bio_residues_distribution_energy: {share: }
 
 :wood_pellets_production_energy:
   :co2_free: 0.0
@@ -6018,7 +6016,7 @@ diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution
 
 :gas_turbine_energy_energetic:
   :co2_free: 0.0
-  :demand_expected_value: 0.141176470588235
+  :demand_expected_value: 508235294.117647
   :technical_lifetime: 50.0
   :construction_time: 1.0
   :ccs_investment_per_mw_input: 0.0
