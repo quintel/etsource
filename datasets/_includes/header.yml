@@ -1,24 +1,3 @@
-:mixins:
-  
-  ## PEAK LOADS
+# header. contents of this file are included in every dataset file.
+# these mixins/variables will be loaded on top of every file
 
-  :simult_swde: &simult_swde
-    :simult_sd: 1.0
-    :simult_se: 1.0
-    :simult_wd: 1.0
-    :simult_we: 1.0
-
-  :include_peak_loads: &include_peak_loads
-    # Now we can choose to enable/disable peak loads for a country
-    # simply by including it with "<<: *include_peak_loads"
-    :gas_conv_energy_energetic: 
-      <<: *simult_swde
-
-    :waste_incinerator_energy_energetic: 
-      <<: *simult_swde
-
-    :coal_pwd_energy: 
-      <<: *simult_swde
-
-    :coal_conv_energy: 
-      <<: *simult_swde
