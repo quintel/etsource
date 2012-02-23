@@ -59,13 +59,13 @@ end
 # Conversion of output slot. Unit: 1
 # Excel column U
 def output_conversion(converter_key, input_carrier, output_carrier)
-  val("(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
+  val(:graph, "(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
 end
 
 # Conversion of input slot. Unit: 1
 # Excel column R:
 def input_conversion(converter_key, input_carrier, output_carrier)
-  val("#{converter_key}-(#{input_carrier})", :conversion) 
+  val(:graph, "#{converter_key}-(#{input_carrier})", :conversion) 
 end
 
 # Effective efficiency between the useful output carrier and the leading input carrier. Note: called effective because it can be >1 for heatpumps. Unit: 1
@@ -174,10 +174,6 @@ end
 
 # --- END Function Definitions ------------------------------------
 
-
-
-
-
 # --- demand_expected_value -------------------------------
 
 # Generate demand_expected_values for all the household converters.
@@ -193,22 +189,22 @@ wizard_config[:households].each do |application, config|
       # Do not intend YAML lines, this would screw up the yaml structure
 %>
 
-:<%= converter %>:
-  # expected demand. thus not influence graph calculation
-  demand_expected_value: <%= expected_demand(*attrs) %>
-  <% if (wizard_config[:ambient_heat][application][carrier].include?(converter) rescue false) %>
-  ambient_heat_input: <%= ambient_heat_consumption(converter, carrier, application_carrier) %>
-  <% end %>
-  # -- adding results of helper calculations to converter, so we can debug values
-  # prepend names with debug_ so they will not mess up with other attributes
-  debug_output_split: <%= output_split(*attrs) %>
-  debug_carrier_for_application:  <%= carrier_for_application(carrier, application_carrier) %>
-  debug_input_split:  <%= input_split(converter.to_sym, carrier, application_carrier) %>
-  debug_input:        <%= input(converter.to_sym, carrier, application_carrier) %>
-  debug_effective_efficiency:  <%= effective_efficiency(converter.to_sym, carrier, application_carrier) %>
-  debug_output:       <%= output(converter.to_sym, carrier, application_carrier) %>
-  debug_output_share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
-  
+graph:
+  :<%= converter %>:
+    # expected demand. thus not influence graph calculation
+    demand_expected_value: <%= expected_demand(*attrs) %>
+    <% if (wizard_config[:ambient_heat][application][carrier].include?(converter) rescue false) %>
+    ambient_heat_input: <%= ambient_heat_consumption(converter, carrier, application_carrier) %>
+    <% end %>
+    # -- adding results of helper calculations to converter, so we can debug values
+    # prepend names with debug_ so they will not mess up with other attributes
+    debug_output_split: <%= output_split(*attrs) %>
+    debug_carrier_for_application:  <%= carrier_for_application(carrier, application_carrier) %>
+    debug_input_split:  <%= input_split(converter.to_sym, carrier, application_carrier) %>
+    debug_input:        <%= input(converter.to_sym, carrier, application_carrier) %>
+    debug_effective_efficiency:  <%= effective_efficiency(converter.to_sym, carrier, application_carrier) %>
+    debug_output:       <%= output(converter.to_sym, carrier, application_carrier) %>
+    debug_output_share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
 
 <%
     end # converters
@@ -220,22 +216,21 @@ end # wizard_config[:households]
 # In output_shares we define the "parent" converters for each application referenced
 # by the carrier. Iterate through all applications defined, then create a link
 # for every converter of that application.
-
 <% 
 wizard_config[:households].each do |application, config|
   config[:parents].each do |application_carrier, left_converter| %>
 
-# --- Application Parents with links ----------------------------------
-
-:<%= left_converter %>:
-  :demand_expected_value: <%= sum_of_output(application_carrier)  %>
+  # --- Application Parents with links ----------------------------------
+graph:
+  :<%= left_converter %>:
+    :demand_expected_value: <%= sum_of_output(application_carrier)  %>
   
   <%
   config[:section].each do |carrier, converters|
     converters.each do |converter| %> 
 
-<%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}" %>:
-  share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
+  <%= "#{left_converter}-(#{application_carrier}) -- s --> (#{application_carrier})-#{converter}" %>:
+    share: <%= output_share(converter.to_sym, carrier, application_carrier) %>
   
 <%    end # converters
     end # wizard_config[:households][application][:section]
@@ -247,17 +242,17 @@ end # wizard_config[:households] %>
 # MdH: HELP!! Now the use of :hot_water becomes very confusing "sum_of_output(:hot_water)"  
 # I would expect to result in the value in cell L131, but it does give the value in cell L126. Which is correct here, just very confusing. Can we think of a smarter way? Maybe refer to the converter which demands the sum (hot_water_devices for L126, hot_water_demand_HH for L131)?
 <% hot_water_total = sum_of_output(:hot_water) + carrier_for_application(:solar_thermal, :hot_water) %>
+graph:
+  :hot_water_demand_households_energetic:
+    :expected_demand: <%= hot_water_total %>
 
-:hot_water_demand_households_energetic:
-  :expected_demand: <%= hot_water_total %>
+  hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-hot_water_devices_households_energetic: 
+    share: <%= sum_of_output(:hot_water) / hot_water_total %>
 
-hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-hot_water_devices_households_energetic: 
-  share: <%= sum_of_output(:hot_water) / hot_water_total %>
+  :solar_panel_for_hot_water_households_energetic:
+    :expected_demand: <%= carrier_for_application(:solar_thermal, :hot_water) %>
 
-:solar_panel_for_hot_water_households_energetic:
-  :expected_demand: <%= carrier_for_application(:solar_thermal, :hot_water) %>
-
-hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: 
-  share: <%= carrier_for_application(:solar_thermal, :hot_water) / hot_water_total %>
+  hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: 
+    share: <%= carrier_for_application(:solar_thermal, :hot_water) / hot_water_total %>
 
 
