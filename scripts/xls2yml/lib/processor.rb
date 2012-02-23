@@ -69,7 +69,11 @@ module ETE
       end
       dest_file = "#{destination_directory}/time_curves.yml"
       puts "  Saving timecurves to #{dest_file}"
-      File.open(dest_file, 'w') {|f| f.write({'time_curves' => out}.to_yaml)}
+      File.open(dest_file, 'w') do |f| 
+        out = {'time_curves' => out}.to_yaml
+        out = out.gsub("---\n", "") # get rid of the initial ---
+        f.write(out)
+      end
     end
 
     # writes to ETSOURCE/topology/export.graph
