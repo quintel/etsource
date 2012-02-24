@@ -509,13 +509,6 @@ heatpump_boiler_using_city_heat_households_energetic-(steam_hot_water)
 (hot_water)-heatpump_boiler_using_city_heat_households_energetic
 (loss)-heatpump_boiler_using_city_heat_households_energetic
 
-bio_oil_chp_industry_energetic;	bio_oil_chp;	industry;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps
-bio_oil_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
-bio_oil_chp_industry_energetic-(bio_oil)
-(loss)-bio_oil_chp_industry_energetic
-(steam_hot_water)-bio_oil_chp_industry_energetic
-(electricity)-bio_oil_chp_industry_energetic
-
 interconnection_energy;	interconnection;	energy;	undefined;;	cost_other
 interconnection_energy-(imported_electricity) -- s --> (imported_electricity)-electricity_import_export_energy
 interconnection_energy-(imported_electricity)
@@ -2018,7 +2011,6 @@ local_e_production_industry;	local_e_production;	industry;	undefined;local power
 local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic
 local_e_production_industry-(electricity) -- c --> (electricity)-small_chp_industry_energetic
 local_e_production_industry-(electricity) -- c --> (electricity)-biomass_chp_industry_energetic
-local_e_production_industry-(electricity) -- c --> (electricity)-bio_oil_chp_industry_energetic
 local_e_production_industry-(electricity) -- c --> (electricity)-coal_chp_industry_energetic
 local_e_production_industry-(electricity)
 (electricity)-local_e_production_industry
@@ -2027,7 +2019,6 @@ local_w_production_industry;	local_w_production;	industry;	undefined;local power
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_chp_industry_energetic
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic
 local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_industry_energetic
 local_w_production_industry-(steam_hot_water)
 (steam_hot_water)-local_w_production_industry
