@@ -17,7 +17,7 @@ class Xls2yml
 
   def setup_cli
     opts = Trollop::options do
-      version 'xls2yml 0.0.2'
+      version 'xls2yml 0.0.3'
       banner <<-EOS
 
 XLS2YML

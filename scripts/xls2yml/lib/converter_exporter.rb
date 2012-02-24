@@ -267,9 +267,10 @@ module ETE
     # with those defined in datasets/nl/carriers.yml. It would be nicer to use a
     # generic locations such as datasets/_defaults or something similar
     def predefined_carriers
-      full_yaml = File.read("#{@etsource_root}/datasets/_defaults/carriers.yml") + "\n" +
-                  File.read("#{@etsource_root}/datasets/nl/carriers.yml")
-      @predefined_carriers ||= YAML::load(full_yaml)[:carriers].keys
+      return @predefined_carriers if @predefined_carriers
+      defaults = YAML::load File.read("#{@etsource_root}/datasets/_defaults/carriers/defaults.yml")
+      nl_carriers = YAML::load File.read("#{@etsource_root}/datasets/nl/carriers.yml")
+      @predefined_carriers = (defaults.merge(nl_carriers[:carriers])).keys
     end
 
     def uses
