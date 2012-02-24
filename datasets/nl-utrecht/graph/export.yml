@@ -1423,39 +1423,6 @@ heatpump_boiler_using_city_heat_households_energetic-(steam_hot_water): {convers
 (loss)-heatpump_boiler_using_city_heat_households_energetic: {conversion: 0.0}
 heatpump_boiler_using_city_heat_households_energetic-(steam_hot_water) -- s --> (steam_hot_water)-monitized_heat_for_hot_water_households_energetic: {share: 1.0}
 
-:bio_oil_chp_industry_energetic:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-  :technical_lifetime: 15.0
-  :construction_time: 1.5
-  :ccs_investment_per_mw_input: 0.0
-  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
-  :typical_nominal_input_capacity: 118.421052631579
-  :decommissioning_costs_per_mw_input: 0.0
-  :full_load_hours: 6375.0
-  :residual_value_per_mw_input: 0.0
-  :operation_and_maintenance_cost_fixed_per_mw_input: 50065.0
-  :wacc: 0.1
-  :operation_and_maintenance_cost_variable_per_full_load_hour: 153.0
-  :land_use_per_unit: 0.1
-  :installing_costs_per_mw_input: 0.0
-  :purchase_price_per_mw_input: 513000.0
-  :economic_lifetime: 15.0
-  :part_ets: 0.0
-  :simult_sd: 0.75
-  :simult_se: 0.75
-  :simult_wd: 0.75
-  :simult_we: 0.75
-  :peak_load_units_present: 0.0
-  :availability: 0.97
-  :variability: 0.0
-  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-bio_oil_chp_industry_energetic-(bio_oil): {conversion: 1.0}
-(loss)-bio_oil_chp_industry_energetic: {conversion: 0.16}
-(steam_hot_water)-bio_oil_chp_industry_energetic: {conversion: 0.38}
-(electricity)-bio_oil_chp_industry_energetic: {conversion: 0.46}
-bio_oil_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-
 :interconnection_energy:
   :co2_free: 0.0
   :network_capacity_available_in_mw: 0.0
@@ -1920,10 +1887,10 @@ uranium_import_energy-(uranium_oxide): {conversion: 1.0}
 
 :oil_distribution_energy:
   :co2_free: 0.0
-  :demand_expected_value: 50006097138.1051
+  :demand_expected_value: 49258933722.2335
 oil_distribution_energy-(crude_oil): {conversion: 1.0}
-(crude_oil)-oil_distribution_energy: {conversion: 0.999930406591648}
-(loss)-oil_distribution_energy: {conversion: 6.95934083523246e-05}
+(crude_oil)-oil_distribution_energy: {conversion: 0.999929350993307}
+(loss)-oil_distribution_energy: {conversion: 7.06490066931227e-05}
 oil_distribution_energy-(crude_oil) -- c --> (crude_oil)-oil_extraction_energy: {share: }
 oil_distribution_energy-(crude_oil) -- f --> (crude_oil)-oil_import_export_energy: {share: }
 
@@ -4934,7 +4901,6 @@ local_e_production_industry-(electricity): {conversion: 1.0}
 local_e_production_industry-(electricity) -- f --> (electricity)-mv_distribution_network_energy_energetic: {share: }
 local_e_production_industry-(electricity) -- c --> (electricity)-small_chp_industry_energetic: {share: 0.0}
 local_e_production_industry-(electricity) -- c --> (electricity)-biomass_chp_industry_energetic: {share: 224100000.0}
-local_e_production_industry-(electricity) -- c --> (electricity)-bio_oil_chp_industry_energetic: {share: 0.0}
 local_e_production_industry-(electricity) -- c --> (electricity)-coal_chp_industry_energetic: {share: 0.0}
 
 :local_w_production_industry:
@@ -4944,7 +4910,6 @@ local_w_production_industry-(steam_hot_water): {conversion: 1.0}
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-small_chp_industry_energetic: {share: }
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-biomass_chp_industry_energetic: {share: }
 local_w_production_industry-(steam_hot_water) -- f --> (steam_hot_water)-heat_network_industry_energetic: {share: }
-local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-bio_oil_chp_industry_energetic: {share: }
 local_w_production_industry-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_industry_energetic: {share: }
 
 :used_restheat_decentral_production_energy:
