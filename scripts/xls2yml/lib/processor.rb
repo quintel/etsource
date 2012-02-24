@@ -69,7 +69,7 @@ module ETE
       end
       dest_file = "#{destination_directory}/time_curves.yml"
       puts "  Saving timecurves to #{dest_file}"
-      File.open(dest_file, 'w') do |f| 
+      File.open(dest_file, 'w') do |f|
         out = {'time_curves' => out}.to_yaml
         out = out.gsub("---\n", "") # get rid of the initial ---
         f.write(out)
@@ -100,7 +100,7 @@ module ETE
 
     # writes to ETSOURCE/datasets/_default/graph/export.yml
     def export_excel_ids(area_export)
-      output_file = "#{@etsource_dir}/datasets/_defaults/graph/export.yml"
+      output_file = "#{@etsource_dir}/datasets/_defaults/graph/excel_ids.yml"
       puts "  Generating excel ids in #{output_file}"
       converter_exporter = ConverterExporter.new(area_export)
       raw = converter_exporter.converters
