@@ -1,7 +1,5 @@
-- deprecated_key = cost_torrefaction
-# With torrefaction coal is replaced by biomass. Additional costs are 20% of the biomass price. 
-# 
-# Therefore costs of torrefacted biocoal per mj are calculated by taking 120% of the biomass price minus the coal prices. converted into biocoal.
+# With torrefaction coal is replaced by wood_pellets. Additional costs are 20% of the wood_pellets price. 
+# Therefore costs of torrefacted biocoal per mj are calculated by taking 120% of the wood_pellets price minus the coal prices.
 
 - unit = euro
 
@@ -9,7 +7,7 @@ PRODUCT(
         V(torrefaction_energy;output_of_torrified_biomass_pellets)
         ,
         SUM(
-            V(CARRIER(biomass);cost_per_mj *12/10)
+            V(CARRIER(wood_pellets);cost_per_mj *12/10)
             ,
             NEG(V(CARRIER(coal);cost_per_mj))
             )
