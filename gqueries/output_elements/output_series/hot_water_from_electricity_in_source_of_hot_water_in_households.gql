@@ -1,6 +1,13 @@
-- deprecated_key = chart_hot_water_from_electricity_65_hot_water_demand_590
 # 
 
 - unit = pj
 
-DIVIDE(PRODUCT(DIVIDE(Q(electricity_used_for_hot_water_in_households),Q(energy_used_for_hot_water_in_households)),V(hot_water_demand_households_energetic;input_of_hot_water)),BILLIONS)
+DIVIDE(
+  PRODUCT(
+    DIVIDE(
+      Q(electricity_used_for_hot_water_in_households),
+      Q(energy_used_for_hot_water_in_households)
+    ),
+  V(hot_water_demand_households_energetic;input_of_hot_water)
+  ),
+BILLIONS)
