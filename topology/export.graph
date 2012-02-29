@@ -650,7 +650,7 @@ bio_oil_distribution_energy-(bio_oil) -- f --> (bio_oil)-bio_oil_import_export_e
 bio_oil_distribution_energy-(bio_oil)
 (bio_oil)-bio_oil_distribution_energy
 
-oil_extraction_energy;	oil_extraction;	energy;	undefined;extraction;	primary_energy_demand,mining_and_extraction
+oil_extraction_energy;	oil_extraction;	energy;	undefined;extraction;	primary_energy_demand,mining_and_extraction,bio_footprint_calculation
 oil_extraction_energy-(loss)
 (loss)-oil_extraction_energy
 oil_extraction_energy-(crude_oil)
@@ -680,7 +680,7 @@ oil_distribution_energy-(crude_oil)
 (crude_oil)-oil_distribution_energy
 (loss)-oil_distribution_energy
 
-bio_residues_distribution_energy;	bio_residues_distribution;	energy;	undefined;distribution primary carriers;	bio_footprint_calculation
+bio_residues_distribution_energy;	bio_residues_distribution;	energy;	undefined;distribution primary carriers;	
 bio_residues_distribution_energy-(bio_residues_for_firing) -- s --> (bio_residues_for_firing)-bio_residues_production_energy
 bio_residues_distribution_energy-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-bio_residues_import_energy
 (wood_pellets)-bio_residues_distribution_energy
@@ -805,7 +805,7 @@ gas_import_export_energy;	gas_import_export;	energy;	undefined;;	primary_energy_
 gas_import_export_energy-(natural_gas)
 (natural_gas)-gas_import_export_energy
 
-bio_residues_import_energy;	bio_residues_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+bio_residues_import_energy;	bio_residues_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,bio_footprint_calculation,energy_import
 bio_residues_import_energy-(bio_residues_for_firing)
 (bio_residues_for_firing)-bio_residues_import_energy
 
@@ -2303,7 +2303,7 @@ biocoal_import_energy;	biocoal_import;	energy;	undefined;;	primary_energy_demand
 biocoal_import_energy-(torrified_biomass_pellets)
 (torrified_biomass_pellets)-biocoal_import_energy
 
-wood_pellets_distribution_energy;	wood_pellets_distribution;	energy;	undefined;;	bio_footprint_calculation
+wood_pellets_distribution_energy;	wood_pellets_distribution;	energy;	undefined;;	
 wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-wood_pellets_production_energy
 wood_pellets_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-wood_pellets_import_energy
 wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-bio_residues_distribution_energy
@@ -2315,7 +2315,7 @@ wood_pellets_production_energy-(wood) -- s --> (wood)-wood_distribution_energy
 (wood_pellets)-wood_pellets_production_energy
 wood_pellets_production_energy-(wood)
 
-wood_pellets_import_energy;	wood_pellets_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+wood_pellets_import_energy;	wood_pellets_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,bio_footprint_calculation,energy_import
 wood_pellets_import_energy-(wood_pellets)
 (wood_pellets)-wood_pellets_import_energy
 
@@ -2324,7 +2324,7 @@ wood_distribution_energy-(wood) -- s --> (wood)-wood_growth_energy
 wood_distribution_energy-(wood)
 (wood)-wood_distribution_energy
 
-wood_growth_energy;	wood_growth;	energy;	undefined;;	primary_energy_demand,mining_and_extraction
+wood_growth_energy;	wood_growth;	energy;	undefined;;	primary_energy_demand,mining_and_extraction,bio_footprint_calculation
 wood_growth_energy-(wood)
 (wood)-wood_growth_energy
 
@@ -2814,3 +2814,7 @@ electricity_for_electricity_other_energetic;	electricity_for_electricity;	other;
 electricity_for_electricity_other_energetic-(electricity) -- s --> (electricity)-electricity_other_energetic
 electricity_for_electricity_other_energetic-(electricity)
 (electricity)-electricity_for_electricity_other_energetic
+
+heat_from_monetized_heat_buildings_energetic;	heat_from_monetized_heat;	buildings;	energetic;application;	
+heat_from_monetized_heat_buildings_energetic-(useable_heat)
+(useable_heat)-heat_from_monetized_heat_buildings_energetic
