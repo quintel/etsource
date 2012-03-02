@@ -646,9 +646,9 @@ electric_trucks_transport_energetic-(electricity) -- s --> (electricity)-road_el
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.0
-diesel_trucks_transport_energetic-(diesel): {conversion: 1.0}
+diesel_trucks_transport_energetic-(diesel_mix): {conversion: 1.0}
 (truck_kms)-diesel_trucks_transport_energetic: {conversion: 0.409500409500409}
-diesel_trucks_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_transport_energetic: {share: 1.0}
+diesel_trucks_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-road_diesel_mixer_transport_energetic: {share: 1.0}
 
 :gasoline_trucks_transport_energetic:
   :co2_free: 0.0
@@ -665,9 +665,9 @@ diesel_trucks_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_t
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.0
-gasoline_trucks_transport_energetic-(gasoline): {conversion: 1.0}
+gasoline_trucks_transport_energetic-(gasoline_mix): {conversion: 1.0}
 (truck_kms)-gasoline_trucks_transport_energetic: {conversion: 0.349167091001673}
-gasoline_trucks_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_mixer_transport_energetic: {share: 1.0}
+gasoline_trucks_transport_energetic-(gasoline_mix) -- s --> (gasoline_mix)-road_gasoline_mixer_transport_energetic: {share: 1.0}
 
 :electric_cars_transport_energetic:
   :co2_free: 0.0
@@ -708,9 +708,9 @@ electric_cars_transport_energetic-(electricity) -- s --> (electricity)-road_elec
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.0
-diesel_cars_transport_energetic-(diesel): {conversion: 1.0}
+diesel_cars_transport_energetic-(diesel_mix): {conversion: 1.0}
 (car_kms)-diesel_cars_transport_energetic: {conversion: 0.409500409500409}
-diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_transport_energetic: {share: 1.0}
+diesel_cars_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-road_diesel_mixer_transport_energetic: {share: 1.0}
 
 :gasoline_cars_transport_energetic:
   :co2_free: 0.0
@@ -727,9 +727,9 @@ diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_tra
   :availability: 0.0
   :variability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.0
-gasoline_cars_transport_energetic-(gasoline): {conversion: 1.0}
+gasoline_cars_transport_energetic-(gasoline_mix): {conversion: 1.0}
 (car_kms)-gasoline_cars_transport_energetic: {conversion: 0.349167091001673}
-gasoline_cars_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_mixer_transport_energetic: {share: 1.0}
+gasoline_cars_transport_energetic-(gasoline_mix) -- s --> (gasoline_mix)-road_gasoline_mixer_transport_energetic: {share: 1.0}
 
 :lpg_cars_transport_energetic:
   :co2_free: 0.0
@@ -1971,10 +1971,10 @@ gas_demand_other_energetic-(network_gas) -- s --> (network_gas)-gas_other_energe
 :trains_diesel_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 87025745.9956264
-trains_diesel_transport_energetic-(diesel): {conversion: 1.0}
+trains_diesel_transport_energetic-(diesel_mix): {conversion: 1.0}
 (loss)-trains_diesel_transport_energetic: {conversion: 0.7}
 (not_defined)-trains_diesel_transport_energetic: {conversion: 0.3}
-trains_diesel_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_mixer_transport_energetic: {share: 1.0}
+trains_diesel_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-rail_diesel_mixer_transport_energetic: {share: 1.0}
 
 :lpg_production_transport:
   :co2_free: 0.0
@@ -6168,8 +6168,8 @@ aviation_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-final_deman
 :road_gasoline_mixer_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 12748795121.5189
+(gasoline_mix)-road_gasoline_mixer_transport_energetic: {conversion: 1.0}
 road_gasoline_mixer_transport_energetic-(gasoline): {conversion: 0.978340167468263}
-(gasoline)-road_gasoline_mixer_transport_energetic: {conversion: 1.0}
 road_gasoline_mixer_transport_energetic-(bio_ethanol): {conversion: 0.0216598325317371}
 road_gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_transport_energetic: {share: 1.0}
 road_gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-road_bio_ethanol_transport_energetic: {share: 1.0}
@@ -6177,8 +6177,8 @@ road_gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-roa
 :road_diesel_mixer_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 19368676105.0595
+(diesel_mix)-road_diesel_mixer_transport_energetic: {conversion: 1.0}
 road_diesel_mixer_transport_energetic-(diesel): {conversion: 0.964080225784479}
-(diesel)-road_diesel_mixer_transport_energetic: {conversion: 1.0}
 road_diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0359197742155211}
 road_diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_transport_energetic: {share: 1.0}
 road_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-road_biodiesel_transport_energetic: {share: 1.0}
@@ -6193,8 +6193,8 @@ road_network_gas_compression_transport_energetic-(network_gas) -- s --> (network
 :rail_diesel_mixer_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 87025745.9956264
+(diesel_mix)-rail_diesel_mixer_transport_energetic: {conversion: 1.0}
 rail_diesel_mixer_transport_energetic-(diesel): {conversion: 1.0}
-(diesel)-rail_diesel_mixer_transport_energetic: {conversion: 1.0}
 rail_diesel_mixer_transport_energetic-(biodiesel): {conversion: 0.0}
 rail_diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_transport_energetic: {share: 1.0}
 rail_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-rail_biodiesel_transport_energetic: {share: 1.0}
