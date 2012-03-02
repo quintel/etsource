@@ -210,13 +210,13 @@ electric_trucks_transport_energetic-(electricity)
 (truck_kms)-electric_trucks_transport_energetic
 
 diesel_trucks_transport_energetic;	diesel_trucks;	transport;	energetic;technologies;	useful_demand,cost_other
-diesel_trucks_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_transport_energetic
-diesel_trucks_transport_energetic-(diesel)
+diesel_trucks_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-road_diesel_mixer_transport_energetic
+diesel_trucks_transport_energetic-(diesel_mix)
 (truck_kms)-diesel_trucks_transport_energetic
 
 gasoline_trucks_transport_energetic;	gasoline_trucks;	transport;	energetic;technologies;	useful_demand,cost_other
-gasoline_trucks_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_mixer_transport_energetic
-gasoline_trucks_transport_energetic-(gasoline)
+gasoline_trucks_transport_energetic-(gasoline_mix) -- s --> (gasoline_mix)-road_gasoline_mixer_transport_energetic
+gasoline_trucks_transport_energetic-(gasoline_mix)
 (truck_kms)-gasoline_trucks_transport_energetic
 
 electric_cars_transport_energetic;	electric_cars;	transport;	energetic;technologies;	useful_demand,network_converters,cost_other
@@ -225,13 +225,13 @@ electric_cars_transport_energetic-(electricity)
 (car_kms)-electric_cars_transport_energetic
 
 diesel_cars_transport_energetic;	diesel_cars;	transport;	energetic;technologies;	useful_demand,cost_other
-diesel_cars_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_mixer_transport_energetic
-diesel_cars_transport_energetic-(diesel)
+diesel_cars_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-road_diesel_mixer_transport_energetic
+diesel_cars_transport_energetic-(diesel_mix)
 (car_kms)-diesel_cars_transport_energetic
 
 gasoline_cars_transport_energetic;	gasoline_cars;	transport;	energetic;technologies;	useful_demand,cost_other
-gasoline_cars_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_mixer_transport_energetic
-gasoline_cars_transport_energetic-(gasoline)
+gasoline_cars_transport_energetic-(gasoline_mix) -- s --> (gasoline_mix)-road_gasoline_mixer_transport_energetic
+gasoline_cars_transport_energetic-(gasoline_mix)
 (car_kms)-gasoline_cars_transport_energetic
 
 lpg_cars_transport_energetic;	lpg_cars;	transport;	energetic;technologies;	useful_demand,cost_other
@@ -738,8 +738,8 @@ gas_demand_other_energetic-(network_gas)
 (network_gas)-gas_demand_other_energetic
 
 trains_diesel_transport_energetic;	trains_diesel;	transport;	energetic;technologies;	
-trains_diesel_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_mixer_transport_energetic
-trains_diesel_transport_energetic-(diesel)
+trains_diesel_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-rail_diesel_mixer_transport_energetic
+trains_diesel_transport_energetic-(diesel_mix)
 (loss)-trains_diesel_transport_energetic
 (not_defined)-trains_diesel_transport_energetic
 
@@ -1669,13 +1669,6 @@ gas_chp_buildings_energetic-(gas_power_fuelmix)
 (steam_hot_water)-gas_chp_buildings_energetic
 (loss)-gas_chp_buildings_energetic
 
-coal_chp_buildings_energetic;	coal_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
-coal_chp_buildings_energetic-(coal) -- s --> (coal)-coal_distribution_energy
-coal_chp_buildings_energetic-(coal)
-(electricity)-coal_chp_buildings_energetic
-(steam_hot_water)-coal_chp_buildings_energetic
-(loss)-coal_chp_buildings_energetic
-
 biomass_chp_buildings_energetic;	biomass_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
 biomass_chp_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 biomass_chp_buildings_energetic-(wood_pellets)
@@ -1769,7 +1762,6 @@ oil_buildings_energetic-(crude_oil)
 steam_hot_water_buildings_energetic;	steam_hot_water;	buildings;	energetic;final consumption;	final_demand_cbs
 steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic
-steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-coal_chp_buildings_energetic
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic
 steam_hot_water_buildings_energetic-(steam_hot_water)
 (useable_heat)-steam_hot_water_buildings_energetic
@@ -2065,7 +2057,6 @@ local_e_production_buildings;	local_e_production;	buildings;	undefined;locally a
 local_e_production_buildings-(electricity) -- f --> (electricity)-lv_electricity_network_energy_energetic
 local_e_production_buildings-(electricity) -- c --> (electricity)-solar_panels_buildings_energetic
 local_e_production_buildings-(electricity) -- d --> (electricity)-gas_chp_buildings_energetic
-local_e_production_buildings-(electricity) -- d --> (electricity)-coal_chp_buildings_energetic
 local_e_production_buildings-(electricity) -- d --> (electricity)-biomass_chp_buildings_energetic
 local_e_production_buildings-(electricity)
 (electricity)-local_e_production_buildings
@@ -2304,9 +2295,9 @@ biocoal_import_energy-(torrified_biomass_pellets)
 (torrified_biomass_pellets)-biocoal_import_energy
 
 wood_pellets_distribution_energy;	wood_pellets_distribution;	energy;	undefined;;	
+wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-bio_residues_distribution_energy
 wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-wood_pellets_production_energy
 wood_pellets_distribution_energy-(wood_pellets) -- f --> (wood_pellets)-wood_pellets_import_energy
-wood_pellets_distribution_energy-(wood_pellets) -- c --> (wood_pellets)-bio_residues_distribution_energy
 wood_pellets_distribution_energy-(wood_pellets)
 (wood_pellets)-wood_pellets_distribution_energy
 
@@ -2757,15 +2748,15 @@ aviation_kerosine_transport_energetic-(kerosine)
 road_gasoline_mixer_transport_energetic;	road_gasoline_mixer;	transport;	energetic;local mixer;	
 road_gasoline_mixer_transport_energetic-(gasoline) -- s --> (gasoline)-road_gasoline_transport_energetic
 road_gasoline_mixer_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-road_bio_ethanol_transport_energetic
+(gasoline_mix)-road_gasoline_mixer_transport_energetic
 road_gasoline_mixer_transport_energetic-(gasoline)
-(gasoline)-road_gasoline_mixer_transport_energetic
 road_gasoline_mixer_transport_energetic-(bio_ethanol)
 
 road_diesel_mixer_transport_energetic;	road_diesel_mixer;	transport;	energetic;local mixer;	
 road_diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-road_diesel_transport_energetic
 road_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-road_biodiesel_transport_energetic
+(diesel_mix)-road_diesel_mixer_transport_energetic
 road_diesel_mixer_transport_energetic-(diesel)
-(diesel)-road_diesel_mixer_transport_energetic
 road_diesel_mixer_transport_energetic-(biodiesel)
 
 road_network_gas_compression_transport_energetic;	road_network_gas_compression;	transport;	energetic;local mixer;	
@@ -2776,8 +2767,8 @@ road_network_gas_compression_transport_energetic-(network_gas)
 rail_diesel_mixer_transport_energetic;	rail_diesel_mixer;	transport;	energetic;local mixer;	
 rail_diesel_mixer_transport_energetic-(diesel) -- s --> (diesel)-rail_diesel_transport_energetic
 rail_diesel_mixer_transport_energetic-(biodiesel) -- s --> (biodiesel)-rail_biodiesel_transport_energetic
+(diesel_mix)-rail_diesel_mixer_transport_energetic
 rail_diesel_mixer_transport_energetic-(diesel)
-(diesel)-rail_diesel_mixer_transport_energetic
 rail_diesel_mixer_transport_energetic-(biodiesel)
 
 navigation_bio_diesel_transport_energetic;	navigation_bio_diesel;	transport;	energetic;application;	
