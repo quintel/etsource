@@ -1,10 +1,17 @@
-- deprecated_key = heat_and_cold_production_fossil
 # the green gas is deducted.
 
+- deprecated_key = heat_and_cold_production_fossil
 - unit = pj
 
-DIVIDE(PRODUCT(DIVIDE(SUM(V(G(heat_production);input_of_fossil_carriers)
-
-,NEG(PRODUCT(SUM(V(G(heat_production);input_of_network_gas)),Q(share_of_greengas_in_gas_network)))
-
-),SUM(V(G(heat_production);demand))),SUM(V(G(heat_production);output_of_heat_and_cooling_carriers))),BILLIONS)
+DIVIDE(
+  PRODUCT(
+    DIVIDE(
+      SUM(
+        V(G(heat_production);input_of_fossil_carriers),
+        NEG(PRODUCT(SUM(V(G(heat_production);input_of_network_gas)),Q(share_of_greengas_in_gas_network))))
+      ,
+      SUM(V(G(heat_production);output_of_heat_and_cooling_carriers)))
+    ,
+    SUM(V(G(heat_production);output_of_heat_and_cooling_carriers)))
+  ,
+  BILLIONS)
