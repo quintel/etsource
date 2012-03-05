@@ -1497,7 +1497,7 @@ nuclear_iii_energy-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution
   :simult_we: 0.5
   :peak_load_units_present: 0.951293759512937
   :availability: 0.95
-  :variability: 0.7
+  :variability: 0.86
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
 wind_inland_energy-(wind): {conversion: 1.0}
 (loss)-wind_inland_energy: {conversion: 0.03}
@@ -1529,7 +1529,7 @@ wind_inland_energy-(wind) -- s --> (wind)-air_environment_energetic: {share: 1.0
   :simult_we: 0.5
   :peak_load_units_present: 0.0
   :availability: 0.95
-  :variability: 0.7
+  :variability: 0.86
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
 wind_coastal_energy-(wind): {conversion: 1.0}
 (loss)-wind_coastal_energy: {conversion: 0.03}
@@ -1561,7 +1561,7 @@ wind_coastal_energy-(wind) -- s --> (wind)-air_environment_energetic: {share: 1.
   :simult_we: 0.5
   :peak_load_units_present: 0.0
   :availability: 0.92
-  :variability: 0.7
+  :variability: 0.8
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
 wind_offshore_energy-(wind): {conversion: 1.0}
 (loss)-wind_offshore_energy: {conversion: 0.03}
@@ -3873,7 +3873,7 @@ heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-solarthermic_
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_ts_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-wood_pellets_fired_heater_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_ts_buildings_energetic: {share: 0.0}
-heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_buildings_energetic: {share: 0.0}
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_from_monetized_heat_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-oil_heater_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-coal_heater_buildings_energetic: {share: 0.0}
 
@@ -6253,3 +6253,4 @@ electricity_for_electricity_other_energetic-(electricity) -- s --> (electricity)
   :demand_expected_value: 0.0
 heat_from_monetized_heat_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heat_from_monetized_heat_buildings_energetic: {conversion: 1.0}
+heat_from_monetized_heat_buildings_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_buildings_energetic: {share: 1.0}
