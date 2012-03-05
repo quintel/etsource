@@ -3,4 +3,9 @@
 
 - unit = pj
 
-present:UNIT(SUM(V(Q(electricity_producing_gas_converters);output_of_electricity*gas_power_fuelmix_input_conversion));billions)
+present:UNIT(
+    SUM(
+        V(G(electricity_production);output_of_electricity*network_gas_input_conversion),
+        V(G(electricity_production);output_of_electricity*natural_gas_input_conversion),    
+        V(G(electricity_production);output_of_electricity*gas_power_fuelmix_input_conversion)    
+    );billions)
