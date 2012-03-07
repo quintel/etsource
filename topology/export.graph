@@ -108,7 +108,7 @@ central_heating_households_energetic-(network_gas)
 (loss)-central_heating_households_energetic
 (useable_heat)-central_heating_households_energetic
 
-solar_pv_central_production_energy_energetic;	solar_pv_central_production;	energy;	energetic;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+solar_pv_central_production_energy_energetic;	solar_pv_central_production;	energy;	energetic;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production,volatile_production
 solar_pv_central_production_energy_energetic-(solar_radiation) -- s --> (solar_radiation)-sun_environment_energetic
 solar_pv_central_production_energy_energetic-(solar_radiation)
 (loss)-solar_pv_central_production_energy_energetic
@@ -128,7 +128,7 @@ city_heating_network_energy_energetic-(steam_hot_water)
 (steam_hot_water)-city_heating_network_energy_energetic
 (loss)-city_heating_network_energy_energetic
 
-gas_conv_energy_energetic;	gas_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
+gas_conv_energy_energetic;	gas_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
 gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
@@ -169,7 +169,7 @@ small_chp_industry_energetic-(gas_power_fuelmix)
 (steam_hot_water)-small_chp_industry_energetic
 (electricity)-small_chp_industry_energetic
 
-central_gas_chp_energy_energetic;	central_gas_chp;	energy;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps
+central_gas_chp_energy_energetic;	central_gas_chp;	energy;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps,merit_order_converters
 central_gas_chp_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
 central_gas_chp_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 central_gas_chp_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
@@ -411,7 +411,7 @@ hv_electricity_network_energy-(electricity)
 (electricity)-hv_electricity_network_energy
 (loss)-hv_electricity_network_energy
 
-coal_pwd_energy;	coal_pwd;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_pwd_energy;	coal_pwd;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_pwd_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_pwd_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_pwd_energy-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
@@ -422,7 +422,7 @@ coal_pwd_energy-(coal)
 (steam_hot_water)-coal_pwd_energy
 (electricity)-coal_pwd_energy
 
-coal_pwd_ccs_energy;	coal_pwd_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_pwd_ccs_energy;	coal_pwd_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_pwd_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_pwd_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_pwd_ccs_energy-(torrified_biomass_pellets)
@@ -431,7 +431,7 @@ coal_pwd_ccs_energy-(coal)
 (steam_hot_water)-coal_pwd_ccs_energy
 (electricity)-coal_pwd_ccs_energy
 
-coal_conv_energy;	coal_conv;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_conv_energy;	coal_conv;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_conv_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_conv_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_conv_energy-(torrified_biomass_pellets)
@@ -440,7 +440,7 @@ coal_conv_energy-(coal)
 (steam_hot_water)-coal_conv_energy
 (electricity)-coal_conv_energy
 
-coal_lignite_energy;	coal_lignite;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_lignite_energy;	coal_lignite;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_lignite_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
 coal_lignite_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_lignite_energy-(torrified_biomass_pellets)
@@ -449,7 +449,7 @@ coal_lignite_energy-(lignite)
 (steam_hot_water)-coal_lignite_energy
 (electricity)-coal_lignite_energy
 
-coal_oxyfuel_ccs_energy;	coal_oxyfuel_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_oxyfuel_ccs_energy;	coal_oxyfuel_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_oxyfuel_ccs_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
 coal_oxyfuel_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_oxyfuel_ccs_energy-(torrified_biomass_pellets)
@@ -458,7 +458,7 @@ coal_oxyfuel_ccs_energy-(lignite)
 (steam_hot_water)-coal_oxyfuel_ccs_energy
 (electricity)-coal_oxyfuel_ccs_energy
 
-coal_igcc_energy;	coal_igcc;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_igcc_energy;	coal_igcc;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_igcc_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_igcc_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_igcc_energy-(torrified_biomass_pellets)
@@ -467,7 +467,7 @@ coal_igcc_energy-(coal)
 (steam_hot_water)-coal_igcc_energy
 (electricity)-coal_igcc_energy
 
-coal_igcc_ccs_energy;	coal_igcc_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+coal_igcc_ccs_energy;	coal_igcc_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 coal_igcc_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_igcc_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_igcc_ccs_energy-(torrified_biomass_pellets)
@@ -476,14 +476,14 @@ coal_igcc_ccs_energy-(coal)
 (steam_hot_water)-coal_igcc_ccs_energy
 (electricity)-coal_igcc_ccs_energy
 
-oil_plant_energy;	oil_plant;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+oil_plant_energy;	oil_plant;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 oil_plant_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 oil_plant_energy-(crude_oil)
 (loss)-oil_plant_energy
 (steam_hot_water)-oil_plant_energy
 (electricity)-oil_plant_energy
 
-gas_ccgt_energy;	gas_ccgt;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+gas_ccgt_energy;	gas_ccgt;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 gas_ccgt_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
 gas_ccgt_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 gas_ccgt_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
@@ -494,7 +494,7 @@ gas_ccgt_energy-(bio_oil)
 (steam_hot_water)-gas_ccgt_energy
 (electricity)-gas_ccgt_energy
 
-coal_chp_energy;	coal_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps
+coal_chp_energy;	coal_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps,merit_order_converters
 coal_chp_energy-(coal) -- s --> (coal)-coal_distribution_energy
 coal_chp_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_chp_energy-(torrified_biomass_pellets)
@@ -514,32 +514,32 @@ interconnection_energy-(imported_electricity) -- s --> (imported_electricity)-el
 interconnection_energy-(imported_electricity)
 (electricity)-interconnection_energy
 
-nuclear_iii_energy;	nuclear_iii;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+nuclear_iii_energy;	nuclear_iii;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 nuclear_iii_energy-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy
 nuclear_iii_energy-(uranium_oxide)
 (loss)-nuclear_iii_energy
 (steam_hot_water)-nuclear_iii_energy
 (electricity)-nuclear_iii_energy
 
-wind_inland_energy;	wind_inland;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+wind_inland_energy;	wind_inland;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production,volatile_production
 wind_inland_energy-(wind) -- s --> (wind)-air_environment_energetic
 wind_inland_energy-(wind)
 (loss)-wind_inland_energy
 (electricity)-wind_inland_energy
 
-wind_coastal_energy;	wind_coastal;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
+wind_coastal_energy;	wind_coastal;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production,volatile_production
 wind_coastal_energy-(wind) -- s --> (wind)-air_environment_energetic
 wind_coastal_energy-(wind)
 (loss)-wind_coastal_energy
 (electricity)-wind_coastal_energy
 
-wind_offshore_energy;	wind_offshore;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,cost_electricity_production
+wind_offshore_energy;	wind_offshore;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,cost_electricity_production,volatile_production
 wind_offshore_energy-(wind) -- s --> (wind)-air_environment_energetic
 wind_offshore_energy-(wind)
 (loss)-wind_offshore_energy
 (electricity)-wind_offshore_energy
 
-co_firing_coal_energy;	co_firing_coal;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+co_firing_coal_energy;	co_firing_coal;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 co_firing_coal_energy-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 co_firing_coal_energy-(wood_pellets)
 (loss)-co_firing_coal_energy
@@ -1109,7 +1109,7 @@ heat_demand_energy_energetic-(steam_hot_water) -- s --> (steam_hot_water)-heat_n
 heat_demand_energy_energetic-(steam_hot_water)
 (loss)-heat_demand_energy_energetic
 
-local_solar_pv_grid_connected_energy_energetic;	local_solar_pv_grid_connected;	energy;	energetic;local power generation;	primary_energy_demand,sustainable_production,electricity_production,decentral_production,network_converters,cost_electricity_production
+local_solar_pv_grid_connected_energy_energetic;	local_solar_pv_grid_connected;	energy;	energetic;local power generation;	primary_energy_demand,sustainable_production,electricity_production,decentral_production,network_converters,cost_electricity_production,volatile_production
 local_solar_pv_grid_connected_energy_energetic-(solar_radiation) -- s --> (solar_radiation)-sun_environment_energetic
 local_solar_pv_grid_connected_energy_energetic-(solar_radiation)
 (loss)-local_solar_pv_grid_connected_energy_energetic
@@ -1638,7 +1638,7 @@ led_buildings_energetic-(electricity)
 (light)-led_buildings_energetic
 (loss)-led_buildings_energetic
 
-solar_panels_buildings_energetic;	solar_panels;	buildings;	energetic;local power generation;	primary_energy_demand,sustainable_production,electricity_production,network_converters,cost_electricity_production
+solar_panels_buildings_energetic;	solar_panels;	buildings;	energetic;local power generation;	primary_energy_demand,sustainable_production,electricity_production,network_converters,cost_electricity_production,volatile_production
 solar_panels_buildings_energetic-(solar_radiation) -- s --> (solar_radiation)-sun_environment_energetic
 solar_panels_buildings_energetic-(solar_radiation)
 (loss)-solar_panels_buildings_energetic
@@ -1885,7 +1885,7 @@ heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam
 heat_from_steam_hot_water_households_energetic-(steam_hot_water)
 (useable_heat)-heat_from_steam_hot_water_households_energetic
 
-nuclear_conv_energy_energetic;	nuclear_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
+nuclear_conv_energy_energetic;	nuclear_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 nuclear_conv_energy_energetic-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy
 nuclear_conv_energy_energetic-(uranium_oxide)
 (loss)-nuclear_conv_energy_energetic
@@ -1975,7 +1975,7 @@ cooking_electric_buildings-(electricity) -- s --> (electricity)-electricity_with
 cooking_electric_buildings-(electricity)
 (useable_heat)-cooking_electric_buildings
 
-ccgt_ccs_energy;	ccgt_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production
+ccgt_ccs_energy;	ccgt_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 ccgt_ccs_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
 ccgt_ccs_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
@@ -2066,14 +2066,14 @@ steam_hot_water_difference_energy-(steam_hot_water) -- s --> (steam_hot_water)-h
 steam_hot_water_difference_energy-(steam_hot_water)
 (steam_hot_water)-steam_hot_water_difference_energy
 
-lignite_chp_energy;	lignite_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps
+lignite_chp_energy;	lignite_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps,merit_order_converters
 lignite_chp_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy
 lignite_chp_energy-(lignite)
 (electricity)-lignite_chp_energy
 (steam_hot_water)-lignite_chp_energy
 (loss)-lignite_chp_energy
 
-oil_chp_energy;	oil_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps
+oil_chp_energy;	oil_chp;	energy;	undefined;central CHPs;	electricity_production,central_production,cost_chps,merit_order_converters
 oil_chp_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 oil_chp_energy-(crude_oil)
 (electricity)-oil_chp_energy
@@ -2147,7 +2147,7 @@ district_heater_biomass_energy_energetic-(wood_pellets)
 (steam_hot_water)-district_heater_biomass_energy_energetic
 (loss)-district_heater_biomass_energy_energetic
 
-wood_pellets_chp_energy_energetic;	wood_pellets_chp;	energy;	energetic;central CHPs;	electricity_production,central_production,cost_chps
+wood_pellets_chp_energy_energetic;	wood_pellets_chp;	energy;	energetic;central CHPs;	electricity_production,central_production,cost_chps,merit_order_converters
 wood_pellets_chp_energy_energetic-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 wood_pellets_chp_energy_energetic-(wood_pellets)
 (loss)-wood_pellets_chp_energy_energetic
@@ -2583,13 +2583,13 @@ monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (st
 monitized_heat_for_hot_water_households_energetic-(steam_hot_water)
 (steam_hot_water)-monitized_heat_for_hot_water_households_energetic
 
-diesel_generator_energy_energetic;	diesel_generator;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
+diesel_generator_energy_energetic;	diesel_generator;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
 diesel_generator_energy_energetic-(diesel)
 (electricity)-diesel_generator_energy_energetic
 (loss)-diesel_generator_energy_energetic
 
-gas_turbine_energy_energetic;	gas_turbine;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production
+gas_turbine_energy_energetic;	gas_turbine;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 gas_turbine_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 gas_turbine_energy_energetic-(gas_power_fuelmix)
 (electricity)-gas_turbine_energy_energetic
