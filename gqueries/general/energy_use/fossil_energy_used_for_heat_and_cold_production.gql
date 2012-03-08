@@ -8,14 +8,7 @@
 - unit = pj
 
 DIVIDE(
-  PRODUCT(
-    DIVIDE(
       SUM(
         V(G(heat_production);input_of_fossil_carriers),
-        PRODUCT(SUM(V(G(heat_production);input_of_network_gas)),Q(share_of_natural_gas_in_gas_network)))
-      ,
-      SUM(V(G(heat_production);output_of_heat_and_cooling_carriers)))
-    ,
-    SUM(V(G(heat_production);output_of_heat_and_cooling_carriers)))
-  ,
+        PRODUCT(SUM(V(G(heat_production);input_of_network_gas)),Q(share_of_natural_gas_in_gas_network))),
   BILLIONS)
