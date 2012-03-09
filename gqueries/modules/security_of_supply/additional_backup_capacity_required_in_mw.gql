@@ -1,0 +1,7 @@
+# Calculates amount of backup capacity required for installed wind turbines and solar panels
+
+- unit = MW
+
+SUM(
+    V(G(volatile_production) ; mw_input_capacity * [full_load_hours/HOURS_PER_YEAR-[1-variability]])
+)
