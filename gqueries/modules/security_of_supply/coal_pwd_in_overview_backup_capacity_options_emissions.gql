@@ -8,11 +8,11 @@ future:DIVIDE(
       PRODUCT(
         Q(full_load_hours_of_backup_capacity),
         Q(additional_backup_capacity_required_in_mw),
-        V(gas_ccgt_energy ; primary_co2_emission / production_based_on_number_of_units * MJ_PER_MWH / availability)
+        V(coal_pwd_energy ; primary_co2_emission / production_based_on_number_of_units * MJ_PER_MWH / availability)
       ),
       PRODUCT(
         Q(additional_spinning_reserve_required_in_mw),
-        V(gas_ccgt_energy ; total_land_use * HOURS_PER_YEAR / [1 - total_land_use] * primary_co2_emission / production_based_on_number_of_units * MJ_PER_MWH / availability * [FLOAT_HACK/land_use_per_unit-FLOAT_HACK/electricity_output_conversion])
+        V(coal_pwd_energy ; total_land_use * HOURS_PER_YEAR / [1 - total_land_use] * primary_co2_emission / production_based_on_number_of_units * MJ_PER_MWH / availability * [FLOAT_HACK/land_use_per_unit-FLOAT_HACK/electricity_output_conversion])
       )
     ),
     Q(volatile_electricity_production)
