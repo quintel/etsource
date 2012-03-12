@@ -1,6 +1,4 @@
 # Query is using dummy attributes for the moment
-# total_land_use attribute will become part_load_operating_point
-# land_use_per_unit attribute will become part_load_efficiency
 
 - unit = euro
 
@@ -12,7 +10,7 @@ future:DIVIDE(
         ),
         PRODUCT(
             Q(additional_spinning_reserve_required_in_mw),
-            V(coal_pwd_energy ; total_land_use * HOURS_PER_YEAR / [1 - total_land_use] * fuel_costs_per_mwh_input * [FLOAT_HACK/land_use_per_unit-FLOAT_HACK/electricity_output_conversion])
+            V(coal_pwd_energy ; part_load_operating_point * HOURS_PER_YEAR / [1 - part_load_operating_point] * fuel_costs_per_mwh_input * [FLOAT_HACK/[electricity_output_conversion - part_load_efficiency_penalty]-FLOAT_HACK/electricity_output_conversion])
         )
     ),
     Q(volatile_electricity_production)
