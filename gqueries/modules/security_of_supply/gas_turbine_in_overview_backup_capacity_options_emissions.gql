@@ -1,0 +1,21 @@
+# 
+
+- unit = t
+
+future:DIVIDE(
+  DIVIDE(
+    SUM(
+      PRODUCT(
+        Q(full_load_hours_of_backup_capacity),
+        Q(additional_backup_capacity_required_in_mw),
+        V(gas_turbine_energy_energetic ; primary_co2_emission / production_based_on_number_of_units * MJ_PER_MWH / availability)
+      ),
+      PRODUCT(
+        Q(additional_spinning_reserve_required_in_mw),
+        V(gas_turbine_energy_energetic ; part_load_operating_point * HOURS_PER_YEAR / [1 - part_load_operating_point] * primary_co2_emission / production_based_on_number_of_units * MJ_PER_MWH / availability * [FLOAT_HACK/[electricity_output_conversion - part_load_efficiency_penalty]-FLOAT_HACK/electricity_output_conversion])
+      )
+    ),
+    Q(volatile_electricity_production)
+  ),
+  1000
+)
