@@ -2,7 +2,7 @@
 
 - unit = bln_euro
 
-PRODUCT(
-  Q(share_of_electricity_generated_domestically),
-  DIVIDE(Q(costs_of_fuels_in_electricity_production),BILLIONS)
-  )
+DIVIDE(
+  DIVIDE(Q(costs_of_fuels_in_electricity_production),BILLIONS),
+  Q(share_of_electricity_generated_domestically)  
+)
