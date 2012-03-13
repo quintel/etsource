@@ -2,13 +2,4 @@
 
 - unit = euro
 
-SUM(
-  SUM(V(G(electricity_production);initial_investment_total)),
-  NEG(
-      PRODUCT(
-          SUM(V(G(electricity_production);initial_investment_total)),
-          V(electricity_export_energy;demand),
-          INVERSE(SUM(V(G(electricity_production);output_of_electricity)))
-      )
-  )
-)
+SUM(V(G(electricity_production);initial_investment_total))
