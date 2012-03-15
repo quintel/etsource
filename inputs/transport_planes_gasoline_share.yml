@@ -1,0 +1,22 @@
+--- 
+attr_name: not_defined_output_link_share
+comments: ""
+factor: 100.0
+id: 588
+key: transport_planes_gasoline_fuel_share
+keys: planes_gasoline_transport_energetic
+label: ""
+label_query: 
+max_value: 100.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Gasoline
+query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(planes_gasoline_transport_energetic);not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
+share_group: transport_aviation
+start_value: 
+start_value_gql: present:V(planes_gasoline_transport_energetic;share_of_planes_transport_energetic)
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 
