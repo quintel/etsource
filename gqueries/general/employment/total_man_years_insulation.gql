@@ -1,8 +1,7 @@
 # The total man-years spent in NL on insulation.
+# The number 0.00002777 is a dirty hack to translate cost (euro) to man-years
+# I assume 20 euro per man-hour and 1800 man-hours per man-year
 
 - unit = man_years
 
-DIVIDE(
-	V(Q(total_man_hours_insulation)),
-	MAN_HOURS_PER_MAN_YEAR
-)
+V(extra_insulation_savings_households_energetic);demand * costs_per_mj * 0.00002777))
