@@ -2,10 +2,9 @@
 # different technologies on employment in the Netherlands.
 # Now all just 1's to start testing
 #isolatie er nog niet in
-#waste niet ingevuld, geothermal wel!
 #CCS extra tijd niet meegenomen op dit moment
-#grote CHPs (800MW) default van Coal
-# #77 staat niet in beta-engine, eruit?
+#buitenlands werk eruitgehaald
+#maintenance offshore ingevuld met maintenance onshore atm
 
 :defaults:
   :employment_defaults: &employment_defaults
@@ -22,15 +21,15 @@
 
 :defaults:
   :coal_defaults: &coal_defaults
-    :hours_prep_nl: 0.0
+    :hours_prep_nl: 420000.0
     :hours_prep_abroad: 0.0
     :hours_prod_nl: 0.0
     :hours_prod_abroad: .0
-    :hours_place_nl: 1200000.0
-    :hours_place_abroad: 3600000.0
-    :hours_maint_nl: 120000.0
-    :hours_maint_abroad: 360000.0
-    :hours_remov_nl: 0.0
+    :hours_place_nl: 1600000.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 105288.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 480000.0
     :hours_remov_abroad: 0.0
 
 :defaults:
@@ -40,10 +39,23 @@
     :hours_prod_nl: 0.0
     :hours_prod_abroad: 0.0
     :hours_place_nl: 500000.0
-    :hours_place_abroad: 1500000.0
+    :hours_place_abroad: 0.0
     :hours_maint_nl: 76800.0
     :hours_maint_abroad: 0.0
-    :hours_remov_nl: 0.0
+    :hours_remov_nl: 480000.0
+    :hours_remov_abroad: 0.0
+
+:defaults:
+  :waste_defaults: &waste_defaults
+    :hours_prep_nl: 81000.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 182571.43
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 170057.14
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 92571.43
     :hours_remov_abroad: 0.0
 
 
@@ -506,121 +518,61 @@
   :hours_remov_nl: 64.0
   :hours_remov_abroad: 0.0
 
-#77 TD ????????????
-:bio_oil_chp_industry_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
 
 #436 TD
 :wood_pellets_chp_energy_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
+  <<: *waste_defaults
 
 #352 TD
 :biomass_chp_buildings_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
+<<: *waste_defaults
 
 #437 TD
 :wood_pellets_chp_other_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
+<<: *waste_defaults
 
 #29 TD
 :biomass_chp_industry_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
+<<: *waste_defaults
 
 #265 TD
 :chp_agri_agriculture_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 550.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 934.13
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 838.40
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 628.57
   :hours_remov_abroad: 0.0
 
 #261 TD
 :chp_other_other_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 300.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 609.52
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 691.20
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 342.86
   :hours_remov_abroad: 0.0
 
-#351 TD
-:coal_chp_buildings_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
 
 #438
 :coal_chp_industry_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 19125.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 43107.14
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 22200.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 21857.14
   :hours_remov_abroad: 0.0
 
 #75 TD
@@ -629,28 +581,19 @@
 
 #319 TD
 :collective_biomass_chp_households_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
+<<: *waste_defaults
 
 #318 TD
 :collective_gas_chp_households_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 300.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 609.52
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 691.20
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 342.86
   :hours_remov_abroad: 0.0
 
 #441 
@@ -668,33 +611,33 @@
 
 #350 TD
 :gas_chp_buildings_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 300.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 609.52
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 691.20
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 342.86
   :hours_remov_abroad: 0.0
 
 #28 TD
-:large_chp_industry_energetic:
-  <<: *coal_defaults
-
-#423 TD
-:lignite_chp_energy:
-  :hours_prep_nl: 0.0
+:central_gas_chp_energy_energetic:
+  :hours_prep_nl: 315000.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 640000.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 192038.51
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 360000.0
   :hours_remov_abroad: 0.0
+
+#423 TD
+:lignite_chp_energy:
+  <<: *coal_defaults
 
 #376
 :micro_chp_hot_water_households_energetic:
@@ -728,15 +671,15 @@
 
 #27 TD
 :small_chp_industry_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 19125.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
+  :hours_place_nl: 43107.14
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 22200.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 21857.14
   :hours_remov_abroad: 0.0
 
 #409
@@ -796,14 +739,14 @@
   :hours_prod_abroad: 0.0
   :hours_place_nl: 11111.11
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 111.11
   :hours_maint_abroad: 0.0
   :hours_remov_nl: 0.0
   :hours_remov_abroad: 0.0
 
 #79 TD
 :nuclear_iii_energy:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 4400000.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
@@ -811,7 +754,7 @@
   :hours_place_abroad: 0.0
   :hours_maint_nl: 288000.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 480000.0
   :hours_remov_abroad: 0.0
 
 #346
@@ -822,7 +765,7 @@
   :hours_prod_abroad: 0.0
   :hours_place_nl: 11855.56
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 118.56
   :hours_maint_abroad: 0.0
   :hours_remov_nl: 0.0
   :hours_remov_abroad: 0.0
@@ -835,27 +778,18 @@
   :hours_prod_abroad: 0.0
   :hours_place_nl: 222222.22
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 2222.22
   :hours_maint_abroad: 0.0
   :hours_remov_nl: 0.0
   :hours_remov_abroad: 0.0
 
 #64 TD
 :waste_incinerator_energy_energetic:
-  :hours_prep_nl: 0.0
-  :hours_prep_abroad: 0.0
-  :hours_prod_nl: 0.0
-  :hours_prod_abroad: 0.0
-  :hours_place_nl: 0.0
-  :hours_place_abroad: 0.0
-  :hours_maint_nl: 0.0
-  :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
-  :hours_remov_abroad: 0.0
+<<: *waste_defaults
 
 #81
 :wind_coastal_energy:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 3439.09
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
@@ -868,7 +802,7 @@
 
 #80
 :wind_inland_energy:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 3439.09
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
@@ -887,8 +821,8 @@
   :hours_prod_abroad: 0.0
   :hours_place_nl: 22680.0
   :hours_place_abroad: 15120.0
-  :hours_maint_nl: 0.0
+  :hours_maint_nl: 750.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 0.0
+  :hours_remov_nl: 1740.0
   :hours_remov_abroad: 0.0
 
