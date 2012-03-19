@@ -26,9 +26,12 @@ PRODUCT(
 			V(Q(total_man_years_removal)),
 			V(Q(total_man_years_insulation))
 		),
-		AREA(employment_fraction_production)
-	),
-	AREA(employment_local_fraction)
+		DIVIDE(
+			AREA(employment_local_fraction),
+			SUM(1.0,NEG(AREA(employment_local_fraction)))
+		),
+		AREA(employment_local_fraction)
+	)
 )
 
 
