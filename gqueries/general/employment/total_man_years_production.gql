@@ -1,16 +1,34 @@
 # The total man-year spent in NL on production.
+# Originally this was (analogous to the other queries):
+#PRODUCT(
+#	DIVIDE(
+#		PRODUCT(
+#			SUM(
+#				V(Q(employment_converters);hours_prod_nl*number_of_units/technical_lifetime)),
+#				V(Q(scenario_duration)
+#			)
+#		),
+#		MAN_HOURS_PER_MAN_YEAR
+#	),
+#	AREA(economic_multiplier)
+#)
+#
+# but now modeled as a fraction of the other categories:
 
 - unit = man_years
 
 PRODUCT(
-	DIVIDE(
-		PRODUCT(
-			SUM(
-				V(Q(employment_converters);hours_prod_nl*number_of_units/technical_lifetime)),
-				V(Q(scenario_duration)
-			)
+	PRODUCT(
+		SUM(
+			V(Q(total_man_years_preparation)),
+			V(Q(total_man_years_placement)),
+			V(Q(total_man_years_maintenance)),
+			V(Q(total_man_years_removal)),
+			V(Q(total_man_years_insulation))
 		),
-		MAN_HOURS_PER_MAN_YEAR
+		AREA(employment_fraction_production)
 	),
-	AREA(economic_multiplier)
+	AREA(employment_local_fraction)
 )
+
+
