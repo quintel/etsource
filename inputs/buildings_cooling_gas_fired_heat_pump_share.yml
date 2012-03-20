@@ -16,7 +16,7 @@ query: |-
   EACH(
               UPDATE(LINK(gasheatpump_cooling_buildings_energetic,cooling_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
               UPDATE(LINK(cooling_buildings_energetic,airco_buildings_energetic), share, 
-                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(cooling_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(cooling_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)}
               )
             )
 share_group: cooling_buildings
