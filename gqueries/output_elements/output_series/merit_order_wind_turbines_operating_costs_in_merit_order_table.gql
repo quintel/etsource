@@ -1,0 +1,10 @@
+#
+
+
+- unit = EUR
+
+future:
+DIVIDE(
+    SUM(V(wind_inland_energy, wind_coastal_energy, wind_offshore_energy; variable_costs_per_mwh_input/electricity_output_conversion*installed_production_capacity_in_mw_electricity)),
+    SUM(V(wind_inland_energy, wind_coastal_energy, wind_offshore_energy; installed_production_capacity_in_mw_electricity))
+)

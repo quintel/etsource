@@ -1,0 +1,10 @@
+#
+
+
+- unit = hours
+
+future:
+DIVIDE(
+    SUM(V(local_solar_pv_grid_connected_energy_energetic, solar_pv_central_production_energy_energetic, solar_panels_buildings_energetic; full_load_hours*installed_production_capacity_in_mw_electricity)),
+    SUM(V(local_solar_pv_grid_connected_energy_energetic, solar_pv_central_production_energy_energetic, solar_panels_buildings_energetic; installed_production_capacity_in_mw_electricity))
+)
