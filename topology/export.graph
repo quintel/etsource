@@ -162,7 +162,7 @@ mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lo
 mv_distribution_network_energy_energetic-(electricity)
 (electricity)-mv_distribution_network_energy_energetic
 
-small_chp_industry_energetic;	small_chp;	industry;	energetic;central CHPs;	electricity_production,network_converters,cost_chps
+small_chp_industry_energetic;	small_chp;	industry;	energetic;central CHPs;	electricity_production,network_converters,cost_chps,must_run_electricity_production
 small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 small_chp_industry_energetic-(gas_power_fuelmix)
 (loss)-small_chp_industry_energetic
@@ -180,7 +180,7 @@ central_gas_chp_energy_energetic-(bio_oil)
 (steam_hot_water)-central_gas_chp_energy_energetic
 (electricity)-central_gas_chp_energy_energetic
 
-biomass_chp_industry_energetic;	biomass_chp;	industry;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps
+biomass_chp_industry_energetic;	biomass_chp;	industry;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps,must_run_electricity_production
 biomass_chp_industry_energetic-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 biomass_chp_industry_energetic-(wood_pellets)
 (loss)-biomass_chp_industry_energetic
@@ -366,7 +366,7 @@ heat_network_industry_energetic-(steam_hot_water)
 (steam_hot_water)-heat_network_industry_energetic
 (loss)-heat_network_industry_energetic
 
-waste_incinerator_energy_energetic;	waste_incinerator;	energy;	energetic;central power generation;	electricity_production,central_production,network_converters,cost_electricity_production
+waste_incinerator_energy_energetic;	waste_incinerator;	energy;	energetic;central power generation;	electricity_production,central_production,network_converters,cost_electricity_production,must_run_electricity_production
 waste_incinerator_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy
 waste_incinerator_energy_energetic-(waste_mix)
 (loss)-waste_incinerator_energy_energetic
@@ -1199,7 +1199,7 @@ biogas_plant_energy-(biogas)
 (electricity)-biogas_plant_energy
 (loss)-biogas_plant_energy
 
-chp_other_other_energetic;	chp_other;	other;	energetic;local CHPs;	electricity_production,decentral_production,network_converters,cost_chps
+chp_other_other_energetic;	chp_other;	other;	energetic;local CHPs;	electricity_production,decentral_production,network_converters,cost_chps,must_run_electricity_production
 chp_other_other_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 chp_other_other_energetic-(gas_power_fuelmix)
 (loss)-chp_other_other_energetic
@@ -1224,7 +1224,7 @@ gas_burner_agri_agriculture_energetic-(network_gas)
 (loss)-gas_burner_agri_agriculture_energetic
 (useable_heat)-gas_burner_agri_agriculture_energetic
 
-chp_agri_agriculture_energetic;	chp_agri;	agriculture;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps
+chp_agri_agriculture_energetic;	chp_agri;	agriculture;	energetic;central CHPs;	electricity_production,decentral_production,network_converters,cost_chps,must_run_electricity_production
 chp_agri_agriculture_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 chp_agri_agriculture_energetic-(gas_power_fuelmix)
 (loss)-chp_agri_agriculture_energetic
@@ -1463,14 +1463,14 @@ heatpump_addon_households_energetic-(ambient_heat)
 (loss)-heatpump_addon_households_energetic
 (useable_heat)-heatpump_addon_households_energetic
 
-collective_gas_chp_households_energetic;	collective_gas_chp;	households;	energetic;local CHPs;	heat_production,network_converters,cost_chps
+collective_gas_chp_households_energetic;	collective_gas_chp;	households;	energetic;local CHPs;	heat_production,network_converters,cost_chps,must_run_electricity_production
 collective_gas_chp_households_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy
 collective_gas_chp_households_energetic-(network_gas)
 (loss)-collective_gas_chp_households_energetic
 (steam_hot_water)-collective_gas_chp_households_energetic
 (electricity)-collective_gas_chp_households_energetic
 
-collective_biomass_chp_households_energetic;	collective_biomass_chp;	households;	energetic;local CHPs;	electricity_production,heat_production,network_converters,cost_chps
+collective_biomass_chp_households_energetic;	collective_biomass_chp;	households;	energetic;local CHPs;	electricity_production,heat_production,network_converters,cost_chps,must_run_electricity_production
 collective_biomass_chp_households_energetic-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 collective_biomass_chp_households_energetic-(wood_pellets)
 (loss)-collective_biomass_chp_households_energetic
@@ -1662,14 +1662,14 @@ electric_heater_buildings_energetic-(electricity)
 (useable_heat)-electric_heater_buildings_energetic
 (loss)-electric_heater_buildings_energetic
 
-gas_chp_buildings_energetic;	gas_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
+gas_chp_buildings_energetic;	gas_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps,must_run_electricity_production
 gas_chp_buildings_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 gas_chp_buildings_energetic-(gas_power_fuelmix)
 (electricity)-gas_chp_buildings_energetic
 (steam_hot_water)-gas_chp_buildings_energetic
 (loss)-gas_chp_buildings_energetic
 
-biomass_chp_buildings_energetic;	biomass_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps
+biomass_chp_buildings_energetic;	biomass_chp;	buildings;	energetic;central CHPs;	electricity_production,heat_production,network_converters,cost_chps,must_run_electricity_production
 biomass_chp_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 biomass_chp_buildings_energetic-(wood_pellets)
 (electricity)-biomass_chp_buildings_energetic
@@ -2154,14 +2154,14 @@ wood_pellets_chp_energy_energetic-(wood_pellets)
 (steam_hot_water)-wood_pellets_chp_energy_energetic
 (electricity)-wood_pellets_chp_energy_energetic
 
-wood_pellets_chp_other_energetic;	wood_pellets_chp;	other;	energetic;local CHPs;	electricity_production,decentral_production,cost_chps
+wood_pellets_chp_other_energetic;	wood_pellets_chp;	other;	energetic;local CHPs;	electricity_production,decentral_production,cost_chps,must_run_electricity_production
 wood_pellets_chp_other_energetic-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy
 wood_pellets_chp_other_energetic-(wood_pellets)
 (loss)-wood_pellets_chp_other_energetic
 (steam_hot_water)-wood_pellets_chp_other_energetic
 (electricity)-wood_pellets_chp_other_energetic
 
-coal_chp_industry_energetic;	coal_chp;	industry;	energetic;central CHPs;	electricity_production,decentral_production,cost_chps
+coal_chp_industry_energetic;	coal_chp;	industry;	energetic;central CHPs;	electricity_production,decentral_production,cost_chps,must_run_electricity_production
 coal_chp_industry_energetic-(coal) -- s --> (coal)-coal_distribution_energy
 coal_chp_industry_energetic-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy
 coal_chp_industry_energetic-(torrified_biomass_pellets)
@@ -2182,7 +2182,7 @@ gas_fired_heater_households_energetic-(network_gas)
 (loss)-gas_fired_heater_households_energetic
 (useable_heat)-gas_fired_heater_households_energetic
 
-fuel_cell_chp_households_energetic;	fuel_cell_chp;	households;	energetic;local CHPs;	electricity_production,time_curves,cost_chps
+fuel_cell_chp_households_energetic;	fuel_cell_chp;	households;	energetic;local CHPs;	electricity_production,time_curves,cost_chps,must_run_electricity_production
 fuel_cell_chp_households_energetic-(network_gas) -- s --> (network_gas)-national_gas_network_energy
 fuel_cell_chp_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_hot_water_households_energetic
 fuel_cell_chp_households_energetic-(network_gas)
