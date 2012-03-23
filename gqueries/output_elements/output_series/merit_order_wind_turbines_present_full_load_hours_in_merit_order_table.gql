@@ -1,0 +1,10 @@
+#
+
+
+- unit = hours
+
+present:
+DIVIDE(
+    SUM(V(wind_inland_energy, wind_coastal_energy, wind_offshore_energy; full_load_hours*installed_production_capacity_in_mw_electricity)),
+    SUM(V(wind_inland_energy, wind_coastal_energy, wind_offshore_energy; installed_production_capacity_in_mw_electricity))
+)
