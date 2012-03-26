@@ -2,12 +2,15 @@
 
 - unit = man_years
 
-PRODUCT(
-	DIVIDE(
-		SUM(
-			V(Q(employment_converters);hours_place_nl*number_of_units/technical_lifetime)
+SUM(
+	PRODUCT(
+		DIVIDE(
+			SUM(
+				V(Q(employment_converters);hours_place_nl*number_of_units/technical_lifetime),
+			),
+			MAN_HOURS_PER_MAN_YEAR
 		),
-		MAN_HOURS_PER_MAN_YEAR
+		AREA(economic_multiplier)
 	),
-	AREA(economic_multiplier)
+	V(Q(total_man_years_insulation))
 )
