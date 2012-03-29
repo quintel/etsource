@@ -129,15 +129,11 @@ city_heating_network_energy_energetic-(steam_hot_water)
 (loss)-city_heating_network_energy_energetic
 
 gas_conv_energy_energetic;	gas_conv;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
-gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
-gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
-gas_conv_energy_energetic-(gas_power_fuelmix)
-gas_conv_energy_energetic-(crude_oil)
-gas_conv_energy_energetic-(bio_oil)
 (loss)-gas_conv_energy_energetic
 (steam_hot_water)-gas_conv_energy_energetic
 (electricity)-gas_conv_energy_energetic
+gas_conv_energy_energetic-(gas_power_fuelmix)
 
 electricity_demand_industry_energetic;	electricity_demand;	industry;	energetic;application;	useful_demand
 electricity_demand_industry_energetic-(electricity) -- s --> (electricity)-electricity_industry_energetic
@@ -163,19 +159,19 @@ mv_distribution_network_energy_energetic-(electricity)
 (electricity)-mv_distribution_network_energy_energetic
 
 small_chp_industry_energetic;	small_chp;	industry;	energetic;central CHPs;	electricity_production,network_converters,cost_chps,must_run_electricity_production
+small_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
+small_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
-small_chp_industry_energetic-(gas_power_fuelmix)
 (loss)-small_chp_industry_energetic
 (steam_hot_water)-small_chp_industry_energetic
 (electricity)-small_chp_industry_energetic
+small_chp_industry_energetic-(gas_power_fuelmix)
+small_chp_industry_energetic-(crude_oil)
+small_chp_industry_energetic-(bio_oil)
 
 central_gas_chp_energy_energetic;	central_gas_chp;	energy;	energetic;central CHPs;	electricity_production,central_production,network_converters,cost_chps,merit_order_converters
-central_gas_chp_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
-central_gas_chp_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 central_gas_chp_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 central_gas_chp_energy_energetic-(gas_power_fuelmix)
-central_gas_chp_energy_energetic-(crude_oil)
-central_gas_chp_energy_energetic-(bio_oil)
 (loss)-central_gas_chp_energy_energetic
 (steam_hot_water)-central_gas_chp_energy_energetic
 (electricity)-central_gas_chp_energy_energetic
@@ -484,12 +480,8 @@ oil_plant_energy-(crude_oil)
 (electricity)-oil_plant_energy
 
 gas_ccgt_energy;	gas_ccgt;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
-gas_ccgt_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
-gas_ccgt_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 gas_ccgt_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 gas_ccgt_energy-(gas_power_fuelmix)
-gas_ccgt_energy-(crude_oil)
-gas_ccgt_energy-(bio_oil)
 (loss)-gas_ccgt_energy
 (steam_hot_water)-gas_ccgt_energy
 (electricity)-gas_ccgt_energy
@@ -1976,12 +1968,8 @@ cooking_electric_buildings-(electricity)
 (useable_heat)-cooking_electric_buildings
 
 ccgt_ccs_energy;	ccgt_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
-ccgt_ccs_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy
-ccgt_ccs_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 ccgt_ccs_energy-(gas_power_fuelmix)
-ccgt_ccs_energy-(crude_oil)
-ccgt_ccs_energy-(bio_oil)
 (loss)-ccgt_ccs_energy
 (steam_hot_water)-ccgt_ccs_energy
 (electricity)-ccgt_ccs_energy
