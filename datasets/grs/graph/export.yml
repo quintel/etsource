@@ -906,12 +906,6 @@ heating_other_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_other_buildings_energetic: {conversion: 1.0}
 heating_other_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_demand_before_recirculation_buildings_energetic: {share: 1.0}
 
-:electricity_other_buildings_energetic:
-  :co2_free: 0.0
-electricity_other_buildings_energetic-(electricity): {conversion: 1.0}
-(electricity)-electricity_other_buildings_energetic: {conversion: 1.0}
-electricity_other_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic: {share: 1.0}
-
 :heatpump_households_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
@@ -4138,9 +4132,9 @@ heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-solarthermic_
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_ts_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-wood_pellets_fired_heater_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heatpump_ts_buildings_energetic: {share: 0.0}
-heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_from_monetized_heat_buildings_energetic: {share: 0.161249015906741}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-oil_heater_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-coal_heater_buildings_energetic: {share: 0.0}
+heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-heat_from_monetized_heat_buildings_energetic: {share: 0.161249015906741}
 
 :cooling_buildings_energetic:
   :co2_free: 0.0
@@ -5122,7 +5116,6 @@ appliances_wood_pellets_buildings-(wood_pellets) -- s --> (wood_pellets)-final_d
   :demand_expected_value: 139580166.0
 appliances_electric_buildings-(electricity): {conversion: 1.0}
 (not_defined)-appliances_electric_buildings: {conversion: 1.0}
-appliances_electric_buildings-(electricity) -- s --> (electricity)-electricity_other_buildings_energetic: {share: 1.0}
 
 :cooking_gas_buildings:
   :co2_free: 0.0
