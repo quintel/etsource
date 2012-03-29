@@ -462,14 +462,10 @@ city_heating_network_energy_energetic-(steam_hot_water) -- s --> (steam_hot_wate
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.04
   :forecasting_error: 0.0
-gas_conv_energy_energetic-(gas_power_fuelmix): {conversion: 0.924174933209998}
-gas_conv_energy_energetic-(crude_oil): {conversion: 0.0758250667900016}
-gas_conv_energy_energetic-(bio_oil): {conversion: 0.0}
 (loss)-gas_conv_energy_energetic: {conversion: 0.6}
 (steam_hot_water)-gas_conv_energy_energetic: {conversion: 0.0}
 (electricity)-gas_conv_energy_energetic: {conversion: 0.4}
-gas_conv_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-gas_conv_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
+gas_conv_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
 gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :electricity_demand_industry_energetic:
@@ -550,10 +546,14 @@ mv_distribution_network_energy_energetic-(electricity) -- i --> (electricity)-lo
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.1
   :forecasting_error: 0.0
-small_chp_industry_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-small_chp_industry_energetic: {conversion: 0.22}
 (steam_hot_water)-small_chp_industry_energetic: {conversion: 0.51}
 (electricity)-small_chp_industry_energetic: {conversion: 0.27}
+small_chp_industry_energetic-(gas_power_fuelmix): {conversion: 0.890961538461538}
+small_chp_industry_energetic-(crude_oil): {conversion: 0.109038461538462}
+small_chp_industry_energetic-(bio_oil): {conversion: 0.0}
+small_chp_industry_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
+small_chp_industry_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :central_gas_chp_energy_energetic:
@@ -586,14 +586,10 @@ small_chp_industry_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-en
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.1
   :forecasting_error: 0.0
-central_gas_chp_energy_energetic-(gas_power_fuelmix): {conversion: 0.924174933209998}
-central_gas_chp_energy_energetic-(crude_oil): {conversion: 0.0758250667900016}
-central_gas_chp_energy_energetic-(bio_oil): {conversion: 0.0}
+central_gas_chp_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-central_gas_chp_energy_energetic: {conversion: 0.3}
 (steam_hot_water)-central_gas_chp_energy_energetic: {conversion: 0.26}
 (electricity)-central_gas_chp_energy_energetic: {conversion: 0.44}
-central_gas_chp_energy_energetic-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-central_gas_chp_energy_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 central_gas_chp_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :biomass_chp_industry_energetic:
@@ -1463,14 +1459,10 @@ oil_plant_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {shar
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.0464
   :forecasting_error: 0.0
-gas_ccgt_energy-(gas_power_fuelmix): {conversion: 0.924174933209998}
-gas_ccgt_energy-(crude_oil): {conversion: 0.0758250667900016}
-gas_ccgt_energy-(bio_oil): {conversion: 0.0}
+gas_ccgt_energy-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-gas_ccgt_energy: {conversion: 0.42}
 (steam_hot_water)-gas_ccgt_energy: {conversion: 0.0}
 (electricity)-gas_ccgt_energy: {conversion: 0.58}
-gas_ccgt_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-gas_ccgt_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 gas_ccgt_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :coal_chp_energy:
@@ -5175,14 +5167,10 @@ cooking_electric_buildings-(electricity) -- s --> (electricity)-electricity_with
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.0482
   :forecasting_error: 0.0
-ccgt_ccs_energy-(gas_power_fuelmix): {conversion: 0.924174933209998}
-ccgt_ccs_energy-(crude_oil): {conversion: 0.0758250667900016}
-ccgt_ccs_energy-(bio_oil): {conversion: 0.0}
+ccgt_ccs_energy-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-ccgt_ccs_energy: {conversion: 0.51}
 (steam_hot_water)-ccgt_ccs_energy: {conversion: 0.0}
 (electricity)-ccgt_ccs_energy: {conversion: 0.49}
-ccgt_ccs_energy-(bio_oil) -- s --> (bio_oil)-bio_oil_distribution_energy: {share: 1.0}
-ccgt_ccs_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
 :local_e_production_agriculture:
