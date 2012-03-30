@@ -1707,14 +1707,6 @@ heatpump_ts_cooling_buildings_energetic-(ambient_cold)
 (cooling)-heatpump_ts_cooling_buildings_energetic
 (loss)-heatpump_ts_cooling_buildings_energetic
 
-building_related_buildings_energetic;	building_related;	buildings;	energetic;useful consumption;	useful_demand
-building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_oil_buildings
-building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_gas_buildings
-building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_wood_pellets_buildings
-building_related_buildings_energetic-(not_defined) -- s --> (not_defined)-appliances_electric_buildings
-building_related_buildings_energetic-(not_defined)
-(not_defined)-building_related_buildings_energetic
-
 airco_buildings_energetic;	airco;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 airco_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-air_environment_energetic
 airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
@@ -1724,10 +1716,11 @@ airco_buildings_energetic-(ambient_cold)
 (loss)-airco_buildings_energetic
 
 appliances_buildings_energetic;	appliances;	buildings;	energetic;useful consumption;	useful_demand
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-wood_pellets_appliances_buildings
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-wood_pellets_appliances_buildings
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-other_demand_buildings_energetic
 appliances_buildings_energetic-(not_defined)
 (not_defined)-appliances_buildings_energetic
 
@@ -1890,28 +1883,6 @@ available_electricity_households-(electricity) -- d --> (electricity)-fuel_cell_
 available_electricity_households-(electricity)
 (electricity)-available_electricity_households
 
-hot_water_from_gas_buildings_energetic;	hot_water_from_gas;	buildings;	energetic;application;	
-hot_water_from_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
-hot_water_from_gas_buildings_energetic-(network_gas)
-(hot_water)-hot_water_from_gas_buildings_energetic
-
-hot_water_from_electricity_buildings_energetic;	hot_water_from_electricity;	buildings;	energetic;application;	
-hot_water_from_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
-hot_water_from_electricity_buildings_energetic-(electricity)
-(hot_water)-hot_water_from_electricity_buildings_energetic
-
-hot_water_demand_buildings_energetic;	hot_water_demand;	buildings;	energetic;useful consumption;	useful_demand
-hot_water_demand_buildings_energetic-(hot_water) -- s --> (hot_water)-hot_water_from_gas_buildings_energetic
-hot_water_demand_buildings_energetic-(hot_water) -- s --> (hot_water)-hot_water_from_electricity_buildings_energetic
-hot_water_demand_buildings_energetic-(hot_water)
-(hot_water)-hot_water_demand_buildings_energetic
-
-cooking_buildings_energetic;	cooking;	buildings;	energetic;useful consumption;	useful_demand
-cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_gas_buildings
-cooking_buildings_energetic-(useable_heat) -- s --> (useable_heat)-cooking_electric_buildings
-cooking_buildings_energetic-(useable_heat)
-(useable_heat)-cooking_buildings_energetic
-
 oil_appliances_buildings;	oil_appliances;	buildings;	undefined;application;	
 oil_appliances_buildings-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
 oil_appliances_buildings-(crude_oil)
@@ -1931,36 +1902,6 @@ electric_appliances_buildings;	electric_appliances;	buildings;	undefined;applica
 electric_appliances_buildings-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
 electric_appliances_buildings-(electricity)
 (not_defined)-electric_appliances_buildings
-
-appliances_oil_buildings;	appliances_oil;	buildings;	undefined;application;	
-appliances_oil_buildings-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
-appliances_oil_buildings-(crude_oil)
-(not_defined)-appliances_oil_buildings
-
-appliances_gas_buildings;	appliances_gas;	buildings;	undefined;application;	
-appliances_gas_buildings-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
-appliances_gas_buildings-(network_gas)
-(not_defined)-appliances_gas_buildings
-
-appliances_wood_pellets_buildings;	appliances_wood_pellets;	buildings;	undefined;application;	
-appliances_wood_pellets_buildings-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic
-appliances_wood_pellets_buildings-(wood_pellets)
-(not_defined)-appliances_wood_pellets_buildings
-
-appliances_electric_buildings;	appliances_electric;	buildings;	undefined;application;	
-appliances_electric_buildings-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
-appliances_electric_buildings-(electricity)
-(not_defined)-appliances_electric_buildings
-
-cooking_gas_buildings;	cooking_gas;	buildings;	undefined;application;	
-cooking_gas_buildings-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
-cooking_gas_buildings-(network_gas)
-(useable_heat)-cooking_gas_buildings
-
-cooking_electric_buildings;	cooking_electric;	buildings;	undefined;application;	
-cooking_electric_buildings-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
-cooking_electric_buildings-(electricity)
-(useable_heat)-cooking_electric_buildings
 
 ccgt_ccs_energy;	ccgt_ccs;	energy;	undefined;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
 ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
@@ -2778,3 +2719,8 @@ heat_from_monetized_heat_buildings_energetic;	heat_from_monetized_heat;	building
 heat_from_monetized_heat_buildings_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_buildings_energetic
 heat_from_monetized_heat_buildings_energetic-(useable_heat)
 (useable_heat)-heat_from_monetized_heat_buildings_energetic
+
+other_demand_buildings_energetic;	other_demand;	buildings;	energetic;application;	
+other_demand_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
+other_demand_buildings_energetic-(coal)
+(not_defined)-other_demand_buildings_energetic
