@@ -1,6 +1,4 @@
 --- 
-attr_name: useable_heat_output_link_share
-comments: ""
 factor: 100.0
 id: 397
 key: buildings_waste_heat_recovery
@@ -14,9 +12,9 @@ min_value_gql:
 name: Waste heat recovery
 query: |-
   EACH(
-          UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(heat_recovery_savings_buildings_energetic);useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
-          UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(cold_recovery_savings_buildings_energetic);cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
-        )
+    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(heat_recovery_savings_buildings_energetic);useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
+    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(cold_recovery_savings_buildings_energetic);cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
+  )
 share_group: ""
 start_value: 
 start_value_gql: present:AREA(heat_recovery)
