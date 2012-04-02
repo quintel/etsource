@@ -3,6 +3,9 @@
 #CCS extra tijd niet meegenomen op dit moment
 #buitenlands werk eruitgehaald
 #maintenance offshore ingevuld met maintenance onshore atm
+#NB met nieuwe EM data zijn kolen en andere CHPs stuk groter geworden, is dit nog in balans met gas?
+# kolen cetrales toegevoegd van KEMA
+# warmtepompen #14 en #239 getallen gegeven van een CHP van ongeveer dezelfde capaciteit.
 
 :defaults:
   :employment_defaults: &employment_defaults
@@ -18,16 +21,42 @@
     :hours_remov_abroad: 1.0
 
 :defaults:
-  :coal_defaults: &coal_defaults
-    :hours_prep_nl: 420000.0
+  :coal_CHP_defaults: &coal_CHP_defaults
+    :hours_prep_nl: 590580.0
     :hours_prep_abroad: 0.0
     :hours_prod_nl: 0.0
     :hours_prod_abroad: .0
-    :hours_place_nl: 1600000.0
+    :hours_place_nl: 7087680.0
     :hours_place_abroad: 0.0
-    :hours_maint_nl: 105288.0
+    :hours_maint_nl: 1170000.0
     :hours_maint_abroad: 0.0
-    :hours_remov_nl: 480000.0
+    :hours_remov_nl: 472500.0
+    :hours_remov_abroad: 0.0
+        
+:defaults:
+  :coal_powder_defaults: &coal_powder_defaults
+    :hours_prep_nl: 1350000.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 2250000.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 180000.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 900000.0
+    :hours_remov_abroad: 0.0
+    
+:defaults:
+  :coal_igcc_defaults: &coal_igcc_defaults
+    :hours_prep_nl: 1755000.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 2925000.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 216000.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 900000.0
     :hours_remov_abroad: 0.0
 
 :defaults:
@@ -45,15 +74,15 @@
 
 :defaults:
   :waste_defaults: &waste_defaults
-    :hours_prep_nl: 81000.0
+    :hours_prep_nl: 113580.0
     :hours_prep_abroad: 0.0
     :hours_prod_nl: 0.0
     :hours_prod_abroad: .0
-    :hours_place_nl: 182571.43
+    :hours_place_nl: 820080.0
     :hours_place_abroad: 0.0
-    :hours_maint_nl: 170057.14
+    :hours_maint_nl: 171000.0
     :hours_maint_abroad: 0.0
-    :hours_remov_nl: 92571.43
+    :hours_remov_nl: 91080.00
     :hours_remov_abroad: 0.0
 
 
@@ -87,16 +116,17 @@
 
 #14
 :heat_pump_with_chs_households_energetic:
-  :hours_prep_nl: 6.0
+  :hours_prep_nl: 900.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 130.0
+  :hours_place_nl: 4320.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 4.0
+  :hours_maint_nl: 1620.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 40.0
+  :hours_remov_nl: 720.0
   :hours_remov_abroad: 0.0
+
 
 #15
 :airco_households_energetic:
@@ -232,15 +262,15 @@
 
 #239
 :gasheatpump_households_energetic:
-  :hours_prep_nl: 0.0
+  :hours_prep_nl: 900.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 20.0
+  :hours_place_nl: 4320.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 1.5
+  :hours_maint_nl: 1620.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 16.0
+  :hours_remov_nl: 720.0
   :hours_remov_abroad: 0.0
 
 #271
@@ -535,47 +565,47 @@
 
 #265 TD
 :chp_agri_agriculture_energetic:
-  :hours_prep_nl: 550.0
+  :hours_prep_nl: 900.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 934.13
+  :hours_place_nl: 4320.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 838.40
+  :hours_maint_nl: 1620.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 628.57
+  :hours_remov_nl: 720.0
   :hours_remov_abroad: 0.0
 
 #261 TD
 :chp_other_other_energetic:
-  :hours_prep_nl: 300.0
+  :hours_prep_nl: 360.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 609.52
+  :hours_place_nl: 2880.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 691.20
+  :hours_maint_nl: 1260.00
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 342.86
+  :hours_remov_nl: 360.0
   :hours_remov_abroad: 0.0
 
 
 #438
 :coal_chp_industry_energetic:
-  :hours_prep_nl: 19125.0
+  :hours_prep_nl: 26820.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 43107.14
+  :hours_place_nl: 193680.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 22200.0
+  :hours_maint_nl: 32040.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 21857.14
+  :hours_remov_nl: 21600.0
   :hours_remov_abroad: 0.0
 
 #75 TD
 :coal_chp_energy:
-  <<: *coal_defaults
+  <<: *coal_CHP_defaults
 
 #319 TD
 :collective_biomass_chp_households_energetic:
@@ -583,15 +613,15 @@
 
 #318 TD
 :collective_gas_chp_households_energetic:
-  :hours_prep_nl: 300.0
+  :hours_prep_nl: 360.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 609.52
+  :hours_place_nl: 2880.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 691.20
+  :hours_maint_nl: 1260.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 342.86
+  :hours_remov_nl: 360.0
   :hours_remov_abroad: 0.0
 
 #441 
@@ -609,33 +639,33 @@
 
 #350 TD
 :gas_chp_buildings_energetic:
-  :hours_prep_nl: 300.0
+  :hours_prep_nl: 360.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 609.52
+  :hours_place_nl: 2880.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 691.20
+  :hours_maint_nl: 1260.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 342.86
+  :hours_remov_nl: 360.0
   :hours_remov_abroad: 0.0
 
 #28 TD
 :central_gas_chp_energy_energetic:
-  :hours_prep_nl: 315000.0
+  :hours_prep_nl: 442800.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 640000.0
+  :hours_place_nl: 2835000.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 192038.51
+  :hours_maint_nl: 534600.00
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 360000.0
+  :hours_remov_nl: 354600.0
   :hours_remov_abroad: 0.0
 
 #423 TD
 :lignite_chp_energy:
-  <<: *coal_defaults
+  <<: *coal_CHP_defaults
 
 #376
 :micro_chp_hot_water_households_energetic:
@@ -665,19 +695,19 @@
 
 #424 TD
 :oil_chp_energy:
-  <<: *coal_defaults
+  <<: *coal_CHP_defaults
 
 #27 TD
 :small_chp_industry_energetic:
-  :hours_prep_nl: 19125.0
+  :hours_prep_nl: 26820.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 43107.14
+  :hours_place_nl: 193680.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 22200.0
+  :hours_maint_nl: 32040.0
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 21857.14
+  :hours_remov_nl: 21600.0
   :hours_remov_abroad: 0.0
 
 #409
@@ -686,31 +716,31 @@
 
 #83
 :co_firing_coal_energy:
-  <<: *coal_defaults
+  <<: *coal_powder_defaults
 
 #71
 :coal_igcc_energy:
-  <<: *coal_defaults
+  <<: *coal_igcc_defaults
 
 #72
 :coal_igcc_ccs_energy:
-  <<: *coal_defaults
+  <<: *coal_igcc_defaults
 
 #69
 :coal_lignite_energy:
-  <<: *coal_defaults
+  <<: *coal_powder_defaults
 
 #70
 :coal_oxyfuel_ccs_energy:
-  <<: *coal_defaults
+  <<: *coal_powder_defaults
 
 #66
 :coal_pwd_energy:
-  <<: *coal_defaults
+  <<: *coal_powder_defaults
 
 #67
 :coal_pwd_ccs_energy:
-  <<: *coal_defaults
+  <<: *coal_powder_defaults
 
 #74
 :gas_ccgt_energy:
@@ -829,19 +859,19 @@
 
 #68 
 :coal_conv_energy:
-  <<: *coal_defaults
+  <<: *coal_powder_defaults
 
 #557
 :gas_turbine_energy_energetic:
-  :hours_prep_nl: 63000.0
+  :hours_prep_nl: 88560.0.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
-  :hours_place_nl: 128000.0
+  :hours_place_nl: 567000.0
   :hours_place_abroad: 0.0
-  :hours_maint_nl: 38407.70
+  :hours_maint_nl: 106920.00
   :hours_maint_abroad: 0.0
-  :hours_remov_nl: 72000.0
+  :hours_remov_nl: 70920.0
   :hours_remov_abroad: 0.0
 
 #23
