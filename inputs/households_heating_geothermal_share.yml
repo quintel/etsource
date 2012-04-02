@@ -1,20 +1,19 @@
 --- 
 attr_name: steam_hot_water_output_link_share
-comments: ""
 factor: 100.0
 id: 344
 key: households_heating_geothermal_share
-keys: collective_geothermal_households_energetic
-label: ""
-label_query: 
 max_value: 100.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
 name: households_district_heating_geothermal_share
-query: 
+# This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
+# and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
+query: |-
+  UPDATE(
+    V(OUTPUT_SLOTS(LOOKUP(collective_geothermal_households_energetic),steam_hot_water), "links.detect{|l| !l.flexible? }"),
+    share, USER_INPUT() / 100.0
+  )
 share_group: district_heating_households
-start_value: 
 start_value_gql: present:V(collective_geothermal_households_energetic;share_of_steam_hot_water_households_energetic)
 unit: "%"
 update_type: converters
