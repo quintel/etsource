@@ -1,21 +1,12 @@
 --- 
-attr_name: heating_market_share
-comments: ""
-factor: 100.0
 id: 52
 key: households_heating_electric_heater_share
-keys: electric_heater_households_energetic
-label: ""
-label_query: 
 max_value: 100.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
+start_value_gql: present:V(electric_heater_households_energetic;share_of_heating_demand_households_energetic)
 name: Electric heater
 query: UPDATE(LINK(electric_heater_households_energetic,heating_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
 share_group: heating_households
-start_value: 
-start_value_gql: present:V(electric_heater_households_energetic;share_of_heating_demand_households_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future
