@@ -1,18 +1,18 @@
 --- 
 attr_name: hot_water_output_link_share
-comments: 
 factor: 100.0
 id: 347
 key: households_hot_water_electric_boiler_share
-keys: electric_boiler_households_energetic
-label: 
-label_query: 
 max_value: 100.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
 name: Electric boiler
-query: 
+# This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
+# and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
+query: |-
+  UPDATE(
+    V(OUTPUT_SLOTS(LOOKUP(electric_boiler_households_energetic),hot_water), "links.detect{|l| !l.flexible? }"),
+    share, USER_INPUT() / 100.0
+  )
 share_group: hot_water_households
 start_value: 0.0
 start_value_gql: present:Q(share_of_electric_boiler_in_hot_water_production_in_households)
