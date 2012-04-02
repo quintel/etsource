@@ -1743,6 +1743,7 @@ steam_hot_water_buildings_energetic;	steam_hot_water;	buildings;	energetic;final
 steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic
+steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_buildings_energetic
 steam_hot_water_buildings_energetic-(steam_hot_water)
 (useable_heat)-steam_hot_water_buildings_energetic
 
@@ -2724,3 +2725,8 @@ coal_appliances_buildings_energetic;	coal_appliances;	buildings;	energetic;appli
 coal_appliances_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
 coal_appliances_buildings_energetic-(coal)
 (not_defined)-coal_appliances_buildings_energetic
+
+collective_geothermal_buildings_energetic;	collective_geothermal;	buildings;	energetic;local heat generation;	cost_heat_pumps
+collective_geothermal_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic
+collective_geothermal_buildings_energetic-(ambient_heat)
+(steam_hot_water)-collective_geothermal_buildings_energetic

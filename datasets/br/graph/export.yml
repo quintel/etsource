@@ -4659,6 +4659,7 @@ steam_hot_water_buildings_energetic-(steam_hot_water): {conversion: 1.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: }
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic: {share: 0.0765082066869301}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic: {share: 0.0}
+steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_buildings_energetic: {share: 0.0}
 
 :cooling_current_insulation_old_households_energetic:
   :co2_free: 0.0
@@ -6529,3 +6530,32 @@ heat_from_monetized_heat_buildings_energetic-(useable_heat) -- s --> (useable_he
 coal_appliances_buildings_energetic-(coal): {conversion: 1.0}
 (not_defined)-coal_appliances_buildings_energetic: {conversion: 1.0}
 coal_appliances_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic: {share: 1.0}
+
+:collective_geothermal_buildings_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+  :technical_lifetime: 25.0
+  :construction_time: 0.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :typical_nominal_input_capacity: 3.706
+  :decommissioning_costs_per_mw_input: 0.0
+  :full_load_hours: 3672.39293209657
+  :residual_value_per_mw_input: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 7554.63688888437
+  :wacc: 0.06
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :land_use_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :purchase_price_per_mw_input: 1000000.0
+  :economic_lifetime: 25.0
+  :part_ets: 0.0
+  :availability: 0.0
+  :variability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :part_load_operating_point: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :forecasting_error: 0.0
+collective_geothermal_buildings_energetic-(ambient_heat): {conversion: 1.0}
+(steam_hot_water)-collective_geothermal_buildings_energetic: {conversion: 1.0}
+collective_geothermal_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic: {share: 1.0}
