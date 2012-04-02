@@ -3,14 +3,14 @@
 
 - unit = converters
 
-V(
-  waste_incinerator_energy_energetic,
-  solar_pv_central_production_energy_energetic,
-  solar_csp_energy,
-  hydro_river_energy,
-  hydro_mount_energy,
-  geothermal_electricity_energy,
-  local_solar_pv_grid_connected_energy_energetic,
-  local_solar_pv_not_grid_connected_energy_energetic,
-  solar_panels_buildings_energetic
+EXCLUDE(
+  G(electricity_production),
+  V(
+    Q(electricity_producing_coal_converters),
+    Q(electricity_producing_oil_converters), 
+    Q(electricity_producing_gas_converters),
+    Q(electricity_producing_nuclear_converters),
+    Q(electricity_producing_wind_converters),
+    Q(electricity_producing_wood_pellets_converters)
+  )
 )
