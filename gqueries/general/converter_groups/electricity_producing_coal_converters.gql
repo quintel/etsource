@@ -3,14 +3,6 @@
 
 - unit = converters
 
-V(
-  coal_pwd_energy,
-  coal_pwd_ccs_energy,
-  coal_conv_energy,
-  coal_lignite_energy,
-  coal_oxyfuel_ccs_energy,
-  coal_igcc_energy,
-  coal_igcc_ccs_energy,
-  coal_chp_energy,
-  lignite_chp_energy
+FILTER(
+    G(electricity_production); coal_input_conversion > 0 || lignite_input_conversion > 0
 )
