@@ -1,18 +1,16 @@
 --- 
-attr_name: rc_value
-comments: 
 factor: 1.0
 id: 336
 key: households_insulation_level_old_houses
-keys: extra_insulation_savings_households_energetic
-label: ""
-label_query: 
 max_value: 3.0
-max_value_gql: 
 min_value: 1.0
-min_value_gql: 
 name: Insulation level old houses
-query: 
+query: |-
+  UPDATE(
+    FIRST(LINKS(OUTPUT_SLOTS(V(extra_insulation_savings_households_energetic),useable_heat))),
+    share, 
+    (1 - ((1 - 0.2) * AREA(insulation_level_existing_houses) / USER_INPUT() + 0.2))
+  )
 share_group: ""
 start_value: 1.0
 start_value_gql: 
