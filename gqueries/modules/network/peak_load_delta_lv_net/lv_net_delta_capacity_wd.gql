@@ -3,9 +3,13 @@
 
 - unit = mw
 
-SUM(
+ABS(SUM(
   Q(peak_load_delta_electric_cars_wd),
   Q(peak_load_delta_electric_trucks_wd),
   Q(peak_load_delta_household_heaters),
-  Q(peak_load_delta_electric_boiler)
-)
+  Q(peak_load_delta_electric_boiler),
+  SUM(
+      PRODUCT( Q(peak_load_delta_household_micro_chp), V(micro_chp_space_heating_households ; simult_wd) ),
+      PRODUCT( Q(peak_load_delta_local_solar_pv_grid_connected), V(local_solar_pv_grid_connected_energy_energetic ; simult_wd) )
+  )
+))
