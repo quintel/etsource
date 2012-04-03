@@ -15,7 +15,7 @@ query: |-
     UPDATE(
       LINK(heating_buildings_energetic,gas_fired_heater_buildings_energetic), 
       share, 
-      SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
+      -> {SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)}
     )
   ) 
 share_group: heating_buildings
