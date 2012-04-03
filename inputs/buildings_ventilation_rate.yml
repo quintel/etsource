@@ -1,21 +1,18 @@
 --- 
-attr_name: ventilation_rate_buildings
-comments: ""
-factor: 1.0
 id: 395
+factor: 1.0
 key: buildings_ventilation_rate
-keys: heating_offices_current_insulation_buildings_energetic_AND_heating_schools_current_insulation_buildings_energetic_AND_heating_other_buildings_energetic_AND_cooling_demand_buildings_energetic
-label: ""
-label_query: 
-max_value: 3.0
-max_value_gql: 
-min_value: 1.5
-min_value_gql: 
 name: Ventilation rate
-query: 
-share_group: ""
-start_value: 
+max_value: 3.0
+min_value: 1.5
 start_value_gql: present:AREA(ventilation_rate)
+query: |-
+  EACH(
+    UPDATE(V(heating_offices_current_insulation_buildings_energetic), preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
+    UPDATE(V(heating_schools_current_insulation_buildings_energetic), preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
+    UPDATE(V(heating_other_buildings_energetic),                      preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
+    UPDATE(V(cooling_demand_buildings_energetic),                     preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) })
+  )
 unit: x
 update_type: converters
 updateable_period: future

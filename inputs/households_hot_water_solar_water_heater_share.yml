@@ -1,18 +1,18 @@
 --- 
 attr_name: hot_water_output_link_share
-comments: 
 factor: 100.0
 id: 348
 key: households_hot_water_solar_water_heater_share
-keys: solar_panel_for_hot_water_households_energetic
-label: 
-label_query: 
 max_value: 50.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
 name: Solar water heater
-query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(solar_panel_for_hot_water_households_energetic);hot_water))), share, DIVIDE(USER_INPUT(),V(100.0)))
+# This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
+# and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
+query: |-
+  UPDATE(
+    V(OUTPUT_SLOTS(LOOKUP(solar_panel_for_hot_water_households_energetic),hot_water), "links.detect{|l| !l.flexible? }"),
+    share, USER_INPUT() / 100.0
+  )
 share_group: ""
 start_value: 0.0
 start_value_gql: present:Q(market_penetration_of_solar_heater_for_hot_water_in_households)
