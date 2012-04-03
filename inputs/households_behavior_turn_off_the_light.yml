@@ -12,7 +12,13 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Turn off the light
-query: UPDATE(V(effective_lighting_demand_households_energetic,lighting_buildings_energetic), preset_demand, NEG(DIVIDE(USER_INPUT(),V(10.0))))
+query: |-
+  UPDATE(
+    V(
+      effective_lighting_demand_households_energetic,
+      lighting_buildings_energetic), 
+      preset_demand, 
+      NEG(DIVIDE(USER_INPUT(),V(10.0))))
 share_group: ""
 start_value: 0.0
 start_value_gql: 

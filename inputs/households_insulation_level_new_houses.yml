@@ -1,21 +1,18 @@
 --- 
-attr_name: rc_value
-comments: ""
-factor: 1.0
 id: 337
 key: households_insulation_level_new_houses
-keys: heating_savings_insulation_new_households_energetic
-label: ""
-label_query: 
+factor: 1.0
 max_value: 6.0
-max_value_gql: 
 min_value: 2.5
-min_value_gql: 
-name: Insulation level new houses
-query: 
-share_group: ""
 start_value: 2.5
-start_value_gql: 
+name: Insulation level new houses
+query:  |-
+  UPDATE(
+    FIRST(LINKS(OUTPUT_SLOTS(V(heating_savings_insulation_new_households_energetic),useable_heat))),
+    share, 
+    (1 - ((1 - 0.2) * AREA(insulation_level_new_houses) / USER_INPUT() + 0.2))
+  )
+share_group: ""
 unit: ""
 update_type: converters
 updateable_period: future

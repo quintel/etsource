@@ -1,27 +1,24 @@
 --- 
-attr_name: heating_buildings_market_share
-comments: ""
-factor: 100.0
 id: 585
 key: buildings_heating_district_heating_network_share
-keys: heat_from_monetized_heat_buildings_energetic
-label: ""
-label_query: ""
 max_value: 100.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
+start_value_gql: present:V(heat_from_monetized_heat_buildings_energetic;share_of_heating_buildings_energetic)
 name: buildings_heating_district_heating_share
 query: |-
   EACH(
-              UPDATE(LINK(heat_from_monetized_heat_buildings_energetic,heating_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(heating_buildings_energetic,gas_fired_heater_buildings_energetic), share, 
-                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
-              )
-            ) 
+    UPDATE(
+      LINK(heat_from_monetized_heat_buildings_energetic,heating_buildings_energetic), 
+      share, 
+      DIVIDE(USER_INPUT(),100)
+    ),
+    UPDATE(
+      LINK(heating_buildings_energetic,gas_fired_heater_buildings_energetic), 
+      share, 
+      SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
+    )
+  ) 
 share_group: heating_buildings
-start_value: 
-start_value_gql: present:V(heat_from_monetized_heat_buildings_energetic;share_of_heating_buildings_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future
