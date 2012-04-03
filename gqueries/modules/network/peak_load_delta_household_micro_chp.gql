@@ -1,16 +1,9 @@
-# OLD query:
-# 
-# PRODUCT (
-#    
-#                    Q(peak_load_per_unit_hh_micro_chp),
-#     
-#                    Q(peak_load_units_delta_hh_micro_chp)
-# )
+# This query is the maximum possible peak load of a single converter, without taking the simultaneousness into account (that is in another query)
 
 - deprecated_key = peak_load_delta_hh_micro_chp
 - unit = mw
 
 PRODUCT(
-    V(micro_chp_space_heating_households;simult_we* 1/1000 * share_of_heating_demand_households_energetic),
+    V(micro_chp_space_heating_households ; typical_input_capacity * electricity_output_conversion * share_of_heating_demand_households_energetic),
     AREA(number_households)
 )
