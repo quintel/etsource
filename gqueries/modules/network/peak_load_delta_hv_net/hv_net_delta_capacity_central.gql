@@ -1,8 +1,8 @@
 - deprecated_key = pl_hv_net_delta_capacity_central
 # Explanation current query:
 # First MAX( - Looks at POSITIVE deltas in capacity that require net expansion
-# Second MAX( - Looks if either the import or export of electricity is larger than the available capacity. If not returns zero
-# 61959*100000=  the capacity factor
+# Second MAX( - Calculates maximum import/export in MW. Subtracts 4200MW, which is current import/export capacity
+# 61959/100000 is capacity factor.
 
 - unit = mw
 
@@ -14,8 +14,13 @@ SUM(
      0
    ),
    MAX(
-     V(interconnection_energy;demand/3600/8760/61959*100000-4200),
-     V(interconnection_energy;demand/3600/8760/61959*100000*-1-4200),
+     SUM(
+       MAX(
+         V(electricity_export_energy;demand/3600/8760/61959*100000),
+         V(electricity_import_export_energy;demand/3600/8760/61959*100000)
+       ),
+       NEG(4200)
+     ),
      0
    )
 )
