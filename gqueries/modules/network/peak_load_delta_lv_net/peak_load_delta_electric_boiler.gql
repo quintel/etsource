@@ -1,5 +1,7 @@
-# 109718/1000000 is the current share of electric boilers. It is entered like this since decimals apparently can't be entered in the query.
-
+# This is an ugly, temporary query because number_of_units doesn't work as intended for this technology.
+# 71/1000 is the current share of electric boilers. It is entered like this since decimals apparently can't be entered in the query.
+# If number of units is working the query would be: 
+# V(electric_boiler_households_energetic ; simult_we*electricity_input_conversion*typical_input_capacity_in_mw*[number_of_units-peak_load_units_present])
 - unit = mw
 
 PRODUCT(
@@ -20,8 +22,9 @@ PRODUCT(
         simult_we*
         electricity_input_conversion*
         typical_input_capacity_in_mw*
-        109718/1000000)
+        71/1000)
     )
   ),
   AREA(number_households)
 )
+
