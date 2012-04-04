@@ -28,7 +28,10 @@ module ETE
         end
       end
     rescue Exception => e
-      puts "Export error: #{e}" and exit
+      puts "Export error: #{e}"
+      puts "#{e.backtrace[0]}"
+      puts "Current file: #{$current_file}"
+      exit
     end
 
     # writes to ETSOURCE/datasets/<area>/graph/export.yml
@@ -50,6 +53,8 @@ module ETE
       dest_file = "#{destination_directory}/graph/export.yml"
       puts "  Saving converters to #{dest_file}"
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+    rescue Exception => e
+      raise "Error exporting converters: #{e}"
     end
 
 
