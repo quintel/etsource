@@ -287,7 +287,7 @@ heatpump_households_energetic-(ambient_heat)
 
 city_cooling_network_buildings_energetic;	city_cooling_network;	buildings;	energetic;technologies;	
 city_cooling_network_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-water_environment_energetic
-city_cooling_network_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+city_cooling_network_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_cooling_electricity_buildings_energetic
 city_cooling_network_buildings_energetic-(electricity)
 city_cooling_network_buildings_energetic-(ambient_cold)
 (cooling)-city_cooling_network_buildings_energetic
@@ -1595,11 +1595,6 @@ cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energet
 cooling_buildings_energetic-(cooling)
 (cooling)-cooling_buildings_energetic
 
-electricity_without_heating_buildings_energetic;	electricity_without_heating;	buildings;	energetic;;	
-electricity_without_heating_buildings_energetic-(electricity) -- f --> (electricity)-electricity_buildings_energetic
-electricity_without_heating_buildings_energetic-(electricity)
-(electricity)-electricity_without_heating_buildings_energetic
-
 lighting_buildings_energetic;	lighting;	buildings;	energetic;useful consumption;	useful_demand
 lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic
 lighting_buildings_energetic-(light) -- s --> (light)-tl8_buildings_energetic
@@ -1608,19 +1603,19 @@ lighting_buildings_energetic-(light)
 (light)-lighting_buildings_energetic
 
 tl5_buildings_energetic;	tl5;	buildings;	energetic;technologies;	
-tl5_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+tl5_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_lighting_electricity_buildings_energetic
 tl5_buildings_energetic-(electricity)
 (light)-tl5_buildings_energetic
 (loss)-tl5_buildings_energetic
 
 tl8_buildings_energetic;	tl8;	buildings;	energetic;technologies;	
-tl8_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+tl8_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_lighting_electricity_buildings_energetic
 tl8_buildings_energetic-(electricity)
 (light)-tl8_buildings_energetic
 (loss)-tl8_buildings_energetic
 
 led_buildings_energetic;	led;	buildings;	energetic;technologies;	
-led_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+led_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_lighting_electricity_buildings_energetic
 led_buildings_energetic-(electricity)
 (light)-led_buildings_energetic
 (loss)-led_buildings_energetic
@@ -1638,13 +1633,13 @@ local_heat_network_buildings_energetic-(steam_hot_water)
 (loss)-local_heat_network_buildings_energetic
 
 gas_fired_heater_buildings_energetic;	gas_fired_heater;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
-gas_fired_heater_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
+gas_fired_heater_buildings_energetic-(network_gas) -- s --> (network_gas)-final_demand_for_heating_gas_buildings_energetic
 gas_fired_heater_buildings_energetic-(network_gas)
 (useable_heat)-gas_fired_heater_buildings_energetic
 (loss)-gas_fired_heater_buildings_energetic
 
 electric_heater_buildings_energetic;	electric_heater;	buildings;	energetic;technologies;	heat_production,network_converters,cost_traditional_heat
-electric_heater_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+electric_heater_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_heating_elecrtricity_buildings_energetic
 electric_heater_buildings_energetic-(electricity)
 (useable_heat)-electric_heater_buildings_energetic
 (loss)-electric_heater_buildings_energetic
@@ -1664,36 +1659,36 @@ biomass_chp_buildings_energetic-(wood_pellets)
 (loss)-biomass_chp_buildings_energetic
 
 solarthermic_buildings_energetic;	solarthermic;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
-solarthermic_buildings_energetic-(solar_radiation) -- s --> (solar_radiation)-sun_environment_energetic
-solarthermic_buildings_energetic-(solar_radiation)
+solarthermic_buildings_energetic-(solar_thermal) -- s --> (solar_thermal)-final_demand_for_heating_solar_buildings_energetic
+solarthermic_buildings_energetic-(solar_thermal)
 (useable_heat)-solarthermic_buildings_energetic
 (loss)-solarthermic_buildings_energetic
 
 gasheatpump_ts_buildings_energetic;	gasheatpump_ts;	buildings;	energetic;technologies;	heat_production,cost_heat_pumps
-gasheatpump_ts_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
 gasheatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic
+gasheatpump_ts_buildings_energetic-(network_gas) -- s --> (network_gas)-final_demand_for_heating_gas_buildings_energetic
 gasheatpump_ts_buildings_energetic-(network_gas)
 gasheatpump_ts_buildings_energetic-(ambient_heat)
 (useable_heat)-gasheatpump_ts_buildings_energetic
 (loss)-gasheatpump_ts_buildings_energetic
 
 wood_pellets_fired_heater_buildings_energetic;	wood_pellets_fired_heater;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
-wood_pellets_fired_heater_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic
+wood_pellets_fired_heater_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_for_heating_wood_pellets_buildings_energetic
 wood_pellets_fired_heater_buildings_energetic-(wood_pellets)
 (useable_heat)-wood_pellets_fired_heater_buildings_energetic
 (loss)-wood_pellets_fired_heater_buildings_energetic
 
 heatpump_ts_buildings_energetic;	heatpump_ts;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
-heatpump_ts_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
 heatpump_ts_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic
+heatpump_ts_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_heating_elecrtricity_buildings_energetic
 heatpump_ts_buildings_energetic-(electricity)
 heatpump_ts_buildings_energetic-(ambient_heat)
 (useable_heat)-heatpump_ts_buildings_energetic
 (loss)-heatpump_ts_buildings_energetic
 
 gasheatpump_cooling_buildings_energetic;	gasheatpump_cooling;	buildings;	energetic;technologies;	heat_production,cost_heat_pumps
-gasheatpump_cooling_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
 gasheatpump_cooling_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-earth_environment_energetic
+gasheatpump_cooling_buildings_energetic-(network_gas) -- s --> (network_gas)-final_demand_for_cooling_gas_buildings_energetic
 gasheatpump_cooling_buildings_energetic-(network_gas)
 gasheatpump_cooling_buildings_energetic-(ambient_cold)
 (cooling)-gasheatpump_cooling_buildings_energetic
@@ -1701,7 +1696,7 @@ gasheatpump_cooling_buildings_energetic-(ambient_cold)
 
 heatpump_ts_cooling_buildings_energetic;	heatpump_ts_cooling;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 heatpump_ts_cooling_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-earth_environment_energetic
-heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+heatpump_ts_cooling_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_cooling_electricity_buildings_energetic
 heatpump_ts_cooling_buildings_energetic-(electricity)
 heatpump_ts_cooling_buildings_energetic-(ambient_cold)
 (cooling)-heatpump_ts_cooling_buildings_energetic
@@ -1709,17 +1704,17 @@ heatpump_ts_cooling_buildings_energetic-(ambient_cold)
 
 airco_buildings_energetic;	airco;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 airco_buildings_energetic-(ambient_cold) -- s --> (ambient_cold)-air_environment_energetic
-airco_buildings_energetic-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+airco_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_cooling_electricity_buildings_energetic
 airco_buildings_energetic-(electricity)
 airco_buildings_energetic-(ambient_cold)
 (cooling)-airco_buildings_energetic
 (loss)-airco_buildings_energetic
 
 appliances_buildings_energetic;	appliances;	buildings;	energetic;useful consumption;	useful_demand
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-wood_pellets_appliances_buildings
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-coal_appliances_buildings_energetic
 appliances_buildings_energetic-(not_defined)
 (not_defined)-appliances_buildings_energetic
@@ -1790,13 +1785,13 @@ micro_chp_hot_water_households_energetic-(network_gas)
 (hot_water)-micro_chp_hot_water_households_energetic
 
 oil_heater_buildings_energetic;	oil_heater;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
-oil_heater_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+oil_heater_buildings_energetic-(crude_oil) -- s --> (crude_oil)-final_demand_for_heating_oil_buildings_energetic
 oil_heater_buildings_energetic-(crude_oil)
 (loss)-oil_heater_buildings_energetic
 (useable_heat)-oil_heater_buildings_energetic
 
 coal_heater_buildings_energetic;	coal_heater;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
-coal_heater_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
+coal_heater_buildings_energetic-(coal) -- s --> (coal)-final_demand_for_heating_coal_buildings_energetic
 coal_heater_buildings_energetic-(coal)
 (loss)-coal_heater_buildings_energetic
 (useable_heat)-coal_heater_buildings_energetic
@@ -1885,22 +1880,22 @@ available_electricity_households-(electricity)
 (electricity)-available_electricity_households
 
 oil_appliances_buildings;	oil_appliances;	buildings;	undefined;application;	
-oil_appliances_buildings-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+oil_appliances_buildings-(crude_oil) -- s --> (crude_oil)-final_demand_for_appliances_oil_buildings_energetic
 oil_appliances_buildings-(crude_oil)
 (not_defined)-oil_appliances_buildings
 
 gas_appliances_buildings;	gas_appliances;	buildings;	undefined;application;	
-gas_appliances_buildings-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
+gas_appliances_buildings-(network_gas) -- s --> (network_gas)-final_demand_for_appliances_gas_buildings_energetic
 gas_appliances_buildings-(network_gas)
 (not_defined)-gas_appliances_buildings
 
 wood_pellets_appliances_buildings;	wood_pellets_appliances;	buildings;	undefined;application;	
-wood_pellets_appliances_buildings-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic
+wood_pellets_appliances_buildings-(wood_pellets) -- s --> (wood_pellets)-final_demand_for_appliances_wood_pellets_buildings_energetic
 wood_pellets_appliances_buildings-(wood_pellets)
 (not_defined)-wood_pellets_appliances_buildings
 
 electric_appliances_buildings;	electric_appliances;	buildings;	undefined;application;	
-electric_appliances_buildings-(electricity) -- s --> (electricity)-electricity_without_heating_buildings_energetic
+electric_appliances_buildings-(electricity) -- s --> (electricity)-final_demand_for_appliances_electricity_buildings_energetic
 electric_appliances_buildings-(electricity)
 (not_defined)-electric_appliances_buildings
 
@@ -2717,12 +2712,12 @@ electricity_for_electricity_other_energetic-(electricity)
 (electricity)-electricity_for_electricity_other_energetic
 
 heat_from_monetized_heat_buildings_energetic;	heat_from_monetized_heat;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
-heat_from_monetized_heat_buildings_energetic-(useable_heat) -- s --> (useable_heat)-steam_hot_water_buildings_energetic
+heat_from_monetized_heat_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-final_demand_for_heating_monetized_heat_buildings_energetic
 heat_from_monetized_heat_buildings_energetic-(useable_heat)
 (useable_heat)-heat_from_monetized_heat_buildings_energetic
 
 coal_appliances_buildings_energetic;	coal_appliances;	buildings;	energetic;application;	
-coal_appliances_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
+coal_appliances_buildings_energetic-(coal) -- s --> (coal)-final_demand_for_appliances_coal_buildings_energetic
 coal_appliances_buildings_energetic-(coal)
 (not_defined)-coal_appliances_buildings_energetic
 
@@ -2730,3 +2725,76 @@ collective_geothermal_buildings_energetic;	collective_geothermal;	buildings;	ene
 collective_geothermal_buildings_energetic-(ambient_heat) -- s --> (ambient_heat)-earth_environment_energetic
 collective_geothermal_buildings_energetic-(ambient_heat)
 (steam_hot_water)-collective_geothermal_buildings_energetic
+
+final_demand_for_heating_coal_buildings_energetic;	final_demand_for_heating_coal;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_coal_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
+final_demand_for_heating_coal_buildings_energetic-(coal)
+(coal)-final_demand_for_heating_coal_buildings_energetic
+
+final_demand_for_heating_oil_buildings_energetic;	final_demand_for_heating_oil;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+final_demand_for_heating_oil_buildings_energetic-(crude_oil)
+(crude_oil)-final_demand_for_heating_oil_buildings_energetic
+
+final_demand_for_heating_gas_buildings_energetic;	final_demand_for_heating_gas;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
+final_demand_for_heating_gas_buildings_energetic-(network_gas)
+(network_gas)-final_demand_for_heating_gas_buildings_energetic
+
+final_demand_for_heating_wood_pellets_buildings_energetic;	final_demand_for_heating_wood_pellets;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_wood_pellets_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic
+final_demand_for_heating_wood_pellets_buildings_energetic-(wood_pellets)
+(wood_pellets)-final_demand_for_heating_wood_pellets_buildings_energetic
+
+final_demand_for_heating_solar_buildings_energetic;	final_demand_for_heating_solar;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_solar_buildings_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_production_energy_energetic
+final_demand_for_heating_solar_buildings_energetic-(solar_thermal)
+(solar_thermal)-final_demand_for_heating_solar_buildings_energetic
+
+final_demand_for_heating_elecrtricity_buildings_energetic;	final_demand_for_heating_elecrtricity;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_elecrtricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+final_demand_for_heating_elecrtricity_buildings_energetic-(electricity)
+(electricity)-final_demand_for_heating_elecrtricity_buildings_energetic
+
+final_demand_for_heating_monetized_heat_buildings_energetic;	final_demand_for_heating_monetized_heat;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_heating_monetized_heat_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-steam_hot_water_buildings_energetic
+final_demand_for_heating_monetized_heat_buildings_energetic-(steam_hot_water)
+(steam_hot_water)-final_demand_for_heating_monetized_heat_buildings_energetic
+
+final_demand_for_cooling_gas_buildings_energetic;	final_demand_for_cooling_gas;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_cooling_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
+
+final_demand_for_cooling_electricity_buildings_energetic;	final_demand_for_cooling_electricity;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_cooling_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+final_demand_for_cooling_electricity_buildings_energetic-(electricity)
+(electricity)-final_demand_for_cooling_electricity_buildings_energetic
+
+final_demand_for_lighting_electricity_buildings_energetic;	final_demand_for_lighting_electricity;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_lighting_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+final_demand_for_lighting_electricity_buildings_energetic-(electricity)
+(electricity)-final_demand_for_lighting_electricity_buildings_energetic
+
+final_demand_for_appliances_coal_buildings_energetic;	final_demand_for_appliances_coal;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_appliances_coal_buildings_energetic-(coal) -- s --> (coal)-coal_buildings_energetic
+final_demand_for_appliances_coal_buildings_energetic-(coal)
+(coal)-final_demand_for_appliances_coal_buildings_energetic
+
+final_demand_for_appliances_oil_buildings_energetic;	final_demand_for_appliances_oil;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_appliances_oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_buildings_energetic
+final_demand_for_appliances_oil_buildings_energetic-(crude_oil)
+(crude_oil)-final_demand_for_appliances_oil_buildings_energetic
+
+final_demand_for_appliances_gas_buildings_energetic;	final_demand_for_appliances_gas;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_appliances_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic
+final_demand_for_appliances_gas_buildings_energetic-(network_gas)
+(network_gas)-final_demand_for_appliances_gas_buildings_energetic
+
+final_demand_for_appliances_wood_pellets_buildings_energetic;	final_demand_for_appliances_wood_pellets;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_appliances_wood_pellets_buildings_energetic-(wood_pellets) -- s --> (wood_pellets)-final_demand_of_wood_pellets_buildings_energetic
+final_demand_for_appliances_wood_pellets_buildings_energetic-(wood_pellets)
+(wood_pellets)-final_demand_for_appliances_wood_pellets_buildings_energetic
+
+final_demand_for_appliances_electricity_buildings_energetic;	final_demand_for_appliances_electricity;	buildings;	energetic;application;	final_demand_cbs
+final_demand_for_appliances_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic
+final_demand_for_appliances_electricity_buildings_energetic-(electricity)
+(electricity)-final_demand_for_appliances_electricity_buildings_energetic
