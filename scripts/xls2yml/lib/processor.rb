@@ -38,9 +38,10 @@ module ETE
     def export_converters(export, destination_directory)
       converter_exporter = ConverterExporter.new(export)
       raw = converter_exporter.export
-
       lines = []
+      current_converter_key = nil
       raw.each_pair do |converter_key, values|
+        current_converter_key = converter_key
         lines << ":#{converter_key}:"
         values[:attributes].each_pair do |attr, val|
           lines << "  :#{attr}: #{val}"
@@ -54,7 +55,7 @@ module ETE
       puts "  Saving converters to #{dest_file}"
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
     rescue Exception => e
-      raise "Error exporting converters: #{e}"
+      raise "Error exporting converter #{current_converter_key}: #{e}"
     end
 
 
