@@ -1,18 +1,18 @@
 --- 
 attr_name: hot_water_output_link_share
-comments: ""
 factor: 100.0
 id: 446
 key: households_hot_water_gas_fired_heater_share
-keys: cv_hot_water_households_energetic
-label: ""
-label_query: ""
 max_value: 100.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
 name: Gas combi heater
-query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(cv_hot_water_households_energetic);hot_water))), share, DIVIDE(USER_INPUT(),V(100.0)))
+# This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
+# and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
+query: |-
+  UPDATE(
+    V(OUTPUT_SLOTS(LOOKUP(cv_hot_water_households_energetic),hot_water), "links.detect{|l| !l.flexible? }"),
+    share, USER_INPUT() / 100.0
+  )
 share_group: hot_water_households
 start_value: 50.0
 start_value_gql: present:Q(share_of_condensing_gas_heater_in_hot_water_production_in_households)

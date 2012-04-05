@@ -8,14 +8,14 @@ keys: coal_igcc_energy
 label: ""
 label_query: 
 max_value: 300.0
-max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(coal_igcc_energy;full_load_seconds))
+max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(coal_igcc_energy,full_load_seconds))
 min_value: 0.0
 min_value_gql: 
 name: Coal IGGC
-query: UPDATE(OUTPUT_LINKS(coal_igcc_energy;constant), share, PRODUCT(V(coal_igcc_energy), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(coal_igcc_energy,constant), share, PRODUCT(V(coal_igcc_energy), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
 start_value: 
-start_value_gql: present:V(coal_igcc_energy;electricity_production_in_mw)
+start_value_gql: present:V(coal_igcc_energy,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future

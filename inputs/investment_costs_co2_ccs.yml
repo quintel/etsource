@@ -1,22 +1,21 @@
 --- 
-attr_name: ccs_investment_per_mw_input_growth_total
-comments: 
-factor: 100.0
 id: 140
 key: investment_costs_co2_ccs
-keys: coal_pwd_ccs_energy_AND_coal_oxyfuel_ccs_energy_AND_coal_igcc_ccs_energy_AND_ccgt_ccs_energy
-label: 
-label_query: 
 max_value: 300.0
-max_value_gql: 
 min_value: -100.0
-min_value_gql: 
-name: CCS Investment
-query: 
-share_group: ""
 start_value: 0.0
-start_value_gql: 
+name: CCS Investment
+query: |-
+  UPDATE(
+    V(coal_pwd_ccs_energy,
+      coal_oxyfuel_ccs_energy,
+      coal_igcc_ccs_energy,
+      ccgt_ccs_energy
+    ),
+    ccs_investment_per_mw_input, 
+    USER_INPUT()
+  )
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit: %

@@ -3,12 +3,12 @@
 #   MAX(
 #     SUM(
 #       Q(peak_load_delta_max_lv_net), 
-#       V(lv_electricity_network_energy_energetic; typical_capacity_effective_in_mj_s) 
+#       V(lv_electricity_network_energy_energetic, typical_capacity_effective_in_mj_s) 
 #     ),
-#     V(lv_electricity_network_energy_energetic;typical_capacity_gross_in_mj_s)
+#     V(lv_electricity_network_energy_energetic,typical_capacity_gross_in_mj_s)
 #   ),
 #   NEG(
-#     V(lv_electricity_network_energy_energetic;typical_capacity_gross_in_mj_s)
+#     V(lv_electricity_network_energy_energetic,typical_capacity_gross_in_mj_s)
 #   )
 # )
 
@@ -16,5 +16,5 @@
 
 PRODUCT(
   Q(mv_lv_trafo_capacity_needed),
-V(lv_mv_transformer_energy;network_expansion_costs_in_euro_per_mw)
+V(lv_mv_transformer_energy,network_expansion_costs_in_euro_per_mw)
 )

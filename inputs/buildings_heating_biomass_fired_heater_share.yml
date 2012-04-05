@@ -16,12 +16,12 @@ query: |-
   EACH(
               UPDATE(LINK(wood_pellets_fired_heater_buildings_energetic,heating_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
               UPDATE(LINK(heating_buildings_energetic,gas_fired_heater_buildings_energetic), share, 
-                SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()); share))), 1)
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: heating_buildings
 start_value: 
-start_value_gql: present:V(wood_pellets_fired_heater_buildings_energetic;share_of_heating_buildings_energetic)
+start_value_gql: present:V(wood_pellets_fired_heater_buildings_energetic,share_of_heating_buildings_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

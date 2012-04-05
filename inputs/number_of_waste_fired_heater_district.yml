@@ -15,11 +15,11 @@ name: Waste-fired heater, district
 query: |-
   EACH(
               UPDATE(V(district_heater_waste_energy_energetic), number_of_units, USER_INPUT()),
-              UPDATE(OUTPUT_LINKS(V(district_heater_waste_energy_energetic);constant), share, V(district_heater_waste_energy_energetic; production_based_on_number_of_heat_units)),
+              UPDATE(OUTPUT_LINKS(V(district_heater_waste_energy_energetic),constant), share, V(district_heater_waste_energy_energetic, production_based_on_number_of_heat_units)),
             )
 share_group: ""
 start_value: 
-start_value_gql: present:V(district_heater_waste_energy_energetic;number_of_units)
+start_value_gql: present:V(district_heater_waste_energy_energetic,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future
