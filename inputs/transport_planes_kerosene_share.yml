@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Fossil fuel
-query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(planes_kerosine_transport_energetic);not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
+query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(planes_kerosine_transport_energetic),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
 share_group: transport_aviation
 start_value: 
-start_value_gql: present:V(planes_kerosine_transport_energetic;share_of_planes_transport_energetic)
+start_value_gql: present:V(planes_kerosine_transport_energetic,share_of_planes_transport_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

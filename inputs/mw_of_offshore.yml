@@ -12,10 +12,10 @@ max_value_gql: present:Q(potential_electricity_production_of_offshore_wind)
 min_value: 0.0
 min_value_gql: 
 name: Offshore
-query: UPDATE(OUTPUT_LINKS(wind_offshore_energy;constant), share, PRODUCT(V(wind_offshore_energy), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(wind_offshore_energy,constant), share, PRODUCT(V(wind_offshore_energy), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
 start_value: 
-start_value_gql: present:V(wind_offshore_energy;electricity_production_in_mw)
+start_value_gql: present:V(wind_offshore_energy,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future

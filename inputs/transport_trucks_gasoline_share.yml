@@ -16,12 +16,12 @@ query: |-
   EACH(
               UPDATE(LINK(gasoline_trucks_transport_energetic,truck_kms_demand_transport_energetic), share, DIVIDE(USER_INPUT(),100)),
               UPDATE(LINK(truck_kms_demand_transport_energetic,diesel_trucks_transport_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(truck_kms_demand_transport_energetic)),UPDATE_COLLECTION()); share))), 1)}
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(truck_kms_demand_transport_energetic)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: transport_truck_tech
 start_value: 1.0
-start_value_gql: present:V(gasoline_trucks_transport_energetic;share_of_truck_kms_demand_transport_energetic)
+start_value_gql: present:V(gasoline_trucks_transport_energetic,share_of_truck_kms_demand_transport_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

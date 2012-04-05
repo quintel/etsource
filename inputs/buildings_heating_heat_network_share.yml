@@ -8,11 +8,18 @@ name: Heat network
 # and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
 query: |-
   UPDATE(
-    V(OUTPUT_SLOTS(LOOKUP(steam_hot_water_buildings_energetic),steam_hot_water), "links.detect{|l| !l.flexible? }"),
+    FIRST(
+      LINKS(
+        OUTPUT_SLOTS(
+          LOOKUP(steam_hot_water_buildings_energetic),
+          steam_hot_water
+        )
+      )
+    ),
     share, USER_INPUT() / 100.0
   )
 share_group: district_heating_buildings
-start_value_gql: present:V(local_heat_network_buildings_energetic;steam_hot_water_output_link_share)
+start_value_gql: present:V(local_heat_network_buildings_energetic,steam_hot_water_output_link_share)
 unit: "%"
 update_type: converters
 updateable_period: future

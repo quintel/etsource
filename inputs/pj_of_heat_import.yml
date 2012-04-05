@@ -9,7 +9,7 @@ query: |-
     UPDATE(V(heat_import_energy), preset_demand, USER_INPUT() / 1.0e-09),
     UPDATE(OUTPUT_LINKS(V(heat_import_energy), "constant?"), share, USER_INPUT() / 1.0e-09)
   )
-start_value_gql: present:V(heat_import_energy;demand)
+start_value_gql: present:V(heat_import_energy,demand)
 unit: PJ
 update_type: converters
 updateable_period: future

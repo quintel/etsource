@@ -11,14 +11,14 @@ keys: biomass_chp_industry_energetic
 label: ""
 label_query: 
 max_value: 20.0
-max_value_gql: present:PRODUCT(10,DIVIDE(V(heating_demand_industry_energetic;demand),V(biomass_chp_industry_energetic;typical_heat_production_per_unit)))
+max_value_gql: present:PRODUCT(10,DIVIDE(V(heating_demand_industry_energetic,demand),V(biomass_chp_industry_energetic,typical_heat_production_per_unit)))
 min_value: 0.0
 min_value_gql: 
 name: Biomass CHP
-query: UPDATE(OUTPUT_LINKS(biomass_chp_industry_energetic;constant), share, PRODUCT(V(biomass_chp_industry_energetic), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(biomass_chp_industry_energetic,constant), share, PRODUCT(V(biomass_chp_industry_energetic), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
 start_value: 
-start_value_gql: present:V(biomass_chp_industry_energetic; heat_production_in_mw)
+start_value_gql: present:V(biomass_chp_industry_energetic, heat_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future
