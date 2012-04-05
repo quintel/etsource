@@ -8,11 +8,15 @@ keys: steam_hot_water_buildings_energetic
 label: 
 label_query: 
 max_value: 100.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
 name: Biomass CHP
-query: 
+# This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
+# and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
+query: |-
+  UPDATE(
+    V(OUTPUT_SLOTS(LOOKUP(steam_hot_water_buildings_energetic),steam_hot_water), "links.detect{|l| !l.flexible? }"),
+    share, USER_INPUT() / 100.0
+  )
 share_group: district_heating_buildings
 start_value: 
 start_value_gql: present:V(biomass_chp_buildings_energetic;steam_hot_water_output_link_share)
