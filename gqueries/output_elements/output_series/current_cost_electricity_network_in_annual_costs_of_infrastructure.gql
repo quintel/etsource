@@ -1,6 +1,12 @@
 - deprecated_key = chart_current_cost_electricity_network_60_annual_cost_of_infrastructure_578
-# 
+# AREA(annual_infrastructure_cost_electricity) contains the costs in million euros. Here we want base units
 
-- unit = 
+- unit = eur
 
-DIVIDE(MAX(AREA(annual_infrastructure_cost_electricity),0),1000)
+PRODUCT(
+    MAX(
+        AREA(annual_infrastructure_cost_electricity),
+        0
+    ),
+    MILLIONS
+)
