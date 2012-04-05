@@ -13,14 +13,14 @@ keys: chp_other_other_energetic
 label: ""
 label_query: 
 max_value: 17042.0
-max_value_gql: present:PRODUCT(2,DIVIDE(V(heat_demand_other_other_energetic;demand),V(chp_other_other_energetic;typical_heat_production_per_unit)))
+max_value_gql: present:PRODUCT(2,DIVIDE(V(heat_demand_other_other_energetic,demand),V(chp_other_other_energetic,typical_heat_production_per_unit)))
 min_value: 0.0
 min_value_gql: 
 name: Small gas CHP
-query: UPDATE(OUTPUT_LINKS(chp_other_other_energetic;constant), share, PRODUCT(V(chp_other_other_energetic), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(chp_other_other_energetic,constant), share, PRODUCT(V(chp_other_other_energetic), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
 start_value: 
-start_value_gql: present:V(chp_other_other_energetic; heat_production_in_mw)
+start_value_gql: present:V(chp_other_other_energetic, heat_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future

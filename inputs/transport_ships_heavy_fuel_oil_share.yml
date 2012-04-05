@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Heavy fuel oil
-query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(ships_heavy_fuel_oil_transport_energetic);not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
+query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(ships_heavy_fuel_oil_transport_energetic),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
 share_group: transport_marine
 start_value: 
-start_value_gql: present:V(ships_heavy_fuel_oil_transport_energetic;share_of_ships_transport_energetic)
+start_value_gql: present:V(ships_heavy_fuel_oil_transport_energetic,share_of_ships_transport_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

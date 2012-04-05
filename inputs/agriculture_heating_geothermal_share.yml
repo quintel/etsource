@@ -16,12 +16,12 @@ query: |-
   EACH(
               UPDATE(LINK(geothermal_agri_agriculture_energetic,heating_demand_agriculture_energetic), share, DIVIDE(USER_INPUT(),100)),
               UPDATE(LINK(heating_demand_agriculture_energetic,gas_burner_agri_agriculture_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_demand_agriculture_energetic)),UPDATE_COLLECTION()); share))), 1)}
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_demand_agriculture_energetic)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: agri_heat
 start_value: 0.0
-start_value_gql: present:V(geothermal_agri_agriculture_energetic;share_of_heating_demand_agriculture_energetic)
+start_value_gql: present:V(geothermal_agri_agriculture_energetic,share_of_heating_demand_agriculture_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future
