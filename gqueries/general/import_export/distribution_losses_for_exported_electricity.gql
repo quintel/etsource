@@ -5,11 +5,11 @@
 
 SUM(
          PRODUCT(
-                         V(electricity_export_energy;demand)
+                         V(electricity_export_energy,demand)
                          ,
-                         INVERSE(V(hv_electricity_network_energy;
+                         INVERSE(V(hv_electricity_network_energy,
                              electricity_output_conversion))
                            )
          ,
-         NEG(V(electricity_export_energy;demand)  )
+         NEG(V(electricity_export_energy,demand)  )
          )

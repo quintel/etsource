@@ -5,13 +5,13 @@
 
 SUM(
  DIVIDE(
-  Q(total_investment_costs_of_mv_lv_trafo),V(lv_mv_transformer_energy;technical_lifetime)
+  Q(total_investment_costs_of_mv_lv_trafo),V(lv_mv_transformer_energy,technical_lifetime)
  ),
  PRODUCT(
   DIVIDE(
    Q(total_investment_costs_of_mv_lv_trafo),2
   ),
-  V(lv_mv_transformer_energy;wacc)
+  V(lv_mv_transformer_energy,wacc)
  ),
  Q(operational_costs_of_mv_lv_trafo)
  )
