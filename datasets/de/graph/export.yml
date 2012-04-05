@@ -463,7 +463,6 @@ city_heating_network_energy_energetic-(steam_hot_water) -- s --> (steam_hot_wate
   :part_load_efficiency_penalty: 0.04
   :forecasting_error: 0.0
 (loss)-gas_conv_energy_energetic: {conversion: 0.6}
-(steam_hot_water)-gas_conv_energy_energetic: {conversion: 0.0}
 (electricity)-gas_conv_energy_energetic: {conversion: 0.4}
 gas_conv_energy_energetic-(gas_power_fuelmix): {conversion: 1.0}
 gas_conv_energy_energetic-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
@@ -1000,24 +999,9 @@ electricity_demand_other_energetic-(electricity) -- s --> (electricity)-electric
 heat_network_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_industry_energetic: {conversion: 0.924090979431127}
 (loss)-heat_network_industry_energetic: {conversion: 0.0759090205688729}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_conv_energy_energetic: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-central_gas_chp_energy_energetic: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-waste_incinerator_energy_energetic: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_pwd_ccs_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_conv_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_lignite_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_oxyfuel_ccs_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_igcc_ccs_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_plant_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-gas_ccgt_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_iii_energy: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-co_firing_coal_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-geothermal_heat_energy: {share: 0.0}
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-nuclear_conv_energy_energetic: {share: }
-heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-ccgt_ccs_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- f --> (steam_hot_water)-used_restheat_decentral_production_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-lignite_chp_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-oil_chp_energy: {share: }
@@ -1061,8 +1045,8 @@ heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-hea
   :part_load_efficiency_penalty: 0.1
   :forecasting_error: 0.0
 waste_incinerator_energy_energetic-(waste_mix): {conversion: 1.0}
-(loss)-waste_incinerator_energy_energetic: {conversion: 0.4}
-(steam_hot_water)-waste_incinerator_energy_energetic: {conversion: 0.35}
+(loss)-waste_incinerator_energy_energetic: {conversion: 0.75}
+(steam_hot_water)-waste_incinerator_energy_energetic: {conversion: 0.0}
 (electricity)-waste_incinerator_energy_energetic: {conversion: 0.25}
 waste_incinerator_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy: {share: 1.0}
 
@@ -1153,7 +1137,6 @@ coal_pwd_energy-(wood_pellets): {conversion: 0.0}
 coal_pwd_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_pwd_energy-(coal): {conversion: 1.0}
 (loss)-coal_pwd_energy: {conversion: 0.54}
-(steam_hot_water)-coal_pwd_energy: {conversion: 0.0}
 (electricity)-coal_pwd_energy: {conversion: 0.46}
 coal_pwd_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_pwd_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1192,7 +1175,6 @@ coal_pwd_energy-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution
 coal_pwd_ccs_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_pwd_ccs_energy-(coal): {conversion: 1.0}
 (loss)-coal_pwd_ccs_energy: {conversion: 0.639}
-(steam_hot_water)-coal_pwd_ccs_energy: {conversion: 0.0}
 (electricity)-coal_pwd_ccs_energy: {conversion: 0.361}
 coal_pwd_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_pwd_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1230,7 +1212,6 @@ coal_pwd_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pell
 coal_conv_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_conv_energy-(coal): {conversion: 1.0}
 (loss)-coal_conv_energy: {conversion: 0.64}
-(steam_hot_water)-coal_conv_energy: {conversion: 0.0}
 (electricity)-coal_conv_energy: {conversion: 0.36}
 coal_conv_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_conv_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1268,7 +1249,6 @@ coal_conv_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets
 coal_lignite_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_lignite_energy-(lignite): {conversion: 1.0}
 (loss)-coal_lignite_energy: {conversion: 0.618}
-(steam_hot_water)-coal_lignite_energy: {conversion: 0.0}
 (electricity)-coal_lignite_energy: {conversion: 0.382}
 coal_lignite_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy: {share: 1.0}
 coal_lignite_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1306,7 +1286,6 @@ coal_lignite_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pell
 coal_oxyfuel_ccs_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_oxyfuel_ccs_energy-(lignite): {conversion: 1.0}
 (loss)-coal_oxyfuel_ccs_energy: {conversion: 0.695}
-(steam_hot_water)-coal_oxyfuel_ccs_energy: {conversion: 0.0}
 (electricity)-coal_oxyfuel_ccs_energy: {conversion: 0.305}
 coal_oxyfuel_ccs_energy-(lignite) -- s --> (lignite)-lignite_distribution_energy: {share: 1.0}
 coal_oxyfuel_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1344,7 +1323,6 @@ coal_oxyfuel_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_
 coal_igcc_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_igcc_energy-(coal): {conversion: 1.0}
 (loss)-coal_igcc_energy: {conversion: 0.547}
-(steam_hot_water)-coal_igcc_energy: {conversion: 0.0}
 (electricity)-coal_igcc_energy: {conversion: 0.453}
 coal_igcc_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_igcc_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1382,7 +1360,6 @@ coal_igcc_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets
 coal_igcc_ccs_energy-(torrified_biomass_pellets): {conversion: 0.0}
 coal_igcc_ccs_energy-(coal): {conversion: 1.0}
 (loss)-coal_igcc_ccs_energy: {conversion: 0.627}
-(steam_hot_water)-coal_igcc_ccs_energy: {conversion: 0.0}
 (electricity)-coal_igcc_ccs_energy: {conversion: 0.373}
 coal_igcc_ccs_energy-(coal) -- s --> (coal)-coal_distribution_energy: {share: 1.0}
 coal_igcc_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-biocoal_distribution_energy: {share: 1.0}
@@ -1419,7 +1396,6 @@ coal_igcc_ccs_energy-(torrified_biomass_pellets) -- s --> (torrified_biomass_pel
   :forecasting_error: 0.0
 oil_plant_energy-(crude_oil): {conversion: 1.0}
 (loss)-oil_plant_energy: {conversion: 0.605}
-(steam_hot_water)-oil_plant_energy: {conversion: 0.0}
 (electricity)-oil_plant_energy: {conversion: 0.395}
 oil_plant_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
@@ -1455,7 +1431,6 @@ oil_plant_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {shar
   :forecasting_error: 0.0
 gas_ccgt_energy-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-gas_ccgt_energy: {conversion: 0.42}
-(steam_hot_water)-gas_ccgt_energy: {conversion: 0.0}
 (electricity)-gas_ccgt_energy: {conversion: 0.58}
 gas_ccgt_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
@@ -1578,7 +1553,6 @@ interconnection_energy-(imported_electricity) -- s --> (imported_electricity)-el
   :forecasting_error: 0.0
 nuclear_iii_energy-(uranium_oxide): {conversion: 1.0}
 (loss)-nuclear_iii_energy: {conversion: 0.64}
-(steam_hot_water)-nuclear_iii_energy: {conversion: 0.0}
 (electricity)-nuclear_iii_energy: {conversion: 0.36}
 nuclear_iii_energy-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy: {share: 1.0}
 
@@ -1719,7 +1693,6 @@ wind_offshore_energy-(wind) -- s --> (wind)-air_environment_energetic: {share: 1
   :forecasting_error: 0.0
 co_firing_coal_energy-(wood_pellets): {conversion: 1.0}
 (loss)-co_firing_coal_energy: {conversion: 0.755}
-(steam_hot_water)-co_firing_coal_energy: {conversion: 0.0}
 (electricity)-co_firing_coal_energy: {conversion: 0.245}
 co_firing_coal_energy-(wood_pellets) -- s --> (wood_pellets)-wood_pellets_distribution_energy: {share: 1.0}
 
@@ -1894,11 +1867,11 @@ geothermal_electricity_energy-(ambient_heat) -- s --> (ambient_heat)-air_environ
 
 :national_gas_network_energy:
   :co2_free: 0.0
-  :demand_expected_value: 2972726410384.41
+  :demand_expected_value: 3010396206683.71
 national_gas_network_energy-(greengas): {conversion: 0.0}
-(network_gas)-national_gas_network_energy: {conversion: 0.985690252176789}
+(network_gas)-national_gas_network_energy: {conversion: 0.985869313419425}
 national_gas_network_energy-(natural_gas): {conversion: 1.0}
-(loss)-national_gas_network_energy: {conversion: 0.0143097478232109}
+(loss)-national_gas_network_energy: {conversion: 0.0141306865805752}
 national_gas_network_energy-(natural_gas) -- s --> (natural_gas)-gas_treatment_energy: {share: 1.0}
 national_gas_network_energy-(greengas) -- s --> (greengas)-greengas_distribution_energy: {share: 1.0}
 
@@ -3522,7 +3495,7 @@ extra_insulation_savings_households_energetic-(useable_heat): {conversion: 1.0}
 
 :energy_sector_gas_mixer_energy:
   :co2_free: 0.0
-  :demand_expected_value: 986922437425.889
+  :demand_expected_value: 1024592233725.19
 energy_sector_gas_mixer_energy-(bio_oil): {conversion: 0.0}
 energy_sector_gas_mixer_energy-(biogas): {conversion: 0.0}
 energy_sector_gas_mixer_energy-(crude_oil): {conversion: 0.0}
@@ -3676,7 +3649,7 @@ foreign_sustainable_power_energy-(electricity): {conversion: 1.0}
 
 :backup_burner_heat_network_energy:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 37669796299.3005
   :technical_lifetime: 15.0
   :construction_time: 0.0
   :ccs_investment_per_mw_input: 0.0
@@ -5001,7 +4974,6 @@ heat_from_steam_hot_water_households_energetic-(steam_hot_water) -- s --> (steam
   :forecasting_error: 0.0
 nuclear_conv_energy_energetic-(uranium_oxide): {conversion: 1.0}
 (loss)-nuclear_conv_energy_energetic: {conversion: 0.67}
-(steam_hot_water)-nuclear_conv_energy_energetic: {conversion: 0.0}
 (electricity)-nuclear_conv_energy_energetic: {conversion: 0.33}
 nuclear_conv_energy_energetic-(uranium_oxide) -- s --> (uranium_oxide)-uranium_distribution_energy: {share: 1.0}
 
@@ -5076,7 +5048,6 @@ electric_appliances_buildings-(electricity) -- s --> (electricity)-final_demand_
   :forecasting_error: 0.0
 ccgt_ccs_energy-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-ccgt_ccs_energy: {conversion: 0.51}
-(steam_hot_water)-ccgt_ccs_energy: {conversion: 0.0}
 (electricity)-ccgt_ccs_energy: {conversion: 0.49}
 ccgt_ccs_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy: {share: 1.0}
 
