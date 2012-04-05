@@ -13,6 +13,7 @@ module ETE
     # Yields a block with a hash of the items for each CSV file row
     #
     def parse
+      $current_file = @file # let's simplify debugging
       lines = File.readlines @file
       # Excel CSV export sucks. Lots of empty records or, worse, empty lines with a trailing \r\r\n
       valid_lines = lines.map{|l| l.gsub(/[\r\n]/, '')}.join("\n")

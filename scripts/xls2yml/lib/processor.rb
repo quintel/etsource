@@ -28,16 +28,20 @@ module ETE
         end
       end
     rescue Exception => e
-      puts "Export error: #{e}" and exit
+      puts "Export error: #{e}"
+      puts "#{e.backtrace[0]}"
+      puts "Current file: #{$current_file}"
+      exit
     end
 
     # writes to ETSOURCE/datasets/<area>/graph/export.yml
     def export_converters(export, destination_directory)
       converter_exporter = ConverterExporter.new(export)
       raw = converter_exporter.export
-
       lines = []
+      current_converter_key = nil
       raw.each_pair do |converter_key, values|
+        current_converter_key = converter_key
         lines << ":#{converter_key}:"
         values[:attributes].each_pair do |attr, val|
           lines << "  :#{attr}: #{val}"
@@ -50,6 +54,8 @@ module ETE
       dest_file = "#{destination_directory}/graph/export.yml"
       puts "  Saving converters to #{dest_file}"
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+    rescue Exception => e
+      raise "Error exporting converter #{current_converter_key}: #{e}"
     end
 
 
