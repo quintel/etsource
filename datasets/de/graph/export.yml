@@ -1000,6 +1000,7 @@ heat_network_industry_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_network_industry_energetic: {conversion: 0.924090979431127}
 (loss)-heat_network_industry_energetic: {conversion: 0.0759090205688729}
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-central_gas_chp_energy_energetic: {share: }
+heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-waste_incinerator_energy_energetic: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- d --> (steam_hot_water)-coal_chp_energy: {share: }
 heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-geothermal_heat_energy: {share: 0.0}
 heat_network_industry_energetic-(steam_hot_water) -- f --> (steam_hot_water)-used_restheat_decentral_production_energy: {share: }
@@ -1045,8 +1046,8 @@ heat_network_industry_energetic-(steam_hot_water) -- c --> (steam_hot_water)-hea
   :part_load_efficiency_penalty: 0.1
   :forecasting_error: 0.0
 waste_incinerator_energy_energetic-(waste_mix): {conversion: 1.0}
-(loss)-waste_incinerator_energy_energetic: {conversion: 0.75}
-(steam_hot_water)-waste_incinerator_energy_energetic: {conversion: 0.0}
+(loss)-waste_incinerator_energy_energetic: {conversion: 0.4}
+(steam_hot_water)-waste_incinerator_energy_energetic: {conversion: 0.35}
 (electricity)-waste_incinerator_energy_energetic: {conversion: 0.25}
 waste_incinerator_energy_energetic-(waste_mix) -- s --> (waste_mix)-waste_distribution_energy: {share: 1.0}
 
@@ -1867,11 +1868,11 @@ geothermal_electricity_energy-(ambient_heat) -- s --> (ambient_heat)-air_environ
 
 :national_gas_network_energy:
   :co2_free: 0.0
-  :demand_expected_value: 3010396206683.71
+  :demand_expected_value: 2972726410384.41
 national_gas_network_energy-(greengas): {conversion: 0.0}
-(network_gas)-national_gas_network_energy: {conversion: 0.985869313419425}
+(network_gas)-national_gas_network_energy: {conversion: 0.985690252176789}
 national_gas_network_energy-(natural_gas): {conversion: 1.0}
-(loss)-national_gas_network_energy: {conversion: 0.0141306865805752}
+(loss)-national_gas_network_energy: {conversion: 0.0143097478232109}
 national_gas_network_energy-(natural_gas) -- s --> (natural_gas)-gas_treatment_energy: {share: 1.0}
 national_gas_network_energy-(greengas) -- s --> (greengas)-greengas_distribution_energy: {share: 1.0}
 
@@ -3495,7 +3496,7 @@ extra_insulation_savings_households_energetic-(useable_heat): {conversion: 1.0}
 
 :energy_sector_gas_mixer_energy:
   :co2_free: 0.0
-  :demand_expected_value: 1024592233725.19
+  :demand_expected_value: 986922437425.889
 energy_sector_gas_mixer_energy-(bio_oil): {conversion: 0.0}
 energy_sector_gas_mixer_energy-(biogas): {conversion: 0.0}
 energy_sector_gas_mixer_energy-(crude_oil): {conversion: 0.0}
@@ -3649,7 +3650,7 @@ foreign_sustainable_power_energy-(electricity): {conversion: 1.0}
 
 :backup_burner_heat_network_energy:
   :co2_free: 0.0
-  :demand_expected_value: 37669796299.3005
+  :demand_expected_value: 0.0
   :technical_lifetime: 15.0
   :construction_time: 0.0
   :ccs_investment_per_mw_input: 0.0
