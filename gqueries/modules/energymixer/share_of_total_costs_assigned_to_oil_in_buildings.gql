@@ -4,17 +4,17 @@
 
 DIVIDE(
   SUM(
-    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)); primary_demand_of_crude_oil),
-    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)); primary_demand_of_gasoline),
-    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)); primary_demand_of_diesel),
-    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)); primary_demand_of_lpg),
-    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)); primary_demand_of_kerosine)
+    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_crude_oil),
+    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_gasoline),
+    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_diesel),
+    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_lpg),
+    V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_kerosine)
      )
   ,
   SUM(
-    V(G(final_demand_cbs); primary_demand),
+    V(G(final_demand_cbs), primary_demand),
     NEG(SUM(
-        V(G(final_demand_cbs); primary_demand_of_imported_electricity)
+        V(G(final_demand_cbs), primary_demand_of_imported_electricity)
         ))
      )
   )

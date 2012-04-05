@@ -1,21 +1,15 @@
 --- 
-attr_name: constant_output_link_value
-comments: ""
-factor: 1.0e-09
 id: 562
 key: pj_of_heat_import
-keys: heat_import_energy
-label: ""
-label_query: ""
 max_value: 6.0
-max_value_gql: 
 min_value: 0.0
-min_value_gql: 
 name: Imported heat
-query: 
-share_group: ""
-start_value: 
-start_value_gql: present:V(heat_import_energy;demand)
+query: |-
+  EACH(
+    UPDATE(V(heat_import_energy), preset_demand, USER_INPUT() / 1.0e-09),
+    UPDATE(OUTPUT_LINKS(V(heat_import_energy), "constant?"), share, USER_INPUT() / 1.0e-09)
+  )
+start_value_gql: present:V(heat_import_energy,demand)
 unit: PJ
 update_type: converters
 updateable_period: future

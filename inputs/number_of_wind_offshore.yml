@@ -8,18 +8,18 @@ keys: wind_offshore_energy
 label: ""
 label_query: 
 max_value: 300.0
-max_value_gql: present:DIVIDE(AREA(offshore_suitable_for_wind),V(wind_offshore_energy; land_use_per_unit))
+max_value_gql: present:DIVIDE(AREA(offshore_suitable_for_wind),V(wind_offshore_energy, land_use_per_unit))
 min_value: 0.0
 min_value_gql: 
 name: Offshore
 query: |-
   EACH(
               UPDATE(V(wind_offshore_energy), number_of_units, USER_INPUT()),
-              UPDATE(OUTPUT_LINKS(V(wind_offshore_energy);constant), share, V(wind_offshore_energy; production_based_on_number_of_units)),
+              UPDATE(OUTPUT_LINKS(V(wind_offshore_energy),constant), share, V(wind_offshore_energy, production_based_on_number_of_units)),
             )
 share_group: ""
 start_value: 
-start_value_gql: present:V(wind_offshore_energy;number_of_units)
+start_value_gql: present:V(wind_offshore_energy,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future

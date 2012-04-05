@@ -6,13 +6,13 @@
 
 IF(EQUALS(AREA(area),ame),
    PRODUCT(
-    V(electricity_import_export_energy;demand),
+    V(electricity_import_export_energy,demand),
     0.03420733031744972
    ),
 
   PRODUCT(
    Q(costs_of_produced_electricity),
-   V(electricity_import_export_energy;demand),
-   INVERSE(SUM(V(GROUP(electricity_production);output_of_electricity)))
+   V(electricity_import_export_energy,demand),
+   INVERSE(SUM(V(GROUP(electricity_production),output_of_electricity)))
   )
 )
