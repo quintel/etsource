@@ -1,6 +1,9 @@
 - deprecated_key = chart_medium_voltage_network_60_annual_cost_of_infrastructure_551
-# 
+# Q(yearly_investment_costs_of_mv_grid) returns costs in millions, here we convert to base units
 
-- unit = bln_euro
+- unit = eur
 
-DIVIDE(Q(yearly_investment_costs_of_mv_grid),1000)
+PRODUCT(
+    Q(yearly_investment_costs_of_mv_grid),
+    MILLIONS
+)
