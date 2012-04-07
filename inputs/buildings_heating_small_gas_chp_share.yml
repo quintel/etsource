@@ -4,7 +4,6 @@ id: 386
 key: buildings_heating_small_gas_chp_share
 max_value: 100.0
 min_value: 0.0
-start_value_gql: present:V(gas_chp_buildings_energetic,steam_hot_water_output_link_share)
 name: Small gas CHP
 # This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
 # and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
@@ -13,7 +12,7 @@ query: |-
     FIRST(
       LINKS(
         OUTPUT_SLOTS(
-          LOOKUP(steam_hot_water_buildings_energetic),
+          LOOKUP(gas_chp_buildings_energetic),
           steam_hot_water
         )
       )
@@ -21,6 +20,7 @@ query: |-
     share, USER_INPUT() / 100.0
   )
 share_group: district_heating_buildings
+start_value_gql: present:V(gas_chp_buildings_energetic,steam_hot_water_output_link_share)
 unit: "%"
 update_type: converters
 updateable_period: future
