@@ -3,4 +3,10 @@
 
 - unit = pj
 
-DIVIDE(SUM(V(electricity_without_heating_buildings_energetic,demand),NEG(Q(electricity_used_for_cooling_in_buildings))),BILLIONS)
+DIVIDE(
+	SUM(
+		V(final_demand_for_lighting_electricity_buildings_energetic,demand),
+		V(final_demand_for_appliances_electricity_buildings_energetic,demand)
+	),
+	BILLIONS
+)
