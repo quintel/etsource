@@ -4101,7 +4101,7 @@ insulation_savings_buildings_energetic-(useable_heat): {conversion: 1.0}
   :demand_expected_value: 0.0
 heating_buildings_energetic-(useable_heat): {conversion: 1.0}
 (useable_heat)-heating_buildings_energetic: {conversion: 1.0}
-heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_heater_buildings_energetic: {share: }
+heating_buildings_energetic-(useable_heat) -- f --> (useable_heat)-gas_fired_heater_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-electric_heater_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-solarthermic_buildings_energetic: {share: 0.0}
 heating_buildings_energetic-(useable_heat) -- s --> (useable_heat)-gasheatpump_ts_buildings_energetic: {share: 0.0}
@@ -4119,14 +4119,14 @@ cooling_buildings_energetic-(cooling): {conversion: 1.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-city_cooling_network_buildings_energetic: {share: 0.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-gasheatpump_cooling_buildings_energetic: {share: 0.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-heatpump_ts_cooling_buildings_energetic: {share: 0.0}
-cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic: {share: }
+cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic: {share: 0.0}
 
 :lighting_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 lighting_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_buildings_energetic: {conversion: 1.0}
-lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic: {share: }
+lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic: {share: 0.0}
 lighting_buildings_energetic-(light) -- s --> (light)-tl8_buildings_energetic: {share: 0.24}
 lighting_buildings_energetic-(light) -- s --> (light)-led_buildings_energetic: {share: 0.01}
 
@@ -4626,7 +4626,7 @@ oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
   :demand_expected_value: 0.0
 steam_hot_water_buildings_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_buildings_energetic: {conversion: 1.0}
-steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: }
+steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: 0.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic: {share: 1.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic: {share: 0.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_buildings_energetic: {share: 0.0}
@@ -6580,6 +6580,8 @@ final_demand_for_heating_monetized_heat_buildings_energetic-(steam_hot_water) --
 :final_demand_for_cooling_gas_buildings_energetic:
   :co2_free: 0.0
   :demand_expected_value: 0.0
+final_demand_for_cooling_gas_buildings_energetic-(network_gas): {conversion: 1.0}
+(network_gas)-final_demand_for_cooling_gas_buildings_energetic: {conversion: 1.0}
 final_demand_for_cooling_gas_buildings_energetic-(network_gas) -- s --> (network_gas)-gas_buildings_energetic: {share: 1.0}
 
 :final_demand_for_cooling_electricity_buildings_energetic:
