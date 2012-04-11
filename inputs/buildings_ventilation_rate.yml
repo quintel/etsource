@@ -8,9 +8,7 @@ min_value: 1.5
 start_value_gql: present:AREA(ventilation_rate)
 query: |-
   EACH(
-    UPDATE(V(heating_offices_current_insulation_buildings_energetic), preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
     UPDATE(V(heating_schools_current_insulation_buildings_energetic), preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
-    UPDATE(V(heating_other_buildings_energetic),                      preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
     UPDATE(V(cooling_demand_buildings_energetic),                     preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) })
   )
 unit: x
