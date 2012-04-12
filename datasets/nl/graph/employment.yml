@@ -1,11 +1,12 @@
 # Group of attributes to include the effects of 
 # different technologies on employment in the Netherlands.
-#CCS extra tijd niet meegenomen op dit moment
 #buitenlands werk eruitgehaald
 #maintenance offshore ingevuld met maintenance onshore atm
 #NB met nieuwe EM data zijn kolen en andere CHPs stuk groter geworden, is dit nog in balans met gas?
-# kolen cetrales toegevoegd van KEMA
-# warmtepompen #14 en #239 getallen gegeven van een CHP van ongeveer dezelfde capaciteit.
+# added coal plants (KEMA)
+# heat pumps #14 and #239 assigned values of CHP with similar capacity.
+#CCS: extra time accounted for (proportional FTE of plant without CCS 30% extra for all but maintenance which is 70% extra)
+
 
 :defaults:
   :employment_defaults: &employment_defaults
@@ -710,9 +711,18 @@
   :hours_remov_nl: 21600.0
   :hours_remov_abroad: 0.0
 
-#409
+#409 added 30% for preparation, placement and removal and 70% for maintenance wrt gas_ccgt_energy.
 :ccgt_ccs_energy:
-  <<: *gas_defaults
+  :hours_prep_nl: 27300.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 27300.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 650000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 816000.0
+  :hours_remov_abroad: 0.0
 
 #83
 :co_firing_coal_energy:
@@ -724,23 +734,50 @@
 
 #72
 :coal_igcc_ccs_energy:
-  <<: *coal_igcc_defaults
-
+  :hours_prep_nl: 2281500.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: .0
+  :hours_place_nl: 3802500.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 367200.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1170000.0
+  :hours_remov_abroad: 0.0
+  
 #69
 :coal_lignite_energy:
   <<: *coal_powder_defaults
 
 #70
 :coal_oxyfuel_ccs_energy:
-  <<: *coal_powder_defaults
-
+  :hours_prep_nl: 1755000.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: .0
+  :hours_place_nl: 2925000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 306000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1170000.0
+  :hours_remov_abroad: 0.0
+  
 #66
 :coal_pwd_energy:
   <<: *coal_powder_defaults
 
 #67
 :coal_pwd_ccs_energy:
-  <<: *coal_powder_defaults
+  :hours_prep_nl: 1755000.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: .0
+  :hours_place_nl: 2925000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 306000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1170000.0
+  :hours_remov_abroad: 0.0
 
 #74
 :gas_ccgt_energy:
@@ -849,7 +886,7 @@
   :hours_prod_abroad: 0.0
   :hours_place_nl: 22680.0
   :hours_place_abroad: 15120.0
-  :hours_maint_nl: 500.0
+  :hours_maint_nl: 750.0
   :hours_maint_abroad: 0.0
   :hours_remov_nl: 1740.0
   :hours_remov_abroad: 0.0
@@ -863,7 +900,7 @@
 
 #557
 :gas_turbine_energy_energetic:
-  :hours_prep_nl: 88560.0
+  :hours_prep_nl: 88560.0.0
   :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
   :hours_prod_abroad: 0.0
@@ -876,4 +913,8 @@
 
 #23
 :gas_conv_energy_energetic:
+  <<: *gas_defaults
+
+#73
+:oil_plant_energy:
   <<: *gas_defaults
