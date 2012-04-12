@@ -6544,7 +6544,7 @@ final_demand_for_heating_wood_pellets_buildings_energetic-(wood_pellets) -- s --
   :demand_expected_value: 0.0
 final_demand_for_heating_solar_buildings_energetic-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-final_demand_for_heating_solar_buildings_energetic: {conversion: 1.0}
-final_demand_for_heating_solar_buildings_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_production_energy_energetic: {share: 1.0}
+final_demand_for_heating_solar_buildings_energetic-(solar_thermal) -- s --> (solar_thermal)-final_demand_solar_buildings_energetic_buildings_energetic: {share: 1.0}
 
 :final_demand_for_heating_elecrtricity_buildings_energetic:
   :co2_free: 0.0
@@ -6615,3 +6615,10 @@ final_demand_for_appliances_wood_pellets_buildings_energetic-(wood_pellets) -- s
 final_demand_for_appliances_electricity_buildings_energetic-(electricity): {conversion: 1.0}
 (electricity)-final_demand_for_appliances_electricity_buildings_energetic: {conversion: 1.0}
 final_demand_for_appliances_electricity_buildings_energetic-(electricity) -- s --> (electricity)-electricity_buildings_energetic: {share: 1.0}
+
+:final_demand_solar_buildings_energetic_buildings_energetic:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+final_demand_solar_buildings_energetic_buildings_energetic-(solar_thermal): {conversion: 1.0}
+(solar_thermal)-final_demand_solar_buildings_energetic_buildings_energetic: {conversion: 1.0}
+final_demand_solar_buildings_energetic_buildings_energetic-(solar_thermal) -- s --> (solar_thermal)-solar_thermal_production_energy_energetic: {share: 1.0}
