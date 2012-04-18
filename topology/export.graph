@@ -735,11 +735,6 @@ greengas_production_energy;	greengas_production;	energy;	undefined;growth and pr
 greengas_production_energy-(greengas)
 (greengas)-greengas_production_energy
 
-oil_treatment_energy;	oil_treatment;	energy;	undefined;treatment;	
-oil_treatment_energy-(crude_oil)
-(crude_oil)-oil_treatment_energy
-(loss)-oil_treatment_energy
-
 uranium_treatment_energy;	uranium_treatment;	energy;	undefined;treatment;	
 uranium_treatment_energy-(uranium_oxide) -- f --> (uranium_oxide)-uranium_import_energy
 uranium_treatment_energy-(uranium_oxide) -- c --> (uranium_oxide)-uranium_extraction_energy
@@ -777,11 +772,11 @@ kerosine_import_export_transport;	kerosine_import_export;	transport;	undefined;;
 kerosine_import_export_transport-(kerosine)
 (kerosine)-kerosine_import_export_transport
 
-bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import,primary_energy_demand
+bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;;	primary_energy_demand,energy_import_export,energy_import
 bio_diesel_import_export_transport_energetic-(biodiesel)
 (biodiesel)-bio_diesel_import_export_transport_energetic
 
-bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;;	energy_import_export,energy_import,primary_energy_demand
+bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;;	primary_energy_demand,energy_import_export,energy_import
 bio_ethanol_import_export_transport_energetic-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic
 
@@ -1103,8 +1098,7 @@ oil_storage_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 oil_storage_energy-(crude_oil)
 (crude_oil)-oil_storage_energy
 
-electricity_import_export_energy;	electricity_import_export;	energy;	undefined;;	energy_import_export
-electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor
+electricity_import_export_energy;	electricity_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 electricity_import_export_energy-(imported_electricity)
 (imported_electricity)-electricity_import_export_energy
 
@@ -1289,7 +1283,7 @@ algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_die
 algue_diesel_distribution_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_distribution_transport_energetic
 
-algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import,primary_energy_demand
+algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	primary_energy_demand,energy_import_export,energy_import
 algue_diesel_import_export_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_import_export_transport_energetic
 
@@ -2073,11 +2067,7 @@ torrefaction_energy-(wood)
 (torrified_biomass_pellets)-torrefaction_energy
 (loss)-torrefaction_energy
 
-foreign_unspecified_power_neighbor;	foreign_unspecified_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_unspecified_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_unspecified_power_neighbor
-
-heat_import_energy;	heat_import;	energy;	undefined;;	energy_import_export,primary_energy_demand,energy_import
+heat_import_energy;	heat_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 heat_import_energy-(imported_steam_hot_water)
 (steam_hot_water)-heat_import_energy
 

@@ -2123,12 +2123,6 @@ bio_ethanol_production_transport_energetic-(bio_ethanol): {conversion: 1.0}
 greengas_production_energy-(greengas): {conversion: 1.0}
 (greengas)-greengas_production_energy: {conversion: 1.0}
 
-:oil_treatment_energy:
-  :co2_free: 0.0
-oil_treatment_energy-(crude_oil): {conversion: 1.0}
-(crude_oil)-oil_treatment_energy: {conversion: 1.0}
-(loss)-oil_treatment_energy: {conversion: 0.0}
-
 :uranium_treatment_energy:
   :co2_free: 0.0
 uranium_treatment_energy-(uranium_oxide): {conversion: 1.0}
@@ -2869,7 +2863,6 @@ oil_storage_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {sh
   :co2_free: 0.0
 electricity_import_export_energy-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-electricity_import_export_energy: {conversion: 1.0}
-electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor: {share: }
 
 :earth_environment_energetic:
   :co2_free: 0.0
@@ -5604,11 +5597,6 @@ torrefaction_energy-(wood): {conversion: 0.947006667}
 (loss)-torrefaction_energy: {conversion: 0.09}
 torrefaction_energy-(network_gas) -- s --> (network_gas)-national_gas_network_energy: {share: 1.0}
 torrefaction_energy-(wood) -- s --> (wood)-wood_distribution_energy: {share: 1.0}
-
-:foreign_unspecified_power_neighbor:
-  :co2_free: 0.0
-foreign_unspecified_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_unspecified_power_neighbor: {conversion: 1.0}
 
 :heat_import_energy:
   :co2_free: 0.0
