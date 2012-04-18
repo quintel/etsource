@@ -2881,17 +2881,6 @@ oil_storage_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {sh
   :co2_free: 0.0
 electricity_import_export_energy-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-electricity_import_export_energy: {conversion: 1.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_gas_power_energy: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_nuclear_power_energy: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_coal_power_energy: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_sustainable_power_energy: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_solar_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_waste_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_geothermal_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_oil_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_hydro_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_wind_power_neighbor: {share: 0.0}
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_biomass_power_neighbor: {share: 0.0}
 electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor: {share: }
 
 :earth_environment_energetic:
@@ -3619,26 +3608,6 @@ mv_hv_transformer_energy-(electricity): {conversion: 1.0}
 (electricity)-mv_hv_transformer_energy: {conversion: 1.0}
 mv_hv_transformer_energy-(electricity) -- f --> (electricity)-hv_electricity_network_energy: {share: }
 mv_hv_transformer_energy-(electricity) -- i --> (electricity)-mv_transport_network_energy: {share: }
-
-:foreign_gas_power_energy:
-  :co2_free: 0.0
-foreign_gas_power_energy-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_gas_power_energy: {conversion: 1.0}
-
-:foreign_nuclear_power_energy:
-  :co2_free: 0.0
-foreign_nuclear_power_energy-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_nuclear_power_energy: {conversion: 1.0}
-
-:foreign_coal_power_energy:
-  :co2_free: 0.0
-foreign_coal_power_energy-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_coal_power_energy: {conversion: 1.0}
-
-:foreign_sustainable_power_energy:
-  :co2_free: 0.0
-foreign_sustainable_power_energy-(electricity): {conversion: 1.0}
-(imported_electricity)-foreign_sustainable_power_energy: {conversion: 1.0}
 
 :backup_burner_heat_network_energy:
   :co2_free: 0.0
@@ -5639,41 +5608,6 @@ biogas_production_energy-(corn) -- s --> (corn)-corn_distribution_energy: {share
 biogas_distribution_energy-(biogas): {conversion: 1.0}
 (biogas)-biogas_distribution_energy: {conversion: 1.0}
 biogas_distribution_energy-(biogas) -- s --> (biogas)-biogas_production_energy: {share: 1.0}
-
-:foreign_solar_power_neighbor:
-  :co2_free: 0.0
-foreign_solar_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_solar_power_neighbor: {conversion: 1.0}
-
-:foreign_waste_power_neighbor:
-  :co2_free: 0.0
-foreign_waste_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_waste_power_neighbor: {conversion: 1.0}
-
-:foreign_geothermal_power_neighbor:
-  :co2_free: 0.0
-foreign_geothermal_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_geothermal_power_neighbor: {conversion: 1.0}
-
-:foreign_oil_power_neighbor:
-  :co2_free: 0.0
-foreign_oil_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_oil_power_neighbor: {conversion: 1.0}
-
-:foreign_hydro_power_neighbor:
-  :co2_free: 0.0
-foreign_hydro_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_hydro_power_neighbor: {conversion: 1.0}
-
-:foreign_wind_power_neighbor:
-  :co2_free: 0.0
-foreign_wind_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_wind_power_neighbor: {conversion: 1.0}
-
-:foreign_biomass_power_neighbor:
-  :co2_free: 0.0
-foreign_biomass_power_neighbor-(imported_electricity): {conversion: 1.0}
-(imported_electricity)-foreign_biomass_power_neighbor: {conversion: 1.0}
 
 :biocoal_distribution_energy:
   :co2_free: 0.0

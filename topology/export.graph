@@ -1114,17 +1114,6 @@ oil_storage_energy-(crude_oil)
 (crude_oil)-oil_storage_energy
 
 electricity_import_export_energy;	electricity_import_export;	energy;	undefined;;	energy_import_export
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_gas_power_energy
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_nuclear_power_energy
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_coal_power_energy
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_sustainable_power_energy
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_solar_power_neighbor
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_waste_power_neighbor
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_geothermal_power_neighbor
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_oil_power_neighbor
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_hydro_power_neighbor
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_wind_power_neighbor
-electricity_import_export_energy-(imported_electricity) -- s --> (imported_electricity)-foreign_biomass_power_neighbor
 electricity_import_export_energy-(imported_electricity) -- f --> (imported_electricity)-foreign_unspecified_power_neighbor
 electricity_import_export_energy-(imported_electricity)
 (imported_electricity)-electricity_import_export_energy
@@ -1359,22 +1348,6 @@ mv_hv_transformer_energy-(electricity) -- f --> (electricity)-hv_electricity_net
 mv_hv_transformer_energy-(electricity) -- i --> (electricity)-mv_transport_network_energy
 mv_hv_transformer_energy-(electricity)
 (electricity)-mv_hv_transformer_energy
-
-foreign_gas_power_energy;	foreign_gas_power;	energy;	undefined;;	primary_energy_demand,energy_import
-foreign_gas_power_energy-(imported_electricity)
-(imported_electricity)-foreign_gas_power_energy
-
-foreign_nuclear_power_energy;	foreign_nuclear_power;	energy;	undefined;;	primary_energy_demand,energy_import
-foreign_nuclear_power_energy-(imported_electricity)
-(imported_electricity)-foreign_nuclear_power_energy
-
-foreign_coal_power_energy;	foreign_coal_power;	energy;	undefined;;	primary_energy_demand,energy_import
-foreign_coal_power_energy-(imported_electricity)
-(imported_electricity)-foreign_coal_power_energy
-
-foreign_sustainable_power_energy;	foreign_sustainable_power;	energy;	undefined;;	primary_energy_demand,energy_import
-foreign_sustainable_power_energy-(electricity)
-(imported_electricity)-foreign_sustainable_power_energy
 
 backup_burner_heat_network_energy;	backup_burner_heat_network;	energy;	undefined;;	heat_production,cost_traditional_heat
 backup_burner_heat_network_energy-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_sector_gas_mixer_energy
@@ -2100,34 +2073,6 @@ biogas_distribution_energy;	biogas_distribution;	energy;	undefined;;	bio_footpri
 biogas_distribution_energy-(biogas) -- s --> (biogas)-biogas_production_energy
 biogas_distribution_energy-(biogas)
 (biogas)-biogas_distribution_energy
-
-foreign_solar_power_neighbor;	foreign_solar_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_solar_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_solar_power_neighbor
-
-foreign_waste_power_neighbor;	foreign_waste_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_waste_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_waste_power_neighbor
-
-foreign_geothermal_power_neighbor;	foreign_geothermal_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_geothermal_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_geothermal_power_neighbor
-
-foreign_oil_power_neighbor;	foreign_oil_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_oil_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_oil_power_neighbor
-
-foreign_hydro_power_neighbor;	foreign_hydro_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_hydro_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_hydro_power_neighbor
-
-foreign_wind_power_neighbor;	foreign_wind_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_wind_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_wind_power_neighbor
-
-foreign_biomass_power_neighbor;	foreign_biomass_power;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_biomass_power_neighbor-(imported_electricity)
-(imported_electricity)-foreign_biomass_power_neighbor
 
 biocoal_distribution_energy;	biocoal_distribution;	energy;	undefined;;	
 biocoal_distribution_energy-(torrified_biomass_pellets) -- c --> (torrified_biomass_pellets)-torrefaction_energy
