@@ -777,13 +777,11 @@ kerosine_import_export_transport;	kerosine_import_export;	transport;	undefined;;
 kerosine_import_export_transport-(kerosine)
 (kerosine)-kerosine_import_export_transport
 
-bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import
-bio_diesel_import_export_transport_energetic-(biodiesel) -- s --> (biodiesel)-foreign_bio_diesel_production_neighbor
+bio_diesel_import_export_transport_energetic;	bio_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import,primary_energy_demand
 bio_diesel_import_export_transport_energetic-(biodiesel)
 (biodiesel)-bio_diesel_import_export_transport_energetic
 
-bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;;	energy_import_export,energy_import
-bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-foreign_bioethanol_production_neighbor
+bio_ethanol_import_export_transport_energetic;	bio_ethanol_import_export;	transport;	energetic;;	energy_import_export,energy_import,primary_energy_demand
 bio_ethanol_import_export_transport_energetic-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic
 
@@ -1071,14 +1069,6 @@ local_solar_pv_grid_connected_energy_energetic-(solar_radiation)
 (loss)-local_solar_pv_grid_connected_energy_energetic
 (electricity)-local_solar_pv_grid_connected_energy_energetic
 
-foreign_bioethanol_production_neighbor;	foreign_bioethanol_production;	neighbor;	undefined;;	primary_energy_demand
-foreign_bioethanol_production_neighbor-(bio_ethanol)
-(bio_ethanol)-foreign_bioethanol_production_neighbor
-
-foreign_bio_diesel_production_neighbor;	foreign_bio_diesel_production;	neighbor;	undefined;;	primary_energy_demand
-foreign_bio_diesel_production_neighbor-(biodiesel)
-(biodiesel)-foreign_bio_diesel_production_neighbor
-
 gasheatpump_households_energetic;	gasheatpump;	households;	energetic;technologies;	heat_production,decentral_production,cost_heat_pumps
 gasheatpump_households_energetic-(ambient_heat) -- s --> (ambient_heat)-air_environment_energetic
 gasheatpump_households_energetic-(network_gas) -- s --> (network_gas)-gas_for_heating_households_energetic
@@ -1299,8 +1289,7 @@ algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_die
 algue_diesel_distribution_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_distribution_transport_energetic
 
-algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import
-algue_diesel_import_export_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-foreign_production_algue_diesel_neighbor
+algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	energy_import_export,energy_import,primary_energy_demand
 algue_diesel_import_export_transport_energetic-(algae_diesel)
 (algae_diesel)-algue_diesel_import_export_transport_energetic
 
@@ -2058,10 +2047,6 @@ hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-fuel_cel
 hot_water_devices_households_energetic-(hot_water)
 (hot_water)-hot_water_devices_households_energetic
 
-foreign_production_algue_diesel_neighbor;	foreign_production_algue_diesel;	neighbor;	undefined;;	primary_energy_demand
-foreign_production_algue_diesel_neighbor-(algae_diesel)
-(algae_diesel)-foreign_production_algue_diesel_neighbor
-
 biogas_production_energy;	biogas_production;	energy;	undefined;;	
 biogas_production_energy-(manure) -- s --> (manure)-manure_collection_energy
 biogas_production_energy-(corn) -- s --> (corn)-corn_distribution_energy
@@ -2092,14 +2077,9 @@ foreign_unspecified_power_neighbor;	foreign_unspecified_power;	neighbor;	undefin
 foreign_unspecified_power_neighbor-(imported_electricity)
 (imported_electricity)-foreign_unspecified_power_neighbor
 
-heat_import_energy;	heat_import;	energy;	undefined;;	energy_import_export
-heat_import_energy-(imported_steam_hot_water) -- s --> (imported_steam_hot_water)-foreign_heat_production_neighbor
+heat_import_energy;	heat_import;	energy;	undefined;;	energy_import_export,primary_energy_demand,energy_import
 heat_import_energy-(imported_steam_hot_water)
 (steam_hot_water)-heat_import_energy
-
-foreign_heat_production_neighbor;	foreign_heat_production;	neighbor;	undefined;;	primary_energy_demand,energy_import
-foreign_heat_production_neighbor-(imported_steam_hot_water)
-(imported_steam_hot_water)-foreign_heat_production_neighbor
 
 biocoal_import_energy;	biocoal_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,bio_footprint_calculation,energy_import
 biocoal_import_energy-(torrified_biomass_pellets)

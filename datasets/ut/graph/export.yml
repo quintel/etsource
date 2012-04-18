@@ -2178,13 +2178,11 @@ kerosine_import_export_transport-(kerosine): {conversion: 1.0}
   :co2_free: 0.0
 bio_diesel_import_export_transport_energetic-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_import_export_transport_energetic: {conversion: 1.0}
-bio_diesel_import_export_transport_energetic-(biodiesel) -- s --> (biodiesel)-foreign_bio_diesel_production_neighbor: {share: 1.0}
 
 :bio_ethanol_import_export_transport_energetic:
   :co2_free: 0.0
 bio_ethanol_import_export_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {conversion: 1.0}
-bio_ethanol_import_export_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-foreign_bioethanol_production_neighbor: {share: 1.0}
 
 :lpg_import_export_transport:
   :co2_free: 0.0
@@ -2800,16 +2798,6 @@ local_solar_pv_grid_connected_energy_energetic-(solar_radiation): {conversion: 1
 (loss)-local_solar_pv_grid_connected_energy_energetic: {conversion: 0.84}
 (electricity)-local_solar_pv_grid_connected_energy_energetic: {conversion: 0.16}
 local_solar_pv_grid_connected_energy_energetic-(solar_radiation) -- s --> (solar_radiation)-sun_environment_energetic: {share: 1.0}
-
-:foreign_bioethanol_production_neighbor:
-  :co2_free: 0.0
-foreign_bioethanol_production_neighbor-(bio_ethanol): {conversion: 1.0}
-(bio_ethanol)-foreign_bioethanol_production_neighbor: {conversion: 1.0}
-
-:foreign_bio_diesel_production_neighbor:
-  :co2_free: 0.0
-foreign_bio_diesel_production_neighbor-(biodiesel): {conversion: 1.0}
-(biodiesel)-foreign_bio_diesel_production_neighbor: {conversion: 1.0}
 
 :gasheatpump_households_energetic:
   :co2_free: 0.0
@@ -3498,7 +3486,6 @@ algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_die
   :co2_free: 0.0
 algue_diesel_import_export_transport_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_import_export_transport_energetic: {conversion: 1.0}
-algue_diesel_import_export_transport_energetic-(algae_diesel) -- s --> (algae_diesel)-foreign_production_algue_diesel_neighbor: {share: 1.0}
 
 :coal_boiler_households_energetic:
   :co2_free: 0.0
@@ -5588,13 +5575,6 @@ hot_water_devices_households_energetic-(hot_water) -- f --> (hot_water)-gas_boil
 hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-micro_chp_hot_water_households_energetic: {share: 0.0222555830503834}
 hot_water_devices_households_energetic-(hot_water) -- s --> (hot_water)-fuel_cell_chp_households_energetic: {share: 0.0222555830503834}
 
-:foreign_production_algue_diesel_neighbor:
-  :co2_free: 0.0
-  :preset_demand: 0.0
-  :demand: 0.0
-foreign_production_algue_diesel_neighbor-(algae_diesel): {conversion: 1.0}
-(algae_diesel)-foreign_production_algue_diesel_neighbor: {conversion: 1.0}
-
 :biogas_production_energy:
   :co2_free: 0.0
 (biogas)-biogas_production_energy: {conversion: 1.0}
@@ -5636,12 +5616,6 @@ foreign_unspecified_power_neighbor-(imported_electricity): {conversion: 1.0}
   :demand: 0.0
 heat_import_energy-(imported_steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-heat_import_energy: {conversion: 1.0}
-heat_import_energy-(imported_steam_hot_water) -- s --> (imported_steam_hot_water)-foreign_heat_production_neighbor: {share: 1.0}
-
-:foreign_heat_production_neighbor:
-  :co2_free: 0.0
-foreign_heat_production_neighbor-(imported_steam_hot_water): {conversion: 1.0}
-(imported_steam_hot_water)-foreign_heat_production_neighbor: {conversion: 1.0}
 
 :biocoal_import_energy:
   :co2_free: 0.0
