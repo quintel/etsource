@@ -1277,15 +1277,15 @@ energy_sector_gas_mixer_energy-(crude_oil)
 energy_sector_gas_mixer_energy-(network_gas)
 (gas_power_fuelmix)-energy_sector_gas_mixer_energy
 
-algue_diesel_distribution_transport_energetic;	algue_diesel_distribution;	transport;	energetic;distribution;	bio_footprint_calculation
-algue_diesel_distribution_transport_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic
-algue_diesel_distribution_transport_energetic-(algae_diesel) -- f --> (algae_diesel)-algue_diesel_import_export_transport_energetic
-algue_diesel_distribution_transport_energetic-(algae_diesel)
-(algae_diesel)-algue_diesel_distribution_transport_energetic
+algue_diesel_distribution_energy_energetic;	algue_diesel_distribution;	energy;	energetic;distribution;	bio_footprint_calculation
+algue_diesel_distribution_energy_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic
+algue_diesel_distribution_energy_energetic-(algae_diesel) -- f --> (algae_diesel)-algue_diesel_import_export_energy_energetic
+algue_diesel_distribution_energy_energetic-(algae_diesel)
+(algae_diesel)-algue_diesel_distribution_energy_energetic
 
-algue_diesel_import_export_transport_energetic;	algue_diesel_import_export;	transport;	energetic;;	primary_energy_demand,energy_import_export,energy_import
-algue_diesel_import_export_transport_energetic-(algae_diesel)
-(algae_diesel)-algue_diesel_import_export_transport_energetic
+algue_diesel_import_export_energy_energetic;	algue_diesel_import_export;	energy;	energetic;;	primary_energy_demand,energy_import_export,energy_import
+algue_diesel_import_export_energy_energetic-(algae_diesel)
+(algae_diesel)-algue_diesel_import_export_energy_energetic
 
 coal_boiler_households_energetic;	coal_boiler;	households;	energetic;technologies;	
 coal_boiler_households_energetic-(coal) -- s --> (coal)-coal_for_hot_water_households_energetic
@@ -2200,7 +2200,7 @@ bio_ethanol_export_energy-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_export_energy
 
 algue_diesel_export_energy;	algue_diesel_export;	energy;	undefined;;	energy_export
-algue_diesel_export_energy-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_distribution_transport_energetic
+algue_diesel_export_energy-(algae_diesel) -- i --> (algae_diesel)-algue_diesel_distribution_energy_energetic
 algue_diesel_export_energy-(algae_diesel)
 (algae_diesel)-algue_diesel_export_energy
 
