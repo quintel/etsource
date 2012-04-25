@@ -1901,21 +1901,21 @@ kerosine_distribution_transport-(kerosine): {conversion: 1.0}
 kerosine_distribution_transport-(kerosine) -- s --> (kerosine)-kerosine_production_transport: {share: 1.0}
 kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_export_transport: {share: }
 
-:bio_diesel_distribution_transport:
+:bio_diesel_distribution_energy:
   :co2_free: 0.0
-bio_diesel_distribution_transport-(biodiesel): {conversion: 1.0}
-(biodiesel)-bio_diesel_distribution_transport: {conversion: 1.0}
-(loss)-bio_diesel_distribution_transport: {conversion: 0.0}
-bio_diesel_distribution_transport-(biodiesel) -- c --> (biodiesel)-bio_diesel_production_transport_energetic: {share: }
-bio_diesel_distribution_transport-(biodiesel) -- f --> (biodiesel)-bio_diesel_import_export_transport_energetic: {share: }
+bio_diesel_distribution_energy-(biodiesel): {conversion: 1.0}
+(biodiesel)-bio_diesel_distribution_energy: {conversion: 1.0}
+(loss)-bio_diesel_distribution_energy: {conversion: 0.0}
+bio_diesel_distribution_energy-(biodiesel) -- c --> (biodiesel)-bio_diesel_production_energy_energetic: {share: }
+bio_diesel_distribution_energy-(biodiesel) -- f --> (biodiesel)-bio_diesel_import_export_energy_energetic: {share: }
 
-:bio_ethanol_distribution_transport:
+:bio_ethanol_distribution_energy:
   :co2_free: 0.0
-bio_ethanol_distribution_transport-(bio_ethanol): {conversion: 1.0}
-(bio_ethanol)-bio_ethanol_distribution_transport: {conversion: 1.0}
-(loss)-bio_ethanol_distribution_transport: {conversion: 0.0}
-bio_ethanol_distribution_transport-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_transport_energetic: {share: }
-bio_ethanol_distribution_transport-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_transport_energetic: {share: }
+bio_ethanol_distribution_energy-(bio_ethanol): {conversion: 1.0}
+(bio_ethanol)-bio_ethanol_distribution_energy: {conversion: 1.0}
+(loss)-bio_ethanol_distribution_energy: {conversion: 0.0}
+bio_ethanol_distribution_energy-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_energy_energetic: {share: }
+bio_ethanol_distribution_energy-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_energy_energetic: {share: }
 
 :lpg_distribution_transport:
   :co2_free: 0.0
@@ -2102,19 +2102,19 @@ kerosine_production_transport-(crude_oil): {conversion: 1.0}
 (kerosine)-kerosine_production_transport: {conversion: 1.0}
 kerosine_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
-:bio_diesel_production_transport_energetic:
+:bio_diesel_production_energy_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-bio_diesel_production_transport_energetic-(biodiesel): {conversion: 1.0}
-(biodiesel)-bio_diesel_production_transport_energetic: {conversion: 1.0}
+bio_diesel_production_energy_energetic-(biodiesel): {conversion: 1.0}
+(biodiesel)-bio_diesel_production_energy_energetic: {conversion: 1.0}
 
-:bio_ethanol_production_transport_energetic:
+:bio_ethanol_production_energy_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-bio_ethanol_production_transport_energetic-(bio_ethanol): {conversion: 1.0}
-(bio_ethanol)-bio_ethanol_production_transport_energetic: {conversion: 1.0}
+bio_ethanol_production_energy_energetic-(bio_ethanol): {conversion: 1.0}
+(bio_ethanol)-bio_ethanol_production_energy_energetic: {conversion: 1.0}
 
 :greengas_production_energy:
   :co2_free: 0.0
@@ -2168,15 +2168,15 @@ gasoline_import_export_transport-(gasoline): {conversion: 1.0}
 kerosine_import_export_transport-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_import_export_transport: {conversion: 1.0}
 
-:bio_diesel_import_export_transport_energetic:
+:bio_diesel_import_export_energy_energetic:
   :co2_free: 0.0
-bio_diesel_import_export_transport_energetic-(biodiesel): {conversion: 1.0}
-(biodiesel)-bio_diesel_import_export_transport_energetic: {conversion: 1.0}
+bio_diesel_import_export_energy_energetic-(biodiesel): {conversion: 1.0}
+(biodiesel)-bio_diesel_import_export_energy_energetic: {conversion: 1.0}
 
-:bio_ethanol_import_export_transport_energetic:
+:bio_ethanol_import_export_energy_energetic:
   :co2_free: 0.0
-bio_ethanol_import_export_transport_energetic-(bio_ethanol): {conversion: 1.0}
-(bio_ethanol)-bio_ethanol_import_export_transport_energetic: {conversion: 1.0}
+bio_ethanol_import_export_energy_energetic-(bio_ethanol): {conversion: 1.0}
+(bio_ethanol)-bio_ethanol_import_export_energy_energetic: {conversion: 1.0}
 
 :lpg_import_export_transport:
   :co2_free: 0.0
@@ -2874,12 +2874,12 @@ earth_environment_energetic-(loss): {conversion: 1.0}
 water_environment_energetic-(loss): {conversion: 1.0}
 (loss)-water_environment_energetic: {conversion: 1.0}
 
-:algue_diesel_production_transport_energetic:
+:algue_diesel_production_energy_energetic:
   :co2_free: 0.0
   :preset_demand: 0.0
   :demand: 0.0
-algue_diesel_production_transport_energetic-(algae_diesel): {conversion: 1.0}
-(algae_diesel)-algue_diesel_production_transport_energetic: {conversion: 1.0}
+algue_diesel_production_energy_energetic-(algae_diesel): {conversion: 1.0}
+(algae_diesel)-algue_diesel_production_energy_energetic: {conversion: 1.0}
 
 :sun_environment_energetic:
   :co2_free: 0.0
@@ -3472,7 +3472,7 @@ energy_sector_gas_mixer_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution
   :co2_free: 0.0
 algue_diesel_distribution_energy_energetic-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-algue_diesel_distribution_energy_energetic: {conversion: 1.0}
-algue_diesel_distribution_energy_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_transport_energetic: {share: }
+algue_diesel_distribution_energy_energetic-(algae_diesel) -- c --> (algae_diesel)-algue_diesel_production_energy_energetic: {share: }
 algue_diesel_distribution_energy_energetic-(algae_diesel) -- f --> (algae_diesel)-algue_diesel_import_export_energy_energetic: {share: }
 
 :algue_diesel_import_export_energy_energetic:
@@ -5751,13 +5751,13 @@ waste_export_energy-(waste_mix) -- i --> (waste_mix)-waste_distribution_energy: 
   :co2_free: 0.0
 bio_diesel_export_energy-(biodiesel): {conversion: 1.0}
 (biodiesel)-bio_diesel_export_energy: {conversion: 1.0}
-bio_diesel_export_energy-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_transport: {share: }
+bio_diesel_export_energy-(biodiesel) -- i --> (biodiesel)-bio_diesel_distribution_energy: {share: }
 
 :bio_ethanol_export_energy:
   :co2_free: 0.0
 bio_ethanol_export_energy-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_export_energy: {conversion: 1.0}
-bio_ethanol_export_energy-(bio_ethanol) -- i --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: }
+bio_ethanol_export_energy-(bio_ethanol) -- i --> (bio_ethanol)-bio_ethanol_distribution_energy: {share: }
 
 :algue_diesel_export_energy:
   :co2_free: 0.0
@@ -6135,14 +6135,14 @@ final_demand_of_network_gas_transport_energetic-(network_gas) -- s --> (network_
   :demand_expected_value: 545811598.80326
 final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-final_demand_of_bio_ethanol_transport_energetic: {conversion: 1.0}
-final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_transport: {share: 1.0}
+final_demand_of_bio_ethanol_transport_energetic-(bio_ethanol) -- s --> (bio_ethanol)-bio_ethanol_distribution_energy: {share: 1.0}
 
 :final_demand_of_biodiesel_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 1376933806.07186
 final_demand_of_biodiesel_transport_energetic-(biodiesel): {conversion: 1.0}
 (biodiesel)-final_demand_of_biodiesel_transport_energetic: {conversion: 1.0}
-final_demand_of_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_transport: {share: 1.0}
+final_demand_of_biodiesel_transport_energetic-(biodiesel) -- s --> (biodiesel)-bio_diesel_distribution_energy: {share: 1.0}
 
 :final_demand_of_electricity_transport_energetic:
   :co2_free: 0.0
