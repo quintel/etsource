@@ -89,11 +89,11 @@ for enginefile in enginefiles
       enginecontent = ic.iconv(enginecontent)
     end
   replacements.each do |old_key, new_key|
-    if enginecontent =~ /\b#{old_key}\b/ then
+    if enginecontent =~ /#{old_key}/ then
       File.open(enginefile)
-      puts "The old key #{old_key} still exists in the ETengine! Here: #{enginefile}! Check if this is not a problem!" if enginecontent.gsub(/\b#{old_key}\b/, new_key)
-      old_files_found = old_files_found + 1 if enginecontent.gsub(/\b#{old_key}\b/, new_key)
+      puts "The old key #{old_key} still exists in the ETengine! Here: #{enginefile}! Check if this is not a problem!" if enginecontent.gsub(/#{old_key}/, new_key)
+      old_files_found = old_files_found + 1 if enginecontent.gsub(/#{old_key}/, new_key)
     end
   end
 end
-puts "#{old_files_found} old keys found that need attention on ETengine."
+puts "#{old_files_found} old keys found that need attention on ETengine. Also partial matches are shown."
