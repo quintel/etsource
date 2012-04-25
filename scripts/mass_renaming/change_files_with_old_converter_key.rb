@@ -12,8 +12,8 @@ files.delete_if do |file_name|
 #loop through all the files
 files.each do |file_name|
   content = File.read file_name
-  if content =~ /algue_diesel_import_export_transport_energetic/ then
-    newcontent = content.gsub(/algue_diesel_import_export_transport_energetic/, "algue_diesel_import_export_energy_energetic")
+  if content =~ /algue_diesel_distribution_transport_energetic/ then
+    newcontent = content.gsub(/algue_diesel_distribution_transport_energetic/, "algue_diesel_distribution_energy_energetic")
     File.open file_name, "w" do |r|
       r.puts newcontent
     end

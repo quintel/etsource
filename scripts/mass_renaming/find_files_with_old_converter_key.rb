@@ -3,6 +3,10 @@ require 'CSV'
 require 'fileutils'
 
 files = Dir.glob("/Users/WvL/Documents/github/etsource/**/*") - Dir.glob("/Users/WvL/Documents/github/etsource/datasets/**/*") - Dir.glob("/Users/WvL/Documents/github/etsource/scripts/**/*") 
+#to do: Add etengine
+
+oldname = "algue_diesel_distribution_transport_energetic"
+newname = "algue_diesel_distribution_energy_energetic"
  
 #clean up file list with hidden files (that start with .) or files that are actually directories
 files.delete_if do |file_name| 
@@ -11,9 +15,9 @@ files.delete_if do |file_name|
 
 for file in files
   content = File.read(file)
-  if content =~ /algue_diesel_import_export_transport_energetic/ then
+  if content =~ /#{oldname}/ then
     File.open(file)
-    puts "I can change the old key in #{file} from old to new" if content.gsub!("algue_diesel_import_export_transport_energetic", "algue_diesel_import_export_energy_energetic")
+    puts "I can change the old key in #{file} from #{oldname} to #{newname}" if content.gsub(oldname, newname)
   end
 end
 
@@ -27,8 +31,8 @@ end
 
 for datasetfile in datasetfiles
   datasetcontent = File.read(datasetfile)
-  if datasetcontent =~ /algue_diesel_import_export_transport_energetic/ then
+  if datasetcontent =~ /#{oldname}/ then
     File.open(datasetfile)
-    puts "The old key in #{file} will be changed by InputExcel" if content.gsub("algue_diesel_import_export_transport_energetic", "algue_diesel_import_export_energy_energetic")
+    puts "#{oldname} in #{file} will be changed by InputExcel" if content.gsub(oldname, newname)
   end
 end
