@@ -1877,29 +1877,29 @@ gas_treatment_energy-(natural_gas) -- c --> (natural_gas)-gas_extraction_energy:
 gas_treatment_energy-(natural_gas) -- s --> (natural_gas)-lng_import_energy: {share: 0.0}
 gas_treatment_energy-(natural_gas) -- f --> (natural_gas)-gas_import_export_energy: {share: }
 
-:diesel_distribution_transport:
+:diesel_distribution_energy:
   :co2_free: 0.0
-diesel_distribution_transport-(diesel): {conversion: 1.0}
-(diesel)-diesel_distribution_transport: {conversion: 1.0}
-(loss)-diesel_distribution_transport: {conversion: 0.0}
-diesel_distribution_transport-(diesel) -- s --> (diesel)-diesel_production_transport: {share: 1.0}
-diesel_distribution_transport-(diesel) -- f --> (diesel)-diesel_import_export_transport: {share: }
+diesel_distribution_energy-(diesel): {conversion: 1.0}
+(diesel)-diesel_distribution_energy: {conversion: 1.0}
+(loss)-diesel_distribution_energy: {conversion: 0.0}
+diesel_distribution_energy-(diesel) -- s --> (diesel)-diesel_production_energy: {share: 1.0}
+diesel_distribution_energy-(diesel) -- f --> (diesel)-diesel_import_export_energy: {share: }
 
-:gasoline_distribution_transport:
+:gasoline_distribution_energy:
   :co2_free: 0.0
-gasoline_distribution_transport-(gasoline): {conversion: 1.0}
-(gasoline)-gasoline_distribution_transport: {conversion: 1.0}
-(loss)-gasoline_distribution_transport: {conversion: 0.0}
-gasoline_distribution_transport-(gasoline) -- s --> (gasoline)-gasoline_production_transport: {share: 1.0}
-gasoline_distribution_transport-(gasoline) -- f --> (gasoline)-gasoline_import_export_transport: {share: }
+gasoline_distribution_energy-(gasoline): {conversion: 1.0}
+(gasoline)-gasoline_distribution_energy: {conversion: 1.0}
+(loss)-gasoline_distribution_energy: {conversion: 0.0}
+gasoline_distribution_energy-(gasoline) -- s --> (gasoline)-gasoline_production_energy: {share: 1.0}
+gasoline_distribution_energy-(gasoline) -- f --> (gasoline)-gasoline_import_export_energy: {share: }
 
-:kerosine_distribution_transport:
+:kerosine_distribution_energy:
   :co2_free: 0.0
-kerosine_distribution_transport-(kerosine): {conversion: 1.0}
-(kerosine)-kerosine_distribution_transport: {conversion: 1.0}
-(loss)-kerosine_distribution_transport: {conversion: 0.0}
-kerosine_distribution_transport-(kerosine) -- s --> (kerosine)-kerosine_production_transport: {share: 1.0}
-kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_export_transport: {share: }
+kerosine_distribution_energy-(kerosine): {conversion: 1.0}
+(kerosine)-kerosine_distribution_energy: {conversion: 1.0}
+(loss)-kerosine_distribution_energy: {conversion: 0.0}
+kerosine_distribution_energy-(kerosine) -- s --> (kerosine)-kerosine_production_energy: {share: 1.0}
+kerosine_distribution_energy-(kerosine) -- f --> (kerosine)-kerosine_import_export_energy: {share: }
 
 :bio_diesel_distribution_energy:
   :co2_free: 0.0
@@ -1917,12 +1917,12 @@ bio_ethanol_distribution_energy-(bio_ethanol): {conversion: 1.0}
 bio_ethanol_distribution_energy-(bio_ethanol) -- c --> (bio_ethanol)-bio_ethanol_production_energy_energetic: {share: }
 bio_ethanol_distribution_energy-(bio_ethanol) -- f --> (bio_ethanol)-bio_ethanol_import_export_energy_energetic: {share: }
 
-:lpg_distribution_transport:
+:lpg_distribution_energy:
   :co2_free: 0.0
-lpg_distribution_transport-(lpg): {conversion: 1.0}
-(lpg)-lpg_distribution_transport: {conversion: 1.0}
-lpg_distribution_transport-(lpg) -- s --> (lpg)-lpg_production_transport: {share: 1.0}
-lpg_distribution_transport-(lpg) -- f --> (lpg)-lpg_import_export_transport: {share: }
+lpg_distribution_energy-(lpg): {conversion: 1.0}
+(lpg)-lpg_distribution_energy: {conversion: 1.0}
+lpg_distribution_energy-(lpg) -- s --> (lpg)-lpg_production_energy: {share: 1.0}
+lpg_distribution_energy-(lpg) -- f --> (lpg)-lpg_import_export_energy: {share: }
 
 :bio_oil_production_energy:
   :co2_free: 0.0
@@ -2074,33 +2074,33 @@ trains_diesel_transport_energetic-(diesel_mix): {conversion: 1.0}
 (not_defined)-trains_diesel_transport_energetic: {conversion: 0.3}
 trains_diesel_transport_energetic-(diesel_mix) -- s --> (diesel_mix)-rail_diesel_mixer_transport_energetic: {share: 1.0}
 
-:lpg_production_transport:
+:lpg_production_energy:
   :co2_free: 0.0
-lpg_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-lpg_production_transport: {conversion: 0.0}
-(lpg)-lpg_production_transport: {conversion: 1.0}
-lpg_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
+lpg_production_energy-(crude_oil): {conversion: 1.0}
+(loss)-lpg_production_energy: {conversion: 0.0}
+(lpg)-lpg_production_energy: {conversion: 1.0}
+lpg_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
-:diesel_production_transport:
+:diesel_production_energy:
   :co2_free: 0.0
-diesel_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-diesel_production_transport: {conversion: 0.0}
-(diesel)-diesel_production_transport: {conversion: 1.0}
-diesel_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
+diesel_production_energy-(crude_oil): {conversion: 1.0}
+(loss)-diesel_production_energy: {conversion: 0.0}
+(diesel)-diesel_production_energy: {conversion: 1.0}
+diesel_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
-:gasoline_production_transport:
+:gasoline_production_energy:
   :co2_free: 0.0
-gasoline_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-gasoline_production_transport: {conversion: 0.0}
-(gasoline)-gasoline_production_transport: {conversion: 1.0}
-gasoline_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
+gasoline_production_energy-(crude_oil): {conversion: 1.0}
+(loss)-gasoline_production_energy: {conversion: 0.0}
+(gasoline)-gasoline_production_energy: {conversion: 1.0}
+gasoline_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
-:kerosine_production_transport:
+:kerosine_production_energy:
   :co2_free: 0.0
-kerosine_production_transport-(crude_oil): {conversion: 1.0}
-(loss)-kerosine_production_transport: {conversion: 0.0}
-(kerosine)-kerosine_production_transport: {conversion: 1.0}
-kerosine_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
+kerosine_production_energy-(crude_oil): {conversion: 1.0}
+(loss)-kerosine_production_energy: {conversion: 0.0}
+(kerosine)-kerosine_production_energy: {conversion: 1.0}
+kerosine_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy: {share: 1.0}
 
 :bio_diesel_production_energy_energetic:
   :co2_free: 0.0
@@ -2153,20 +2153,20 @@ gas_import_export_energy-(natural_gas): {conversion: 1.0}
 bio_residues_import_energy-(bio_residues_for_firing): {conversion: 1.0}
 (bio_residues_for_firing)-bio_residues_import_energy: {conversion: 1.0}
 
-:diesel_import_export_transport:
+:diesel_import_export_energy:
   :co2_free: 0.0
-diesel_import_export_transport-(diesel): {conversion: 1.0}
-(diesel)-diesel_import_export_transport: {conversion: 1.0}
+diesel_import_export_energy-(diesel): {conversion: 1.0}
+(diesel)-diesel_import_export_energy: {conversion: 1.0}
 
-:gasoline_import_export_transport:
+:gasoline_import_export_energy:
   :co2_free: 0.0
-gasoline_import_export_transport-(gasoline): {conversion: 1.0}
-(gasoline)-gasoline_import_export_transport: {conversion: 1.0}
+gasoline_import_export_energy-(gasoline): {conversion: 1.0}
+(gasoline)-gasoline_import_export_energy: {conversion: 1.0}
 
-:kerosine_import_export_transport:
+:kerosine_import_export_energy:
   :co2_free: 0.0
-kerosine_import_export_transport-(kerosine): {conversion: 1.0}
-(kerosine)-kerosine_import_export_transport: {conversion: 1.0}
+kerosine_import_export_energy-(kerosine): {conversion: 1.0}
+(kerosine)-kerosine_import_export_energy: {conversion: 1.0}
 
 :bio_diesel_import_export_energy_energetic:
   :co2_free: 0.0
@@ -2178,10 +2178,10 @@ bio_diesel_import_export_energy_energetic-(biodiesel): {conversion: 1.0}
 bio_ethanol_import_export_energy_energetic-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-bio_ethanol_import_export_energy_energetic: {conversion: 1.0}
 
-:lpg_import_export_transport:
+:lpg_import_export_energy:
   :co2_free: 0.0
-lpg_import_export_transport-(lpg): {conversion: 1.0}
-(lpg)-lpg_import_export_transport: {conversion: 1.0}
+lpg_import_export_energy-(lpg): {conversion: 1.0}
+(lpg)-lpg_import_export_energy: {conversion: 1.0}
 
 :planes_gasoline_transport_energetic:
   :co2_free: 0.0
@@ -5703,25 +5703,25 @@ bio_residues_export_energy-(bio_residues_for_firing) -- i --> (bio_residues_for_
   :co2_free: 0.0
 diesel_export_energy-(diesel): {conversion: 1.0}
 (diesel)-diesel_export_energy: {conversion: 1.0}
-diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_transport: {share: }
+diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_energy: {share: }
 
 :gasoline_export_energy:
   :co2_free: 0.0
 gasoline_export_energy-(gasoline): {conversion: 1.0}
 (gasoline)-gasoline_export_energy: {conversion: 1.0}
-gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_transport: {share: }
+gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_energy: {share: }
 
 :kerosine_export_energy:
   :co2_free: 0.0
 kerosine_export_energy-(kerosine): {conversion: 1.0}
 (kerosine)-kerosine_export_energy: {conversion: 1.0}
-kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport: {share: }
+kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_energy: {share: }
 
 :lpg_export_energy:
   :co2_free: 0.0
 lpg_export_energy-(lpg): {conversion: 1.0}
 (lpg)-lpg_export_energy: {conversion: 1.0}
-lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_transport: {share: }
+lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_energy: {share: }
 
 :greengas_export_energy:
   :co2_free: 0.0
@@ -6049,7 +6049,7 @@ monitized_heat_for_hot_water_households_energetic-(steam_hot_water) -- s --> (st
 diesel_generator_energy_energetic-(diesel): {conversion: 1.0}
 (electricity)-diesel_generator_energy_energetic: {conversion: 0.45}
 (loss)-diesel_generator_energy_energetic: {conversion: 0.55}
-diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport: {share: 1.0}
+diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution_energy: {share: 1.0}
 
 :gas_turbine_energy_energetic:
   :co2_free: 0.0
@@ -6093,28 +6093,28 @@ final_demand_of_coal_transport_energetic-(coal) -- s --> (coal)-coal_distributio
   :demand_expected_value: 1083804204.43379
 final_demand_of_lpg_transport_energetic-(lpg): {conversion: 1.0}
 (lpg)-final_demand_of_lpg_transport_energetic: {conversion: 1.0}
-final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport: {share: 1.0}
+final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_energy: {share: 1.0}
 
 :final_demand_of_gasoline_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 12497115029.8133
 final_demand_of_gasoline_transport_energetic-(gasoline): {conversion: 1.0}
 (gasoline)-final_demand_of_gasoline_transport_energetic: {conversion: 1.0}
-final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport: {share: 1.0}
+final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_energy: {share: 1.0}
 
 :final_demand_of_kerosine_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 680952629.073759
 final_demand_of_kerosine_transport_energetic-(kerosine): {conversion: 1.0}
 (kerosine)-final_demand_of_kerosine_transport_energetic: {conversion: 1.0}
-final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport: {share: 1.0}
+final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_energy: {share: 1.0}
 
 :final_demand_of_diesel_transport_energetic:
   :co2_free: 0.0
   :demand_expected_value: 20659353718.2059
 final_demand_of_diesel_transport_energetic-(diesel): {conversion: 1.0}
 (diesel)-final_demand_of_diesel_transport_energetic: {conversion: 1.0}
-final_demand_of_diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport: {share: 1.0}
+final_demand_of_diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_energy: {share: 1.0}
 
 :final_demand_of_heavy_fuel_oil_transport_energetic:
   :co2_free: 0.0
