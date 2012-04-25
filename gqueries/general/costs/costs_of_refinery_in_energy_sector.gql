@@ -5,9 +5,9 @@
 
 MAX(
  SUM(
-  PRODUCT( V(CARRIER(lpg), cost_per_mj), V(lpg_production_transport, output_of_lpg) ),
-  PRODUCT( V(CARRIER(diesel), cost_per_mj), V(diesel_production_transport, output_of_diesel) ),
-  PRODUCT( V(CARRIER(gasoline), cost_per_mj), V(gasoline_production_transport, output_of_gasoline) ),
+  PRODUCT( V(CARRIER(lpg), cost_per_mj), V(lpg_production_energy, output_of_lpg) ),
+  PRODUCT( V(CARRIER(diesel), cost_per_mj), V(diesel_production_energy, output_of_diesel) ),
+  PRODUCT( V(CARRIER(gasoline), cost_per_mj), V(gasoline_production_energy, output_of_gasoline) ),
   NEG( PRODUCT( V(CARRIER(crude_oil), cost_per_mj), Q(oil_demand_of_gasoline_diesel_and_lpg_production) ) )
  ),
  0

@@ -547,26 +547,26 @@ gas_treatment_energy-(natural_gas)
 (natural_gas)-gas_treatment_energy
 (loss)-gas_treatment_energy
 
-diesel_distribution_transport;	diesel_distribution;	transport;	undefined;subdistribution 2;	
-diesel_distribution_transport-(diesel) -- s --> (diesel)-diesel_production_transport
-diesel_distribution_transport-(diesel) -- f --> (diesel)-diesel_import_export_transport
-diesel_distribution_transport-(diesel)
-(diesel)-diesel_distribution_transport
-(loss)-diesel_distribution_transport
+diesel_distribution_energy;	diesel_distribution;	energy;	undefined;subdistribution 2;	
+diesel_distribution_energy-(diesel) -- s --> (diesel)-diesel_production_energy
+diesel_distribution_energy-(diesel) -- f --> (diesel)-diesel_import_export_energy
+diesel_distribution_energy-(diesel)
+(diesel)-diesel_distribution_energy
+(loss)-diesel_distribution_energy
 
-gasoline_distribution_transport;	gasoline_distribution;	transport;	undefined;subdistribution 2;	
-gasoline_distribution_transport-(gasoline) -- s --> (gasoline)-gasoline_production_transport
-gasoline_distribution_transport-(gasoline) -- f --> (gasoline)-gasoline_import_export_transport
-gasoline_distribution_transport-(gasoline)
-(gasoline)-gasoline_distribution_transport
-(loss)-gasoline_distribution_transport
+gasoline_distribution_energy;	gasoline_distribution;	energy;	undefined;subdistribution 2;	
+gasoline_distribution_energy-(gasoline) -- s --> (gasoline)-gasoline_production_energy
+gasoline_distribution_energy-(gasoline) -- f --> (gasoline)-gasoline_import_export_energy
+gasoline_distribution_energy-(gasoline)
+(gasoline)-gasoline_distribution_energy
+(loss)-gasoline_distribution_energy
 
-kerosine_distribution_transport;	kerosine_distribution;	transport;	undefined;distribution;	
-kerosine_distribution_transport-(kerosine) -- s --> (kerosine)-kerosine_production_transport
-kerosine_distribution_transport-(kerosine) -- f --> (kerosine)-kerosine_import_export_transport
-kerosine_distribution_transport-(kerosine)
-(kerosine)-kerosine_distribution_transport
-(loss)-kerosine_distribution_transport
+kerosine_distribution_energy;	kerosine_distribution;	energy;	undefined;distribution;	
+kerosine_distribution_energy-(kerosine) -- s --> (kerosine)-kerosine_production_energy
+kerosine_distribution_energy-(kerosine) -- f --> (kerosine)-kerosine_import_export_energy
+kerosine_distribution_energy-(kerosine)
+(kerosine)-kerosine_distribution_energy
+(loss)-kerosine_distribution_energy
 
 bio_diesel_distribution_energy;	bio_diesel_distribution;	energy;	undefined;distribution;	bio_footprint_calculation
 bio_diesel_distribution_energy-(biodiesel) -- c --> (biodiesel)-bio_diesel_production_energy_energetic
@@ -582,11 +582,11 @@ bio_ethanol_distribution_energy-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_distribution_energy
 (loss)-bio_ethanol_distribution_energy
 
-lpg_distribution_transport;	lpg_distribution;	transport;	undefined;distribution;	
-lpg_distribution_transport-(lpg) -- s --> (lpg)-lpg_production_transport
-lpg_distribution_transport-(lpg) -- f --> (lpg)-lpg_import_export_transport
-lpg_distribution_transport-(lpg)
-(lpg)-lpg_distribution_transport
+lpg_distribution_energy;	lpg_distribution;	energy;	undefined;distribution;	
+lpg_distribution_energy-(lpg) -- s --> (lpg)-lpg_production_energy
+lpg_distribution_energy-(lpg) -- f --> (lpg)-lpg_import_export_energy
+lpg_distribution_energy-(lpg)
+(lpg)-lpg_distribution_energy
 
 bio_oil_production_energy;	bio_oil_production;	energy;	undefined;growth and production;	primary_energy_demand,mining_and_extraction
 bio_oil_production_energy-(bio_oil)
@@ -699,29 +699,29 @@ trains_diesel_transport_energetic-(diesel_mix)
 (loss)-trains_diesel_transport_energetic
 (not_defined)-trains_diesel_transport_energetic
 
-lpg_production_transport;	lpg_production;	transport;	undefined;refinery;	
-lpg_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
-lpg_production_transport-(crude_oil)
-(loss)-lpg_production_transport
-(lpg)-lpg_production_transport
+lpg_production_energy;	lpg_production;	energy;	undefined;refinery;	
+lpg_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+lpg_production_energy-(crude_oil)
+(loss)-lpg_production_energy
+(lpg)-lpg_production_energy
 
-diesel_production_transport;	diesel_production;	transport;	undefined;refinery;	
-diesel_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
-diesel_production_transport-(crude_oil)
-(loss)-diesel_production_transport
-(diesel)-diesel_production_transport
+diesel_production_energy;	diesel_production;	energy;	undefined;refinery;	
+diesel_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+diesel_production_energy-(crude_oil)
+(loss)-diesel_production_energy
+(diesel)-diesel_production_energy
 
-gasoline_production_transport;	gasoline_production;	transport;	undefined;refinery;	
-gasoline_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
-gasoline_production_transport-(crude_oil)
-(loss)-gasoline_production_transport
-(gasoline)-gasoline_production_transport
+gasoline_production_energy;	gasoline_production;	energy;	undefined;refinery;	
+gasoline_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+gasoline_production_energy-(crude_oil)
+(loss)-gasoline_production_energy
+(gasoline)-gasoline_production_energy
 
-kerosine_production_transport;	kerosine_production;	transport;	undefined;refinery;	
-kerosine_production_transport-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
-kerosine_production_transport-(crude_oil)
-(loss)-kerosine_production_transport
-(kerosine)-kerosine_production_transport
+kerosine_production_energy;	kerosine_production;	energy;	undefined;refinery;	
+kerosine_production_energy-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
+kerosine_production_energy-(crude_oil)
+(loss)-kerosine_production_energy
+(kerosine)-kerosine_production_energy
 
 bio_diesel_production_energy_energetic;	bio_diesel_production;	energy;	energetic;;	primary_energy_demand,mining_and_extraction
 bio_diesel_production_energy_energetic-(biodiesel)
@@ -760,17 +760,17 @@ bio_residues_import_energy;	bio_residues_import;	energy;	undefined;;	primary_ene
 bio_residues_import_energy-(bio_residues_for_firing)
 (bio_residues_for_firing)-bio_residues_import_energy
 
-diesel_import_export_transport;	diesel_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-diesel_import_export_transport-(diesel)
-(diesel)-diesel_import_export_transport
+diesel_import_export_energy;	diesel_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+diesel_import_export_energy-(diesel)
+(diesel)-diesel_import_export_energy
 
-gasoline_import_export_transport;	gasoline_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-gasoline_import_export_transport-(gasoline)
-(gasoline)-gasoline_import_export_transport
+gasoline_import_export_energy;	gasoline_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+gasoline_import_export_energy-(gasoline)
+(gasoline)-gasoline_import_export_energy
 
-kerosine_import_export_transport;	kerosine_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-kerosine_import_export_transport-(kerosine)
-(kerosine)-kerosine_import_export_transport
+kerosine_import_export_energy;	kerosine_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+kerosine_import_export_energy-(kerosine)
+(kerosine)-kerosine_import_export_energy
 
 bio_diesel_import_export_energy_energetic;	bio_diesel_import_export;	energy;	energetic;;	primary_energy_demand,energy_import_export,energy_import
 bio_diesel_import_export_energy_energetic-(biodiesel)
@@ -780,9 +780,9 @@ bio_ethanol_import_export_energy_energetic;	bio_ethanol_import_export;	energy;	e
 bio_ethanol_import_export_energy_energetic-(bio_ethanol)
 (bio_ethanol)-bio_ethanol_import_export_energy_energetic
 
-lpg_import_export_transport;	lpg_import_export;	transport;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-lpg_import_export_transport-(lpg)
-(lpg)-lpg_import_export_transport
+lpg_import_export_energy;	lpg_import_export;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
+lpg_import_export_energy-(lpg)
+(lpg)-lpg_import_export_energy
 
 planes_gasoline_transport_energetic;	planes_gasoline;	transport;	energetic;technologies;	
 planes_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-aviation_gasoline_transport_energetic
@@ -2150,22 +2150,22 @@ bio_residues_export_energy-(bio_residues_for_firing)
 (bio_residues_for_firing)-bio_residues_export_energy
 
 diesel_export_energy;	diesel_export;	energy;	undefined;;	energy_export
-diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_transport
+diesel_export_energy-(diesel) -- i --> (diesel)-diesel_distribution_energy
 diesel_export_energy-(diesel)
 (diesel)-diesel_export_energy
 
 gasoline_export_energy;	gasoline_export;	energy;	undefined;;	energy_export
-gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_transport
+gasoline_export_energy-(gasoline) -- i --> (gasoline)-gasoline_distribution_energy
 gasoline_export_energy-(gasoline)
 (gasoline)-gasoline_export_energy
 
 kerosine_export_energy;	kerosine_export;	energy;	undefined;;	energy_export
-kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_transport
+kerosine_export_energy-(kerosine) -- i --> (kerosine)-kerosine_distribution_energy
 kerosine_export_energy-(kerosine)
 (kerosine)-kerosine_export_energy
 
 lpg_export_energy;	lpg_export;	energy;	undefined;;	energy_export
-lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_transport
+lpg_export_energy-(lpg) -- i --> (lpg)-lpg_distribution_energy
 lpg_export_energy-(lpg)
 (lpg)-lpg_export_energy
 
@@ -2380,7 +2380,7 @@ monitized_heat_for_hot_water_households_energetic-(steam_hot_water)
 (steam_hot_water)-monitized_heat_for_hot_water_households_energetic
 
 diesel_generator_energy_energetic;	diesel_generator;	energy;	energetic;central power generation;	electricity_production,central_production,cost_electricity_production,merit_order_converters
-diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
+diesel_generator_energy_energetic-(diesel) -- s --> (diesel)-diesel_distribution_energy
 diesel_generator_energy_energetic-(diesel)
 (electricity)-diesel_generator_energy_energetic
 (loss)-diesel_generator_energy_energetic
@@ -2397,22 +2397,22 @@ final_demand_of_coal_transport_energetic-(coal)
 (coal)-final_demand_of_coal_transport_energetic
 
 final_demand_of_lpg_transport_energetic;	final_demand_of_lpg;	transport;	energetic;final consumption;	final_demand_cbs
-final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_transport
+final_demand_of_lpg_transport_energetic-(lpg) -- s --> (lpg)-lpg_distribution_energy
 final_demand_of_lpg_transport_energetic-(lpg)
 (lpg)-final_demand_of_lpg_transport_energetic
 
 final_demand_of_gasoline_transport_energetic;	final_demand_of_gasoline;	transport;	energetic;final consumption;	final_demand_cbs
-final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_transport
+final_demand_of_gasoline_transport_energetic-(gasoline) -- s --> (gasoline)-gasoline_distribution_energy
 final_demand_of_gasoline_transport_energetic-(gasoline)
 (gasoline)-final_demand_of_gasoline_transport_energetic
 
 final_demand_of_kerosine_transport_energetic;	final_demand_of_kerosine;	transport;	energetic;final consumption;	final_demand_cbs
-final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_transport
+final_demand_of_kerosine_transport_energetic-(kerosine) -- s --> (kerosine)-kerosine_distribution_energy
 final_demand_of_kerosine_transport_energetic-(kerosine)
 (kerosine)-final_demand_of_kerosine_transport_energetic
 
 final_demand_of_diesel_transport_energetic;	final_demand_of_diesel;	transport;	energetic;final consumption;	final_demand_cbs
-final_demand_of_diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_transport
+final_demand_of_diesel_transport_energetic-(diesel) -- s --> (diesel)-diesel_distribution_energy
 final_demand_of_diesel_transport_energetic-(diesel)
 (diesel)-final_demand_of_diesel_transport_energetic
 
