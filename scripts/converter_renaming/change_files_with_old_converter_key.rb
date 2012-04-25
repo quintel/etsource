@@ -3,6 +3,7 @@ require 'CSV'
 require 'fileutils'
 
 CSV_WITH_REPLACEMENTS = "new_converter_keys.csv"
+PATH_OF_REPOSITORIES = "/Users/WvL/Documents/github/"
 
 #First define what we want to replace with what
 replacements = {}
@@ -12,7 +13,8 @@ CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
   replacements[old_key] = new_key unless old_key == new_key
 end
 
-files = Dir.glob("/Users/WvL/Documents/github/etsource/**/*") - Dir.glob("/Users/WvL/Documents/github/etsource/datasets/**/*") - Dir.glob("/Users/WvL/Documents/github/etsource/scripts/**/*") 
+#Then we define which files we will be going through
+files = Dir.glob(PATH_OF_REPOSITORIES + "etsource/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/datasets/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/scripts/**/*") 
  
 #clean up file list with hidden files (that start with .) or files that are actually directories
 files.delete_if do |file_name| 
