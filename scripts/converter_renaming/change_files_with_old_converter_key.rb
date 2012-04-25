@@ -1,6 +1,5 @@
-# This script changes all references to the old_keys as defined in the mentioned CSV file on the ETsource.
+# This script changes all references to the old_keys as defined in the mentioned CSV file (CSV_WITH_REPLACEMENTS) on the ETsource.
 # Use the find script (named "find_files_with_old_converter_key") to see whether other uses of the old key still exist.
-
 
 require 'rubygems'
 require 'CSV'
@@ -22,7 +21,7 @@ files = Dir.glob(PATH_OF_REPOSITORIES + "etsource/**/*") - Dir.glob(PATH_OF_REPO
 
 #clean up file list with hidden files (that start with .) or files that are actually directories
 files.delete_if do |file_name| 
-  file_name[0] == "." || File.directory?(file_name)
+  file_name[0] == "." || File.directory?(file_name) || File.ftype(enginefile_name) != "file"
   end
 
 #loop through all the files
