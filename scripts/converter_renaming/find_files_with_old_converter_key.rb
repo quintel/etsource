@@ -7,7 +7,7 @@ require 'CSV'
 require 'fileutils'
 
 CSV_WITH_REPLACEMENTS = "new_converter_keys.csv"
-PATH_OF_REPOSITORIES = "/Users/WvL/Documents/github/"
+PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
 
 #First define what we want to replace with what
 replacements = {}
@@ -18,14 +18,15 @@ CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
 end
 
 #Then we define which files we will be going through
-files = Dir.glob(PATH_OF_REPOSITORIES + "etsource/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/datasets/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/scripts/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/topology/**/*")
+files = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*")
 
 #clean up file list with hidden files (that start with .) or files that are actually directories
 files.delete_if do |file_name| 
   file_name[0] == "." || File.directory?(file_name) || File.ftype(file_name) != "file"
 end
 
-puts "Looking through etsource"
+puts "Looking through #{files.count} files on etsource"
+old_files_found = 0
 
 for file in files
   next unless File.file?(file)
@@ -38,37 +39,42 @@ for file in files
   end
 end
 
+puts "#{old_files_found} old keys found."
 
 # Do the same for dataset files 
-datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "etsource/datasets/**/*") + Dir.glob(PATH_OF_REPOSITORIES + "etsource/topology/**/*")
+datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") + Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*")
 
 #clean up file list with hidden files (that start with .) or files that are actually directories
 datasetfiles.delete_if do |datasetfile_name| 
   datasetfile_name[0] == "." || File.directory?(datasetfile_name) || File.ftype(datasetfile_name) != "file"
 end
 
-puts "Looking through the dataset"
-
+puts "Looking through #{datasetfiles.count} files on the dataset"
+old_files_found = 0
+  
 for datasetfile in datasetfiles
   datasetcontent = File.read(datasetfile)
   replacements.each do |old_key, new_key|
     if datasetcontent =~ /#{old_key}/ then
       File.open(datasetfile)
-    puts "#{old_key} in #{datasetfile} will be changed by InputExcel" if datasetcontent.gsub(old_key, new_key)
+      puts "#{old_key} in #{datasetfile} will be changed by InputExcel" if datasetcontent.gsub(old_key, new_key)
+      found = found + 1 if datasetcontent.gsub(old_key, new_key)
     end
   end
 end
 
+puts "#{old_files_found} old keys found."
 
 # Do the same for the etengine files
-enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "etengine/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etengine/etsource_export/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etengine/log/**/*")- Dir.glob(PATH_OF_REPOSITORIES + "etengine/etengine_staging.sql") 
+enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*")- Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") 
 
 #clean up file list with hidden files (that start with .) or files that are actually directories
 enginefiles.delete_if do |enginefile_name| 
   enginefile_name[0] == "." || File.directory?(enginefile_name) || File.ftype(enginefile_name) != "file"
 end
 
- puts "Looking through Etengine"
+puts "Looking through #{enginefiles.count} files on Etengine"
+old_files_found = 0
 
 # this part is required for the etengine because of some problems that arise regarding an "invalid byte sequence in UTF-8"
 require 'iconv' unless String.method_defined?(:encode)
@@ -88,3 +94,4 @@ for enginefile in enginefiles
     end
   end
 end
+puts "#{old_files_found} old keys found."
