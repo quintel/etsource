@@ -6,7 +6,7 @@ require 'CSV'
 require 'fileutils'
 
 CSV_WITH_REPLACEMENTS = "new_converter_keys.csv"
-PATH_OF_REPOSITORIES = "/Users/WvL/Documents/github/"
+PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
 
 #First define what we want to replace with what
 replacements = {}
@@ -17,11 +17,11 @@ CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
 end
 
 #Then we define which files we will be going through
-files = Dir.glob(PATH_OF_REPOSITORIES + "etsource/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/datasets/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/scripts/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "etsource/topology/**/*")
+files = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*")
 
 #clean up file list with hidden files (that start with .) or files that are actually directories
 files.delete_if do |file_name| 
-  file_name[0] == "." || File.directory?(file_name) || File.ftype(enginefile_name) != "file"
+  file_name[0] == "." || File.directory?(file_name) || File.ftype(file_name) != "file"
   end
 
 #loop through all the files
