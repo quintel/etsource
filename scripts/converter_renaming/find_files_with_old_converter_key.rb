@@ -32,9 +32,10 @@ for file in files
   next unless File.file?(file)
   content = File.read(file)
   replacements.each do |old_key, new_key|
-    if content =~ /#{old_key}/ then
+    if content =~ /\b#{old_key}\b/ then
       File.open(file)
-      puts "The script can change the old key in #{file} from #{old_key} to #{new_key}" if content.gsub(old_key, new_key)
+      puts "The script can change the old key in #{file} from #{old_key} to #{new_key}" if content.gsub(/\b#{old_key}\b/, new_key)
+      old_files_found = old_files_found + 1 if content.gsub(/\b#{old_key}\b/, new_key)
     end
   end
 end
@@ -55,15 +56,15 @@ old_files_found = 0
 for datasetfile in datasetfiles
   datasetcontent = File.read(datasetfile)
   replacements.each do |old_key, new_key|
-    if datasetcontent =~ /#{old_key}/ then
+    if datasetcontent =~ /\b#{old_key}\b/ then
       File.open(datasetfile)
-      puts "#{old_key} in #{datasetfile} will be changed by InputExcel" if datasetcontent.gsub(old_key, new_key)
-      found = found + 1 if datasetcontent.gsub(old_key, new_key)
+      puts "#{old_key} in #{datasetfile}" if datasetcontent.gsub(/\b#{old_key}\b/, new_key)
+      old_files_found = old_files_found + 1 if datasetcontent.gsub(/\b#{old_key}\b/, new_key)
     end
   end
 end
 
-puts "#{old_files_found} old keys found."
+puts "#{old_files_found} old keys found that will be changed by InputExcel."
 
 # Do the same for the etengine files
 enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*")- Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") 
@@ -88,10 +89,11 @@ for enginefile in enginefiles
       enginecontent = ic.iconv(enginecontent)
     end
   replacements.each do |old_key, new_key|
-    if enginecontent =~ /#{old_key}/ then
+    if enginecontent =~ /\b#{old_key}\b/ then
       File.open(enginefile)
-      puts "The old key #{old_key} still exists in the ETengine! Here: #{enginefile}! Check if this is not a problem!" if enginecontent.gsub(old_key, new_key)
+      puts "The old key #{old_key} still exists in the ETengine! Here: #{enginefile}! Check if this is not a problem!" if enginecontent.gsub(/\b#{old_key}\b/, new_key)
+      old_files_found = old_files_found + 1 if enginecontent.gsub(/\b#{old_key}\b/, new_key)
     end
   end
 end
-puts "#{old_files_found} old keys found."
+puts "#{old_files_found} old keys found that need attention on ETengine."
