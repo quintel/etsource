@@ -9,10 +9,11 @@ SUM(
         V(lv_mv_transformer_energy, simult_sd)
     ),
     SUM(
-        V(Q(temp_query_network_mv_d_net_converters),"
+        V(Q(network_mv_d_net_converters),"
             simult_sd*
             (electricity_output_conversion+electricity_input_conversion)*
             typical_input_capacity_in_mw*
             (number_of_units - peak_load_units_present)"
+        )
     )
 )
