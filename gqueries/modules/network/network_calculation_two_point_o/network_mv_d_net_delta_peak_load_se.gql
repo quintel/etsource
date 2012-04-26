@@ -1,0 +1,18 @@
+#
+
+- unit = mw
+
+SUM(
+    PRODUCT(
+        Q(network_lv_net_delta_peak_load_se),
+        V(lv_electricity_network_energy_energetic, simult_se),
+        V(lv_mv_transformer_energy, simult_se)
+    ),
+    SUM(
+        V(Q(temp_query_network_mv_d_net_converters),"
+            simult_se*
+            (electricity_output_conversion+electricity_input_conversion)*
+            typical_input_capacity_in_mw*
+            (number_of_units - peak_load_units_present)"
+    )
+)
