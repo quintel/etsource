@@ -25,12 +25,18 @@ files.delete_if do |file_name|
   file_name[0] == "." || File.directory?(file_name) || File.ftype(file_name) != "file"
 end
 
-puts "Looking through #{files.count} files on etsource"
+puts "Looking through #{files.count} files on etsource (excluding the dataset)"
 old_files_found = 0
 
 for file in files
   next unless File.file?(file)
   content = File.read(file)
+  if String.method_defined?(:encode)
+    content.encode!('UTF-8', 'UTF-8', :invalid => :replace)
+  else
+    ic = Iconv.new('UTF-8', 'UTF-8//IGNORE')
+    content = ic.iconv(content)
+  end
   replacements.each do |old_key, new_key|
     if content =~ /\b#{old_key}\b/ then
       File.open(file)
@@ -40,7 +46,7 @@ for file in files
   end
 end
 
-puts "#{old_files_found} old keys found."
+puts "#{old_files_found} old keys found. Changes need to be made on ETsource directly."
 
 # Do the same for dataset files 
 datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") + Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*")
@@ -55,6 +61,12 @@ old_files_found = 0
   
 for datasetfile in datasetfiles
   datasetcontent = File.read(datasetfile)
+  if String.method_defined?(:encode)
+    datasetcontent.encode!('UTF-8', 'UTF-8', :invalid => :replace)
+  else
+    ic = Iconv.new('UTF-8', 'UTF-8//IGNORE')
+    datasetcontent = ic.iconv(datasetcontent)
+  end
   replacements.each do |old_key, new_key|
     if datasetcontent =~ /\b#{old_key}\b/ then
       File.open(datasetfile)
@@ -64,7 +76,7 @@ for datasetfile in datasetfiles
   end
 end
 
-puts "#{old_files_found} old keys found that will be changed by InputExcel."
+puts "#{old_files_found} old keys found that can be changed by InputExcel, after which the xls2yml script can change the names here."
 
 # Do the same for the etengine files
 enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*")- Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") 
@@ -96,4 +108,4 @@ for enginefile in enginefiles
     end
   end
 end
-puts "#{old_files_found} old keys found that need attention on ETengine. Also partial matches are shown."
+puts "#{old_files_found} old keys found that need attention on ETengine. Also partial matches are shown. Changes need to be made on ETengine to fix this."
