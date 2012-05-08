@@ -4051,7 +4051,7 @@ cooling_buildings_energetic-(cooling): {conversion: 1.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-city_cooling_network_buildings_energetic: {share: 0.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-gasheatpump_cooling_buildings_energetic: {share: 0.0}
 cooling_buildings_energetic-(cooling) -- s --> (cooling)-heatpump_ts_cooling_buildings_energetic: {share: 0.0}
-cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic: {share: 0.0}
+cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energetic: {share: 1.0}
 
 :lighting_buildings_energetic:
   :co2_free: 0.0
@@ -4059,8 +4059,8 @@ cooling_buildings_energetic-(cooling) -- f --> (cooling)-airco_buildings_energet
 lighting_buildings_energetic-(light): {conversion: 1.0}
 (light)-lighting_buildings_energetic: {conversion: 1.0}
 lighting_buildings_energetic-(light) -- f --> (light)-tl5_buildings_energetic: {share: 0.0}
-lighting_buildings_energetic-(light) -- s --> (light)-tl8_buildings_energetic: {share: 0.24}
-lighting_buildings_energetic-(light) -- s --> (light)-led_buildings_energetic: {share: 0.01}
+lighting_buildings_energetic-(light) -- s --> (light)-tl8_buildings_energetic: {share: 0.0}
+lighting_buildings_energetic-(light) -- s --> (light)-led_buildings_energetic: {share: 0.0}
 
 :tl5_buildings_energetic:
   :co2_free: 0.0
@@ -4153,6 +4153,7 @@ local_heat_network_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_wat
 
 :gas_fired_heater_buildings_energetic:
   :co2_free: 0.0
+  :demand_expected_value: 0.0
   :technical_lifetime: 15.0
   :construction_time: 0.0
   :ccs_investment_per_mw_input: 0.0
@@ -4526,11 +4527,11 @@ airco_buildings_energetic-(electricity) -- s --> (electricity)-final_demand_for_
   :demand: 0.0
 appliances_buildings_energetic-(not_defined): {conversion: 1.0}
 (not_defined)-appliances_buildings_energetic: {conversion: 1.0}
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-coal_appliances_buildings_energetic: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-oil_appliances_buildings: {share: 1.0}
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-gas_appliances_buildings: {share: 0.0}
 appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-wood_pellets_appliances_buildings: {share: 0.0}
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings: {share: 1.0}
-appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-coal_appliances_buildings_energetic: {share: 0.0}
+appliances_buildings_energetic-(not_defined) -- s --> (not_defined)-electric_appliances_buildings: {share: 0.0}
 
 :final_demand_of_wood_pellets_buildings_energetic:
   :co2_free: 0.0
@@ -4559,7 +4560,7 @@ oil_buildings_energetic-(crude_oil) -- s --> (crude_oil)-oil_distribution_energy
 steam_hot_water_buildings_energetic-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-steam_hot_water_buildings_energetic: {conversion: 1.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- f --> (steam_hot_water)-local_heat_network_buildings_energetic: {share: 0.0}
-steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic: {share: 1.0}
+steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-gas_chp_buildings_energetic: {share: 0.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-biomass_chp_buildings_energetic: {share: 0.0}
 steam_hot_water_buildings_energetic-(steam_hot_water) -- s --> (steam_hot_water)-collective_geothermal_buildings_energetic: {share: 0.0}
 
@@ -4945,7 +4946,7 @@ wood_pellets_appliances_buildings-(wood_pellets) -- s --> (wood_pellets)-final_d
 
 :electric_appliances_buildings:
   :co2_free: 0.0
-  :demand_expected_value: 1000000000.0
+  :demand_expected_value: 0.0
 electric_appliances_buildings-(electricity): {conversion: 1.0}
 (not_defined)-electric_appliances_buildings: {conversion: 1.0}
 electric_appliances_buildings-(electricity) -- s --> (electricity)-final_demand_for_appliances_electricity_buildings_energetic: {share: 1.0}
