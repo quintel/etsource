@@ -6,18 +6,18 @@
 DIVIDE(
  SUM(
   V(
-   electricity_for_cooling_households_energetic,
-   electricity_for_cooking_households_energetic,
-   electricity_for_appliances_households_energetic,
-   electricity_agriculture_energetic,
-   electricity_industry_energetic,
-   electricity_other_energetic,output_of_electricity
+   households_final_demand_for_cooling_electricity,
+   households_final_demand_for_cooking_electricity,
+   households_final_demand_for_appliances_electricity,
+   agriculture_final_demand_electricity,
+   industry_final_demand_electricity,
+   other_final_demand_electricity,output_of_electricity
   ),
   NEG(
    SUM(
     V(
-     heat_pump_with_CHS_agri_agriculture_energetic,
-     geothermal_agri_agriculture_energetic,input_of_electricity
+     agriculture_heatpump_water_water_ts_electricity,
+     agriculture_geothermal,input_of_electricity
     )
    )
   )

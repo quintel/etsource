@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 129
 key: om_costs_water_river
-keys: hydro_river_energy
+keys: energy_power_hydro_river
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: River
 query: |-
   EACH(
-          UPDATE(V(hydro_river_energy), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(hydro_river_energy), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(energy_power_hydro_river), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(energy_power_hydro_river), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

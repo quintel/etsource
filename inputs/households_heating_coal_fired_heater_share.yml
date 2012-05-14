@@ -6,9 +6,9 @@ key: households_heating_coal_fired_heater_share
 max_value: 100.0
 min_value: 0.0
 name: Coal-fired heater
-query: UPDATE(LINK(heater_on_coal_households_energetic,heating_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
+query: UPDATE(LINK(households_space_heater_coal,households_useful_demand_for_space_heating_after_insulation), share, DIVIDE(USER_INPUT(),100))
 share_group: heating_households
-start_value_gql: present:V(heater_on_coal_households_energetic,share_of_heating_demand_households_energetic)
+start_value_gql: present:V(households_space_heater_coal,share_of_heating_demand_households_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

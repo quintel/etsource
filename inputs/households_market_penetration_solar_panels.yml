@@ -8,17 +8,17 @@ start_value: 1.0
 name: Solar panels
 query: |-
   UPDATE(
-    V(OUTPUT_SLOTS(LOOKUP(local_solar_pv_grid_connected_energy_energetic),electricity), "links.detect{|l| !l.flexible? }"),
+    V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "links.detect{|l| !l.flexible? }"),
     share,
     (
       (USER_INPUT() / 100.0) * 
-      (AREA(roof_surface_available_pv) / V(local_solar_pv_grid_connected_energy_energetic, land_use_per_unit)) * 
-      V(local_solar_pv_grid_connected_energy_energetic, typical_electricity_production_per_unit)
+      (AREA(roof_surface_available_pv) / V(households_solar_pv_solar_radiation, land_use_per_unit)) * 
+      V(households_solar_pv_solar_radiation, typical_electricity_production_per_unit)
     )
   )   
 
 share_group: ""
-start_value_gql: present:DIVIDE(V(local_solar_pv_grid_connected_energy_energetic,output_of_electricity),Q(potential_electricity_production_of_solar_roof_pv))
+start_value_gql: present:DIVIDE(V(households_solar_pv_solar_radiation,output_of_electricity),Q(potential_electricity_production_of_solar_roof_pv))
 unit: "%"
 update_type: area
 updateable_period: future

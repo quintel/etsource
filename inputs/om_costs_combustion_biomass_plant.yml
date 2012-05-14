@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 183
 key: om_costs_combustion_biomass_plant
-keys: biomass_chp_industry_energetic
+keys: industry_chp_supercritical_wood_pellets
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: Biomass plant
 query: |-
   EACH(
-          UPDATE(V(biomass_chp_industry_energetic), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(biomass_chp_industry_energetic), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(industry_chp_supercritical_wood_pellets), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(industry_chp_supercritical_wood_pellets), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 43
 key: households_lighting_low_energy_light_bulb_share
-keys: efficient_lighting_households_energetic
+keys: households_lighting_efficient_fluorescent_electricity
 label: 
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Low-energy light bulb
 query: |-
   EACH(
-              UPDATE(LINK(efficient_lighting_households_energetic,effective_lighting_demand_households_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(effective_lighting_demand_households_energetic,traditional_lighting_households_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(effective_lighting_demand_households_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(households_lighting_efficient_fluorescent_electricity,households_useful_demand_light), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(households_useful_demand_light,households_lighting_incandescent_electricity), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(households_useful_demand_light)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: household_light
 start_value: 5.0
-start_value_gql: present:V(efficient_lighting_households_energetic,share_of_effective_lighting_demand_households_energetic)
+start_value_gql: present:V(households_lighting_efficient_fluorescent_electricity,share_of_effective_lighting_demand_households_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

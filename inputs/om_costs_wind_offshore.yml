@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 127
 key: om_costs_wind_offshore
-keys: wind_offshore_energy
+keys: energy_power_wind_turbine_offshore
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: Offshore
 query: |-
   EACH(
-          UPDATE(V(wind_offshore_energy), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(wind_offshore_energy), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(energy_power_wind_turbine_offshore), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(energy_power_wind_turbine_offshore), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 239
 key: transport_cars_compressed_gas_share
-keys: compressed_gas_cars_transport_energetic
+keys: transport_car_using_compressed_natural_gas
 label: 
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Compressed gas
 query: |-
   EACH(
-              UPDATE(LINK(compressed_gas_cars_transport_energetic,cars_kms_demand_transport_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(cars_kms_demand_transport_energetic,gasoline_cars_transport_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(cars_kms_demand_transport_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(transport_car_using_compressed_natural_gas,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: transport_car_tech
 start_value: 1.0
-start_value_gql: present:V(compressed_gas_cars_transport_energetic,share_of_cars_kms_demand_transport_energetic)
+start_value_gql: present:V(transport_car_using_compressed_natural_gas,share_of_cars_kms_demand_transport_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

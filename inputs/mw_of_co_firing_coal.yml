@@ -4,18 +4,18 @@ comments: ""
 factor: 1.0
 id: 517
 key: mw_of_co_firing_coal
-keys: co_firing_coal_energy
+keys: energy_power_ultra_supercritical_cofiring_wood_pellets
 label: ""
 label_query: 
 max_value: 300.0
-max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(co_firing_coal_energy, full_load_seconds))
+max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_power_ultra_supercritical_cofiring_wood_pellets, full_load_seconds))
 min_value: 0.0
 min_value_gql: 
 name: Co-firing coal
-query: UPDATE(OUTPUT_LINKS(co_firing_coal_energy,constant), share, PRODUCT(V(co_firing_coal_energy), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(energy_power_ultra_supercritical_cofiring_wood_pellets,constant), share, PRODUCT(V(energy_power_ultra_supercritical_cofiring_wood_pellets), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
 start_value: 
-start_value_gql: present:V(co_firing_coal_energy, electricity_production_in_mw)
+start_value_gql: present:V(energy_power_ultra_supercritical_cofiring_wood_pellets, electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future
