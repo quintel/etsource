@@ -107,7 +107,7 @@ module ETE
     def parse_converter_info
       out = {}
       CSV.new(@excel_export.csv_for(:converters)).parse do |row|
-        key = row[:key]
+        key = row[:key].to_sym
         use_id = row[:use_id].to_i
         use    = uses[use_id]
         sector_id = row[:sector_id].to_i
