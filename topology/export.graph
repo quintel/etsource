@@ -614,8 +614,8 @@ oil_extraction_energy-(crude_oil)
 
 lng_import_energy;	lng_import;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 (loss)-lng_import_energy
-lng_import_energy-(natural_gas)
 (natural_gas)-lng_import_energy
+lng_import_energy-(lng)
 
 coal_extraction_energy;	coal_extraction;	energy;	undefined;extraction;	primary_energy_demand,mining_and_extraction
 coal_extraction_energy-(coal)
@@ -2112,11 +2112,6 @@ corn_distribution_energy-(corn)
 corn_growth_energy;	corn_growth;	energy;	undefined;;	primary_energy_demand,mining_and_extraction
 corn_growth_energy-(corn)
 (corn)-corn_growth_energy
-
-lng_export_energy;	lng_export;	energy;	undefined;;	energy_export
-lng_export_energy-(lng) -- i --> (lng)-lng_import_energy
-lng_export_energy-(lng)
-(lng)-lng_export_energy
 
 uranium_export_energy;	uranium_export;	energy;	undefined;;	energy_export
 uranium_export_energy-(uranium_oxide) -- i --> (uranium_oxide)-uranium_distribution_energy
