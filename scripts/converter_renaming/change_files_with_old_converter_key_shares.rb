@@ -45,7 +45,7 @@ for file in files
   replacements.each do |old_key, new_key|
     raise "can't be nil! (found in #{file_name}: #{old_key} & #{new_key})" if (old_key.nil? || new_key.nil?)
       if content =~ /#{old_key}/ then
-          content = content.gsub(/share_of_#{old_key}\b/, "share_of" + new_key)
+          content = content.gsub(/share_of_#{old_key}\b/, "share_of_" + new_key)
           File.open file, "w" do |update|
             update.puts content
           end
