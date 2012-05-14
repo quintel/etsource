@@ -76,8 +76,7 @@ module ETE
     #    ...
     #
     def export
-      # let's first collect all the items, individually grouped by converter
-      # full_key
+      # let's first collect all the items, individually grouped by converter key
 
       converter_data                = parse_converters
       converter_groups              = parse_converter_groups
@@ -116,15 +115,9 @@ module ETE
         energy_balance_group_id = row[:energy_balance_group_id].to_i
         energy_balance_group    = energy_balance_groups[energy_balance_group_id]
 
-        if use == 'undefined'
-          full_key = "#{key}_#{sector}".to_sym
-        else
-          full_key = "#{key}_#{sector}_#{use}".to_sym
-        end
-
-        groups = @cached_converter_groups[full_key].compact.join(',') if @cached_converter_groups[full_key].is_a?(Array)
-        string = "#{full_key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
-        out[full_key] = string
+        groups = @cached_converter_groups[key].compact.join(',') if @cached_converter_groups[key].is_a?(Array)
+        string = "#{key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
+        out[key] = string
       end
       out
     end
@@ -241,12 +234,7 @@ module ETE
         sector_id = row[:sector_id].to_i
         sector_name = sectors[sector_id]
         use_name = uses[use_id]
-        if use_name == 'undefined'
-          full_key = "#{key}_#{sector_name}"
-        else
-          full_key = "#{key}_#{sector_name}_#{use_name}"
-        end
-        out[row[:converter_id].to_i] = full_key.to_sym
+        out[row[:converter_id].to_i] = key.to_sym
       end
       out
     end
