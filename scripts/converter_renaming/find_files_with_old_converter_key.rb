@@ -25,6 +25,7 @@ def find_old_names_in_files(replacements, files, server)
   end
 
   puts "------------------------------------"
+  puts "Looking through #{files.count} files on etsource that are not altered by the InputExcel" if server == "notInputExcelfiles"
   puts "Looking through #{files.count} files on etsource (excluding the dataset)" if server == "etsource"
   puts "Looking through #{files.count} files on the dataset" if server == "dataset"
   puts "Looking through #{files.count} files on Etengine" if server == "engine"
@@ -44,10 +45,10 @@ def find_old_names_in_files(replacements, files, server)
     end
 
     replacements.each do |old_key, new_key|
-      if (server == "etsource" || server == "dataset")
+      if (server == "etsource" || server == "dataset" || server == "notInputExcelfiles")
         if content =~ /\b#{old_key}\b/ then
             File.open(file)
-          puts "The script can change the old key in #{file} from #{old_key} to #{new_key}"                           if content.gsub(/\b#{old_key}\b/, new_key) if server == "etsource"
+          puts "The script can change the old key in #{file} from #{old_key} to #{new_key}"                           if content.gsub(/\b#{old_key}\b/, new_key) if (server == "etsource" || server == "notInputExcelfiles")
           puts "#{old_key} in #{file}"                                                                                if content.gsub(/\b#{old_key}\b/, new_key) if server == "dataset"
           old_files_found = old_files_found + 1                                                                       if content.gsub(/\b#{old_key}\b/, new_key) 
         end
@@ -62,22 +63,40 @@ def find_old_names_in_files(replacements, files, server)
       end
     end
   end
-  puts "#{old_files_found} old keys found. Changes can be made on ETsource by the change script." if server == "etsource"
+  puts "#{old_files_found} old keys found. Changes can be made on ETsource by the change script." if server == "etsource" || server == "notInputExcelfiles"
   puts "#{old_files_found} old keys found that can be changed by InputExcel, after which the xls2yml script can change the names here." if server == "dataset"
   puts "#{old_files_found} old keys found that need attention on ETengine. Also partial matches are shown. Changes need to be made on ETengine to fix this." if server == "engine"
 end
 
 
+
+
 #Then we define which files we will be going through
-etsourcefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*")
+notInputExcelfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml")
+
+#Then we define which files we will be going through
+etsourcefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") 
 
 # Do the same for dataset files 
-datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") + Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*")
+datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") - \
+  notInputExcelfiles
 
 # Do the same for the etengine files
-enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*")- Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") 
+enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*")
 
 find_old_names_in_files(replacements, etsourcefiles, "etsource")
+find_old_names_in_files(replacements, notInputExcelfiles, "notInputExcelfiles")
 find_old_names_in_files(replacements, datasetfiles, "dataset")
 find_old_names_in_files(replacements, enginefiles, "engine")
 puts "------------------------------------"

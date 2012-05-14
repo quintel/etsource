@@ -4,7 +4,7 @@ comments: ""
 factor: 100.0
 id: 591
 key: transport_rail_diesel_mix_diesel_share
-keys: rail_diesel_transport_energetic
+keys: transport_final_demand_for_rail_diesel
 label: ""
 label_query: 
 max_value: 100.0
@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Bio-based fuel
-query: UPDATE( INPUT_SLOTS(V(rail_diesel_mixer_transport_energetic),diesel), conversion, DIVIDE(USER_INPUT(),100))
+query: UPDATE( INPUT_SLOTS(V(transport_rail_mixer_diesel),diesel), conversion, DIVIDE(USER_INPUT(),100))
 share_group: transport_rail_diesel
 start_value: 
-start_value_gql: present:V(rail_diesel_mixer_transport_energetic,diesel_input_conversion)
+start_value_gql: present:V(transport_rail_mixer_diesel,diesel_input_conversion)
 unit: "%"
 update_type: converters
 updateable_period: future

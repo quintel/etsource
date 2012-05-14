@@ -4,18 +4,18 @@ comments:
 factor: 1.0
 id: 497
 key: mw_of_hydro_river
-keys: hydro_river_energy
+keys: energy_power_hydro_river
 label: 
 label_query: 
 max_value: 12.0
-max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(hydro_river_energy,full_load_seconds))
+max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_power_hydro_river,full_load_seconds))
 min_value: 0.0
 min_value_gql: 
 name: River
-query: UPDATE(OUTPUT_LINKS(hydro_river_energy,constant), share, PRODUCT(V(hydro_river_energy), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(energy_power_hydro_river,constant), share, PRODUCT(V(energy_power_hydro_river), USER_INPUT(), SECS_PER_YEAR))
 share_group: 
 start_value: 
-start_value_gql: present:V(hydro_river_energy,electricity_production_in_mw)
+start_value_gql: present:V(energy_power_hydro_river,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future

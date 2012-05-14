@@ -2,7 +2,7 @@
 factor: 100.0
 id: 397
 key: buildings_waste_heat_recovery
-keys: heat_recovery_savings_buildings_energetic
+keys: buildings_heating_savings_from_recovery_useable_heat
 label: ""
 label_query: 
 max_value: 50.0
@@ -12,8 +12,8 @@ min_value_gql:
 name: Waste heat recovery
 query: |-
   EACH(
-    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(heat_recovery_savings_buildings_energetic),useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
-    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(cold_recovery_savings_buildings_energetic),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
+    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_heating_savings_from_recovery_useable_heat),useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
+    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_cooling_savings_from_recovery_cooling),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
   )
 share_group: ""
 start_value: 

@@ -4,7 +4,7 @@ comments: ""
 factor: 100.0
 id: 390
 key: buildings_heating_gas_fired_heat_pump_share
-keys: gasheatpump_ts_buildings_energetic
+keys: buildings_space_heater_heatpump_air_water_network_gas
 label: ""
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Gas-fired heat pump
 query: |-
   EACH(
-              UPDATE(LINK(gasheatpump_ts_buildings_energetic,heating_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(heating_buildings_energetic,gas_fired_heater_buildings_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_buildings_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(buildings_space_heater_heatpump_air_water_network_gas,buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,buildings_space_heater_network_gas), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: heating_buildings
 start_value: 
-start_value_gql: present:V(gasheatpump_ts_buildings_energetic,share_of_heating_buildings_energetic)
+start_value_gql: present:V(buildings_space_heater_heatpump_air_water_network_gas,share_of_heating_buildings_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

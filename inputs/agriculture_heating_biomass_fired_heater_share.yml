@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 225
 key: agriculture_heating_biomass_fired_heater_share
-keys: biomass_burner_agri_agriculture_energetic
+keys: agriculture_burner_wood_pellets
 label: 
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Biomass-fired heater
 query: |-
   EACH(
-              UPDATE(LINK(biomass_burner_agri_agriculture_energetic,heating_demand_agriculture_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(heating_demand_agriculture_energetic,gas_burner_agri_agriculture_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_demand_agriculture_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(agriculture_burner_wood_pellets,agriculture_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(agriculture_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: agri_heat
 start_value: 0.0
-start_value_gql: present:V(biomass_burner_agri_agriculture_energetic,share_of_heating_demand_agriculture_energetic)
+start_value_gql: present:V(agriculture_burner_wood_pellets,share_of_heating_demand_agriculture_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

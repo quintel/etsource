@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 219
 key: industry_heating_biomass_fired_heater_share
-keys: biomass_burner_industry_industry_energetic
+keys: industry_burner_wood_pellets
 label: 
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Biomass-fired heater
 query: |-
   EACH(
-              UPDATE(LINK(biomass_burner_industry_industry_energetic,heating_demand_industry_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(heating_demand_industry_energetic,gas_burner_industry_industry_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(heating_demand_industry_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(industry_burner_wood_pellets,industry_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(industry_useful_demand_useable_heat,industry_burner_network_gas), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(industry_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: ind_heat
 start_value: 3.5
-start_value_gql: present:V(biomass_burner_industry_industry_energetic,share_of_heating_demand_industry_energetic)
+start_value_gql: present:V(industry_burner_wood_pellets,share_of_heating_demand_industry_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future

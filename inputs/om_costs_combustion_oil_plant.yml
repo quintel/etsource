@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 181
 key: om_costs_combustion_oil_plant
-keys: oil_plant_energy
+keys: energy_power_ultra_supercritical_oil
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: Oil plant
 query: |-
   EACH(
-          UPDATE(V(oil_plant_energy), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(oil_plant_energy), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(energy_power_ultra_supercritical_oil), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(energy_power_ultra_supercritical_oil), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

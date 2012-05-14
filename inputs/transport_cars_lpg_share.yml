@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 238
 key: transport_cars_lpg_share
-keys: lpg_cars_transport_energetic
+keys: transport_car_using_lpg
 label: 
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: LPG
 query: |-
   EACH(
-              UPDATE(LINK(lpg_cars_transport_energetic,cars_kms_demand_transport_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(cars_kms_demand_transport_energetic,gasoline_cars_transport_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(cars_kms_demand_transport_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(transport_car_using_lpg,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: transport_car_tech
 start_value: 7.0
-start_value_gql: present:V(lpg_cars_transport_energetic,share_of_cars_kms_demand_transport_energetic)
+start_value_gql: present:V(transport_car_using_lpg,share_of_cars_kms_demand_transport_energetic)
 unit: "%"
 update_type: converters
 updateable_period: future
