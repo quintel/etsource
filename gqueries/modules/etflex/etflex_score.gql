@@ -21,10 +21,10 @@ MAX(0,
         PRODUCT(400,Q(renewability)),
         PRODUCT(5,NEG(V(energy_power_nuclear_gen3_uranium_oxide,number_of_units))),
         NEG(SUM(
-            PRODUCT(3, 3, V(transport_car_using_electricity,share_of_cars_kms_demand_transport_energetic),V(transport_car_using_electricity,share_of_cars_kms_demand_transport_energetic)),
-            PRODUCT(3, 3, V(households_space_heater_heatpump_ground_water_electricity,share_of_heating_demand_households_energetic),V(households_space_heater_heatpump_ground_water_electricity,share_of_heating_demand_households_energetic)),
+            PRODUCT(3, 3, V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms),V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms)),
+            PRODUCT(3, 3, V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation),V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation)),
             PRODUCT(2, 2, Q(market_penetration_of_solar_heater_for_hot_water_in_households),Q(market_penetration_of_solar_heater_for_hot_water_in_households)),
-            PRODUCT(2, 2, V(households_lighting_led_electricity,share_of_effective_lighting_demand_households_energetic),V(households_lighting_led_electricity,share_of_effective_lighting_demand_households_energetic)),
+            PRODUCT(2, 2, V(households_lighting_led_electricity,share_of_households_useful_demand_light),V(households_lighting_led_electricity,share_of_households_useful_demand_light)),
             PRODUCT(40,40,Q(share_of_greengas_in_gas_network),Q(share_of_greengas_in_gas_network)),
             PRODUCT(0.002,  PRODUCT(DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS),DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS)))
             )
