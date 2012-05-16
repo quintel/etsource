@@ -4,22 +4,22 @@ comments:
 factor: 1.0
 id: 276
 key: number_of_large_gas_chp
-keys: energy_chp_combined_cycle_bio_oil
+keys: energy_chp_combined_cycle_gas_power_fuelmix
 label: 
 label_query: 
 max_value: 100000000.0
-max_value_gql: present:PRODUCT(DIVIDE(Q(total_electricity_produced),V(energy_chp_combined_cycle_bio_oil,typical_electricity_production_per_unit)),2)
+max_value_gql: present:PRODUCT(DIVIDE(Q(total_electricity_produced),V(energy_chp_combined_cycle_gas_power_fuelmix,typical_electricity_production_per_unit)),2)
 min_value: 0.0
 min_value_gql: 
 name: Large CHP
 query: |-
   EACH(
-              UPDATE(V(energy_chp_combined_cycle_bio_oil), number_of_units, USER_INPUT()),
-              UPDATE(OUTPUT_LINKS(V(energy_chp_combined_cycle_bio_oil),constant), share, V(energy_chp_combined_cycle_bio_oil, production_based_on_number_of_units)),
+              UPDATE(V(energy_chp_combined_cycle_gas_power_fuelmix), number_of_units, USER_INPUT()),
+              UPDATE(OUTPUT_LINKS(V(energy_chp_combined_cycle_gas_power_fuelmix),constant), share, V(energy_chp_combined_cycle_gas_power_fuelmix, production_based_on_number_of_units)),
             )
 share_group: 
 start_value: 
-start_value_gql: future:V(energy_chp_combined_cycle_bio_oil,number_of_units)
+start_value_gql: future:V(energy_chp_combined_cycle_gas_power_fuelmix,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future
