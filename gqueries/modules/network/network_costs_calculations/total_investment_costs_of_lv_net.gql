@@ -9,12 +9,12 @@
 #   MAX(
 #     SUM(
 #       Q(peak_load_delta_max_lv_net), 
-#       V(lv_electricity_network_energy_energetic, typical_capacity_effective_in_mj_s) 
+#       V(energy_power_lv_network_electricity, typical_capacity_effective_in_mj_s) 
 #     ),
-#     V(lv_electricity_network_energy_energetic,typical_capacity_gross_in_mj_s)
+#     V(energy_power_lv_network_electricity,typical_capacity_gross_in_mj_s)
 #   ),
 #   NEG(
-#     V(lv_electricity_network_energy_energetic,typical_capacity_gross_in_mj_s)
+#     V(energy_power_lv_network_electricity,typical_capacity_gross_in_mj_s)
 #   )
 # )
 
@@ -22,5 +22,5 @@
 
 PRODUCT(
  Q(lv_net_capacity_needed),
-V(lv_electricity_network_energy_energetic,network_expansion_costs_in_euro_per_mw)
+V(energy_power_lv_network_electricity,network_expansion_costs_in_euro_per_mw)
 )

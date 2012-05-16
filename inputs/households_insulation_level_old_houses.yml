@@ -7,7 +7,7 @@ min_value: 1.0
 name: Insulation level old houses
 query: |-
   UPDATE(
-    FIRST(LINKS(OUTPUT_SLOTS(V(extra_insulation_savings_households_energetic),useable_heat))),
+    FIRST(LINKS(OUTPUT_SLOTS(V(households_old_houses_heating_savings_from_insulation),useable_heat))),
     share, 
     (1 - ((1 - 0.2) * AREA(insulation_level_existing_houses) / USER_INPUT() + 0.2))
   )

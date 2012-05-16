@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 427
 key: transport_trains_coal_share
-keys: trains_coal_demand_transport_energetic
+keys: transport_train_using_coal
 label: 
 label_query: 
 max_value: 100.0
@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Coal
-query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(trains_coal_demand_transport_energetic),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
+query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(transport_train_using_coal),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
 share_group: transport_train_tech
 start_value: 1.0
-start_value_gql: present:V(trains_coal_demand_transport_energetic,share_of_trains_transport_energetic)
+start_value_gql: present:V(transport_train_using_coal,share_of_transport_useful_demand_trains)
 unit: "%"
 update_type: converters
 updateable_period: future

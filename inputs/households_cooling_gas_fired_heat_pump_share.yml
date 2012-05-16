@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 352
 key: households_cooling_gas_fired_heat_pump_share
-keys: gasheatpump_cooling_households_energetic
+keys: households_cooling_heatpump_air_water_network_gas
 label: 
 label_query: 
 max_value: 100.0
@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Gas-fired heat pump
-query: UPDATE(LINK(gasheatpump_cooling_households_energetic,cooling_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
+query: UPDATE(LINK(households_cooling_heatpump_air_water_network_gas,households_useful_demand_for_cooling_after_insulation), share, DIVIDE(USER_INPUT(),100))
 share_group: cooling_households
 start_value: 
-start_value_gql: future:V(gasheatpump_cooling_households_energetic,share_of_cooling_demand_households_energetic)
+start_value_gql: future:V(households_cooling_heatpump_air_water_network_gas,share_of_households_useful_demand_for_cooling_after_insulation)
 unit: "%"
 update_type: converters
 updateable_period: future

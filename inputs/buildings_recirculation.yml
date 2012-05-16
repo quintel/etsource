@@ -2,7 +2,7 @@
 factor: 100.0
 id: 396
 key: buildings_recirculation
-keys: heat_recirculation_savings_buildings_energetic
+keys: buildings_heating_savings_from_recirculation_useable_heat
 label: ""
 label_query: 
 max_value: 50.0
@@ -12,8 +12,8 @@ min_value_gql:
 name: Recirculation
 query: |-
   EACH(
-    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(heat_recirculation_savings_buildings_energetic),useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
-    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(cold_recirculation_savings_buildings_energetic),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
+    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_heating_savings_from_recirculation_useable_heat),useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
+    UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_cooling_savings_from_recirculation_cooling),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
   )
 share_group: ""
 start_value: 

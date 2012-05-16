@@ -4,18 +4,18 @@ comments:
 factor: 1.0
 id: 552
 key: mw_of_hydro_mountain
-keys: hydro_mount_energy
+keys: energy_power_hydro_mountain
 label: 
 label_query: 
 max_value: 0.0
-max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(hydro_mount_energy,full_load_seconds))
+max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_power_hydro_mountain,full_load_seconds))
 min_value: 0.0
 min_value_gql: 
 name: Mountain
-query: UPDATE(OUTPUT_LINKS(hydro_mount_energy,constant), share, PRODUCT(V(hydro_mount_energy), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(energy_power_hydro_mountain,constant), share, PRODUCT(V(energy_power_hydro_mountain), USER_INPUT(), SECS_PER_YEAR))
 share_group: 
 start_value: 
-start_value_gql: present:V(hydro_mount_energy,electricity_production_in_mw)
+start_value_gql: present:V(energy_power_hydro_mountain,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future

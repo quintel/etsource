@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 132
 key: om_costs_earth_geothermal_electricity
-keys: geothermal_electricity_energy
+keys: energy_power_geothermal
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: Geothermal electricity
 query: |-
   EACH(
-          UPDATE(V(geothermal_electricity_energy), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(geothermal_electricity_energy), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(energy_power_geothermal), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(energy_power_geothermal), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

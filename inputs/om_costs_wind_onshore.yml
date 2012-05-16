@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 126
 key: om_costs_wind_onshore
-keys: wind_coastal_energy_AND_wind_inland_energy
+keys: energy_power_wind_turbine_coastal_AND_energy_power_wind_turbine_inland
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: Onshore
 query: |-
   EACH(
-          UPDATE(V(wind_coastal_energy,wind_inland_energy), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(wind_coastal_energy,wind_inland_energy), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(energy_power_wind_turbine_coastal,energy_power_wind_turbine_inland), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(energy_power_wind_turbine_coastal,energy_power_wind_turbine_inland), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

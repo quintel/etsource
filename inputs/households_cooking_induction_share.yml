@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 357
 key: households_cooking_induction_share
-keys: induction_stove_households_energetic
+keys: households_cooker_induction_electricity
 label: 
 label_query: 
 max_value: 100.0
@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Induction
-query: UPDATE(LINK(induction_stove_households_energetic,cooking_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
+query: UPDATE(LINK(households_cooker_induction_electricity,households_useful_demand_cooking_useable_heat), share, DIVIDE(USER_INPUT(),100))
 share_group: cooking
 start_value: 
-start_value_gql: present:V(induction_stove_households_energetic,share_of_cooking_demand_households_energetic)
+start_value_gql: present:V(households_cooker_induction_electricity,share_of_households_useful_demand_cooking_useable_heat)
 unit: "%"
 update_type: converters
 updateable_period: future

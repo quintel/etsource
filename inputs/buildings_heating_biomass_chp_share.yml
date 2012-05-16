@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 385
 key: buildings_heating_biomass_chp_share
-keys: biomass_chp_buildings_energetic
+keys: buildings_collective_chp_wood_pellets
 label: 
 label_query: 
 max_value: 100.0
@@ -17,7 +17,7 @@ query: |-
     FIRST(
       LINKS(
         OUTPUT_SLOTS(
-          LOOKUP(biomass_chp_buildings_energetic),
+          LOOKUP(buildings_collective_chp_wood_pellets),
           steam_hot_water
         )
       )
@@ -26,7 +26,7 @@ query: |-
   )
 share_group: district_heating_buildings
 start_value: 
-start_value_gql: present:V(biomass_chp_buildings_energetic,steam_hot_water_output_link_share)
+start_value_gql: present:V(buildings_collective_chp_wood_pellets,steam_hot_water_output_link_share)
 unit: "%"
 update_type: converters
 updateable_period: future

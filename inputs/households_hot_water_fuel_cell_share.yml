@@ -3,7 +3,7 @@ attr_name: hot_water_output_link_share
 factor: 100.0
 id: 439
 key: households_hot_water_fuel_cell_share
-keys: fuel_cell_chp_households_energetic
+keys: households_water_heater_fuel_cell_chp_network_gas
 max_value: 100.0
 min_value: 0.0
 name: Fuel cell
@@ -11,7 +11,7 @@ name: Fuel cell
 # and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
 query: |-
   UPDATE(
-    V(OUTPUT_SLOTS(LOOKUP(fuel_cell_chp_households_energetic),hot_water), "links.detect{|l| !l.flexible? }"),
+    V(OUTPUT_SLOTS(LOOKUP(households_water_heater_fuel_cell_chp_network_gas),hot_water), "links.detect{|l| !l.flexible? }"),
     share, USER_INPUT() / 100.0
   )
 share_group: hot_water_households

@@ -15,35 +15,35 @@ name: Initial
 query: |
   EACH(
     UPDATE(
-      V(bio_oil_production_energy), preset_demand,
+      V(energy_production_bio_oil), preset_demand,
       TIME_SERIE_VALUE(100,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(gas_extraction_energy), preset_demand,
+      V(energy_extraction_natural_gas), preset_demand,
       TIME_SERIE_VALUE(102,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(oil_extraction_energy), preset_demand,
+      V(energy_extraction_crude_oil), preset_demand,
       TIME_SERIE_VALUE(104,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(coal_extraction_energy), preset_demand,
+      V(energy_extraction_coal), preset_demand,
       TIME_SERIE_VALUE(106,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(bio_residues_distribution_energy), preset_demand,
+      V(energy_distribution_bio_residues_for_firing), preset_demand,
       TIME_SERIE_VALUE(111,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(greengas_production_energy), preset_demand,
+      V(energy_production_greengas), preset_demand,
       TIME_SERIE_VALUE(133,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(uranium_extraction_energy), preset_demand,
+      V(energy_extraction_uranium_oxide), preset_demand,
       TIME_SERIE_VALUE(240,preset_demand,USER_INPUT())
     ),
     UPDATE(
-      V(lignite_extraction_energy_energetic), preset_demand,
+      V(energy_extraction_lignite), preset_demand,
       TIME_SERIE_VALUE(272,preset_demand,USER_INPUT())
     )
   )

@@ -4,22 +4,22 @@ comments: ""
 factor: 1.0
 id: 431
 key: number_of_biomass_fired_heater_district
-keys: district_heater_biomass_energy_energetic
+keys: energy_heater_for_heat_network_wood_pellets
 label: ""
 label_query: ""
 max_value: 300.0
-max_value_gql: present:PRODUCT(2,DIVIDE(SUM(V(G(final_demand_cbs),input_of_steam_hot_water)),V(district_heater_biomass_energy_energetic,typical_heat_production_per_unit)))
+max_value_gql: present:PRODUCT(2,DIVIDE(SUM(V(G(final_demand_cbs),input_of_steam_hot_water)),V(energy_heater_for_heat_network_wood_pellets,typical_heat_production_per_unit)))
 min_value: 0.0
 min_value_gql: 
 name: Biomass-fired heater, district
 query: |-
   EACH(
-    UPDATE(V(district_heater_biomass_energy_energetic), number_of_units, USER_INPUT()),
-    UPDATE(OUTPUT_LINKS(V(district_heater_biomass_energy_energetic),constant), share, V(district_heater_biomass_energy_energetic, production_based_on_number_of_heat_units)),
+    UPDATE(V(energy_heater_for_heat_network_wood_pellets), number_of_units, USER_INPUT()),
+    UPDATE(OUTPUT_LINKS(V(energy_heater_for_heat_network_wood_pellets),constant), share, V(energy_heater_for_heat_network_wood_pellets, production_based_on_number_of_heat_units)),
   )
 share_group: ""
 start_value: 
-start_value_gql: present:V(district_heater_biomass_energy_energetic,number_of_units)
+start_value_gql: present:V(energy_heater_for_heat_network_wood_pellets,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future

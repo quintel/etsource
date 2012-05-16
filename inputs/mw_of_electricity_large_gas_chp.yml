@@ -4,18 +4,18 @@ comments:
 factor: 1.0
 id: 516
 key: mw_of_electricity_large_gas_chp
-keys: central_gas_chp_energy_energetic
+keys: energy_chp_combined_cycle_bio_oil
 label: 
 label_query: 
 max_value: 100000000.0
-max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(central_gas_chp_energy_energetic,full_load_seconds))
+max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_chp_combined_cycle_bio_oil,full_load_seconds))
 min_value: 0.0
 min_value_gql: 
 name: Large CHP
-query: UPDATE(OUTPUT_LINKS(central_gas_chp_energy_energetic,constant), share, PRODUCT(V(central_gas_chp_energy_energetic), USER_INPUT(), SECS_PER_YEAR))
+query: UPDATE(OUTPUT_LINKS(energy_chp_combined_cycle_bio_oil,constant), share, PRODUCT(V(energy_chp_combined_cycle_bio_oil), USER_INPUT(), SECS_PER_YEAR))
 share_group: 
 start_value: 
-start_value_gql: present:V(central_gas_chp_energy_energetic, electricity_production_in_mw)
+start_value_gql: present:V(energy_chp_combined_cycle_bio_oil, electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future

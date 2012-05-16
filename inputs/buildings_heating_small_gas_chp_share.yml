@@ -12,7 +12,7 @@ query: |-
     FIRST(
       LINKS(
         OUTPUT_SLOTS(
-          LOOKUP(gas_chp_buildings_energetic),
+          LOOKUP(buildings_collective_chp_gas_power_fuelmix),
           steam_hot_water
         )
       )
@@ -20,7 +20,7 @@ query: |-
     share, USER_INPUT() / 100.0
   )
 share_group: district_heating_buildings
-start_value_gql: present:V(gas_chp_buildings_energetic,steam_hot_water_output_link_share)
+start_value_gql: present:V(buildings_collective_chp_gas_power_fuelmix,steam_hot_water_output_link_share)
 unit: "%"
 update_type: converters
 updateable_period: future

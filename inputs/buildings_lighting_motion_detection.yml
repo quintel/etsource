@@ -4,7 +4,7 @@ comments: ""
 factor: 680.0
 id: 403
 key: buildings_lighting_motion_detection
-keys: motion_detection_savings_buildings_energetic
+keys: buildings_lighting_savings_from_motion_detection_light
 label: ""
 label_query: 
 max_value: 100.0
@@ -12,10 +12,10 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Motion detection
-query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(motion_detection_savings_buildings_energetic),light))), share, DIVIDE(USER_INPUT(),V(680.0)))
+query: UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_lighting_savings_from_motion_detection_light),light))), share, DIVIDE(USER_INPUT(),V(680.0)))
 share_group: ""
 start_value: 
-start_value_gql: present:V(motion_detection_savings_buildings_energetic,share_of_lighting_without_motion_detection_buildings_energetic)
+start_value_gql: present:V(buildings_lighting_savings_from_motion_detection_light,share_of_buildings_useful_demand_light)
 unit: "%"
 update_type: converters
 updateable_period: future
