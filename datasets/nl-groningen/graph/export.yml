@@ -555,7 +555,7 @@ industry_chp_combined_cycle_gas_power_fuelmix-(bio_oil) -- s --> (bio_oil)-energ
 industry_chp_combined_cycle_gas_power_fuelmix-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
 
-:energy_chp_combined_cycle_bio_oil:
+:energy_chp_combined_cycle_gas_power_fuelmix:
   :co2_free: 0.0
   :demand_expected_value: 10091907408.842
   :technical_lifetime: 30.0
@@ -585,11 +585,11 @@ industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.1
   :forecasting_error: 0.0
-energy_chp_combined_cycle_bio_oil-(gas_power_fuelmix): {conversion: 1.0}
-(loss)-energy_chp_combined_cycle_bio_oil: {conversion: 0.23}
-(steam_hot_water)-energy_chp_combined_cycle_bio_oil: {conversion: 0.45}
-(electricity)-energy_chp_combined_cycle_bio_oil: {conversion: 0.32}
-energy_chp_combined_cycle_bio_oil-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
+energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
+(loss)-energy_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.23}
+(steam_hot_water)-energy_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.45}
+(electricity)-energy_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.32}
+energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
 
 :industry_chp_supercritical_wood_pellets:
   :co2_free: 0.0
@@ -991,7 +991,7 @@ other_useful_demand_electricity-(electricity) -- s --> (electricity)-other_elect
 energy_heat_network_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_heat_network_steam_hot_water: {conversion: 0.970559641540222}
 (loss)-energy_heat_network_steam_hot_water: {conversion: 0.0294403584597785}
-energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_combined_cycle_bio_oil: {share: }
+energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_combined_cycle_gas_power_fuelmix: {share: }
 energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_power_supercritical_waste_mix: {share: }
 energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_coal: {share: }
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_geothermal: {share: 0.0}
@@ -1064,7 +1064,7 @@ energy_power_hv_network_electricity-(electricity): {conversion: 1.0}
 (loss)-energy_power_hv_network_electricity: {conversion: 0.0277056393739195}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_solar_pv_solar_radiation: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix: {share: 2397877742.71098}
-energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_chp_combined_cycle_bio_oil: {share: 3229410370.82943}
+energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_chp_combined_cycle_gas_power_fuelmix: {share: 3229410370.82943}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_supercritical_waste_mix: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_coal: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_ccs_coal: {share: 0.0}
@@ -1073,7 +1073,7 @@ energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_coal: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_ccs_coal: {share: 0.0}
-energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_oil: {share: 0.0}
+energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_crude_oil: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_gas_power_fuelmix: {share: 38166461538.4615}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_chp_ultra_supercritical_coal: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- f --> (electricity)-energy_interconnector_imported_electricity: {share: }
@@ -1357,7 +1357,7 @@ energy_power_combined_cycle_ccs_coal-(coal): {conversion: 1.0}
 energy_power_combined_cycle_ccs_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
-:energy_power_ultra_supercritical_oil:
+:energy_power_ultra_supercritical_crude_oil:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 30.0
@@ -1387,10 +1387,10 @@ energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torri
   :part_load_operating_point: 0.7
   :part_load_efficiency_penalty: 0.0225
   :forecasting_error: 0.0
-energy_power_ultra_supercritical_oil-(crude_oil): {conversion: 1.0}
-(loss)-energy_power_ultra_supercritical_oil: {conversion: 0.55}
-(electricity)-energy_power_ultra_supercritical_oil: {conversion: 0.45}
-energy_power_ultra_supercritical_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
+energy_power_ultra_supercritical_crude_oil-(crude_oil): {conversion: 1.0}
+(loss)-energy_power_ultra_supercritical_crude_oil: {conversion: 0.55}
+(electricity)-energy_power_ultra_supercritical_crude_oil: {conversion: 0.45}
+energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_power_combined_cycle_gas_power_fuelmix:
   :co2_free: 0.0
@@ -2021,12 +2021,12 @@ other_final_demand_for_heat_coal-(coal): {conversion: 1.0}
 (coal)-other_final_demand_for_heat_coal: {conversion: 1.0}
 other_final_demand_for_heat_coal-(coal) -- s --> (coal)-other_final_demand_coal: {share: 1.0}
 
-:other_final_demand_for_heat_oil:
+:other_final_demand_for_heat_crude_oil:
   :co2_free: 0.0
   :demand_expected_value: 937073412.860962
-other_final_demand_for_heat_oil-(crude_oil): {conversion: 1.0}
-(crude_oil)-other_final_demand_for_heat_oil: {conversion: 1.0}
-other_final_demand_for_heat_oil-(crude_oil) -- s --> (crude_oil)-other_final_demand_crude_oil: {share: 1.0}
+other_final_demand_for_heat_crude_oil-(crude_oil): {conversion: 1.0}
+(crude_oil)-other_final_demand_for_heat_crude_oil: {conversion: 1.0}
+other_final_demand_for_heat_crude_oil-(crude_oil) -- s --> (crude_oil)-other_final_demand_crude_oil: {share: 1.0}
 
 :industry_final_demand_for_heat_crude_oil:
   :co2_free: 0.0
@@ -3121,7 +3121,7 @@ other_burner_coal-(coal) -- s --> (coal)-other_final_demand_for_heat_coal: {shar
 other_burner_crude_oil-(crude_oil): {conversion: 1.0}
 (useable_heat)-other_burner_crude_oil: {conversion: 0.788659793814433}
 (loss)-other_burner_crude_oil: {conversion: 0.211340206185567}
-other_burner_crude_oil-(crude_oil) -- s --> (crude_oil)-other_final_demand_for_heat_oil: {share: 1.0}
+other_burner_crude_oil-(crude_oil) -- s --> (crude_oil)-other_final_demand_for_heat_crude_oil: {share: 1.0}
 
 :other_burner_wood_pellets:
   :co2_free: 0.0
@@ -4701,7 +4701,7 @@ households_water_heater_micro_chp_network_gas-(network_gas) -- f --> (network_ga
 buildings_space_heater_crude_oil-(crude_oil): {conversion: 1.0}
 (loss)-buildings_space_heater_crude_oil: {conversion: 0.15}
 (useable_heat)-buildings_space_heater_crude_oil: {conversion: 0.85}
-buildings_space_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_for_space_heating_oil: {share: 1.0}
+buildings_space_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_for_space_heating_crude_oil: {share: 1.0}
 
 :buildings_space_heater_coal:
   :co2_free: 0.0
@@ -4919,7 +4919,7 @@ households_locally_available_electricity-(electricity) -- d --> (electricity)-ho
   :demand_expected_value: 0.0
 buildings_appliances_crude_oil-(crude_oil): {conversion: 1.0}
 (not_defined)-buildings_appliances_crude_oil: {conversion: 1.0}
-buildings_appliances_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_for_appliances_oil: {share: 1.0}
+buildings_appliances_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_for_appliances_crude_oil: {share: 1.0}
 
 :buildings_appliances_network_gas:
   :co2_free: 0.0
@@ -6392,12 +6392,12 @@ buildings_final_demand_for_space_heating_coal-(coal): {conversion: 1.0}
 (coal)-buildings_final_demand_for_space_heating_coal: {conversion: 1.0}
 buildings_final_demand_for_space_heating_coal-(coal) -- s --> (coal)-buildings_final_demand_coal: {share: 1.0}
 
-:buildings_final_demand_for_space_heating_oil:
+:buildings_final_demand_for_space_heating_crude_oil:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-buildings_final_demand_for_space_heating_oil-(crude_oil): {conversion: 1.0}
-(crude_oil)-buildings_final_demand_for_space_heating_oil: {conversion: 1.0}
-buildings_final_demand_for_space_heating_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_crude_oil: {share: 1.0}
+buildings_final_demand_for_space_heating_crude_oil-(crude_oil): {conversion: 1.0}
+(crude_oil)-buildings_final_demand_for_space_heating_crude_oil: {conversion: 1.0}
+buildings_final_demand_for_space_heating_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_crude_oil: {share: 1.0}
 
 :buildings_final_demand_for_space_heating_gas:
   :co2_free: 0.0
@@ -6462,12 +6462,12 @@ buildings_final_demand_for_appliances_coal-(coal): {conversion: 1.0}
 (coal)-buildings_final_demand_for_appliances_coal: {conversion: 1.0}
 buildings_final_demand_for_appliances_coal-(coal) -- s --> (coal)-buildings_final_demand_coal: {share: 1.0}
 
-:buildings_final_demand_for_appliances_oil:
+:buildings_final_demand_for_appliances_crude_oil:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-buildings_final_demand_for_appliances_oil-(crude_oil): {conversion: 1.0}
-(crude_oil)-buildings_final_demand_for_appliances_oil: {conversion: 1.0}
-buildings_final_demand_for_appliances_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_crude_oil: {share: 1.0}
+buildings_final_demand_for_appliances_crude_oil-(crude_oil): {conversion: 1.0}
+(crude_oil)-buildings_final_demand_for_appliances_crude_oil: {conversion: 1.0}
+buildings_final_demand_for_appliances_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_crude_oil: {share: 1.0}
 
 :buildings_final_demand_for_appliances_gas:
   :co2_free: 0.0
