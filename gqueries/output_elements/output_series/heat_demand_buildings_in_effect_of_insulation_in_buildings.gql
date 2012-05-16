@@ -1,6 +1,12 @@
-- deprecated_key = chart_heat_demand_schools_69_heat_demand_with_insulation_639
-# 
+# This shows the remainder of the heating demand when insulation is subtracted.
+# The result is scaled to the effective heating demand (including recirculation and recovery)
 
 - unit = pj
 
-(V(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,demand)-V(buildings_heating_savings_from_insulation_useable_heat,demand))/BILLIONS
+(
+	(
+		( 
+			V(buildings_useful_demand_for_space_heating,demand)-V(buildings_heating_savings_from_insulation_useable_heat,demand) 
+		)/V(buildings_useful_demand_for_space_heating,demand)
+	)*V(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,demand)
+)/BILLIONS
