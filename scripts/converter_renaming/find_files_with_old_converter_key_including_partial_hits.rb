@@ -6,7 +6,14 @@ require 'rubygems'
 require 'CSV'
 require 'fileutils'
 
-CSV_WITH_REPLACEMENTS = "new_converter_keys.csv"
+if ARGV.length < 1 then
+    puts "Give as argument a file with format:'id, old_name, new_name' per line."
+    exit
+end
+
+puts "Using file " + ARGV[0] + " as renaming template."
+
+CSV_WITH_REPLACEMENTS = ARGV[0]
 PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
 
 #First define what we want to replace with what
