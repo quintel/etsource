@@ -5,12 +5,12 @@ key: buildings_heating_geothermal_share
 name: buildings_district_heating_geothermal_share
 max_value: 100.0
 min_value: 0.0
-start_value_gql: present:V(collective_geothermal_buildings_energetic,share_of_steam_hot_water_buildings_energetic)
+start_value_gql: present:V(buildings_collective_geothermal,share_of_buildings_final_demand_steam_hot_water)
 # This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
 # and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
 query: |-
   UPDATE(
-    V(OUTPUT_SLOTS(LOOKUP(collective_geothermal_buildings_energetic),steam_hot_water), "links.detect{|l| !l.flexible? }"),
+    V(OUTPUT_SLOTS(LOOKUP(buildings_collective_geothermal),steam_hot_water), "links.detect{|l| !l.flexible? }"),
     share, USER_INPUT() / 100.0
   )
 share_group: district_heating_buildings

@@ -15,24 +15,24 @@ name: Electric cars share
 query: |-
   EACH(
     UPDATE(
-      LINK(cars_kms_demand_transport_energetic, electric_cars_transport_energetic),
+      LINK(transport_useful_demand_car_kms, transport_car_using_electricity),
       share,
       DIVIDE(USER_INPUT(),100)
     ),
     UPDATE(
-      LINK(cars_kms_demand_transport_energetic, gasoline_cars_transport_energetic),
+      LINK(transport_useful_demand_car_kms, transport_car_using_gasoline_mix),
       share,
       DIVIDE(SUM(100,NEG(USER_INPUT())), 200)
     ),
     UPDATE(
-      LINK(cars_kms_demand_transport_energetic, diesel_cars_transport_energetic),
+      LINK(transport_useful_demand_car_kms, transport_car_using_diesel_mix),
       share,
       DIVIDE(SUM(100,NEG(USER_INPUT())), 200)
     )
   )
 share_group: 
 start_value: 0.0
-start_value_gql: future:V( LINK(cars_kms_demand_transport_energetic, electric_cars_transport_energetic),share )
+start_value_gql: future:V( LINK(transport_useful_demand_car_kms, transport_car_using_electricity),share )
 unit: "%"
 update_type: 
 updateable_period: future

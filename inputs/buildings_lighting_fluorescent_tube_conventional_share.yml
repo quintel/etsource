@@ -4,7 +4,7 @@ comments: ""
 factor: 100.0
 id: 400
 key: buildings_lighting_fluorescent_tube_conventional_share
-keys: tl5_buildings_energetic
+keys: buildings_lighting_standard_fluorescent_electricity
 label: ""
 label_query: 
 max_value: 100.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Fluorescent tube conventional
 query: |-
   EACH(
-              UPDATE(LINK(tl5_buildings_energetic,lighting_buildings_energetic), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(lighting_buildings_energetic,tl5_buildings_energetic), share, 
-                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(lighting_buildings_energetic)),UPDATE_COLLECTION()), share))), 1)}
+              UPDATE(LINK(buildings_lighting_standard_fluorescent_electricity,buildings_useful_demand_after_motion_detection_daylight_control_light), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(buildings_useful_demand_after_motion_detection_daylight_control_light,buildings_lighting_standard_fluorescent_electricity), share, 
+                ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_motion_detection_daylight_control_light)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: lighting_buildings
 start_value: 
-start_value_gql: present:V(tl5_buildings_energetic,share_of_lighting_buildings_energetic)
+start_value_gql: present:V(buildings_lighting_standard_fluorescent_electricity,share_of_buildings_useful_demand_after_motion_detection_daylight_control_light)
 unit: "%"
 update_type: converters
 updateable_period: future

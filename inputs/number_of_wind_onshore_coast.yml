@@ -4,22 +4,22 @@ comments: ""
 factor: 1.0
 id: 264
 key: number_of_wind_onshore_coast
-keys: wind_coastal_energy
+keys: energy_power_wind_turbine_coastal
 label: ""
 label_query: 
 max_value: 300.0
-max_value_gql: present:DIVIDE(AREA(coast_line),V(wind_coastal_energy, land_use_per_unit))
+max_value_gql: present:DIVIDE(AREA(coast_line),V(energy_power_wind_turbine_coastal, land_use_per_unit))
 min_value: 0.0
 min_value_gql: 
 name: Onshore coast
 query: |-
   EACH(
-              UPDATE(V(wind_coastal_energy), number_of_units, USER_INPUT()),
-              UPDATE(OUTPUT_LINKS(V(wind_coastal_energy),constant), share, V(wind_coastal_energy, production_based_on_number_of_units)),
+              UPDATE(V(energy_power_wind_turbine_coastal), number_of_units, USER_INPUT()),
+              UPDATE(OUTPUT_LINKS(V(energy_power_wind_turbine_coastal),constant), share, V(energy_power_wind_turbine_coastal, production_based_on_number_of_units)),
             )
 share_group: ""
 start_value: 
-start_value_gql: present:V(wind_coastal_energy,number_of_units)
+start_value_gql: present:V(energy_power_wind_turbine_coastal,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future

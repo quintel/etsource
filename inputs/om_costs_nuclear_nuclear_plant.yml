@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 121
 key: om_costs_nuclear_nuclear_plant
-keys: nuclear_iii_energy_AND_nuclear_conv_energy_energetic
+keys: energy_power_nuclear_gen3_uranium_oxide_AND_energy_power_nuclear_gen2_uranium_oxide
 label: 
 label_query: 
 max_value: 500.0
@@ -14,8 +14,8 @@ min_value_gql:
 name: Nuclear plant
 query: |-
   EACH(
-          UPDATE(V(nuclear_iii_energy,nuclear_conv_energy_energetic), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
-          UPDATE(V(nuclear_iii_energy,nuclear_conv_energy_energetic), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
+          UPDATE(V(energy_power_nuclear_gen3_uranium_oxide,energy_power_nuclear_gen2_uranium_oxide), operation_and_maintenance_cost_fixed_per_mw_input, USER_INPUT()),
+          UPDATE(V(energy_power_nuclear_gen3_uranium_oxide,energy_power_nuclear_gen2_uranium_oxide), operation_and_maintenance_cost_variable_per_full_load_hour, USER_INPUT()),
         )
 share_group: ""
 start_value: 0.0

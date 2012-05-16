@@ -2,16 +2,16 @@
 factor: 100.0
 id: 338
 key: households_heating_heat_pump_ground_share
-keys: heatpump_households_energetic
+keys: households_space_heater_heatpump_ground_water_electricity
 max_value: 100.0
 max_value_gql: 
 min_value: 0.0
 min_value_gql: 
 name: Heat pump (ground)
-query: UPDATE(LINK(heatpump_households_energetic,heating_demand_households_energetic), share, DIVIDE(USER_INPUT(),100))
+query: UPDATE(LINK(households_space_heater_heatpump_ground_water_electricity,households_useful_demand_for_space_heating_after_insulation), share, DIVIDE(USER_INPUT(),100))
 share_group: heating_households
 start_value: 
-start_value_gql: present:V(heatpump_households_energetic,share_of_heating_demand_households_energetic)
+start_value_gql: present:V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation)
 unit: "%"
 update_type: converters
 updateable_period: future

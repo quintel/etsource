@@ -15,11 +15,11 @@ name: Initial
 query: |
   EACH(
     UPDATE(
-      V(fuel_cell_chp_households_energetic), operation_and_maintenance_cost_fixed_per_mw_input,
+      V(households_water_heater_fuel_cell_chp_network_gas), operation_and_maintenance_cost_fixed_per_mw_input,
       TIME_SERIE_VALUE(441,operation_and_maintenance_cost_fixed_per_mw_input,USER_INPUT())
     ),
     UPDATE(
-      V(fuel_cell_chp_households_energetic), purchase_price_per_mw_input,
+      V(households_water_heater_fuel_cell_chp_network_gas), purchase_price_per_mw_input,
       TIME_SERIE_VALUE(441,purchase_price_per_mw_input,USER_INPUT())
     )
   )

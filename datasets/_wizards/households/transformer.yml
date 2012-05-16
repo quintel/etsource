@@ -59,7 +59,7 @@ end
 # Conversion of output slot. Unit: 1
 # Excel column U
 def output_conversion(converter_key, input_carrier, output_carrier)
-  val(:graph, "(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-hot_water_demand_households_energetic: {conversion: 1.0} 
+  val(:graph, "(#{output_carrier})-#{converter_key}", :conversion) # val() looks up from dataset. this looks up a value from export.yml e.g. (hot_water)-households_useful_demand_hot_water: {conversion: 1.0} 
 end
 
 # Conversion of input slot. Unit: 1
@@ -87,7 +87,7 @@ def input_split(converter_key, input_carrier, output_carrier)
   h = output_split(*args)
   k = effective_efficiency(*args)
 
-  converter_keys = get(section, input_carrier, output_carrier).keys rescue [] #.keys --> selects the key(s) from the key value pair e.g. "heater_on_oil_households_energetic"=>"100.0" returns heater_on_oil_households_energetic
+  converter_keys = get(section, input_carrier, output_carrier).keys rescue [] #.keys --> selects the key(s) from the key value pair e.g. "households_space_heater_crude_oil"=>"100.0" returns households_space_heater_crude_oil
   sum = converter_keys.map do |key| #.map --> replaces the keys by what's behind the do
      output_split(key, input_carrier, output_carrier) / effective_efficiency(key, input_carrier, output_carrier) 
   end.sum
@@ -133,18 +133,18 @@ def sum_of_output(output_carrier)
   # {"coal"=>
   #   {"demand_total"=>"0.2",
   #   "split"=>{"useable_heat"=>"100.0", "hot_water"=>"0.0"},
-  #   "useable_heat"=>{"heater_on_coal_households_energetic"=>"100.0"},
-  #   "hot_water"=>{"coal_boiler_households_energetic"=>"100.0"}},
+  #   "useable_heat"=>{"households_space_heater_coal"=>"100.0"},
+  #   "hot_water"=>{"households_water_heater_coal"=>"100.0"}},
   # "crude_oil"=>
   #  {"demand_total"=>"3.8",
   #   "split"=>{"useable_heat"=>"100.0", "hot_water"=>"0.0"},
-  #   "useable_heat"=>{"heater_on_oil_households_energetic"=>"100.0"},
-  #   "hot_water"=>{"oil_boiler_households_energetic"=>"100.0"}},
+  #   "useable_heat"=>{"households_space_heater_crude_oil"=>"100.0"},
+  #   "hot_water"=>{"households_water_heater_crude_oil"=>"100.0"}},
   #
   # What we want is (for input_carrier: useable_heat): 
   #
-  # => heater_on_coal_households_energetic, useable_heat, coal
-  # => heater_on_oil_households_energetic, useable_heat, crude_oil
+  # => households_space_heater_coal, useable_heat, coal
+  # => households_space_heater_crude_oil, useable_heat, crude_oil
   sum = 0
   input_carriers = keys_that_contain(section, output_carrier)
   input_carriers.each do |_input_carrier|
@@ -243,16 +243,16 @@ end # wizard_config[:households] %>
 # I would expect to result in the value in cell L131, but it does give the value in cell L126. Which is correct here, just very confusing. Can we think of a smarter way? Maybe refer to the converter which demands the sum (hot_water_devices for L126, hot_water_demand_HH for L131)?
 <% hot_water_total = sum_of_output(:hot_water) + carrier_for_application(:solar_thermal, :hot_water) %>
 graph:
-  :hot_water_demand_households_energetic:
+  :households_useful_demand_hot_water:
     :expected_demand: <%= hot_water_total %>
 
-  hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-hot_water_devices_households_energetic: 
+  households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_excluding_solar_panel_hot_water: 
     share: <%= sum_of_output(:hot_water) / hot_water_total %>
 
-  :solar_panel_for_hot_water_households_energetic:
+  :households_water_heater_solar_thermal:
     :expected_demand: <%= carrier_for_application(:solar_thermal, :hot_water) %>
 
-  hot_water_demand_households_energetic-(hot_water) -- s --> (hot_water)-solar_panel_for_hot_water_households_energetic: 
+  households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_solar_thermal: 
     share: <%= carrier_for_application(:solar_thermal, :hot_water) / hot_water_total %>
 
 
