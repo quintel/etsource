@@ -1,9 +1,9 @@
 #
 #   req_demand --- s ---> supply_distribution ------ f*---> 1: supply_local
-#                                              \---- f ---> 2: supply_growth, has a max demand of 400
+#                                              \---- f ---> 2: supply_growth, has a max demand of 300
 #                                               \----f ---> supply_import
 #                                                 
-#                                                     * = has a max demand of 400, priority 1
+#                                                     * = link has a max demand of 400, priority 1
 #
 
 
@@ -20,9 +20,9 @@ carriers:
   electricity: {}
 
 graph:
-  req_demand: {demand: 700}
+  req_demand: {demand: 800}
   supply_local:  {} # has max_demand defined in flex link
-  supply_growth: {max_demand: 400}
+  supply_growth: {max_demand: 300}
 
   # default all slots to conversion: 1.0
   req_demand-(electricity): {conversion: 1.0}
@@ -36,7 +36,7 @@ graph:
 
   req_demand-(electricity) -- s --> (electricity)-supply_distribution:    {share: 1.0}
   supply_distribution-(electricity) -- f --> (electricity)-supply_growth: {share: 1.0, priority: 2} # define max_demand in converter.
-  supply_distribution-(electricity) -- f --> (electricity)-supply_local:  {share: 1.0, max_demand: 800, priority: 1}
+  supply_distribution-(electricity) -- f --> (electricity)-supply_local:  {share: 1.0, max_demand: 400, priority: 1}
   # flex links without max_demand are calculated after.
   supply_distribution-(electricity) -- f --> (electricity)-supply_import: {share: 1.0}
 
