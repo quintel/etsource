@@ -49,7 +49,8 @@ module ETE
       :average_effective_output_of_nominal_capacity_over_lifetime,
       :part_load_operating_point,
       :part_load_efficiency_penalty,
-      :forecasting_error
+      :forecasting_error,
+      :households_supplied_per_unit
     ]
 
     def initialize(excel_export, opts = {})
