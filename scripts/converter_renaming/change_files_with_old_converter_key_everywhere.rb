@@ -8,13 +8,24 @@ require 'fileutils'
 if ARGV.length < 1 then
     puts "Give as argument a file with format:'id, old_name, new_name' per line."
     exit
+else
+  if ARGV.length < 2 then
+    puts "Default behavior: finding files only. To replace give '--replace' as second argument"
+  end
 end
 
-puts "Using file " + ARGV[0] + " as renaming template."
+puts "Using file " + ARGV[0] + " as naming template."
 
 CSV_WITH_REPLACEMENTS = ARGV[0]
-PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
+REPLACEMENT_FLAG = 0
 
+# If the second argument is '--replace', go to replacement mode
+if ARGV[1]==='--replace' then
+  REPLACEMENT_FLAG = 1
+end
+
+PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
+  
 # Define what we want to replace with what
 replacements = {}
 CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
@@ -28,6 +39,9 @@ files =\
 # etsource
 Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - \
 Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - \
+
+# dataset should be changed by InputExcel
+Dir.glob(PATH_OF_REPOSITORIES + "/etsource/dataset/**/*") - \
 Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") + \
 # etengine
 Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - \
