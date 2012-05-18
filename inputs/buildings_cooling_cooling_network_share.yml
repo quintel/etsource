@@ -4,7 +4,7 @@ comments: ""
 factor: 100.0
 id: 549
 key: buildings_cooling_cooling_network_share
-keys: buildings_city_cooling_network_ambient_cold
+keys: buildings_cooling_collective_cooling_network_electricity
 label: ""
 label_query: ""
 max_value: 15.0
@@ -14,14 +14,14 @@ min_value_gql:
 name: Cooling network
 query: |-
   EACH(
-              UPDATE(LINK(buildings_city_cooling_network_ambient_cold,buildings_useful_demand_after_insulation_recirculation_recovery_cooling), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_airconditioning), share, 
+              UPDATE(LINK(buildings_cooling_collective_cooling_network_electricity,buildings_useful_demand_after_insulation_recirculation_recovery_cooling), share, DIVIDE(USER_INPUT(),100)),
+              UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning), share, 
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: cooling_buildings
 start_value: 
-start_value_gql: present:V(buildings_city_cooling_network_ambient_cold,share_of_buildings_useful_demand_after_insulation_recirculation_recovery_cooling)
+start_value_gql: present:V(buildings_cooling_collective_cooling_network_electricity,share_of_buildings_useful_demand_after_insulation_recirculation_recovery_cooling)
 unit: "%"
 update_type: converters
 updateable_period: future

@@ -11,17 +11,17 @@ households_useful_demand_hot_water-(hot_water) -- f --> (hot_water)-households_w
   :co2_free: 0.0
 households_useful_demand_for_cooling_after_insulation-(cooling): {conversion: 1.0}
 (cooling)-households_useful_demand_for_cooling_after_insulation: {conversion: 1.0}
-households_useful_demand_for_cooling_after_insulation-(cooling) -- f --> (cooling)-households_airconditioning_electricity: {share: }
+households_useful_demand_for_cooling_after_insulation-(cooling) -- f --> (cooling)-households_cooling_airconditioning_electricity: {share: }
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_ground_water_electricity: {share: 0.0}
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_air_water_network_gas: {share: 0.0}
-households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_collective_cooling_heatpump_water_water_ts_electricity: {share: 0.0}
+households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0}
 
 :households_useful_demand_for_space_heating_after_insulation:
   :co2_free: 0.0
   :demand_expected_value: 18925362650.5028
 households_useful_demand_for_space_heating_after_insulation-(useable_heat): {conversion: 1.0}
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation: {conversion: 1.0}
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_collective_space_heater_heatpump_water_water_ts_electricity: {share: 0.0}
+households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_collective_heatpump_water_water_ts_electricity: {share: 0.0}
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_electricity: {share: 0.0196997137965376}
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_solar_thermal: {share: 0.0}
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-households_space_heater_combined_network_gas: {share: }
@@ -174,7 +174,7 @@ households_water_heater_resistive_electricity-(electricity): {conversion: 1.0}
 (hot_water)-households_water_heater_resistive_electricity: {conversion: 0.95}
 households_water_heater_resistive_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
-:households_collective_space_heater_heatpump_water_water_ts_electricity:
+:households_space_heater_collective_heatpump_water_water_ts_electricity:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 20.0
@@ -205,15 +205,15 @@ households_water_heater_resistive_electricity-(electricity) -- s --> (electricit
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 50.0
-households_collective_space_heater_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
-households_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
-(loss)-households_collective_space_heater_heatpump_water_water_ts_electricity: {conversion: 0.0}
-(useable_heat)-households_collective_space_heater_heatpump_water_water_ts_electricity: {conversion: 1.0}
-(cooling)-households_collective_space_heater_heatpump_water_water_ts_electricity: {conversion: 0.0}
-households_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
-households_collective_space_heater_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
+households_space_heater_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
+households_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
+(loss)-households_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+(useable_heat)-households_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
+(cooling)-households_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+households_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_space_heater_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
-:households_airconditioning_electricity:
+:households_cooling_airconditioning_electricity:
   :co2_free: 0.0
   :demand_expected_value: 609629565.841345
   :technical_lifetime: 15.0
@@ -244,12 +244,12 @@ households_collective_space_heater_heatpump_water_water_ts_electricity-(electric
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-households_airconditioning_electricity-(electricity): {conversion: 0.25}
-households_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
-(loss)-households_airconditioning_electricity: {conversion: 0.0}
-(cooling)-households_airconditioning_electricity: {conversion: 1.0}
-households_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
-households_airconditioning_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
+households_cooling_airconditioning_electricity-(electricity): {conversion: 0.25}
+households_cooling_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
+(loss)-households_cooling_airconditioning_electricity: {conversion: 0.0}
+(cooling)-households_cooling_airconditioning_electricity: {conversion: 1.0}
+households_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+households_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
 
 :households_space_heater_electricity:
   :co2_free: 0.0
@@ -960,13 +960,13 @@ households_space_heater_heatpump_ground_water_electricity-(ambient_heat): {conve
 households_space_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
 households_space_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
-:buildings_city_cooling_network_ambient_cold:
+:buildings_cooling_collective_cooling_network_electricity:
   :co2_free: 0.0
-buildings_city_cooling_network_ambient_cold-(electricity): {conversion: 0.1}
-buildings_city_cooling_network_ambient_cold-(ambient_cold): {conversion: 0.9}
-(cooling)-buildings_city_cooling_network_ambient_cold: {conversion: 1.0}
-buildings_city_cooling_network_ambient_cold-(ambient_cold) -- s --> (ambient_cold)-environment_water: {share: 1.0}
-buildings_city_cooling_network_ambient_cold-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
+buildings_cooling_collective_cooling_network_electricity-(electricity): {conversion: 0.1}
+buildings_cooling_collective_cooling_network_electricity-(ambient_cold): {conversion: 0.9}
+(cooling)-buildings_cooling_collective_cooling_network_electricity: {conversion: 1.0}
+buildings_cooling_collective_cooling_network_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_water: {share: 1.0}
+buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :agriculture_useful_demand_useable_heat:
   :co2_free: 0.0
@@ -3940,7 +3940,7 @@ households_cooling_heatpump_air_water_network_gas-(ambient_cold): {conversion: 0
 households_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
 households_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_cooling_network_gas: {share: 1.0}
 
-:households_collective_cooling_heatpump_water_water_ts_electricity:
+:households_cooling_collective_heatpump_water_water_ts_electricity:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 20.0
@@ -3971,12 +3971,12 @@ households_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (networ
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-households_collective_cooling_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
-households_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
-(loss)-households_collective_cooling_heatpump_water_water_ts_electricity: {conversion: 0.0}
-(cooling)-households_collective_cooling_heatpump_water_water_ts_electricity: {conversion: 1.0}
-households_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
-households_collective_cooling_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
+households_cooling_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
+households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
+(loss)-households_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+(cooling)-households_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
+households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+households_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
 
 :households_useful_demand_cooking_useable_heat:
   :co2_free: 0.0
@@ -4121,7 +4121,7 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_solar_thermal: {share: 0.0}
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas: {share: 0.0}
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_wood_pellets: {share: 0.0}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_collective_space_heater_heatpump_water_water_ts_electricity: {share: 0.0}
+buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {share: 0.0}
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_crude_oil: {share: 0.0}
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_coal: {share: 0.0}
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_district_heating_steam_hot_water: {share: 0.0}
@@ -4131,10 +4131,10 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
   :demand_expected_value: 0.0
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling: {conversion: 1.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_city_cooling_network_ambient_cold: {share: 0.0}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity: {share: 0.0}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_collective_cooling_heatpump_water_water_ts_electricity: {share: 0.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_airconditioning: {share: 1.0}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning: {share: 1.0}
 
 :buildings_useful_demand_after_motion_detection_daylight_control_light:
   :co2_free: 0.0
@@ -4205,7 +4205,7 @@ buildings_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (electricity)-buildings_solar_pv_solar_radiation: {conversion: 0.16}
 buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
 
-:buildings_heat_network_steam_hot_water:
+:buildings_heat_network_connection_steam_hot_water:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 30.0
@@ -4231,10 +4231,10 @@ buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 0.0
-buildings_heat_network_steam_hot_water-(steam_hot_water): {conversion: 1.0}
-(steam_hot_water)-buildings_heat_network_steam_hot_water: {conversion: 1.0}
-(loss)-buildings_heat_network_steam_hot_water: {conversion: 0.0}
-buildings_heat_network_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water: {share: 1.0}
+buildings_heat_network_connection_steam_hot_water-(steam_hot_water): {conversion: 1.0}
+(steam_hot_water)-buildings_heat_network_connection_steam_hot_water: {conversion: 1.0}
+(loss)-buildings_heat_network_connection_steam_hot_water: {conversion: 0.0}
+buildings_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water: {share: 1.0}
 
 :buildings_space_heater_network_gas:
   :co2_free: 0.0
@@ -4472,7 +4472,7 @@ buildings_space_heater_wood_pellets-(wood_pellets): {conversion: 1.0}
 (loss)-buildings_space_heater_wood_pellets: {conversion: 0.18}
 buildings_space_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildings_final_demand_for_space_heating_wood_pellets: {share: 1.0}
 
-:buildings_collective_space_heater_heatpump_water_water_ts_electricity:
+:buildings_space_heater_collective_heatpump_water_water_ts_electricity:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 20.0
@@ -4503,12 +4503,12 @@ buildings_space_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-build
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
-(useable_heat)-buildings_collective_space_heater_heatpump_water_water_ts_electricity: {conversion: 1.0}
-(loss)-buildings_collective_space_heater_heatpump_water_water_ts_electricity: {conversion: 0.0}
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity: {share: 1.0}
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
+(useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
+(loss)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity: {share: 1.0}
 
 :buildings_cooling_heatpump_air_water_network_gas:
   :co2_free: 0.0
@@ -4542,7 +4542,7 @@ buildings_cooling_heatpump_air_water_network_gas-(ambient_cold): {conversion: 0.
 buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
 buildings_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_cooling_gas: {share: 1.0}
 
-:buildings_collective_cooling_heatpump_water_water_ts_electricity:
+:buildings_cooling_collective_heatpump_water_water_ts_electricity:
   :co2_free: 0.0
   :technical_lifetime: 20.0
   :construction_time: 0.0
@@ -4572,14 +4572,14 @@ buildings_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
-(cooling)-buildings_collective_cooling_heatpump_water_water_ts_electricity: {conversion: 1.0}
-(loss)-buildings_collective_cooling_heatpump_water_water_ts_electricity: {conversion: 0.0}
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
+(cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
+(loss)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
-:buildings_airconditioning:
+:buildings_cooling_airconditioning:
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :technical_lifetime: 15.0
@@ -4610,12 +4610,12 @@ buildings_collective_cooling_heatpump_water_water_ts_electricity-(electricity) -
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-buildings_airconditioning-(electricity): {conversion: 0.222222222222222}
-buildings_airconditioning-(ambient_cold): {conversion: 0.777777777777778}
-(cooling)-buildings_airconditioning: {conversion: 1.0}
-(loss)-buildings_airconditioning: {conversion: 0.0}
-buildings_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
-buildings_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
+buildings_cooling_airconditioning-(electricity): {conversion: 0.222222222222222}
+buildings_cooling_airconditioning-(ambient_cold): {conversion: 0.777777777777778}
+(cooling)-buildings_cooling_airconditioning: {conversion: 1.0}
+(loss)-buildings_cooling_airconditioning: {conversion: 0.0}
+buildings_cooling_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :buildings_useful_demand_for_appliances:
   :co2_free: 0.0
@@ -4655,7 +4655,7 @@ buildings_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distrib
   :demand_expected_value: 0.0
 buildings_final_demand_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-buildings_final_demand_steam_hot_water: {conversion: 1.0}
-buildings_final_demand_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-buildings_heat_network_steam_hot_water: {share: 0.0}
+buildings_final_demand_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-buildings_heat_network_connection_steam_hot_water: {share: 0.0}
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_gas_power_fuelmix: {share: 0.0}
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_wood_pellets: {share: 0.0}
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_geothermal: {share: 0.0}
@@ -5764,12 +5764,12 @@ energy_upgrade_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas: {sh
   :co2_free: 0.0
 energy_distribution_manure-(manure): {conversion: 1.0}
 (manure)-energy_distribution_manure: {conversion: 1.0}
-energy_distribution_manure-(manure) -- s --> (manure)-energy_manure_production: {share: 1.0}
+energy_distribution_manure-(manure) -- s --> (manure)-energy_production_manure: {share: 1.0}
 
-:energy_manure_production:
+:energy_production_manure:
   :co2_free: 0.0
-energy_manure_production-(manure): {conversion: 1.0}
-(manure)-energy_manure_production: {conversion: 1.0}
+energy_production_manure-(manure): {conversion: 1.0}
+(manure)-energy_production_manure: {conversion: 1.0}
 
 :energy_distribution_corn:
   :co2_free: 0.0
