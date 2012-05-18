@@ -5,15 +5,15 @@ households_useful_demand_hot_water-(hot_water)
 (hot_water)-households_useful_demand_hot_water
 
 households_useful_demand_for_cooling_after_insulation;	households_useful_demand_for_cooling_after_insulation;	households;	energetic;useful consumption;	useful_demand
-households_useful_demand_for_cooling_after_insulation-(cooling) -- f --> (cooling)-households_airconditioning_electricity
+households_useful_demand_for_cooling_after_insulation-(cooling) -- f --> (cooling)-households_cooling_airconditioning_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_ground_water_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_air_water_network_gas
-households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_collective_cooling_heatpump_water_water_ts_electricity
+households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_collective_heatpump_water_water_ts_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling)
 (cooling)-households_useful_demand_for_cooling_after_insulation
 
 households_useful_demand_for_space_heating_after_insulation;	households_useful_demand_for_space_heating_after_insulation;	households;	energetic;useful consumption;	useful_demand
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_collective_space_heater_heatpump_water_water_ts_electricity
+households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_collective_heatpump_water_water_ts_electricity
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_electricity
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_solar_thermal
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-households_space_heater_combined_network_gas
@@ -73,22 +73,22 @@ households_water_heater_resistive_electricity-(electricity)
 (loss)-households_water_heater_resistive_electricity
 (hot_water)-households_water_heater_resistive_electricity
 
-households_collective_space_heater_heatpump_water_water_ts_electricity;	households_collective_space_heater_heatpump_water_water_ts_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
-households_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
-households_collective_space_heater_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
-households_collective_space_heater_heatpump_water_water_ts_electricity-(electricity)
-households_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat)
-(loss)-households_collective_space_heater_heatpump_water_water_ts_electricity
-(useable_heat)-households_collective_space_heater_heatpump_water_water_ts_electricity
-(cooling)-households_collective_space_heater_heatpump_water_water_ts_electricity
+households_space_heater_collective_heatpump_water_water_ts_electricity;	households_space_heater_collective_heatpump_water_water_ts_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
+households_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
+households_space_heater_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
+households_space_heater_collective_heatpump_water_water_ts_electricity-(electricity)
+households_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat)
+(loss)-households_space_heater_collective_heatpump_water_water_ts_electricity
+(useable_heat)-households_space_heater_collective_heatpump_water_water_ts_electricity
+(cooling)-households_space_heater_collective_heatpump_water_water_ts_electricity
 
-households_airconditioning_electricity;	households_airconditioning_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
-households_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
-households_airconditioning_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
-households_airconditioning_electricity-(electricity)
-households_airconditioning_electricity-(ambient_cold)
-(loss)-households_airconditioning_electricity
-(cooling)-households_airconditioning_electricity
+households_cooling_airconditioning_electricity;	households_cooling_airconditioning_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_heat_pumps
+households_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
+households_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
+households_cooling_airconditioning_electricity-(electricity)
+households_cooling_airconditioning_electricity-(ambient_cold)
+(loss)-households_cooling_airconditioning_electricity
+(cooling)-households_cooling_airconditioning_electricity
 
 households_space_heater_electricity;	households_space_heater_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_traditional_heat
 households_space_heater_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
@@ -279,12 +279,12 @@ households_space_heater_heatpump_ground_water_electricity-(ambient_heat)
 (loss)-households_space_heater_heatpump_ground_water_electricity
 (useable_heat)-households_space_heater_heatpump_ground_water_electricity
 
-buildings_city_cooling_network_ambient_cold;	buildings_city_cooling_network_ambient_cold;	buildings;	energetic;technologies;	
-buildings_city_cooling_network_ambient_cold-(ambient_cold) -- s --> (ambient_cold)-environment_water
-buildings_city_cooling_network_ambient_cold-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
-buildings_city_cooling_network_ambient_cold-(electricity)
-buildings_city_cooling_network_ambient_cold-(ambient_cold)
-(cooling)-buildings_city_cooling_network_ambient_cold
+buildings_cooling_collective_cooling_network_electricity;	buildings_cooling_collective_cooling_network_electricity;	buildings;	energetic;technologies;	
+buildings_cooling_collective_cooling_network_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_water
+buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
+buildings_cooling_collective_cooling_network_electricity-(electricity)
+buildings_cooling_collective_cooling_network_electricity-(ambient_cold)
+(cooling)-buildings_cooling_collective_cooling_network_electricity
 
 agriculture_useful_demand_useable_heat;	agriculture_useful_demand_useable_heat;	agriculture;	energetic;useful consumption;	useful_demand
 agriculture_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-agriculture_final_demand_steam_hot_water
@@ -1400,13 +1400,13 @@ households_cooling_heatpump_air_water_network_gas-(ambient_cold)
 (loss)-households_cooling_heatpump_air_water_network_gas
 (cooling)-households_cooling_heatpump_air_water_network_gas
 
-households_collective_cooling_heatpump_water_water_ts_electricity;	households_collective_cooling_heatpump_water_water_ts_electricity;	households;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
-households_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
-households_collective_cooling_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
-households_collective_cooling_heatpump_water_water_ts_electricity-(electricity)
-households_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold)
-(loss)-households_collective_cooling_heatpump_water_water_ts_electricity
-(cooling)-households_collective_cooling_heatpump_water_water_ts_electricity
+households_cooling_collective_heatpump_water_water_ts_electricity;	households_cooling_collective_heatpump_water_water_ts_electricity;	households;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
+households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
+households_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
+households_cooling_collective_heatpump_water_water_ts_electricity-(electricity)
+households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold)
+(loss)-households_cooling_collective_heatpump_water_water_ts_electricity
+(cooling)-households_cooling_collective_heatpump_water_water_ts_electricity
 
 households_useful_demand_cooking_useable_heat;	households_useful_demand_cooking_useable_heat;	households;	energetic;useful consumption;	useful_demand
 households_useful_demand_cooking_useable_heat-(useable_heat) -- f --> (useable_heat)-households_cooker_network_gas
@@ -1493,7 +1493,7 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_solar_thermal
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_wood_pellets
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_collective_space_heater_heatpump_water_water_ts_electricity
+buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_crude_oil
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_coal
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_district_heating_steam_hot_water
@@ -1501,10 +1501,10 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
 (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery
 
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling;	buildings_useful_demand_after_insulation_recirculation_recovery_cooling;	buildings;	energetic;useful consumption;	useful_demand
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_city_cooling_network_ambient_cold
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_collective_cooling_heatpump_water_water_ts_electricity
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_airconditioning
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
 (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling
 
@@ -1539,11 +1539,11 @@ buildings_solar_pv_solar_radiation-(solar_radiation)
 (loss)-buildings_solar_pv_solar_radiation
 (electricity)-buildings_solar_pv_solar_radiation
 
-buildings_heat_network_steam_hot_water;	buildings_heat_network_steam_hot_water;	buildings;	energetic;locally available;	heat_production,cost_traditional_heat
-buildings_heat_network_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water
-buildings_heat_network_steam_hot_water-(steam_hot_water)
-(steam_hot_water)-buildings_heat_network_steam_hot_water
-(loss)-buildings_heat_network_steam_hot_water
+buildings_heat_network_connection_steam_hot_water;	buildings_heat_network_connection_steam_hot_water;	buildings;	energetic;locally available;	heat_production,cost_traditional_heat
+buildings_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water
+buildings_heat_network_connection_steam_hot_water-(steam_hot_water)
+(steam_hot_water)-buildings_heat_network_connection_steam_hot_water
+(loss)-buildings_heat_network_connection_steam_hot_water
 
 buildings_space_heater_network_gas;	buildings_space_heater_network_gas;	buildings;	energetic;technologies;	heat_production,cost_traditional_heat
 buildings_space_heater_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_space_heating_gas
@@ -1591,13 +1591,13 @@ buildings_space_heater_wood_pellets-(wood_pellets)
 (useable_heat)-buildings_space_heater_wood_pellets
 (loss)-buildings_space_heater_wood_pellets
 
-buildings_collective_space_heater_heatpump_water_water_ts_electricity;	buildings_collective_space_heater_heatpump_water_water_ts_electricity;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(electricity)
-buildings_collective_space_heater_heatpump_water_water_ts_electricity-(ambient_heat)
-(useable_heat)-buildings_collective_space_heater_heatpump_water_water_ts_electricity
-(loss)-buildings_collective_space_heater_heatpump_water_water_ts_electricity
+buildings_space_heater_collective_heatpump_water_water_ts_electricity;	buildings_space_heater_collective_heatpump_water_water_ts_electricity;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity)
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat)
+(useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity
+(loss)-buildings_space_heater_collective_heatpump_water_water_ts_electricity
 
 buildings_cooling_heatpump_air_water_network_gas;	buildings_cooling_heatpump_air_water_network_gas;	buildings;	energetic;technologies;	heat_production,cost_heat_pumps
 buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_earth
@@ -1607,21 +1607,21 @@ buildings_cooling_heatpump_air_water_network_gas-(ambient_cold)
 (cooling)-buildings_cooling_heatpump_air_water_network_gas
 (loss)-buildings_cooling_heatpump_air_water_network_gas
 
-buildings_collective_cooling_heatpump_water_water_ts_electricity;	buildings_collective_cooling_heatpump_water_water_ts_electricity;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(electricity)
-buildings_collective_cooling_heatpump_water_water_ts_electricity-(ambient_cold)
-(cooling)-buildings_collective_cooling_heatpump_water_water_ts_electricity
-(loss)-buildings_collective_cooling_heatpump_water_water_ts_electricity
+buildings_cooling_collective_heatpump_water_water_ts_electricity;	buildings_cooling_collective_heatpump_water_water_ts_electricity;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity)
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold)
+(cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
+(loss)-buildings_cooling_collective_heatpump_water_water_ts_electricity
 
-buildings_airconditioning;	buildings_airconditioning;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
-buildings_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air
-buildings_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
-buildings_airconditioning-(electricity)
-buildings_airconditioning-(ambient_cold)
-(cooling)-buildings_airconditioning
-(loss)-buildings_airconditioning
+buildings_cooling_airconditioning;	buildings_cooling_airconditioning;	buildings;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
+buildings_cooling_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air
+buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
+buildings_cooling_airconditioning-(electricity)
+buildings_cooling_airconditioning-(ambient_cold)
+(cooling)-buildings_cooling_airconditioning
+(loss)-buildings_cooling_airconditioning
 
 buildings_useful_demand_for_appliances;	buildings_useful_demand_for_appliances;	buildings;	energetic;useful consumption;	useful_demand
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_coal
@@ -1648,7 +1648,7 @@ buildings_final_demand_crude_oil-(crude_oil)
 (crude_oil)-buildings_final_demand_crude_oil
 
 buildings_final_demand_steam_hot_water;	buildings_final_demand_steam_hot_water;	buildings;	energetic;final consumption;	final_demand_cbs
-buildings_final_demand_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-buildings_heat_network_steam_hot_water
+buildings_final_demand_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-buildings_heat_network_connection_steam_hot_water
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_gas_power_fuelmix
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_wood_pellets
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_geothermal
@@ -2096,13 +2096,13 @@ energy_upgrade_biogas-(biogas)
 (greengas)-energy_upgrade_biogas
 
 energy_distribution_manure;	energy_distribution_manure;	energy;	undefined;;	
-energy_distribution_manure-(manure) -- s --> (manure)-energy_manure_production
+energy_distribution_manure-(manure) -- s --> (manure)-energy_production_manure
 energy_distribution_manure-(manure)
 (manure)-energy_distribution_manure
 
-energy_manure_production;	energy_manure_production;	energy;	undefined;;	primary_energy_demand,mining_and_extraction
-energy_manure_production-(manure)
-(manure)-energy_manure_production
+energy_production_manure;	energy_production_manure;	energy;	undefined;;	primary_energy_demand,mining_and_extraction
+energy_production_manure-(manure)
+(manure)-energy_production_manure
 
 energy_distribution_corn;	energy_distribution_corn;	energy;	undefined;;	
 energy_distribution_corn-(corn) -- s --> (corn)-energy_production_corn
