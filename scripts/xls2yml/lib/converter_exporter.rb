@@ -50,7 +50,8 @@ module ETE
       :part_load_operating_point,
       :part_load_efficiency_penalty,
       :forecasting_error,
-      :households_supplied_per_unit
+      :households_supplied_per_unit,
+      :max_demand
     ]
 
     def initialize(excel_export, opts = {})
