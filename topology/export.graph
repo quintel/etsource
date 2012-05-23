@@ -182,7 +182,7 @@ industry_chp_supercritical_wood_pellets-(wood_pellets)
 (steam_hot_water)-industry_chp_supercritical_wood_pellets
 (electricity)-industry_chp_supercritical_wood_pellets
 
-transport_useful_demand_truck_kms;	transport_useful_demand_truck_kms;	transport;	energetic;useful consumption;	
+transport_useful_demand_truck_kms;	transport_useful_demand_truck_kms;	transport;	energetic;useful consumption;	useful_demand
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_electricity
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_diesel_mix
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_gasoline_mix
@@ -190,7 +190,7 @@ transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_tru
 transport_useful_demand_truck_kms-(truck_kms)
 (loss)-transport_useful_demand_truck_kms
 
-transport_useful_demand_car_kms;	transport_useful_demand_car_kms;	transport;	energetic;useful consumption;	
+transport_useful_demand_car_kms;	transport_useful_demand_car_kms;	transport;	energetic;useful consumption;	useful_demand
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_electricity
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_diesel_mix
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_gasoline_mix
@@ -199,50 +199,59 @@ transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using
 transport_useful_demand_car_kms-(car_kms)
 (loss)-transport_useful_demand_car_kms
 
-transport_truck_using_electricity;	transport_truck_using_electricity;	transport;	energetic;technologies;	useful_demand,network_converters,cost_other
+transport_truck_using_electricity;	transport_truck_using_electricity;	transport;	energetic;technologies;	network_converters,cost_other
 transport_truck_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_road_electricity
 transport_truck_using_electricity-(electricity)
 (truck_kms)-transport_truck_using_electricity
+(loss)-transport_truck_using_electricity
 
-transport_truck_using_diesel_mix;	transport_truck_using_diesel_mix;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_truck_using_diesel_mix;	transport_truck_using_diesel_mix;	transport;	energetic;technologies;	cost_other
 transport_truck_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_road_mixer_diesel
 transport_truck_using_diesel_mix-(diesel_mix)
 (truck_kms)-transport_truck_using_diesel_mix
+(loss)-transport_truck_using_diesel_mix
 
-transport_truck_using_gasoline_mix;	transport_truck_using_gasoline_mix;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_truck_using_gasoline_mix;	transport_truck_using_gasoline_mix;	transport;	energetic;technologies;	cost_other
 transport_truck_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transport_road_mixer_gasoline
 transport_truck_using_gasoline_mix-(gasoline_mix)
 (truck_kms)-transport_truck_using_gasoline_mix
+(loss)-transport_truck_using_gasoline_mix
 
-transport_car_using_electricity;	transport_car_using_electricity;	transport;	energetic;technologies;	useful_demand,network_converters,cost_other
+transport_car_using_electricity;	transport_car_using_electricity;	transport;	energetic;technologies;	network_converters,cost_other
 transport_car_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_road_electricity
 transport_car_using_electricity-(electricity)
 (car_kms)-transport_car_using_electricity
+(loss)-transport_car_using_electricity
 
-transport_car_using_diesel_mix;	transport_car_using_diesel_mix;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_car_using_diesel_mix;	transport_car_using_diesel_mix;	transport;	energetic;technologies;	cost_other
 transport_car_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_road_mixer_diesel
 transport_car_using_diesel_mix-(diesel_mix)
 (car_kms)-transport_car_using_diesel_mix
+(loss)-transport_car_using_diesel_mix
 
-transport_car_using_gasoline_mix;	transport_car_using_gasoline_mix;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_car_using_gasoline_mix;	transport_car_using_gasoline_mix;	transport;	energetic;technologies;	cost_other
 transport_car_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transport_road_mixer_gasoline
 transport_car_using_gasoline_mix-(gasoline_mix)
 (car_kms)-transport_car_using_gasoline_mix
+(loss)-transport_car_using_gasoline_mix
 
-transport_car_using_lpg;	transport_car_using_lpg;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_car_using_lpg;	transport_car_using_lpg;	transport;	energetic;technologies;	cost_other
 transport_car_using_lpg-(lpg) -- s --> (lpg)-transport_final_demand_for_road_lpg
 transport_car_using_lpg-(lpg)
 (car_kms)-transport_car_using_lpg
+(loss)-transport_car_using_lpg
 
-transport_truck_using_compressed_natural_gas;	transport_truck_using_compressed_natural_gas;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_truck_using_compressed_natural_gas;	transport_truck_using_compressed_natural_gas;	transport;	energetic;technologies;	cost_other
 transport_truck_using_compressed_natural_gas-(compressed_network_gas) -- s --> (compressed_network_gas)-transport_road_compressor_network_gas
 transport_truck_using_compressed_natural_gas-(compressed_network_gas)
 (truck_kms)-transport_truck_using_compressed_natural_gas
+(loss)-transport_truck_using_compressed_natural_gas
 
-transport_car_using_compressed_natural_gas;	transport_car_using_compressed_natural_gas;	transport;	energetic;technologies;	useful_demand,cost_other
+transport_car_using_compressed_natural_gas;	transport_car_using_compressed_natural_gas;	transport;	energetic;technologies;	cost_other
 transport_car_using_compressed_natural_gas-(compressed_network_gas) -- s --> (compressed_network_gas)-transport_road_compressor_network_gas
 transport_car_using_compressed_natural_gas-(compressed_network_gas)
 (car_kms)-transport_car_using_compressed_natural_gas
+(loss)-transport_car_using_compressed_natural_gas
 
 transport_useful_demand_crude_oil_non_energetic;	transport_useful_demand_crude_oil_non_energetic;	transport;	non_energetic;;	useful_demand,non_energetic_use
 transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-transport_final_demand_crude_oil_non_energetic
