@@ -1796,9 +1796,9 @@ energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiati
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 0.0
-energy_heater_for_heat_network_geothermal-(ambient_heat): {conversion: 1.0}
+energy_heater_for_heat_network_geothermal-(geothermal): {conversion: 1.0}
 (steam_hot_water)-energy_heater_for_heat_network_geothermal: {conversion: 1.0}
-energy_heater_for_heat_network_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
 
 :energy_power_hydro_river:
   :co2_free: 0.0
@@ -1903,10 +1903,10 @@ energy_power_hydro_mountain-(water) -- s --> (water)-environment_water: {share: 
   :part_load_efficiency_penalty: 0.1
   :forecasting_error: 0.0
   :households_supplied_per_unit: 0.0
-energy_power_geothermal-(ambient_heat): {conversion: 1.0}
+energy_power_geothermal-(geothermal): {conversion: 1.0}
 (loss)-energy_power_geothermal: {conversion: 0.75}
 (electricity)-energy_power_geothermal: {conversion: 0.25}
-energy_power_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
 
 :energy_national_gas_network_natural_gas:
   :co2_free: 0.0
@@ -3849,11 +3849,10 @@ households_collective_chp_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-en
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-households_collective_geothermal-(steam_hot_water): {conversion: 0.0}
 (steam_hot_water)-households_collective_geothermal: {conversion: 1.0}
-households_collective_geothermal-(ambient_heat): {conversion: 1.0}
-(ambient_heat)-households_collective_geothermal: {conversion: 0.0}
-households_collective_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
+households_collective_geothermal-(geothermal): {conversion: 1.0}
+(geothermal)-households_collective_geothermal: {conversion: 0.0}
+households_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
 
 :households_cooling_heatpump_ground_water_electricity:
   :co2_free: 0.0
@@ -6499,9 +6498,9 @@ buildings_appliances_coal-(coal) -- s --> (coal)-buildings_final_demand_for_appl
   :part_load_efficiency_penalty: 0.0
   :forecasting_error: 0.0
   :households_supplied_per_unit: 1.0
-buildings_collective_geothermal-(ambient_heat): {conversion: 1.0}
+buildings_collective_geothermal-(geothermal): {conversion: 1.0}
 (steam_hot_water)-buildings_collective_geothermal: {conversion: 1.0}
-buildings_collective_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
+buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
 
 :buildings_final_demand_for_space_heating_coal:
   :co2_free: 0.0

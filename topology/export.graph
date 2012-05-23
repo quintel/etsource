@@ -509,8 +509,8 @@ energy_power_solar_csp_solar_radiation-(solar_radiation)
 (electricity)-energy_power_solar_csp_solar_radiation
 
 energy_heater_for_heat_network_geothermal;	energy_heater_for_heat_network_geothermal;	energy;	undefined;central heat generation;	heat_production,cost_traditional_heat
-energy_heater_for_heat_network_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_air
-energy_heater_for_heat_network_geothermal-(ambient_heat)
+energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+energy_heater_for_heat_network_geothermal-(geothermal)
 (steam_hot_water)-energy_heater_for_heat_network_geothermal
 
 energy_power_hydro_river;	energy_power_hydro_river;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
@@ -526,8 +526,8 @@ energy_power_hydro_mountain-(water)
 (electricity)-energy_power_hydro_mountain
 
 energy_power_geothermal;	energy_power_geothermal;	energy;	undefined;central power generation;	primary_energy_demand,sustainable_production,electricity_production,central_production,network_converters,cost_electricity_production
-energy_power_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_air
-energy_power_geothermal-(ambient_heat)
+energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+energy_power_geothermal-(geothermal)
 (loss)-energy_power_geothermal
 (electricity)-energy_power_geothermal
 
@@ -1374,11 +1374,10 @@ households_collective_chp_wood_pellets-(wood_pellets)
 (electricity)-households_collective_chp_wood_pellets
 
 households_collective_geothermal;	households_collective_geothermal;	households;	energetic;local heat generation;	heat_production,cost_heat_pumps
-households_collective_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_earth
-households_collective_geothermal-(steam_hot_water)
+households_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
 (steam_hot_water)-households_collective_geothermal
-households_collective_geothermal-(ambient_heat)
-(ambient_heat)-households_collective_geothermal
+households_collective_geothermal-(geothermal)
+(geothermal)-households_collective_geothermal
 
 households_cooling_heatpump_ground_water_electricity;	households_cooling_heatpump_ground_water_electricity;	households;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 households_cooling_heatpump_ground_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth
@@ -2578,8 +2577,8 @@ buildings_appliances_coal-(coal)
 (not_defined)-buildings_appliances_coal
 
 buildings_collective_geothermal;	buildings_collective_geothermal;	buildings;	energetic;local heat generation;	cost_heat_pumps
-buildings_collective_geothermal-(ambient_heat) -- s --> (ambient_heat)-environment_earth
-buildings_collective_geothermal-(ambient_heat)
+buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+buildings_collective_geothermal-(geothermal)
 (steam_hot_water)-buildings_collective_geothermal
 
 buildings_final_demand_for_space_heating_coal;	buildings_final_demand_for_space_heating_coal;	buildings;	energetic;application;	
