@@ -215,15 +215,17 @@ module ETE
         when 4 then 'c'
         when 5 then 'i'
         end
-        share = row[:share].nil? ? nil : row[:share].to_f
-        # the max demand attribute is defined in the converter export csv.
-        # right side converter
-        max_demand = converter_attributes[child][:max_demand]
         out[parent] ||= []
         if include_share
+          share = row[:share].nil? ? nil : row[:share].to_f
+          priority = row[:priority]
+          # the max demand attribute is defined in the converter export csv.
+          # right side converter
+          max_demand = converter_attributes[child][:max_demand]
           s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: "
           s += "{share: #{share}"
           s += ", max_demand: #{max_demand}" if max_demand
+          s += ", priority: #{priority}" if priority
           s +="}"
           out[parent] << s
         else

@@ -25,6 +25,7 @@ module ETE
         export_time_curves(@area_export, destination_directory)
 
         if @area_export.country == 'nl'
+          puts green("Generating shared files")
           export_topology(@area_export)
           export_excel_ids(@area_export)
         end
@@ -88,12 +89,11 @@ module ETE
 
     # writes to ETSOURCE/topology/export.graph
     def export_topology(area_export)
-      puts "Generating shared topology"
       converter_exporter = ConverterExporter.new(area_export)
       raw = converter_exporter.export
       FileUtils.mkdir_p "#{@etsource_dir}/topology"
       dest_file = "#{@etsource_dir}/topology/export.graph"
-      puts "  Topology file: #{dest_file}"
+      puts "  Saving topology to #{dest_file}"
       lines = []
       raw.each_pair do |key, values|
         lines << values[:info]
@@ -111,7 +111,7 @@ module ETE
     # writes to ETSOURCE/datasets/_default/graph/export.yml
     def export_excel_ids(area_export)
       output_file = "#{@etsource_dir}/datasets/_defaults/graph/excel_ids.yml"
-      puts "  Generating excel ids in #{output_file}"
+      puts "  Saving excel ids to #{output_file}"
       converter_exporter = ConverterExporter.new(area_export)
       raw = converter_exporter.converters
       lines = []
