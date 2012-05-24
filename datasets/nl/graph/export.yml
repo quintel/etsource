@@ -5878,14 +5878,14 @@ energy_export_algae_diesel-(algae_diesel) -- i --> (algae_diesel)-energy_distrib
 energy_distribution_biogenic_waste-(biogenic_waste): {conversion: 1.0}
 (waste_mix)-energy_distribution_biogenic_waste: {conversion: 1.0}
 energy_distribution_biogenic_waste-(biogenic_waste) -- f --> (biogenic_waste)-energy_import_biogenic_waste: {share: }
-energy_distribution_biogenic_waste-(biogenic_waste) -- c --> (biogenic_waste)-energy_production_biogenic_waste: {share: }
+energy_distribution_biogenic_waste-(biogenic_waste) -- f --> (biogenic_waste)-energy_production_biogenic_waste: {share: , max_demand: 20000000000.0, priority: 1}
 
 :energy_distribution_non_biogenic_waste:
   :co2_free: 0.0
 energy_distribution_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 (waste_mix)-energy_distribution_non_biogenic_waste: {conversion: 1.0}
 energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- f --> (non_biogenic_waste)-energy_import_non_biogenic_waste: {share: }
-energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- c --> (non_biogenic_waste)-energy_production_non_biogenic_waste: {share: }
+energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- f --> (non_biogenic_waste)-energy_production_non_biogenic_waste: {share: , max_demand: 20000000000.0, priority: 1}
 
 :energy_import_biogenic_waste:
   :co2_free: 0.0
@@ -5899,16 +5899,14 @@ energy_import_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 
 :energy_production_biogenic_waste:
   :co2_free: 0.0
-  :preset_demand: 20000000000.0
-  :demand: 20000000000.0
+  :max_demand: 20000000000.0
 energy_production_biogenic_waste-(biogenic_waste): {conversion: 1.0}
 (biogenic_waste)-energy_production_biogenic_waste: {conversion: 1.0}
 
 :energy_production_non_biogenic_waste:
   :co2_free: 0.0
-  :preset_demand: 20000000000.0
   :demand_expected_value: 20000000000.0
-  :demand: 20000000000.0
+  :max_demand: 20000000000.0
 energy_production_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 (non_biogenic_waste)-energy_production_non_biogenic_waste: {conversion: 1.0}
 
