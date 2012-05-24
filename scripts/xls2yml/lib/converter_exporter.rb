@@ -85,7 +85,6 @@ module ETE
     def export
       # let's first collect all the items, individually grouped by converter key
 
-      converter_data                = parse_converters
       converter_groups              = parse_converter_groups
       # converter_info needs this list, so let's make it available
       @cached_converter_groups      = converter_groups
@@ -98,7 +97,7 @@ module ETE
       out = {}
       converters.values.each do |converter_key|
         out[converter_key] = {
-          :attributes               => converter_data[converter_key],
+          :attributes               => converter_attributes[converter_key],
           :slots                    => slot_data[converter_key],
           :slots_without_conversion => slots_without_conversion_data[converter_key],
           :links                    => link_data[converter_key],
@@ -125,26 +124,31 @@ module ETE
         if @cached_converter_groups[key].is_a?(Array)
           groups = @cached_converter_groups[key].compact.join(',')
         end
+        # TODO: since we've removed the full_key we can remove the duplicate
+        # key here
         string = "#{key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
         out[key] = string
       end
       out
     end
 
-    def parse_converters
-      out = {}
-      f = CSV.new(@excel_export.csv_for(:converters))
-      f.parse do |row|
-        converter_id = row[:converter_id].to_i
-        key = converters[converter_id]
-        conv_attrs = {}
-        ATTRIBUTES.each do |attr|
-          conv_attrs[attr] = row[attr].to_f if row[attr]
+    # memoized hash of the converter attributes
+    # 
+    def converter_attributes
+      unless @_converter_attributes
+        @_converter_attributes = {}
+        CSV.new(@excel_export.csv_for(:converters)).parse do |row|
+          converter_id = row[:converter_id].to_i
+          key = converters[converter_id]
+          attrs = {}
+          ATTRIBUTES.each do |attr|
+            attrs[attr] = row[attr].to_f if row[attr]
+          end
+          attrs[:demand] = attrs[:preset_demand] if attrs[:preset_demand]
+          @_converter_attributes[key] = attrs
         end
-        conv_attrs[:demand] = conv_attrs[:preset_demand] if conv_attrs[:preset_demand]
-        out[key] = conv_attrs
       end
-      out
+      @_converter_attributes
     end
 
     def parse_converter_groups
@@ -212,9 +216,16 @@ module ETE
         when 5 then 'i'
         end
         share = row[:share].nil? ? nil : row[:share].to_f
+        # the max demand attribute is defined in the converter export csv.
+        # right side converter
+        max_demand = converter_attributes[child][:max_demand]
         out[parent] ||= []
         if include_share
-          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {share: #{share}}"
+          s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: "
+          s += "{share: #{share}"
+          s += ", max_demand: #{max_demand}" if max_demand
+          s +="}"
+          out[parent] << s
         else
           out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
         end
