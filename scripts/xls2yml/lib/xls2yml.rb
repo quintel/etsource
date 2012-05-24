@@ -5,6 +5,8 @@ require_relative 'excel_area_export'
 require_relative 'csv'
 require_relative 'converter_exporter'
 require 'zip/zip'
+require 'term/ansicolor'
+include Term::ANSIColor
 
 class Xls2yml
   def initialize
@@ -28,12 +30,13 @@ to be used by etsource.
 
   Usage:
 
-  xls2etsource.rb [source]
+  xls2yml.rb [source]
 
-The source parameter is optional. If missing the script will use ETSOURCE/csv_files
-as excel export directory. If you specify the source parameter then it should be a
-zip file or an existing directory.
-The script will output files in the main etsource directory. *Old files will be overwritten*.
+The source parameter is optional. If missing the script will use
+ETSOURCE/csv_files as excel export directory. If you specify the source
+parameter then it should be a zip file or an existing directory.
+The script will output files in the main etsource directory. *Old files will be
+overwritten*.
 
       EOS
     end
