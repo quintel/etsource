@@ -5,7 +5,9 @@ module ETE
       @etsource_dir = opts[:dest]
       @export = ExcelExport.new(source_dir)
     end
-
+    
+    # This is the main action
+    #
     def export_all
       @export.areas.each do |area_path|
         puts yellow("Processing #{area_path}")
@@ -28,11 +30,13 @@ module ETE
         end
       end
     rescue Exception => e
-      puts "Export error: #{e}"
+      puts red("Export error: #{e}")
       puts "#{e.backtrace[0]}"
       puts "Current file: #{$current_file}"
       exit
     end
+    
+    private
 
     # writes to ETSOURCE/datasets/<area>/graph/export.yml
     def export_converters(export, destination_directory)
