@@ -8,7 +8,7 @@ module ETE
 
     def export_all
       @export.areas.each do |area_path|
-        puts "Processing #{area_path}"
+        puts yellow("Processing #{area_path}")
         # create the destination directory
         area_code = area_path.split('/')[-1]
         destination_directory = "#{@etsource_dir}/datasets/#{area_code}".gsub('//', '/')

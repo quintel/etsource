@@ -57,7 +57,7 @@ module ETE
     def initialize(excel_export, opts = {})
       @excel_export = excel_export
       @etsource_root = opts[:etsource_root] || File.expand_path("#{File.dirname(__FILE__)}/../../../")
-      build_converters
+      converters # cache converter keys immediately
     end
 
     # returns a giant hash in this format:
@@ -226,37 +226,32 @@ module ETE
     # These methods create a fast lookup map
     #
 
+    # creates a hash in the format
+    # converter.id => converter.full_key (including used and sector)
+    #
     def converters
-      @_converters ||= build_converters
+      unless @_converters
+        @_converters = {}
+        CSV.new(@excel_export.csv_for(:converters)).parse do |row|
+          key = row[:key].to_sym
+          @_converters[row[:converter_id].to_i] = key
+        end
+      end
+      @_converters
     end
 
     private
 
-    # creates a hash in the format
-    # converter.id => converter.full_key (including used and sector)
-    #
-    def build_converters
-      out = {}
-      CSV.new(@excel_export.csv_for(:converters)).parse do |row|
-        key = row[:key].to_sym
-        out[row[:converter_id].to_i] = key
-      end
-      out
-    end
-
     def carriers(id)
-      @_carriers ||= build_carriers
+      unless @_carriers
+        @_carriers = {}
+        CSV.new(@excel_export.csv_for(:carriers)).parse do |row|
+          @_carriers[row[:carrier_id].to_i] = row[:key]
+        end
+      end
       c = @_carriers[id]
       raise "Missing carrier! #{c} ##{id}" if !c || !predefined_carriers.include?(c.to_sym)
       c
-    end
-
-    def build_carriers
-      out = {}
-      CSV.new(@excel_export.csv_for(:carriers)).parse do |row|
-        out[row[:carrier_id].to_i] = row[:key]
-      end
-      out
     end
 
     # To prevent using bad carrier names let's compare the string we want to use
@@ -270,51 +265,43 @@ module ETE
     end
 
     def uses
-      @_uses ||= build_uses
-    end
-
-    def build_uses
-      out = {}
-      CSV.new(@excel_export.csv_for(:uses)).parse do |row|
-        out[row[:id].to_i] = row[:use]
+      unless @_uses
+        @_uses = {}
+        CSV.new(@excel_export.csv_for(:uses)).parse do |row|
+          @_uses[row[:id].to_i] = row[:use]
+        end        
       end
-      out
+      @_uses
     end
 
     def sectors
-      @_sectors ||= build_sectors
-    end
-
-    def build_sectors
-      out = {}
-      CSV.new(@excel_export.csv_for(:sectors)).parse do |row|
-        out[row[:id].to_i] = row[:sector]
+      unless @_sectors
+        @_sectors = {}
+        CSV.new(@excel_export.csv_for(:sectors)).parse do |row|
+          @_sectors[row[:id].to_i] = row[:sector]
+        end
       end
-      out
+      @_sectors
     end
 
     def groups
-      @_groups ||= build_groups
-    end
-
-    def build_groups
-      out = {}
-      CSV.new(@excel_export.csv_for(:groups)).parse do |row|
-        out[row[:id].to_i] = row[:key]
+      unless @_groups
+        @_groups = {}
+        CSV.new(@excel_export.csv_for(:groups)).parse do |row|
+          @_groups[row[:id].to_i] = row[:key]
+        end
       end
-      out
+      @_groups
     end
 
     def energy_balance_groups
-      @_energy_balance_groups ||= build_energy_balance_groups
-    end
-
-    def build_energy_balance_groups
-      out = {}
-      CSV.new(@excel_export.csv_for(:energy_balance_groups)).parse do |row|
-        out[row[:group_id].to_i] = row[:name]
+      unless @_energy_balance_groups
+        @_energy_balance_groups = {}
+        CSV.new(@excel_export.csv_for(:energy_balance_groups)).parse do |row|
+          @_energy_balance_groups[row[:group_id].to_i] = row[:name]
+        end
       end
-      out
+      @_energy_balance_groups
     end
   end
 end
