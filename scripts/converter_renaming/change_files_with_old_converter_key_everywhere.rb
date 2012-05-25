@@ -19,11 +19,12 @@ end
 puts "Using file " + ARGV[0] + " as naming template."
 
 CSV_WITH_REPLACEMENTS = ARGV[0]
-REPLACEMENT_FLAG = 0
 
 # If the second argument is '--replace', go to replacement mode
 if ARGV[1]==='--replace' then
   REPLACEMENT_FLAG = 1
+else 
+  REPLACEMENT_FLAG = 0
 end
 
 PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
@@ -39,7 +40,11 @@ end
 # Define which files we will be going through
 files =\
 # etsource
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - \
+Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") + \
+Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") + \
+Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") + \
+Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") + \
+Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml") - \
 Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - \
 # dataset should be changed by InputExcel
 Dir.glob(PATH_OF_REPOSITORIES + "/etsource/dataset/**/*") - \
@@ -81,53 +86,11 @@ for file in files
   replacements.each do |old_key, new_key|
     raise "can't be nil! (found in #{file_name}: #{old_key} & #{new_key})" if (old_key.nil? || new_key.nil?)
     
-    # straightforward renaming (non-composite names)
-    if content =~ /\b#{old_key}\b/ then
+    # straightforward renaming all occurences
+    if content =~ /#{old_key}/ then
       # Only replace if REPLACEMENT_FLAG == 1
       if REPLACEMENT_FLAG == 1 then
-        content = content.gsub(/\b#{old_key}\b/, new_key)
-        File.open file, "w" do |update|
-          update.puts content
-        end
-        puts "I changed #{old_key} to #{new_key} keys in #{file}"
-      else
-        puts "Script can change #{old_key} to #{new_key} keys in #{file}" 
-      end
-    end
-    
-    # composite names with _AND
-    if content =~ /#{old_key}_AND/ then
-      # Only replace if REPLACEMENT_FLAG == 1
-      if REPLACEMENT_FLAG == 1 then
-        content = content.gsub(/#{old_key}_AND/, new_key + "_AND")
-        File.open file, "w" do |update|
-          update.puts content
-        end
-        puts "I changed #{old_key} to #{new_key} keys in #{file}"
-      else
-        puts "Script can change #{old_key} to #{new_key} keys in #{file}" 
-      end
-    end
-    
-    # composite names with AND_
-    if content =~ /AND_#{old_key}/ then
-      # Only replace if REPLACEMENT_FLAG == 1
-      if REPLACEMENT_FLAG == 1 then
-        content = content.gsub(/AND_#{old_key}/, "AND_" + new_key)
-        File.open file, "w" do |update|
-          update.puts content
-        end
-        puts "I changed #{old_key} to #{new_key} keys in #{file}"
-      else
-        puts "Script can change #{old_key} to #{new_key} keys in #{file}" 
-      end
-    end
-    
-    # composite names with share_of_
-    if content =~ /share_of_#{old_key}/ then
-      # Only replace if REPLACEMENT_FLAG == 1
-      if REPLACEMENT_FLAG == 1 then
-       content = content.gsub(/share_of_#{old_key}\b/, "share_of_" + new_key)
+        content = content.gsub(/#{old_key}/, new_key)
         File.open file, "w" do |update|
           update.puts content
         end
