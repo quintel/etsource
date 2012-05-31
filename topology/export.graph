@@ -646,7 +646,6 @@ energy_distribution_crude_oil-(crude_oil)
 
 energy_distribution_bio_residues_for_firing;	energy_distribution_bio_residues_for_firing;	energy;	undefined;distribution primary carriers;	
 energy_distribution_bio_residues_for_firing-(bio_residues_for_firing) -- s --> (bio_residues_for_firing)-energy_production_bio_residues_for_firing
-energy_distribution_bio_residues_for_firing-(bio_residues_for_firing) -- f --> (bio_residues_for_firing)-energy_import_bio_residues_for_firing
 (wood_pellets)-energy_distribution_bio_residues_for_firing
 energy_distribution_bio_residues_for_firing-(bio_residues_for_firing)
 
@@ -759,10 +758,6 @@ energy_import_crude_oil-(crude_oil)
 energy_import_natural_gas;	energy_import_natural_gas;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 energy_import_natural_gas-(natural_gas)
 (natural_gas)-energy_import_natural_gas
-
-energy_import_bio_residues_for_firing;	energy_import_bio_residues_for_firing;	energy;	undefined;;	primary_energy_demand,energy_import_export,bio_footprint_calculation,energy_import
-energy_import_bio_residues_for_firing-(bio_residues_for_firing)
-(bio_residues_for_firing)-energy_import_bio_residues_for_firing
 
 energy_import_diesel;	energy_import_diesel;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
 energy_import_diesel-(diesel)
@@ -1271,7 +1266,6 @@ energy_mixer_for_gas_power_fuel-(network_gas) -- s --> (network_gas)-energy_nati
 energy_mixer_for_gas_power_fuel-(bio_oil) -- s --> (bio_oil)-energy_distribution_bio_oil
 energy_mixer_for_gas_power_fuel-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
 energy_mixer_for_gas_power_fuel-(bio_oil)
-energy_mixer_for_gas_power_fuel-(biogas)
 energy_mixer_for_gas_power_fuel-(crude_oil)
 energy_mixer_for_gas_power_fuel-(network_gas)
 (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
@@ -2130,11 +2124,6 @@ energy_export_network_gas;	energy_export_network_gas;	energy;	undefined;;	energy
 energy_export_network_gas-(network_gas) -- i --> (network_gas)-energy_national_gas_network_natural_gas
 energy_export_network_gas-(network_gas)
 (network_gas)-energy_export_network_gas
-
-energy_export_bio_residues_for_firing;	energy_export_bio_residues_for_firing;	energy;	undefined;;	energy_export
-energy_export_bio_residues_for_firing-(bio_residues_for_firing) -- i --> (bio_residues_for_firing)-energy_distribution_bio_residues_for_firing
-energy_export_bio_residues_for_firing-(bio_residues_for_firing)
-(bio_residues_for_firing)-energy_export_bio_residues_for_firing
 
 energy_export_diesel;	energy_export_diesel;	energy;	undefined;;	energy_export
 energy_export_diesel-(diesel) -- i --> (diesel)-energy_distribution_diesel
