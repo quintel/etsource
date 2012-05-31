@@ -1954,11 +1954,11 @@ energy_distribution_gasoline-(gasoline) -- f --> (gasoline)-energy_import_gasoli
 
 :energy_distribution_kerosene:
   :co2_free: 0.0
-energy_distribution_kerosene-(kerosine): {conversion: 1.0}
-(kerosine)-energy_distribution_kerosene: {conversion: 1.0}
+energy_distribution_kerosene-(kerosene): {conversion: 1.0}
+(kerosene)-energy_distribution_kerosene: {conversion: 1.0}
 (loss)-energy_distribution_kerosene: {conversion: 0.0}
-energy_distribution_kerosene-(kerosine) -- s --> (kerosine)-energy_production_kerosene: {share: 1.0}
-energy_distribution_kerosene-(kerosine) -- f --> (kerosine)-energy_import_kerosene: {share: }
+energy_distribution_kerosene-(kerosene) -- s --> (kerosene)-energy_production_kerosene: {share: 1.0}
+energy_distribution_kerosene-(kerosene) -- f --> (kerosene)-energy_import_kerosene: {share: }
 
 :energy_distribution_biodiesel:
   :co2_free: 0.0
@@ -2157,7 +2157,7 @@ energy_production_gasoline-(crude_oil) -- s --> (crude_oil)-energy_distribution_
   :co2_free: 0.0
 energy_production_kerosene-(crude_oil): {conversion: 1.0}
 (loss)-energy_production_kerosene: {conversion: 0.0}
-(kerosine)-energy_production_kerosene: {conversion: 1.0}
+(kerosene)-energy_production_kerosene: {conversion: 1.0}
 energy_production_kerosene-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_production_biodiesel:
@@ -2211,8 +2211,8 @@ energy_import_gasoline-(gasoline): {conversion: 1.0}
 
 :energy_import_kerosene:
   :co2_free: 0.0
-energy_import_kerosene-(kerosine): {conversion: 1.0}
-(kerosine)-energy_import_kerosene: {conversion: 1.0}
+energy_import_kerosene-(kerosene): {conversion: 1.0}
+(kerosene)-energy_import_kerosene: {conversion: 1.0}
 
 :energy_import_biodiesel:
   :co2_free: 0.0
@@ -5808,9 +5808,9 @@ energy_export_gasoline-(gasoline) -- i --> (gasoline)-energy_distribution_gasoli
 
 :energy_export_kerosene:
   :co2_free: 0.0
-energy_export_kerosene-(kerosine): {conversion: 1.0}
-(kerosine)-energy_export_kerosene: {conversion: 1.0}
-energy_export_kerosene-(kerosine) -- i --> (kerosine)-energy_distribution_kerosene: {share: }
+energy_export_kerosene-(kerosene): {conversion: 1.0}
+(kerosene)-energy_export_kerosene: {conversion: 1.0}
+energy_export_kerosene-(kerosene) -- i --> (kerosene)-energy_distribution_kerosene: {share: }
 
 :energy_export_lpg:
   :co2_free: 0.0
@@ -6200,9 +6200,9 @@ transport_final_demand_gasoline-(gasoline) -- s --> (gasoline)-energy_distributi
 :transport_final_demand_kerosene:
   :co2_free: 0.0
   :demand_expected_value: 348234512.553147
-transport_final_demand_kerosene-(kerosine): {conversion: 1.0}
-(kerosine)-transport_final_demand_kerosene: {conversion: 1.0}
-transport_final_demand_kerosene-(kerosine) -- s --> (kerosine)-energy_distribution_kerosene: {share: 1.0}
+transport_final_demand_kerosene-(kerosene): {conversion: 1.0}
+(kerosene)-transport_final_demand_kerosene: {conversion: 1.0}
+transport_final_demand_kerosene-(kerosene) -- s --> (kerosene)-energy_distribution_kerosene: {share: 1.0}
 
 :transport_final_demand_diesel:
   :co2_free: 0.0
@@ -6373,9 +6373,9 @@ transport_final_demand_for_aviation_gasoline-(gasoline) -- s --> (gasoline)-tran
 :transport_final_demand_for_aviation_kerosene:
   :co2_free: 0.0
   :demand_expected_value: 348234512.553147
-transport_final_demand_for_aviation_kerosene-(kerosine): {conversion: 1.0}
-(kerosine)-transport_final_demand_for_aviation_kerosene: {conversion: 1.0}
-transport_final_demand_for_aviation_kerosene-(kerosine) -- s --> (kerosine)-transport_final_demand_kerosene: {share: 1.0}
+transport_final_demand_for_aviation_kerosene-(kerosene): {conversion: 1.0}
+(kerosene)-transport_final_demand_for_aviation_kerosene: {conversion: 1.0}
+transport_final_demand_for_aviation_kerosene-(kerosene) -- s --> (kerosene)-transport_final_demand_kerosene: {share: 1.0}
 
 :transport_road_mixer_gasoline:
   :co2_free: 0.0
@@ -6428,9 +6428,9 @@ transport_final_demand_for_aviation_biodiesel-(bio_ethanol) -- s --> (bio_ethano
 :transport_plane_using_kerosene:
   :co2_free: 0.0
   :demand_expected_value: 348234512.553147
-transport_plane_using_kerosene-(kerosine): {conversion: 1.0}
+transport_plane_using_kerosene-(kerosene): {conversion: 1.0}
 (not_defined)-transport_plane_using_kerosene: {conversion: 1.0}
-transport_plane_using_kerosene-(kerosine) -- s --> (kerosine)-transport_final_demand_for_aviation_kerosene: {share: 1.0}
+transport_plane_using_kerosene-(kerosene) -- s --> (kerosene)-transport_final_demand_for_aviation_kerosene: {share: 1.0}
 
 :transport_ship_using_heavy_fuel_oil:
   :co2_free: 0.0

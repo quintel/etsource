@@ -571,10 +571,10 @@ energy_distribution_gasoline-(gasoline)
 (loss)-energy_distribution_gasoline
 
 energy_distribution_kerosene;	energy_distribution_kerosene;	energy;	undefined;distribution;	
-energy_distribution_kerosene-(kerosine) -- s --> (kerosine)-energy_production_kerosene
-energy_distribution_kerosene-(kerosine) -- f --> (kerosine)-energy_import_kerosene
-energy_distribution_kerosene-(kerosine)
-(kerosine)-energy_distribution_kerosene
+energy_distribution_kerosene-(kerosene) -- s --> (kerosene)-energy_production_kerosene
+energy_distribution_kerosene-(kerosene) -- f --> (kerosene)-energy_import_kerosene
+energy_distribution_kerosene-(kerosene)
+(kerosene)-energy_distribution_kerosene
 (loss)-energy_distribution_kerosene
 
 energy_distribution_biodiesel;	energy_distribution_biodiesel;	energy;	undefined;distribution;	bio_footprint_calculation
@@ -728,7 +728,7 @@ energy_production_kerosene;	energy_production_kerosene;	energy;	undefined;refine
 energy_production_kerosene-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
 energy_production_kerosene-(crude_oil)
 (loss)-energy_production_kerosene
-(kerosine)-energy_production_kerosene
+(kerosene)-energy_production_kerosene
 
 energy_production_biodiesel;	energy_production_biodiesel;	energy;	energetic;;	primary_energy_demand,mining_and_extraction
 energy_production_biodiesel-(biodiesel)
@@ -768,8 +768,8 @@ energy_import_gasoline-(gasoline)
 (gasoline)-energy_import_gasoline
 
 energy_import_kerosene;	energy_import_kerosene;	energy;	undefined;;	primary_energy_demand,energy_import_export,energy_import
-energy_import_kerosene-(kerosine)
-(kerosine)-energy_import_kerosene
+energy_import_kerosene-(kerosene)
+(kerosene)-energy_import_kerosene
 
 energy_import_biodiesel;	energy_import_biodiesel;	energy;	energetic;;	primary_energy_demand,energy_import_export,energy_import
 energy_import_biodiesel-(biodiesel)
@@ -2136,9 +2136,9 @@ energy_export_gasoline-(gasoline)
 (gasoline)-energy_export_gasoline
 
 energy_export_kerosene;	energy_export_kerosene;	energy;	undefined;;	energy_export
-energy_export_kerosene-(kerosine) -- i --> (kerosine)-energy_distribution_kerosene
-energy_export_kerosene-(kerosine)
-(kerosine)-energy_export_kerosene
+energy_export_kerosene-(kerosene) -- i --> (kerosene)-energy_distribution_kerosene
+energy_export_kerosene-(kerosene)
+(kerosene)-energy_export_kerosene
 
 energy_export_lpg;	energy_export_lpg;	energy;	undefined;;	energy_export
 energy_export_lpg-(lpg) -- i --> (lpg)-energy_distribution_lpg
@@ -2383,9 +2383,9 @@ transport_final_demand_gasoline-(gasoline)
 (gasoline)-transport_final_demand_gasoline
 
 transport_final_demand_kerosene;	transport_final_demand_kerosene;	transport;	energetic;final consumption;	final_demand_cbs
-transport_final_demand_kerosene-(kerosine) -- s --> (kerosine)-energy_distribution_kerosene
-transport_final_demand_kerosene-(kerosine)
-(kerosine)-transport_final_demand_kerosene
+transport_final_demand_kerosene-(kerosene) -- s --> (kerosene)-energy_distribution_kerosene
+transport_final_demand_kerosene-(kerosene)
+(kerosene)-transport_final_demand_kerosene
 
 transport_final_demand_diesel;	transport_final_demand_diesel;	transport;	energetic;final consumption;	final_demand_cbs
 transport_final_demand_diesel-(diesel) -- s --> (diesel)-energy_distribution_diesel
@@ -2498,9 +2498,9 @@ transport_final_demand_for_aviation_gasoline-(gasoline)
 (gasoline)-transport_final_demand_for_aviation_gasoline
 
 transport_final_demand_for_aviation_kerosene;	transport_final_demand_for_aviation_kerosene;	transport;	energetic;application;	
-transport_final_demand_for_aviation_kerosene-(kerosine) -- s --> (kerosine)-transport_final_demand_kerosene
-transport_final_demand_for_aviation_kerosene-(kerosine)
-(kerosine)-transport_final_demand_for_aviation_kerosene
+transport_final_demand_for_aviation_kerosene-(kerosene) -- s --> (kerosene)-transport_final_demand_kerosene
+transport_final_demand_for_aviation_kerosene-(kerosene)
+(kerosene)-transport_final_demand_for_aviation_kerosene
 
 transport_road_mixer_gasoline;	transport_road_mixer_gasoline;	transport;	energetic;local mixer;	
 transport_road_mixer_gasoline-(gasoline) -- s --> (gasoline)-transport_final_demand_for_road_gasoline
@@ -2539,8 +2539,8 @@ transport_final_demand_for_aviation_biodiesel-(bio_ethanol)
 (bio_ethanol)-transport_final_demand_for_aviation_biodiesel
 
 transport_plane_using_kerosene;	transport_plane_using_kerosene;	transport;	energetic;technologies;	
-transport_plane_using_kerosene-(kerosine) -- s --> (kerosine)-transport_final_demand_for_aviation_kerosene
-transport_plane_using_kerosene-(kerosine)
+transport_plane_using_kerosene-(kerosene) -- s --> (kerosene)-transport_final_demand_for_aviation_kerosene
+transport_plane_using_kerosene-(kerosene)
 (not_defined)-transport_plane_using_kerosene
 
 transport_ship_using_heavy_fuel_oil;	transport_ship_using_heavy_fuel_oil;	transport;	energetic;technologies;	
