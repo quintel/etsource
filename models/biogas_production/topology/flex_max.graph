@@ -2,7 +2,7 @@ a_biogas_chp;
 b_greengas_distribution;
 c_biogas_upgrade;
 d_biogas_distribution;
-e_biogas_distribution;
+e_biogas_production;
 f_manure_production;
 g_corn_production;
 h_greengas_import;
@@ -12,6 +12,6 @@ b_greengas_distribution-(biogas) -- f --> (biogas)-c_biogas_upgrade
 b_greengas_distribution-(biogas) -- f --> (biogas)-h_greengas_import
 # what type is following link?
 c_biogas_upgrade-(biogas) -- f --> (biogas)-d_biogas_distribution
-d_biogas_distribution-(biogas) -- s --> (biogas)-e_biogas_distribution
-e_biogas_distribution-(biogas) -- s --> (biogas)-f_manure_production
-e_biogas_distribution-(biogas) -- s --> (biogas)-g_corn_production
+d_biogas_distribution-(biogas) -- s --> (biogas)-e_biogas_production
+e_biogas_production-(biogas) -- s --> (biogas)-f_manure_production
+e_biogas_production-(biogas) -- s --> (biogas)-g_corn_production

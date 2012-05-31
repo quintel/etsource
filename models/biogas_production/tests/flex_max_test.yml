@@ -2,7 +2,7 @@
 # b_greengas_distribution;
 # c_biogas_upgrade;
 # d_biogas_distribution;
-# e_biogas_distribution;
+# e_biogas_production;
 # f_manure_production;
 # g_corn_production;
 # h_greengas_import;
@@ -12,4 +12,17 @@ settings:
   
 tests: 
   # Check if attributes are assigned properly
-  biogas_chp:  {query: 'V(a_biogas_chp, demand)', present: 2000, future: 2000}
+  biogas_chp:    {query: 'V(a_biogas_chp, demand)', present: 2000, future: 2000}
+  # RULE: max_demand #1
+  # max_demand_recursive returns max_demand of a converter if it is defined.
+  max_demand_1a: {query: 'V(g_corn_production, max_demand_recursive)',   present:  500}
+  max_demand_1b: {query: 'V(f_manure_production, max_demand_recursive)', present: 6000}# 
+
+  # RULE: max_demand #3
+  # this should work in a recursive way, d --> e --> f/g
+  max_demand_3:  {query: 'V(d_biogas_distribution, max_demand_recursive)', present: 6500}
+  
+  # RULE: max_demand #2
+  # if no max_demand defined, take the SUM of max_demands of all the links to the right (??)
+  max_demand_2:  {query: 'V(e_biogas_production, max_demand_recursive)',   present: 6500}
+  
