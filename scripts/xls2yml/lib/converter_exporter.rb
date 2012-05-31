@@ -224,7 +224,7 @@ module ETE
           max_demand = converter_attributes[child][:max_demand]
           s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: "
           s += "{share: #{share}"
-          s += ", max_demand: #{max_demand}" if max_demand
+          s += ", max_demand: " if max_demand
           s += ", priority: #{priority}" if priority
           s +="}"
           out[parent] << s
