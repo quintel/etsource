@@ -1,0 +1,18 @@
+# a_biogas_chp;
+# b_greengas_distribution;
+# c_biogas_upgrade;
+# d_biogas_distribution;
+# e_biogas_distribution;
+# f_manure_production;
+# g_corn_production;
+# h_greengas_import;
+
+# This tests updates the future demand from 700 to 2000.
+# Present tests that supply_local is filled to it's potential (800) and doesnt overflow to others
+# Future tests that demand is overflown to lower priority max_potential converters.
+settings:
+  area_code: nl
+  
+tests: 
+  # Check if attributes are assigned properly
+  biogas_chp:  {query: 'V(a_biogas_chp, demand)', present: 2000, future: 2000}
