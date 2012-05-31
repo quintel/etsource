@@ -1,0 +1,55 @@
+#
+#   req_demand --- s ---> supply_distribution ------ f*---> 1: supply_local
+#                                              \---- f ---> 2: supply_growth, has a max demand of 300
+#                                               \----f ---> supply_import
+#                                                 
+#                                                     * = link has a max demand of 400, priority 1
+#
+
+
+#  Example of calculation outcome:
+#
+#      800     --- s --->       800          ------ f --->     400
+#                                             \---- f --->     300
+#                                              \----f --->     100
+#                                                 
+
+area:
+  area_data:
+carriers:
+  electricity: {}
+
+graph:
+  a_biogas_chp:             {demand: 2000}
+  b_greengas_distribution:  {}
+  c_biogas_upgrade:         {}
+  d_biogas_distribution:    {}
+  e_biogas_distribution:    {}
+  f_manure_production:      {max_demand: 6000}
+  g_corn_production:        {max_demand:  500}
+  h_greengas_import:        {}
+
+  # update the slots
+  a_biogas_chp-(biogas):            {conversion: 1.0}
+  b_greengas_distribution-(biogas): {conversion: 1.0}
+  c_biogas_upgrade-(biogas):        {conversion: 1.0}
+  (biogas)-c_biogas_upgrade:        {conversion: 1.0}
+  d_biogas_distribution-(biogas):   {conversion: 1.0}
+  (biogas)-d_biogas_distribution:   {conversion: 1.0}
+  e_biogas_distribution-(biogas):   {conversion: 1.0}
+  (biogas)-e_biogas_distribution:   {conversion: 1.0}
+  (biogas)-f_manure_production:     {conversion: 1.0}
+  (biogas)-g_corn_production:       {conversion: 1.0}
+  (biogas)-h_greengas_import:       {conversion: 1.0}
+  
+  a_biogas_chp-(biogas)            -- s --> (biogas)-d_biogas_distribution: {share: 1.0}
+  b_greengas_distribution-(biogas) -- f --> (biogas)-c_biogas_upgrade:      {}
+  b_greengas_distribution-(biogas) -- f --> (biogas)-h_greengas_import:     {}
+  # what type is following link?
+  c_biogas_upgrade-(biogas)        -- f --> (biogas)-d_biogas_distribution: {}
+  d_biogas_distribution-(biogas)   -- s --> (biogas)-e_biogas_distribution: {}
+  e_biogas_distribution-(biogas)   -- s --> (biogas)-f_manure_production:   {}
+  e_biogas_distribution-(biogas)   -- s --> (biogas)-g_corn_production:     {}
+
+
+
