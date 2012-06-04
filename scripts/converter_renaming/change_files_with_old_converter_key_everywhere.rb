@@ -78,7 +78,7 @@ for file in files
   next unless File.file?(file)
   content = File.read(file)
 
-  puts "processing #{file}"
+  #puts "processing #{file}"
   # Actual replacement
   replacements.each do |old_key, new_key|
     raise "can't be nil! (found in #{file_name}: #{old_key} & #{new_key})" if (old_key.nil? || new_key.nil?)
@@ -86,7 +86,7 @@ for file in files
     # straightforward renaming all occurences
     if content.include? old_key
 
-      puts "content found!"
+      #puts "content found!"
       # Only replace if REPLACEMENT_FLAG == 1
       if REPLACEMENT_FLAG == 1
         content = content.gsub(old_key, new_key)

@@ -21,6 +21,8 @@ replacements = {}
 CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
   #this is how the columns of the CSV are ordered
   id, old_key, new_key = row
+  old_key.strip!
+  new_key.strip!
   replacements[old_key] = new_key unless old_key == new_key
 end
 
@@ -77,19 +79,17 @@ end
 
 
 
-
-#Then we define which files we will be going through
-notInputExcelfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") + \
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") + \
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") + \
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml")
-
 #Then we define which files we will be going through
 etsourcefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") 
 
+notInputExcelfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") + \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml")
+    
 # Do the same for dataset files 
 datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") + \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") - \
