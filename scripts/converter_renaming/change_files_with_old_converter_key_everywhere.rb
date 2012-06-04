@@ -23,35 +23,39 @@ CSV_WITH_REPLACEMENTS = ARGV[0]
 # If the second argument is '--replace', go to replacement mode
 if ARGV[1]==='--replace' then
   REPLACEMENT_FLAG = 1
-else 
+else
   REPLACEMENT_FLAG = 0
 end
 
 PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
-  
+
+
+puts PATH_OF_REPOSITORIES
+
 # Define what we want to replace with what
 replacements = {}
 CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
   #this is how the columns of the CSV are ordered
   id, old_key, new_key = row
+  old_key.strip!
+  new_key.strip!
   replacements[old_key] = new_key unless old_key == new_key
 end
 
 # Define which files we will be going through
-files =\
-# etsource
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") + \
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") + \
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") + \
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") + \
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml") - \
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - \
-# dataset should be changed by InputExcel
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/dataset/**/*") - \
-Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") + \
+files =
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/presets/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/models/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/inputs/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/gqueries/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml")
+
 # etengine
 Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - \
-# local 
+# local
 Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - \
 # unimportant
 Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*") - \
@@ -63,7 +67,7 @@ Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*")
 #etmodel must be done with separate migration
 
 # Clean up file list with hidden files (that start with .) or files that are actually directories
-files.delete_if do |file_name| 
+files.delete_if do |file_name|
   file_name[0] == "." || File.directory?(file_name) || File.ftype(file_name) != "file"
   end
 
@@ -73,36 +77,31 @@ require 'iconv' unless String.method_defined?(:encode)
 for file in files
   next unless File.file?(file)
   content = File.read(file)
-  
-  # Gracefully deal with encoding
-  if String.method_defined?(:encode)
-    content.encode!('UTF-8', 'UTF-8', :invalid => :replace)
-  else
-    ic = Iconv.new('UTF-8', 'UTF-8//IGNORE')
-    content = ic.iconv(content)
-  end
-  
+
+  puts "processing #{file}"
   # Actual replacement
   replacements.each do |old_key, new_key|
     raise "can't be nil! (found in #{file_name}: #{old_key} & #{new_key})" if (old_key.nil? || new_key.nil?)
-    
+
     # straightforward renaming all occurences
-    if content =~ /#{old_key}/ then
+    if content.include? old_key
+
+      puts "content found!"
       # Only replace if REPLACEMENT_FLAG == 1
-      if REPLACEMENT_FLAG == 1 then
-        content = content.gsub(/#{old_key}/, new_key)
+      if REPLACEMENT_FLAG == 1
+        content = content.gsub(old_key, new_key)
         File.open file, "w" do |update|
           update.puts content
         end
         puts "I changed #{old_key} to #{new_key} keys in #{file}"
       else
-        puts "Script can change #{old_key} to #{new_key} keys in #{file}" 
+        puts "Script can change #{old_key} to #{new_key} keys in #{file}"
       end
-    end      
+    end
   end
 end
 
 # Print to screen a message of how to rename the converters.
 if ARGV.length < 2 then
   puts "\nDefault behavior: finding files only. To replace give '--replace' as second argument"
-end    
+end
