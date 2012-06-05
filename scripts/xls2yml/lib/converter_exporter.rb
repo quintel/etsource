@@ -133,7 +133,7 @@ module ETE
     end
 
     # memoized hash of the converter attributes
-    # 
+    #
     def converter_attributes
       unless @_converter_attributes
         @_converter_attributes = {}
@@ -217,15 +217,17 @@ module ETE
         end
         out[parent] ||= []
         if include_share
-          share = row[:share].nil? ? 'nil' : row[:share].to_f
+          share = row[:share].nil? ? nil : row[:share].to_f
           priority = row[:priority]
           # the max demand attribute is defined in the converter export csv.
           # right side converter
           max_demand = converter_attributes[child][:max_demand]
-          s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: "
-          s += "{share: #{share}"
-          s += ", max_demand: " if max_demand
-          s += ", priority: #{priority}" if priority
+          s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {"
+          attrs = []
+          attrs << "share: #{share}" if share
+          attrs << "max_demand: #{max_demand}" if max_demand
+          attrs << "priority: #{priority}" if priority
+          s += attrs.join(", ")
           s +="}"
           out[parent] << s
         else
@@ -282,7 +284,7 @@ module ETE
         @_uses = {}
         CSV.new(@excel_export.csv_for(:uses)).parse do |row|
           @_uses[row[:id].to_i] = row[:use]
-        end        
+        end
       end
       @_uses
     end
