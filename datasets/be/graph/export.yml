@@ -276,37 +276,6 @@ households_space_heater_electricity-(electricity): {conversion: 1.0}
 (useable_heat)-households_space_heater_electricity: {conversion: 1.0}
 households_space_heater_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
-:households_space_heater_solar_thermal:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-  :technical_lifetime: 20.0
-  :construction_time: 0.0
-  :ccs_investment_per_mw_input: 0.0
-  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
-  :typical_nominal_input_capacity: 0.0014
-  :decommissioning_costs_per_mw_input: 0.0
-  :full_load_hours: 791.666666666667
-  :residual_value_per_mw_input: 0.0
-  :operation_and_maintenance_cost_fixed_per_mw_input: 10500.0
-  :wacc: 0.04
-  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
-  :land_use_per_unit: 0.0
-  :installing_costs_per_mw_input: 0.0
-  :purchase_price_per_mw_input: 825000.0
-  :economic_lifetime: 20.0
-  :part_ets: 0.0
-  :availability: 0.0
-  :variability: 0.0
-  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
-  :part_load_operating_point: 0.0
-  :part_load_efficiency_penalty: 0.0
-  :forecasting_error: 0.0
-  :households_supplied_per_unit: 0.0
-households_space_heater_solar_thermal-(solar_thermal): {conversion: 1.0}
-(loss)-households_space_heater_solar_thermal: {conversion: 0.0}
-(useable_heat)-households_space_heater_solar_thermal: {conversion: 1.0}
-households_space_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_for_space_heating_solar_thermal: {share: 1.0}
-
 :households_space_heater_combined_network_gas:
   :co2_free: 0.0
   :demand_expected_value: 100832294885.732
@@ -5943,13 +5912,6 @@ households_useful_demand_vacuum_cleaner-(not_defined): {conversion: 1.0}
 households_useful_demand_other_appliances-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_other_appliances: {conversion: 1.0}
 
-:households_final_demand_for_space_heating_solar_thermal:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-households_final_demand_for_space_heating_solar_thermal-(solar_thermal): {conversion: 1.0}
-(solar_thermal)-households_final_demand_for_space_heating_solar_thermal: {conversion: 1.0}
-households_final_demand_for_space_heating_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_solar_thermal: {share: 1.0}
-
 :households_final_demand_for_hot_water_solar_thermal:
   :co2_free: 0.0
   :demand_expected_value: 573421680.681242
@@ -6643,7 +6605,7 @@ households_useful_demand_for_hot_water_after_solar_heater-(hot_water) -- s --> (
   :demand_expected_value: 0.0
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat): {conversion: 1.0}
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater: {conversion: 1.0}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_space_heater_solar_thermal: {share: 0.15}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_water_heater_solar_thermal: {share: 0.15}
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater: {share: 0.85}
 
 :households_useful_demand_for_hot_water_for_houses_with_solar_heater:
