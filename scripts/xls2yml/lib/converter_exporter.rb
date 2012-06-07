@@ -206,7 +206,6 @@ module ETE
       CSV.new(@excel_export.csv_for(:links)).parse do |row|
         parent = converters[row[:parent_id].to_i]
         child  = converters[row[:child_id].to_i]
-        raise "Missing converter! Id: #{row[:child_id]}" unless child
         carrier = carriers( row[:carrier_id].to_i )
         link_type = case row[:link_type].to_i
         when 1 then 's'
@@ -214,6 +213,13 @@ module ETE
         when 3 then 'f'
         when 4 then 'c'
         when 5 then 'i'
+        end
+        unless child
+          raise "Error parsing link, missing child converter! " +
+            "parent: #{parent}, " +
+            "child_id: #{row[:child_id]}, " +
+            "carrier: #{carrier}, " +
+            "link_type: #{link_type}"
         end
         out[parent] ||= []
         if include_share
