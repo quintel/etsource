@@ -14,7 +14,7 @@ require 'spec_helper'
 describe "nl" do
   context "without any updates" do
     before :all do
-      load_gql
+      load_scenario
     end
 
     
