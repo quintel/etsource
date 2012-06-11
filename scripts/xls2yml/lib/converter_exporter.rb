@@ -228,10 +228,12 @@ module ETE
           # the max demand attribute is defined in the converter export csv.
           # right side converter
           max_demand = converter_attributes[child][:max_demand]
-          s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: "
-          s += "{share: #{share}"
-          s += ", max_demand: " if max_demand
-          s += ", priority: #{priority}" if priority
+          s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {"
+          attrs = []
+          attrs << "share: #{share}" if share
+          attrs << "max_demand: #{max_demand}" if max_demand
+          attrs << "priority: #{priority}" if priority
+          s += attrs.join(", ")
           s +="}"
           out[parent] << s
         else
