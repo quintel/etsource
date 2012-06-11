@@ -1,5 +1,9 @@
-
 require 'spec_helper'
+
+# UPDATED:
+# The bugs in the inputs were fixed. The problematic before state is in this 
+# commit:
+# https://github.com/dennisschoenmakers/etsource/commit/0795e93fc6b44fe883f186a7b6bed45ca74ff82f
 
 # slider 368 tries to update with a decrease rate the following converter:
 #   buildings_useful_demand_after_motion_detection_daylight_control_light
@@ -68,50 +72,19 @@ describe "households" do
     it "V(households_appliances_other_electricity,demand)" do
       the_future.should be_within(1929781000, some_tolerance)
     end
-    describe "Gives the wrong value for" do
-      it "V(households_appliances_washing_machine_electricity,demand)" do
-        # this gives the WRONG VALUE. it forgets to add the second input.
-        the_future.should be_within(2756830000, some_tolerance)
-      end
-    end
-  end
 
-  # ---- UPDATING THE NEW WAY ---------------------------------------------
-  #
-  context "move sliders using the (new) Gqueries" do
-    before :all do
-      input_368 = Input.new(:lookup_id => 368, :updateable_period => 'future', :query => "UPDATE(V(households_useful_demand_light), preset_demand,     NEG(DIVIDE(USER_INPUT(),V(10.0))))")
-      input_412 = Input.new(:lookup_id => 412, :updateable_period => 'future', :query => "UPDATE(V(households_appliances_other_electricity), preset_demand, NEG(USER_INPUT()))")
-      input_361 = Input.new(:lookup_id => 361, :updateable_period => 'future', :query => "UPDATE(V(households_appliances_washing_machine_electricity), preset_demand, NEG(USER_INPUT()))")
-      input_371 = Input.new(:lookup_id => 371, :updateable_period => 'future', :query => "UPDATE(V(households_appliances_washing_machine_electricity), preset_demand, NEG(DIVIDE(USER_INPUT(),V(2.5))))")
-      
-      load_scenario(area_code: "nl", end_year: 2050, use_fce: false) do
-        move_slider input_368, "50.0%"       # households_behavior_turn_off_the_light
-        move_slider input_412, "50.0%"       # households_efficiency_other
-        move_slider input_361, "50.0%"       # households_efficiency_washing_machine
-        move_slider input_371, "50.0%"       # households_efficiency_low_temperature_washing
-      end
-    end
-
-    it "V(households_final_demand_electricity,demand)" do
-      the_future.should be_within(85_186_047_000, some_tolerance)
-    end
-
-    it "V(households_useful_demand_light,demand)" do
-      the_future.should be_within(804_604_761, some_tolerance)
-    end
-
-    it "V(buildings_useful_demand_after_motion_detection_daylight_control_light,demand)" do
-      the_future.should be_within(12284369344, some_tolerance)
-    end
-
-    it "V(households_appliances_other_electricity,demand)" do
-      the_future.should be_within(1929781000, some_tolerance)
-    end
-
+    # describe "Gives the wrong value for" do
+    #   it "V(households_appliances_washing_machine_electricity,demand)" do
+    #     # this gives the WRONG VALUE. it forgets to add the second input.
+    #     the_future.should be_within(2756830000, some_tolerance)
+    #   end
+    # end
+    
     it "V(households_appliances_washing_machine_electricity,demand)" do
-      the_future.should be_within(2_205_464_000, some_tolerance)
+      # this now gives the correct VALUE
+      the_future.should be_within(2205464000, some_tolerance)
     end
+  
   end
 end
 
