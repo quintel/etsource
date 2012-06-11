@@ -1,6 +1,6 @@
 households_useful_demand_hot_water;	households_useful_demand_hot_water;	households;	energetic;useful consumption;	useful_demand
-households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_solar_thermal
-households_useful_demand_hot_water-(hot_water) -- f --> (hot_water)-households_water_heater_excluding_solar_panel_hot_water
+households_useful_demand_hot_water-(hot_water) -- f --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater
+households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_for_houses_with_solar_heater
 households_useful_demand_hot_water-(hot_water)
 (hot_water)-households_useful_demand_hot_water
 
@@ -13,19 +13,8 @@ households_useful_demand_for_cooling_after_insulation-(cooling)
 (cooling)-households_useful_demand_for_cooling_after_insulation
 
 households_useful_demand_for_space_heating_after_insulation;	households_useful_demand_for_space_heating_after_insulation;	households;	energetic;useful consumption;	useful_demand
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_collective_heatpump_water_water_ts_electricity
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_electricity
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_solar_thermal
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-households_space_heater_combined_network_gas
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_ground_water_electricity
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_wood_pellets
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_coal
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_crude_oil
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_air_water_network_gas
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_add_on_electricity
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_district_heating_steam_hot_water
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_micro_chp_network_gas
-households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_space_heater_network_gas
+households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater
+households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater
 households_useful_demand_for_space_heating_after_insulation-(useable_heat)
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation
 
@@ -95,12 +84,6 @@ households_space_heater_electricity-(electricity) -- s --> (electricity)-househo
 households_space_heater_electricity-(electricity)
 (loss)-households_space_heater_electricity
 (useable_heat)-households_space_heater_electricity
-
-households_space_heater_solar_thermal;	households_space_heater_solar_thermal;	households;	energetic;technologies;	heat_production,decentral_production,cost_traditional_heat,demand_driven
-households_space_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_for_space_heating_solar_thermal
-households_space_heater_solar_thermal-(solar_thermal)
-(loss)-households_space_heater_solar_thermal
-(useable_heat)-households_space_heater_solar_thermal
 
 households_space_heater_combined_network_gas;	households_space_heater_combined_network_gas;	households;	energetic;technologies;	heat_production,decentral_production,cost_traditional_heat,demand_driven
 households_space_heater_combined_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_space_heating_network_gas
@@ -1354,13 +1337,13 @@ households_new_houses_useful_demand_for_heating-(useable_heat) -- s --> (useable
 households_new_houses_useful_demand_for_heating-(useable_heat)
 (useable_heat)-households_new_houses_useful_demand_for_heating
 
-households_space_heater_heatpump_add_on_electricity;	households_space_heater_heatpump_add_on_electricity;	households;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps,demand_driven
+households_space_heater_heatpump_add_on_electricity;	households_space_heater_heatpump_add_on_electricity;	households;	energetic;technologies;	heat_production,network_converters,cost_heat_pumps
 households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
 households_space_heater_heatpump_add_on_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
 households_space_heater_heatpump_add_on_electricity-(electricity)
 households_space_heater_heatpump_add_on_electricity-(ambient_heat)
 (loss)-households_space_heater_heatpump_add_on_electricity
-(useable_heat)-households_space_heater_heatpump_add_on_electricity
+(hot_water)-households_space_heater_heatpump_add_on_electricity
 
 households_collective_chp_network_gas;	households_collective_chp_network_gas;	households;	energetic;local CHPs;	heat_production,network_converters,cost_chps,must_run_electricity_production
 households_collective_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
@@ -2013,19 +1996,19 @@ households_water_heater_fuel_cell_chp_network_gas-(network_gas)
 (electricity)-households_water_heater_fuel_cell_chp_network_gas
 (hot_water)-households_water_heater_fuel_cell_chp_network_gas
 
-households_water_heater_excluding_solar_panel_hot_water;	households_water_heater_excluding_solar_panel_hot_water;	households;	energetic;technology groups;	
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_air_water_electricity
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_resistive_electricity
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_district_heating_steam_hot_water
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_combined_network_gas
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_wood_pellets
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_coal
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_crude_oil
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- f --> (hot_water)-households_water_heater_network_gas
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_micro_chp_network_gas
-households_water_heater_excluding_solar_panel_hot_water-(hot_water) -- s --> (hot_water)-households_water_heater_fuel_cell_chp_network_gas
-households_water_heater_excluding_solar_panel_hot_water-(hot_water)
-(hot_water)-households_water_heater_excluding_solar_panel_hot_water
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on;	households_useful_demand_for_hot_water_after_solar_heater_and_add_on;	households;	energetic;useful consumption;	
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_air_water_electricity
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_resistive_electricity
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_district_heating_steam_hot_water
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_combined_network_gas
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_wood_pellets
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_coal
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_crude_oil
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- f --> (hot_water)-households_water_heater_network_gas
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_micro_chp_network_gas
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_fuel_cell_chp_network_gas
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water)
+(hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on
 
 energy_production_biogas;	energy_production_biogas;	energy;	undefined;;	
 energy_production_biogas-(manure) -- s --> (manure)-energy_distribution_manure
@@ -2239,11 +2222,6 @@ households_useful_demand_vacuum_cleaner-(not_defined)
 households_useful_demand_other_appliances;	households_useful_demand_other_appliances;	households;	energetic;useful consumption;	
 households_useful_demand_other_appliances-(not_defined)
 (loss)-households_useful_demand_other_appliances
-
-households_final_demand_for_space_heating_solar_thermal;	households_final_demand_for_space_heating_solar_thermal;	households;	energetic;application;	
-households_final_demand_for_space_heating_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_solar_thermal
-households_final_demand_for_space_heating_solar_thermal-(solar_thermal)
-(solar_thermal)-households_final_demand_for_space_heating_solar_thermal
 
 households_final_demand_for_hot_water_solar_thermal;	households_final_demand_for_hot_water_solar_thermal;	households;	energetic;application;	
 households_final_demand_for_hot_water_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_solar_thermal
@@ -2657,3 +2635,56 @@ buildings_final_demand_solar_thermal;	buildings_final_demand_solar_thermal;	buil
 buildings_final_demand_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-energy_production_solar_thermal
 buildings_final_demand_solar_thermal-(solar_thermal)
 (solar_thermal)-buildings_final_demand_solar_thermal
+
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater;	households_useful_demand_for_space_heating_after_insulation_and_solar_heater;	households;	energetic;useful consumption;	
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater-(useable_heat)
+(useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater
+
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on;	households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on;	households;	energetic;useful consumption;	
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_collective_heatpump_water_water_ts_electricity
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_electricity
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- f --> (useable_heat)-households_space_heater_combined_network_gas
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_ground_water_electricity
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_wood_pellets
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_coal
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_crude_oil
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_air_water_network_gas
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_district_heating_steam_hot_water
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_micro_chp_network_gas
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_network_gas
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat)
+(useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on
+
+households_useful_demand_for_hot_water_after_solar_heater;	households_useful_demand_for_hot_water_after_solar_heater;	households;	energetic;useful consumption;	
+households_useful_demand_for_hot_water_after_solar_heater-(hot_water) -- f --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on
+households_useful_demand_for_hot_water_after_solar_heater-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_for_houses_with_add_on
+households_useful_demand_for_hot_water_after_solar_heater-(hot_water)
+(hot_water)-households_useful_demand_for_hot_water_after_solar_heater
+
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater;	households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater;	households;	energetic;useful consumption;	
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(hot_water) -- s --> (hot_water)-households_water_heater_solar_thermal
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat)
+(useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(hot_water)
+
+households_useful_demand_for_hot_water_for_houses_with_solar_heater;	households_useful_demand_for_hot_water_for_houses_with_solar_heater;	households;	energetic;useful consumption;	
+households_useful_demand_for_hot_water_for_houses_with_solar_heater-(hot_water) -- s --> (hot_water)-households_water_heater_solar_thermal
+households_useful_demand_for_hot_water_for_houses_with_solar_heater-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater
+households_useful_demand_for_hot_water_for_houses_with_solar_heater-(hot_water)
+(hot_water)-households_useful_demand_for_hot_water_for_houses_with_solar_heater
+
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on;	households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on;	households;	energetic;useful consumption;	
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(hot_water) -- s --> (hot_water)-households_space_heater_heatpump_add_on_electricity
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(hot_water)
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat)
+(useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
+
+households_useful_demand_for_hot_water_for_houses_with_add_on;	households_useful_demand_for_hot_water_for_houses_with_add_on;	households;	energetic;useful consumption;	
+households_useful_demand_for_hot_water_for_houses_with_add_on-(hot_water) -- s --> (hot_water)-households_space_heater_heatpump_add_on_electricity
+households_useful_demand_for_hot_water_for_houses_with_add_on-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on
+households_useful_demand_for_hot_water_for_houses_with_add_on-(hot_water)
+(hot_water)-households_useful_demand_for_hot_water_for_houses_with_add_on
