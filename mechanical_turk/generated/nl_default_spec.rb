@@ -7,7 +7,7 @@ describe "untitled" do
   end
 
   after :all do
-    print_comparison('beta') if ENV["LOCALHOST"]
+    print_comparison('localhost') if ENV["LOCALHOST"]
     print_comparison('beta') if ENV["BETA"]
   end
 
