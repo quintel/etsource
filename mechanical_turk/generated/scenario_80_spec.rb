@@ -259,5 +259,89 @@ describe "untitled" do
       the_relative_increase.should be_within(22.4, some_tolerance)
       the_absolute_increase.should be_within(1305.8, some_tolerance)
     end
+      
+    it "number_of_households" do
+      the_present.should be_within(, some_tolerance)
+      the_future.should  be_within(, some_tolerance)
+      the_relative_increase.should be_within(, some_tolerance)
+      the_absolute_increase.should be_within(, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_coal" do
+      the_present.should be_within(4524.173, some_tolerance)
+      the_future.should  be_within(4524.173, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_collective_heatpump_water_water_ts_electricity" do
+      the_present.should be_within(0.0, some_tolerance)
+      the_future.should  be_within(0.0, some_tolerance)
+      the_relative_increase.should be_within(NaN, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_combined_network_gas" do
+      the_present.should be_within(6036756.75, some_tolerance)
+      the_future.should  be_within(2720315.082, some_tolerance)
+      the_relative_increase.should be_within(-54.9, some_tolerance)
+      the_absolute_increase.should be_within(-3316441.7, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_crude_oil" do
+      the_present.should be_within(91331.746, some_tolerance)
+      the_future.should  be_within(91331.746, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_district_heating_steam_hot_water" do
+      the_present.should be_within(100503.531, some_tolerance)
+      the_future.should  be_within(182943.317, some_tolerance)
+      the_relative_increase.should be_within(82.0, some_tolerance)
+      the_absolute_increase.should be_within(82439.8, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_electricity" do
+      the_present.should be_within(129349.292, some_tolerance)
+      the_future.should  be_within(0.0, some_tolerance)
+      the_relative_increase.should be_within(-100.0, some_tolerance)
+      the_absolute_increase.should be_within(-129349.3, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_heatpump_air_water_network_gas" do
+      the_present.should be_within(1.475, some_tolerance)
+      the_future.should  be_within(1.475, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_heatpump_ground_water_electricity" do
+      the_present.should be_within(5504.225, some_tolerance)
+      the_future.should  be_within(1469900.0, some_tolerance)
+      the_relative_increase.should be_within(26604.9, some_tolerance)
+      the_absolute_increase.should be_within(1464395.8, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_micro_chp_network_gas" do
+      the_present.should be_within(0.0, some_tolerance)
+      the_future.should  be_within(0.0, some_tolerance)
+      the_relative_increase.should be_within(NaN, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_network_gas" do
+      the_present.should be_within(670447.195, some_tolerance)
+      the_future.should  be_within(670447.195, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
+      
+    it "number_of_households_space_heater_wood_pellets" do
+      the_present.should be_within(187910.55, some_tolerance)
+      the_future.should  be_within(187910.55, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
+    end
   end
 end
