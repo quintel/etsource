@@ -126,10 +126,10 @@ describe "untitled" do
     end
       
     it "turk_number_of_households" do
-      the_present.should be_within(nil, some_tolerance)
-      the_future.should  be_within(nil, some_tolerance)
-      the_relative_increase.should be_within(nil, some_tolerance)
-      the_absolute_increase.should be_within(nil, some_tolerance)
+      the_present.should be_within(7349500.0, some_tolerance)
+      the_future.should  be_within(7349500.0, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_coal" do
@@ -196,17 +196,17 @@ describe "untitled" do
     end
       
     it "turk_number_of_households_space_heater_network_gas" do
-      the_present.should be_within(nil, some_tolerance)
-      the_future.should  be_within(nil, some_tolerance)
-      the_relative_increase.should be_within(nil, some_tolerance)
-      the_absolute_increase.should be_within(nil, some_tolerance)
+      the_present.should be_within(670447.195, some_tolerance)
+      the_future.should  be_within(670447.195, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_wood_pellets" do
-      the_present.should be_within(nil, some_tolerance)
-      the_future.should  be_within(nil, some_tolerance)
-      the_relative_increase.should be_within(nil, some_tolerance)
-      the_absolute_increase.should be_within(nil, some_tolerance)
+      the_present.should be_within(187910.55, some_tolerance)
+      the_future.should  be_within(187910.55, some_tolerance)
+      the_relative_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(0.0, some_tolerance)
     end
   end
 end
