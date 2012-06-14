@@ -48,7 +48,7 @@ households_water_heater_solar_thermal-(solar_thermal)
 (loss)-households_water_heater_solar_thermal
 (hot_water)-households_water_heater_solar_thermal
 
-households_water_heater_heatpump_air_water_electricity;	households_water_heater_heatpump_air_water_electricity;	households;	energetic;technologies;	heat_production,decentral_production,cost_heat_pumps
+households_water_heater_heatpump_air_water_electricity;	households_water_heater_heatpump_air_water_electricity;	households;	energetic;technologies;	heat_production,decentral_production,cost_heat_pumps,demand_driven
 households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
 households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity
 households_water_heater_heatpump_air_water_electricity-(electricity)
@@ -56,7 +56,7 @@ households_water_heater_heatpump_air_water_electricity-(ambient_heat)
 (loss)-households_water_heater_heatpump_air_water_electricity
 (hot_water)-households_water_heater_heatpump_air_water_electricity
 
-households_water_heater_resistive_electricity;	households_water_heater_resistive_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_traditional_heat
+households_water_heater_resistive_electricity;	households_water_heater_resistive_electricity;	households;	energetic;technologies;	heat_production,decentral_production,network_converters,cost_traditional_heat,demand_driven
 households_water_heater_resistive_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity
 households_water_heater_resistive_electricity-(electricity)
 (loss)-households_water_heater_resistive_electricity
@@ -791,7 +791,7 @@ industry_useful_demand_wood_pellets_non_energetic-(wood_pellets) -- s --> (wood_
 industry_useful_demand_wood_pellets_non_energetic-(wood_pellets)
 (wood_pellets)-industry_useful_demand_wood_pellets_non_energetic
 
-households_water_heater_combined_network_gas;	households_water_heater_combined_network_gas;	households;	energetic;technologies;	heat_production,decentral_production,cost_traditional_heat
+households_water_heater_combined_network_gas;	households_water_heater_combined_network_gas;	households;	energetic;technologies;	heat_production,decentral_production,cost_traditional_heat,demand_driven
 households_water_heater_combined_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas
 households_water_heater_combined_network_gas-(network_gas)
 (loss)-households_water_heater_combined_network_gas
@@ -1170,7 +1170,7 @@ other_burner_network_gas-(network_gas)
 (useable_heat)-other_burner_network_gas
 (loss)-other_burner_network_gas
 
-households_water_heater_wood_pellets;	households_water_heater_wood_pellets;	households;	energetic;technologies;	cost_traditional_heat
+households_water_heater_wood_pellets;	households_water_heater_wood_pellets;	households;	energetic;technologies;	cost_traditional_heat,demand_driven
 households_water_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-households_final_demand_for_hot_water_wood_pellets
 households_water_heater_wood_pellets-(wood_pellets)
 (hot_water)-households_water_heater_wood_pellets
@@ -1263,13 +1263,13 @@ energy_import_algae_diesel;	energy_import_algae_diesel;	energy;	energetic;;	prim
 energy_import_algae_diesel-(algae_diesel)
 (algae_diesel)-energy_import_algae_diesel
 
-households_water_heater_coal;	households_water_heater_coal;	households;	energetic;technologies;	
+households_water_heater_coal;	households_water_heater_coal;	households;	energetic;technologies;	demand_driven
 households_water_heater_coal-(coal) -- s --> (coal)-households_final_demand_for_hot_water_coal
 households_water_heater_coal-(coal)
 (hot_water)-households_water_heater_coal
 (loss)-households_water_heater_coal
 
-households_water_heater_crude_oil;	households_water_heater_crude_oil;	households;	energetic;technologies;	
+households_water_heater_crude_oil;	households_water_heater_crude_oil;	households;	energetic;technologies;	demand_driven
 households_water_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-households_final_demand_for_hot_water_crude_oil
 households_water_heater_crude_oil-(crude_oil)
 (hot_water)-households_water_heater_crude_oil
@@ -1663,13 +1663,13 @@ buildings_cooling_savings_insulation_cooling;	buildings_cooling_savings_insulati
 buildings_cooling_savings_insulation_cooling-(cooling)
 (cooling)-buildings_cooling_savings_insulation_cooling
 
-households_water_heater_network_gas;	households_water_heater_network_gas;	households;	energetic;technologies;	heat_production,cost_traditional_heat
+households_water_heater_network_gas;	households_water_heater_network_gas;	households;	energetic;technologies;	heat_production,cost_traditional_heat,demand_driven
 households_water_heater_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas
 households_water_heater_network_gas-(network_gas)
 (loss)-households_water_heater_network_gas
 (hot_water)-households_water_heater_network_gas
 
-households_water_heater_micro_chp_network_gas;	households_water_heater_micro_chp_network_gas;	households;	energetic;local CHPs;	heat_production,cost_chps
+households_water_heater_micro_chp_network_gas;	households_water_heater_micro_chp_network_gas;	households;	energetic;local CHPs;	heat_production,cost_chps,demand_driven
 households_water_heater_micro_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
 households_water_heater_micro_chp_network_gas-(network_gas) -- f --> (network_gas)-households_final_demand_for_hot_water_network_gas
 households_water_heater_micro_chp_network_gas-(network_gas)
@@ -1988,7 +1988,7 @@ households_space_heater_network_gas-(network_gas)
 (loss)-households_space_heater_network_gas
 (useable_heat)-households_space_heater_network_gas
 
-households_water_heater_fuel_cell_chp_network_gas;	households_water_heater_fuel_cell_chp_network_gas;	households;	energetic;local CHPs;	electricity_production,time_curves,cost_chps,must_run_electricity_production
+households_water_heater_fuel_cell_chp_network_gas;	households_water_heater_fuel_cell_chp_network_gas;	households;	energetic;local CHPs;	electricity_production,time_curves,cost_chps,must_run_electricity_production,demand_driven
 households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
 households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas
 households_water_heater_fuel_cell_chp_network_gas-(network_gas)
