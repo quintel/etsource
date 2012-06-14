@@ -223,7 +223,7 @@ module ETE
         end
         out[parent] ||= []
         if include_share
-          share = row[:share].nil? ? 'nil' : row[:share].to_f
+          share = row[:share].nil? ? nil : row[:share].to_f
           priority = row[:priority]
           # the max demand attribute is defined in the converter export csv.
           # right side converter
