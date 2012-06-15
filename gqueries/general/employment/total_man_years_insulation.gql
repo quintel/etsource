@@ -1,8 +1,14 @@
 # The total man-years spent in NL on insulation.
+# Chael: "MAN_YEAR_PER_MJ_INSULATION_PER_YEAR" should be placed in Area data, not in
+# https://github.com/dennisschoenmakers/etengine/blob/master/config/initializers/constants.rb
 
 - unit = man_years
 
 PRODUCT(
-	PRODUCT(V(households_old_houses_heating_savings_from_insulation,demand), MAN_YEAR_PER_MJ_INSULATION_PER_YEAR),
+  SUM(
+	  PRODUCT(V(households_old_houses_heating_savings_from_insulation,demand), MAN_YEAR_PER_MJ_INSULATION_PER_YEAR),
+	  PRODUCT(V(households_new_houses_heating_savings_from_insulation,demand), MAN_YEAR_PER_MJ_INSULATION_PER_YEAR),
+	  PRODUCT(V(buildings_heating_savings_from_insulation_useable_heat,demand), MAN_YEAR_PER_MJ_INSULATION_PER_YEAR)
+	  ),
 	AREA(economic_multiplier)
 )
