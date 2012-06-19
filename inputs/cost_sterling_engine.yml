@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 594
 key: cost_sterling_engine
-keys: households_space_heater_micro_chp_network_gas
+keys: households_space_heater_micro_chp_network_gas_AND_households_water_heater_micro_chp_network_gas
 label: 
 label_query: 
 max_value: 500.0
@@ -12,7 +12,11 @@ max_value_gql:
 min_value: -100.0
 min_value_gql: 
 name: cost_sterling_engine
-query: UPDATE(V(households_space_heater_micro_chp_network_gas), purchase_price_per_mw_input, USER_INPUT())
+query: |-
+  EACH(
+    UPDATE(V(households_space_heater_micro_chp_network_gas), purchase_price_per_mw_input, USER_INPUT()),
+    UPDATE(V(households_water_heater_micro_chp_network_gas), purchase_price_per_mw_input, USER_INPUT())
+    )
 share_group: ""
 start_value: 0.0
 start_value_gql: 
