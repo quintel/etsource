@@ -1,4 +1,4 @@
---- 
+---
 attr_name: number_of_units
 comments: ""
 factor: 1.0
@@ -6,11 +6,11 @@ id: 265
 key: number_of_wind_offshore
 keys: energy_power_wind_turbine_offshore
 label: ""
-label_query: 
+label_query:
 max_value: 300.0
 max_value_gql: present:DIVIDE(AREA(offshore_suitable_for_wind),V(energy_power_wind_turbine_offshore, land_use_per_unit))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Offshore
 query: |-
   EACH(
@@ -18,9 +18,10 @@ query: |-
               UPDATE(OUTPUT_LINKS(V(energy_power_wind_turbine_offshore),constant), share, V(energy_power_wind_turbine_offshore, production_based_on_number_of_units)),
             )
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(energy_power_wind_turbine_offshore,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:
+dependent_on: has_coastline

@@ -1,22 +1,23 @@
---- 
+---
 attr_name: production_in_mw
-comments: 
+comments:
 factor: 1.0
 id: 557
 key: mw_of_electricity_lignite_chp
 keys: energy_chp_ultra_supercritical_lignite
 label: ""
-label_query: 
+label_query:
 max_value: 300.0
 max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_chp_ultra_supercritical_lignite,full_load_seconds))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Lignite CHP
 query: UPDATE(OUTPUT_LINKS(energy_chp_ultra_supercritical_lignite,constant), share, PRODUCT(V(energy_chp_ultra_supercritical_lignite), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(energy_chp_ultra_supercritical_lignite,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:
+dependent_on: has_lignite
