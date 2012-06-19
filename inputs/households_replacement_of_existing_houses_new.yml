@@ -1,0 +1,44 @@
+# THIS IS THE new slider for households_replacement_of_existing_houses with id: 1
+# It replaces the crazy custom code in etengine with a GQL UPDATE statement. As
+# you can see I defined a few variables inside that statement, to simplify matters.
+# The UPDATE() statement updates 3 different objects. 
+--- 
+attr_name: 
+factor: 100.0
+id: 901
+key: households_replacement_of_existing_houses_new
+keys: households_old_houses_useful_demand_for_heating_AND_households_new_houses_useful_demand_for_heating
+label: ""
+label_query: 
+max_value: 5.0
+max_value_gql: 
+min_value: 0.0
+min_value_gql: 
+name: Replacement of existing houses
+query: |-
+  decrease_factor       = ((1.0 - USER_INPUT()/100) ** scope.scenario.years);
+  old_houses_demand     = V(households_old_houses_useful_demand_for_heating, preset_demand);
+  old_houses_update     = old_houses_demand * decrease_factor;
+  new_houses_demand     = V(households_new_houses_useful_demand_for_heating, preset_demand);
+  demand_per_old_house  =  old_houses_demand / ((1 - AREA(percentage_of_new_houses)/100.0) * AREA(number_households));
+  households_to_replace = (old_houses_demand - old_houses_update) / demand_per_old_house;
+  households_existing   = AREA(number_households) - households_to_replace;
+  update_value          = SUM(
+    new_houses_demand,
+    PRODUCT(
+      (new_houses_demand / (AREA(percentage_of_new_houses)/100.0 * AREA(number_households))),
+      households_to_replace)
+  );
+  
+  EACH(
+    UPDATE(AREA(), number_of_existing_households, households_existing),
+    UPDATE(L(households_old_houses_useful_demand_for_heating), preset_demand, old_houses_update),
+    UPDATE(L(households_new_houses_useful_demand_for_heating), preset_demand, update_value)
+  )
+share_group: ""
+start_value: 0.0
+start_value_gql: 
+unit: "%"
+update_type: converters
+updateable_period: future
+v1_legacy_unit: 
