@@ -234,115 +234,115 @@ describe "untitled" do
   describe "gqueries" do
       
     it "dashboard_bio_footprint" do
-      the_present.should be_within(0.281, some_tolerance)
-      the_future.should  be_within(0.863, some_tolerance)
-      the_relative_increase.should be_within(207.3, some_tolerance)
+      the_present.should be_within(0.309, some_tolerance)
+      the_future.should  be_within(0.891, some_tolerance)
+      the_relative_increase.should be_within(188.2, some_tolerance)
       the_absolute_increase.should be_within(0.6, some_tolerance)
     end
       
     it "dashboard_employment" do
-      the_present.should be_within(28439.961, some_tolerance)
-      the_future.should  be_within(31416.854, some_tolerance)
-      the_relative_increase.should be_within(10.5, some_tolerance)
-      the_absolute_increase.should be_within(2976.9, some_tolerance)
+      the_present.should be_within(29409.913, some_tolerance)
+      the_future.should  be_within(33730.276, some_tolerance)
+      the_relative_increase.should be_within(14.7, some_tolerance)
+      the_absolute_increase.should be_within(4320.4, some_tolerance)
     end
       
     it "dashboard_energy_demand_primary_of_final" do
-      the_present.should be_within(3459160381069.281, some_tolerance)
-      the_future.should  be_within(3511942056820.115, some_tolerance)
+      the_present.should be_within(3461730879704.038, some_tolerance)
+      the_future.should  be_within(3513886720921.614, some_tolerance)
       the_relative_increase.should be_within(1.5, some_tolerance)
-      the_absolute_increase.should be_within(52781675750.8, some_tolerance)
+      the_absolute_increase.should be_within(52155841217.6, some_tolerance)
     end
       
     it "dashboard_energy_import_netto" do
-      the_present.should be_within(0.293, some_tolerance)
+      the_present.should be_within(0.294, some_tolerance)
       the_future.should  be_within(0.536, some_tolerance)
-      the_relative_increase.should be_within(82.8, some_tolerance)
+      the_relative_increase.should be_within(82.5, some_tolerance)
       the_absolute_increase.should be_within(0.2, some_tolerance)
     end
       
     it "dashboard_reduction_of_co2_emissions_versus_1990" do
-      the_present.should be_within(0.089, some_tolerance)
-      the_future.should  be_within(-0.049, some_tolerance)
-      the_relative_increase.should be_within(-155.4, some_tolerance)
+      the_present.should be_within(0.084, some_tolerance)
+      the_future.should  be_within(-0.054, some_tolerance)
+      the_relative_increase.should be_within(-164.1, some_tolerance)
       the_absolute_increase.should be_within(-0.1, some_tolerance)
     end
       
     it "dashboard_renewability" do
-      the_present.should be_within(0.031, some_tolerance)
-      the_future.should  be_within(0.114, some_tolerance)
-      the_relative_increase.should be_within(271.6, some_tolerance)
+      the_present.should be_within(0.033, some_tolerance)
+      the_future.should  be_within(0.116, some_tolerance)
+      the_relative_increase.should be_within(255.6, some_tolerance)
       the_absolute_increase.should be_within(0.1, some_tolerance)
     end
       
     it "dashboard_security_of_supply" do
       the_present.should be_within(0.0, some_tolerance)
-      the_future.should  be_within(0.039, some_tolerance)
-      the_relative_increase.should be_within(12896448.9, some_tolerance)
+      the_future.should  be_within(0.045, some_tolerance)
+      the_relative_increase.should be_within(10459407.7, some_tolerance)
       the_absolute_increase.should be_within(0.0, some_tolerance)
     end
       
     it "dashboard_share_of_renewable_electricity" do
-      the_present.should be_within(0.093, some_tolerance)
-      the_future.should  be_within(0.291, some_tolerance)
-      the_relative_increase.should be_within(211.7, some_tolerance)
+      the_present.should be_within(0.098, some_tolerance)
+      the_future.should  be_within(0.295, some_tolerance)
+      the_relative_increase.should be_within(202.1, some_tolerance)
       the_absolute_increase.should be_within(0.2, some_tolerance)
     end
       
     it "dashboard_total_costs" do
-      the_present.should be_within(42.855, some_tolerance)
-      the_future.should  be_within(58.975, some_tolerance)
-      the_relative_increase.should be_within(37.6, some_tolerance)
-      the_absolute_increase.should be_within(16.1, some_tolerance)
+      the_present.should be_within(48.641, some_tolerance)
+      the_future.should  be_within(65.781, some_tolerance)
+      the_relative_increase.should be_within(35.2, some_tolerance)
+      the_absolute_increase.should be_within(17.1, some_tolerance)
     end
       
     it "dashboard_total_costs_assigned_to_agriculture" do
-      the_present.should be_within(1867394895.285, some_tolerance)
-      the_future.should  be_within(2524595393.854, some_tolerance)
-      the_relative_increase.should be_within(35.2, some_tolerance)
-      the_absolute_increase.should be_within(657200498.6, some_tolerance)
+      the_present.should be_within(2118194220.447, some_tolerance)
+      the_future.should  be_within(2816048702.014, some_tolerance)
+      the_relative_increase.should be_within(32.9, some_tolerance)
+      the_absolute_increase.should be_within(697854481.6, some_tolerance)
     end
       
     it "dashboard_total_costs_assigned_to_buildings" do
-      the_present.should be_within(4733155777.388, some_tolerance)
-      the_future.should  be_within(4790583602.377, some_tolerance)
-      the_relative_increase.should be_within(1.2, some_tolerance)
-      the_absolute_increase.should be_within(57427825.0, some_tolerance)
+      the_present.should be_within(5368839358.751, some_tolerance)
+      the_future.should  be_within(5343635169.503, some_tolerance)
+      the_relative_increase.should be_within(-0.5, some_tolerance)
+      the_absolute_increase.should be_within(-25204189.2, some_tolerance)
     end
       
     it "dashboard_total_costs_assigned_to_households" do
-      the_present.should be_within(6890174832.378, some_tolerance)
-      the_future.should  be_within(7597040667.419, some_tolerance)
-      the_relative_increase.should be_within(10.3, some_tolerance)
-      the_absolute_increase.should be_within(706865835.0, some_tolerance)
+      the_present.should be_within(7845889929.558, some_tolerance)
+      the_future.should  be_within(8471584417.769, some_tolerance)
+      the_relative_increase.should be_within(8.0, some_tolerance)
+      the_absolute_increase.should be_within(625694488.2, some_tolerance)
     end
       
     it "dashboard_total_costs_assigned_to_industry_and_energy" do
-      the_present.should be_within(20935307495.242, some_tolerance)
-      the_future.should  be_within(32531545336.657, some_tolerance)
-      the_relative_increase.should be_within(55.4, some_tolerance)
-      the_absolute_increase.should be_within(11596237841.4, some_tolerance)
+      the_present.should be_within(23747011117.821, some_tolerance)
+      the_future.should  be_within(36287167536.953, some_tolerance)
+      the_relative_increase.should be_within(52.8, some_tolerance)
+      the_absolute_increase.should be_within(12540156419.1, some_tolerance)
     end
       
     it "dashboard_total_costs_assigned_to_other" do
-      the_present.should be_within(1278707737.206, some_tolerance)
-      the_future.should  be_within(1717607395.96, some_tolerance)
-      the_relative_increase.should be_within(34.3, some_tolerance)
-      the_absolute_increase.should be_within(438899658.8, some_tolerance)
+      the_present.should be_within(1450443794.952, some_tolerance)
+      the_future.should  be_within(1915897529.457, some_tolerance)
+      the_relative_increase.should be_within(32.1, some_tolerance)
+      the_absolute_increase.should be_within(465453734.5, some_tolerance)
     end
       
     it "dashboard_total_costs_assigned_to_transport" do
-      the_present.should be_within(7150305916.942, some_tolerance)
-      the_future.should  be_within(9814119501.433, some_tolerance)
-      the_relative_increase.should be_within(37.3, some_tolerance)
-      the_absolute_increase.should be_within(2663813584.5, some_tolerance)
+      the_present.should be_within(8110623364.096, some_tolerance)
+      the_future.should  be_within(10947115942.104, some_tolerance)
+      the_relative_increase.should be_within(35.0, some_tolerance)
+      the_absolute_increase.should be_within(2836492578.0, some_tolerance)
     end
       
     it "dashboard_total_costs_per_household" do
-      the_present.should be_within(5831.015, some_tolerance)
-      the_future.should  be_within(8024.422, some_tolerance)
-      the_relative_increase.should be_within(37.6, some_tolerance)
-      the_absolute_increase.should be_within(2193.4, some_tolerance)
+      the_present.should be_within(6618.274, some_tolerance)
+      the_future.should  be_within(8950.466, some_tolerance)
+      the_relative_increase.should be_within(35.2, some_tolerance)
+      the_absolute_increase.should be_within(2332.2, some_tolerance)
     end
       
     it "turk_number_of_households" do
@@ -353,80 +353,80 @@ describe "untitled" do
     end
       
     it "turk_number_of_households_space_heater_coal" do
-      the_present.should be_within(4524.173, some_tolerance)
+      the_present.should be_within(4525.868, some_tolerance)
       the_future.should  be_within(7349.5, some_tolerance)
       the_relative_increase.should be_within(62.4, some_tolerance)
-      the_absolute_increase.should be_within(2825.3, some_tolerance)
+      the_absolute_increase.should be_within(2823.6, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_collective_heatpump_water_water_ts_electricity" do
       the_present.should be_within(0.0, some_tolerance)
-      the_future.should  be_within(489.967, some_tolerance)
+      the_future.should  be_within(236.47, some_tolerance)
       the_relative_increase.should be_within(0.0, some_tolerance)
-      the_absolute_increase.should be_within(490.0, some_tolerance)
+      the_absolute_increase.should be_within(236.5, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_combined_network_gas" do
-      the_present.should be_within(6036756.75, some_tolerance)
+      the_present.should be_within(6036264.993, some_tolerance)
       the_future.should  be_within(5291640.0, some_tolerance)
       the_relative_increase.should be_within(-12.3, some_tolerance)
-      the_absolute_increase.should be_within(-745116.7, some_tolerance)
+      the_absolute_increase.should be_within(-744625.0, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_crude_oil" do
-      the_present.should be_within(91331.746, some_tolerance)
+      the_present.should be_within(91365.959, some_tolerance)
       the_future.should  be_within(95543.5, some_tolerance)
       the_relative_increase.should be_within(4.6, some_tolerance)
-      the_absolute_increase.should be_within(4211.8, some_tolerance)
+      the_absolute_increase.should be_within(4177.5, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_district_heating_steam_hot_water" do
-      the_present.should be_within(100503.531, some_tolerance)
-      the_future.should  be_within(75917.624, some_tolerance)
-      the_relative_increase.should be_within(-24.5, some_tolerance)
-      the_absolute_increase.should be_within(-24585.9, some_tolerance)
+      the_present.should be_within(100978.019, some_tolerance)
+      the_future.should  be_within(76024.746, some_tolerance)
+      the_relative_increase.should be_within(-24.7, some_tolerance)
+      the_absolute_increase.should be_within(-24953.3, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_electricity" do
-      the_present.should be_within(129349.292, some_tolerance)
+      the_present.should be_within(129397.747, some_tolerance)
       the_future.should  be_within(73495.0, some_tolerance)
       the_relative_increase.should be_within(-43.2, some_tolerance)
-      the_absolute_increase.should be_within(-55854.3, some_tolerance)
+      the_absolute_increase.should be_within(-55902.7, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_heatpump_air_water_network_gas" do
-      the_present.should be_within(1.475, some_tolerance)
-      the_future.should  be_within(244.983, some_tolerance)
-      the_relative_increase.should be_within(16508.7, some_tolerance)
-      the_absolute_increase.should be_within(243.5, some_tolerance)
+      the_present.should be_within(0.712, some_tolerance)
+      the_future.should  be_within(118.235, some_tolerance)
+      the_relative_increase.should be_within(16502.5, some_tolerance)
+      the_absolute_increase.should be_within(117.5, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_heatpump_ground_water_electricity" do
-      the_present.should be_within(5504.225, some_tolerance)
+      the_present.should be_within(5506.287, some_tolerance)
       the_future.should  be_within(73495.0, some_tolerance)
-      the_relative_increase.should be_within(1235.2, some_tolerance)
-      the_absolute_increase.should be_within(67990.8, some_tolerance)
+      the_relative_increase.should be_within(1234.7, some_tolerance)
+      the_absolute_increase.should be_within(67988.7, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_micro_chp_network_gas" do
       the_present.should be_within(0.0, some_tolerance)
-      the_future.should  be_within(0.0, some_tolerance)
+      the_future.should  be_within(727600.5, some_tolerance)
       the_relative_increase.should be_within(0.0, some_tolerance)
-      the_absolute_increase.should be_within(0.0, some_tolerance)
+      the_absolute_increase.should be_within(727600.5, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_network_gas" do
-      the_present.should be_within(670447.195, some_tolerance)
+      the_present.should be_within(670698.346, some_tolerance)
       the_future.should  be_within(551212.5, some_tolerance)
       the_relative_increase.should be_within(-17.8, some_tolerance)
-      the_absolute_increase.should be_within(-119234.7, some_tolerance)
+      the_absolute_increase.should be_within(-119485.8, some_tolerance)
     end
       
     it "turk_number_of_households_space_heater_wood_pellets" do
-      the_present.should be_within(187910.55, some_tolerance)
+      the_present.should be_within(187980.942, some_tolerance)
       the_future.should  be_within(198436.5, some_tolerance)
       the_relative_increase.should be_within(5.6, some_tolerance)
-      the_absolute_increase.should be_within(10526.0, some_tolerance)
+      the_absolute_increase.should be_within(10455.6, some_tolerance)
     end
   end
 end
