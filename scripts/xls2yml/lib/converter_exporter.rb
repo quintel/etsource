@@ -26,6 +26,7 @@ module ETE
       :decrease_in_nominal_capacity_over_lifetime,
       :demand_expected_value,
       :economic_lifetime,
+      :electrical_efficiency_when_using_coal,
       :electrical_efficiency_when_using_wood_pellets,
       :forecasting_error,
       :full_load_hours,
