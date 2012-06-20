@@ -78,7 +78,7 @@ module ETE
     #   links_without_share:
     #      - coal_distribution-(coal) -- i --> (coal)-coal_export
     #      ...
-    #   info: key; full_key; sector; use; energy_balance_group; groups
+    #   info: key; code; sector; use; energy_balance_group; groups
     #  converter_key_2:
     #    ...
     #
@@ -248,7 +248,7 @@ module ETE
     #
 
     # creates a hash in the format
-    # converter.id => converter.full_key (including used and sector)
+    # converter.id => converter.code (including used and sector)
     #
     def converters
       unless @_converters
