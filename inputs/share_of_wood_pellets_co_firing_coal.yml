@@ -1,4 +1,6 @@
-attr_name:
+# share of woodpellets in cofiring
+---
+comments: ""
 factor: 100.0
 id: 596
 key: share_of_wood_pellets_co_firing_coal
@@ -7,20 +9,19 @@ label: ""
 v1_legacy_unit: nil # it is not a growth_rate
 min_value: 0.0 
 max_value: 100.0
-name: share of woodpellets in cofiring
-query:|-
+name: Share of woodpellets in cofiring
+query: |-
+ new_houses_demand     = V(households_new_houses_useful_demand_for_heating, preset_demand);
+ conversion_efficiency_wood_pellets = V(energy_power_ultra_supercritical_coal, electrical_efficiency_when_using_wood_pellets);
+ conversion_efficiency_coal = V(energy_power_ultra_supercritical_coal, electrical_efficiency_when_using_coal);
+ x = USER_INPUT() / 100.0;
+ conversion_efficiency_new =  x * conversion_efficiency_wood_pellets + (1 - x) * conversion_efficiency_coal;
 
-conversion_efficiency_1 = L(energy_power_ultra_supercritical_coal, electrical_efficiency_when_using_wood_pellets)
-conversion_efficiency_2 = L(energy_power_ultra_supercritical_coal, electrical_efficiency_when_using_coal)
-x = USER_INPUT() / 100.0
-conversion_efficiency_new =  x * conversion_efficiency_1 + (1 - x) * conversion_efficiency_2 
-
-EACH(
-  UPDATE(INPUT_SLOTS(energy_power_ultra_supercritical_coal, wood_pellets), conversion, USER_INPUT() / 100.0)
-  UPDATE(OUTPUT_SLOT(L(energy_power_ultra_supercritical_coal, electricity), conversion, conversion_efficiency_new)
-  UPDATE(OUTPUT_SLOT(L(energy_power_ultra_supercritical_coal, loss), conversion, 1-conversion_efficiency_new)
-)
-
+ EACH(
+   UPDATE(INPUT_SLOTS(L(energy_power_ultra_supercritical_coal, wood_pellets), conversion, USER_INPUT() / 100.0)
+   UPDATE(OUTPUT_SLOTS(L(energy_power_ultra_supercritical_coal, electricity), conversion, conversion_efficiency_new)
+   UPDATE(OUTPUT_SLOTS(L(energy_power_ultra_supercritical_coal, loss), conversion, 1-conversion_efficiency_new)
+ )
 share_group: ""
 start_value: 0.0
 start_value_gql: 
