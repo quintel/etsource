@@ -2,8 +2,6 @@
 # households_replacement_of_existing_houses_new, with id 901 that replaces the
 # ugly etengine update statement procedure. 
 --- 
-# Remove the following attr_name line when porting to the new slider. 
-attr_name: replacement_of_households_rate
 comments: ""
 factor: 100.0
 id: 1
@@ -16,8 +14,26 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Replacement of existing houses
-# Replace the following query: with the one from households_replacement_of_existing_houses_new
-query: 
+query: |-
+  decrease_factor       = ((1.0 - USER_INPUT()/100) ** scope.scenario.years);
+  old_houses_demand     = V(households_old_houses_useful_demand_for_heating, preset_demand);
+  old_houses_update     = old_houses_demand * decrease_factor;
+  new_houses_demand     = V(households_new_houses_useful_demand_for_heating, preset_demand);
+  demand_per_old_house  =  old_houses_demand / ((1 - AREA(percentage_of_new_houses)/100.0) * AREA(number_households));
+  households_to_replace = (old_houses_demand - old_houses_update) / demand_per_old_house;
+  households_existing   = AREA(number_households) - households_to_replace;
+  update_value          = SUM(
+    new_houses_demand,
+    PRODUCT(
+      (new_houses_demand / (AREA(percentage_of_new_houses)/100.0 * AREA(number_households))),
+      households_to_replace)
+  );
+  
+  EACH(
+    UPDATE(AREA(), number_of_existing_households, households_existing),
+    UPDATE(L(households_old_houses_useful_demand_for_heating), preset_demand, old_houses_update),
+    UPDATE(L(households_new_houses_useful_demand_for_heating), preset_demand, update_value)
+  )
 share_group: ""
 start_value: 0.0
 start_value_gql: 
