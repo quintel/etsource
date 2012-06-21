@@ -4,7 +4,7 @@ comments:
 factor: 100.0
 id: 559
 key: share_biocoal_co_firing_coal
-keys: energy_power_ultra_supercritical_coal_AND_energy_power_ultra_supercritical_ccs_coal_AND_energy_power_supercritical_coal _AND_energy_power_combined_cycle_coal_AND_energy_power_combined_cycle_ccs_coal_AND_energy_chp_ultra_supercritical_coal
+keys: energy_power_ultra_supercritical_coal
 label: ""
 label_query: ""
 max_value: 100.0
@@ -12,7 +12,7 @@ max_value_gql:
 min_value: 0.0
 min_value_gql: 
 name: Biocoal co-firing in coal plants
-query: UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_coal,energy_power_ultra_supercritical_ccs_coal,energy_power_supercritical_coal ,energy_power_combined_cycle_coal,energy_power_combined_cycle_ccs_coal,energy_chp_ultra_supercritical_coal),torrified_biomass_pellets), conversion, DIVIDE(USER_INPUT(),100))
+query: UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_coal),torrified_biomass_pellets), conversion, DIVIDE(USER_INPUT(),100))
 share_group: coal_plant_fuel
 start_value: 0.0
 start_value_gql: present:V(energy_power_ultra_supercritical_coal,torrified_biomass_pellets_input_conversion)
