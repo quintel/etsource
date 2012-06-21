@@ -17,7 +17,10 @@ query: |-
  x = USER_INPUT() / 100.0;
  conversion_efficiency_new =  x * conversion_efficiency_wood_pellets + (1 - x) * conversion_efficiency_coal;
  
- UPDATE( OUTPUT_SLOTS(V(energy_power_ultra_supercritical_coal), electricity), conversion, conversion_efficiency_new)
+ EACH(
+    UPDATE( OUTPUT_SLOTS(V(energy_power_ultra_supercritical_coal), electricity), conversion, conversion_efficiency_new)
+    UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_coal), wood_pellets), conversion, x)
+ )
 share_group: ""
 start_value: 0.0
 start_value_gql: 
