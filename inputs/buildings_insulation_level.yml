@@ -1,4 +1,4 @@
---- 
+---
 id: 381
 key: buildings_insulation_level
 keys: buildings_useful_demand_for_space_heating
@@ -10,11 +10,12 @@ name: Insulation level schools
 query:  |-
   UPDATE(
     FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))),
-    share, 
+    share,
     (1 - ((1 - 0.2) * AREA(insulation_level_buildings) / USER_INPUT() + 0.2))
   )
 share_group: ""
 unit: ""
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:
+dependent_on: has_buildings
