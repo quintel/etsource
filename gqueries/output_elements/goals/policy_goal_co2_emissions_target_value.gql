@@ -1,9 +1,12 @@
-- deprecated_key = policy_goal_co2_emission_target_value
-# 
-
 - unit = mt
 
-PRODUCT(
-  SUM(1, DIVIDE(V(GOAL(co2_emission),user_value),100)),
-  AREA(co2_emission_1990)
+IF(
+  GOAL_IS_SET(co2_emission),
+
+  PRODUCT(
+    SUM(1, DIVIDE(V(GOAL(co2_emission),user_value),100)),
+    AREA(co2_emission_1990)
+  ),
+
+  nil
 )
