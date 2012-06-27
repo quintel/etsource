@@ -1,9 +1,12 @@
-
-# 
-
 - unit = factor
 
-DIVIDE(
-  GOAL_USER_VALUE(renewable_percentage),
-  100
+IF(
+  GOAL_IS_SET(renewable_percentage),
+
+  DIVIDE(
+    GOAL_USER_VALUE(renewable_percentage),
+    100
+  ),
+
+  nil
 )

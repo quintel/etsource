@@ -1,9 +1,12 @@
-
-# 
-
 - unit = boolean
 
-LESS_OR_EQUAL(
-  V(energy_power_wind_turbine_inland,total_land_use),
-  MAX(0,GOAL_USER_VALUE(onshore_land))
+IF(
+  GOAL_IS_SET(onshore_land),
+
+  LESS_OR_EQUAL(
+    V(energy_power_wind_turbine_inland,total_land_use),
+    GOAL_USER_VALUE(onshore_land)
+  ),
+
+  nil
 )

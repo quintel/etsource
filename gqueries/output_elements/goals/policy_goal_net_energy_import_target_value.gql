@@ -1,6 +1,9 @@
-
-# 
-
 - unit = factor
 
-DIVIDE(GOAL_USER_VALUE(energy_import),100)
+IF(
+  GOAL_IS_SET(energy_import),
+
+  DIVIDE(GOAL_USER_VALUE(energy_import),100),
+
+  nil
+)
