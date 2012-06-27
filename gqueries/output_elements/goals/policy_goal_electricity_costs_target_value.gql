@@ -1,8 +1,13 @@
-# 
-- deprecated_key = policy_goal_electricity_cost_target_value
 - unit = euro
+- comments: Are we sure about this unit?
 
-PRODUCT(
-  QUERY_PRESENT(policy_goal_electricity_costs_value),
-  SUM(1,DIVIDE(GOAL_USER_VALUE(electricity_cost),100))
+IF(
+  GOAL_IS_SET(electricity_costs),
+
+  PRODUCT(
+    QUERY_PRESENT(policy_goal_electricity_costs_value),
+    SUM(1,DIVIDE(GOAL_USER_VALUE(electricity_costs),100))
+  ),
+
+  nil
 )

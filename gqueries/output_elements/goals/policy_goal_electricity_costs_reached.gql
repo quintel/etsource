@@ -1,8 +1,13 @@
-# 
-- deprecated_key = policy_goal_electricity_cost_reached
 - unit = boolean
 
-LESS_OR_EQUAL(
-  Q(policy_goal_electricity_costs_value),
-  Q(policy_goal_electricity_costs_target_value)
+IF(
+  GOAL_IS_SET(electricity_costs),
+
+  LESS_OR_EQUAL(
+    Q(policy_goal_electricity_costs_value),
+    Q(policy_goal_electricity_costs_target_value)
+  ),
+
+  nil
+
 )

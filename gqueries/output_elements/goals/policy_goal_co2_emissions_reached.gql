@@ -1,9 +1,15 @@
 - unit = boolean
 
-LESS_OR_EQUAL(
-  UNIT(Q(total_co2_emissions),billions),
-  PRODUCT(
-    SUM(1, DIVIDE(V(GOAL(co2_emission),user_value),100)),
-    AREA(co2_emission_1990)
-  )
+IF(
+  GOAL_IS_SET(co2_emissions),
+
+  LESS_OR_EQUAL(
+    UNIT(Q(total_co2_emissions),billions),
+    PRODUCT(
+      SUM(1, DIVIDE(GOAL_USER_VALUE(co2_emissions),100)),
+      AREA(co2_emission_1990)
+    )
+  ),
+
+  nil
 )
