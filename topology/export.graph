@@ -1,10 +1,10 @@
-households_useful_demand_hot_water;	households_useful_demand_hot_water;	households;	energetic;useful consumption;	useful_demand
+households_useful_demand_hot_water;	households_useful_demand_hot_water;	households;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 households_useful_demand_hot_water-(hot_water) -- f --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater
 households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_for_houses_with_solar_heater
 households_useful_demand_hot_water-(hot_water)
 (hot_water)-households_useful_demand_hot_water
 
-households_useful_demand_for_cooling_after_insulation;	households_useful_demand_for_cooling_after_insulation;	households;	energetic;useful consumption;	useful_demand
+households_useful_demand_for_cooling_after_insulation;	households_useful_demand_for_cooling_after_insulation;	households;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 households_useful_demand_for_cooling_after_insulation-(cooling) -- f --> (cooling)-households_cooling_airconditioning_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_ground_water_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_air_water_network_gas
@@ -12,7 +12,7 @@ households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (coolin
 households_useful_demand_for_cooling_after_insulation-(cooling)
 (cooling)-households_useful_demand_for_cooling_after_insulation
 
-households_useful_demand_for_space_heating_after_insulation;	households_useful_demand_for_space_heating_after_insulation;	households;	energetic;useful consumption;	useful_demand
+households_useful_demand_for_space_heating_after_insulation;	households_useful_demand_for_space_heating_after_insulation;	households;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater
 households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater
 households_useful_demand_for_space_heating_after_insulation-(useable_heat)
@@ -36,7 +36,7 @@ households_lighting_incandescent_electricity-(electricity)
 (loss)-households_lighting_incandescent_electricity
 (light)-households_lighting_incandescent_electricity
 
-households_appliances_other_electricity;	households_appliances_other_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_other_electricity;	households_appliances_other_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_other_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_other_electricity-(electricity)
 (not_defined)-households_appliances_other_electricity
@@ -117,12 +117,12 @@ energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix) -- s --> 
 (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix
 energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix)
 
-industry_useful_demand_electricity;	industry_useful_demand_electricity;	industry;	energetic;application;	useful_demand
+industry_useful_demand_electricity;	industry_useful_demand_electricity;	industry;	energetic;application;	useful_demand,useful_demand_electric
 industry_useful_demand_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity
 industry_useful_demand_electricity-(electricity)
 (electricity)-industry_useful_demand_electricity
 
-industry_useful_demand_useable_heat;	industry_useful_demand_useable_heat;	industry;	energetic;useful consumption;	useful_demand
+industry_useful_demand_useable_heat;	industry_useful_demand_useable_heat;	industry;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_coal
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_crude_oil
@@ -165,7 +165,7 @@ industry_chp_supercritical_wood_pellets-(wood_pellets)
 (steam_hot_water)-industry_chp_supercritical_wood_pellets
 (electricity)-industry_chp_supercritical_wood_pellets
 
-transport_useful_demand_truck_kms;	transport_useful_demand_truck_kms;	transport;	energetic;useful consumption;	useful_demand
+transport_useful_demand_truck_kms;	transport_useful_demand_truck_kms;	transport;	energetic;useful consumption;	useful_demand,useful_demand_transport
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_electricity
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_diesel_mix
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_gasoline_mix
@@ -173,7 +173,7 @@ transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_tru
 transport_useful_demand_truck_kms-(truck_kms)
 (loss)-transport_useful_demand_truck_kms
 
-transport_useful_demand_car_kms;	transport_useful_demand_car_kms;	transport;	energetic;useful consumption;	useful_demand
+transport_useful_demand_car_kms;	transport_useful_demand_car_kms;	transport;	energetic;useful consumption;	useful_demand,useful_demand_transport
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_electricity
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_diesel_mix
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_gasoline_mix
@@ -236,7 +236,7 @@ transport_car_using_compressed_natural_gas-(compressed_network_gas)
 (car_kms)-transport_car_using_compressed_natural_gas
 (loss)-transport_car_using_compressed_natural_gas
 
-transport_useful_demand_crude_oil_non_energetic;	transport_useful_demand_crude_oil_non_energetic;	transport;	non_energetic;;	useful_demand,non_energetic_use
+transport_useful_demand_crude_oil_non_energetic;	transport_useful_demand_crude_oil_non_energetic;	transport;	non_energetic;;	useful_demand,non_energetic_use,useful_demand_non_energetic
 transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-transport_final_demand_crude_oil_non_energetic
 transport_useful_demand_crude_oil_non_energetic-(crude_oil)
 (crude_oil)-transport_useful_demand_crude_oil_non_energetic
@@ -278,7 +278,7 @@ buildings_cooling_collective_cooling_network_electricity-(electricity)
 buildings_cooling_collective_cooling_network_electricity-(ambient_cold)
 (cooling)-buildings_cooling_collective_cooling_network_electricity
 
-agriculture_useful_demand_useable_heat;	agriculture_useful_demand_useable_heat;	agriculture;	energetic;useful consumption;	useful_demand
+agriculture_useful_demand_useable_heat;	agriculture_useful_demand_useable_heat;	agriculture;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 agriculture_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-agriculture_final_demand_steam_hot_water
 agriculture_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-agriculture_burner_wood_pellets
 agriculture_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-agriculture_burner_crude_oil
@@ -293,7 +293,7 @@ agriculture_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_ga
 agriculture_final_demand_for_heat_network_gas-(network_gas)
 (network_gas)-agriculture_final_demand_for_heat_network_gas
 
-agriculture_useful_demand_electricity;	agriculture_useful_demand_electricity;	agriculture;	energetic;useful consumption;	useful_demand
+agriculture_useful_demand_electricity;	agriculture_useful_demand_electricity;	agriculture;	energetic;useful consumption;	useful_demand,useful_demand_electric
 agriculture_useful_demand_electricity-(electricity) -- s --> (electricity)-agriculture_final_demand_electricity
 agriculture_useful_demand_electricity-(electricity)
 (electricity)-agriculture_useful_demand_electricity
@@ -304,7 +304,7 @@ transport_train_using_coal-(coal)
 (loss)-transport_train_using_coal
 (not_defined)-transport_train_using_coal
 
-other_useful_demand_electricity;	other_useful_demand_electricity;	other;	energetic;application;	useful_demand
+other_useful_demand_electricity;	other_useful_demand_electricity;	other;	energetic;application;	useful_demand,useful_demand_electric
 other_useful_demand_electricity-(electricity) -- s --> (electricity)-other_electricity_for_electricity
 other_useful_demand_electricity-(electricity)
 (electricity)-other_useful_demand_electricity
@@ -668,7 +668,7 @@ industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-
 industry_final_demand_for_heat_network_gas-(network_gas)
 (network_gas)-industry_final_demand_for_heat_network_gas
 
-industry_useful_demand_coal_non_energetic;	industry_useful_demand_coal_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use
+industry_useful_demand_coal_non_energetic;	industry_useful_demand_coal_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use,useful_demand_non_energetic
 industry_useful_demand_coal_non_energetic-(coal) -- s --> (coal)-industry_final_demand_coal_non_energetic
 industry_useful_demand_coal_non_energetic-(coal)
 (coal)-industry_useful_demand_coal_non_energetic
@@ -771,22 +771,22 @@ transport_plane_using_gasoline-(gasoline) -- s --> (gasoline)-transport_final_de
 transport_plane_using_gasoline-(gasoline)
 (not_defined)-transport_plane_using_gasoline
 
-other_useful_demand_crude_oil_non_energetic;	other_useful_demand_crude_oil_non_energetic;	other;	non_energetic;application;	useful_demand,non_energetic_use
+other_useful_demand_crude_oil_non_energetic;	other_useful_demand_crude_oil_non_energetic;	other;	non_energetic;application;	useful_demand,non_energetic_use,useful_demand_non_energetic
 other_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-other_final_demand_crude_oil_non_energetic
 other_useful_demand_crude_oil_non_energetic-(crude_oil)
 (crude_oil)-other_useful_demand_crude_oil_non_energetic
 
-industry_useful_demand_crude_oil_non_energetic;	industry_useful_demand_crude_oil_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use
+industry_useful_demand_crude_oil_non_energetic;	industry_useful_demand_crude_oil_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use,useful_demand_non_energetic
 industry_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil_non_energetic
 industry_useful_demand_crude_oil_non_energetic-(crude_oil)
 (crude_oil)-industry_useful_demand_crude_oil_non_energetic
 
-industry_useful_demand_network_gas_non_energetic;	industry_useful_demand_network_gas_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use
+industry_useful_demand_network_gas_non_energetic;	industry_useful_demand_network_gas_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use,useful_demand_non_energetic
 industry_useful_demand_network_gas_non_energetic-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas_non_energetic
 industry_useful_demand_network_gas_non_energetic-(network_gas)
 (network_gas)-industry_useful_demand_network_gas_non_energetic
 
-industry_useful_demand_wood_pellets_non_energetic;	industry_useful_demand_wood_pellets_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use
+industry_useful_demand_wood_pellets_non_energetic;	industry_useful_demand_wood_pellets_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use,useful_demand_non_energetic
 industry_useful_demand_wood_pellets_non_energetic-(wood_pellets) -- s --> (wood_pellets)-industry_final_demand_wood_pellets_non_energetic
 industry_useful_demand_wood_pellets_non_energetic-(wood_pellets)
 (wood_pellets)-industry_useful_demand_wood_pellets_non_energetic
@@ -802,7 +802,7 @@ industry_final_demand_for_heat_coal-(coal) -- s --> (coal)-industry_final_demand
 industry_final_demand_for_heat_coal-(coal)
 (coal)-industry_final_demand_for_heat_coal
 
-industry_useful_demand_electricity_non_energetic;	industry_useful_demand_electricity_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use
+industry_useful_demand_electricity_non_energetic;	industry_useful_demand_electricity_non_energetic;	industry;	non_energetic;application;	useful_demand,non_energetic_use,useful_demand_electric
 industry_useful_demand_electricity_non_energetic-(electricity) -- s --> (electricity)-industry_final_demand_electricity_non_energetic
 industry_useful_demand_electricity_non_energetic-(electricity)
 (loss)-industry_useful_demand_electricity_non_energetic
@@ -983,7 +983,7 @@ households_space_heater_crude_oil-(crude_oil)
 (loss)-households_space_heater_crude_oil
 (useable_heat)-households_space_heater_crude_oil
 
-households_useful_demand_light;	households_useful_demand_light;	households;	energetic;useful consumption;	useful_demand
+households_useful_demand_light;	households_useful_demand_light;	households;	energetic;useful consumption;	useful_demand,useful_demand_electric
 households_useful_demand_light-(light) -- s --> (light)-households_lighting_led_electricity
 households_useful_demand_light-(light) -- s --> (light)-households_lighting_efficient_fluorescent_electricity
 households_useful_demand_light-(light) -- s --> (light)-households_lighting_incandescent_electricity
@@ -1020,22 +1020,22 @@ energy_heat_network_loss-(loss) -- d --> (loss)-energy_heat_network_steam_hot_wa
 energy_heat_network_loss-(loss)
 (loss)-energy_heat_network_loss
 
-energy_final_demand_electricity;	energy_final_demand_electricity;	energy;	energetic;;	final_demand_cbs,useful_demand,final_demand_electricity,cost_other
+energy_final_demand_electricity;	energy_final_demand_electricity;	energy;	energetic;;	final_demand_cbs,useful_demand,final_demand_electricity,cost_other,useful_demand_electric
 energy_final_demand_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
 energy_final_demand_electricity-(electricity)
 (loss)-energy_final_demand_electricity
 
-energy_final_demand_crude_oil;	energy_final_demand_crude_oil;	energy;	energetic;;	final_demand_cbs,useful_demand
+energy_final_demand_crude_oil;	energy_final_demand_crude_oil;	energy;	energetic;;	final_demand_cbs,useful_demand,useful_demand_heat_cold
 energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
 energy_final_demand_crude_oil-(crude_oil)
 (loss)-energy_final_demand_crude_oil
 
-energy_final_demand_network_gas;	energy_final_demand_network_gas;	energy;	energetic;;	final_demand_cbs,useful_demand
+energy_final_demand_network_gas;	energy_final_demand_network_gas;	energy;	energetic;;	final_demand_cbs,useful_demand,useful_demand_heat_cold
 energy_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
 energy_final_demand_network_gas-(network_gas)
 (loss)-energy_final_demand_network_gas
 
-energy_final_demand_steam_hot_water;	energy_final_demand_steam_hot_water;	energy;	energetic;;	final_demand_cbs,useful_demand
+energy_final_demand_steam_hot_water;	energy_final_demand_steam_hot_water;	energy;	energetic;;	final_demand_cbs,useful_demand,useful_demand_heat_cold
 energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water
 energy_final_demand_steam_hot_water-(steam_hot_water)
 (loss)-energy_final_demand_steam_hot_water
@@ -1066,7 +1066,7 @@ energy_import_coal;	energy_import_coal;	energy;	undefined;;	primary_energy_deman
 energy_import_coal-(coal)
 (coal)-energy_import_coal
 
-energy_heat_network_unused_steam_hot_water;	energy_heat_network_unused_steam_hot_water;	energy;	energetic;;	final_demand_cbs,useful_demand
+energy_heat_network_unused_steam_hot_water;	energy_heat_network_unused_steam_hot_water;	energy;	energetic;;	final_demand_cbs,useful_demand,useful_demand_heat_cold
 energy_heat_network_unused_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-energy_heat_network_steam_hot_water
 energy_heat_network_unused_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_network_unused_steam_hot_water
@@ -1137,7 +1137,7 @@ agriculture_chp_engine_gas_power_fuelmix-(gas_power_fuelmix)
 (steam_hot_water)-agriculture_chp_engine_gas_power_fuelmix
 (electricity)-agriculture_chp_engine_gas_power_fuelmix
 
-other_useful_demand_useable_heat;	other_useful_demand_useable_heat;	other;	energetic;useful consumption;	useful_demand
+other_useful_demand_useable_heat;	other_useful_demand_useable_heat;	other;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 other_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-other_burner_coal
 other_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-other_burner_crude_oil
 other_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-other_burner_wood_pellets
@@ -1388,7 +1388,7 @@ households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold)
 (loss)-households_cooling_collective_heatpump_water_water_ts_electricity
 (cooling)-households_cooling_collective_heatpump_water_water_ts_electricity
 
-households_useful_demand_cooking_useable_heat;	households_useful_demand_cooking_useable_heat;	households;	energetic;useful consumption;	useful_demand
+households_useful_demand_cooking_useable_heat;	households_useful_demand_cooking_useable_heat;	households;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 households_useful_demand_cooking_useable_heat-(useable_heat) -- f --> (useable_heat)-households_cooker_network_gas
 households_useful_demand_cooking_useable_heat-(useable_heat) -- s --> (useable_heat)-households_cooker_resistive_electricity
 households_useful_demand_cooking_useable_heat-(useable_heat) -- s --> (useable_heat)-households_cooker_halogen_electricity
@@ -1421,43 +1421,43 @@ households_cooker_induction_electricity-(electricity)
 (loss)-households_cooker_induction_electricity
 (useable_heat)-households_cooker_induction_electricity
 
-households_appliances_dishwasher_electricity;	households_appliances_dishwasher_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_dishwasher_electricity;	households_appliances_dishwasher_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_dishwasher_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_dishwasher_electricity-(electricity)
 (not_defined)-households_appliances_dishwasher_electricity
 (loss)-households_appliances_dishwasher_electricity
 
-households_appliances_fridge_freezer_electricity;	households_appliances_fridge_freezer_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_fridge_freezer_electricity;	households_appliances_fridge_freezer_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_fridge_freezer_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_fridge_freezer_electricity-(electricity)
 (not_defined)-households_appliances_fridge_freezer_electricity
 (loss)-households_appliances_fridge_freezer_electricity
 
-households_appliances_vacuum_cleaner_electricity;	households_appliances_vacuum_cleaner_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_vacuum_cleaner_electricity;	households_appliances_vacuum_cleaner_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_vacuum_cleaner_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_vacuum_cleaner_electricity-(electricity)
 (not_defined)-households_appliances_vacuum_cleaner_electricity
 (loss)-households_appliances_vacuum_cleaner_electricity
 
-households_appliances_washing_machine_electricity;	households_appliances_washing_machine_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_washing_machine_electricity;	households_appliances_washing_machine_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_washing_machine_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_washing_machine_electricity-(electricity)
 (not_defined)-households_appliances_washing_machine_electricity
 (loss)-households_appliances_washing_machine_electricity
 
-households_appliances_clothes_dryer_electricity;	households_appliances_clothes_dryer_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_clothes_dryer_electricity;	households_appliances_clothes_dryer_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_clothes_dryer_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_clothes_dryer_electricity-(electricity)
 (not_defined)-households_appliances_clothes_dryer_electricity
 (loss)-households_appliances_clothes_dryer_electricity
 
-households_appliances_television_electricity;	households_appliances_television_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_television_electricity;	households_appliances_television_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_television_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_television_electricity-(electricity)
 (not_defined)-households_appliances_television_electricity
 (loss)-households_appliances_television_electricity
 
-households_appliances_computer_media_electricity;	households_appliances_computer_media_electricity;	households;	energetic;technologies;	useful_demand
+households_appliances_computer_media_electricity;	households_appliances_computer_media_electricity;	households;	energetic;technologies;	useful_demand,useful_demand_electric
 households_appliances_computer_media_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_appliances_electricity
 households_appliances_computer_media_electricity-(electricity)
 (not_defined)-households_appliances_computer_media_electricity
@@ -1467,7 +1467,7 @@ buildings_heating_savings_from_insulation_useable_heat;	buildings_heating_saving
 buildings_heating_savings_from_insulation_useable_heat-(useable_heat)
 (useable_heat)-buildings_heating_savings_from_insulation_useable_heat
 
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery;	buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery;	buildings;	energetic;useful consumption;	useful_demand
+buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery;	buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery;	buildings;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- f --> (useable_heat)-buildings_space_heater_network_gas
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_electricity
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_solar_thermal
@@ -1480,7 +1480,7 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
 buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
 (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery
 
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling;	buildings_useful_demand_after_insulation_recirculation_recovery_cooling;	buildings;	energetic;useful consumption;	useful_demand
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling;	buildings_useful_demand_after_insulation_recirculation_recovery_cooling;	buildings;	energetic;useful consumption;	useful_demand,useful_demand_heat_cold
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
@@ -1488,7 +1488,7 @@ buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
 (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling
 
-buildings_useful_demand_after_motion_detection_daylight_control_light;	buildings_useful_demand_after_motion_detection_daylight_control_light;	buildings;	energetic;useful consumption;	useful_demand
+buildings_useful_demand_after_motion_detection_daylight_control_light;	buildings_useful_demand_after_motion_detection_daylight_control_light;	buildings;	energetic;useful consumption;	useful_demand,useful_demand_electric
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- f --> (light)-buildings_lighting_standard_fluorescent_electricity
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_efficient_fluorescent
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_led
@@ -1603,7 +1603,7 @@ buildings_cooling_airconditioning-(ambient_cold)
 (cooling)-buildings_cooling_airconditioning
 (loss)-buildings_cooling_airconditioning
 
-buildings_useful_demand_for_appliances;	buildings_useful_demand_for_appliances;	buildings;	energetic;useful consumption;	useful_demand
+buildings_useful_demand_for_appliances;	buildings_useful_demand_for_appliances;	buildings;	energetic;useful consumption;	useful_demand,useful_demand_electric
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_crude_oil
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_network_gas
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_wood_pellets
@@ -1830,7 +1830,7 @@ energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water) -
 energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_remainder_from_heat_network_used_steam_hot_water
 
-energy_heat_remainder_from_heat_network_unused_steam_hot_water;	energy_heat_remainder_from_heat_network_unused_steam_hot_water;	energy;	energetic;;	final_demand_cbs,useful_demand
+energy_heat_remainder_from_heat_network_unused_steam_hot_water;	energy_heat_remainder_from_heat_network_unused_steam_hot_water;	energy;	energetic;;	final_demand_cbs,useful_demand,useful_demand_heat_cold
 energy_heat_remainder_from_heat_network_unused_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water
 energy_heat_remainder_from_heat_network_unused_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_remainder_from_heat_network_unused_steam_hot_water
@@ -1891,7 +1891,7 @@ energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_p
 energy_power_hydro_mountain_pumped-(electricity)
 (loss)-energy_power_hydro_mountain_pumped
 
-transport_useful_demand_planes;	transport_useful_demand_planes;	transport;	energetic;useful consumption;	useful_demand
+transport_useful_demand_planes;	transport_useful_demand_planes;	transport;	energetic;useful consumption;	useful_demand,useful_demand_transport
 transport_useful_demand_planes-(not_defined) -- s --> (not_defined)-transport_plane_using_gasoline
 transport_useful_demand_planes-(not_defined) -- s --> (not_defined)-transport_plane_using_bio_ethanol
 transport_useful_demand_planes-(not_defined) -- s --> (not_defined)-transport_plane_using_kerosene
@@ -1903,14 +1903,14 @@ transport_plane_using_bio_ethanol-(bio_ethanol) -- s --> (bio_ethanol)-transport
 transport_plane_using_bio_ethanol-(bio_ethanol)
 (not_defined)-transport_plane_using_bio_ethanol
 
-transport_useful_demand_trains;	transport_useful_demand_trains;	transport;	energetic;useful consumption;	useful_demand
+transport_useful_demand_trains;	transport_useful_demand_trains;	transport;	energetic;useful consumption;	useful_demand,useful_demand_transport
 transport_useful_demand_trains-(not_defined) -- s --> (not_defined)-transport_train_using_electricity
 transport_useful_demand_trains-(not_defined) -- s --> (not_defined)-transport_train_using_coal
 transport_useful_demand_trains-(not_defined) -- s --> (not_defined)-transport_train_using_diesel
 transport_useful_demand_trains-(not_defined)
 (not_defined)-transport_useful_demand_trains
 
-transport_useful_demand_ships;	transport_useful_demand_ships;	transport;	energetic;useful consumption;	useful_demand
+transport_useful_demand_ships;	transport_useful_demand_ships;	transport;	energetic;useful consumption;	useful_demand,useful_demand_transport
 transport_useful_demand_ships-(not_defined) -- s --> (not_defined)-transport_ship_using_diesel
 transport_useful_demand_ships-(not_defined) -- s --> (not_defined)-transport_ship_using_biodiesel
 transport_useful_demand_ships-(not_defined) -- s --> (not_defined)-transport_ship_using_heavy_fuel_oil
