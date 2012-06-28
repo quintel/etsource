@@ -9,10 +9,10 @@ describe "households_number_of_inhabitants" do
 
   describe "custom" do
     it "AREA(number_inhabitants)" do
-      the_future.should be_within(the_present*1.05, 5.0)
+      the_future.should be_within(the_present*1.05**40, 5.0)
     end
     it "AREA(number_households)" do
-      the_future.should be_within(the_present*1.05, 5.0)
+      the_future.should be_within(the_present*1.05**40, 5.0)
     end
     query = <<-STR
       SUM(MAP(
@@ -31,7 +31,7 @@ describe "households_number_of_inhabitants" do
       ) 
     STR
     it query do
-      the_future.should be_within(the_present*1.05, 5.0)
+      the_future.should be_within(the_present*1.05**40, 5.0)
 
     end
   end
