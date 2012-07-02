@@ -1,6 +1,6 @@
-# Query for Sankey diagram: connection between electricity_prod and agriculture
+# Query for Sankey diagram: connection between electricity and agriculture
 
 - unit = pj
 
-future:DIVIDE(SUM(V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs)),"input_of_electricity + input_of_imported_electricity")),BILLIONS)
+future:DIVIDE(SUM(V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs)),"input_of_electricity + input_of_imported_electricity")),BILLIONS)*(1.0 - Q(fraction_of_electricity_chps_in_sankey))
 			
