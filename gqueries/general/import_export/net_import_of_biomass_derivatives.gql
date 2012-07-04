@@ -3,28 +3,15 @@
 - deprecated_key = import_of_biomassa_group
 - unit = mj
 
- SUM(
-  V(
-   energy_import_biodiesel,
-   energy_import_bio_ethanol, 
-   energy_import_bio_oil,
-   energy_import_torrified_biomass_pellets,
-   energy_import_wood_pellets,
-   energy_import_greengas,
-   energy_import_algae_diesel, demand
+
+SUM(
+  V(G(energy_import),output_of(Q(carrier_group_biomass_products))
   )
-,
-NEG(
-  SUM(V(
-energy_export_bio_oil,
-energy_export_waste_mix,
-energy_export_biodiesel,
-energy_export_bio_ethanol,
-energy_export_greengas,
-energy_export_algae_diesel 
-, demand
-)  )
+  ,
+  NEG(
+    SUM(
+      V(G(energy_export),input_of(Q(carrier_group_biomass_products))
+      )
+    )
+  )
 )
-
-
- )
