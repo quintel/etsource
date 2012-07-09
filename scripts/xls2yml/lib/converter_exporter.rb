@@ -233,7 +233,7 @@ module ETE
           s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {"
           attrs = []
           attrs << "share: #{share}" if share
-          attrs << "max_demand: #{max_demand}" if max_demand
+          # attrs << "max_demand: #{max_demand}" if max_demand
           attrs << "priority: #{priority}" if priority
           s += attrs.join(", ")
           s +="}"
