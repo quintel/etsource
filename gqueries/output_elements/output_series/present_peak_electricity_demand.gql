@@ -3,4 +3,10 @@
 
 - unit = MW
 
-present:Q(peak_electricity_demand)
+present:SUM(
+    Q(peak_electricity_demand),
+    PRODUCT(
+      Q(total_supply_and_demand_variability),
+      3
+    )
+)
