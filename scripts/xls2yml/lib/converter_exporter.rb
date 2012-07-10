@@ -51,6 +51,7 @@ module ETE
       :simult_wd,
       :simult_we,
       :technical_lifetime,
+      :typical_effective_input_capacity,
       :typical_nominal_input_capacity,
       :variability,
       :wacc
