@@ -696,7 +696,7 @@ transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using
   :wacc: 0.0
 transport_truck_using_electricity-(electricity): {conversion: 1.0}
 (truck_kms)-transport_truck_using_electricity: {conversion: 1.18203309692671}
-(loss)-transport_truck_using_electricity: {conversion: -0.18203309692671}
+(loss)-transport_truck_using_electricity: {conversion: -0.182033096926714}
 transport_truck_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_road_electricity: {share: 1.0}
 
 :transport_truck_using_diesel_mix:
@@ -779,7 +779,7 @@ transport_truck_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transp
   :wacc: 0.0
 transport_car_using_electricity-(electricity): {conversion: 1.0}
 (car_kms)-transport_car_using_electricity: {conversion: 1.18203309692671}
-(loss)-transport_car_using_electricity: {conversion: -0.18203309692671}
+(loss)-transport_car_using_electricity: {conversion: -0.182033096926714}
 transport_car_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_road_electricity: {share: 1.0}
 
 :transport_car_using_diesel_mix:
@@ -944,8 +944,8 @@ transport_train_using_electricity-(electricity) -- s --> (electricity)-transport
 
 :buildings_useful_demand_cooling:
   :co2_free: 0.0
-  :preset_demand: 228061328000.0
-  :demand: 228061328000.0
+  :preset_demand: 67500000000.0
+  :demand: 67500000000.0
 buildings_useful_demand_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_cooling: {conversion: 1.0}
 buildings_useful_demand_cooling-(cooling) -- s --> (cooling)-buildings_cooling_savings_insulation_cooling: {share: 0.0}
@@ -4387,13 +4387,13 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
 
 :buildings_useful_demand_after_insulation_recirculation_recovery_cooling:
   :co2_free: 0.0
-  :demand_expected_value: 164204156160.0
+  :demand_expected_value: 48600000000.0
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling: {conversion: 1.0}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity: {share: 0.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.704026979970931}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.0}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning: {share: 0.295973020029069}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning: {share: 1.0}
 
 :buildings_useful_demand_after_motion_detection_daylight_control_light:
   :co2_free: 0.0
@@ -4917,14 +4917,14 @@ buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings
 
 :buildings_useful_demand_for_appliances:
   :co2_free: 0.0
-  :preset_demand: 37600000000.0
-  :demand: 37600000000.0
+  :preset_demand: 105602444800.0
+  :demand: 105602444800.0
 buildings_useful_demand_for_appliances-(not_defined): {conversion: 1.0}
 (not_defined)-buildings_useful_demand_for_appliances: {conversion: 1.0}
-buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_crude_oil: {share: 0.106382978723404}
-buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_network_gas: {share: 0.0}
+buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_crude_oil: {share: 0.0378779109477587}
+buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_network_gas: {share: 0.643947637091069}
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_wood_pellets: {share: 0.0}
-buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_electricity: {share: 0.893617021276596}
+buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_electricity: {share: 0.318174451961173}
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_coal: {share: 0.0}
 
 :buildings_final_demand_wood_pellets:
@@ -5173,7 +5173,7 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useabl
 
 :buildings_useful_demand_after_insulation_cooling:
   :co2_free: 0.0
-  :demand_expected_value: 228061328000.0
+  :demand_expected_value: 67500000000.0
 buildings_useful_demand_after_insulation_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_after_insulation_cooling: {conversion: 1.0}
 buildings_useful_demand_after_insulation_cooling-(cooling) -- f --> (cooling)-buildings_useful_demand_after_insulation_recirculation_cooling: {}
@@ -5181,7 +5181,7 @@ buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-bu
 
 :buildings_useful_demand_after_insulation_recirculation_cooling:
   :co2_free: 0.0
-  :demand_expected_value: 205255195200.0
+  :demand_expected_value: 60750000000.0
 buildings_useful_demand_after_insulation_recirculation_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_after_insulation_recirculation_cooling: {conversion: 1.0}
 buildings_useful_demand_after_insulation_recirculation_cooling-(cooling) -- f --> (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling: {}
@@ -5201,13 +5201,13 @@ buildings_heating_savings_from_recovery_useable_heat-(useable_heat): {conversion
 
 :buildings_cooling_savings_from_recirculation_cooling:
   :co2_free: 0.0
-  :demand_expected_value: 22806132800.0
+  :demand_expected_value: 6750000000.0
 buildings_cooling_savings_from_recirculation_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_cooling_savings_from_recirculation_cooling: {conversion: 1.0}
 
 :buildings_cooling_savings_from_recovery_cooling:
   :co2_free: 0.0
-  :demand_expected_value: 41051039040.0
+  :demand_expected_value: 12150000000.0
 buildings_cooling_savings_from_recovery_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_cooling_savings_from_recovery_cooling: {conversion: 1.0}
 
@@ -5359,7 +5359,7 @@ buildings_appliances_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_
 
 :buildings_appliances_network_gas:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 68002444800.0
 buildings_appliances_network_gas-(network_gas): {conversion: 1.0}
 (not_defined)-buildings_appliances_network_gas: {conversion: 1.0}
 buildings_appliances_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_appliances_gas: {share: 1.0}
@@ -6937,7 +6937,7 @@ buildings_final_demand_for_space_heating_monetized_heat-(steam_hot_water) -- s -
 
 :buildings_final_demand_for_cooling_gas:
   :co2_free: 0.0
-  :demand_expected_value: 68002444800.0
+  :demand_expected_value: 0.0
 buildings_final_demand_for_cooling_gas-(network_gas): {conversion: 1.0}
 (network_gas)-buildings_final_demand_for_cooling_gas: {conversion: 1.0}
 buildings_final_demand_for_cooling_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_network_gas: {share: 1.0}
@@ -6972,7 +6972,7 @@ buildings_final_demand_for_appliances_crude_oil-(crude_oil) -- s --> (crude_oil)
 
 :buildings_final_demand_for_appliances_gas:
   :co2_free: 0.0
-  :demand_expected_value: 0.0
+  :demand_expected_value: 68002444800.0
 buildings_final_demand_for_appliances_gas-(network_gas): {conversion: 1.0}
 (network_gas)-buildings_final_demand_for_appliances_gas: {conversion: 1.0}
 buildings_final_demand_for_appliances_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_network_gas: {share: 1.0}
