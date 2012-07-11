@@ -59,21 +59,20 @@ end
 
 describe "FCE, blank" do
   before :all do
-    load_scenario(area_code: "nl", end_year: 2050, use_fce: false) do
-#      move_slider 563, "26.2"       # coal_from_south_africa_share
-#      move_slider 564, "17.0"       # coal_from_north_america_share
-    end
+    load_scenario(area_code: "nl", end_year: 2050, use_fce: false) 
   end
 
   it "coal_conversion_in_fuel_chain_emissions" do
-    #the_value.should be_within(0.74, some_tolerance)
+    # checks that the start value is still the same.
     the_value.should be_within(92.6, some_tolerance)
   end
 
 end
 
-describe "FCE, if not using FCE should still calculate co2_conversion based on sliders" do
+describe "FCE (false) should calculate properly when only sending parts of a slider group" do
   before :all do
+    # sliders are only moved by a 0.1 step.
+    # the end results should be the same.
     load_scenario(area_code: "nl", end_year: 2050, use_fce: false) do
       move_slider 563, "26.2"       # coal_from_south_africa_share
       move_slider 564, "17.0"       # coal_from_north_america_share
@@ -81,7 +80,6 @@ describe "FCE, if not using FCE should still calculate co2_conversion based on s
   end
 
   it "coal_conversion_in_fuel_chain_emissions" do
-    #the_value.should be_within(0.74, some_tolerance)
     the_value.should be_within(92.6, 1)
   end
 
@@ -91,14 +89,12 @@ describe "FCE, if not using FCE should still calculate co2_conversion based on s
   end
 end
 
-describe "FCE, use_fce=TRUE" do
+describe "FCE, use_fce=TRUE, withouth moving any slider" do
   before :all do
-    load_scenario(area_code: "nl", end_year: 2050, use_fce: true) do
-      #move_slider 563, "26.2"       # coal_from_south_africa_share
-      #move_slider 564, "17.0"       # coal_from_north_america_share
-    end
+    load_scenario(area_code: "nl", end_year: 2050, use_fce: true)
   end
 
+  # fce is calculated which shows some effect in the dashboard
   it "dashboard_reduction_of_co2_emissions_versus_1990" do
     the_future.should  be_within(0.104, some_tolerance)
   end
