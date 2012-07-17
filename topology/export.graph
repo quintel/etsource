@@ -361,7 +361,6 @@ energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_hydro_river
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_hydro_mountain
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_geothermal
-energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_biogas
 energy_power_hv_network_electricity-(electricity) -- i --> (electricity)-energy_power_transformer_mv_hv_electricity
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_nuclear_gen2_uranium_oxide
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix
@@ -1098,12 +1097,6 @@ environment_sun-(loss)
 environment_air;	environment_air;	environment;	energetic;environment;	
 environment_air-(loss)
 (loss)-environment_air
-
-energy_power_combined_cycle_biogas;	energy_power_combined_cycle_biogas;	energy;	energetic;;	
-energy_power_combined_cycle_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
-energy_power_combined_cycle_biogas-(biogas)
-(electricity)-energy_power_combined_cycle_biogas
-(loss)-energy_power_combined_cycle_biogas
 
 other_chp_engine_gas_power_fuelmix;	other_chp_engine_gas_power_fuelmix;	other;	energetic;local CHPs;	electricity_production,decentral_production,network_converters,cost_chps,must_run_electricity_production
 other_chp_engine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
