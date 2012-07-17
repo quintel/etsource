@@ -1151,7 +1151,6 @@ energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_hydro_river: {share: 360000000.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_hydro_mountain: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_geothermal: {share: 0.0}
-energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_biogas: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- i --> (electricity)-energy_power_transformer_mv_hv_electricity: {}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_nuclear_gen2_uranium_oxide: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {share: 0.0}
@@ -3070,13 +3069,6 @@ environment_sun-(loss): {conversion: 1.0}
   :co2_free: 0.0
 environment_air-(loss): {conversion: 1.0}
 (loss)-environment_air: {conversion: 1.0}
-
-:energy_power_combined_cycle_biogas:
-  :co2_free: 0.0
-energy_power_combined_cycle_biogas-(biogas): {conversion: 1.0}
-(electricity)-energy_power_combined_cycle_biogas: {conversion: 1.0}
-(loss)-energy_power_combined_cycle_biogas: {conversion: 0.0}
-energy_power_combined_cycle_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas: {share: 1.0}
 
 :other_chp_engine_gas_power_fuelmix:
   :availability: 0.97
