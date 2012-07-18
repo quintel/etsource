@@ -242,12 +242,12 @@ transport_useful_demand_crude_oil_non_energetic-(crude_oil)
 (crude_oil)-transport_useful_demand_crude_oil_non_energetic
 
 transport_ship_using_diesel;	transport_ship_using_diesel;	transport;	energetic;technologies;	
-transport_ship_using_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_navigation_diesel
+transport_ship_using_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_shipping_diesel
 transport_ship_using_diesel-(diesel)
 (not_defined)-transport_ship_using_diesel
 
 transport_ship_using_biodiesel;	transport_ship_using_biodiesel;	transport;	energetic;technologies;	
-transport_ship_using_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_navigation_biodiesel
+transport_ship_using_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_shipping_biodiesel
 transport_ship_using_biodiesel-(biodiesel)
 (not_defined)-transport_ship_using_biodiesel
 
@@ -2389,15 +2389,15 @@ transport_final_demand_electricity-(electricity)
 (electricity)-transport_final_demand_electricity
 
 energy_distribution_heavy_fuel_oil;	energy_distribution_heavy_fuel_oil;	energy;	undefined;subdistribution 1;	
-energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_crude_oil
+energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_heavy_fuel_oil
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil)
 (heavy_fuel_oil)-energy_distribution_heavy_fuel_oil
 
-energy_production_crude_oil;	energy_production_crude_oil;	energy;	undefined;refinery;	
-energy_production_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
-(loss)-energy_production_crude_oil
-(heavy_fuel_oil)-energy_production_crude_oil
-energy_production_crude_oil-(crude_oil)
+energy_production_heavy_fuel_oil;	energy_production_heavy_fuel_oil;	energy;	undefined;refinery;	
+energy_production_heavy_fuel_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
+(loss)-energy_production_heavy_fuel_oil
+(heavy_fuel_oil)-energy_production_heavy_fuel_oil
+energy_production_heavy_fuel_oil-(crude_oil)
 
 transport_final_demand_for_road_lpg;	transport_final_demand_for_road_lpg;	transport;	energetic;application;	
 transport_final_demand_for_road_lpg-(lpg) -- s --> (lpg)-transport_final_demand_lpg
@@ -2454,15 +2454,15 @@ transport_final_demand_for_rail_electricity-(electricity) -- s --> (electricity)
 transport_final_demand_for_rail_electricity-(electricity)
 (electricity)-transport_final_demand_for_rail_electricity
 
-transport_final_demand_for_navigation_diesel;	transport_final_demand_for_navigation_diesel;	transport;	energetic;application;	
-transport_final_demand_for_navigation_diesel-(diesel) -- s --> (diesel)-transport_final_demand_diesel
-transport_final_demand_for_navigation_diesel-(diesel)
-(diesel)-transport_final_demand_for_navigation_diesel
+transport_final_demand_for_shipping_diesel;	transport_final_demand_for_shipping_diesel;	transport;	energetic;application;	
+transport_final_demand_for_shipping_diesel-(diesel) -- s --> (diesel)-transport_final_demand_diesel
+transport_final_demand_for_shipping_diesel-(diesel)
+(diesel)-transport_final_demand_for_shipping_diesel
 
-transport_final_demand_for_navigation_heavy_fuel_oil;	transport_final_demand_for_navigation_heavy_fuel_oil;	transport;	energetic;application;	
-transport_final_demand_for_navigation_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_heavy_fuel_oil
-transport_final_demand_for_navigation_heavy_fuel_oil-(heavy_fuel_oil)
-(heavy_fuel_oil)-transport_final_demand_for_navigation_heavy_fuel_oil
+transport_final_demand_for_shipping_heavy_fuel_oil;	transport_final_demand_for_shipping_heavy_fuel_oil;	transport;	energetic;application;	
+transport_final_demand_for_shipping_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_heavy_fuel_oil
+transport_final_demand_for_shipping_heavy_fuel_oil-(heavy_fuel_oil)
+(heavy_fuel_oil)-transport_final_demand_for_shipping_heavy_fuel_oil
 
 transport_final_demand_for_aviation_gasoline;	transport_final_demand_for_aviation_gasoline;	transport;	energetic;application;	
 transport_final_demand_for_aviation_gasoline-(gasoline) -- s --> (gasoline)-transport_final_demand_gasoline
@@ -2500,10 +2500,10 @@ transport_rail_mixer_diesel-(biodiesel) -- s --> (biodiesel)-transport_final_dem
 transport_rail_mixer_diesel-(diesel)
 transport_rail_mixer_diesel-(biodiesel)
 
-transport_final_demand_for_navigation_biodiesel;	transport_final_demand_for_navigation_biodiesel;	transport;	energetic;application;	
-transport_final_demand_for_navigation_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_biodiesel
-transport_final_demand_for_navigation_biodiesel-(biodiesel)
-(biodiesel)-transport_final_demand_for_navigation_biodiesel
+transport_final_demand_for_shipping_biodiesel;	transport_final_demand_for_shipping_biodiesel;	transport;	energetic;application;	
+transport_final_demand_for_shipping_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_biodiesel
+transport_final_demand_for_shipping_biodiesel-(biodiesel)
+(biodiesel)-transport_final_demand_for_shipping_biodiesel
 
 transport_final_demand_for_aviation_biodiesel;	transport_final_demand_for_aviation_biodiesel;	transport;	energetic;application;	
 transport_final_demand_for_aviation_biodiesel-(bio_ethanol) -- s --> (bio_ethanol)-transport_final_demand_bio_ethanol
@@ -2516,7 +2516,7 @@ transport_plane_using_kerosene-(kerosene)
 (not_defined)-transport_plane_using_kerosene
 
 transport_ship_using_heavy_fuel_oil;	transport_ship_using_heavy_fuel_oil;	transport;	energetic;technologies;	
-transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_for_navigation_heavy_fuel_oil
+transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_for_shipping_heavy_fuel_oil
 (not_defined)-transport_ship_using_heavy_fuel_oil
 transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil)
 

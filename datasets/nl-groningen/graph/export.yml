@@ -925,14 +925,14 @@ transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)
   :demand_expected_value: 940233183.893496
 transport_ship_using_diesel-(diesel): {conversion: 1.0}
 (not_defined)-transport_ship_using_diesel: {conversion: 1.0}
-transport_ship_using_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_navigation_diesel: {share: 1.0}
+transport_ship_using_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_shipping_diesel: {share: 1.0}
 
 :transport_ship_using_biodiesel:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 transport_ship_using_biodiesel-(biodiesel): {conversion: 1.0}
 (not_defined)-transport_ship_using_biodiesel: {conversion: 1.0}
-transport_ship_using_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_navigation_biodiesel: {share: 1.0}
+transport_ship_using_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_shipping_biodiesel: {share: 1.0}
 
 :transport_train_using_electricity:
   :co2_free: 0.0
@@ -6634,14 +6634,14 @@ transport_final_demand_electricity-(electricity) -- s --> (electricity)-energy_p
   :co2_free: 0.0
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
 (heavy_fuel_oil)-energy_distribution_heavy_fuel_oil: {conversion: 1.0}
-energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_crude_oil: {share: 1.0}
+energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_heavy_fuel_oil: {share: 1.0}
 
-:energy_production_crude_oil:
+:energy_production_heavy_fuel_oil:
   :co2_free: 0.0
-(loss)-energy_production_crude_oil: {conversion: 0.0}
-(heavy_fuel_oil)-energy_production_crude_oil: {conversion: 1.0}
-energy_production_crude_oil-(crude_oil): {conversion: 1.0}
-energy_production_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
+(loss)-energy_production_heavy_fuel_oil: {conversion: 0.0}
+(heavy_fuel_oil)-energy_production_heavy_fuel_oil: {conversion: 1.0}
+energy_production_heavy_fuel_oil-(crude_oil): {conversion: 1.0}
+energy_production_heavy_fuel_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :transport_final_demand_for_road_lpg:
   :co2_free: 0.0
@@ -6720,19 +6720,19 @@ transport_final_demand_for_rail_electricity-(electricity): {conversion: 1.0}
 (electricity)-transport_final_demand_for_rail_electricity: {conversion: 1.0}
 transport_final_demand_for_rail_electricity-(electricity) -- s --> (electricity)-transport_final_demand_electricity: {share: 1.0}
 
-:transport_final_demand_for_navigation_diesel:
+:transport_final_demand_for_shipping_diesel:
   :co2_free: 0.0
   :demand_expected_value: 940233183.893496
-transport_final_demand_for_navigation_diesel-(diesel): {conversion: 1.0}
-(diesel)-transport_final_demand_for_navigation_diesel: {conversion: 1.0}
-transport_final_demand_for_navigation_diesel-(diesel) -- s --> (diesel)-transport_final_demand_diesel: {share: 1.0}
+transport_final_demand_for_shipping_diesel-(diesel): {conversion: 1.0}
+(diesel)-transport_final_demand_for_shipping_diesel: {conversion: 1.0}
+transport_final_demand_for_shipping_diesel-(diesel) -- s --> (diesel)-transport_final_demand_diesel: {share: 1.0}
 
-:transport_final_demand_for_navigation_heavy_fuel_oil:
+:transport_final_demand_for_shipping_heavy_fuel_oil:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-transport_final_demand_for_navigation_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
-(heavy_fuel_oil)-transport_final_demand_for_navigation_heavy_fuel_oil: {conversion: 1.0}
-transport_final_demand_for_navigation_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_heavy_fuel_oil: {share: 1.0}
+transport_final_demand_for_shipping_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
+(heavy_fuel_oil)-transport_final_demand_for_shipping_heavy_fuel_oil: {conversion: 1.0}
+transport_final_demand_for_shipping_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_heavy_fuel_oil: {share: 1.0}
 
 :transport_final_demand_for_aviation_gasoline:
   :co2_free: 0.0
@@ -6782,12 +6782,12 @@ transport_rail_mixer_diesel-(biodiesel): {conversion: 0.0}
 transport_rail_mixer_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_rail_diesel: {share: 1.0}
 transport_rail_mixer_diesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_rail_biodiesel: {share: 1.0}
 
-:transport_final_demand_for_navigation_biodiesel:
+:transport_final_demand_for_shipping_biodiesel:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-transport_final_demand_for_navigation_biodiesel-(biodiesel): {conversion: 1.0}
-(biodiesel)-transport_final_demand_for_navigation_biodiesel: {conversion: 1.0}
-transport_final_demand_for_navigation_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_biodiesel: {share: 1.0}
+transport_final_demand_for_shipping_biodiesel-(biodiesel): {conversion: 1.0}
+(biodiesel)-transport_final_demand_for_shipping_biodiesel: {conversion: 1.0}
+transport_final_demand_for_shipping_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_biodiesel: {share: 1.0}
 
 :transport_final_demand_for_aviation_biodiesel:
   :co2_free: 0.0
@@ -6808,7 +6808,7 @@ transport_plane_using_kerosene-(kerosene) -- s --> (kerosene)-transport_final_de
   :demand_expected_value: 0.0
 (not_defined)-transport_ship_using_heavy_fuel_oil: {conversion: 1.0}
 transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
-transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_for_navigation_heavy_fuel_oil: {share: 1.0}
+transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_for_shipping_heavy_fuel_oil: {share: 1.0}
 
 :other_heater_district_heating_steam_hot_water:
   :co2_free: 0.0
