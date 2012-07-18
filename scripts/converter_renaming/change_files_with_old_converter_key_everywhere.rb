@@ -29,7 +29,6 @@ end
 
 PATH_OF_REPOSITORIES = File.expand_path("../../../..",__FILE__)
 
-
 puts PATH_OF_REPOSITORIES
 
 # Define what we want to replace with what
