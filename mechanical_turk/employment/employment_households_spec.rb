@@ -65,5 +65,18 @@ describe "Households, Space Heating" do
     #   move_slider 52, 100 #%
     #   @scenario.dashboard_employment.should decrease
     # end
+
+
+    # For every hot water technology, the turk_number_of_units should go to #HHs when slider = 100%
+    it "turk_number_of_households_water_heater_fuel_cell_chp_network_gas" do
+      move_slider 439, 100 #%
+      the_future.should be_within(7349500.0,5.0)
+    end
+
+    it "turk_full_load_hours_of_households_water_heater_fuel_cell_chp_network_gas" do
+      move_slider 439, 100 #%
+      the_future.should be_within(4380.0, 4380.0)
+    end
+
   end
 end
