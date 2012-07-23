@@ -6,20 +6,17 @@
 - unit = euro
 
 PRODUCT(
-  DIVIDE(
-    155783851,
-    V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
-  ),
+    V(energy_power_transformer_mv_hv_electricity, "operation_and_maintenance_cost_variable_per_full_load_hour * full_load_hours / network_capacity_available_in_mw"),
     SUM(
-      MAX(
-        SUM(
-          Q(hv_mv_trafo_delta_capacity_max), 
-          V(energy_power_transformer_mv_hv_electricity, network_capacity_used_in_mw)
+        MAX(
+            SUM(
+                Q(hv_mv_trafo_delta_capacity_max), 
+                V(energy_power_transformer_mv_hv_electricity, network_capacity_used_in_mw)
+            ),
+            V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
         ),
-        V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
-      ),
-      NEG(
-        V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
-      )
+        NEG(
+            V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
+        )
     )
 )
