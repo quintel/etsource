@@ -1,8 +1,7 @@
 # Score calculated for etflex.
-# The basis of the score is 1000, minus 7.5 times the costs in billions, minus the CO2 emissions in Mton,
+# The basis of the score is 1000, minus 5.0 times the costs in billions, minus the CO2 emissions in Mton,
 # plus 2x the percentage renewability of the scenario, minus 5x the number of nuclear power plants (because of nuclear waste).
 # plus 2x the percentage of maximum attainable renewability (free points!). This reduces the (negative) infuence of the renewability fraction. 
-# There are additional minus points for sliders:
 # - (0.02 points for each percentage of LEDs or solar heater)^2
 # - (0.03 points for each percentage of electric car or heatpump)^2
 # - (0.4 points for each percentage point of green gas)^2
@@ -17,7 +16,7 @@ MAX(0,
   PRODUCT(
       SUM (
         1000,
-        PRODUCT(7.5,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
+        PRODUCT(5.0,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
         NEG( DIVIDE( Q(total_co2_emissions), BILLIONS )),
         PRODUCT(200,Q(renewability)),
         PRODUCT(200,0.291),
