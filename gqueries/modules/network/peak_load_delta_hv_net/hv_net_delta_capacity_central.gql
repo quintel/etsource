@@ -1,8 +1,6 @@
 - deprecated_key = pl_hv_net_delta_capacity_central
-# Explanation current query:
-# First MAX( - Looks at POSITIVE deltas in capacity that require net expansion
-# Second MAX( - Calculates maximum import/export in MW. Subtracts 4200MW, which is current import/export capacity
-# 61959/100000 is capacity factor.
+# Calculates the total delta in capacity for the HV net. Consisting of two things: 1) Additional capacity of new power plants (first MAX( statement) and 2) Additional import/export capacity
+# For import export, the network_capacity_available_in_mw attribute is the available import/export capacity. Only above this value is extra capacity required.
 
 - unit = mw
 
@@ -16,10 +14,10 @@ SUM(
    MAX(
      SUM(
        MAX(
-         V(energy_export_electricity,"demand/3600/8760/61959*100000"),
-         V(energy_import_electricity,"demand/3600/8760/61959*100000")
+         V(energy_export_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
+         V(energy_import_electricity,"mw_input_capacity-network_capacity_available_in_mw")
        ),
-       NEG(4200)
+       0
      ),
      0
    )
