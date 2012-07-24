@@ -6,7 +6,8 @@ SUM(
     MAX(
         ABS(
             SUM(
-                SUM(V(Q(network_lv_net_converters),"simult_we*(electricity_output_conversion + electricity_input_conversion)*typical_input_capacity_in_mw*(number_of_units - peak_load_units_present)"))
+                SUM(V(Q(network_lv_net_converters),"simult_supply*(electricity_output_conversion + electricity_input_conversion)*typical_input_capacity_in_mw*(number_of_units - peak_load_units_present)"))
+                        *V(energy_power_lv_network_electricity,simult_supply)
                 ,
                 V(energy_power_mv_distribution_network_electricity, network_capacity_used_in_mw)
             )
