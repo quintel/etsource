@@ -50,6 +50,7 @@ module ETE
       :simult_se,
       :simult_wd,
       :simult_we,
+      :simult_supply,
       :technical_lifetime,
       :typical_effective_input_capacity,
       :typical_nominal_input_capacity,
