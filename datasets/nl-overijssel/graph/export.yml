@@ -156,7 +156,7 @@ households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (e
   :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
-  :peak_load_units_present: 39427.2555299998
+  :peak_load_units_present: 37395.1076175671
   :purchase_price_per_mw_input: 85500.0
   :residual_value_per_mw_input: 0.0
   :simult_sd: 0.85950853472005
@@ -278,7 +278,7 @@ households_cooling_airconditioning_electricity-(electricity) -- s --> (electrici
   :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
-  :peak_load_units_present: 10204.4226007714
+  :peak_load_units_present: 9225.08573613519
   :purchase_price_per_mw_input: 50000.0
   :residual_value_per_mw_input: 0.0
   :simult_sd: 0.0
@@ -375,11 +375,13 @@ energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiatio
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 0.0
+  :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
   :network_capacity_available_in_mw: 74803.2
   :network_capacity_used_in_mw: 23376.0
-  :network_expansion_costs_in_euro_per_mw: 457051.6588
+  :network_expansion_costs_in_euro_per_mw: 432505.525481336
+  :operation_and_maintenance_cost_fixed_per_mw_input: 3123.87406520308
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :peak_load_units_present: 0.0
@@ -498,11 +500,13 @@ industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-indus
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 0.0
+  :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
   :network_capacity_available_in_mw: 42000.0
   :network_capacity_used_in_mw: 30000.0
-  :network_expansion_costs_in_euro_per_mw: 53846.1538
+  :network_expansion_costs_in_euro_per_mw: 56534.6100855684
+  :operation_and_maintenance_cost_fixed_per_mw_input: 3709.13930911427
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :peak_load_units_present: 0.0
@@ -925,14 +929,14 @@ transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)
   :demand_expected_value: 1843208637.84058
 transport_ship_using_diesel-(diesel): {conversion: 1.0}
 (not_defined)-transport_ship_using_diesel: {conversion: 1.0}
-transport_ship_using_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_navigation_diesel: {share: 1.0}
+transport_ship_using_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_shipping_diesel: {share: 1.0}
 
 :transport_ship_using_biodiesel:
   :co2_free: 0.0
   :demand_expected_value: 0.0
 transport_ship_using_biodiesel-(biodiesel): {conversion: 1.0}
 (not_defined)-transport_ship_using_biodiesel: {conversion: 1.0}
-transport_ship_using_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_navigation_biodiesel: {share: 1.0}
+transport_ship_using_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_shipping_biodiesel: {share: 1.0}
 
 :transport_train_using_electricity:
   :co2_free: 0.0
@@ -1114,11 +1118,13 @@ energy_power_supercritical_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_dis
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 0.0
+  :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
-  :network_capacity_available_in_mw: 0.0
+  :network_capacity_available_in_mw: 1600.0
   :network_capacity_used_in_mw: 0.0
   :network_expansion_costs_in_euro_per_mw: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 59908.2462117609
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :technical_lifetime: 40.0
@@ -1151,7 +1157,6 @@ energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_hydro_river: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_hydro_mountain: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_geothermal: {share: 0.0}
-energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_biogas: {share: 84501256.8806716}
 energy_power_hv_network_electricity-(electricity) -- i --> (electricity)-energy_power_transformer_mv_hv_electricity: {}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_nuclear_gen2_uranium_oxide: {share: 0.0}
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {share: 0.0}
@@ -3040,7 +3045,23 @@ energy_import_bio_oil-(bio_oil): {conversion: 1.0}
 (bio_oil)-energy_import_bio_oil: {conversion: 1.0}
 
 :energy_import_electricity:
+  :availability: 0.0
   :co2_free: 0.0
+  :costs_per_mj: 0.0
+  :economic_lifetime: 0.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 5427.6084
+  :households_supplied_per_unit: 0.0
+  :network_capacity_available_in_mw: 4200.0
+  :network_capacity_used_in_mw: 0.0
+  :network_expansion_costs_in_euro_per_mw: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :technical_lifetime: 0.0
+  :variability: 0.0
+  :wacc: 0.0
 energy_import_electricity-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-energy_import_electricity: {conversion: 1.0}
 
@@ -3070,13 +3091,6 @@ environment_sun-(loss): {conversion: 1.0}
   :co2_free: 0.0
 environment_air-(loss): {conversion: 1.0}
 (loss)-environment_air: {conversion: 1.0}
-
-:energy_power_combined_cycle_biogas:
-  :co2_free: 0.0
-energy_power_combined_cycle_biogas-(biogas): {conversion: 1.0}
-(electricity)-energy_power_combined_cycle_biogas: {conversion: 1.0}
-(loss)-energy_power_combined_cycle_biogas: {conversion: 0.0}
-energy_power_combined_cycle_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas: {share: 1.0}
 
 :other_chp_engine_gas_power_fuelmix:
   :availability: 0.97
@@ -3821,11 +3835,13 @@ agriculture_unused_local_production_steam_hot_water-(steam_hot_water) -- i --> (
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 0.0
+  :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
   :network_capacity_available_in_mw: 42076.8
   :network_capacity_used_in_mw: 25713.6
   :network_expansion_costs_in_euro_per_mw: 85000.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 5553.55389369437
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :peak_load_units_present: 0.0
@@ -3849,11 +3865,13 @@ energy_power_transformer_lv_mv_electricity-(electricity) -- f --> (electricity)-
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 0.0
+  :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
   :network_capacity_available_in_mw: 30301.7
   :network_capacity_used_in_mw: 20619.5
-  :network_expansion_costs_in_euro_per_mw: 200000.0
+  :network_expansion_costs_in_euro_per_mw: 142200.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 5141.09277640527
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :peak_load_units_present: 0.0
@@ -3877,11 +3895,13 @@ energy_power_mv_transport_network_electricity-(electricity) -- f --> (electricit
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 0.0
+  :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
   :network_capacity_available_in_mw: 21340.0
   :network_capacity_used_in_mw: 16490.0
   :network_expansion_costs_in_euro_per_mw: 150000.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 7300.08673771319
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :peak_load_units_present: 0.0
@@ -3939,7 +3959,23 @@ energy_production_cokes-(coal): {conversion: 1.0}
 energy_production_cokes-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
 :energy_export_electricity:
+  :availability: 0.0
   :co2_free: 0.0
+  :costs_per_mj: 0.0
+  :economic_lifetime: 0.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 5427.6084
+  :households_supplied_per_unit: 0.0
+  :network_capacity_available_in_mw: 4200.0
+  :network_capacity_used_in_mw: 0.0
+  :network_expansion_costs_in_euro_per_mw: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :technical_lifetime: 0.0
+  :variability: 0.0
+  :wacc: 0.0
 energy_export_electricity-(electricity): {conversion: 1.0}
 (electricity)-energy_export_electricity: {conversion: 1.0}
 energy_export_electricity-(electricity) -- i --> (electricity)-energy_power_hv_network_electricity: {}
@@ -6642,14 +6678,14 @@ transport_final_demand_electricity-(electricity) -- s --> (electricity)-energy_p
   :co2_free: 0.0
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
 (heavy_fuel_oil)-energy_distribution_heavy_fuel_oil: {conversion: 1.0}
-energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_crude_oil: {share: 1.0}
+energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_heavy_fuel_oil: {share: 1.0}
 
-:energy_production_crude_oil:
+:energy_production_heavy_fuel_oil:
   :co2_free: 0.0
-(loss)-energy_production_crude_oil: {conversion: 0.0}
-(heavy_fuel_oil)-energy_production_crude_oil: {conversion: 1.0}
-energy_production_crude_oil-(crude_oil): {conversion: 1.0}
-energy_production_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
+(loss)-energy_production_heavy_fuel_oil: {conversion: 0.0}
+(heavy_fuel_oil)-energy_production_heavy_fuel_oil: {conversion: 1.0}
+energy_production_heavy_fuel_oil-(crude_oil): {conversion: 1.0}
+energy_production_heavy_fuel_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :transport_final_demand_for_road_lpg:
   :co2_free: 0.0
@@ -6728,19 +6764,19 @@ transport_final_demand_for_rail_electricity-(electricity): {conversion: 1.0}
 (electricity)-transport_final_demand_for_rail_electricity: {conversion: 1.0}
 transport_final_demand_for_rail_electricity-(electricity) -- s --> (electricity)-transport_final_demand_electricity: {share: 1.0}
 
-:transport_final_demand_for_navigation_diesel:
+:transport_final_demand_for_shipping_diesel:
   :co2_free: 0.0
   :demand_expected_value: 1843208637.84058
-transport_final_demand_for_navigation_diesel-(diesel): {conversion: 1.0}
-(diesel)-transport_final_demand_for_navigation_diesel: {conversion: 1.0}
-transport_final_demand_for_navigation_diesel-(diesel) -- s --> (diesel)-transport_final_demand_diesel: {share: 1.0}
+transport_final_demand_for_shipping_diesel-(diesel): {conversion: 1.0}
+(diesel)-transport_final_demand_for_shipping_diesel: {conversion: 1.0}
+transport_final_demand_for_shipping_diesel-(diesel) -- s --> (diesel)-transport_final_demand_diesel: {share: 1.0}
 
-:transport_final_demand_for_navigation_heavy_fuel_oil:
+:transport_final_demand_for_shipping_heavy_fuel_oil:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-transport_final_demand_for_navigation_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
-(heavy_fuel_oil)-transport_final_demand_for_navigation_heavy_fuel_oil: {conversion: 1.0}
-transport_final_demand_for_navigation_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_heavy_fuel_oil: {share: 1.0}
+transport_final_demand_for_shipping_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
+(heavy_fuel_oil)-transport_final_demand_for_shipping_heavy_fuel_oil: {conversion: 1.0}
+transport_final_demand_for_shipping_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_heavy_fuel_oil: {share: 1.0}
 
 :transport_final_demand_for_aviation_gasoline:
   :co2_free: 0.0
@@ -6790,12 +6826,12 @@ transport_rail_mixer_diesel-(biodiesel): {conversion: 0.0}
 transport_rail_mixer_diesel-(diesel) -- s --> (diesel)-transport_final_demand_for_rail_diesel: {share: 1.0}
 transport_rail_mixer_diesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_for_rail_biodiesel: {share: 1.0}
 
-:transport_final_demand_for_navigation_biodiesel:
+:transport_final_demand_for_shipping_biodiesel:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-transport_final_demand_for_navigation_biodiesel-(biodiesel): {conversion: 1.0}
-(biodiesel)-transport_final_demand_for_navigation_biodiesel: {conversion: 1.0}
-transport_final_demand_for_navigation_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_biodiesel: {share: 1.0}
+transport_final_demand_for_shipping_biodiesel-(biodiesel): {conversion: 1.0}
+(biodiesel)-transport_final_demand_for_shipping_biodiesel: {conversion: 1.0}
+transport_final_demand_for_shipping_biodiesel-(biodiesel) -- s --> (biodiesel)-transport_final_demand_biodiesel: {share: 1.0}
 
 :transport_final_demand_for_aviation_biodiesel:
   :co2_free: 0.0
@@ -6816,7 +6852,7 @@ transport_plane_using_kerosene-(kerosene) -- s --> (kerosene)-transport_final_de
   :demand_expected_value: 0.0
 (not_defined)-transport_ship_using_heavy_fuel_oil: {conversion: 1.0}
 transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
-transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_for_navigation_heavy_fuel_oil: {share: 1.0}
+transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-transport_final_demand_for_shipping_heavy_fuel_oil: {share: 1.0}
 
 :other_heater_district_heating_steam_hot_water:
   :co2_free: 0.0
