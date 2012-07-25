@@ -5,31 +5,33 @@
 # 
 # Additional HV network costs for 'stopcontact op zee' are also included.
 
-- unit = mln_euro
+- unit = euro
 
-IF(EQUALS(AREA(area),nl),
-SUM(
-  IF(
-    Q(hv_net_capacity_buffer_total_check),
-    IF(
-      Q(hv_net_capacity_buffer_decentral_check), 
-      SUM(
-        PRODUCT(
-          Q(hv_net_delta_capacity_central),
-          0.20
+PRODUCT(
+    SUM(
+        IF(
+            Q(hv_net_capacity_buffer_total_check),
+            IF(
+                Q(hv_net_capacity_buffer_decentral_check), 
+                SUM(
+                    PRODUCT(
+                        Q(hv_net_delta_capacity_central),
+                        0.20
+                    ),
+                    PRODUCT(
+                        Q(hv_net_delta_capacity_decentral),
+                        0.25 
+                    )
+                ),
+                PRODUCT(
+                    Q(hv_net_delta_capacity_total),
+                    0.20
+                )
+            ),
+            0
         ),
-        PRODUCT(
-          Q(hv_net_delta_capacity_decentral),
-          0.25 
-        )
-      ),
-      PRODUCT(
-        Q(hv_net_delta_capacity_total),
-        0.20
-      )
+        Q(yearly_investment_costs_of_hv_net_wind_offshore)
     ),
-   0
-  ),
- Q(yearly_investment_costs_of_hv_net_wind_offshore)
-),
-0)
+    MILLIONS
+)
+

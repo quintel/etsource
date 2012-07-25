@@ -1,19 +1,10 @@
 - deprecated_key = pl_hv_grid_investment_costs_per_year
 # First checks if the country is set to NL before it does the calculation.
 
-- unit = mln_euro
+- unit = euro
 
-IF(EQUALS(AREA(area),nl),
-    SUM(
-        DIVIDE(
-            Q(total_investment_costs_of_hv_net),V(energy_power_hv_network_electricity,technical_lifetime)
-        ),
-        PRODUCT(
-            DIVIDE(Q(total_investment_costs_of_hv_net),2),
-            V(energy_power_hv_network_electricity,wacc)
-        ),
-        DIVIDE(Q(operational_costs_of_hv_net),MILLIONS)
-    ),
-    0
- )
-
+SUM(
+     Q(total_investment_costs_of_hv_net) / V(energy_power_hv_network_electricity,technical_lifetime),
+     Q(total_investment_costs_of_hv_net) / 2 * V(energy_power_hv_network_electricity,wacc),
+     Q(operational_costs_of_hv_net)
+)
