@@ -1,15 +1,15 @@
 - deprecated_key = pl_network_total_costs
 # 
 
-- unit = bln_euro
+- unit = euro
 
-DIVIDE(
-    SUM(
+SUM(
+    PRODUCT(
         SUM(
             MAX(AREA(annual_infrastructure_cost_electricity),0),
             MAX(AREA(annual_infrastructure_cost_gas),0)
         ),
-        Q(yearly_investment_costs_of_network)
+        MILLIONS
     ),
-    1000
+    Q(yearly_investment_costs_of_network)
 )
