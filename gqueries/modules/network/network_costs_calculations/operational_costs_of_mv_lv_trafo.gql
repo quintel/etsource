@@ -7,16 +7,5 @@
 
 PRODUCT(
     V(energy_power_transformer_lv_mv_electricity, operation_and_maintenance_cost_fixed_per_mw_input),
-    SUM(
-        MAX(
-            SUM(
-                Q(mv_lv_trafo_delta_capacity_max), 
-                V(energy_power_transformer_lv_mv_electricity, network_capacity_used_in_mw)
-            ),
-            V(energy_power_transformer_lv_mv_electricity, network_capacity_available_in_mw)
-        ),
-        NEG(
-            V(energy_power_transformer_lv_mv_electricity, network_capacity_available_in_mw)
-        )
-    )
+    Q(network_mv_lv_trafo_delta_peak_load_max)
 )
