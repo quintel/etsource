@@ -2,23 +2,19 @@
 # Calculates the total delta in capacity for the HV net. Consisting of two things: 1) Additional capacity of new power plants (first MAX( statement) and 2) Additional import/export capacity
 # For import export, the network_capacity_available_in_mw attribute is the available import/export capacity. Only above this value is extra capacity required.
 
-- unit = mw
+- unit = MW
 
 SUM(
-   MAX(
-      SUM(  
-         V(Q(high_voltage_electricity_production),delta_in_capacity_in_mw)
-      ),
-     0
-   ),
-   MAX(
-     SUM(
-       MAX(
-         V(energy_export_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
-         V(energy_import_electricity,"mw_input_capacity-network_capacity_available_in_mw")
-       ),
-       0
-     ),
-     0
-   )
+    MAX(
+        SUM(
+            V(Q(high_voltage_electricity_production),delta_in_capacity_in_mw)
+        ),
+        0
+    ),
+    MAX(
+        V(energy_export_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
+        V(energy_import_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
+        0
+    )
 )
+

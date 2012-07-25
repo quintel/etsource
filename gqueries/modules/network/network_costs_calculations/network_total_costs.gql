@@ -4,11 +4,12 @@
 - unit = bln_euro
 
 DIVIDE(
-           SUM(
-                   SUM(
-                         MAX(AREA(annual_infrastructure_cost_electricity),0),
-                         MAX(AREA(annual_infrastructure_cost_gas),0)
-                    ),
-                    Q(yearly_investment_costs_of_network)
-                    ),
-          1000)
+    SUM(
+        SUM(
+            MAX(AREA(annual_infrastructure_cost_electricity),0),
+            MAX(AREA(annual_infrastructure_cost_gas),0)
+        ),
+        Q(yearly_investment_costs_of_network)
+    ),
+    1000
+)
