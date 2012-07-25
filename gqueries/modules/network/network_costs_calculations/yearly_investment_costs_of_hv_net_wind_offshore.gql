@@ -1,21 +1,10 @@
 - deprecated_key = pl_hv_net_investment_costs_wind_offshore
-# The first part of the Gquery has to do with extra capacity that be installed without additional network investments.
-# 
-# TODO: Number 1000 has to be ported to Area, as as the investment cost per turbine (see number 1,2 below).
-# 
-# This query calculates in Million Euro the investment required for 'Stopcontacten op zee'.
-# 
-# The costs for the stopcontact op zee are 400 EUR/kW which translates to 1,2 MEur/turbine. This value is slightly lower than the range of the values used by CE Delft and D-Cision in the NET-document (466,7  and 800 EUR/kW respectively). The reason for it being lower is because in another query other costs for offshore wind are taken into account
-# 
-# Old query:
-# 
-# MAX(
-#   PRODUCT(
-#     V(energy_power_wind_turbine_offshore, number_of_units - peak_load_units_present),
-#     1.2
-#   ),
-#   0
-# )
+# Calculates the network costs for offshore wind turbines
+# For the first 3000 turbines there is room on the network and no additional costs are made
+# Above this value the costs are estimated at 400 EUR/kW which is 1.2 MEur/turbine.
+# This is slightly lower than the range of the values used by CE Delft and D-Cision in the NET-document (466,7  and 800 EUR/kW respectively). 
+# The reason for is because network costs of offshore wind turbines are already partially counted with the other central production technologies on the HV-network
+# See Q(hv_net_delta_capacity_central)
 
 - unit = euro
 
