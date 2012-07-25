@@ -7,8 +7,8 @@
 
 - unit = euro
 
-PRODUCT(
-    SUM(
+SUM(
+    PRODUCT(
         IF(
             Q(hv_net_capacity_buffer_total_check),
             IF(
@@ -30,8 +30,8 @@ PRODUCT(
             ),
             0
         ),
-        Q(yearly_investment_costs_of_hv_net_wind_offshore)
+        MILLIONS
     ),
-    MILLIONS
+    Q(yearly_investment_costs_of_hv_net_wind_offshore)
 )
 
