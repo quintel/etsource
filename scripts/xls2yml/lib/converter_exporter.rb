@@ -128,9 +128,7 @@ module ETE
         if @cached_converter_groups[key].is_a?(Array)
           groups = @cached_converter_groups[key].compact.join(',')
         end
-        # TODO: since we've removed the full_key we can remove the duplicate
-        # key here
-        string = "#{key};\t#{key};\t#{sector};\t#{use};#{energy_balance_group};\t#{groups}"
+        string = "#{key};#{sector};#{use};#{energy_balance_group};#{groups}"
         out[key] = string
       end
       out
