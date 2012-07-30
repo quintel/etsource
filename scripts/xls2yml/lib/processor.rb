@@ -5,7 +5,7 @@ module ETE
       @etsource_dir = opts[:dest]
       @export = ExcelExport.new(source_dir)
     end
-    
+
     # This is the main action
     #
     def export_all
@@ -36,7 +36,7 @@ module ETE
       puts "Current file: #{$current_file}"
       exit
     end
-    
+
     private
 
     # writes to ETSOURCE/datasets/<area>/graph/export.yml
@@ -45,9 +45,9 @@ module ETE
       raw = converter_exporter.export
       lines = []
       current_converter_key = nil
-      raw.each_pair do |converter_key, values|
-        current_converter_key = converter_key
-        lines << ":#{converter_key}:"
+      raw.sort_by{|key, values| key}.each do |key, values|
+        current_converter_key = key
+        lines << ":#{key}:"
         values[:attributes].each_pair do |attr, val|
           lines << "  :#{attr}: #{val}"
         end
@@ -95,7 +95,7 @@ module ETE
       dest_file = "#{@etsource_dir}/topology/export.graph"
       puts "  Saving topology to #{dest_file}"
       lines = []
-      raw.each_pair do |key, values|
+      raw.sort_by{|key, values| key}.each do |key, values|
         lines << values[:info]
         values[:links_without_share].each do |link|
           lines << link
