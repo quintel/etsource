@@ -2,78 +2,28 @@
 # Find a list in section 4.4 here: http://www.w3.org/TR/SVG/types.html#DataTypeColor
 
 :carriers: 
-  # The following carriers need to be defined here, because of the 'co2_...' attributes,
-  # since these are not meant to be defined for areas other than NL
   :algae_diesel: 
     :cost_per_mj: 0.123375
     :typical_production_per_km2: 3000000.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :ambient_cold: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :ambient_heat: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :biodiesel: 
     # 6/27/12, EU Oil bulletin diesle price + 4 cts/L
     :cost_per_mj: 0.021473611111111
     :typical_production_per_km2: 5712000.0
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :bio_ethanol: 
     # 6/27/12, EU Oil bulletin diesle price + 4 cts/L
     :cost_per_mj: 0.030406837606838
     :typical_production_per_km2: 9360000.0
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :biogas: 
     :cost_per_mj: 0.017718419328832
     :typical_production_per_km2: 17131528.66 
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :biogenic_waste: 
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :bio_oil: 
     :typical_production_per_km2: 15506658
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :bio_residues_for_firing: 
     # The value below is not correct but has been added 
@@ -83,46 +33,17 @@
     # updated on  2012-6-26. 
     #For syntax reasons initialized here    
     :cost_per_mj: &WOOD_PELLETS_PRICE 0.007766101694915
-    # The value below is not correct but has been added as a temporary fix for 'exported wood_pellets problem'
-    # Commented out this value, since flexmax solution for bio-residues_for_firing seems to work
-    # :typical_production_per_km2: 16638000.0
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :car_kms: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :coal: 
     # 6/27/12, CAL13 Future Settl. price
     :cost_per_mj: 0.002679600928928
-    :co2_conversion_per_mj: 0.0926835
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.00383656
-    :co2_treatment_per_mj: 0.000739767
-    :co2_transportation_per_mj: 0.000373771
-    :co2_waste_treatment_per_mj: 0.0
-
-  :compressed_network_gas: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :cooling: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
+#   below commented out since this is now all specified in 'fce_values.yml'
+#    :co2_conversion_per_mj: 0.0926835
+#    :co2_exploration_per_mj: 0.0
+#    :co2_extraction_per_mj: 0.00383656
+#    :co2_treatment_per_mj: 0.000739767
+#    :co2_transportation_per_mj: 0.000373771
+#    :co2_waste_treatment_per_mj: 0.0
 
   :corn: 
     # the value below is based on biogas costs, which are not taken into account yet as of 2012-2-22
@@ -131,12 +52,6 @@
     :typical_production_per_km2: 8565764.33
     # the value below is based on biogas yields, which are not taken into account yet as of 2012-2-22
     :mj_per_kg:  6.03
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :crude_oil: 
     :co2_conversion_per_mj: 0.0755
@@ -149,35 +64,10 @@
   :diesel: 
     # 6/27/12, EU Oil bulletin
     :cost_per_mj: 0.020012285012285
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :electricity: 
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
  
   :gasoline: 
     # 6/27/12, EU Oil bulletin
     :cost_per_mj: 0.020703280715793
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :gas_power_fuelmix: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :greengas: 
     # 6/27/12, natural gas + 50 cts/m3
@@ -190,189 +80,51 @@
     :co2_transportation_per_mj: 0.0
     :co2_waste_treatment_per_mj: 0.0
 
-  :hot_water: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :imported_electricity: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
 # The carrier below is used for Amsterdam
   :imported_steam_hot_water: 
     :sustainable: 0.5
     :co2_conversion_per_mj: 0.0364394
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :kerosene: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :light: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :lng: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :loss: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :lpg: 
     # 6/27/12, EU Oil bulletin
     :cost_per_mj: 0.020612653061225
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :manure: 
     :cost_per_mj: 0.00
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :natural_gas: 
     # 6/27/12, CAL13 Future, TTF baseload
     :cost_per_mj: 0.007033611111111
-    :co2_conversion_per_mj: 0.055279
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.00100833
-    :co2_transportation_per_mj: 0.0006513
-    :co2_waste_treatment_per_mj: 0.0
     :mj_per_kg: 38.018007203
-
-  :non_biogenic_waste: 
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :not_defined: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :solar_radiation: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :solar_thermal: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :steam_hot_water: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
+#   below commented out since this is now all specified in 'fce_values.yml'
+#    :co2_conversion_per_mj: 0.055279
+#    :co2_exploration_per_mj: 0.0
+#    :co2_extraction_per_mj: 0.0
+#    :co2_treatment_per_mj: 0.00100833
+#    :co2_transportation_per_mj: 0.0006513
+#    :co2_waste_treatment_per_mj: 0.0
 
   :torrified_biomass_pellets: 
     # the value below is identical to wood_pellets on  2012-6-26, since no price is available    
     :cost_per_mj: *WOOD_PELLETS_PRICE #0.007766101694915
     # the value below is based on production in Brasil / South America
     :typical_production_per_km2: 46389392.00
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
-  :truck_kms: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :uranium_oxide: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 4.58e-06
-    :co2_treatment_per_mj: 0.000154245
-    :co2_transportation_per_mj: 3.486e-06
-    :co2_waste_treatment_per_mj: 0.0
-
-  :useable_heat: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
+#   below commented out since this is now all specified in 'fce_values.yml'
+#  :uranium_oxide: 
+#    :co2_exploration_per_mj: 0.0
+#    :co2_extraction_per_mj: 4.58e-06
+#    :co2_treatment_per_mj: 0.000154245
+#    :co2_transportation_per_mj: 3.486e-06
+#    :co2_waste_treatment_per_mj: 0.0
 
   :waste_mix: 
     :cost_per_mj: 0.0
     :sustainable: 0.38
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :water: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
-
-  :wind: 
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :wood: 
     :cost_per_mj: 0.0033
     :typical_production_per_km2: 17700000.0
-    :co2_conversion_per_mj: 0.0
-    :co2_exploration_per_mj: 0.0
-    :co2_extraction_per_mj: 0.0
-    :co2_treatment_per_mj: 0.0
-    :co2_transportation_per_mj: 0.0
-    :co2_waste_treatment_per_mj: 0.0
 
   :wood_pellets: 
     # the values below are for imported wood_pellets 
