@@ -5,7 +5,7 @@ key: buildings_heating_small_gas_chp_share
 max_value: 100.0
 min_value: 0.0
 name: Small gas CHP
-# This input updates a share with an absolute value. therefore v1_legacy_unit has to be empty
+# This input updates a share with an absolute value. therefore default_unit has to be empty
 # and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
 query: |-
   UPDATE(
@@ -24,4 +24,4 @@ start_value_gql: present:V(buildings_collective_chp_gas_power_fuelmix,steam_hot_
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit:
+default_unit:
