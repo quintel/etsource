@@ -1,16 +1,16 @@
---- 
+---
 attr_name: heating_market_share
-comments: 
+comments:
 factor: 100.0
 id: 48
 key: households_heating_solar_thermal_panels_share
 keys: households_water_heater_solar_thermal
 label: ""
-label_query: 
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Solar thermal panels
 query: |-
   EACH(
@@ -18,9 +18,9 @@ query: |-
     UPDATE(LINK(households_water_heater_solar_thermal,households_useful_demand_for_hot_water_for_houses_with_solar_heater), share, DIVIDE(USER_INPUT(),100))
   )
 share_group:
-start_value: 
+start_value:
 start_value_gql: present:V(households_water_heater_solar_thermal,share_of_households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater)
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

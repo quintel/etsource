@@ -1,22 +1,22 @@
---- 
+---
 attr_name: production_in_mw
-comments: 
+comments:
 factor: 1.0
 id: 503
 key: mw_of_pulverized_coal_ccs
 keys: energy_power_ultra_supercritical_ccs_coal
 label: ""
-label_query: 
+label_query:
 max_value: 300.0
 max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_power_ultra_supercritical_ccs_coal,full_load_seconds))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Pulverized Coal CCS
 query: UPDATE(OUTPUT_LINKS(energy_power_ultra_supercritical_ccs_coal,constant), share, PRODUCT(V(energy_power_ultra_supercritical_ccs_coal), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(energy_power_ultra_supercritical_ccs_coal,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

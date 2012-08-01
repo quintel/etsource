@@ -1,28 +1,28 @@
---- 
+---
 attr_name: lighting_buildings_market_share
-comments: 
+comments:
 factor: 100.0
 id: 402
 key: buildings_lighting_led_tube_share
 keys: buildings_lighting_led
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: LED-tube
 query: |-
   EACH(
               UPDATE(LINK(buildings_lighting_led,buildings_useful_demand_after_motion_detection_daylight_control_light), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(buildings_useful_demand_after_motion_detection_daylight_control_light,buildings_lighting_standard_fluorescent_electricity), share, 
+              UPDATE(LINK(buildings_useful_demand_after_motion_detection_daylight_control_light,buildings_lighting_standard_fluorescent_electricity), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_motion_detection_daylight_control_light)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: lighting_buildings
-start_value: 
+start_value:
 start_value_gql: present:V(buildings_lighting_led,share_of_buildings_useful_demand_after_motion_detection_daylight_control_light)
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

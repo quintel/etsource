@@ -1,19 +1,19 @@
---- 
+---
 attr_name: number_of_units
 comments: |-
   The max value is dynamically determined by how many CHPs would be build if all of the electricity demand would be supplied by this specific CHP.
-  
+
   The max value field is taken from the Excel model, but is overrided by the dynamic field, so not used.
 factor: 1.0
 id: 324
 key: industry_number_of_biomass_chp
 keys: industry_chp_supercritical_wood_pellets
 label: ""
-label_query: 
+label_query:
 max_value: 20.0
 max_value_gql: future:DIVIDE(V(industry_final_demand_electricity,demand),V(industry_chp_supercritical_wood_pellets,typical_electricity_production_per_unit))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Biomass CHP
 query: |-
   EACH(
@@ -21,9 +21,9 @@ query: |-
               UPDATE(OUTPUT_LINKS(V(industry_chp_supercritical_wood_pellets),constant), share, V(industry_chp_supercritical_wood_pellets, production_based_on_number_of_units)),
             )
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(industry_chp_supercritical_wood_pellets,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

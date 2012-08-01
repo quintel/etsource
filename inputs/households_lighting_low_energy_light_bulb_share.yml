@@ -1,21 +1,21 @@
---- 
+---
 attr_name: lighting_market_share
-comments: 
+comments:
 factor: 100.0
 id: 43
 key: households_lighting_low_energy_light_bulb_share
 keys: households_lighting_efficient_fluorescent_electricity
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Low-energy light bulb
 query: |-
   EACH(
               UPDATE(LINK(households_lighting_efficient_fluorescent_electricity,households_useful_demand_light), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(households_useful_demand_light,households_lighting_incandescent_electricity), share, 
+              UPDATE(LINK(households_useful_demand_light,households_lighting_incandescent_electricity), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(households_useful_demand_light)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
@@ -25,4 +25,4 @@ start_value_gql: present:V(households_lighting_efficient_fluorescent_electricity
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

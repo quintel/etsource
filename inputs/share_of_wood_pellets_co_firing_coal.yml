@@ -7,7 +7,7 @@ key: share_of_wood_pellets_co_firing_coal
 keys: energy_power_ultra_supercritical_coal
 label: ""
 v1_legacy_unit: nil # it is not a growth_rate
-min_value: 0.0 
+min_value: 0.0
 max_value: 50.0
 name: Share of woodpellets in cofiring
 query: |-
@@ -15,7 +15,7 @@ query: |-
  conversion_efficiency_coal = V(energy_power_ultra_supercritical_coal, electrical_efficiency_when_using_coal);
  x = USER_INPUT() / 100.0;
  conversion_efficiency_new =  x * conversion_efficiency_wood_pellets + (1 - x) * conversion_efficiency_coal;
- 
+
  EACH(
  	UPDATE( OUTPUT_SLOTS(V(energy_power_ultra_supercritical_coal), electricity), conversion, conversion_efficiency_new),
     UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_coal), wood_pellets), conversion, x)

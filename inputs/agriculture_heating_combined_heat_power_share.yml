@@ -1,4 +1,4 @@
---- 
+---
 attr_name: agri_heating_market_share
 comments: |-
   changed max value for slider that was set to the output of the CHP:
@@ -10,16 +10,16 @@ id: 327
 key: agriculture_heating_combined_heat_power_share
 keys: agriculture_final_demand_steam_hot_water
 label: ""
-label_query: 
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Combined heat power
 query: |-
   EACH(
               UPDATE(LINK(agriculture_final_demand_steam_hot_water,agriculture_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share, 
+              UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(agriculture_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
@@ -29,4 +29,4 @@ start_value_gql: future:V(agriculture_final_demand_steam_hot_water,share_of_agri
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

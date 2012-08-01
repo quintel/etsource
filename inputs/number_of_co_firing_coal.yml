@@ -1,4 +1,4 @@
---- 
+---
 attr_name: number_of_units
 comments: ""
 factor: 1.0
@@ -6,11 +6,11 @@ id: 261
 key: number_of_co_firing_coal
 keys: energy_power_ultra_supercritical_cofiring_wood_pellets
 label: ""
-label_query: 
+label_query:
 max_value: 300.0
 max_value_gql: present:DIVIDE(Q(total_electricity_produced),V(energy_power_ultra_supercritical_cofiring_wood_pellets,typical_electricity_production_per_unit))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Co-firing coal
 query: |-
   EACH(
@@ -18,9 +18,9 @@ query: |-
               UPDATE(OUTPUT_LINKS(V(energy_power_ultra_supercritical_cofiring_wood_pellets),constant), share, V(energy_power_ultra_supercritical_cofiring_wood_pellets, production_based_on_number_of_units)),
             )
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(energy_power_ultra_supercritical_cofiring_wood_pellets,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

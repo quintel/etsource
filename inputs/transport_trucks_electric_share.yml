@@ -1,21 +1,21 @@
---- 
+---
 attr_name: truck_kms_market_share
-comments: 
+comments:
 factor: 100.0
 id: 159
 key: transport_trucks_electric_share
 keys: transport_truck_using_electricity
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Electric
 query: |-
   EACH(
               UPDATE(LINK(transport_truck_using_electricity,transport_useful_demand_truck_kms), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(transport_useful_demand_truck_kms,transport_truck_using_diesel_mix), share, 
+              UPDATE(LINK(transport_useful_demand_truck_kms,transport_truck_using_diesel_mix), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_truck_kms)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
@@ -25,4 +25,4 @@ start_value_gql: present:V(transport_truck_using_electricity,share_of_transport_
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

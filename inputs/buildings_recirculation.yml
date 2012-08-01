@@ -1,14 +1,14 @@
---- 
+---
 factor: 100.0
 id: 396
 key: buildings_recirculation
 keys: buildings_heating_savings_from_recirculation_useable_heat
 label: ""
-label_query: 
+label_query:
 max_value: 50.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Recirculation
 query: |-
   EACH(
@@ -16,9 +16,9 @@ query: |-
     UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_cooling_savings_from_recirculation_cooling),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
   )
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:AREA(recirculation)
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

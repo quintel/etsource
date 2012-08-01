@@ -1,4 +1,4 @@
---- 
+---
 factor: 100.0
 id: 405
 key: buildings_market_penetration_solar_panels
@@ -10,15 +10,15 @@ query: |-
     V(OUTPUT_SLOTS(LOOKUP(buildings_solar_pv_solar_radiation),electricity), "links.detect{|l| !l.flexible? }"),
     share,
     (
-      (USER_INPUT() / 100.0) * 
-      (AREA(roof_surface_available_pv_buildings) / V(buildings_solar_pv_solar_radiation, land_use_per_unit)) * 
+      (USER_INPUT() / 100.0) *
+      (AREA(roof_surface_available_pv_buildings) / V(buildings_solar_pv_solar_radiation, land_use_per_unit)) *
       V(buildings_solar_pv_solar_radiation, typical_electricity_production_per_unit)
     )
-  )  
+  )
 share_group: ""
 start_value: 1.0
 start_value_gql: present:DIVIDE(V(buildings_solar_pv_solar_radiation,output_of_electricity),Q(potential_electricity_production_of_solar_roof_pv))
 unit: "%"
 update_type: area
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

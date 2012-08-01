@@ -1,22 +1,22 @@
---- 
+---
 attr_name: production_in_mw
-comments: 
+comments:
 factor: 1.0
 id: 501
 key: mw_of_solar_pv_plants
 keys: energy_power_solar_pv_solar_radiation
-label: 
-label_query: 
+label:
+label_query:
 max_value: 300.0
 max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_power_solar_pv_solar_radiation,full_load_seconds))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Solar PV plants
 query: UPDATE(OUTPUT_LINKS(energy_power_solar_pv_solar_radiation,constant), share, PRODUCT(V(energy_power_solar_pv_solar_radiation), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(energy_power_solar_pv_solar_radiation,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

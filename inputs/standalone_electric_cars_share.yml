@@ -1,16 +1,16 @@
---- 
+---
 attr_name:
 comments: Brutal solution for the etflex slider groups updates issue. The single slider will update also the other members of the group. Ugly and incomplete
 factor: 100.0
 id: 1005
 key: standalone_electric_cars_share
-keys: 
+keys:
 label: ""
 label_query: ""
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Electric cars share
 query: |-
   EACH(
@@ -30,10 +30,10 @@ query: |-
       DIVIDE(SUM(100,NEG(USER_INPUT())), 200)
     )
   )
-share_group: 
+share_group:
 start_value: 0.0
 start_value_gql: future:V( LINK(transport_useful_demand_car_kms, transport_car_using_electricity),share )
 unit: "%"
-update_type: 
+update_type:
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

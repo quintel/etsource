@@ -1,28 +1,28 @@
---- 
+---
 attr_name: cooling_buildings_market_share
-comments: 
+comments:
 factor: 100.0
 id: 392
 key: buildings_cooling_heat_pump_with_ts_share
 keys: buildings_cooling_collective_heatpump_water_water_ts_electricity
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Heat pump with TS
 query: |-
   EACH(
               UPDATE(LINK(buildings_cooling_collective_heatpump_water_water_ts_electricity,buildings_useful_demand_after_insulation_recirculation_recovery_cooling), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning), share, 
+              UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: cooling_buildings
-start_value: 
+start_value:
 start_value_gql: present:V(buildings_cooling_collective_heatpump_water_water_ts_electricity,share_of_buildings_useful_demand_after_insulation_recirculation_recovery_cooling)
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:
