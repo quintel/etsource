@@ -1,19 +1,19 @@
---- 
+---
 attr_name: number_of_units
 comments: |-
   The max value is dynamically determined by how many CHPs would be build if all of the electricity demand would be supplied by this specific CHP.
-  
+
   The max value field is taken from the Excel model, but is overrided by the dynamic field, so not used.
 factor: 1.0
 id: 325
 key: agriculture_number_of_small_gas_chp
 keys: agriculture_chp_engine_gas_power_fuelmix
 label: ""
-label_query: 
+label_query:
 max_value: 1214.0
 max_value_gql: present:Q(maximum_number_of_chps_in_agriculture)
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Small gas CHP
 query: |-
   EACH(
@@ -21,9 +21,9 @@ query: |-
               UPDATE(OUTPUT_LINKS(V(agriculture_chp_engine_gas_power_fuelmix),constant), share, V(agriculture_chp_engine_gas_power_fuelmix, production_based_on_number_of_units)),
             )
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(agriculture_chp_engine_gas_power_fuelmix,number_of_units)
 unit: "#"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

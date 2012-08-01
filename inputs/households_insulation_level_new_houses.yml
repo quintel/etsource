@@ -1,4 +1,4 @@
---- 
+---
 id: 337
 key: households_insulation_level_new_houses
 factor: 1.0
@@ -9,11 +9,11 @@ name: Insulation level new houses
 query:  |-
   UPDATE(
     FIRST(LINKS(OUTPUT_SLOTS(V(households_new_houses_heating_savings_from_insulation),useable_heat))),
-    share, 
+    share,
     (1 - ((1 - 0.2) * AREA(insulation_level_new_houses) / USER_INPUT() + 0.2))
   )
 share_group: ""
 unit: ""
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

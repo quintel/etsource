@@ -1,22 +1,22 @@
---- 
+---
 attr_name: production_in_mw
-comments: 
+comments:
 factor: 1.0
 id: 506
 key: mw_of_coal_conventional
-keys: energy_power_supercritical_coal 
+keys: energy_power_supercritical_coal
 label: ""
-label_query: 
+label_query:
 max_value: 300.0
 max_value_gql: present:DIVIDE(Q(final_demand_of_electricity),V(energy_power_supercritical_coal ,full_load_seconds))
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Coal conventional
 query: UPDATE(OUTPUT_LINKS(energy_power_supercritical_coal ,constant), share, PRODUCT(V(energy_power_supercritical_coal ), USER_INPUT(), SECS_PER_YEAR))
 share_group: ""
-start_value: 
+start_value:
 start_value_gql: present:V(energy_power_supercritical_coal ,electricity_production_in_mw)
 unit: MW
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

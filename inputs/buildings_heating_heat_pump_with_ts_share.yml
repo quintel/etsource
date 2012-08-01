@@ -1,28 +1,28 @@
---- 
+---
 attr_name: heating_buildings_market_share
-comments: 
+comments:
 factor: 100.0
 id: 394
 key: buildings_heating_heat_pump_with_ts_share
 keys: buildings_space_heater_collective_heatpump_water_water_ts_electricity
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Heat pump with TS
 query: |-
   EACH(
               UPDATE(LINK(buildings_space_heater_collective_heatpump_water_water_ts_electricity,buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,buildings_space_heater_network_gas), share, 
+              UPDATE(LINK(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,buildings_space_heater_network_gas), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
 share_group: heating_buildings
-start_value: 
+start_value:
 start_value_gql: present:V(buildings_space_heater_collective_heatpump_water_water_ts_electricity,share_of_buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

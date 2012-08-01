@@ -1,21 +1,21 @@
---- 
+---
 attr_name: agri_heating_market_share
-comments: 
+comments:
 factor: 100.0
 id: 228
 key: agriculture_heating_geothermal_share
 keys: agriculture_geothermal
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Geothermal
 query: |-
   EACH(
               UPDATE(LINK(agriculture_geothermal,agriculture_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share, 
+              UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(agriculture_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
@@ -25,4 +25,4 @@ start_value_gql: present:V(agriculture_geothermal,share_of_agriculture_useful_de
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

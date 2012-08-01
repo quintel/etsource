@@ -1,22 +1,22 @@
---- 
+---
 attr_name: cooling_market_share
-comments: 
+comments:
 factor: 100.0
 id: 352
 key: households_cooling_gas_fired_heat_pump_share
 keys: households_cooling_heatpump_air_water_network_gas
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Gas-fired heat pump
 query: UPDATE(LINK(households_cooling_heatpump_air_water_network_gas,households_useful_demand_for_cooling_after_insulation), share, DIVIDE(USER_INPUT(),100))
 share_group: cooling_households
-start_value: 
+start_value:
 start_value_gql: future:V(households_cooling_heatpump_air_water_network_gas,share_of_households_useful_demand_for_cooling_after_insulation)
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

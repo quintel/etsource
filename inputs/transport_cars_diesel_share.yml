@@ -1,21 +1,21 @@
---- 
+---
 attr_name: car_kms_market_share
-comments: 
+comments:
 factor: 100.0
 id: 147
 key: transport_cars_diesel_share
 keys: transport_car_using_diesel_mix
-label: 
-label_query: 
+label:
+label_query:
 max_value: 100.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Diesel
 query: |-
   EACH(
               UPDATE(LINK(transport_car_using_diesel_mix,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
-              UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share, 
+              UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share,
                 ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
               )
             )
@@ -25,4 +25,4 @@ start_value_gql: present:V(transport_car_using_diesel_mix,share_of_transport_use
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:

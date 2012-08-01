@@ -1,18 +1,18 @@
 # There is a new (yet unused) slider called
 # households_replacement_of_existing_houses_new, with id 901 that replaces the
-# ugly etengine update statement procedure. 
---- 
+# ugly etengine update statement procedure.
+---
 comments: ""
 factor: 100.0
 id: 1
 key: households_replacement_of_existing_houses
 keys: households_old_houses_useful_demand_for_heating_AND_households_new_houses_useful_demand_for_heating
 label: ""
-label_query: 
+label_query:
 max_value: 5.0
-max_value_gql: 
+max_value_gql:
 min_value: 0.0
-min_value_gql: 
+min_value_gql:
 name: Replacement of existing houses
 query: |-
   decrease_factor       = ((1.0 - USER_INPUT()/100) ** scope.scenario.years);
@@ -28,7 +28,7 @@ query: |-
       (new_houses_demand / (AREA(percentage_of_new_houses)/100.0 * AREA(number_households))),
       households_to_replace)
   );
-  
+
   EACH(
     UPDATE(AREA(), number_of_existing_households, households_existing),
     UPDATE(L(households_old_houses_useful_demand_for_heating), preset_demand, old_houses_update),
@@ -36,8 +36,8 @@ query: |-
   )
 share_group: ""
 start_value: 0.0
-start_value_gql: 
+start_value_gql:
 unit: "%"
 update_type: converters
 updateable_period: future
-v1_legacy_unit: 
+v1_legacy_unit:
