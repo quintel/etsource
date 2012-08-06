@@ -146,7 +146,6 @@ module ETE
           ATTRIBUTES.each do |attr|
             attrs[attr] = row[attr].to_f if row[attr]
           end
-          attrs[:demand] = attrs[:preset_demand] if attrs[:preset_demand]
           @_converter_attributes[key] = attrs
         end
       end
