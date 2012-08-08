@@ -6,14 +6,11 @@ key: coal_from_australia_share
 label: ""
 label_query:
 max_value: 100.0
-max_value_gql:
 min_value: 0.0
-min_value_gql:
 query: |-
-  GRAPH().update_fce(CARRIER(coal),australia,USER_INPUT() / 100)
+  UPDATE_FCE(CARRIER(coal),australia, USER_INPUT() / 100)
 share_group: coal_fce
-start_value: 15.3
-start_value_gql:
+start_value_gql: "present: FCE_START_VALUE(coal, australia) / 100"
 unit: "%"
 updateable_period: future
 default_unit:
