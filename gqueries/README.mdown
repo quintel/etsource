@@ -84,8 +84,8 @@ And In stead of:
 Use:
 
     SUM(
-      Q(etflex_score_co2)
-      Q(etflex_score_costs)
+      Q(etflex_score_co2),
+      Q(etflex_score_costs),
       Q(etflex_score_renewability)
     )
 
@@ -93,23 +93,33 @@ Use:
 
 In stead of:
 
-    IF(Q(hv_net_capacity_buffer_decentral_check)
+    IF(Q(hv_net_capacity_buffer_decentral_check) > 800
     ,
       10
     ,
       20
     )
 
-Use condence GQL-syntax:
+Use condense GQL-syntax:
 
     IF((Q(hv_net_capacity_buffer_decentral_check) > 800),
       10,
       20
     )
 
-Or condence ruby-syntax:
+Or condense ruby-syntax:
 
     Q(hv_net_capacity_buffer_decentral_check) > 800 ? 10 : 20
+
+#### Surround operators with spaces
+
+In stead of:
+
+Q(area_used_for_corn_crops)/AREA(areable_land)*100
+
+Use: 
+
+Q(area_used_for_corn_crops) / AREA(areable_land) * 100
 
 #### Do not make your text file wider than 79 characters
 
