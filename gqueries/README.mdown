@@ -30,6 +30,24 @@ You can also use very advanced 'features' of Ruby, such as:
 Please refrain from doing that (too much), since that *usually* makes
 the GQL-statements harder to read.
 
+### WARNING: different handling of empty values
+
+Ruby does handle nil values differently than GQL-syntax:
+
+This will just ignore the nil value:
+
+    SUM(
+      1,
+      2,
+      nil
+    )
+    => 3
+
+This however wil raise an error.
+
+    1 + 2 + nil 
+    => TypeError: nil can't be coerced into Fixnum
+
 ## Styleguide
 
 A lot of different people use our gqueries, so please apply the following
