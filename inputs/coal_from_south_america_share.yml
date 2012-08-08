@@ -10,10 +10,9 @@ max_value_gql:
 min_value: 0.0
 min_value_gql:
 query: |-
-  GRAPH().update_fce(CARRIER(coal),south_america,USER_INPUT() / 100)
+  UPDATE_FCE(CARRIER(coal),south_america,USER_INPUT() / 100)
 share_group: coal_fce
-start_value: 20.3
-start_value_gql:
+start_value_gql: "present:FCE_START_VALUE(CARRIER(coal),south_america) / 100"
 unit: "%"
 updateable_period: future
 default_unit:
