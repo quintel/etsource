@@ -146,6 +146,9 @@ module ETE
           ATTRIBUTES.each do |attr|
             attrs[attr] = row[attr].to_f if row[attr]
           end
+          # Copying peak_load_units_present to peak_load_units
+          # https://github.com/dennisschoenmakers/etengine/issues/386
+          attrs[:peak_load_units] = attrs[:peak_load_units_present] if attrs[:peak_load_units_present]
           @_converter_attributes[key] = attrs
         end
       end
