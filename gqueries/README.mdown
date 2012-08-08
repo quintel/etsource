@@ -1,0 +1,122 @@
+# Gqueries
+
+Gqueries are in fact stored GQL procedures that have a key. So that if the
+user wants to know the total co2 emissions of an area, it can request the
+ETEngine for gquery `total_co2_emissions` and does not have to worry about
+the underlying intricacies.
+
+## Folder structure
+
+## Syntax
+
+### GQL specific
+
+You can use GQL specific functions, such as `CHILDREN()` that returns the
+decendants or a certain Converter in the Graph. You can find [all the
+available GQL functions online]
+(http://beta.et-engine.com/doc/Gql/Grammar/Sandbox.html).
+
+### Ruby specific
+
+Since GQLv3, you can use Ruby syntax to the GQL-statements as well, such as
+
+    1+1
+    10 * 0.5 + 10 * 2
+
+You can also use very advanced 'features' of Ruby, such as:
+
+    (1..10).inject :+
+
+Please refrain from doing that (too much), since that *usually* makes
+the GQL-statements harder to read.
+
+## Styleguide
+
+A lot of different people use our gqueries, so please apply the following
+guidelines when writing gqueries.
+
+#### Use (2 spaces) indentation
+
+Please use an indentations of 2 spaces. This keeps everything more or less
+together.
+
+Indent everything neatly, please.
+
+#### Try to be condense, if possible
+
+In stead of:
+
+    SUM(
+      PRODUCT(
+        Q(hv_net_delta_capacity_central),
+        0.20
+      ),
+      PRODUCT(
+        Q(hv_net_delta_capacity_decentral),
+        0.25
+      )
+    )
+
+Use:
+
+    Q(hv_net_delta_capacity_central) * 0.2 + Q(hv_net_delta_capacity_decentral) * 0.25
+
+#### Use Ruby syntax on one line
+
+In stead of:
+
+    PRODUCT(1,1)
+
+Use:
+
+    1 * 1
+
+#### Use GQL syntax on multiple lines
+
+And In stead of:
+
+    Q(etflex_score_co2)
+    +
+    Q(etflex_score_costs)
+    +
+    Q(etflex_score_renewability)
+
+Use:
+
+    SUM(
+      Q(etflex_score_co2)
+      Q(etflex_score_costs)
+      Q(etflex_score_renewability)
+    )
+
+#### Use condense IF statements
+
+In stead of:
+
+    IF(Q(hv_net_capacity_buffer_decentral_check)
+    ,
+      10
+    ,
+      20
+    )
+
+Use condence GQL-syntax:
+
+    IF((Q(hv_net_capacity_buffer_decentral_check) > 800),
+      10,
+      20
+    )
+
+Or condence ruby-syntax:
+
+    Q(hv_net_capacity_buffer_decentral_check) > 800 ? 10 : 20
+
+#### Do not make your text file wider than 79 characters
+
+Please do not write very long lines. It is bad practice and makes stuff harder
+to read. Use a maximum width of **79** characters, beyond that and it does not
+turn up nicely in your text editor or on etengine.
+
+## Questions?
+
+Please ask Chael or Dennis
