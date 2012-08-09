@@ -135,6 +135,7 @@ agriculture_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-agricultu
   :typical_nominal_input_capacity: 2.73972602739726
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 3023.58108108108
 agriculture_chp_engine_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-agriculture_chp_engine_gas_power_fuelmix: {conversion: 0.18}
 (steam_hot_water)-agriculture_chp_engine_gas_power_fuelmix: {conversion: 0.45}
@@ -276,6 +277,7 @@ agriculture_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {sh
   :typical_nominal_input_capacity: 5.0
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 21.152801255137
 agriculture_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.0434782608695652}
 agriculture_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.956521739130435}
 (useable_heat)-agriculture_heatpump_water_water_ts_electricity: {conversion: 1.0}
@@ -305,7 +307,6 @@ agriculture_unused_local_production_steam_hot_water-(steam_hot_water) -- i --> (
 :agriculture_useful_demand_electricity:
   :co2_free: 0.0
   :preset_demand: 26579746376.8116
-  :demand: 26579746376.8116
 agriculture_useful_demand_electricity-(electricity): {conversion: 1.0}
 (electricity)-agriculture_useful_demand_electricity: {conversion: 1.0}
 agriculture_useful_demand_electricity-(electricity) -- s --> (electricity)-agriculture_final_demand_electricity: {share: 1.0}
@@ -313,7 +314,6 @@ agriculture_useful_demand_electricity-(electricity) -- s --> (electricity)-agric
 :agriculture_useful_demand_useable_heat:
   :co2_free: 0.0
   :preset_demand: 95787216494.8454
-  :demand: 95787216494.8454
 agriculture_useful_demand_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-agriculture_useful_demand_useable_heat: {conversion: 1.0}
 agriculture_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-agriculture_final_demand_steam_hot_water: {share: 0.57418935441098}
@@ -393,6 +393,7 @@ buildings_appliances_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildin
   :typical_nominal_input_capacity: 1.41085271317829
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 871.781693699502
 buildings_collective_chp_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (electricity)-buildings_collective_chp_gas_power_fuelmix: {conversion: 0.33}
 (steam_hot_water)-buildings_collective_chp_gas_power_fuelmix: {conversion: 0.43}
@@ -434,6 +435,7 @@ buildings_collective_chp_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_pow
   :typical_nominal_input_capacity: 208.333333333333
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 0.0
 buildings_collective_chp_wood_pellets-(wood_pellets): {conversion: 1.0}
 (electricity)-buildings_collective_chp_wood_pellets: {conversion: 0.23}
 (steam_hot_water)-buildings_collective_chp_wood_pellets: {conversion: 0.35}
@@ -508,6 +510,7 @@ buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_e
   :typical_nominal_input_capacity: 0.04
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 150669.642857143
 buildings_cooling_airconditioning-(electricity): {conversion: 0.222222222222222}
 buildings_cooling_airconditioning-(ambient_cold): {conversion: 0.777777777777778}
 (cooling)-buildings_cooling_airconditioning: {conversion: 1.0}
@@ -557,6 +560,7 @@ buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> 
   :typical_nominal_input_capacity: 8.681
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 0.0
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
 (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
@@ -968,6 +972,7 @@ buildings_local_production_electricity-(electricity) -- d --> (electricity)-buil
   :typical_nominal_input_capacity: 6.25
   :variability: 1.0
   :wacc: 0.06
+  :peak_load_units: 38.209982788296
 buildings_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-buildings_solar_pv_solar_radiation: {conversion: 0.84}
 (electricity)-buildings_solar_pv_solar_radiation: {conversion: 0.16}
@@ -1042,6 +1047,7 @@ buildings_space_heater_coal-(coal) -- s --> (coal)-buildings_final_demand_for_sp
   :typical_nominal_input_capacity: 2.251
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 196.045380748107
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
 (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
@@ -1125,6 +1131,7 @@ buildings_space_heater_district_heating_steam_hot_water-(steam_hot_water) -- s -
   :typical_nominal_input_capacity: 0.081
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 5646.17580864182
 buildings_space_heater_electricity-(electricity): {conversion: 1.0}
 (useable_heat)-buildings_space_heater_electricity: {conversion: 1.0}
 (loss)-buildings_space_heater_electricity: {conversion: 0.0}
@@ -1314,7 +1321,6 @@ buildings_useful_demand_after_motion_detection_light-(light) -- s --> (light)-bu
 :buildings_useful_demand_cooling:
   :co2_free: 0.0
   :preset_demand: 67500000000.0
-  :demand: 67500000000.0
 buildings_useful_demand_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_cooling: {conversion: 1.0}
 buildings_useful_demand_cooling-(cooling) -- s --> (cooling)-buildings_cooling_savings_insulation_cooling: {share: 0.0}
@@ -1323,7 +1329,6 @@ buildings_useful_demand_cooling-(cooling) -- f --> (cooling)-buildings_useful_de
 :buildings_useful_demand_for_appliances:
   :co2_free: 0.0
   :preset_demand: 105602444800.0
-  :demand: 105602444800.0
 buildings_useful_demand_for_appliances-(not_defined): {conversion: 1.0}
 (not_defined)-buildings_useful_demand_for_appliances: {conversion: 1.0}
 buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buildings_appliances_crude_oil: {share: 0.0378779109477587}
@@ -1335,7 +1340,6 @@ buildings_useful_demand_for_appliances-(not_defined) -- s --> (not_defined)-buil
 :buildings_useful_demand_for_space_heating:
   :co2_free: 0.0
   :preset_demand: 210554344275.731
-  :demand: 210554344275.731
 buildings_useful_demand_for_space_heating-(useable_heat): {conversion: 1.0}
 (useable_heat)-buildings_useful_demand_for_space_heating: {conversion: 1.0}
 buildings_useful_demand_for_space_heating-(useable_heat) -- s --> (useable_heat)-buildings_heating_savings_from_insulation_useable_heat: {share: 0.0}
@@ -1375,7 +1379,6 @@ buildings_useful_demand_for_space_heating_after_insulation_recirculation_recover
 :buildings_useful_demand_light:
   :co2_free: 0.0
   :preset_demand: 13386176130.8382
-  :demand: 13386176130.8382
 buildings_useful_demand_light-(light): {conversion: 1.0}
 (light)-buildings_useful_demand_light: {conversion: 1.0}
 buildings_useful_demand_light-(light) -- f --> (light)-buildings_useful_demand_after_motion_detection_light: {}
@@ -1416,6 +1419,7 @@ buildings_useful_demand_light-(light) -- s --> (light)-buildings_lighting_saving
   :typical_nominal_input_capacity: 1333.33333333333
   :variability: 0.9
   :wacc: 0.1
+  :peak_load_units: 5.74953617810761
 energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-energy_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.3}
 (steam_hot_water)-energy_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.26}
@@ -1457,6 +1461,7 @@ energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_po
   :typical_nominal_input_capacity: 1739.13043478261
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 2.36629711751663
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_coal-(coal): {conversion: 1.0}
 (loss)-energy_chp_ultra_supercritical_coal: {conversion: 0.49}
@@ -1867,7 +1872,6 @@ energy_export_waste_mix-(waste_mix) -- i --> (waste_mix)-energy_distribution_was
 :energy_extraction_coal:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_extraction_coal-(coal): {conversion: 1.0}
 (coal)-energy_extraction_coal: {conversion: 1.0}
 (loss)-energy_extraction_coal: {conversion: 0.0}
@@ -1875,7 +1879,6 @@ energy_extraction_coal-(coal): {conversion: 1.0}
 :energy_extraction_crude_oil:
   :co2_free: 0.0
   :preset_demand: 78982467461.5649
-  :demand: 78982467461.5649
 energy_extraction_crude_oil-(loss): {conversion: 0.0}
 (loss)-energy_extraction_crude_oil: {conversion: 0.0}
 energy_extraction_crude_oil-(crude_oil): {conversion: 1.0}
@@ -1889,7 +1892,6 @@ energy_extraction_lignite-(lignite): {conversion: 1.0}
 :energy_extraction_natural_gas:
   :co2_free: 0.0
   :preset_demand: 2292000000000.0
-  :demand: 2292000000000.0
 energy_extraction_natural_gas-(natural_gas): {conversion: 1.0}
 (natural_gas)-energy_extraction_natural_gas: {conversion: 1.0}
 
@@ -1902,7 +1904,6 @@ energy_extraction_uranium_oxide-(uranium_oxide): {conversion: 1.0}
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_final_demand_crude_oil-(crude_oil): {conversion: 1.0}
 (loss)-energy_final_demand_crude_oil: {conversion: 1.0}
 energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
@@ -1927,7 +1928,6 @@ energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distributi
   :technical_lifetime: 0.0
   :variability: 0.08
   :wacc: 0.0
-  :demand: 0.0
 energy_final_demand_electricity-(electricity): {conversion: 1.0}
 (loss)-energy_final_demand_electricity: {conversion: 1.0}
 energy_final_demand_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity: {share: 1.0}
@@ -1936,7 +1936,6 @@ energy_final_demand_electricity-(electricity) -- s --> (electricity)-energy_powe
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_final_demand_network_gas-(network_gas): {conversion: 1.0}
 (loss)-energy_final_demand_network_gas: {conversion: 1.0}
 energy_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
@@ -1945,7 +1944,6 @@ energy_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_nati
   :co2_free: 0.0
   :demand_expected_value: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_final_demand_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (loss)-energy_final_demand_steam_hot_water: {conversion: 1.0}
 energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water: {share: 1.0}
@@ -2370,7 +2368,6 @@ energy_import_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 :energy_import_steam_hot_water:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_import_steam_hot_water-(imported_steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_import_steam_hot_water: {conversion: 1.0}
 
@@ -2469,6 +2466,7 @@ energy_national_gas_network_natural_gas-(greengas) -- s --> (greengas)-energy_di
   :typical_nominal_input_capacity: 1764.07506702413
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_combined_cycle_ccs_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_combined_cycle_ccs_coal: {conversion: 0.627}
@@ -2510,6 +2508,7 @@ energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torri
   :typical_nominal_input_capacity: 1357.14285714286
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {conversion: 0.51}
 (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {conversion: 0.49}
@@ -2550,6 +2549,7 @@ energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (
   :typical_nominal_input_capacity: 1766.00441501104
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.322704081632653
 energy_power_combined_cycle_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_combined_cycle_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_combined_cycle_coal: {conversion: 0.547}
@@ -2592,6 +2592,7 @@ energy_power_combined_cycle_coal-(torrified_biomass_pellets) -- s --> (torrified
   :typical_nominal_input_capacity: 1333.33333333333
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 5.1045918367347
 energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-energy_power_combined_cycle_gas_power_fuelmix: {conversion: 0.4}
 (electricity)-energy_power_combined_cycle_gas_power_fuelmix: {conversion: 0.6}
@@ -2666,6 +2667,7 @@ energy_power_engine_diesel-(diesel) -- s --> (diesel)-energy_distribution_diesel
   :typical_nominal_input_capacity: 28.0
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_geothermal-(geothermal): {conversion: 1.0}
 (loss)-energy_power_geothermal: {conversion: 0.75}
 (electricity)-energy_power_geothermal: {conversion: 0.25}
@@ -2770,6 +2772,7 @@ energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_elec
   :typical_nominal_input_capacity: 526.315789473684
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_hydro_mountain-(water): {conversion: 1.0}
 (loss)-energy_power_hydro_mountain: {conversion: 0.05}
 (electricity)-energy_power_hydro_mountain: {conversion: 0.95}
@@ -2778,7 +2781,6 @@ energy_power_hydro_mountain-(water) -- s --> (water)-environment_water: {share: 
 :energy_power_hydro_mountain_pumped:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_power_hydro_mountain_pumped-(electricity): {conversion: 1.0}
 (loss)-energy_power_hydro_mountain_pumped: {conversion: 1.0}
 energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity: {share: 1.0}
@@ -2818,6 +2820,7 @@ energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_p
   :typical_nominal_input_capacity: 10.2040816326531
   :variability: 0.015
   :wacc: 0.1
+  :peak_load_units: 3.7
 energy_power_hydro_river-(water): {conversion: 1.0}
 (loss)-energy_power_hydro_river: {conversion: 0.02}
 (electricity)-energy_power_hydro_river: {conversion: 0.98}
@@ -2849,6 +2852,7 @@ energy_power_hydro_river-(water) -- s --> (water)-environment_water: {share: 1.0
   :technical_lifetime: 40.0
   :variability: 0.0
   :wacc: 0.055
+  :peak_load_units: 0.0
 energy_power_lv_network_electricity-(electricity): {conversion: 1.0}
 (electricity)-energy_power_lv_network_electricity: {conversion: 1.0}
 energy_power_lv_network_electricity-(electricity) -- f --> (electricity)-energy_power_transformer_lv_mv_electricity: {}
@@ -2882,6 +2886,7 @@ energy_power_lv_network_electricity-(electricity) -- i --> (electricity)-buildin
   :technical_lifetime: 40.0
   :variability: 0.0
   :wacc: 0.055
+  :peak_load_units: 0.0
 energy_power_mv_distribution_network_electricity-(electricity): {conversion: 1.0}
 (electricity)-energy_power_mv_distribution_network_electricity: {conversion: 1.0}
 energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electricity)-industry_final_demand_electricity_non_energetic: {}
@@ -2916,6 +2921,7 @@ energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electri
   :technical_lifetime: 40.0
   :variability: 0.0
   :wacc: 0.055
+  :peak_load_units: 0.0
 energy_power_mv_transport_network_electricity-(electricity): {conversion: 1.0}
 (electricity)-energy_power_mv_transport_network_electricity: {conversion: 1.0}
 energy_power_mv_transport_network_electricity-(electricity) -- i --> (electricity)-energy_power_mv_distribution_network_electricity: {}
@@ -2989,6 +2995,7 @@ energy_power_nuclear_gen2_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
   :typical_nominal_input_capacity: 4583.33333333333
   :variability: 0.0
   :wacc: 0.12
+  :peak_load_units: 0.31875
 energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (loss)-energy_power_nuclear_gen3_uranium_oxide: {conversion: 0.64}
 (electricity)-energy_power_nuclear_gen3_uranium_oxide: {conversion: 0.36}
@@ -3029,6 +3036,7 @@ energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
   :typical_nominal_input_capacity: 142.857142857143
   :variability: 0.015
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_solar_csp_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-energy_power_solar_csp_solar_radiation: {conversion: 0.65}
 (electricity)-energy_power_solar_csp_solar_radiation: {conversion: 0.35}
@@ -3068,6 +3076,7 @@ energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiati
   :typical_nominal_input_capacity: 125.0
   :variability: 1.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-energy_power_solar_pv_solar_radiation: {conversion: 0.84}
 (electricity)-energy_power_solar_pv_solar_radiation: {conversion: 0.16}
@@ -3108,6 +3117,7 @@ energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiatio
   :typical_nominal_input_capacity: 2222.22222222222
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_supercritical_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_supercritical_coal: {conversion: 0.64}
@@ -3150,6 +3160,7 @@ energy_power_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_
   :typical_nominal_input_capacity: 222.24
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 11.6897864665672
 energy_power_supercritical_waste_mix-(waste_mix): {conversion: 1.0}
 (loss)-energy_power_supercritical_waste_mix: {conversion: 0.75}
 (steam_hot_water)-energy_power_supercritical_waste_mix: {conversion: 0.0}
@@ -3182,6 +3193,7 @@ energy_power_supercritical_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_dis
   :technical_lifetime: 40.0
   :variability: 0.0
   :wacc: 0.055
+  :peak_load_units: 0.0
 energy_power_transformer_lv_mv_electricity-(electricity): {conversion: 1.0}
 (electricity)-energy_power_transformer_lv_mv_electricity: {conversion: 1.0}
 energy_power_transformer_lv_mv_electricity-(electricity) -- i --> (electricity)-energy_power_lv_network_electricity: {}
@@ -3213,6 +3225,7 @@ energy_power_transformer_lv_mv_electricity-(electricity) -- f --> (electricity)-
   :technical_lifetime: 40.0
   :variability: 0.0
   :wacc: 0.055
+  :peak_load_units: 0.0
 energy_power_transformer_mv_hv_electricity-(electricity): {conversion: 1.0}
 (electricity)-energy_power_transformer_mv_hv_electricity: {conversion: 1.0}
 energy_power_transformer_mv_hv_electricity-(electricity) -- f --> (electricity)-energy_power_hv_network_electricity: {}
@@ -3287,6 +3300,7 @@ energy_power_turbine_network_gas-(gas_power_fuelmix) -- s --> (gas_power_fuelmix
   :typical_nominal_input_capacity: 1764.54293628809
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_ccs_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_ccs_coal: {conversion: 0.639}
@@ -3329,6 +3343,7 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :typical_nominal_input_capacity: 1739.13043478261
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 3.50014235326819
 energy_power_ultra_supercritical_coal-(wood_pellets): {conversion: 0.178617654672534}
 energy_power_ultra_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_coal-(coal): {conversion: 0.821382345327466}
@@ -3373,6 +3388,7 @@ energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-ene
   :typical_nominal_input_capacity: 2105.26315789474
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_cofiring_wood_pellets-(wood_pellets): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_cofiring_wood_pellets: {conversion: 0.62}
 (electricity)-energy_power_ultra_supercritical_cofiring_wood_pellets: {conversion: 0.38}
@@ -3413,6 +3429,7 @@ energy_power_ultra_supercritical_cofiring_wood_pellets-(wood_pellets) -- s --> (
   :typical_nominal_input_capacity: 1777.77777777778
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_crude_oil-(crude_oil): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_crude_oil: {conversion: 0.55}
 (electricity)-energy_power_ultra_supercritical_crude_oil: {conversion: 0.45}
@@ -3453,6 +3470,7 @@ energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-ener
   :typical_nominal_input_capacity: 2000.0
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 4.82828282828283
 (loss)-energy_power_ultra_supercritical_gas_power_fuelmix: {conversion: 0.6}
 (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix: {conversion: 0.4}
 energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
@@ -3493,6 +3511,7 @@ energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix) -- s --> 
   :typical_nominal_input_capacity: 2000.0
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_lignite-(lignite): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_lignite: {conversion: 0.6}
@@ -3535,6 +3554,7 @@ energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets) -- s --> (t
   :typical_nominal_input_capacity: 2163.93442622951
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(lignite): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {conversion: 0.695}
@@ -3577,6 +3597,7 @@ energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets)
   :typical_nominal_input_capacity: 3.09278350515464
   :variability: 0.86
   :wacc: 0.1
+  :peak_load_units: 66.6666666666667
 energy_power_wind_turbine_coastal-(wind): {conversion: 1.0}
 (loss)-energy_power_wind_turbine_coastal: {conversion: 0.03}
 (electricity)-energy_power_wind_turbine_coastal: {conversion: 0.97}
@@ -3617,6 +3638,7 @@ energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air: {share
   :typical_nominal_input_capacity: 3.09278350515464
   :variability: 0.86
   :wacc: 0.1
+  :peak_load_units: 360.0
 energy_power_wind_turbine_inland-(wind): {conversion: 1.0}
 (loss)-energy_power_wind_turbine_inland: {conversion: 0.03}
 (electricity)-energy_power_wind_turbine_inland: {conversion: 0.97}
@@ -3657,6 +3679,7 @@ energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air: {share:
   :typical_nominal_input_capacity: 3.09278350515464
   :variability: 0.8
   :wacc: 0.1
+  :peak_load_units: 64.7619047619048
 energy_power_wind_turbine_offshore-(wind): {conversion: 1.0}
 (loss)-energy_power_wind_turbine_offshore: {conversion: 0.03}
 (electricity)-energy_power_wind_turbine_offshore: {conversion: 0.97}
@@ -3665,21 +3688,18 @@ energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air: {shar
 :energy_production_algae_diesel:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_production_algae_diesel-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-energy_production_algae_diesel: {conversion: 1.0}
 
 :energy_production_bio_ethanol:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_production_bio_ethanol-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-energy_production_bio_ethanol: {conversion: 1.0}
 
 :energy_production_bio_oil:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_production_bio_oil-(bio_oil): {conversion: 1.0}
 (bio_oil)-energy_production_bio_oil: {conversion: 1.0}
 
@@ -3691,7 +3711,6 @@ energy_production_bio_residues_for_firing-(bio_residues_for_firing): {conversion
 :energy_production_biodiesel:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 energy_production_biodiesel-(biodiesel): {conversion: 1.0}
 (biodiesel)-energy_production_biodiesel: {conversion: 1.0}
 
@@ -3846,7 +3865,6 @@ environment_water-(loss): {conversion: 1.0}
   :co2_free: 0.0
   :demand_expected_value: 5513660000.0
   :preset_demand: 5513660000.0
-  :demand: 5513660000.0
 households_appliances_clothes_dryer_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_clothes_dryer_electricity: {conversion: 1.0}
 (loss)-households_appliances_clothes_dryer_electricity: {conversion: 0.0}
@@ -3856,7 +3874,6 @@ households_appliances_clothes_dryer_electricity-(electricity) -- s --> (electric
   :co2_free: 0.0
   :demand_expected_value: 6065026000.0
   :preset_demand: 6065026000.0
-  :demand: 6065026000.0
 households_appliances_computer_media_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_computer_media_electricity: {conversion: 1.0}
 (loss)-households_appliances_computer_media_electricity: {conversion: 0.0}
@@ -3866,7 +3883,6 @@ households_appliances_computer_media_electricity-(electricity) -- s --> (electri
   :co2_free: 0.0
   :demand_expected_value: 5513660000.0
   :preset_demand: 5513660000.0
-  :demand: 5513660000.0
 households_appliances_dishwasher_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_dishwasher_electricity: {conversion: 1.0}
 (loss)-households_appliances_dishwasher_electricity: {conversion: 0.0}
@@ -3876,7 +3892,6 @@ households_appliances_dishwasher_electricity-(electricity) -- s --> (electricity
   :co2_free: 0.0
   :demand_expected_value: 15438248000.0
   :preset_demand: 15438248000.0
-  :demand: 15438248000.0
 households_appliances_fridge_freezer_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_fridge_freezer_electricity: {conversion: 1.0}
 (loss)-households_appliances_fridge_freezer_electricity: {conversion: 0.0}
@@ -3886,7 +3901,6 @@ households_appliances_fridge_freezer_electricity-(electricity) -- s --> (electri
   :co2_free: 0.0
   :demand_expected_value: 3859562000.0
   :preset_demand: 3859562000.0
-  :demand: 3859562000.0
 households_appliances_other_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_other_electricity: {conversion: 1.0}
 (loss)-households_appliances_other_electricity: {conversion: 0.0}
@@ -3896,7 +3910,6 @@ households_appliances_other_electricity-(electricity) -- s --> (electricity)-hou
   :co2_free: 0.0
   :demand_expected_value: 7719124000.0
   :preset_demand: 7719124000.0
-  :demand: 7719124000.0
 households_appliances_television_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_television_electricity: {conversion: 1.0}
 (loss)-households_appliances_television_electricity: {conversion: 0.0}
@@ -3906,7 +3919,6 @@ households_appliances_television_electricity-(electricity) -- s --> (electricity
   :co2_free: 0.0
   :demand_expected_value: 5513660000.0
   :preset_demand: 5513660000.0
-  :demand: 5513660000.0
 households_appliances_vacuum_cleaner_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_vacuum_cleaner_electricity: {conversion: 1.0}
 (loss)-households_appliances_vacuum_cleaner_electricity: {conversion: 0.0}
@@ -3916,7 +3928,6 @@ households_appliances_vacuum_cleaner_electricity-(electricity) -- s --> (electri
   :co2_free: 0.0
   :demand_expected_value: 5513660000.0
   :preset_demand: 5513660000.0
-  :demand: 5513660000.0
 households_appliances_washing_machine_electricity-(electricity): {conversion: 1.0}
 (not_defined)-households_appliances_washing_machine_electricity: {conversion: 1.0}
 (loss)-households_appliances_washing_machine_electricity: {conversion: 0.0}
@@ -3957,6 +3968,7 @@ households_appliances_washing_machine_electricity-(electricity) -- s --> (electr
   :typical_nominal_input_capacity: 1.41085271317829
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 0.0
 households_collective_chp_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_collective_chp_network_gas: {conversion: 0.2}
 (steam_hot_water)-households_collective_chp_network_gas: {conversion: 0.45}
@@ -3998,6 +4010,7 @@ households_collective_chp_network_gas-(network_gas) -- s --> (network_gas)-energ
   :typical_nominal_input_capacity: 208.333333333333
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 0.0
 households_collective_chp_wood_pellets-(wood_pellets): {conversion: 1.0}
 (loss)-households_collective_chp_wood_pellets: {conversion: 0.3}
 (steam_hot_water)-households_collective_chp_wood_pellets: {conversion: 0.4}
@@ -4112,6 +4125,7 @@ households_cooker_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-households
   :typical_nominal_input_capacity: 0.0045
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 1176322.75132275
 households_cooling_airconditioning_electricity-(electricity): {conversion: 0.25}
 households_cooling_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
 (loss)-households_cooling_airconditioning_electricity: {conversion: 0.0}
@@ -4154,6 +4168,7 @@ households_cooling_airconditioning_electricity-(electricity) -- s --> (electrici
   :typical_nominal_input_capacity: 6.215
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 0.0
 households_cooling_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
 households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
 (loss)-households_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
@@ -4232,6 +4247,7 @@ households_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (networ
   :typical_nominal_input_capacity: 0.0041
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 0.0
 households_cooling_heatpump_ground_water_electricity-(electricity): {conversion: 0.173913043478261}
 households_cooling_heatpump_ground_water_electricity-(ambient_cold): {conversion: 0.826086956521739}
 (loss)-households_cooling_heatpump_ground_water_electricity: {conversion: 0.0}
@@ -4546,7 +4562,6 @@ households_new_houses_heating_savings_from_insulation-(useable_heat): {conversio
 :households_new_houses_useful_demand_for_cooling:
   :co2_free: 0.0
   :preset_demand: 3501618750.0
-  :demand: 3501618750.0
 households_new_houses_useful_demand_for_cooling-(cooling): {conversion: 1.0}
 (cooling)-households_new_houses_useful_demand_for_cooling: {conversion: 1.0}
 households_new_houses_useful_demand_for_cooling-(cooling) -- f --> (cooling)-households_useful_demand_for_cooling_after_insulation: {}
@@ -4556,7 +4571,6 @@ households_new_houses_useful_demand_for_cooling-(cooling) -- s --> (cooling)-hou
   :co2_free: 0.0
   :demand_expected_value: 29304935054.1592
   :preset_demand: 29304935054.1592
-  :demand: 29304935054.1592
 households_new_houses_useful_demand_for_heating-(useable_heat): {conversion: 1.0}
 (useable_heat)-households_new_houses_useful_demand_for_heating: {conversion: 1.0}
 households_new_houses_useful_demand_for_heating-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation: {}
@@ -4591,7 +4605,6 @@ households_old_houses_heating_savings_from_insulation-(useable_heat): {conversio
 :households_old_houses_useful_demand_for_cooling:
   :co2_free: 0.0
   :preset_demand: 7169981250.0
-  :demand: 7169981250.0
 households_old_houses_useful_demand_for_cooling-(cooling): {conversion: 1.0}
 (cooling)-households_old_houses_useful_demand_for_cooling: {conversion: 1.0}
 households_old_houses_useful_demand_for_cooling-(cooling) -- f --> (cooling)-households_useful_demand_for_cooling_after_insulation: {}
@@ -4601,7 +4614,6 @@ households_old_houses_useful_demand_for_cooling-(cooling) -- s --> (cooling)-hou
   :co2_free: 0.0
   :demand_expected_value: 270024044427.61
   :preset_demand: 270024044427.61
-  :demand: 270024044427.61
 households_old_houses_useful_demand_for_heating-(useable_heat): {conversion: 1.0}
 (useable_heat)-households_old_houses_useful_demand_for_heating: {conversion: 1.0}
 households_old_houses_useful_demand_for_heating-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation: {}
@@ -4642,6 +4654,7 @@ households_old_houses_useful_demand_for_heating-(useable_heat) -- s --> (useable
   :typical_nominal_input_capacity: 6.25
   :variability: 1.0
   :wacc: 0.04
+  :peak_load_units: 76.53471026965
 households_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-households_solar_pv_solar_radiation: {conversion: 0.84}
 (electricity)-households_solar_pv_solar_radiation: {conversion: 0.16}
@@ -4716,6 +4729,7 @@ households_space_heater_coal-(coal) -- s --> (coal)-households_final_demand_for_
   :typical_nominal_input_capacity: 3.108
   :variability: 0.0
   :wacc: 0.06
+  :peak_load_units: 0.0
 households_space_heater_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
 households_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
 (loss)-households_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
@@ -4860,6 +4874,7 @@ households_space_heater_district_heating_steam_hot_water-(steam_hot_water) -- s 
   :typical_nominal_input_capacity: 0.006
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 129397.746989075
 households_space_heater_electricity-(electricity): {conversion: 1.0}
 (loss)-households_space_heater_electricity: {conversion: 0.0}
 (useable_heat)-households_space_heater_electricity: {conversion: 1.0}
@@ -4900,6 +4915,7 @@ households_space_heater_electricity-(electricity) -- s --> (electricity)-househo
   :typical_nominal_input_capacity: 0.0041
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 3033.32144003196
 households_space_heater_heatpump_add_on_electricity-(electricity): {conversion: 0.25}
 households_space_heater_heatpump_add_on_electricity-(ambient_heat): {conversion: 0.75}
 (loss)-households_space_heater_heatpump_add_on_electricity: {conversion: 0.0}
@@ -4978,6 +4994,7 @@ households_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (n
   :typical_nominal_input_capacity: 0.0076
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 5506.2871059181
 households_space_heater_heatpump_ground_water_electricity-(electricity): {conversion: 0.210526315789474}
 households_space_heater_heatpump_ground_water_electricity-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-households_space_heater_heatpump_ground_water_electricity: {conversion: 0.0}
@@ -5020,6 +5037,7 @@ households_space_heater_heatpump_ground_water_electricity-(electricity) -- s -->
   :typical_nominal_input_capacity: 0.00588235294117647
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 0.0
 households_space_heater_micro_chp_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_space_heater_micro_chp_network_gas: {conversion: -0.05}
 (electricity)-households_space_heater_micro_chp_network_gas: {conversion: 0.17}
@@ -5098,21 +5116,18 @@ households_space_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-hous
 :households_useful_demand_clothes_dryer:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_clothes_dryer-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_clothes_dryer: {conversion: 1.0}
 
 :households_useful_demand_computer_media:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_computer_media-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_computer_media: {conversion: 1.0}
 
 :households_useful_demand_cooking_useable_heat:
   :co2_free: 0.0
   :preset_demand: 7245062374.85448
-  :demand: 7245062374.85448
 households_useful_demand_cooking_useable_heat-(useable_heat): {conversion: 1.0}
 (loss)-households_useful_demand_cooking_useable_heat: {conversion: 1.0}
 households_useful_demand_cooking_useable_heat-(useable_heat) -- f --> (useable_heat)-households_cooker_network_gas: {}
@@ -5124,7 +5139,6 @@ households_useful_demand_cooking_useable_heat-(useable_heat) -- s --> (useable_h
 :households_useful_demand_dishwasher:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_dishwasher-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_dishwasher: {conversion: 1.0}
 
@@ -5150,7 +5164,7 @@ households_useful_demand_for_hot_water_after_solar_heater-(hot_water) -- s --> (
   :demand_expected_value: 95299556103.1519
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water): {conversion: 1.0}
 (hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {conversion: 1.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_air_water_electricity: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_ground_water_electricity: {share: 0.0}
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_resistive_electricity: {share: 0.0709203723119595}
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_district_heating_steam_hot_water: {share: 0.0238406147195565}
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_combined_network_gas: {share: 0.769453161023211}
@@ -5231,7 +5245,6 @@ households_useful_demand_for_space_heating_after_insulation_for_houses_with_sola
 :households_useful_demand_fridge_freezer:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_fridge_freezer-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_fridge_freezer: {conversion: 1.0}
 
@@ -5239,7 +5252,6 @@ households_useful_demand_fridge_freezer-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :demand_expected_value: 95747790102.0772
   :preset_demand: 95747790102.0772
-  :demand: 95747790102.0772
 households_useful_demand_hot_water-(hot_water): {conversion: 1.0}
 (hot_water)-households_useful_demand_hot_water: {conversion: 1.0}
 households_useful_demand_hot_water-(hot_water) -- f --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater: {}
@@ -5248,7 +5260,6 @@ households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_u
 :households_useful_demand_light:
   :co2_free: 0.0
   :preset_demand: 846952380.952381
-  :demand: 846952380.952381
 households_useful_demand_light-(light): {conversion: 1.0}
 (loss)-households_useful_demand_light: {conversion: 1.0}
 households_useful_demand_light-(light) -- s --> (light)-households_lighting_led_electricity: {share: 0.0}
@@ -5258,28 +5269,24 @@ households_useful_demand_light-(light) -- s --> (light)-households_lighting_inca
 :households_useful_demand_other_appliances:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_other_appliances-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_other_appliances: {conversion: 1.0}
 
 :households_useful_demand_television:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_television-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_television: {conversion: 1.0}
 
 :households_useful_demand_vacuum_cleaner:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_vacuum_cleaner-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_vacuum_cleaner: {conversion: 1.0}
 
 :households_useful_demand_washing_machine:
   :co2_free: 0.0
   :preset_demand: 0.0
-  :demand: 0.0
 households_useful_demand_washing_machine-(not_defined): {conversion: 1.0}
 (loss)-households_useful_demand_washing_machine: {conversion: 1.0}
 
@@ -5454,6 +5461,7 @@ households_water_heater_district_heating_steam_hot_water-(steam_hot_water) -- s 
   :typical_nominal_input_capacity: 0.0025
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 0.0
 households_water_heater_fuel_cell_chp_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_water_heater_fuel_cell_chp_network_gas: {conversion: 0.2}
 (electricity)-households_water_heater_fuel_cell_chp_network_gas: {conversion: 0.6}
@@ -5461,7 +5469,7 @@ households_water_heater_fuel_cell_chp_network_gas-(network_gas): {conversion: 1.
 households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 0.75}
 households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas: {share: 0.25}
 
-:households_water_heater_heatpump_air_water_electricity:
+:households_water_heater_heatpump_ground_water_electricity:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :ccs_investment_per_mw_input: 0.0
@@ -5496,12 +5504,13 @@ households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (networ
   :typical_nominal_input_capacity: 0.0076
   :variability: 0.0
   :wacc: 0.04
-households_water_heater_heatpump_air_water_electricity-(electricity): {conversion: 0.210526315789474}
-households_water_heater_heatpump_air_water_electricity-(ambient_heat): {conversion: 0.789473684210526}
-(loss)-households_water_heater_heatpump_air_water_electricity: {conversion: 0.0}
-(hot_water)-households_water_heater_heatpump_air_water_electricity: {conversion: 1.0}
-households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
-households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
+  :peak_load_units: 0.0
+households_water_heater_heatpump_ground_water_electricity-(electricity): {conversion: 0.210526315789474}
+households_water_heater_heatpump_ground_water_electricity-(ambient_heat): {conversion: 0.789473684210526}
+(loss)-households_water_heater_heatpump_ground_water_electricity: {conversion: 0.0}
+(hot_water)-households_water_heater_heatpump_ground_water_electricity: {conversion: 1.0}
+households_water_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_water_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
 :households_water_heater_micro_chp_network_gas:
   :availability: 0.97
@@ -5538,6 +5547,7 @@ households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (e
   :typical_nominal_input_capacity: 0.00588235294117647
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 0.0
 households_water_heater_micro_chp_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_water_heater_micro_chp_network_gas: {conversion: -0.05}
 (electricity)-households_water_heater_micro_chp_network_gas: {conversion: 0.17}
@@ -5614,6 +5624,7 @@ households_water_heater_network_gas-(network_gas) -- s --> (network_gas)-househo
   :typical_nominal_input_capacity: 0.00157894736842105
   :variability: 0.0
   :wacc: 0.04
+  :peak_load_units: 521229.276306746
 households_water_heater_resistive_electricity-(electricity): {conversion: 1.0}
 (loss)-households_water_heater_resistive_electricity: {conversion: 0.05}
 (hot_water)-households_water_heater_resistive_electricity: {conversion: 0.95}
@@ -5854,6 +5865,7 @@ industry_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-industry_fin
   :typical_nominal_input_capacity: 94.1945405613226
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 122.087755102041
 (loss)-industry_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.22}
 (steam_hot_water)-industry_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.51}
 (electricity)-industry_chp_combined_cycle_gas_power_fuelmix: {conversion: 0.27}
@@ -5899,6 +5911,7 @@ industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
   :typical_nominal_input_capacity: 162.60162601626
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 10.54725
 industry_chp_supercritical_wood_pellets-(wood_pellets): {conversion: 1.0}
 (loss)-industry_chp_supercritical_wood_pellets: {conversion: 0.45}
 (steam_hot_water)-industry_chp_supercritical_wood_pellets: {conversion: 0.35}
@@ -6107,7 +6120,6 @@ industry_unused_local_production_steam_hot_water-(steam_hot_water) -- i --> (ste
   :co2_free: 1.0
   :demand_expected_value: 57640000000.0
   :preset_demand: 57640000000.0
-  :demand: 57640000000.0
 industry_useful_demand_coal_non_energetic-(coal): {conversion: 1.0}
 (coal)-industry_useful_demand_coal_non_energetic: {conversion: 1.0}
 industry_useful_demand_coal_non_energetic-(coal) -- s --> (coal)-industry_final_demand_coal_non_energetic: {share: 1.0}
@@ -6115,7 +6127,6 @@ industry_useful_demand_coal_non_energetic-(coal) -- s --> (coal)-industry_final_
 :industry_useful_demand_crude_oil_non_energetic:
   :co2_free: 1.0
   :preset_demand: 536760000000.0
-  :demand: 536760000000.0
 industry_useful_demand_crude_oil_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-industry_useful_demand_crude_oil_non_energetic: {conversion: 1.0}
 industry_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil_non_energetic: {share: 1.0}
@@ -6123,7 +6134,6 @@ industry_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-
 :industry_useful_demand_electricity:
   :co2_free: 0.0
   :preset_demand: 137139600000.0
-  :demand: 137139600000.0
 industry_useful_demand_electricity-(electricity): {conversion: 1.0}
 (electricity)-industry_useful_demand_electricity: {conversion: 1.0}
 industry_useful_demand_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
@@ -6131,7 +6141,6 @@ industry_useful_demand_electricity-(electricity) -- s --> (electricity)-industry
 :industry_useful_demand_electricity_non_energetic:
   :co2_free: 1.0
   :preset_demand: 22520000000.0
-  :demand: 22520000000.0
 industry_useful_demand_electricity_non_energetic-(electricity): {conversion: 1.0}
 (loss)-industry_useful_demand_electricity_non_energetic: {conversion: 1.0}
 industry_useful_demand_electricity_non_energetic-(electricity) -- s --> (electricity)-industry_final_demand_electricity_non_energetic: {share: 1.0}
@@ -6139,7 +6148,6 @@ industry_useful_demand_electricity_non_energetic-(electricity) -- s --> (electri
 :industry_useful_demand_network_gas_non_energetic:
   :co2_free: 1.0
   :preset_demand: 93600000000.0
-  :demand: 93600000000.0
 industry_useful_demand_network_gas_non_energetic-(network_gas): {conversion: 1.0}
 (network_gas)-industry_useful_demand_network_gas_non_energetic: {conversion: 1.0}
 industry_useful_demand_network_gas_non_energetic-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas_non_energetic: {share: 1.0}
@@ -6147,7 +6155,6 @@ industry_useful_demand_network_gas_non_energetic-(network_gas) -- s --> (network
 :industry_useful_demand_useable_heat:
   :co2_free: 0.0
   :preset_demand: 532990700000.0
-  :demand: 532990700000.0
 industry_useful_demand_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-industry_useful_demand_useable_heat: {conversion: 1.0}
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water: {share: 0.287134465948468}
@@ -6159,7 +6166,6 @@ industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-indus
 :industry_useful_demand_wood_pellets_non_energetic:
   :co2_free: 1.0
   :preset_demand: 0.0
-  :demand: 0.0
 industry_useful_demand_wood_pellets_non_energetic-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-industry_useful_demand_wood_pellets_non_energetic: {conversion: 1.0}
 industry_useful_demand_wood_pellets_non_energetic-(wood_pellets) -- s --> (wood_pellets)-industry_final_demand_wood_pellets_non_energetic: {share: 1.0}
@@ -6298,7 +6304,7 @@ other_burner_network_gas-(network_gas) -- s --> (network_gas)-other_final_demand
 other_burner_wood_pellets-(wood_pellets): {conversion: 1.0}
 (useable_heat)-other_burner_wood_pellets: {conversion: 0.760824742268041}
 (loss)-other_burner_wood_pellets: {conversion: 0.239175257731959}
-other_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_for_heat_biomass: {share: 1.0}
+other_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_for_heat_wood_pellets: {share: 1.0}
 
 :other_chp_engine_gas_power_fuelmix:
   :availability: 0.97
@@ -6335,6 +6341,7 @@ other_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_dem
   :typical_nominal_input_capacity: 1.65169253108268
   :variability: 0.0
   :wacc: 0.1
+  :peak_load_units: 0.0
 other_chp_engine_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (loss)-other_chp_engine_gas_power_fuelmix: {conversion: 0.28}
 (steam_hot_water)-other_chp_engine_gas_power_fuelmix: {conversion: 0.35}
@@ -6427,13 +6434,6 @@ other_final_demand_electricity-(electricity): {conversion: 1.0}
 (electricity)-other_final_demand_electricity: {conversion: 1.0}
 other_final_demand_electricity-(electricity) -- s --> (electricity)-other_local_production_electricity: {share: 1.0}
 
-:other_final_demand_for_heat_biomass:
-  :co2_free: 0.0
-  :demand_expected_value: 1840000000.0
-other_final_demand_for_heat_biomass-(wood_pellets): {conversion: 1.0}
-(wood_pellets)-other_final_demand_for_heat_biomass: {conversion: 1.0}
-other_final_demand_for_heat_biomass-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_wood_pellets: {share: 1.0}
-
 :other_final_demand_for_heat_coal:
   :co2_free: 0.0
   :demand_expected_value: 7911000000.0
@@ -6461,6 +6461,13 @@ other_final_demand_for_heat_gas-(network_gas) -- s --> (network_gas)-other_final
 other_final_demand_for_heat_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-other_final_demand_for_heat_steam_hot_water: {conversion: 1.0}
 other_final_demand_for_heat_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-other_final_demand_steam_hot_water: {share: 1.0}
+
+:other_final_demand_for_heat_wood_pellets:
+  :co2_free: 0.0
+  :demand_expected_value: 1840000000.0
+other_final_demand_for_heat_wood_pellets-(wood_pellets): {conversion: 1.0}
+(wood_pellets)-other_final_demand_for_heat_wood_pellets: {conversion: 1.0}
+other_final_demand_for_heat_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_wood_pellets: {share: 1.0}
 
 :other_final_demand_network_gas:
   :co2_free: 0.0
@@ -6515,7 +6522,6 @@ other_unused_local_production_steam_hot_water-(steam_hot_water) -- i --> (steam_
 :other_useful_demand_crude_oil_non_energetic:
   :co2_free: 1.0
   :preset_demand: 3380000000.0
-  :demand: 3380000000.0
 other_useful_demand_crude_oil_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-other_useful_demand_crude_oil_non_energetic: {conversion: 1.0}
 other_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-other_final_demand_crude_oil_non_energetic: {share: 1.0}
@@ -6523,7 +6529,6 @@ other_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-oth
 :other_useful_demand_electricity:
   :co2_free: 0.0
   :preset_demand: 1439999999.99999
-  :demand: 1439999999.99999
 other_useful_demand_electricity-(electricity): {conversion: 1.0}
 (electricity)-other_useful_demand_electricity: {conversion: 1.0}
 other_useful_demand_electricity-(electricity) -- s --> (electricity)-other_electricity_for_electricity: {share: 1.0}
@@ -6531,7 +6536,6 @@ other_useful_demand_electricity-(electricity) -- s --> (electricity)-other_elect
 :other_useful_demand_useable_heat:
   :co2_free: 0.0
   :preset_demand: 74107057731.9588
-  :demand: 74107057731.9588
 other_useful_demand_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-other_useful_demand_useable_heat: {conversion: 1.0}
 other_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-other_burner_coal: {share: 0.0854007727967142}
@@ -6619,6 +6623,7 @@ transport_car_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_road
   :typical_nominal_input_capacity: 0.01
   :variability: 0.0
   :wacc: 0.0
+  :peak_load_units: 1358.90321232822
 transport_car_using_electricity-(electricity): {conversion: 1.0}
 (car_kms)-transport_car_using_electricity: {conversion: 1.18203309692671}
 (loss)-transport_car_using_electricity: {conversion: -0.182033096926714}
@@ -7067,6 +7072,7 @@ transport_truck_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_ro
   :typical_nominal_input_capacity: 0.01
   :variability: 0.0
   :wacc: 0.0
+  :peak_load_units: 0.0
 transport_truck_using_electricity-(electricity): {conversion: 1.0}
 (truck_kms)-transport_truck_using_electricity: {conversion: 1.18203309692671}
 (loss)-transport_truck_using_electricity: {conversion: -0.182033096926714}
@@ -7101,7 +7107,6 @@ transport_truck_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transp
 :transport_useful_demand_car_kms:
   :co2_free: 0.0
   :preset_demand: 133589691558.593
-  :demand: 133589691558.593
 transport_useful_demand_car_kms-(car_kms): {conversion: 1.0}
 (loss)-transport_useful_demand_car_kms: {conversion: 1.0}
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_electricity: {share: 0.000176964716833449}
@@ -7113,7 +7118,6 @@ transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using
 :transport_useful_demand_crude_oil_non_energetic:
   :co2_free: 1.0
   :preset_demand: 2820000000.0
-  :demand: 2820000000.0
 transport_useful_demand_crude_oil_non_energetic-(crude_oil): {conversion: 1.0}
 (crude_oil)-transport_useful_demand_crude_oil_non_energetic: {conversion: 1.0}
 transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-transport_final_demand_crude_oil_non_energetic: {share: 1.0}
@@ -7121,7 +7125,6 @@ transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)
 :transport_useful_demand_planes:
   :co2_free: 0.0
   :preset_demand: 2100000000.0
-  :demand: 2100000000.0
 transport_useful_demand_planes-(not_defined): {conversion: 1.0}
 (not_defined)-transport_useful_demand_planes: {conversion: 1.0}
 transport_useful_demand_planes-(not_defined) -- s --> (not_defined)-transport_plane_using_gasoline: {share: 0.0476190476190476}
@@ -7131,7 +7134,6 @@ transport_useful_demand_planes-(not_defined) -- s --> (not_defined)-transport_pl
 :transport_useful_demand_ships:
   :co2_free: 0.0
   :preset_demand: 6600000000.0
-  :demand: 6600000000.0
 transport_useful_demand_ships-(not_defined): {conversion: 1.0}
 (not_defined)-transport_useful_demand_ships: {conversion: 1.0}
 transport_useful_demand_ships-(not_defined) -- s --> (not_defined)-transport_ship_using_diesel: {share: 1.0}
@@ -7141,7 +7143,6 @@ transport_useful_demand_ships-(not_defined) -- s --> (not_defined)-transport_shi
 :transport_useful_demand_trains:
   :co2_free: 0.0
   :preset_demand: 6009000000.0
-  :demand: 6009000000.0
 transport_useful_demand_trains-(not_defined): {conversion: 1.0}
 (not_defined)-transport_useful_demand_trains: {conversion: 1.0}
 transport_useful_demand_trains-(not_defined) -- s --> (not_defined)-transport_train_using_electricity: {share: 0.928607089365951}
@@ -7151,7 +7152,6 @@ transport_useful_demand_trains-(not_defined) -- s --> (not_defined)-transport_tr
 :transport_useful_demand_truck_kms:
   :co2_free: 0.0
   :preset_demand: 49495495495.4955
-  :demand: 49495495495.4955
 transport_useful_demand_truck_kms-(truck_kms): {conversion: 1.0}
 (loss)-transport_useful_demand_truck_kms: {conversion: 1.0}
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_electricity: {share: 0.0}
