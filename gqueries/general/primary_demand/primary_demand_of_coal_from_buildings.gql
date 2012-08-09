@@ -1,6 +1,9 @@
-- deprecated_key = buildings_coal_primary_demand
 # 
 
 - unit = pj
+- deprecated_key = buildings_coal_primary_demand
 
-DIVIDE(SUM(V(INTERSECTION(SECTOR(buildings),G(final_demand_cbs)),primary_demand_of_coal)),BILLIONS)
+DIVIDE(
+  V(INTERSECTION(SECTOR(buildings),G(final_demand_cbs)),primary_demand_of_coal).sum,
+  BILLIONS
+)

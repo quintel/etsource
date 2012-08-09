@@ -4,4 +4,7 @@
 - deprecated_key = buildings_waste_primary_demand
 - unit = pj
 
-DIVIDE(SUM(V(INTERSECTION(SECTOR(buildings),G(final_demand_cbs)),"primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste")),BILLIONS)
+DIVIDE(
+  V(INTERSECTION(SECTOR(buildings),G(final_demand_cbs)),"primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste").sum,
+  BILLIONS
+)
