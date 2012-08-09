@@ -1,8 +1,6 @@
-- deprecated_key = electricity_cost_of_co2_emission_credits
 # The total cost_of_co2_emission_credits for electricity production.
 
 - unit = euro
+- deprecated_key = electricity_cost_of_co2_emission_credits
 
-SUM(
-  V(G(electricity_production), cost_of_co2_emission_credits)
-)
+V(G(electricity_production), cost_of_co2_emission_credits).sum
