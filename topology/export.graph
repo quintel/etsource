@@ -1869,7 +1869,7 @@ households_useful_demand_for_hot_water_after_solar_heater-(hot_water)
 (hot_water)-households_useful_demand_for_hot_water_after_solar_heater
 
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on;households;energetic;useful consumption;
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_air_water_electricity
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_ground_water_electricity
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_resistive_electricity
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_district_heating_steam_hot_water
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_combined_network_gas
@@ -2000,13 +2000,13 @@ households_water_heater_fuel_cell_chp_network_gas-(network_gas)
 (electricity)-households_water_heater_fuel_cell_chp_network_gas
 (hot_water)-households_water_heater_fuel_cell_chp_network_gas
 
-households_water_heater_heatpump_air_water_electricity;households;energetic;technologies;cost_heat_pumps,heat_production,decentral_production,demand_driven
-households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
-households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity
-households_water_heater_heatpump_air_water_electricity-(electricity)
-households_water_heater_heatpump_air_water_electricity-(ambient_heat)
-(loss)-households_water_heater_heatpump_air_water_electricity
-(hot_water)-households_water_heater_heatpump_air_water_electricity
+households_water_heater_heatpump_ground_water_electricity;households;energetic;technologies;cost_heat_pumps,heat_production,decentral_production,demand_driven
+households_water_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
+households_water_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity
+households_water_heater_heatpump_ground_water_electricity-(electricity)
+households_water_heater_heatpump_ground_water_electricity-(ambient_heat)
+(loss)-households_water_heater_heatpump_ground_water_electricity
+(hot_water)-households_water_heater_heatpump_ground_water_electricity
 
 households_water_heater_micro_chp_network_gas;households;energetic;local CHPs;cost_chps,heat_production,must_run_electricity_production,demand_driven
 households_water_heater_micro_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
@@ -2245,7 +2245,7 @@ other_burner_network_gas-(network_gas)
 (loss)-other_burner_network_gas
 
 other_burner_wood_pellets;other;energetic;technologies;cost_traditional_heat,heat_production,decentral_production
-other_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_for_heat_biomass
+other_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_for_heat_wood_pellets
 other_burner_wood_pellets-(wood_pellets)
 (useable_heat)-other_burner_wood_pellets
 (loss)-other_burner_wood_pellets
@@ -2289,11 +2289,6 @@ other_final_demand_electricity-(electricity) -- s --> (electricity)-other_local_
 other_final_demand_electricity-(electricity)
 (electricity)-other_final_demand_electricity
 
-other_final_demand_for_heat_biomass;other;energetic;application;
-other_final_demand_for_heat_biomass-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_wood_pellets
-other_final_demand_for_heat_biomass-(wood_pellets)
-(wood_pellets)-other_final_demand_for_heat_biomass
-
 other_final_demand_for_heat_coal;other;energetic;application;
 other_final_demand_for_heat_coal-(coal) -- s --> (coal)-other_final_demand_coal
 other_final_demand_for_heat_coal-(coal)
@@ -2313,6 +2308,11 @@ other_final_demand_for_heat_steam_hot_water;other;energetic;application;
 other_final_demand_for_heat_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-other_final_demand_steam_hot_water
 other_final_demand_for_heat_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-other_final_demand_for_heat_steam_hot_water
+
+other_final_demand_for_heat_wood_pellets;other;energetic;application;
+other_final_demand_for_heat_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-other_final_demand_wood_pellets
+other_final_demand_for_heat_wood_pellets-(wood_pellets)
+(wood_pellets)-other_final_demand_for_heat_wood_pellets
 
 other_final_demand_network_gas;other;energetic;final consumption;final_demand_cbs
 other_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
