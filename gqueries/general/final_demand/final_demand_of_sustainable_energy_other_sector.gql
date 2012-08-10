@@ -2,13 +2,11 @@
 
 - unit = mj
 
-SUM(
-  V(other_final_demand_for_heat_biomass,demand),
-	V(
-	  other_final_demand_for_heat_coal
-	  other_final_demand_for_heat_crude_oil,
-	  other_final_demand_for_heat_gas,
-	  other_final_demand_for_heat_steam_hot_water,"demand * sustainability_share"
-	).sum
+SUM(V(other_final_demand_for_heat_wood_pellets,demand),
+  V(
+  	other_final_demand_for_heat_coal
+  	other_final_demand_for_heat_crude_oil,
+  	other_final_demand_for_heat_gas,
+  	other_final_demand_for_heat_steam_hot_water,"demand * sustainability_share"
+  ).sum
 )
-
