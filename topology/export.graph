@@ -1516,14 +1516,6 @@ households_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold)
 (loss)-households_cooling_collective_heatpump_water_water_ts_electricity
 (cooling)-households_cooling_collective_heatpump_water_water_ts_electricity
 
-households_cooling_heatpump_air_water_network_gas;households;energetic;technologies;cost_heat_pumps,heat_production
-households_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_air
-households_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_cooling_network_gas
-households_cooling_heatpump_air_water_network_gas-(network_gas)
-households_cooling_heatpump_air_water_network_gas-(ambient_cold)
-(loss)-households_cooling_heatpump_air_water_network_gas
-(cooling)-households_cooling_heatpump_air_water_network_gas
-
 households_cooling_heatpump_ground_water_electricity;households;energetic;technologies;cost_heat_pumps,heat_production,network_converters
 households_cooling_heatpump_ground_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth
 households_cooling_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
@@ -1797,14 +1789,6 @@ households_space_heater_heatpump_add_on_electricity-(ambient_heat)
 (loss)-households_space_heater_heatpump_add_on_electricity
 (useable_heat)-households_space_heater_heatpump_add_on_electricity
 
-households_space_heater_heatpump_air_water_network_gas;households;energetic;technologies;cost_heat_pumps,heat_production,decentral_production,demand_driven
-households_space_heater_heatpump_air_water_network_gas-(ambient_heat) -- s --> (ambient_heat)-environment_air
-households_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_space_heating_network_gas
-households_space_heater_heatpump_air_water_network_gas-(ambient_heat)
-households_space_heater_heatpump_air_water_network_gas-(network_gas)
-(loss)-households_space_heater_heatpump_air_water_network_gas
-(useable_heat)-households_space_heater_heatpump_air_water_network_gas
-
 households_space_heater_heatpump_ground_water_electricity;households;energetic;technologies;cost_heat_pumps,heat_production,decentral_production,network_converters,demand_driven
 households_space_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth
 households_space_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
@@ -1857,7 +1841,6 @@ households_useful_demand_dishwasher-(not_defined)
 households_useful_demand_for_cooling_after_insulation;households;energetic;useful consumption;useful_demand,useful_demand_heat_cold
 households_useful_demand_for_cooling_after_insulation-(cooling) -- f --> (cooling)-households_cooling_airconditioning_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_ground_water_electricity
-households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_heatpump_air_water_network_gas
 households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (cooling)-households_cooling_collective_heatpump_water_water_ts_electricity
 households_useful_demand_for_cooling_after_insulation-(cooling)
 (cooling)-households_useful_demand_for_cooling_after_insulation
@@ -1914,7 +1897,6 @@ households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_wood_pellets
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_coal
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_crude_oil
-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_air_water_network_gas
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_district_heating_steam_hot_water
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_micro_chp_network_gas
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_network_gas
