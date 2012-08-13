@@ -8,7 +8,7 @@ min_value: 0.0
 # and divide the USER_INPUT() by 100 (50% / 100 => share = 0.5)
 query: |-
   UPDATE(
-    V(OUTPUT_SLOTS(LOOKUP(households_water_heater_heatpump_ground_water_electricity),hot_water), "links.detect{|l| !l.flexible? }"),
+    V(OUTPUT_SLOTS(LOOKUP(households_water_heater_heatpump_ground_water_electricity),useable_heat), "links.detect{|l| !l.flexible? }"),
     share, USER_INPUT() / 100.0
   )
 share_group: hot_water_households

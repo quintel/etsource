@@ -4915,7 +4915,7 @@ households_space_heater_electricity-(electricity) -- s --> (electricity)-househo
 households_space_heater_heatpump_add_on_electricity-(electricity): {conversion: 0.25}
 households_space_heater_heatpump_add_on_electricity-(ambient_heat): {conversion: 0.75}
 (loss)-households_space_heater_heatpump_add_on_electricity: {conversion: 0.0}
-(hot_water)-households_space_heater_heatpump_add_on_electricity: {conversion: 1.0}
+(useable_heat)-households_space_heater_heatpump_add_on_electricity: {conversion: 1.0}
 households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
 households_space_heater_heatpump_add_on_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
@@ -5150,42 +5150,42 @@ households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (coolin
 :households_useful_demand_for_hot_water_after_solar_heater:
   :co2_free: 0.0
   :demand_expected_value: 4453765332.64011
-households_useful_demand_for_hot_water_after_solar_heater-(hot_water): {conversion: 1.0}
-(hot_water)-households_useful_demand_for_hot_water_after_solar_heater: {conversion: 1.0}
-households_useful_demand_for_hot_water_after_solar_heater-(hot_water) -- f --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {}
-households_useful_demand_for_hot_water_after_solar_heater-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_for_houses_with_add_on: {share: 0.000892506981151797}
+households_useful_demand_for_hot_water_after_solar_heater-(useable_heat): {conversion: 1.0}
+(useable_heat)-households_useful_demand_for_hot_water_after_solar_heater: {conversion: 1.0}
+households_useful_demand_for_hot_water_after_solar_heater-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {}
+households_useful_demand_for_hot_water_after_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_for_houses_with_add_on: {share: 0.000892506981151797}
 
 :households_useful_demand_for_hot_water_after_solar_heater_and_add_on:
   :co2_free: 0.0
   :demand_expected_value: 4453765332.64011
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water): {conversion: 1.0}
-(hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {conversion: 1.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_heatpump_ground_water_electricity: {share: 0.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_resistive_electricity: {share: 0.0947871060656749}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_district_heating_steam_hot_water: {share: 0.0382597616338691}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_combined_network_gas: {share: 0.676223443194356}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_wood_pellets: {share: 0.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_coal: {share: 0.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_crude_oil: {share: 0.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- f --> (hot_water)-households_water_heater_network_gas: {share: 0.1907296891061}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_micro_chp_network_gas: {share: 0.0}
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(hot_water) -- s --> (hot_water)-households_water_heater_fuel_cell_chp_network_gas: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat): {conversion: 1.0}
+(useable_heat)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {conversion: 1.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_heatpump_ground_water_electricity: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_resistive_electricity: {share: 0.0947871060656749}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_district_heating_steam_hot_water: {share: 0.0382597616338691}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_combined_network_gas: {share: 0.676223443194356}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_wood_pellets: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_coal: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_crude_oil: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- f --> (useable_heat)-households_water_heater_network_gas: {share: 0.1907296891061}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_micro_chp_network_gas: {share: 0.0}
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_fuel_cell_chp_network_gas: {share: 0.0}
 
 :households_useful_demand_for_hot_water_for_houses_with_add_on:
   :co2_free: 0.0
   :demand_expected_value: 3975016.65179315
-households_useful_demand_for_hot_water_for_houses_with_add_on-(hot_water): {conversion: 1.0}
-(hot_water)-households_useful_demand_for_hot_water_for_houses_with_add_on: {conversion: 1.0}
-households_useful_demand_for_hot_water_for_houses_with_add_on-(hot_water) -- s --> (hot_water)-households_space_heater_heatpump_add_on_electricity: {share: 0.0}
-households_useful_demand_for_hot_water_for_houses_with_add_on-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {share: 1.0}
+households_useful_demand_for_hot_water_for_houses_with_add_on-(useable_heat): {conversion: 1.0}
+(useable_heat)-households_useful_demand_for_hot_water_for_houses_with_add_on: {conversion: 1.0}
+households_useful_demand_for_hot_water_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_add_on_electricity: {share: 0.0}
+households_useful_demand_for_hot_water_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on: {share: 1.0}
 
 :households_useful_demand_for_hot_water_for_houses_with_solar_heater:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-households_useful_demand_for_hot_water_for_houses_with_solar_heater-(hot_water): {conversion: 1.0}
-(hot_water)-households_useful_demand_for_hot_water_for_houses_with_solar_heater: {conversion: 1.0}
-households_useful_demand_for_hot_water_for_houses_with_solar_heater-(hot_water) -- s --> (hot_water)-households_water_heater_solar_thermal: {share: 0.5}
-households_useful_demand_for_hot_water_for_houses_with_solar_heater-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater: {share: 0.5}
+households_useful_demand_for_hot_water_for_houses_with_solar_heater-(useable_heat): {conversion: 1.0}
+(useable_heat)-households_useful_demand_for_hot_water_for_houses_with_solar_heater: {conversion: 1.0}
+households_useful_demand_for_hot_water_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_water_heater_solar_thermal: {share: 0.5}
+households_useful_demand_for_hot_water_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater: {share: 0.5}
 
 :households_useful_demand_for_space_heating_after_insulation:
   :co2_free: 0.0
@@ -5223,20 +5223,18 @@ households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and
 :households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on:
   :co2_free: 0.0
   :demand_expected_value: 11745501.3888862
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(hot_water): {conversion: 0.6}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat): {conversion: 0.4}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat): {conversion: 1.0}
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on: {conversion: 1.0}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(hot_water) -- s --> (hot_water)-households_space_heater_heatpump_add_on_electricity: {share: 1.0}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on: {share: 1.0}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_add_on_electricity: {share: 0.6}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on: {share: 0.4}
 
 :households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater:
   :co2_free: 0.0
   :demand_expected_value: 0.0
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat): {conversion: 0.85}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat): {conversion: 1.0}
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater: {conversion: 1.0}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(hot_water): {conversion: 0.15}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(hot_water) -- s --> (hot_water)-households_water_heater_solar_thermal: {share: 1.0}
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater: {share: 1.0}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_water_heater_solar_thermal: {share: 0.15}
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater: {share: 0.85}
 
 :households_useful_demand_fridge_freezer:
   :co2_free: 0.0
@@ -5248,10 +5246,10 @@ households_useful_demand_fridge_freezer-(not_defined): {conversion: 1.0}
   :co2_free: 0.0
   :demand_expected_value: 4453765332.64011
   :preset_demand: 4453765332.64011
-households_useful_demand_hot_water-(hot_water): {conversion: 1.0}
-(hot_water)-households_useful_demand_hot_water: {conversion: 1.0}
-households_useful_demand_hot_water-(hot_water) -- f --> (hot_water)-households_useful_demand_for_hot_water_after_solar_heater: {}
-households_useful_demand_hot_water-(hot_water) -- s --> (hot_water)-households_useful_demand_for_hot_water_for_houses_with_solar_heater: {share: 0.0}
+households_useful_demand_hot_water-(useable_heat): {conversion: 1.0}
+(useable_heat)-households_useful_demand_hot_water: {conversion: 1.0}
+households_useful_demand_hot_water-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater: {}
+households_useful_demand_hot_water-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_for_houses_with_solar_heater: {share: 0.0}
 
 :households_useful_demand_light:
   :co2_free: 0.0
@@ -5316,7 +5314,7 @@ households_useful_demand_washing_machine-(not_defined): {conversion: 1.0}
   :variability: 0.0
   :wacc: 0.04
 households_water_heater_coal-(coal): {conversion: 1.0}
-(hot_water)-households_water_heater_coal: {conversion: 0.8}
+(useable_heat)-households_water_heater_coal: {conversion: 0.8}
 (loss)-households_water_heater_coal: {conversion: 0.2}
 households_water_heater_coal-(coal) -- s --> (coal)-households_final_demand_for_hot_water_coal: {share: 1.0}
 
@@ -5351,7 +5349,7 @@ households_water_heater_coal-(coal) -- s --> (coal)-households_final_demand_for_
   :wacc: 0.04
 households_water_heater_combined_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_water_heater_combined_network_gas: {conversion: -0.0669999999999999}
-(hot_water)-households_water_heater_combined_network_gas: {conversion: 1.067}
+(useable_heat)-households_water_heater_combined_network_gas: {conversion: 1.067}
 households_water_heater_combined_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas: {share: 1.0}
 
 :households_water_heater_crude_oil:
@@ -5384,7 +5382,7 @@ households_water_heater_combined_network_gas-(network_gas) -- s --> (network_gas
   :variability: 0.0
   :wacc: 0.04
 households_water_heater_crude_oil-(crude_oil): {conversion: 1.0}
-(hot_water)-households_water_heater_crude_oil: {conversion: 0.85}
+(useable_heat)-households_water_heater_crude_oil: {conversion: 0.85}
 (loss)-households_water_heater_crude_oil: {conversion: 0.15}
 households_water_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-households_final_demand_for_hot_water_crude_oil: {share: 1.0}
 
@@ -5418,7 +5416,7 @@ households_water_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-households_fi
   :variability: 0.0
   :wacc: 0.04
 households_water_heater_district_heating_steam_hot_water-(steam_hot_water): {conversion: 1.0}
-(hot_water)-households_water_heater_district_heating_steam_hot_water: {conversion: 1.0}
+(useable_heat)-households_water_heater_district_heating_steam_hot_water: {conversion: 1.0}
 (loss)-households_water_heater_district_heating_steam_hot_water: {conversion: 0.0}
 households_water_heater_district_heating_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-households_final_demand_for_hot_water_steam_hot_water: {share: 1.0}
 
@@ -5461,7 +5459,7 @@ households_water_heater_district_heating_steam_hot_water-(steam_hot_water) -- s 
 households_water_heater_fuel_cell_chp_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_water_heater_fuel_cell_chp_network_gas: {conversion: 0.2}
 (electricity)-households_water_heater_fuel_cell_chp_network_gas: {conversion: 0.6}
-(hot_water)-households_water_heater_fuel_cell_chp_network_gas: {conversion: 0.2}
+(useable_heat)-households_water_heater_fuel_cell_chp_network_gas: {conversion: 0.2}
 households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 0.75}
 households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas: {share: 0.25}
 
@@ -5504,7 +5502,7 @@ households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (networ
 households_water_heater_heatpump_ground_water_electricity-(electricity): {conversion: 0.210526315789474}
 households_water_heater_heatpump_ground_water_electricity-(ambient_heat): {conversion: 0.789473684210526}
 (loss)-households_water_heater_heatpump_ground_water_electricity: {conversion: 0.0}
-(hot_water)-households_water_heater_heatpump_ground_water_electricity: {conversion: 1.0}
+(useable_heat)-households_water_heater_heatpump_ground_water_electricity: {conversion: 1.0}
 households_water_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
 households_water_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
@@ -5547,7 +5545,7 @@ households_water_heater_heatpump_ground_water_electricity-(electricity) -- s -->
 households_water_heater_micro_chp_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_water_heater_micro_chp_network_gas: {conversion: -0.05}
 (electricity)-households_water_heater_micro_chp_network_gas: {conversion: 0.17}
-(hot_water)-households_water_heater_micro_chp_network_gas: {conversion: 0.88}
+(useable_heat)-households_water_heater_micro_chp_network_gas: {conversion: 0.88}
 households_water_heater_micro_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 0.161904761904762}
 households_water_heater_micro_chp_network_gas-(network_gas) -- f --> (network_gas)-households_final_demand_for_hot_water_network_gas: {}
 
@@ -5582,7 +5580,7 @@ households_water_heater_micro_chp_network_gas-(network_gas) -- f --> (network_ga
   :wacc: 0.04
 households_water_heater_network_gas-(network_gas): {conversion: 1.0}
 (loss)-households_water_heater_network_gas: {conversion: 0.285}
-(hot_water)-households_water_heater_network_gas: {conversion: 0.715}
+(useable_heat)-households_water_heater_network_gas: {conversion: 0.715}
 households_water_heater_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas: {share: 1.0}
 
 :households_water_heater_resistive_electricity:
@@ -5623,7 +5621,7 @@ households_water_heater_network_gas-(network_gas) -- s --> (network_gas)-househo
   :peak_load_units: 36893.9852939427
 households_water_heater_resistive_electricity-(electricity): {conversion: 1.0}
 (loss)-households_water_heater_resistive_electricity: {conversion: 0.05}
-(hot_water)-households_water_heater_resistive_electricity: {conversion: 0.95}
+(useable_heat)-households_water_heater_resistive_electricity: {conversion: 0.95}
 households_water_heater_resistive_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
 :households_water_heater_solar_thermal:
@@ -5657,7 +5655,7 @@ households_water_heater_resistive_electricity-(electricity) -- s --> (electricit
   :wacc: 0.04
 households_water_heater_solar_thermal-(solar_thermal): {conversion: 1.0}
 (loss)-households_water_heater_solar_thermal: {conversion: 0.0}
-(hot_water)-households_water_heater_solar_thermal: {conversion: 1.0}
+(useable_heat)-households_water_heater_solar_thermal: {conversion: 1.0}
 households_water_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_for_hot_water_solar_thermal: {share: 1.0}
 
 :households_water_heater_wood_pellets:
@@ -5690,7 +5688,7 @@ households_water_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-h
   :variability: 0.0
   :wacc: 0.04
 households_water_heater_wood_pellets-(wood_pellets): {conversion: 1.0}
-(hot_water)-households_water_heater_wood_pellets: {conversion: 0.82}
+(useable_heat)-households_water_heater_wood_pellets: {conversion: 0.82}
 (loss)-households_water_heater_wood_pellets: {conversion: 0.18}
 households_water_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-households_final_demand_for_hot_water_wood_pellets: {share: 1.0}
 
