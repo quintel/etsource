@@ -3,6 +3,9 @@
 
 - unit = pj
 
-QUERY_FUTURE( -> { Q(final_electricity_demand_excluding_electricity_for_lighting_and_heating) } )
--
-QUERY_PRESENT( -> { Q(final_electricity_demand_excluding_electricity_for_lighting_and_heating) } )
+SUM(
+    QUERY_FUTURE( -> { Q(final_electricity_demand_excluding_electricity_for_lighting_and_heating) } ),
+    NEG(
+        QUERY_PRESENT( -> { Q(final_electricity_demand_excluding_electricity_for_lighting_and_heating) } )
+    )
+)
