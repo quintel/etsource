@@ -3,6 +3,9 @@
 
 - unit = pj
 
-QUERY_FUTURE( -> { Q(electricity_used_in_heatpumps) } )
--
-QUERY_PRESENT( -> { Q(electricity_used_in_heatpumps) } )
+SUM(
+    QUERY_FUTURE( -> { Q(electricity_used_in_heatpumps) } ),
+    NEG(
+        QUERY_PRESENT( -> { Q(electricity_used_in_heatpumps) } )
+    )
+)
