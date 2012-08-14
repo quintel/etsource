@@ -3,9 +3,4 @@
 
 - unit = pj
 
-SUM(
-    QUERY_FUTURE( -> { Q(electricity_used_for_heating_in_households_except_heat_pumps) } ),
-    NEG(
-        QUERY_PRESENT( -> { Q(electricity_used_for_heating_in_households_except_heat_pumps) } )
-    )
-)
+QUERY_DELTA( -> { Q(electricity_used_for_heating_in_households_except_heat_pumps) } )

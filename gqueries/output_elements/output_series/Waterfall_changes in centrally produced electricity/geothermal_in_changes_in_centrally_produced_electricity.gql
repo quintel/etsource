@@ -3,9 +3,4 @@
 
 - unit = pj
 
-SUM(
-    QUERY_FUTURE( -> { DIVIDE(V(agriculture_geothermal,input_of_electricity),BILLIONS) } ),
-    NEG(
-        QUERY_PRESENT( -> { DIVIDE(V(agriculture_geothermal,input_of_electricity),BILLIONS) } )
-    )
-)
+QUERY_DELTA( -> { DIVIDE(V(agriculture_geothermal,input_of_electricity),BILLIONS) } )
