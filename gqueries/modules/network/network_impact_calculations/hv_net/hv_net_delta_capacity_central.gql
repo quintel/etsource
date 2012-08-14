@@ -7,9 +7,9 @@
 
 SUM(
     MAX(
-        SUM(
-            V(Q(high_voltage_electricity_production),delta_in_capacity_in_mw)
-        ),
+        QUERY_DELTA( -> { 
+            SUM(V(Q(high_voltage_electricity_production),"typical_electricity_production_capacity*number_of_units")) 
+        }),
         0
     ),
     MAX(
