@@ -3,9 +3,4 @@
 
 - unit = pj
 
-SUM(
-    QUERY_FUTURE( -> { DIVIDE(SUM(V(transport_train_using_electricity,input_of_electricity)),BILLIONS) } ),
-    NEG(
-        QUERY_PRESENT( -> { DIVIDE(SUM(V(transport_train_using_electricity,input_of_electricity)),BILLIONS) } )
-    )
-)
+QUERY_DELTA( -> { DIVIDE(SUM(V(transport_train_using_electricity,input_of_electricity)),BILLIONS) } )
