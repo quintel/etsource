@@ -27,6 +27,7 @@ module ETE
         if @area_export.country == 'nl'
           puts green("Generating shared files")
           export_topology(@area_export)
+          export_converter_groups(@area_export)
           export_excel_ids(@area_export)
         end
       end
@@ -106,6 +107,33 @@ module ETE
         lines << []
       end
       File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+    end
+
+    # writes to ETSOURCE/topology/export.graph
+    def export_converter_groups(area_export)
+      converter_exporter = ConverterExporter.new(area_export)
+      raw = converter_exporter.export
+      FileUtils.mkdir_p "#{@etsource_dir}/topology"
+      dest_file = "#{@etsource_dir}/topology/groups.yml"
+      puts "  Saving groups to #{dest_file}"
+      lines = []
+
+      # create hash {group_1 => [:converter_1, :converter_2], group_2 => [...]}
+      groups = Hash.new { |hash, key| hash[key] = [] }
+      raw.each do |converter_key, attrs|
+        next if attrs[:groups].nil?
+        attrs[:groups].each do |group|
+          groups[group] << converter_key.to_s
+        end
+      end
+
+      # order group keys and converters alphabetically
+      sorted_groups = Hash.new { |hash, key| hash[key] = [] }
+      groups.keys.sort.each do |key|
+        sorted_groups[key] = groups[key].sort
+      end
+
+      File.open(dest_file, 'w') {|f| f.write(YAML::dump(sorted_groups)) }
     end
 
     # writes to ETSOURCE/datasets/_default/graph/export.yml
