@@ -93,6 +93,7 @@ module ETE
       # converter_info needs this list, so let's make it available
       @cached_converter_groups      = converter_groups
       converter_info                = parse_converter_info
+      sector_keys                   = parse_sector_key
       slot_data                     = parse_slots
       link_data                     = parse_links
       links_without_share_data      = parse_links(false)
@@ -107,8 +108,21 @@ module ETE
           :links                    => link_data[converter_key],
           :links_without_share      => links_without_share_data[converter_key],
           :info                     => converter_info[converter_key],
+          :sector                   => sector_keys[converter_key],
           :groups                   => converter_groups[converter_key]
         }
+      end
+      out
+    end
+
+    # this builds a lookup hash for sector keys.
+    def parse_sector_key
+      out = {}
+      CSV.new(@excel_export.csv_for(:converters)).parse do |row|
+        key       = row[:key].to_sym
+        sector_id = row[:sector_id].to_i
+        sector    = sectors[sector_id]
+        out[key]  = sector
       end
       out
     end
@@ -125,10 +139,7 @@ module ETE
         energy_balance_group_id = row[:energy_balance_group_id].to_i
         energy_balance_group    = energy_balance_groups[energy_balance_group_id]
 
-        if @cached_converter_groups[key].is_a?(Array)
-          groups = @cached_converter_groups[key].compact.join(',')
-        end
-        string = "#{key};#{sector};#{use};#{energy_balance_group};#{groups}"
+        string = "#{key};#{sector};#{use};#{energy_balance_group}"
         out[key] = string
       end
       out

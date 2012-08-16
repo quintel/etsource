@@ -44,9 +44,11 @@ module ETE
     def export_converters(export, destination_directory)
       converter_exporter = ConverterExporter.new(export)
       raw = converter_exporter.export
-      lines = []
+
+      sector_lines = Hash.new {|hsh,key| hsh[key] = []}
       current_converter_key = nil
       raw.sort_by{|key, values| key}.each do |key, values|
+        lines = sector_lines[values[:sector]]
         current_converter_key = key
         lines << ":#{key}:"
         values[:attributes].each_pair do |attr, val|
@@ -57,9 +59,11 @@ module ETE
         lines << ''
       end
       FileUtils.mkdir_p "#{destination_directory}/graph"
-      dest_file = "#{destination_directory}/graph/export.yml"
-      puts "  Saving converters to #{dest_file}"
-      File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+      sector_lines.each do |sector, lines|
+        dest_file = "#{destination_directory}/graph/#{sector}.yml"
+        puts "  Saving converters to #{dest_file}"
+        File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+      end
     rescue Exception => e
       raise "Error exporting converter #{current_converter_key}: #{e}"
     end
