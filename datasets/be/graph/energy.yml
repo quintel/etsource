@@ -50,8 +50,8 @@ energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_po
   :decommissioning_costs_per_mw_input: 0.0
   :demand_expected_value: 0.0
   :economic_lifetime: 40.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :electrical_efficiency_when_using_coal: 0.31
+  :electrical_efficiency_when_using_wood_pellets: 0.34
   :forecasting_error: 0.0
   :full_load_hours: 6950.0
   :households_supplied_per_unit: 1.0
@@ -77,12 +77,14 @@ energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_po
   :wacc: 0.1
   :peak_load_units: 0.0
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
+energy_chp_ultra_supercritical_coal-(wood_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_coal-(coal): {conversion: 1.0}
-(loss)-energy_chp_ultra_supercritical_coal: {conversion: 0.29}
+(loss)-energy_chp_ultra_supercritical_coal: {conversion: 0.19}
 (steam_hot_water)-energy_chp_ultra_supercritical_coal: {conversion: 0.4}
-(electricity)-energy_chp_ultra_supercritical_coal: {conversion: 0.31}
+(electricity)-energy_chp_ultra_supercritical_coal: {conversion: 0.41}
 energy_chp_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
+energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
 :energy_chp_ultra_supercritical_crude_oil:
   :availability: 0.89
@@ -1909,7 +1911,7 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :co2_free: 0.0
   :construction_time: 3.5
   :decommissioning_costs_per_mw_input: 0.0
-  :demand_expected_value: 36000000000.0
+  :demand_expected_value: 0.0
   :economic_lifetime: 40.0
   :electrical_efficiency_when_using_coal: 0.46
   :electrical_efficiency_when_using_wood_pellets: 0.33
@@ -1923,7 +1925,7 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :part_ets: 1.0
   :part_load_efficiency_penalty: 0.046
   :part_load_operating_point: 0.7
-  :peak_load_units_present: 0.649449035812672
+  :peak_load_units_present: 0.0
   :purchase_price_per_mw_input: 696832.80050505
   :residual_value_per_mw_input: 0.0
   :simult_sd: 1.0
@@ -1936,12 +1938,12 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :typical_nominal_input_capacity: 1739.13043478261
   :variability: 0.0
   :wacc: 0.1
-  :peak_load_units: 0.649449035812672
-energy_power_ultra_supercritical_coal-(wood_pellets): {conversion: 1.0}
+  :peak_load_units: 0.0
+energy_power_ultra_supercritical_coal-(wood_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
-energy_power_ultra_supercritical_coal-(coal): {conversion: 0.0}
+energy_power_ultra_supercritical_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_coal: {conversion: 0.54}
-(electricity)-energy_power_ultra_supercritical_coal: {conversion: 0.33}
+(electricity)-energy_power_ultra_supercritical_coal: {conversion: 0.46}
 energy_power_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
