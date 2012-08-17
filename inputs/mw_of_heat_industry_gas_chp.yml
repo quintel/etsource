@@ -9,7 +9,7 @@ key: mw_of_heat_industry_gas_chp
 label: ""
 label_query:
 max_value: 30500.0
-max_value_gql: present:PRODUCT(10,DIVIDE(V(industry_useful_demand_useable_heat,demand),V(industry_chp_combined_cycle_gas_power_fuelmix,typical_heat_production_per_unit)))
+max_value_gql: present:PRODUCT(2,DIVIDE(V(industry_useful_demand_useable_heat,demand),V(industry_chp_combined_cycle_gas_power_fuelmix,typical_heat_production_per_unit)))
 min_value: 0.0
 min_value_gql:
 query: UPDATE(OUTPUT_LINKS(industry_chp_combined_cycle_gas_power_fuelmix,constant), share, PRODUCT(V(industry_chp_combined_cycle_gas_power_fuelmix), USER_INPUT(), SECS_PER_YEAR))
