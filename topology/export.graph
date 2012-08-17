@@ -72,13 +72,13 @@ agriculture_heatpump_water_water_ts_electricity-(electricity)
 agriculture_heatpump_water_water_ts_electricity-(ambient_heat)
 (useable_heat)-agriculture_heatpump_water_water_ts_electricity
 
-agriculture_locally_available_electricity;agriculture;undefined;local power generation
+agriculture_locally_available_electricity;agriculture;undefined;locally available
 agriculture_locally_available_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity
 agriculture_locally_available_electricity-(electricity) -- c --> (electricity)-agriculture_chp_engine_gas_power_fuelmix
 agriculture_locally_available_electricity-(electricity)
 (electricity)-agriculture_locally_available_electricity
 
-agriculture_locally_available_steam_hot_water;agriculture;undefined;local power generation
+agriculture_locally_available_steam_hot_water;agriculture;undefined;locally available
 agriculture_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
 agriculture_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-agriculture_chp_engine_gas_power_fuelmix
 agriculture_locally_available_steam_hot_water-(steam_hot_water)
@@ -104,7 +104,7 @@ agriculture_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-ag
 agriculture_useful_demand_useable_heat-(useable_heat)
 (useable_heat)-agriculture_useful_demand_useable_heat
 
-buildings_appliances_coal;buildings;energetic;application
+buildings_appliances_coal;buildings;energetic;technologies
 buildings_appliances_coal-(coal) -- s --> (coal)-buildings_final_demand_for_appliances_coal
 buildings_appliances_coal-(coal)
 (not_defined)-buildings_appliances_coal
@@ -574,12 +574,12 @@ energy_distribution_biodiesel-(biodiesel)
 (biodiesel)-energy_distribution_biodiesel
 (loss)-energy_distribution_biodiesel
 
-energy_distribution_biogas;energy;undefined;
+energy_distribution_biogas;energy;undefined;distribution
 energy_distribution_biogas-(biogas) -- s --> (biogas)-energy_production_biogas
 energy_distribution_biogas-(biogas)
 (biogas)-energy_distribution_biogas
 
-energy_distribution_biogenic_waste;energy;undefined;
+energy_distribution_biogenic_waste;energy;undefined;distribution
 energy_distribution_biogenic_waste-(biogenic_waste) -- f --> (biogenic_waste)-energy_import_biogenic_waste
 energy_distribution_biogenic_waste-(biogenic_waste) -- f --> (biogenic_waste)-energy_production_biogenic_waste
 energy_distribution_biogenic_waste-(biogenic_waste)
@@ -593,7 +593,7 @@ energy_distribution_coal-(loss)
 energy_distribution_coal-(coal)
 (coal)-energy_distribution_coal
 
-energy_distribution_corn;energy;undefined;
+energy_distribution_corn;energy;undefined;distribution
 energy_distribution_corn-(corn) -- s --> (corn)-energy_production_corn
 energy_distribution_corn-(corn)
 (corn)-energy_distribution_corn
@@ -605,19 +605,19 @@ energy_distribution_crude_oil-(crude_oil)
 (crude_oil)-energy_distribution_crude_oil
 (loss)-energy_distribution_crude_oil
 
-energy_distribution_crude_oil_loss;energy;undefined;
+energy_distribution_crude_oil_loss;energy;undefined;distribution losses
 energy_distribution_crude_oil_loss-(loss) -- d --> (loss)-energy_distribution_crude_oil
 energy_distribution_crude_oil_loss-(loss)
 (loss)-energy_distribution_crude_oil_loss
 
-energy_distribution_diesel;energy;undefined;subdistribution 2
+energy_distribution_diesel;energy;undefined;distribution
 energy_distribution_diesel-(diesel) -- s --> (diesel)-energy_production_diesel
 energy_distribution_diesel-(diesel) -- f --> (diesel)-energy_import_diesel
 energy_distribution_diesel-(diesel)
 (diesel)-energy_distribution_diesel
 (loss)-energy_distribution_diesel
 
-energy_distribution_gasoline;energy;undefined;subdistribution 2
+energy_distribution_gasoline;energy;undefined;distribution
 energy_distribution_gasoline-(gasoline) -- s --> (gasoline)-energy_production_gasoline
 energy_distribution_gasoline-(gasoline) -- f --> (gasoline)-energy_import_gasoline
 energy_distribution_gasoline-(gasoline)
@@ -632,7 +632,7 @@ energy_distribution_greengas-(loss)
 energy_distribution_greengas-(greengas)
 (greengas)-energy_distribution_greengas
 
-energy_distribution_heavy_fuel_oil;energy;undefined;subdistribution 1
+energy_distribution_heavy_fuel_oil;energy;undefined;distribution
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_heavy_fuel_oil
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil)
 (heavy_fuel_oil)-energy_distribution_heavy_fuel_oil
@@ -655,23 +655,23 @@ energy_distribution_lpg-(lpg) -- f --> (lpg)-energy_import_lpg
 energy_distribution_lpg-(lpg)
 (lpg)-energy_distribution_lpg
 
-energy_distribution_manure;energy;undefined;
+energy_distribution_manure;energy;undefined;distribution
 energy_distribution_manure-(manure) -- s --> (manure)-energy_production_manure
 energy_distribution_manure-(manure)
 (manure)-energy_distribution_manure
 
-energy_distribution_network_gas_loss;energy;undefined;
+energy_distribution_network_gas_loss;energy;undefined;distribution losses
 energy_distribution_network_gas_loss-(loss) -- d --> (loss)-energy_national_gas_network_natural_gas
 energy_distribution_network_gas_loss-(loss)
 (loss)-energy_distribution_network_gas_loss
 
-energy_distribution_non_biogenic_waste;energy;undefined;
+energy_distribution_non_biogenic_waste;energy;undefined;distribution
 energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- f --> (non_biogenic_waste)-energy_import_non_biogenic_waste
 energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- f --> (non_biogenic_waste)-energy_production_non_biogenic_waste
 energy_distribution_non_biogenic_waste-(non_biogenic_waste)
 (waste_mix)-energy_distribution_non_biogenic_waste
 
-energy_distribution_torrified_biomass_pellets;energy;undefined;
+energy_distribution_torrified_biomass_pellets;energy;undefined;distribution
 energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets) -- c --> (torrified_biomass_pellets)-energy_torrefaction_wood
 energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets) -- f --> (torrified_biomass_pellets)-energy_import_torrified_biomass_pellets
 energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets)
@@ -689,89 +689,89 @@ energy_distribution_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_distributi
 energy_distribution_waste_mix-(waste_mix)
 (waste_mix)-energy_distribution_waste_mix
 
-energy_distribution_wood;energy;undefined;
+energy_distribution_wood;energy;undefined;distribution
 energy_distribution_wood-(wood) -- s --> (wood)-energy_production_wood
 energy_distribution_wood-(wood)
 (wood)-energy_distribution_wood
 
-energy_distribution_wood_pellets;energy;undefined;
+energy_distribution_wood_pellets;energy;undefined;distribution
 energy_distribution_wood_pellets-(wood_pellets) -- f --> (wood_pellets)-energy_distribution_bio_residues_for_firing
 energy_distribution_wood_pellets-(wood_pellets) -- c --> (wood_pellets)-energy_production_wood_pellets
 energy_distribution_wood_pellets-(wood_pellets) -- f --> (wood_pellets)-energy_import_wood_pellets
 energy_distribution_wood_pellets-(wood_pellets)
 (wood_pellets)-energy_distribution_wood_pellets
 
-energy_export_algae_diesel;energy;undefined;
+energy_export_algae_diesel;energy;undefined;export
 energy_export_algae_diesel-(algae_diesel) -- i --> (algae_diesel)-energy_distribution_algae_diesel
 energy_export_algae_diesel-(algae_diesel)
 (algae_diesel)-energy_export_algae_diesel
 
-energy_export_bio_ethanol;energy;undefined;
+energy_export_bio_ethanol;energy;undefined;export
 energy_export_bio_ethanol-(bio_ethanol) -- i --> (bio_ethanol)-energy_distribution_bio_ethanol
 energy_export_bio_ethanol-(bio_ethanol)
 (bio_ethanol)-energy_export_bio_ethanol
 
-energy_export_bio_oil;energy;undefined;
+energy_export_bio_oil;energy;undefined;export
 energy_export_bio_oil-(bio_oil) -- i --> (bio_oil)-energy_distribution_bio_oil
 energy_export_bio_oil-(bio_oil)
 (bio_oil)-energy_export_bio_oil
 
-energy_export_biodiesel;energy;undefined;
+energy_export_biodiesel;energy;undefined;export
 energy_export_biodiesel-(biodiesel) -- i --> (biodiesel)-energy_distribution_biodiesel
 energy_export_biodiesel-(biodiesel)
 (biodiesel)-energy_export_biodiesel
 
-energy_export_coal;energy;undefined;
+energy_export_coal;energy;undefined;export
 energy_export_coal-(coal) -- i --> (coal)-energy_distribution_coal
 energy_export_coal-(coal)
 (coal)-energy_export_coal
 
-energy_export_crude_oil;energy;undefined;
+energy_export_crude_oil;energy;undefined;export
 energy_export_crude_oil-(crude_oil) -- i --> (crude_oil)-energy_distribution_crude_oil
 energy_export_crude_oil-(crude_oil)
 (crude_oil)-energy_export_crude_oil
 
-energy_export_diesel;energy;undefined;
+energy_export_diesel;energy;undefined;export
 energy_export_diesel-(diesel) -- i --> (diesel)-energy_distribution_diesel
 energy_export_diesel-(diesel)
 (diesel)-energy_export_diesel
 
-energy_export_electricity;energy;undefined;
+energy_export_electricity;energy;undefined;export
 energy_export_electricity-(electricity) -- i --> (electricity)-energy_power_hv_network_electricity
 energy_export_electricity-(electricity)
 (electricity)-energy_export_electricity
 
-energy_export_gasoline;energy;undefined;
+energy_export_gasoline;energy;undefined;export
 energy_export_gasoline-(gasoline) -- i --> (gasoline)-energy_distribution_gasoline
 energy_export_gasoline-(gasoline)
 (gasoline)-energy_export_gasoline
 
-energy_export_greengas;energy;undefined;
+energy_export_greengas;energy;undefined;export
 energy_export_greengas-(greengas) -- i --> (greengas)-energy_distribution_greengas
 energy_export_greengas-(greengas)
 (greengas)-energy_export_greengas
 
-energy_export_kerosene;energy;undefined;
+energy_export_kerosene;energy;undefined;export
 energy_export_kerosene-(kerosene) -- i --> (kerosene)-energy_distribution_kerosene
 energy_export_kerosene-(kerosene)
 (kerosene)-energy_export_kerosene
 
-energy_export_lpg;energy;undefined;
+energy_export_lpg;energy;undefined;export
 energy_export_lpg-(lpg) -- i --> (lpg)-energy_distribution_lpg
 energy_export_lpg-(lpg)
 (lpg)-energy_export_lpg
 
-energy_export_network_gas;energy;undefined;
+energy_export_network_gas;energy;undefined;export
 energy_export_network_gas-(network_gas) -- i --> (network_gas)-energy_national_gas_network_natural_gas
 energy_export_network_gas-(network_gas)
 (network_gas)-energy_export_network_gas
 
-energy_export_uranium_oxide;energy;undefined;
+energy_export_uranium_oxide;energy;undefined;export
 energy_export_uranium_oxide-(uranium_oxide) -- i --> (uranium_oxide)-energy_distribution_uranium_oxide
 energy_export_uranium_oxide-(uranium_oxide)
 (uranium_oxide)-energy_export_uranium_oxide
 
-energy_export_waste_mix;energy;undefined;
+energy_export_waste_mix;energy;undefined;export
 energy_export_waste_mix-(waste_mix) -- i --> (waste_mix)-energy_distribution_waste_mix
 energy_export_waste_mix-(waste_mix)
 (waste_mix)-energy_export_waste_mix
@@ -795,37 +795,37 @@ energy_extraction_natural_gas;energy;undefined;extraction
 energy_extraction_natural_gas-(natural_gas)
 (natural_gas)-energy_extraction_natural_gas
 
-energy_extraction_uranium_oxide;energy;undefined;
+energy_extraction_uranium_oxide;energy;undefined;extraction
 energy_extraction_uranium_oxide-(uranium_oxide)
 (uranium_oxide)-energy_extraction_uranium_oxide
 
-energy_final_demand_crude_oil;energy;energetic;
+energy_final_demand_crude_oil;energy;energetic;final consumption
 energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
 energy_final_demand_crude_oil-(crude_oil)
 (loss)-energy_final_demand_crude_oil
 
-energy_final_demand_electricity;energy;energetic;
+energy_final_demand_electricity;energy;energetic;final consumption
 energy_final_demand_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
 energy_final_demand_electricity-(electricity)
 (loss)-energy_final_demand_electricity
 
-energy_final_demand_network_gas;energy;energetic;
+energy_final_demand_network_gas;energy;energetic;final consumption
 energy_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
 energy_final_demand_network_gas-(network_gas)
 (loss)-energy_final_demand_network_gas
 
-energy_final_demand_steam_hot_water;energy;energetic;
+energy_final_demand_steam_hot_water;energy;energetic;final consumption
 energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water
 energy_final_demand_steam_hot_water-(steam_hot_water)
 (loss)-energy_final_demand_steam_hot_water
 
-energy_heat_network_backup_heater_gas_power_fuelmix;energy;undefined;
+energy_heat_network_backup_heater_gas_power_fuelmix;energy;undefined;central heat generation
 energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
 energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix)
 (loss)-energy_heat_network_backup_heater_gas_power_fuelmix
 (steam_hot_water)-energy_heat_network_backup_heater_gas_power_fuelmix
 
-energy_heat_network_loss;energy;undefined;
+energy_heat_network_loss;energy;undefined;distribution losses
 energy_heat_network_loss-(loss) -- d --> (loss)-energy_heat_network_steam_hot_water
 energy_heat_network_loss-(loss)
 (loss)-energy_heat_network_loss
@@ -850,24 +850,24 @@ energy_heat_network_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_network_steam_hot_water
 (loss)-energy_heat_network_steam_hot_water
 
-energy_heat_network_unused_steam_hot_water;energy;energetic;
+energy_heat_network_unused_steam_hot_water;energy;energetic;unused and dumped heat
 energy_heat_network_unused_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-energy_heat_network_steam_hot_water
 energy_heat_network_unused_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_network_unused_steam_hot_water
 
-energy_heat_remainder_from_heat_network_steam_hot_water;energy;undefined;
+energy_heat_remainder_from_heat_network_steam_hot_water;energy;undefined;undefined
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-industry_unused_local_production_steam_hot_water
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-agriculture_unused_local_production_steam_hot_water
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_backup_heater_gas_power_fuelmix
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water
 
-energy_heat_remainder_from_heat_network_unused_steam_hot_water;energy;energetic;
+energy_heat_remainder_from_heat_network_unused_steam_hot_water;energy;energetic;unused and dumped heat
 energy_heat_remainder_from_heat_network_unused_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water
 energy_heat_remainder_from_heat_network_unused_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_remainder_from_heat_network_unused_steam_hot_water
 
-energy_heat_remainder_from_heat_network_used_steam_hot_water;energy;undefined;
+energy_heat_remainder_from_heat_network_used_steam_hot_water;energy;undefined;undefined
 energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water
 energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-energy_heat_remainder_from_heat_network_used_steam_hot_water
@@ -913,90 +913,90 @@ energy_heater_for_heat_network_wood_pellets-(wood_pellets)
 (steam_hot_water)-energy_heater_for_heat_network_wood_pellets
 (loss)-energy_heater_for_heat_network_wood_pellets
 
-energy_import_algae_diesel;energy;energetic;
+energy_import_algae_diesel;energy;energetic;import
 energy_import_algae_diesel-(algae_diesel)
 (algae_diesel)-energy_import_algae_diesel
 
-energy_import_bio_ethanol;energy;energetic;
+energy_import_bio_ethanol;energy;energetic;import
 energy_import_bio_ethanol-(bio_ethanol)
 (bio_ethanol)-energy_import_bio_ethanol
 
-energy_import_bio_oil;energy;undefined;
+energy_import_bio_oil;energy;undefined;import
 energy_import_bio_oil-(bio_oil)
 (bio_oil)-energy_import_bio_oil
 
-energy_import_biodiesel;energy;energetic;
+energy_import_biodiesel;energy;energetic;import
 energy_import_biodiesel-(biodiesel)
 (biodiesel)-energy_import_biodiesel
 
-energy_import_biogenic_waste;energy;undefined;
+energy_import_biogenic_waste;energy;undefined;import
 energy_import_biogenic_waste-(biogenic_waste)
 (biogenic_waste)-energy_import_biogenic_waste
 
-energy_import_coal;energy;undefined;
+energy_import_coal;energy;undefined;import
 energy_import_coal-(coal)
 (coal)-energy_import_coal
 
-energy_import_crude_oil;energy;undefined;
+energy_import_crude_oil;energy;undefined;import
 energy_import_crude_oil-(crude_oil)
 (crude_oil)-energy_import_crude_oil
 
-energy_import_diesel;energy;undefined;
+energy_import_diesel;energy;undefined;import
 energy_import_diesel-(diesel)
 (diesel)-energy_import_diesel
 
-energy_import_electricity;energy;undefined;
+energy_import_electricity;energy;undefined;import
 energy_import_electricity-(imported_electricity)
 (imported_electricity)-energy_import_electricity
 
-energy_import_gasoline;energy;undefined;
+energy_import_gasoline;energy;undefined;import
 energy_import_gasoline-(gasoline)
 (gasoline)-energy_import_gasoline
 
-energy_import_greengas;energy;undefined;
+energy_import_greengas;energy;undefined;import
 energy_import_greengas-(greengas)
 (greengas)-energy_import_greengas
 
-energy_import_kerosene;energy;undefined;
+energy_import_kerosene;energy;undefined;import
 energy_import_kerosene-(kerosene)
 (kerosene)-energy_import_kerosene
 
-energy_import_lng;energy;undefined;
+energy_import_lng;energy;undefined;import
 (loss)-energy_import_lng
 (natural_gas)-energy_import_lng
 energy_import_lng-(lng)
 
-energy_import_lpg;energy;undefined;
+energy_import_lpg;energy;undefined;import
 energy_import_lpg-(lpg)
 (lpg)-energy_import_lpg
 
-energy_import_natural_gas;energy;undefined;
+energy_import_natural_gas;energy;undefined;import
 energy_import_natural_gas-(natural_gas)
 (natural_gas)-energy_import_natural_gas
 
-energy_import_non_biogenic_waste;energy;undefined;
+energy_import_non_biogenic_waste;energy;undefined;import
 energy_import_non_biogenic_waste-(non_biogenic_waste)
 (non_biogenic_waste)-energy_import_non_biogenic_waste
 
-energy_import_steam_hot_water;energy;undefined;
+energy_import_steam_hot_water;energy;undefined;import
 energy_import_steam_hot_water-(imported_steam_hot_water)
 (steam_hot_water)-energy_import_steam_hot_water
 
-energy_import_torrified_biomass_pellets;energy;undefined;
+energy_import_torrified_biomass_pellets;energy;undefined;import
 energy_import_torrified_biomass_pellets-(torrified_biomass_pellets)
 (torrified_biomass_pellets)-energy_import_torrified_biomass_pellets
 
-energy_import_uranium_oxide;energy;undefined;
+energy_import_uranium_oxide;energy;undefined;import
 energy_import_uranium_oxide-(loss)
 (loss)-energy_import_uranium_oxide
 energy_import_uranium_oxide-(uranium_oxide)
 (uranium_oxide)-energy_import_uranium_oxide
 
-energy_import_wood_pellets;energy;undefined;
+energy_import_wood_pellets;energy;undefined;import
 energy_import_wood_pellets-(wood_pellets)
 (wood_pellets)-energy_import_wood_pellets
 
-energy_interconnector_imported_electricity;energy;undefined;
+energy_interconnector_imported_electricity;energy;undefined;undefined
 energy_interconnector_imported_electricity-(imported_electricity) -- s --> (imported_electricity)-energy_import_electricity
 energy_interconnector_imported_electricity-(imported_electricity)
 (electricity)-energy_interconnector_imported_electricity
@@ -1010,7 +1010,7 @@ energy_mixer_for_gas_power_fuel-(crude_oil)
 energy_mixer_for_gas_power_fuel-(network_gas)
 (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
 
-energy_national_gas_network_natural_gas;energy;undefined;
+energy_national_gas_network_natural_gas;energy;undefined;distribution
 energy_national_gas_network_natural_gas-(natural_gas) -- s --> (natural_gas)-energy_treatment_natural_gas
 energy_national_gas_network_natural_gas-(greengas) -- s --> (greengas)-energy_distribution_greengas
 energy_national_gas_network_natural_gas-(greengas)
@@ -1058,7 +1058,7 @@ energy_power_geothermal-(geothermal)
 (loss)-energy_power_geothermal
 (electricity)-energy_power_geothermal
 
-energy_power_hv_network_electricity;energy;undefined;distribution
+energy_power_hv_network_electricity;energy;undefined;electricity network
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_solar_pv_solar_radiation
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_chp_combined_cycle_gas_power_fuelmix
@@ -1095,7 +1095,7 @@ energy_power_hv_network_electricity-(electricity)
 (electricity)-energy_power_hv_network_electricity
 (loss)-energy_power_hv_network_electricity
 
-energy_power_hv_network_loss;energy;undefined;
+energy_power_hv_network_loss;energy;undefined;distribution losses
 energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_electricity
 energy_power_hv_network_loss-(loss)
 (electricity)-energy_power_hv_network_loss
@@ -1106,7 +1106,7 @@ energy_power_hydro_mountain-(water)
 (loss)-energy_power_hydro_mountain
 (electricity)-energy_power_hydro_mountain
 
-energy_power_hydro_mountain_pumped;energy;undefined;
+energy_power_hydro_mountain_pumped;energy;undefined;undefined
 energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
 energy_power_hydro_mountain_pumped-(electricity)
 (loss)-energy_power_hydro_mountain_pumped
@@ -1117,7 +1117,7 @@ energy_power_hydro_river-(water)
 (loss)-energy_power_hydro_river
 (electricity)-energy_power_hydro_river
 
-energy_power_lv_network_electricity;energy;energetic;subdistribution 3
+energy_power_lv_network_electricity;energy;energetic;electricity network
 energy_power_lv_network_electricity-(electricity) -- f --> (electricity)-energy_power_transformer_lv_mv_electricity
 energy_power_lv_network_electricity-(electricity) -- i --> (electricity)-households_locally_available_electricity
 energy_power_lv_network_electricity-(electricity) -- i --> (electricity)-other_local_production_electricity
@@ -1125,7 +1125,7 @@ energy_power_lv_network_electricity-(electricity) -- i --> (electricity)-buildin
 energy_power_lv_network_electricity-(electricity)
 (electricity)-energy_power_lv_network_electricity
 
-energy_power_mv_distribution_network_electricity;energy;energetic;subdistribution 3
+energy_power_mv_distribution_network_electricity;energy;energetic;electricity network
 energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electricity)-industry_final_demand_electricity_non_energetic
 energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electricity)-energy_power_transformer_lv_mv_electricity
 energy_power_mv_distribution_network_electricity-(electricity) -- f --> (electricity)-energy_power_mv_transport_network_electricity
@@ -1134,7 +1134,7 @@ energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electri
 energy_power_mv_distribution_network_electricity-(electricity)
 (electricity)-energy_power_mv_distribution_network_electricity
 
-energy_power_mv_transport_network_electricity;energy;undefined;subdistribution 2
+energy_power_mv_transport_network_electricity;energy;undefined;electricity network
 energy_power_mv_transport_network_electricity-(electricity) -- i --> (electricity)-energy_power_mv_distribution_network_electricity
 energy_power_mv_transport_network_electricity-(electricity) -- f --> (electricity)-energy_power_transformer_mv_hv_electricity
 energy_power_mv_transport_network_electricity-(electricity)
@@ -1179,13 +1179,13 @@ energy_power_supercritical_waste_mix-(waste_mix)
 (steam_hot_water)-energy_power_supercritical_waste_mix
 (electricity)-energy_power_supercritical_waste_mix
 
-energy_power_transformer_lv_mv_electricity;energy;undefined;subdistribution 3
+energy_power_transformer_lv_mv_electricity;energy;undefined;electricity network
 energy_power_transformer_lv_mv_electricity-(electricity) -- i --> (electricity)-energy_power_lv_network_electricity
 energy_power_transformer_lv_mv_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity
 energy_power_transformer_lv_mv_electricity-(electricity)
 (electricity)-energy_power_transformer_lv_mv_electricity
 
-energy_power_transformer_mv_hv_electricity;energy;undefined;subdistribution 1
+energy_power_transformer_mv_hv_electricity;energy;undefined;electricity network
 energy_power_transformer_mv_hv_electricity-(electricity) -- f --> (electricity)-energy_power_hv_network_electricity
 energy_power_transformer_mv_hv_electricity-(electricity) -- i --> (electricity)-energy_power_mv_transport_network_electricity
 energy_power_transformer_mv_hv_electricity-(electricity)
@@ -1267,11 +1267,11 @@ energy_power_wind_turbine_offshore-(wind)
 (loss)-energy_power_wind_turbine_offshore
 (electricity)-energy_power_wind_turbine_offshore
 
-energy_production_algae_diesel;energy;energetic;refinery
+energy_production_algae_diesel;energy;energetic;growth and production
 energy_production_algae_diesel-(algae_diesel)
 (algae_diesel)-energy_production_algae_diesel
 
-energy_production_bio_ethanol;energy;energetic;refinery
+energy_production_bio_ethanol;energy;energetic;growth and production
 energy_production_bio_ethanol-(bio_ethanol)
 (bio_ethanol)-energy_production_bio_ethanol
 
@@ -1283,28 +1283,28 @@ energy_production_bio_residues_for_firing;energy;undefined;growth and production
 energy_production_bio_residues_for_firing-(bio_residues_for_firing)
 (bio_residues_for_firing)-energy_production_bio_residues_for_firing
 
-energy_production_biodiesel;energy;energetic;
+energy_production_biodiesel;energy;energetic;growth and production
 energy_production_biodiesel-(biodiesel)
 (biodiesel)-energy_production_biodiesel
 
-energy_production_biogas;energy;undefined;
+energy_production_biogas;energy;undefined;biomass conversion
 energy_production_biogas-(manure) -- s --> (manure)-energy_distribution_manure
 energy_production_biogas-(corn) -- s --> (corn)-energy_distribution_corn
 (biogas)-energy_production_biogas
 energy_production_biogas-(manure)
 energy_production_biogas-(corn)
 
-energy_production_biogenic_waste;energy;undefined;
+energy_production_biogenic_waste;energy;undefined;growth and production
 energy_production_biogenic_waste-(biogenic_waste)
 (biogenic_waste)-energy_production_biogenic_waste
 
-energy_production_cokes;energy;undefined;refinery
+energy_production_cokes;energy;undefined;coal conversion
 energy_production_cokes-(coal) -- s --> (coal)-energy_distribution_coal
 energy_production_cokes-(coal)
 (coal)-energy_production_cokes
 (loss)-energy_production_cokes
 
-energy_production_corn;energy;undefined;
+energy_production_corn;energy;undefined;growth and production
 energy_production_corn-(corn)
 (corn)-energy_production_corn
 
@@ -1338,11 +1338,11 @@ energy_production_lpg-(crude_oil)
 (loss)-energy_production_lpg
 (lpg)-energy_production_lpg
 
-energy_production_manure;energy;undefined;
+energy_production_manure;energy;undefined;growth and production
 energy_production_manure-(manure)
 (manure)-energy_production_manure
 
-energy_production_non_biogenic_waste;energy;undefined;
+energy_production_non_biogenic_waste;energy;undefined;growth and production
 energy_production_non_biogenic_waste-(non_biogenic_waste)
 (non_biogenic_waste)-energy_production_non_biogenic_waste
 
@@ -1351,16 +1351,16 @@ energy_production_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-environ
 energy_production_solar_thermal-(solar_thermal)
 (solar_thermal)-energy_production_solar_thermal
 
-energy_production_wood;energy;undefined;
+energy_production_wood;energy;undefined;growth and production
 energy_production_wood-(wood)
 (wood)-energy_production_wood
 
-energy_production_wood_pellets;energy;undefined;
+energy_production_wood_pellets;energy;undefined;biomass conversion
 energy_production_wood_pellets-(wood) -- s --> (wood)-energy_distribution_wood
 (wood_pellets)-energy_production_wood_pellets
 energy_production_wood_pellets-(wood)
 
-energy_torrefaction_wood;energy;undefined;
+energy_torrefaction_wood;energy;undefined;biomass conversion
 energy_torrefaction_wood-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
 energy_torrefaction_wood-(wood) -- s --> (wood)-energy_distribution_wood
 energy_torrefaction_wood-(network_gas)
@@ -1383,7 +1383,7 @@ energy_treatment_uranium_oxide-(uranium_oxide)
 (uranium_oxide)-energy_treatment_uranium_oxide
 (loss)-energy_treatment_uranium_oxide
 
-energy_upgrade_biogas;energy;undefined;
+energy_upgrade_biogas;energy;undefined;biomass conversion
 energy_upgrade_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
 energy_upgrade_biogas-(biogas)
 (loss)-energy_upgrade_biogas
@@ -1664,7 +1664,7 @@ households_final_demand_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-ener
 households_final_demand_wood_pellets-(wood_pellets)
 (wood_pellets)-households_final_demand_wood_pellets
 
-households_heat_network_connection_steam_hot_water;energy;energetic;local heat generation
+households_heat_network_connection_steam_hot_water;energy;energetic;distribution
 households_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water
 households_heat_network_connection_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-households_heat_network_connection_steam_hot_water
@@ -1774,7 +1774,7 @@ households_space_heater_electricity-(electricity)
 (loss)-households_space_heater_electricity
 (useable_heat)-households_space_heater_electricity
 
-households_space_heater_heatpump_add_on_electricity;households;energetic;technologies
+households_space_heater_heatpump_add_on_electricity;households;energetic;preferred technologies
 households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
 households_space_heater_heatpump_add_on_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
 households_space_heater_heatpump_add_on_electricity-(electricity)
@@ -1847,13 +1847,13 @@ households_useful_demand_for_cooling_after_insulation-(cooling) -- s --> (coolin
 households_useful_demand_for_cooling_after_insulation-(cooling)
 (cooling)-households_useful_demand_for_cooling_after_insulation
 
-households_useful_demand_for_hot_water_after_solar_heater;households;energetic;useful consumption
+households_useful_demand_for_hot_water_after_solar_heater;households;energetic;undefined
 households_useful_demand_for_hot_water_after_solar_heater-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on
 households_useful_demand_for_hot_water_after_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_for_houses_with_add_on
 households_useful_demand_for_hot_water_after_solar_heater-(useable_heat)
 (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater
 
-households_useful_demand_for_hot_water_after_solar_heater_and_add_on;households;energetic;useful consumption
+households_useful_demand_for_hot_water_after_solar_heater_and_add_on;households;energetic;undefined
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_heatpump_ground_water_electricity
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_resistive_electricity
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_water_heater_district_heating_steam_hot_water
@@ -1868,13 +1868,13 @@ households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_he
 households_useful_demand_for_hot_water_after_solar_heater_and_add_on-(useable_heat)
 (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on
 
-households_useful_demand_for_hot_water_for_houses_with_add_on;households;energetic;useful consumption
+households_useful_demand_for_hot_water_for_houses_with_add_on;households;energetic;undefined
 households_useful_demand_for_hot_water_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_add_on_electricity
 households_useful_demand_for_hot_water_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater_and_add_on
 households_useful_demand_for_hot_water_for_houses_with_add_on-(useable_heat)
 (useable_heat)-households_useful_demand_for_hot_water_for_houses_with_add_on
 
-households_useful_demand_for_hot_water_for_houses_with_solar_heater;households;energetic;useful consumption
+households_useful_demand_for_hot_water_for_houses_with_solar_heater;households;energetic;undefined
 households_useful_demand_for_hot_water_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_water_heater_solar_thermal
 households_useful_demand_for_hot_water_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_hot_water_after_solar_heater
 households_useful_demand_for_hot_water_for_houses_with_solar_heater-(useable_heat)
@@ -1886,13 +1886,13 @@ households_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s 
 households_useful_demand_for_space_heating_after_insulation-(useable_heat)
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation
 
-households_useful_demand_for_space_heating_after_insulation_and_solar_heater;households;energetic;useful consumption
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater;households;energetic;undefined
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater-(useable_heat)
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater
 
-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on;households;energetic;useful consumption
+households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on;households;energetic;undefined
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_air_water_electricity
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_electricity
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat) -- f --> (useable_heat)-households_space_heater_combined_network_gas
@@ -1906,13 +1906,13 @@ households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and
 households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on-(useable_heat)
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on
 
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on;households;energetic;useful consumption
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on;households;energetic;undefined
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_space_heater_heatpump_add_on_electricity
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on-(useable_heat)
 (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
 
-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater;households;energetic;useful consumption
+households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater;households;energetic;undefined
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_water_heater_solar_thermal
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat) -- s --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation_and_solar_heater
 households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat)
@@ -2157,7 +2157,7 @@ industry_final_demand_wood_pellets_non_energetic-(wood_pellets) -- s --> (wood_p
 industry_final_demand_wood_pellets_non_energetic-(wood_pellets)
 (wood_pellets)-industry_final_demand_wood_pellets_non_energetic
 
-industry_locally_available_electricity;industry;undefined;local power generation
+industry_locally_available_electricity;industry;undefined;locally available
 industry_locally_available_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity
 industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_combined_cycle_gas_power_fuelmix
 industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_supercritical_wood_pellets
@@ -2165,7 +2165,7 @@ industry_locally_available_electricity-(electricity) -- c --> (electricity)-indu
 industry_locally_available_electricity-(electricity)
 (electricity)-industry_locally_available_electricity
 
-industry_locally_available_steam_hot_water;industry;undefined;local power generation
+industry_locally_available_steam_hot_water;industry;undefined;locally available
 industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_combined_cycle_gas_power_fuelmix
 industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_supercritical_wood_pellets
 industry_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
@@ -2173,7 +2173,7 @@ industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot
 industry_locally_available_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-industry_locally_available_steam_hot_water
 
-industry_unused_local_production_steam_hot_water;industry;energetic;
+industry_unused_local_production_steam_hot_water;industry;energetic;unused and dumped heat
 industry_unused_local_production_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-industry_locally_available_steam_hot_water
 industry_unused_local_production_steam_hot_water-(steam_hot_water)
 (steam_hot_water)-industry_unused_local_production_steam_hot_water
@@ -2325,14 +2325,14 @@ other_heater_district_heating_steam_hot_water-(steam_hot_water) -- s --> (steam_
 other_heater_district_heating_steam_hot_water-(steam_hot_water)
 (useable_heat)-other_heater_district_heating_steam_hot_water
 
-other_local_production_electricity;other;undefined;local power generation
+other_local_production_electricity;other;undefined;locally available
 other_local_production_electricity-(electricity) -- f --> (electricity)-energy_power_lv_network_electricity
 other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_engine_gas_power_fuelmix
 other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_supercritical_wood_pellets
 other_local_production_electricity-(electricity)
 (electricity)-other_local_production_electricity
 
-other_local_production_steam_hot_water;other;undefined;local power generation
+other_local_production_steam_hot_water;other;undefined;locally available
 other_local_production_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
 other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_engine_gas_power_fuelmix
 other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_supercritical_wood_pellets
@@ -2640,7 +2640,7 @@ transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using
 transport_useful_demand_car_kms-(car_kms)
 (loss)-transport_useful_demand_car_kms
 
-transport_useful_demand_crude_oil_non_energetic;transport;non_energetic;
+transport_useful_demand_crude_oil_non_energetic;transport;non_energetic;useful consumption
 transport_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-transport_final_demand_crude_oil_non_energetic
 transport_useful_demand_crude_oil_non_energetic-(crude_oil)
 (crude_oil)-transport_useful_demand_crude_oil_non_energetic
