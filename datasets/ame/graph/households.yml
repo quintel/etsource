@@ -564,6 +564,40 @@ households_final_demand_wood_pellets-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-households_final_demand_wood_pellets: {conversion: 1.0}
 households_final_demand_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
+:households_heat_network_connection_steam_hot_water:
+  :availability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.0
+  :decommissioning_costs_per_mw_input: 0.0
+  :demand_expected_value: 2733750.0
+  :economic_lifetime: 30.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 8760.0
+  :households_supplied_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 190000.0
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :purchase_price_per_mw_input: 7000000.0
+  :residual_value_per_mw_input: 0.0
+  :technical_lifetime: 30.0
+  :typical_effective_input_capacity: 0.001
+  :typical_nominal_input_capacity: 0.001
+  :variability: 0.0
+  :wacc: 0.06
+households_heat_network_connection_steam_hot_water-(steam_hot_water): {conversion: 1.0}
+(steam_hot_water)-households_heat_network_connection_steam_hot_water: {conversion: 1.0}
+(loss)-households_heat_network_connection_steam_hot_water: {conversion: 0.0}
+households_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water: {share: 1.0}
+
 :households_lighting_efficient_fluorescent_electricity:
   :co2_free: 0.0
   :demand_expected_value: 32209.2490892812
@@ -685,6 +719,47 @@ households_old_houses_useful_demand_for_heating-(useable_heat): {conversion: 1.0
 (useable_heat)-households_old_houses_useful_demand_for_heating: {conversion: 1.0}
 households_old_houses_useful_demand_for_heating-(useable_heat) -- f --> (useable_heat)-households_useful_demand_for_space_heating_after_insulation: {}
 households_old_houses_useful_demand_for_heating-(useable_heat) -- s --> (useable_heat)-households_old_houses_heating_savings_from_insulation: {share: 0.0}
+
+:households_solar_pv_solar_radiation:
+  :availability: 0.98
+  :average_effective_output_of_nominal_capacity_over_lifetime: 0.83
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.5
+  :decommissioning_costs_per_mw_input: 0.0
+  :demand_expected_value: 4651825.86698953
+  :economic_lifetime: 25.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.05
+  :full_load_hours: 1000.0
+  :households_supplied_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.00666666666666667
+  :operation_and_maintenance_cost_fixed_per_mw_input: 4597.59036144578
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.1
+  :part_load_operating_point: 0.7
+  :peak_load_units_present: 0.24909375459114
+  :purchase_price_per_mw_input: 398201.060240964
+  :residual_value_per_mw_input: 0.0
+  :simult_sd: -0.74277035725771
+  :simult_se: -0.243394863429976
+  :simult_wd: -0.0377208724203593
+  :simult_we: 0.0
+  :simult_supply: 1.0
+  :technical_lifetime: 25.0
+  :typical_effective_input_capacity: 5.1875
+  :typical_nominal_input_capacity: 6.25
+  :variability: 1.0
+  :wacc: 0.04
+  :peak_load_units: 0.24909375459114
+households_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
+(loss)-households_solar_pv_solar_radiation: {conversion: 0.84}
+(electricity)-households_solar_pv_solar_radiation: {conversion: 0.16}
+households_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
 
 :households_space_heater_coal:
   :availability: 0.0
