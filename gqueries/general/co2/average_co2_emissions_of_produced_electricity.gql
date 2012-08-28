@@ -1,21 +1,8 @@
-- deprecated_key = co2_per_mj_domestic_electricity_production
-# ALERT:
-# To fix this value for ameland demo we added a temporarily if statement.
-# 
-# 
 # How much kg CO2 the average MJ electricity produces domestically
 
 - unit = kg
+- deprecated_key = co2_per_mj_domestic_electricity_production
 
-IF(EQUALS(AREA(area),ame),
-   0.14285585185399852,
+V(G(electricity_production),primary_co2_emission).sum /
+V(G(electricity_production),output_of_electricity).sum
 
- DIVIDE
-  (
-   SUM(
-     VALUE(GROUP(electricity_production),primary_co2_emission)
-         ),
-
-      SUM(VALUE(GROUP(electricity_production),output_of_electricity))
-  )
-)
