@@ -1,8 +1,12 @@
 # 
 
-- deprecated_key = households_oil_primary_demand
 - unit = pj
+- deprecated_key = households_oil_primary_demand
 
-DIVIDE(SUM(V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),"
-primary_demand_of_crude_oil + primary_demand_of_diesel + primary_demand_of_heavy_fuel_oil + primary_demand_of_gasoline + primary_demand_of_lpg + primary_demand_of_kerosene
-")),BILLIONS)
+DIVIDE(
+  V(
+    INTERSECTION(SECTOR(households),G(final_demand_cbs)),
+    "primary_demand_of_crude_oil + primary_demand_of_diesel + primary_demand_of_heavy_fuel_oil + primary_demand_of_gasoline + primary_demand_of_lpg + primary_demand_of_kerosene"
+  ).sum,
+  BILLIONS
+)

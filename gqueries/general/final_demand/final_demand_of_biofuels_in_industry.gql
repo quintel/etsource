@@ -1,9 +1,13 @@
 # 
 
-- deprecated_key = all_biofuels_industry_final
 - unit = pj
+- deprecated_key = all_biofuels_industry_final
 
-DIVIDE(SUM(
-V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),input_of_biodiesel),
-V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),input_of_algae_diesel),
-V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),input_of_bio_ethanol)),BILLIONS)
+DIVIDE(
+  SUM(
+    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),input_of_biodiesel),
+    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),input_of_algae_diesel),
+    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),input_of_bio_ethanol)
+  ),
+  BILLIONS
+)
