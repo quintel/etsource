@@ -1,4 +1,3 @@
-- deprecated_key = avg_total_cost_for_electricity_production_per_mj
 # Fixed. Before the costs per MWh were calculated.
 # 
 # Deleted this :
@@ -7,8 +6,9 @@
 #   SECS_PER_HOUR,
 
 - unit = euro
+- deprecated_key = avg_total_cost_for_electricity_production_per_mj
 
-  DIVIDE(
-    SUM(V(G(electricity_production),total_costs)),
-    SUM(V(G(electricity_production),output_of_electricity))
-  )
+DIVIDE(
+  V(G(electricity_production),total_costs).sum,
+  V(G(electricity_production),output_of_electricity).sum
+)

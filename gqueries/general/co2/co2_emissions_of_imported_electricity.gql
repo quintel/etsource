@@ -1,20 +1,12 @@
-- deprecated_key = co2_emission_electricity_import
 # If there is a value for imported electricity, this should be used.
 # 
 # 
 # V(CARRIER(imported_electricity),co2_per_mj)
-# 
-# 
-# I removed this for ameland, as this can be done similair to amsterdam. This should still be made to work correctly.
-# 
-# EQUALS(AREA(area),ame),0.14285585185399852,
 
 - unit = kg
+- deprecated_key = co2_emission_electricity_import
 
 PRODUCT(
-    IF(
-        EQUALS(AREA(area),ams),0,
-        Q(average_co2_emissions_of_produced_electricity)
-       ), 
-    VALUE(energy_import_electricity,demand)
- )
+  Q(average_co2_emissions_of_produced_electricity),
+  V(energy_import_electricity,demand)
+)

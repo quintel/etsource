@@ -1,16 +1,15 @@
-- deprecated_key = energy_dependence
 # Netto import divided by (primary) territorial energy use
 # 
 # X =         Import – Export
 # Y =         Primaire consumptie = Winning + Import – Export
 
 - unit = factor
+- deprecated_key = energy_dependence
 
 DIVIDE(
- SUM(
-     V(G(energy_import),demand),
-     NEG(SUM(V(G(energy_export),demand)))
-    )
-  ,
+  SUM(
+    V(G(energy_import),demand),
+    NEG(V(G(energy_export),demand).sum)
+  ),
   Q(total_primary_energy_supply)
 )

@@ -1,6 +1,12 @@
-- deprecated_key = agriculture_non_e_primary_demand
 # 
 
 - unit = pj
+- deprecated_key = agriculture_non_e_primary_demand
 
-DIVIDE(SUM(V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs)),primary_demand_of_electricity)),BILLIONS)
+DIVIDE(
+  V(
+    INTERSECTION(SECTOR(agriculture),G(final_demand_cbs)),
+    primary_demand_of_electricity
+  ).sum,
+  BILLIONS
+)

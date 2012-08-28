@@ -1,6 +1,9 @@
-- deprecated_key = agriculture_uranium_primary_demand
 # 
 
 - unit = pj
+- deprecated_key = agriculture_uranium_primary_demand
 
-DIVIDE(SUM(V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs)),primary_demand_of_uranium_oxide)),BILLIONS)
+DIVIDE(
+  V(INTERSECTION(SECTOR(agriculture),G(final_demand_cbs)),primary_demand_of_uranium_oxide).sum,
+  BILLIONS
+)

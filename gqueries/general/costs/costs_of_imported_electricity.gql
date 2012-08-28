@@ -1,18 +1,10 @@
-- deprecated_key = cost_electricity_import
-# ALERT: To fix this value for ameland demo we added a temporarily if statement. 
 # Multiplies the imported electricity with the average electricity production cost of the domestic production.
 
 - unit = euro
+- deprecated_key = cost_electricity_import
 
-IF(EQUALS(AREA(area),ame),
-   PRODUCT(
-    V(energy_import_electricity,demand),
-    0.03420733031744972
-   ),
-
-  PRODUCT(
-   Q(costs_of_produced_electricity),
-   V(energy_import_electricity,demand),
-   INVERSE(SUM(V(GROUP(electricity_production),output_of_electricity)))
-  )
+PRODUCT(
+ Q(costs_of_produced_electricity),
+ V(energy_import_electricity,demand),
+ INVERSE(V(G(electricity_production),output_of_electricity).sum)
 )
