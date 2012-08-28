@@ -1,12 +1,14 @@
-- deprecated_key = cooling_from_electricity
 # should be checked with: Q: households_cooling_electricity
 
 - unit = mj
+- deprecated_key = cooling_from_electricity
 
 PRODUCT(
-  DIVIDE(
-    Q(electricity_used_for_cooling_in_households),
-    SUM(V(Q(cooling_converters_in_households),demand))
-  ),
-  V(households_useful_demand_for_cooling_after_insulation,input_of_cooling)
+    Q(electricity_used_for_cooling_in_households) /
+    V(Q(cooling_converters_in_households),demand).sum
+  ,
+    V(
+      households_useful_demand_for_cooling_after_insulation,
+      input_of_cooling
+    )
 )

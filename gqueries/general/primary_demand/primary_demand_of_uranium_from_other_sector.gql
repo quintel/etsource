@@ -1,6 +1,9 @@
-- deprecated_key = other_uranium_primary_demand
 # 
 
 - unit = pj
+- deprecated_key = other_uranium_primary_demand
 
-DIVIDE(SUM(V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),primary_demand_of_uranium_oxide)),BILLIONS)
+DIVIDE(
+  V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),primary_demand_of_uranium_oxide).sum,
+  BILLIONS
+)

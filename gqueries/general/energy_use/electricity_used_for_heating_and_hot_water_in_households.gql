@@ -1,11 +1,10 @@
 # 
 
-- deprecated_key = electricity_for_heat
 - unit = mj
+- deprecated_key = electricity_for_heat
 
-SUM(
-  V(
-households_final_demand_for_space_heating_electricity,households_final_demand_for_hot_water_electricity,
-      input_of_electricity
-  )
-)
+V(
+  households_final_demand_for_space_heating_electricity,
+  households_final_demand_for_hot_water_electricity,
+  input_of_electricity
+).sum

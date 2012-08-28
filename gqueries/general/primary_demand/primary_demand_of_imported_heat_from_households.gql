@@ -1,9 +1,9 @@
-- deprecated_key = households_imported_heat_primary_demand
 # 
 
 - unit = pj
+- deprecated_key = households_imported_heat_primary_demand
 
-DIVIDE(SUM(
-V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),primary_demand_of_imported_steam_hot_water)
+DIVIDE(
+  V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),primary_demand_of_imported_steam_hot_water).sum,
+  BILLIONS
 )
-,BILLIONS)
