@@ -2031,6 +2031,52 @@ households_water_heater_wood_pellets-(wood_pellets)
 (useable_heat)-households_water_heater_wood_pellets
 (loss)-households_water_heater_wood_pellets
 
+industry_aluminium_carbothermalreduction;industry;energetic;preferred technologies
+industry_aluminium_carbothermalreduction-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+industry_aluminium_carbothermalreduction-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater
+industry_aluminium_carbothermalreduction-(electricity)
+industry_aluminium_carbothermalreduction-(useable_heat)
+(not_defined)-industry_aluminium_carbothermalreduction
+(loss)-industry_aluminium_carbothermalreduction
+
+industry_aluminium_electrolysis_bat;industry;energetic;preferred technologies
+industry_aluminium_electrolysis_bat-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+industry_aluminium_electrolysis_bat-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater
+industry_aluminium_electrolysis_bat-(electricity)
+industry_aluminium_electrolysis_bat-(useable_heat)
+(not_defined)-industry_aluminium_electrolysis_bat
+(loss)-industry_aluminium_electrolysis_bat
+
+industry_aluminium_electrolysis_current;industry;energetic;preferred technologies
+industry_aluminium_electrolysis_current-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+industry_aluminium_electrolysis_current-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater
+industry_aluminium_electrolysis_current-(electricity)
+industry_aluminium_electrolysis_current-(useable_heat)
+(not_defined)-industry_aluminium_electrolysis_current
+(loss)-industry_aluminium_electrolysis_current
+
+industry_aluminium_heater;industry;energetic;technologies
+industry_aluminium_heater-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+industry_aluminium_heater-(network_gas)
+(useable_heat)-industry_aluminium_heater
+(loss)-industry_aluminium_heater
+
+industry_aluminium_output;industry;energetic;useful consumption
+industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_current
+industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_bat
+industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_smeltoven
+industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_carbothermalreduction
+industry_aluminium_output-(not_defined)
+(not_defined)-industry_aluminium_output
+
+industry_aluminium_smeltoven;industry;energetic;preferred technologies
+industry_aluminium_smeltoven-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+industry_aluminium_smeltoven-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater
+industry_aluminium_smeltoven-(electricity)
+industry_aluminium_smeltoven-(useable_heat)
+(not_defined)-industry_aluminium_smeltoven
+(loss)-industry_aluminium_smeltoven
+
 industry_burner_coal;industry;energetic;technologies
 industry_burner_coal-(coal) -- s --> (coal)-industry_final_demand_for_heat_coal
 industry_burner_coal-(coal)
