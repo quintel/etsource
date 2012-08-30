@@ -8,7 +8,7 @@ IF(
     SUM(V( Q(electricity_producing_converters_coal), output_of_electricity)),0,),
     0,
     DIVIDE(
-     SUM(V( Q(electricity_producing_converters_coal), total_costs )),
+     SUM(V( Q(electricity_producing_converters_coal), total_costs_per(:converter))),
      SUM(V( Q(electricity_producing_converters_coal), output_of_electricity ))
      )
   )
