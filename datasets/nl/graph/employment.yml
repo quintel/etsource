@@ -1,576 +1,933 @@
-#265
-:agriculture_chp_engine_gas_power_fuelmix:
-  :hours_prep_nl: 900.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 4320.0
-  :hours_maint_nl: 1620.0
-  :hours_remov_nl: 720.0
+# Group of attributes to include the effects of 
+# different technologies on employment in the Netherlands.
+# Please clean up this file:
+# - systematic converter names must also be used for defaults when possible
+# - structure file by some logic: per section in alphabetic order to
+#   improve readability
+# - etc
+  
+:defaults:
+  :employment_defaults: &employment_defaults
+    :hours_prep_nl: 1.0
+    :hours_prep_abroad: 1.0
+    :hours_prod_nl: 1.0
+    :hours_prod_abroad: 1.0
+    :hours_place_nl: 1.0
+    :hours_place_abroad: 1.0
+    :hours_maint_nl: 1.0
+    :hours_maint_abroad: 1.0
+    :hours_remov_nl: 1.0
+    :hours_remov_abroad: 1.0
 
-#350
-:buildings_collective_chp_gas_power_fuelmix:
-  :hours_prep_nl: 360.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 2880.0
-  :hours_maint_nl: 1260.0
-  :hours_remov_nl: 360.0
+:defaults:
+  :coal_CHP_defaults: &coal_CHP_defaults
+    :hours_prep_nl: 590580.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 7087680.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 1170000.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 472500.0
+    :hours_remov_abroad: 0.0
+        
+:defaults:
+  :coal_powder_defaults: &coal_powder_defaults
+    :hours_prep_nl: 1350000.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 2250000.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 180000.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 900000.0
+    :hours_remov_abroad: 0.0
+    
+:defaults:
+  :coal_igcc_defaults: &coal_igcc_defaults
+    :hours_prep_nl: 1755000.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 2925000.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 216000.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 900000.0
+    :hours_remov_abroad: 0.0
 
-#352
-:buildings_collective_chp_wood_pellets:
-  :hours_prep_nl: 113580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 820080.0
-  :hours_maint_nl: 171000.0
-  :hours_remov_nl: 91080.0
+:defaults:
+  :gas_defaults: &gas_defaults
+    :hours_prep_nl: 21000.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: 0.0
+    :hours_place_nl: 500000.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 76800.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 480000.0
+    :hours_remov_abroad: 0.0
 
-#598
-:buildings_collective_geothermal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 19530.0
-  :hours_maint_nl: 10710.0
-  :hours_remov_nl: 0.0
-
-#360
-:buildings_cooling_airconditioning:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 23.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 7.0
-
-#358
-:buildings_cooling_collective_heatpump_water_water_ts_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 50272.16495
-  :hours_maint_nl: 1377.319588
-  :hours_remov_nl: 40.0
-
-#357
-:buildings_cooling_heatpump_air_water_network_gas:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 33113.40206
-  :hours_maint_nl: 907.2164948
-  :hours_remov_nl: 40.0
-
-#346
-:buildings_solar_pv_solar_radiation:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 11855.55556
-  :hours_maint_nl: 118.5555556
-  :hours_remov_nl: 0.0
-
-#378
-:buildings_space_heater_coal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 88.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#356
-:buildings_space_heater_collective_heatpump_water_water_ts_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 16932.98969
-  :hours_maint_nl: 463.9175258
-  :hours_remov_nl: 40.0
-
-#377
-:buildings_space_heater_crude_oil:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 136.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#349
-:buildings_space_heater_electricity:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 17.0
-  :hours_maint_nl: 0.0
-  :hours_remov_nl: 1.0
-
-#354
-:buildings_space_heater_heatpump_air_water_network_gas:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 16932.98969
-  :hours_maint_nl: 463.9175258
-  :hours_remov_nl: 40.0
-
-#348
-:buildings_space_heater_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 21.0
-  :hours_maint_nl: 0.0
-  :hours_remov_nl: 1.0
-
-#353
-:buildings_space_heater_solar_thermal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 430.7692308
-  :hours_maint_nl: 4.487134615
-  :hours_remov_nl: 16.0
-
-#355
-:buildings_space_heater_wood_pellets:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 88.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 80.0
-
-#28
-:energy_chp_combined_cycle_gas_power_fuelmix:
-  :hours_prep_nl: 442800.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 2835000.0
-  :hours_maint_nl: 534600.0
-  :hours_remov_nl: 354600.0
-
-#75
-:energy_chp_ultra_supercritical_coal:
-  :hours_prep_nl: 590580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 7087680.0
-  :hours_maint_nl: 1170000.0
-  :hours_remov_nl: 472500.0
-
-#424
-:energy_chp_ultra_supercritical_crude_oil:
-  :hours_prep_nl: 590580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 7087680.0
-  :hours_maint_nl: 1170000.0
-  :hours_remov_nl: 472500.0
-
-#423
-:energy_chp_ultra_supercritical_lignite:
-  :hours_prep_nl: 590580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 7087680.0
-  :hours_maint_nl: 1170000.0
-  :hours_remov_nl: 472500.0
-
-#436
-:energy_chp_ultra_supercritical_wood_pellets:
-  :hours_prep_nl: 113580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 820080.0
-  :hours_maint_nl: 171000.0
-  :hours_remov_nl: 91080.0
-
-#72
-:energy_power_combined_cycle_ccs_coal:
-  :hours_prep_nl: 2281500.0
-  :hours_prod_nl: 45630000.0
-  :hours_place_nl: 3802500.0
-  :hours_maint_nl: 367200.0
-  :hours_remov_nl: 1170000.0
-
-#409
-:energy_power_combined_cycle_ccs_gas_power_fuelmix:
-  :hours_prep_nl: 27300.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 650000.0
-  :hours_maint_nl: 1305600.0
-  :hours_remov_nl: 65000.0
-
-#71
-:energy_power_combined_cycle_coal:
-  :hours_prep_nl: 1755000.0
-  :hours_prod_nl: 35100000.0
-  :hours_place_nl: 2925000.0
-  :hours_maint_nl: 216000.0
-  :hours_remov_nl: 900000.0
-
-#74
-:energy_power_combined_cycle_gas_power_fuelmix:
-  :hours_prep_nl: 21000.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 500000.0
-  :hours_maint_nl: 76800.0
-  :hours_remov_nl: 50000.0
-
-#90
-:energy_power_geothermal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 39060.0
-  :hours_maint_nl: 21420.0
-  :hours_remov_nl: 0.0
-
-#79
-:energy_power_nuclear_gen3_uranium_oxide:
-  :hours_prep_nl: 4400000.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 1215000.0
-  :hours_maint_nl: 270000.0
-  :hours_remov_nl: 900000.0
-
-#20
-:energy_power_solar_pv_solar_radiation:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 222222.2222
-  :hours_maint_nl: 2222.222222
-  :hours_remov_nl: 0.0
-
-#68
-:energy_power_supercritical_coal:
-  :hours_prep_nl: 1350000.0
-  :hours_prod_nl: 27000000.0
-  :hours_place_nl: 2250000.0
-  :hours_maint_nl: 180000.0
-  :hours_remov_nl: 900000.0
-
-#64
-:energy_power_supercritical_waste_mix:
-  :hours_prep_nl: 113580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 820080.0
-  :hours_maint_nl: 171000.0
-  :hours_remov_nl: 91080.0
-
-#557
-:energy_power_turbine_network_gas:
-  :hours_prep_nl: 88560.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 567000.0
-  :hours_maint_nl: 106920.0
-  :hours_remov_nl: 70920.0
-
-#67
-:energy_power_ultra_supercritical_ccs_coal:
-  :hours_prep_nl: 1755000.0
-  :hours_prod_nl: 35100000.0
-  :hours_place_nl: 2925000.0
-  :hours_maint_nl: 306000.0
-  :hours_remov_nl: 1170000.0
-
-#66
-:energy_power_ultra_supercritical_coal:
-  :hours_prep_nl: 1350000.0
-  :hours_prod_nl: 27000000.0
-  :hours_place_nl: 2250000.0
-  :hours_maint_nl: 180000.0
-  :hours_remov_nl: 900000.0
-
-#83
-:energy_power_ultra_supercritical_cofiring_wood_pellets:
-  :hours_prep_nl: 1350000.0
-  :hours_prod_nl: 27000000.0
-  :hours_place_nl: 2250000.0
-  :hours_maint_nl: 180000.0
-  :hours_remov_nl: 900000.0
-
-#73
-:energy_power_ultra_supercritical_crude_oil:
-  :hours_prep_nl: 21000.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 500000.0
-  :hours_maint_nl: 76800.0
-  :hours_remov_nl: 50000.0
-
-#23
-:energy_power_ultra_supercritical_gas_power_fuelmix:
-  :hours_prep_nl: 21000.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 500000.0
-  :hours_maint_nl: 76800.0
-  :hours_remov_nl: 50000.0
-
-#69
-:energy_power_ultra_supercritical_lignite:
-  :hours_prep_nl: 1350000.0
-  :hours_prod_nl: 27000000.0
-  :hours_place_nl: 2250000.0
-  :hours_maint_nl: 180000.0
-  :hours_remov_nl: 900000.0
-
-#70
-:energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
-  :hours_prep_nl: 1350000.0
-  :hours_prod_nl: 27000000.0
-  :hours_place_nl: 2250000.0
-  :hours_maint_nl: 180000.0
-  :hours_remov_nl: 900000.0
-
-#81
-:energy_power_wind_turbine_coastal:
-  :hours_prep_nl: 3439.090909
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 4120.2
-  :hours_maint_nl: 750.0
-  :hours_remov_nl: 1740.0
-
-#80
-:energy_power_wind_turbine_inland:
-  :hours_prep_nl: 3439.090909
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 4120.2
-  :hours_maint_nl: 750.0
-  :hours_remov_nl: 1740.0
-
-#82
-:energy_power_wind_turbine_offshore:
-  :hours_prep_nl: 3439.090909
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 22680.0
-  :hours_maint_nl: 500.0
-  :hours_remov_nl: 1740.0
-
-#318
-:households_collective_chp_network_gas:
-  :hours_prep_nl: 360.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 2880.0
-  :hours_maint_nl: 1260.0
-  :hours_remov_nl: 360.0
-
-#319
-:households_collective_chp_wood_pellets:
-  :hours_prep_nl: 113580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 820080.0
-  :hours_maint_nl: 171000.0
-  :hours_remov_nl: 91080.0
-
-#320
-:households_collective_geothermal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 19530.0
-  :hours_maint_nl: 10710.0
-  :hours_remov_nl: 0.0
-
-#15
-:households_cooling_airconditioning_electricity:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 7.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 7.0
-
-#323
-:households_cooling_heatpump_air_water_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 106394.7368
-  :hours_maint_nl: 3273.684211
-  :hours_remov_nl: 32736.84211
-
-#321
-:households_cooling_heatpump_ground_water_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 130.0
-  :hours_maint_nl: 4.0
-  :hours_remov_nl: 40.0
-
-#231
-:households_solar_pv_solar_radiation:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 11111.11111
-  :hours_maint_nl: 111.1111111
-  :hours_remov_nl: 0.0
-
-#213
-:households_space_heater_coal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 72.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#19
-:households_space_heater_combined_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 4.5
-  :hours_maint_nl: 0.5
-  :hours_remov_nl: 4.5
-
-#215
-:households_space_heater_crude_oil:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 120.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#16
-:households_space_heater_electricity:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 1.0
-  :hours_maint_nl: 0.0
-  :hours_remov_nl: 1.0
-
-#316
-:households_space_heater_heatpump_add_on_electricity:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 16.0
-  :hours_maint_nl: 0.5
-  :hours_remov_nl: 16.0
-
-#14
-:households_space_heater_heatpump_air_water_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 130.0
-  :hours_maint_nl: 4.0
-  :hours_remov_nl: 40.0
-
-#52
-:households_space_heater_heatpump_ground_water_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 130.0
-  :hours_maint_nl: 4.0
-  :hours_remov_nl: 40.0
-
-#417
-:households_space_heater_micro_chp_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 8.5
-  :hours_maint_nl: 0.5
-  :hours_remov_nl: 4.5
-
-#440
-:households_space_heater_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 5.0
-  :hours_maint_nl: 0.0
-  :hours_remov_nl: 1.0
-
-#212
-:households_space_heater_wood_pellets:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 72.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#293
-:households_water_heater_coal:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 88.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#157
-:households_water_heater_combined_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 4.5
-  :hours_maint_nl: 0.5
-  :hours_remov_nl: 4.5
-
-#294
-:households_water_heater_crude_oil:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 136.0
-  :hours_maint_nl: 1.5
-  :hours_remov_nl: 64.0
-
-#441
-:households_water_heater_fuel_cell_chp_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 8.5
-  :hours_maint_nl: 0.5
-  :hours_remov_nl: 4.5
-
-#622
-:households_water_heater_heatpump_air_water_electricity:
-  :hours_prep_nl: 6.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 130.0
-  :hours_maint_nl: 4.0
-  :hours_remov_nl: 40.0
+:defaults:
+  :waste_defaults: &waste_defaults
+    :hours_prep_nl: 113580.0
+    :hours_prep_abroad: 0.0
+    :hours_prod_nl: 0.0
+    :hours_prod_abroad: .0
+    :hours_place_nl: 820080.0
+    :hours_place_abroad: 0.0
+    :hours_maint_nl: 171000.0
+    :hours_maint_abroad: 0.0
+    :hours_remov_nl: 91080.00
+    :hours_remov_abroad: 0.0
 
 #12
 :households_water_heater_heatpump_ground_water_electricity:
   :hours_prep_nl: 6.0
+  :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
   :hours_place_nl: 130.0
+  :hours_place_abroad: 0.0
   :hours_maint_nl: 4.0
+  :hours_maint_abroad: 0.0
   :hours_remov_nl: 40.0
-
-#376
-:households_water_heater_micro_chp_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 8.5
-  :hours_maint_nl: 0.5
-  :hours_remov_nl: 4.5
-
-#375
-:households_water_heater_network_gas:
-  :hours_prep_nl: 0.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 8.0
-  :hours_maint_nl: 1.0
-  :hours_remov_nl: 4.0
+  :hours_remov_abroad: 0.0
 
 #13
 :households_water_heater_resistive_electricity:
   :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
   :hours_place_nl: 5.0
+  :hours_place_abroad: 0.0
   :hours_maint_nl: 1.0
+  :hours_maint_abroad: 0.0
   :hours_remov_nl: 5.0
+  :hours_remov_abroad: 0.0
+
+#14
+:households_space_heater_heatpump_air_water_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 7.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 7.0
+  :hours_remov_abroad: 0.0
+
+
+
+#15
+:households_cooling_airconditioning_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 7.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 7.0
+  :hours_remov_abroad: 0.0
+
+#16
+:households_space_heater_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 1.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1.0
+  :hours_remov_abroad: 0.0
 
 #11
 :households_water_heater_solar_thermal:
   :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
   :hours_place_nl: 16.0
-  :hours_maint_nl: 0.33333
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.333333
+  :hours_maint_abroad: 0.0
   :hours_remov_nl: 16.0
+  :hours_remov_abroad: 0.0
+
+#19
+:households_space_heater_combined_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 4.5
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 4.5
+  :hours_remov_abroad: 0.0
+
+#52
+:households_space_heater_heatpump_ground_water_electricity:
+  :hours_prep_nl: 6.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 130.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 4.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 40.0
+  :hours_remov_abroad: 0.0
+
+#76
+:households_water_heater_district_heating_steam_hot_water:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 11.6
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#157
+:households_water_heater_combined_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 4.5
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 4.5
+  :hours_remov_abroad: 0.0
+
+
+#212 pellet kachel
+:households_space_heater_wood_pellets:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 68.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
+
+
+#213
+:households_space_heater_coal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 72.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
+
+#215
+:households_space_heater_crude_oil:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 120.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
 
 #271
 :households_water_heater_wood_pellets:
   :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
-  :hours_place_nl: 72.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 68.0
+  :hours_place_abroad: 0.0
   :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
   :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
 
-#27
-:industry_chp_combined_cycle_gas_power_fuelmix:
-  :hours_prep_nl: 26820.0
+#293
+:households_water_heater_coal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
-  :hours_place_nl: 193680.0
-  :hours_maint_nl: 32040.0
-  :hours_remov_nl: 21600.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 88.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 80.0
+  :hours_remov_abroad: 0.0
 
-#29
+#294
+:households_water_heater_crude_oil:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 136.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
+
+#316
+:households_space_heater_heatpump_add_on_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 16.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 16.0
+  :hours_remov_abroad: 0.0
+
+#321
+:households_cooling_heatpump_ground_water_electricity:
+  :hours_prep_nl: 6.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 130.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 4.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 40.0
+  :hours_remov_abroad: 0.0
+
+#323
+:households_cooling_heatpump_air_water_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 7.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 7.0
+  :hours_remov_abroad: 0.0
+
+#375
+:households_water_heater_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 8.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 4.0
+  :hours_remov_abroad: 0.0
+
+#391
+:households_space_heater_district_heating_steam_hot_water:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 0.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#440
+:households_space_heater_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 5.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1.0
+  :hours_remov_abroad: 0.0
+
+#348
+:buildings_space_heater_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 21.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1.0
+  :hours_remov_abroad: 0.0
+
+#349
+:buildings_space_heater_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 17.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1.0
+  :hours_remov_abroad: 0.0
+
+#353
+:buildings_space_heater_solar_thermal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 430.8
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 4.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 16.0
+  :hours_remov_abroad: 0.0
+
+#354
+:buildings_space_heater_heatpump_air_water_network_gas:
+  :hours_prep_nl: 6.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 16933.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 463.9
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 40.0
+  :hours_remov_abroad: 0.0
+
+#355 pellet kachel
+:buildings_space_heater_wood_pellets:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 84.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 80.0
+  :hours_remov_abroad: 0.0
+
+#356
+:buildings_space_heater_collective_heatpump_water_water_ts_electricity:
+  :hours_prep_nl: 6.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 16933.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 463.9
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 40.0
+  :hours_remov_abroad: 0.0
+
+#357
+:buildings_cooling_heatpump_air_water_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 8164.9
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 340.2
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 16.0
+  :hours_remov_abroad: 0.0
+
+#358
+:buildings_cooling_collective_heatpump_water_water_ts_electricity:
+  :hours_prep_nl: 6.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 50272.2
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1377.3
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 40.0
+  :hours_remov_abroad: 0.0
+  
+
+#360
+:buildings_cooling_airconditioning:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 23.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.7
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 7.0
+  :hours_remov_abroad: 0.0
+
+#377
+:buildings_space_heater_crude_oil:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 136.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
+
+#378
+:buildings_space_heater_coal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 88.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 64.0
+  :hours_remov_abroad: 0.0
+
+
+#436 TD
+:energy_chp_ultra_supercritical_wood_pellets:
+  <<: *waste_defaults
+
+#352 TD
+:buildings_collective_chp_wood_pellets:
+  <<: *waste_defaults
+
+#437 TD
+:other_chp_supercritical_wood_pellets:
+  <<: *waste_defaults
+
+#29  EXCLUDED FOR NOW
 :industry_chp_supercritical_wood_pellets:
-  :hours_prep_nl: 113580.0
-  :hours_prod_nl: 0.0
-  :hours_place_nl: 820080.0
-  :hours_maint_nl: 171000.0
-  :hours_remov_nl: 91080.0
+  <<: *waste_defaults
 
-#438
+#265 TD
+:agriculture_chp_engine_gas_power_fuelmix:
+  :hours_prep_nl: 900.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 4320.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1620.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 720.0
+  :hours_remov_abroad: 0.0
+
+#261 TD
+:other_chp_engine_gas_power_fuelmix:
+  :hours_prep_nl: 360.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 2880.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1260.00
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 360.0
+  :hours_remov_abroad: 0.0
+
+
+#438 EXCLUDED FOR NOW
 :industry_chp_ultra_supercritical_coal:
   :hours_prep_nl: 26820.0
+  :hours_prep_abroad: 0.0
   :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
   :hours_place_nl: 193680.0
+  :hours_place_abroad: 0.0
   :hours_maint_nl: 32040.0
+  :hours_maint_abroad: 0.0
   :hours_remov_nl: 21600.0
+  :hours_remov_abroad: 0.0
+
+#75 TD
+:energy_chp_ultra_supercritical_coal:
+  <<: *coal_CHP_defaults
+
+#319 TD
+:households_collective_chp_wood_pellets:
+  <<: *waste_defaults
+
+#318 TD
+:households_collective_chp_network_gas:
+  :hours_prep_nl: 360.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 2880.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1260.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 360.0
+  :hours_remov_abroad: 0.0
+
+#441 
+:households_water_heater_fuel_cell_chp_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 8.5
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 4.5
+  :hours_remov_abroad: 0.0
+
+#350 TD
+:buildings_collective_chp_gas_power_fuelmix:
+  :hours_prep_nl: 360.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 2880.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1260.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 360.0
+  :hours_remov_abroad: 0.0
+
+#28 TD
+:energy_chp_combined_cycle_gas_power_fuelmix:
+  :hours_prep_nl: 442800.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 2835000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 534600.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 354600.0
+  :hours_remov_abroad: 0.0
+
+#423 TD
+:energy_chp_ultra_supercritical_lignite:
+  <<: *coal_CHP_defaults
+
+#376
+:households_water_heater_micro_chp_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 8.5
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 4.5
+  :hours_remov_abroad: 0.0
+
+#417
+:households_space_heater_micro_chp_network_gas:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 8.5
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 0.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 4.5
+  :hours_remov_abroad: 0.0
+
+#424 TD
+:energy_chp_ultra_supercritical_crude_oil:
+  <<: *coal_CHP_defaults
+
+#27  EXCLUDED FOR NOW
+:industry_chp_combined_cycle_gas_power_fuelmix:
+  :hours_prep_nl: 26820.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 193680.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 32040.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 21600.0
+  :hours_remov_abroad: 0.0
+
+#409 added 30% for preparation, placement and removal and 70% for maintenance wrt energy_power_combined_cycle_gas_power_fuelmix.
+:energy_power_combined_cycle_ccs_gas_power_fuelmix:
+  :hours_prep_nl: 27300.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 27300.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 650000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 816000.0
+  :hours_remov_abroad: 0.0
+
+#83
+:energy_power_ultra_supercritical_cofiring_wood_pellets:
+  <<: *coal_powder_defaults
+
+#71
+:energy_power_combined_cycle_coal:
+  <<: *coal_igcc_defaults
+
+#72
+:energy_power_combined_cycle_ccs_coal:
+  :hours_prep_nl: 2281500.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: .0
+  :hours_place_nl: 3802500.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 367200.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1170000.0
+  :hours_remov_abroad: 0.0
+  
+#69
+:energy_power_ultra_supercritical_lignite:
+  <<: *coal_powder_defaults
+
+#70
+:energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
+  :hours_prep_nl: 1755000.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: .0
+  :hours_place_nl: 2925000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 306000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1170000.0
+  :hours_remov_abroad: 0.0
+  
+#66
+:energy_power_ultra_supercritical_coal:
+  <<: *coal_powder_defaults
+
+#67
+:energy_power_ultra_supercritical_ccs_coal:
+  :hours_prep_nl: 1755000.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: .0
+  :hours_place_nl: 2925000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 306000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1170000.0
+  :hours_remov_abroad: 0.0
+
+#74
+:energy_power_combined_cycle_gas_power_fuelmix:
+  <<: *gas_defaults
+
+#90 TD
+:energy_power_geothermal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 41664.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 22848.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#231
+:households_solar_pv_solar_radiation:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 11111.11
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 111.11
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#79 TD
+:energy_power_nuclear_gen3_uranium_oxide:
+  :hours_prep_nl: 4400000.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 1296000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 288000.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 480000.0
+  :hours_remov_abroad: 0.0
+
+#346
+:buildings_solar_pv_solar_radiation:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 11855.56
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 118.56
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#20
+:energy_power_solar_pv_solar_radiation:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 222222.22
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 2222.22
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#64 TD
+:energy_power_supercritical_waste_mix:
+  <<: *waste_defaults
+  
+#81
+:energy_power_wind_turbine_coastal:
+  :hours_prep_nl: 3439.09
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 4120.20
+  :hours_place_abroad: 457.8
+  :hours_maint_nl: 750.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1740.0
+  :hours_remov_abroad: 0.0
+
+#80
+:energy_power_wind_turbine_inland:
+  :hours_prep_nl: 3439.09
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 4120.20
+  :hours_place_abroad: 457.8
+  :hours_maint_nl: 750.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1740.0
+  :hours_remov_abroad: 0.0
+
+#82
+:energy_power_wind_turbine_offshore:
+  :hours_prep_nl: 3439.1
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 22680.0
+  :hours_place_abroad: 15120.0
+  :hours_maint_nl: 750.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 1740.0
+  :hours_remov_abroad: 0.0
+
+
+#extra toegevoegd
+
+#68 
+:energy_power_supercritical_coal :
+  <<: *coal_powder_defaults
+
+#557
+:energy_power_turbine_network_gas:
+  :hours_prep_nl: 88560.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 567000.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 106920.00
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 70920.0
+  :hours_remov_abroad: 0.0
+
+#23
+:energy_power_ultra_supercritical_gas_power_fuelmix:
+  <<: *gas_defaults
+
+#73
+:energy_power_ultra_supercritical_crude_oil:
+  <<: *gas_defaults
+
+#320 households_collective_geothermal = 2 * #318
+:households_collective_geothermal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 19530.0 
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 19530.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+
+#598 buildings_collective_geothermal = 2 * #318
+:buildings_collective_geothermal:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 19530.0 
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 19530.0
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 0.0
+  :hours_remov_abroad: 0.0
+
+#622 households_water_heater_heatpump_air_water_electricity
+:households_water_heater_heatpump_air_water_electricity:
+  :hours_prep_nl: 0.0
+  :hours_prep_abroad: 0.0
+  :hours_prod_nl: 0.0
+  :hours_prod_abroad: 0.0
+  :hours_place_nl: 7.0
+  :hours_place_abroad: 0.0
+  :hours_maint_nl: 1.5
+  :hours_maint_abroad: 0.0
+  :hours_remov_nl: 7.0
+  :hours_remov_abroad: 0.0
+
 
