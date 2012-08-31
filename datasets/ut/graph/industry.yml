@@ -1,3 +1,37 @@
+:industry_aluminium_burner:
+  :availability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.0
+  :decommissioning_costs_per_mw_input: 0.0
+  :demand_expected_value: 0.0
+  :economic_lifetime: 15.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 2190.0
+  :households_supplied_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 900.0
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :purchase_price_per_mw_input: 54000.0
+  :residual_value_per_mw_input: 0.0
+  :technical_lifetime: 15.0
+  :typical_effective_input_capacity: 111.111111111111
+  :typical_nominal_input_capacity: 111.111111111111
+  :variability: 0.0
+  :wacc: 0.1
+industry_aluminium_burner-(network_gas): {conversion: 1.0}
+(useable_heat)-industry_aluminium_burner: {conversion: 0.9}
+(loss)-industry_aluminium_burner: {conversion: 0.1}
+industry_aluminium_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+
 :industry_aluminium_carbothermalreduction:
   :co2_free: 0.0
   :demand_expected_value: 0.0
@@ -6,7 +40,7 @@ industry_aluminium_carbothermalreduction-(useable_heat): {conversion: 0.07534246
 (not_defined)-industry_aluminium_carbothermalreduction: {conversion: 0.0285388127853881}
 (loss)-industry_aluminium_carbothermalreduction: {conversion: 0.971461187214612}
 industry_aluminium_carbothermalreduction-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
-industry_aluminium_carbothermalreduction-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater: {share: 1.0}
+industry_aluminium_carbothermalreduction-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner: {share: 1.0}
 
 :industry_aluminium_electrolysis_bat:
   :co2_free: 0.0
@@ -16,7 +50,7 @@ industry_aluminium_electrolysis_bat-(useable_heat): {conversion: 0.0437188710570
 (not_defined)-industry_aluminium_electrolysis_bat: {conversion: 0.0184467810367091}
 (loss)-industry_aluminium_electrolysis_bat: {conversion: 0.981553218963291}
 industry_aluminium_electrolysis_bat-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
-industry_aluminium_electrolysis_bat-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater: {share: 1.0}
+industry_aluminium_electrolysis_bat-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner: {share: 1.0}
 
 :industry_aluminium_electrolysis_current:
   :co2_free: 0.0
@@ -26,25 +60,17 @@ industry_aluminium_electrolysis_current-(useable_heat): {conversion: 0.045298558
 (not_defined)-industry_aluminium_electrolysis_current: {conversion: 0.0171585449553878}
 (loss)-industry_aluminium_electrolysis_current: {conversion: 0.982841455044612}
 industry_aluminium_electrolysis_current-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
-industry_aluminium_electrolysis_current-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater: {share: 1.0}
+industry_aluminium_electrolysis_current-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner: {share: 1.0}
 
-:industry_aluminium_heater:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-industry_aluminium_heater-(network_gas): {conversion: 1.0}
-(useable_heat)-industry_aluminium_heater: {conversion: 0.9}
-(loss)-industry_aluminium_heater: {conversion: 0.1}
-industry_aluminium_heater-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
-
-:industry_aluminium_output:
+:industry_aluminium_production:
   :co2_free: 0.0
   :preset_demand: 0.0
-industry_aluminium_output-(not_defined): {conversion: 1.0}
-(not_defined)-industry_aluminium_output: {conversion: 1.0}
-industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_current: {share: 0.6875}
-industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_bat: {share: 0.0}
-industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_smeltoven: {share: 0.3125}
-industry_aluminium_output-(not_defined) -- s --> (not_defined)-industry_aluminium_carbothermalreduction: {share: 0.0}
+industry_aluminium_production-(not_defined): {conversion: 1.0}
+(not_defined)-industry_aluminium_production: {conversion: 1.0}
+industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_current: {share: 1.0}
+industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_bat: {share: 0.0}
+industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_smeltoven: {share: 0.0}
+industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_carbothermalreduction: {share: 0.0}
 
 :industry_aluminium_smeltoven:
   :co2_free: 0.0
@@ -54,7 +80,7 @@ industry_aluminium_smeltoven-(useable_heat): {conversion: 0.653465346534653}
 (not_defined)-industry_aluminium_smeltoven: {conversion: 0.247524752475248}
 (loss)-industry_aluminium_smeltoven: {conversion: 0.752475247524752}
 industry_aluminium_smeltoven-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
-industry_aluminium_smeltoven-(useable_heat) -- s --> (useable_heat)-industry_aluminium_heater: {share: 1.0}
+industry_aluminium_smeltoven-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner: {share: 1.0}
 
 :industry_burner_coal:
   :availability: 0.0
