@@ -67,7 +67,7 @@ industry_aluminium_electrolysis_current-(useable_heat) -- s --> (useable_heat)-i
   :preset_demand: 0.0
 industry_aluminium_production-(not_defined): {conversion: 1.0}
 (not_defined)-industry_aluminium_production: {conversion: 1.0}
-industry_aluminium_production-(not_defined) -- f --> (not_defined)-industry_aluminium_electrolysis_current: {share: 1.0}
+industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_current: {share: 1.0}
 industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_bat: {share: 0.0}
 industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_smeltoven: {share: 0.0}
 industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_carbothermalreduction: {share: 0.0}
@@ -273,7 +273,7 @@ industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
-  :full_load_hours: 5066.55234362241
+  :full_load_hours: 6225.0
   :households_supplied_per_unit: 1.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.1
@@ -282,7 +282,7 @@ industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
   :part_ets: 0.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
-  :peak_load_units_present: 0.177374971482534
+  :peak_load_units_present: 0.144366197183099
   :purchase_price_per_mw_input: 412050.0
   :residual_value_per_mw_input: 0.0
   :simult_sd: -0.75
@@ -295,7 +295,7 @@ industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
   :typical_nominal_input_capacity: 162.60162601626
   :variability: 0.0
   :wacc: 0.1
-  :peak_load_units: 0.177374971482534
+  :peak_load_units: 0.144366197183099
 industry_chp_supercritical_wood_pellets-(wood_pellets): {conversion: 1.0}
 (loss)-industry_chp_supercritical_wood_pellets: {conversion: 0.142}
 (steam_hot_water)-industry_chp_supercritical_wood_pellets: {conversion: 0.432}
@@ -429,7 +429,7 @@ industry_final_demand_for_heat_crude_oil-(crude_oil) -- s --> (crude_oil)-indust
 
 :industry_final_demand_for_heat_network_gas:
   :co2_free: 0.0
-  :demand_expected_value: 10812135208.6304
+  :demand_expected_value: 10840593242.3431
 industry_final_demand_for_heat_network_gas-(network_gas): {conversion: 1.0}
 (network_gas)-industry_final_demand_for_heat_network_gas: {conversion: 1.0}
 industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
@@ -443,7 +443,7 @@ industry_final_demand_for_heat_wood_pellets-(wood_pellets) -- s --> (wood_pellet
 
 :industry_final_demand_network_gas:
   :co2_free: 0.0
-  :demand_expected_value: 10812135208.6304
+  :demand_expected_value: 10840593242.3431
 industry_final_demand_network_gas-(network_gas): {conversion: 1.0}
 (network_gas)-industry_final_demand_network_gas: {conversion: 1.0}
 industry_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
@@ -482,7 +482,7 @@ industry_locally_available_electricity-(electricity): {conversion: 1.0}
 (electricity)-industry_locally_available_electricity: {conversion: 1.0}
 industry_locally_available_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity: {}
 industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_combined_cycle_gas_power_fuelmix: {share: 0.0}
-industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_supercritical_wood_pellets: {share: 0.0}
+industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_supercritical_wood_pellets: {share: 224100000.0}
 industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_ultra_supercritical_coal: {share: 0.0}
 
 :industry_locally_available_steam_hot_water:
@@ -538,14 +538,14 @@ industry_useful_demand_network_gas_non_energetic-(network_gas) -- s --> (network
 
 :industry_useful_demand_useable_heat:
   :co2_free: 0.0
-  :preset_demand: 25852735857.5961
+  :preset_demand: 25878348087.9375
 industry_useful_demand_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-industry_useful_demand_useable_heat: {conversion: 1.0}
-industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water: {share: 0.235545464398699}
-industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_coal: {share: 0.0351781136438562}
-industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_crude_oil: {share: 0.329363500223789}
-industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_wood_pellets: {share: 0.0235147818474975}
-industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_network_gas: {share: 0.376398139886159}
+industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water: {share: 0.23531234114564}
+industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_coal: {share: 0.0351432972812909}
+industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_crude_oil: {share: 0.329037523704534}
+industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_wood_pellets: {share: 0.0234915088778682}
+industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_network_gas: {share: 0.377015328990667}
 
 :industry_useful_demand_wood_pellets_non_energetic:
   :co2_free: 1.0
