@@ -1,0 +1,9 @@
+- deprecated_key = chart_electricity_value_76_energy_dependence_6
+#
+
+- unit = pj
+
+future:DIVIDE(SUM(
+	V(G(energy_import),output_of_imported_electricity),
+	NEG(SUM(V(G(energy_export),input_of_electricity)))
+	),BILLIONS)
