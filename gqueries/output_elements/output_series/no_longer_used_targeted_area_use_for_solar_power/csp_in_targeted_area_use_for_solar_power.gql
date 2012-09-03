@@ -1,0 +1,11 @@
+# Used to be a stored policy
+- deprecated_key = chart_csp_100_36_targeted_area_use_for_solar_power_302
+- unit = km2
+
+MIXED(
+ Q(share_of_designated_area_used_for_central_solar_csp),
+ PRODUCT(DIVIDE(
+  Q(policy_goal_land_for_csp_target_value),
+  AREA(land_available_for_solar)
+ ),100)
+)
