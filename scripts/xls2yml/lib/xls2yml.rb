@@ -1,7 +1,6 @@
 require_relative 'trollop'
 require_relative 'processor'
 require_relative 'excel_export'
-require_relative 'excel_area_export'
 require_relative 'csv'
 require_relative 'converter_exporter'
 require 'zip/zip'
