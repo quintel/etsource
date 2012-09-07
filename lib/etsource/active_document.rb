@@ -2,7 +2,7 @@ module ETSource
 
 class ActiveDocument
 
-  def initialize(attr_hash)
+  def initialize(attr_hash = {})
     attr_hash.each do |key,value|
       self.send("#{key}=", value)
     end
@@ -14,6 +14,24 @@ class ActiveDocument
 
   def self.find(key)
     self.all.select{|i|i.key == key}.first
+  end
+
+  # saves an instance
+  def save
+    save_to_file
+  end
+
+  # saves it to file
+  def save_to_file
+    f = File.open('w',file_path)
+    f.write(file_contents)
+    f.close
+  end
+
+  def file_contents
+    if FORMAT == 'document'
+      ETsource.Parser.new
+    end
   end
 
   def self.load_directory
