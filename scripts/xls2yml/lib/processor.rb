@@ -99,18 +99,38 @@ module ETE
       FileUtils.mkdir_p "#{@etsource_dir}/topology"
       dest_file = "#{@etsource_dir}/topology/export.graph"
       puts "  Saving topology to #{dest_file}"
-      lines = []
-      raw.sort_by{|key, values| key}.each do |key, values|
-        lines << values[:info]
-        values[:links_without_share].each do |link|
-          lines << link
-        end if values[:links_without_share].is_a?(Array)
-        values[:slots_without_conversion].each do |slot|
-          lines << slot
-        end if values[:slots_without_conversion].is_a?(Array)
-        lines << []
+
+      out = {}
+
+      # lines = []
+      raw.sort_by{|key, v| key}.each do |key, v|
+        c = {
+          'sector' => v[:sector],
+          'use' => v[:info][:use],
+          'energy_balance_group' => v[:info][:energy_balance_group],
+          'links' => v[:links_without_share],
+          'slots' => v[:slots_without_conversion]
+        }
+        # lines << "#{key}:"
+
+        # lines << "  sector: #{values[:sector]}"
+        # lines << "  use: #{values[:use]}"
+        # lines << "  energy_balance_group: #{values[:energy_balance_group]}"
+
+        # if values[:links_without_share].is_a?(Array)
+        #   lines << "\n# outgoing links"
+        #   values[:links_without_share].each {|link| lines << link}
+        # end
+
+
+        # if values[:slots_without_conversion].is_a?(Array)
+        #   lines << "\n# slots"
+        #   values[:slots_without_conversion].each {|slot| lines << slot}
+        # end
+        # lines << []
+        out[key.to_s] = c
       end
-      File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+      File.open(dest_file, 'w') {|f| f.write(out.to_yaml)}
     end
 
     # writes to ETSOURCE/topology/export.graph
