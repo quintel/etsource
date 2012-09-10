@@ -10,6 +10,7 @@ describe ETSource::Parser do
 - unit = %
 - deprecated_key = foo
 - foo = bar
+- baz =
 
 SUM(
   1,
@@ -24,8 +25,15 @@ TEXT
       query:           "SUM(\n  1,\n  2\n)",
       unit:            "%",
       deprecated_key:  "foo",
-      foo:             "bar"
+      foo:             "bar",
+      baz:             ""
     }
+  end
+
+  describe "initialize" do
+    it "should raise an error when nothing is provided" do
+      expect { ETSource::Parser.new("") }.to raise_error
+    end
   end
 
   describe "to_hash" do
@@ -40,6 +48,7 @@ TEXT
       p.to_hash[:unit].should == "%"
       p.to_hash[:deprecated_key].should == "foo"
       p.to_hash[:foo].should == "bar"
+      p.to_hash[:baz].should == ""
     end
 
     it "should parse query" do

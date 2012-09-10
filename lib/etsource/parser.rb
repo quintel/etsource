@@ -27,8 +27,10 @@ module ETSource
     def initialize(input)
       if input.is_a?(Hash)
         @hash = input
-      else
+      elsif input.is_a?(String) && input.length > 0
         @text = input
+      else
+        raise ArgumentError
       end
     end
 
@@ -54,10 +56,8 @@ module ETSource
         end
 
         variables = variable_lines.inject({}) do |hash, line|
-          begin
-            key,value = line.match(/-\s*([\w_]+)\s+=\s+(.+)\n/).captures
-            hash.merge key.strip.to_sym => value.strip
-          end
+          key,value = line.match(/-\s*([\w_]+)\s+=\s*(.*)\n/).captures
+          hash.merge key.strip.to_sym => value.strip
         end
 
         # remove trailing #-symbols
@@ -76,7 +76,11 @@ module ETSource
 
         hash.each do |key, value|
           unless key == :query or key == :description
-            out += "#{VARIABLE_PREFIX} #{key} = #{value}\n"
+            if value == "" #since we dont like extra spaces :)
+              out += "#{VARIABLE_PREFIX} #{key} =\n"
+            else
+              out += "#{VARIABLE_PREFIX} #{key} = #{value}\n"
+            end
           end
         end
 
