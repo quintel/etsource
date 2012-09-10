@@ -20,6 +20,9 @@ module ETSource
 
   class Parser
 
+    Encoding.default_external = Encoding::UTF_8
+    Encoding.default_internal = Encoding::UTF_8
+
     VARIABLE_PREFIX = "-"
 
     attr_reader :hash, :text
@@ -36,7 +39,7 @@ module ETSource
 
     # @return [Hash{Symbol=>String}]
     #   Returns a Hash containing the attributes
-    #   :query, :comments and the attributes provided
+    #   :query, :description and the attributes provided
     #   in a the text (e.g. :unit)
     #
     def to_hash
@@ -65,6 +68,8 @@ module ETSource
         query = query_lines.join.strip
 
         @hash = { description: description, query: query }.merge(variables)
+        puts @hash
+        @hash
       end
 
     end
