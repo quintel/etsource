@@ -3551,7 +3551,7 @@ industry_aluminium_production:
   use: energetic
   energy_balance_group: useful consumption
   links:
-  - industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_current
+  - industry_aluminium_production-(not_defined) -- f --> (not_defined)-industry_aluminium_electrolysis_current
   - industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_bat
   - industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_smeltoven
   - industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_carbothermalreduction
@@ -3808,6 +3808,51 @@ industry_locally_available_steam_hot_water:
   slots:
   - industry_locally_available_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-industry_locally_available_steam_hot_water
+industry_other_metals_burner:
+  sector: industry
+  use: energetic
+  energy_balance_group: technologies
+  links:
+  - industry_other_metals_burner-(coal) -- s --> (coal)-industry_final_demand_coal
+  - industry_other_metals_burner-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil
+  - industry_other_metals_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  slots:
+  - industry_other_metals_burner-(coal)
+  - industry_other_metals_burner-(crude_oil)
+  - industry_other_metals_burner-(network_gas)
+  - (useable_heat)-industry_other_metals_burner
+  - (loss)-industry_other_metals_burner
+industry_other_metals_process_electricity:
+  sector: industry
+  use: energetic
+  energy_balance_group: preferred technologies
+  links:
+  - industry_other_metals_process_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+  slots:
+  - industry_other_metals_process_electricity-(electricity)
+  - (not_defined)-industry_other_metals_process_electricity
+  - (loss)-industry_other_metals_process_electricity
+industry_other_metals_process_heat:
+  sector: industry
+  use: energetic
+  energy_balance_group: preferred technologies
+  links:
+  - industry_other_metals_process_heat-(useable_heat) -- f --> (useable_heat)-industry_other_metals_burner
+  - industry_other_metals_process_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water
+  slots:
+  - industry_other_metals_process_heat-(useable_heat)
+  - (not_defined)-industry_other_metals_process_heat
+  - (loss)-industry_other_metals_process_heat
+industry_other_metals_production:
+  sector: industry
+  use: energetic
+  energy_balance_group: useful consumption
+  links:
+  - industry_other_metals_production-(not_defined) -- s --> (not_defined)-industry_other_metals_process_electricity
+  - industry_other_metals_production-(not_defined) -- s --> (not_defined)-industry_other_metals_process_heat
+  slots:
+  - industry_other_metals_production-(not_defined)
+  - (not_defined)-industry_other_metals_production
 industry_unused_local_production_steam_hot_water:
   sector: industry
   use: energetic
