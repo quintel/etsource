@@ -141,8 +141,11 @@ module ETE
         energy_balance_group_id = row[:energy_balance_group_id].to_i
         energy_balance_group    = energy_balance_groups[energy_balance_group_id]
 
-        string = "#{key};#{sector};#{use};#{energy_balance_group}"
-        out[key] = string
+        out[key] = {
+          :sector => sector,
+          :use => use,
+          :energy_balance_group => energy_balance_group
+        }
       end
       out
     end

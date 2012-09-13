@@ -99,28 +99,29 @@ module ETE
       FileUtils.mkdir_p "#{@etsource_dir}/topology"
       dest_file = "#{@etsource_dir}/topology/export.graph"
       puts "  Saving topology to #{dest_file}"
-      lines = []
-      raw.sort_by{|key, values| key}.each do |key, values|
-        lines << values[:info]
-        values[:links_without_share].each do |link|
-          lines << link
-        end if values[:links_without_share].is_a?(Array)
-        values[:slots_without_conversion].each do |slot|
-          lines << slot
-        end if values[:slots_without_conversion].is_a?(Array)
-        lines << []
+
+      out = {}
+
+      raw.sort_by{|key, v| key}.each do |key, v|
+        c = {
+          'sector' => v[:sector],
+          'use' => v[:info][:use],
+          'energy_balance_group' => v[:info][:energy_balance_group],
+          'links' => v[:links_without_share],
+          'slots' => v[:slots_without_conversion]
+        }
+        out[key.to_s] = c
       end
-      File.open(dest_file, 'w') {|f| f.write(lines.join("\n"))}
+      File.open(dest_file, 'w') {|f| f.write(out.to_yaml)}
     end
 
     # writes to ETSOURCE/topology/export.graph
     def export_converter_groups(area_export)
       converter_exporter = ConverterExporter.new(area_export)
       raw = converter_exporter.export
-      FileUtils.mkdir_p "#{@etsource_dir}/topology"
-      dest_file = "#{@etsource_dir}/topology/groups.yml"
-      puts "  Saving groups to #{dest_file}"
-      lines = []
+      dest_folder = "#{@etsource_dir}/topology/groups"
+      FileUtils.mkdir_p dest_folder
+      puts "  Saving groups to #{dest_folder}"
 
       # create hash {group_1 => [:converter_1, :converter_2], group_2 => [...]}
       groups = Hash.new { |hash, key| hash[key] = [] }
@@ -131,13 +132,10 @@ module ETE
         end
       end
 
-      # order group keys and converters alphabetically
-      sorted_groups = Hash.new { |hash, key| hash[key] = [] }
-      groups.keys.sort.each do |key|
-        sorted_groups[key] = groups[key].sort
+      groups.keys.each do |key|
+        dest_file = "#{dest_folder}/#{key}.yml"
+        File.open(dest_file, 'w') {|f| f.write(YAML::dump(groups[key].sort)) }
       end
-
-      File.open(dest_file, 'w') {|f| f.write(YAML::dump(sorted_groups)) }
     end
 
     # writes to ETSOURCE/datasets/_default/graph/export.yml
