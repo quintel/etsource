@@ -40,6 +40,10 @@ class ActiveDocument
     destroy_file
   end
 
+  def to_s
+    "<#{self.class}: #{key}>"
+  end
+
   #######
   private
   #######
