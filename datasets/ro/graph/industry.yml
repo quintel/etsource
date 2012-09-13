@@ -69,7 +69,7 @@ industry_aluminium_electrolysis_current-(useable_heat) -- s --> (useable_heat)-i
   :preset_demand: 0.0
 industry_aluminium_production-(not_defined): {conversion: 1.0}
 (not_defined)-industry_aluminium_production: {conversion: 1.0}
-industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_current: {share: 1.0}
+industry_aluminium_production-(not_defined) -- f --> (not_defined)-industry_aluminium_electrolysis_current: {share: 1.0}
 industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_electrolysis_bat: {share: 0.0}
 industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_smeltoven: {share: 0.0}
 industry_aluminium_production-(not_defined) -- s --> (not_defined)-industry_aluminium_carbothermalreduction: {share: 0.0}
@@ -510,6 +510,71 @@ industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot
 industry_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water: {}
 industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_ultra_supercritical_coal: {}
 
+:industry_other_metals_burner:
+  :availability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.0
+  :decommissioning_costs_per_mw_input: 0.0
+  :demand_expected_value: 0.0
+  :economic_lifetime: 15.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 2190.0
+  :households_supplied_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 900.0
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :purchase_price_per_mw_input: 54000.0
+  :residual_value_per_mw_input: 0.0
+  :technical_lifetime: 15.0
+  :typical_effective_input_capacity: 111.111111111111
+  :typical_nominal_input_capacity: 111.111111111111
+  :variability: 0.0
+  :wacc: 0.1
+  :electricity_output_capacity: 0.0
+  :heat_output_capacity: 100.0
+industry_other_metals_burner-(coal): {conversion: 0.0}
+industry_other_metals_burner-(crude_oil): {conversion: 0.0}
+industry_other_metals_burner-(network_gas): {conversion: 1.0}
+(useable_heat)-industry_other_metals_burner: {conversion: 0.9}
+(loss)-industry_other_metals_burner: {conversion: 0.1}
+industry_other_metals_burner-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
+industry_other_metals_burner-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil: {share: 1.0}
+industry_other_metals_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+
+:industry_other_metals_process_electricity:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_other_metals_process_electricity-(electricity): {conversion: 1.0}
+(not_defined)-industry_other_metals_process_electricity: {conversion: 0.5}
+(loss)-industry_other_metals_process_electricity: {conversion: 0.5}
+industry_other_metals_process_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+
+:industry_other_metals_process_heat:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_other_metals_process_heat-(useable_heat): {conversion: 1.0}
+(not_defined)-industry_other_metals_process_heat: {conversion: 0.5}
+(loss)-industry_other_metals_process_heat: {conversion: 0.5}
+industry_other_metals_process_heat-(useable_heat) -- f --> (useable_heat)-industry_other_metals_burner: {share: 1.0}
+industry_other_metals_process_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water: {share: 0.0}
+
+:industry_other_metals_production:
+  :co2_free: 0.0
+  :preset_demand: 0.0
+industry_other_metals_production-(not_defined): {conversion: 1.0}
+(not_defined)-industry_other_metals_production: {conversion: 1.0}
+industry_other_metals_production-(not_defined) -- s --> (not_defined)-industry_other_metals_process_electricity: {share: 0.5}
+industry_other_metals_production-(not_defined) -- s --> (not_defined)-industry_other_metals_process_heat: {share: 0.5}
+
 :industry_unused_local_production_steam_hot_water:
   :co2_free: 0.0
 industry_unused_local_production_steam_hot_water-(steam_hot_water): {conversion: 1.0}
@@ -518,7 +583,6 @@ industry_unused_local_production_steam_hot_water-(steam_hot_water) -- i --> (ste
 
 :industry_useful_demand_coal_non_energetic:
   :co2_free: 1.0
-  :demand_expected_value: 20000000.0
   :preset_demand: 20000000.0
 industry_useful_demand_coal_non_energetic-(coal): {conversion: 1.0}
 (coal)-industry_useful_demand_coal_non_energetic: {conversion: 1.0}
