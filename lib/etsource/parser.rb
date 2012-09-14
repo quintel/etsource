@@ -29,7 +29,7 @@ module ETSource
 
     def initialize(input)
       raise ArgumentError unless input && input.length > 0
-      if input[0..2] == "---" #then it is a file containing yaml
+      if input[0..2] == "---" #file containing yaml
         @hash = YAML.load(input).to_hash
       elsif input.is_a?(Hash)
         @hash = input
