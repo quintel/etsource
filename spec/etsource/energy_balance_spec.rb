@@ -2,17 +2,24 @@ require 'spec_helper'
 
 describe ETSource::EnergyBalance do
 
-  let(:energy_balance) { ETSource::EnergyBalance.new('nl') }
+  let(:energy_balance) { ETSource::EnergyBalance.new(:nl) }
 
   describe "#get" do
 
     it "should return correct value for NL when asked for a specific attribute" do
-      energy_balance.get("Residential","coal_and_peat").should == 5
+      energy_balance.stub(:get_ktoe).and_return 6
+      energy_balance.get("Residential","coal_and_peat").should == 0.251208
+    end
+
+    it "should work with other units" do
+      energy_balance.unit = :twh
+      energy_balance.stub(:get_ktoe).and_return 6
+      energy_balance.get("Residential","coal_and_peat").should == 0.06978
     end
 
     it "should be flexible on case used" do
-      energy_balance.get("residential","coal_and_peat").should == 5
-      energy_balance.get("Residential","Coal_and_peat").should == 5
+      energy_balance.get("residential","coal_and_peat").should_not be_nil
+      energy_balance.get("Residential","Coal_and_peat").should_not be_nil
     end
 
     it "should find long names with spaces and astrixes" do
@@ -28,7 +35,7 @@ describe ETSource::EnergyBalance do
     end
 
     it "should not complain about trailing spaces" do
-      energy_balance.get("residential ", " coal_and_peat").should == 5
+      energy_balance.get("residential ", " coal_and_peat").should_not be_nil
     end
 
     it "should raise an error when use is not known" do
@@ -44,7 +51,7 @@ describe ETSource::EnergyBalance do
   describe "#query" do
 
     it "should return a value when asked for a specific number" do
-      energy_balance.query("residential,coal_and_peat").should == 5
+      energy_balance.query("residential,coal_and_peat").should_not be_nil
     end
 
   end
