@@ -72,16 +72,17 @@ module ETE
     # writes to ETSOURCE/datasets/<area>/time_curves.yml
     def export_time_curves(export, destination_directory)
       csv = export.csv_for(:time_curves)
+      converters_hash = ConverterExporter.new(export).converters
       f = CSV.new(csv)
       out = {}
       f.parse do |row|
-        converter_id = row[:converter_id].to_i
-        value_type   = row[:value_type]
-        year         = row[:year].to_i
-        value        = row[:value].to_f
-        out[converter_id] ||= {}
-        out[converter_id][value_type] ||= {}
-        out[converter_id][value_type][year] = value
+        key        = converters_hash[row[:converter_id].to_i]
+        value_type = row[:value_type]
+        year       = row[:year].to_i
+        value      = row[:value].to_f
+        out[key] ||= {}
+        out[key][value_type] ||= {}
+        out[key][value_type][year] = value
       end
       dest_file = "#{destination_directory}/time_curves.yml"
       puts "  Saving timecurves to #{dest_file}"
