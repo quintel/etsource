@@ -55,7 +55,9 @@ module ETE
       :typical_effective_input_capacity,
       :typical_nominal_input_capacity,
       :variability,
-      :wacc
+      :wacc,
+      :electricity_output_capacity,
+      :heat_output_capacity
     ]
 
     def initialize(excel_export, opts = {})
