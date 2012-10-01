@@ -3658,6 +3658,14 @@ industry_final_demand_coal:
   slots:
   - industry_final_demand_coal-(coal)
   - (coal)-industry_final_demand_coal
+industry_final_demand_coal_gas:
+  sector: industry
+  use: energetic
+  energy_balance_group: final consumption
+  links: 
+  slots:
+  - industry_final_demand_coal_gas-(coal_gas)
+  - (coal_gas)-industry_final_demand_coal_gas
 industry_final_demand_coal_non_energetic:
   sector: industry
   use: non_energetic
@@ -3853,6 +3861,88 @@ industry_other_metals_production:
   slots:
   - industry_other_metals_production-(not_defined)
   - (not_defined)-industry_other_metals_production
+industry_steel_blastfurnace_bat_consumption:
+  sector: industry
+  use: energetic
+  energy_balance_group: preferred technologies
+  links:
+  - industry_steel_blastfurnace_bat_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+  - industry_steel_blastfurnace_bat_consumption-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner
+  slots:
+  - industry_steel_blastfurnace_bat_consumption-(electricity)
+  - industry_steel_blastfurnace_bat_consumption-(useable_heat)
+  - (not_defined)-industry_steel_blastfurnace_bat_consumption
+  - (loss)-industry_steel_blastfurnace_bat_consumption
+industry_steel_blastfurnace_burner:
+  sector: industry
+  use: energetic
+  energy_balance_group: technologies
+  links:
+  - industry_steel_blastfurnace_burner-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas
+  - industry_steel_blastfurnace_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  slots:
+  - industry_steel_blastfurnace_burner-(coal_gas)
+  - industry_steel_blastfurnace_burner-(network_gas)
+  - (useable_heat)-industry_steel_blastfurnace_burner
+  - (loss)-industry_steel_blastfurnace_burner
+industry_steel_blastfurnace_current_consumption:
+  sector: industry
+  use: energetic
+  energy_balance_group: preferred technologies
+  links:
+  - industry_steel_blastfurnace_current_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+  - industry_steel_blastfurnace_current_consumption-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner
+  slots:
+  - industry_steel_blastfurnace_current_consumption-(electricity)
+  - industry_steel_blastfurnace_current_consumption-(useable_heat)
+  - (not_defined)-industry_steel_blastfurnace_current_consumption
+  - (loss)-industry_steel_blastfurnace_current_consumption
+industry_steel_electricfurnace:
+  sector: industry
+  use: energetic
+  energy_balance_group: preferred technologies
+  links:
+  - industry_steel_electricfurnace-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+  - industry_steel_electricfurnace-(useable_heat) -- s --> (useable_heat)-industry_steel_electricfurnace_burner
+  slots:
+  - industry_steel_electricfurnace-(electricity)
+  - industry_steel_electricfurnace-(useable_heat)
+  - (not_defined)-industry_steel_electricfurnace
+  - (loss)-industry_steel_electricfurnace
+industry_steel_electricfurnace_burner:
+  sector: industry
+  use: energetic
+  energy_balance_group: technologies
+  links:
+  - industry_steel_electricfurnace_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  slots:
+  - industry_steel_electricfurnace_burner-(network_gas)
+  - (useable_heat)-industry_steel_electricfurnace_burner
+  - (loss)-industry_steel_electricfurnace_burner
+industry_steel_hisarna_consumption:
+  sector: industry
+  use: energetic
+  energy_balance_group: preferred technologies
+  links:
+  - industry_steel_hisarna_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity
+  - industry_steel_hisarna_consumption-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water
+  slots:
+  - industry_steel_hisarna_consumption-(electricity)
+  - industry_steel_hisarna_consumption-(useable_heat)
+  - (not_defined)-industry_steel_hisarna_consumption
+  - (loss)-industry_steel_hisarna_consumption
+industry_steel_production:
+  sector: industry
+  use: energetic
+  energy_balance_group: useful consumption
+  links:
+  - industry_steel_production-(not_defined) -- f --> (not_defined)-industry_steel_blastfurnace_current_consumption
+  - industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_blastfurnace_bat_consumption
+  - industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_hisarna_consumption
+  - industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_electricfurnace
+  slots:
+  - industry_steel_production-(not_defined)
+  - (not_defined)-industry_steel_production
 industry_unused_local_production_steam_hot_water:
   sector: industry
   use: energetic
