@@ -362,6 +362,12 @@ industry_final_demand_coal-(coal): {conversion: 1.0}
 (coal)-industry_final_demand_coal: {conversion: 1.0}
 industry_final_demand_coal-(coal) -- s --> (coal)-energy_production_cokes: {share: 1.0}
 
+:industry_final_demand_coal_gas:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_final_demand_coal_gas-(coal_gas): {conversion: 1.0}
+(coal_gas)-industry_final_demand_coal_gas: {conversion: 1.0}
+
 :industry_final_demand_coal_non_energetic:
   :co2_free: 1.0
   :demand_expected_value: 746783502.550236
@@ -574,6 +580,130 @@ industry_other_metals_production-(not_defined): {conversion: 1.0}
 (not_defined)-industry_other_metals_production: {conversion: 1.0}
 industry_other_metals_production-(not_defined) -- s --> (not_defined)-industry_other_metals_process_electricity: {share: 0.5}
 industry_other_metals_production-(not_defined) -- s --> (not_defined)-industry_other_metals_process_heat: {share: 0.5}
+
+:industry_steel_blastfurnace_bat_consumption:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_steel_blastfurnace_bat_consumption-(electricity): {conversion: 0.21052251431382}
+industry_steel_blastfurnace_bat_consumption-(useable_heat): {conversion: 0.78947748568618}
+(not_defined)-industry_steel_blastfurnace_bat_consumption: {conversion: 0.217578040136267}
+(loss)-industry_steel_blastfurnace_bat_consumption: {conversion: 0.782421959863733}
+industry_steel_blastfurnace_bat_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_blastfurnace_bat_consumption-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner: {share: 1.0}
+
+:industry_steel_blastfurnace_burner:
+  :availability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.0
+  :decommissioning_costs_per_mw_input: 0.0
+  :demand_expected_value: 0.0
+  :economic_lifetime: 15.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 2190.0
+  :households_supplied_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 900.0
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :purchase_price_per_mw_input: 54000.0
+  :residual_value_per_mw_input: 0.0
+  :technical_lifetime: 15.0
+  :typical_effective_input_capacity: 111.111111111111
+  :typical_nominal_input_capacity: 111.111111111111
+  :variability: 0.0
+  :wacc: 0.1
+  :electricity_output_capacity: 0.0
+  :heat_output_capacity: 100.0
+industry_steel_blastfurnace_burner-(coal_gas): {conversion: 0.665}
+industry_steel_blastfurnace_burner-(network_gas): {conversion: 0.335}
+(useable_heat)-industry_steel_blastfurnace_burner: {conversion: 0.9}
+(loss)-industry_steel_blastfurnace_burner: {conversion: 0.1}
+industry_steel_blastfurnace_burner-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas: {share: 1.0}
+industry_steel_blastfurnace_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+
+:industry_steel_blastfurnace_current_consumption:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_steel_blastfurnace_current_consumption-(electricity): {conversion: 0.21052251431382}
+industry_steel_blastfurnace_current_consumption-(useable_heat): {conversion: 0.78947748568618}
+(not_defined)-industry_steel_blastfurnace_current_consumption: {conversion: 0.19582023612264}
+(loss)-industry_steel_blastfurnace_current_consumption: {conversion: 0.80417976387736}
+industry_steel_blastfurnace_current_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_blastfurnace_current_consumption-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner: {share: 1.0}
+
+:industry_steel_electricfurnace:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_steel_electricfurnace-(electricity): {conversion: 0.502749410840534}
+industry_steel_electricfurnace-(useable_heat): {conversion: 0.497250589159466}
+(not_defined)-industry_steel_electricfurnace: {conversion: 0.111722091297896}
+(loss)-industry_steel_electricfurnace: {conversion: 0.888277908702104}
+industry_steel_electricfurnace-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_electricfurnace-(useable_heat) -- s --> (useable_heat)-industry_steel_electricfurnace_burner: {share: 1.0}
+
+:industry_steel_electricfurnace_burner:
+  :availability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :ccs_investment_per_mw_input: 0.0
+  :ccs_operation_and_maintenance_cost_per_full_load_hour: 0.0
+  :co2_free: 0.0
+  :construction_time: 0.0
+  :decommissioning_costs_per_mw_input: 0.0
+  :demand_expected_value: 0.0
+  :economic_lifetime: 15.0
+  :electrical_efficiency_when_using_coal: 0.0
+  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 2190.0
+  :households_supplied_per_unit: 0.0
+  :installing_costs_per_mw_input: 0.0
+  :land_use_per_unit: 0.0
+  :operation_and_maintenance_cost_fixed_per_mw_input: 900.0
+  :operation_and_maintenance_cost_variable_per_full_load_hour: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.0
+  :part_load_operating_point: 0.0
+  :purchase_price_per_mw_input: 54000.0
+  :residual_value_per_mw_input: 0.0
+  :technical_lifetime: 15.0
+  :typical_effective_input_capacity: 111.111111111111
+  :typical_nominal_input_capacity: 111.111111111111
+  :variability: 0.0
+  :wacc: 0.1
+  :electricity_output_capacity: 0.0
+  :heat_output_capacity: 100.0
+industry_steel_electricfurnace_burner-(network_gas): {conversion: 1.0}
+(useable_heat)-industry_steel_electricfurnace_burner: {conversion: 0.9}
+(loss)-industry_steel_electricfurnace_burner: {conversion: 0.1}
+industry_steel_electricfurnace_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+
+:industry_steel_hisarna_consumption:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+industry_steel_hisarna_consumption-(electricity): {conversion: 0.0846385682480092}
+industry_steel_hisarna_consumption-(useable_heat): {conversion: 0.915361431751991}
+(not_defined)-industry_steel_hisarna_consumption: {conversion: 0.0984095719727931}
+(loss)-industry_steel_hisarna_consumption: {conversion: 0.901590428027207}
+industry_steel_hisarna_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_hisarna_consumption-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water: {share: 1.0}
+
+:industry_steel_production:
+  :co2_free: 0.0
+  :preset_demand: 0.0
+industry_steel_production-(not_defined): {conversion: 1.0}
+(not_defined)-industry_steel_production: {conversion: 1.0}
+industry_steel_production-(not_defined) -- f --> (not_defined)-industry_steel_blastfurnace_current_consumption: {share: 0.981}
+industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_blastfurnace_bat_consumption: {share: 0.0}
+industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_hisarna_consumption: {share: 0.0}
+industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_electricfurnace: {share: 0.019}
 
 :industry_unused_local_production_steam_hot_water:
   :co2_free: 0.0
