@@ -191,7 +191,7 @@ module ETE
         if row[:input]
           if include_conversion
             s = "#{converter}-(#{carrier}): {conversion: #{row[:input].to_f}"
-            s += " reset_to_zero: true" if row[:reset_to_zero].to_i == 1
+            s += ", reset_to_zero: true" if row[:reset_to_zero].to_i == 1
             s += "}"
             out[converter] << s
           else
