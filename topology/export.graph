@@ -1028,6 +1028,25 @@ energy_distribution_coal:
   - (loss)-energy_distribution_coal
   - energy_distribution_coal-(coal)
   - (coal)-energy_distribution_coal
+energy_distribution_coal_gas:
+  sector: energy
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_current_transformation
+  - energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_bat_transformation
+  - energy_distribution_coal_gas-(coal_gas) -- f --> (coal_gas)-energy_import_coal_gas
+  slots:
+  - energy_distribution_coal_gas-(coal_gas)
+  - (coal_gas)-energy_distribution_coal_gas
+energy_distribution_cokes:
+  sector: energy
+  use: energetic
+  energy_balance_group: distribution
+  links: 
+  slots:
+  - (cokes)-energy_distribution_cokes
+  - energy_distribution_cokes-(coal)
 energy_distribution_corn:
   sector: energy
   use: undefined
@@ -1255,6 +1274,15 @@ energy_export_coal:
   slots:
   - energy_export_coal-(coal)
   - (coal)-energy_export_coal
+energy_export_coal_gas:
+  sector: energy
+  use: energetic
+  energy_balance_group: export
+  links:
+  - energy_export_coal_gas-(coal_gas) -- i --> (coal_gas)-energy_distribution_coal_gas
+  slots:
+  - energy_export_coal_gas-(coal_gas)
+  - (coal_gas)-energy_export_coal_gas
 energy_export_crude_oil:
   sector: energy
   use: undefined
@@ -1628,6 +1656,14 @@ energy_import_coal:
   slots:
   - energy_import_coal-(coal)
   - (coal)-energy_import_coal
+energy_import_coal_gas:
+  sector: energy
+  use: energetic
+  energy_balance_group: import
+  links: 
+  slots:
+  - energy_import_coal_gas-(coal_gas)
+  - (coal_gas)-energy_import_coal_gas
 energy_import_crude_oil:
   sector: energy
   use: undefined
@@ -2332,6 +2368,45 @@ energy_production_wood_pellets:
   slots:
   - (wood_pellets)-energy_production_wood_pellets
   - energy_production_wood_pellets-(wood)
+energy_steel_blastfurnace_bat_transformation:
+  sector: energy
+  use: energetic
+  energy_balance_group: coal conversion
+  links:
+  - energy_steel_blastfurnace_bat_transformation-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_steel_blastfurnace_bat_transformation-(cokes) -- s --> (cokes)-energy_distribution_cokes
+  slots:
+  - energy_steel_blastfurnace_bat_transformation-(coal)
+  - energy_steel_blastfurnace_bat_transformation-(cokes)
+  - (coal_gas)-energy_steel_blastfurnace_bat_transformation
+  - (loss)-energy_steel_blastfurnace_bat_transformation
+  - (coupling_carrier)-energy_steel_blastfurnace_bat_transformation
+energy_steel_blastfurnace_current_transformation:
+  sector: energy
+  use: energetic
+  energy_balance_group: coal conversion
+  links:
+  - energy_steel_blastfurnace_current_transformation-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_steel_blastfurnace_current_transformation-(cokes) -- s --> (cokes)-energy_distribution_cokes
+  slots:
+  - energy_steel_blastfurnace_current_transformation-(coal)
+  - energy_steel_blastfurnace_current_transformation-(cokes)
+  - (coal_gas)-energy_steel_blastfurnace_current_transformation
+  - (loss)-energy_steel_blastfurnace_current_transformation
+  - (coupling_carrier)-energy_steel_blastfurnace_current_transformation
+energy_steel_hisarna_transformation:
+  sector: energy
+  use: energetic
+  energy_balance_group: coal conversion
+  links:
+  - energy_steel_hisarna_transformation-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_steel_hisarna_transformation-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets
+  slots:
+  - energy_steel_hisarna_transformation-(coal)
+  - energy_steel_hisarna_transformation-(torrified_biomass_pellets)
+  - (useable_heat)-energy_steel_hisarna_transformation
+  - (loss)-energy_steel_hisarna_transformation
+  - (coupling_carrier)-energy_steel_hisarna_transformation
 energy_torrefaction_wood:
   sector: energy
   use: undefined
@@ -3662,7 +3737,8 @@ industry_final_demand_coal_gas:
   sector: industry
   use: energetic
   energy_balance_group: final consumption
-  links: 
+  links:
+  - industry_final_demand_coal_gas-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas
   slots:
   - industry_final_demand_coal_gas-(coal_gas)
   - (coal_gas)-industry_final_demand_coal_gas
@@ -3813,6 +3889,7 @@ industry_locally_available_steam_hot_water:
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_supercritical_wood_pellets
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_ultra_supercritical_coal
+  - industry_locally_available_steam_hot_water-(useable_heat) -- d --> (useable_heat)-energy_steel_hisarna_transformation
   slots:
   - industry_locally_available_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-industry_locally_available_steam_hot_water
@@ -3868,9 +3945,11 @@ industry_steel_blastfurnace_bat_consumption:
   links:
   - industry_steel_blastfurnace_bat_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity
   - industry_steel_blastfurnace_bat_consumption-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner
+  - industry_steel_blastfurnace_bat_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_steel_blastfurnace_bat_transformation
   slots:
   - industry_steel_blastfurnace_bat_consumption-(electricity)
   - industry_steel_blastfurnace_bat_consumption-(useable_heat)
+  - industry_steel_blastfurnace_bat_consumption-(coupling_carrier)
   - (not_defined)-industry_steel_blastfurnace_bat_consumption
   - (loss)-industry_steel_blastfurnace_bat_consumption
 industry_steel_blastfurnace_burner:
@@ -3892,9 +3971,11 @@ industry_steel_blastfurnace_current_consumption:
   links:
   - industry_steel_blastfurnace_current_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity
   - industry_steel_blastfurnace_current_consumption-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner
+  - industry_steel_blastfurnace_current_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_steel_blastfurnace_current_transformation
   slots:
   - industry_steel_blastfurnace_current_consumption-(electricity)
   - industry_steel_blastfurnace_current_consumption-(useable_heat)
+  - industry_steel_blastfurnace_current_consumption-(coupling_carrier)
   - (not_defined)-industry_steel_blastfurnace_current_consumption
   - (loss)-industry_steel_blastfurnace_current_consumption
 industry_steel_electricfurnace:
@@ -3926,9 +4007,11 @@ industry_steel_hisarna_consumption:
   links:
   - industry_steel_hisarna_consumption-(electricity) -- s --> (electricity)-industry_final_demand_electricity
   - industry_steel_hisarna_consumption-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water
+  - industry_steel_hisarna_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_steel_hisarna_transformation
   slots:
   - industry_steel_hisarna_consumption-(electricity)
   - industry_steel_hisarna_consumption-(useable_heat)
+  - industry_steel_hisarna_consumption-(coupling_carrier)
   - (not_defined)-industry_steel_hisarna_consumption
   - (loss)-industry_steel_hisarna_consumption
 industry_steel_production:
