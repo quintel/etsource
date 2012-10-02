@@ -259,6 +259,19 @@ energy_distribution_coal-(coal): {conversion: 1.0}
 energy_distribution_coal-(coal) -- c --> (coal)-energy_extraction_coal: {}
 energy_distribution_coal-(coal) -- f --> (coal)-energy_import_coal: {}
 
+:energy_distribution_coal_gas:
+  :co2_free: 0.0
+energy_distribution_coal_gas-(coal_gas): {conversion: 1.0}
+(coal_gas)-energy_distribution_coal_gas: {conversion: 1.0}
+energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_current_transformation: {share: 1.0}
+energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_bat_transformation: {share: 1.0}
+energy_distribution_coal_gas-(coal_gas) -- f --> (coal_gas)-energy_import_coal_gas: {share: 1.0}
+
+:energy_distribution_cokes:
+  :co2_free: 0.0
+(cokes)-energy_distribution_cokes: {conversion: 1.0}
+energy_distribution_cokes-(coal): {conversion: 1.0}
+
 :energy_distribution_corn:
   :co2_free: 0.0
 energy_distribution_corn-(corn): {conversion: 1.0}
@@ -418,6 +431,12 @@ energy_export_biodiesel-(biodiesel) -- i --> (biodiesel)-energy_distribution_bio
 energy_export_coal-(coal): {conversion: 1.0}
 (coal)-energy_export_coal: {conversion: 1.0}
 energy_export_coal-(coal) -- i --> (coal)-energy_distribution_coal: {}
+
+:energy_export_coal_gas:
+  :co2_free: 0.0
+energy_export_coal_gas-(coal_gas): {conversion: 1.0}
+(coal_gas)-energy_export_coal_gas: {conversion: 1.0}
+energy_export_coal_gas-(coal_gas) -- i --> (coal_gas)-energy_distribution_coal_gas: {share: 1.0}
 
 :energy_export_crude_oil:
   :co2_free: 0.0
@@ -939,6 +958,11 @@ energy_import_biogenic_waste-(biogenic_waste): {conversion: 1.0}
   :co2_free: 0.0
 energy_import_coal-(coal): {conversion: 1.0}
 (coal)-energy_import_coal: {conversion: 1.0}
+
+:energy_import_coal_gas:
+  :co2_free: 0.0
+energy_import_coal_gas-(coal_gas): {conversion: 1.0}
+(coal_gas)-energy_import_coal_gas: {conversion: 1.0}
 
 :energy_import_crude_oil:
   :co2_free: 0.0
@@ -2510,6 +2534,39 @@ energy_production_wood-(wood): {conversion: 1.0}
 (wood_pellets)-energy_production_wood_pellets: {conversion: 1.0}
 energy_production_wood_pellets-(wood): {conversion: 1.0}
 energy_production_wood_pellets-(wood) -- s --> (wood)-energy_distribution_wood: {share: 1.0}
+
+:energy_steel_blastfurnace_bat_transformation:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+energy_steel_blastfurnace_bat_transformation-(coal): {conversion: 0.339208661186715}
+energy_steel_blastfurnace_bat_transformation-(cokes): {conversion: 0.660791338813285}
+(coal_gas)-energy_steel_blastfurnace_bat_transformation: {conversion: 0.417029269485485}
+(loss)-energy_steel_blastfurnace_bat_transformation: {conversion: 0.582970730514515}
+(coupling_carrier)-energy_steel_blastfurnace_bat_transformation: {conversion: 1.0}
+energy_steel_blastfurnace_bat_transformation-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_steel_blastfurnace_bat_transformation-(cokes) -- s --> (cokes)-energy_distribution_cokes: {share: 1.0}
+
+:energy_steel_blastfurnace_current_transformation:
+  :co2_free: 0.0
+  :demand_expected_value: 85984418251.5932
+energy_steel_blastfurnace_current_transformation-(coal): {conversion: 0.339208661186715}
+energy_steel_blastfurnace_current_transformation-(cokes): {conversion: 0.660791338813285}
+(coal_gas)-energy_steel_blastfurnace_current_transformation: {conversion: 0.417029269485485}
+(loss)-energy_steel_blastfurnace_current_transformation: {conversion: 0.582970730514515}
+(coupling_carrier)-energy_steel_blastfurnace_current_transformation: {conversion: 1.0}
+energy_steel_blastfurnace_current_transformation-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_steel_blastfurnace_current_transformation-(cokes) -- s --> (cokes)-energy_distribution_cokes: {share: 1.0}
+
+:energy_steel_hisarna_transformation:
+  :co2_free: 0.0
+  :demand_expected_value: 0.0
+energy_steel_hisarna_transformation-(coal): {conversion: 1.0}
+energy_steel_hisarna_transformation-(torrified_biomass_pellets): {conversion: 0.0}
+(useable_heat)-energy_steel_hisarna_transformation: {conversion: 0.95}
+(loss)-energy_steel_hisarna_transformation: {conversion: 0.05}
+(coupling_carrier)-energy_steel_hisarna_transformation: {conversion: 1.0}
+energy_steel_hisarna_transformation-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_steel_hisarna_transformation-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
 :energy_torrefaction_wood:
   :co2_free: 0.0
