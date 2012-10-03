@@ -20,6 +20,7 @@ require_relative 'lib/processor'
 require_relative 'lib/excel_export'
 require_relative 'lib/csv'
 require_relative 'lib/converter_exporter'
+require_relative 'lib/slot_exporter'
 require 'term/ansicolor'
 require 'fileutils'
 include Term::ANSIColor

@@ -36,6 +36,12 @@ module ETE
       :heat_output_capacity
     ]
 
+    EFFICIENCY_ATTRIBUTES = {
+      electricity: ATTRIBUTES.select do |name|
+        name.to_s.match(/^electrical_efficiency_when_using/)
+      end
+    }
+
     def initialize(excel_export, opts = {})
       @excel_export = excel_export
       @etsource_root = opts[:etsource_root] || File.expand_path("#{File.dirname(__FILE__)}/../../../")
@@ -168,32 +174,14 @@ module ETE
     #   - converter-(carrier): {conversion: 1.00[, reset_to_zero: true]} # inputs
     #
     def parse_slots(include_conversion = true)
-      out = {}
-      CSV.new(@excel_export.csv_for(:slots)).parse do |row|
-        converter_id = row[:converter_id].to_i
-        converter    = converters[converter_id]
-        carrier_id   = row[:carrier_id].to_i
-        carrier      = carriers(carrier_id)
-        out[converter] ||= []
+      out = Hash.new { |hash, key| hash[key] = [] }
 
-        if row[:input]
-          if include_conversion
-            s = "#{converter}-(#{carrier}): {conversion: #{row[:input].to_f}"
-            s += ", reset_to_zero: true" if row[:reset_to_zero].to_i == 1
-            s += "}"
-            out[converter] << s
-          else
-            out[converter] << "#{converter}-(#{carrier})"
-          end
-        end
-        if row[:output]
-          if include_conversion
-            out[converter] << "(#{carrier})-#{converter}: {conversion: #{row[:output].to_f}}"
-          else
-            out[converter] << "(#{carrier})-#{converter}"
-          end
+      CSV.new(@excel_export.csv_for(:slots)).parse do |row|
+        SlotExporter.multiple(row, self).each do |slot|
+          out[ slot.converter_key ] << slot.export(! include_conversion)
         end
       end
+
       out
     end
 
@@ -260,8 +248,6 @@ module ETE
       @_converters
     end
 
-    private
-
     def carriers(id)
       unless @_carriers
         @_carriers = {}
@@ -274,6 +260,8 @@ module ETE
       c
     end
 
+    private
+
     # To prevent using bad carrier names let's compare the string we want to use
     # with those defined in datasets/nl/carriers.yml. It would be nicer to use a
     # generic locations such as datasets/_defaults or something similar
@@ -282,6 +270,45 @@ module ETE
       defaults = YAML::load File.read("#{@etsource_root}/datasets/_defaults/carriers/defaults.yml")
       nl_carriers = YAML::load File.read("#{@etsource_root}/datasets/nl/carriers.yml")
       @predefined_carriers = (defaults.merge(nl_carriers[:carriers])).keys
+    end
+
+    # Given attributes for a converter, creates a hash representing the
+    # carrier efficiency data (as a YAML string). Returns YAML 'null' if the
+    # converter has no efficiency data so that ETengine doesn't create
+    # unnecessary empty hashes.
+    #
+    # @param [Hash{Symbol=>Object}] attributes
+    #   Initial converter data.
+    #
+    def carrier_efficiency_hash(attributes)
+      efficiencies = Array.new
+
+      # Each *output* carrier:
+      EFFICIENCY_ATTRIBUTES.each do |carrier, keys|
+        if SlotExporter.carrier_efficient?(carrier, attributes)
+          # Convert the "flat" attributes to a more useful hash.
+          c_efficiency =
+            keys.map do |key|
+              output_carrier = key.to_s.match(/using_(.*)$/)[1].to_sym
+
+              if output_carrier == :coal
+                # Biocoal is not specified in InputExcel, but has the same
+                # efficiency as ordinary coal.
+                ":#{ output_carrier }: #{ attributes[key] }, " \
+                ":torrified_biomass_pellets: #{ attributes[key] }, " \
+                ":lignite: #{ attributes[key] }"
+              else
+                ":#{ output_carrier }: #{ attributes[key] }"
+              end
+            end
+
+          efficiencies.push(":#{ carrier }: {#{ c_efficiency.join(', ') }}")
+        end
+      end
+
+      unless efficiencies.empty?
+        "{#{ efficiencies.join(', ') }}"
+      end
     end
 
     def uses
