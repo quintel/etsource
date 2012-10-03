@@ -211,6 +211,7 @@ energy_cokesoven_consumption-(electricity) -- s --> (electricity)-industry_local
 energy_cokesoven_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_cokesoven_transformation: {share: 1.0}
 
 :energy_cokesoven_transformation:
+  :co2_free: 0.0
   :demand_expected_value: 79817561655.6424
 energy_cokesoven_transformation-(coal): {conversion: 1.0}
 (cokes)-energy_cokesoven_transformation: {conversion: 0.721479206028441}
@@ -293,6 +294,7 @@ energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_cokesoven_tra
 (cokes)-energy_distribution_cokes: {conversion: 1.0}
 energy_distribution_cokes-(coal): {conversion: 1.0}
 energy_distribution_cokes-(cokes) -- d --> (cokes)-energy_cokesoven_transformation: {share: 1.0}
+energy_distribution_cokes-(cokes) -- f --> (cokes)-energy_import_cokes: {share: 1.0}
 
 :energy_distribution_corn:
   :co2_free: 0.0
@@ -459,6 +461,12 @@ energy_export_coal-(coal) -- i --> (coal)-energy_distribution_coal: {}
 energy_export_coal_gas-(coal_gas): {conversion: 1.0}
 (coal_gas)-energy_export_coal_gas: {conversion: 1.0}
 energy_export_coal_gas-(coal_gas) -- i --> (coal_gas)-energy_distribution_coal_gas: {share: 1.0}
+
+:energy_export_cokes:
+  :co2_free: 0.0
+energy_export_cokes-(cokes): {conversion: 1.0}
+(cokes)-energy_export_cokes: {conversion: 1.0}
+energy_export_cokes-(cokes) -- i --> (cokes)-energy_distribution_cokes: {share: 1.0}
 
 :energy_export_crude_oil:
   :co2_free: 0.0
@@ -985,6 +993,11 @@ energy_import_coal-(coal): {conversion: 1.0}
   :co2_free: 0.0
 energy_import_coal_gas-(coal_gas): {conversion: 1.0}
 (coal_gas)-energy_import_coal_gas: {conversion: 1.0}
+
+:energy_import_cokes:
+  :co2_free: 0.0
+energy_import_cokes-(cokes): {conversion: 1.0}
+(cokes)-energy_import_cokes: {conversion: 1.0}
 
 :energy_import_crude_oil:
   :co2_free: 0.0
