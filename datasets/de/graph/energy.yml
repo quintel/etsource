@@ -199,6 +199,26 @@ energy_chp_ultra_supercritical_wood_pellets-(wood_pellets): {conversion: 1.0}
 (electricity)-energy_chp_ultra_supercritical_wood_pellets: {conversion: 0.26}
 energy_chp_ultra_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
+:energy_cokesoven_consumption:
+  :co2_free: 0.0
+  :preset_demand: 7803836562.52224
+energy_cokesoven_consumption-(coal_gas): {conversion: 0.96}
+energy_cokesoven_consumption-(electricity): {conversion: 0.04}
+energy_cokesoven_consumption-(coupling_carrier): {conversion: 10.2279899144691, reset_to_zero: true}
+(loss)-energy_cokesoven_consumption: {conversion: 1.0}
+energy_cokesoven_consumption-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas: {share: 1.0}
+energy_cokesoven_consumption-(electricity) -- s --> (electricity)-industry_locally_available_electricity: {share: 1.0}
+energy_cokesoven_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_cokesoven_transformation: {share: 1.0}
+
+:energy_cokesoven_transformation:
+  :demand_expected_value: 79817561655.6424
+energy_cokesoven_transformation-(coal): {conversion: 1.0}
+(cokes)-energy_cokesoven_transformation: {conversion: 0.721479206028441}
+(coal_gas)-energy_cokesoven_transformation: {conversion: 0.206458120783405}
+(loss)-energy_cokesoven_transformation: {conversion: 0.0720626731881547}
+(coupling_carrier)-energy_cokesoven_transformation: {conversion: 1.0}
+energy_cokesoven_transformation-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+
 :energy_distribution_algae_diesel:
   :co2_free: 0.0
 energy_distribution_algae_diesel-(algae_diesel): {conversion: 1.0}
@@ -266,11 +286,13 @@ energy_distribution_coal_gas-(coal_gas): {conversion: 1.0}
 energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_current_transformation: {share: 1.0}
 energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_bat_transformation: {share: 1.0}
 energy_distribution_coal_gas-(coal_gas) -- f --> (coal_gas)-energy_import_coal_gas: {share: 1.0}
+energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_cokesoven_transformation: {share: 1.0}
 
 :energy_distribution_cokes:
   :co2_free: 0.0
 (cokes)-energy_distribution_cokes: {conversion: 1.0}
 energy_distribution_cokes-(coal): {conversion: 1.0}
+energy_distribution_cokes-(cokes) -- d --> (cokes)-energy_cokesoven_transformation: {share: 1.0}
 
 :energy_distribution_corn:
   :co2_free: 0.0
