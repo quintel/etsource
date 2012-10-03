@@ -1071,6 +1071,7 @@ energy_distribution_cokes:
   energy_balance_group: distribution
   links:
   - energy_distribution_cokes-(cokes) -- d --> (cokes)-energy_cokesoven_transformation
+  - energy_distribution_cokes-(cokes) -- f --> (cokes)-energy_import_cokes
   slots:
   - (cokes)-energy_distribution_cokes
   - energy_distribution_cokes-(coal)
@@ -1310,6 +1311,15 @@ energy_export_coal_gas:
   slots:
   - energy_export_coal_gas-(coal_gas)
   - (coal_gas)-energy_export_coal_gas
+energy_export_cokes:
+  sector: energy
+  use: energetic
+  energy_balance_group: export
+  links:
+  - energy_export_cokes-(cokes) -- i --> (cokes)-energy_distribution_cokes
+  slots:
+  - energy_export_cokes-(cokes)
+  - (cokes)-energy_export_cokes
 energy_export_crude_oil:
   sector: energy
   use: undefined
@@ -1691,6 +1701,14 @@ energy_import_coal_gas:
   slots:
   - energy_import_coal_gas-(coal_gas)
   - (coal_gas)-energy_import_coal_gas
+energy_import_cokes:
+  sector: energy
+  use: energetic
+  energy_balance_group: import
+  links: 
+  slots:
+  - energy_import_cokes-(cokes)
+  - (cokes)-energy_import_cokes
 energy_import_crude_oil:
   sector: energy
   use: undefined
