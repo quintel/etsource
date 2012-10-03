@@ -945,6 +945,31 @@ energy_chp_ultra_supercritical_wood_pellets:
   - (loss)-energy_chp_ultra_supercritical_wood_pellets
   - (steam_hot_water)-energy_chp_ultra_supercritical_wood_pellets
   - (electricity)-energy_chp_ultra_supercritical_wood_pellets
+energy_cokesoven_consumption:
+  sector: energy
+  use: energetic
+  energy_balance_group: energy sector own use
+  links:
+  - energy_cokesoven_consumption-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas
+  - energy_cokesoven_consumption-(electricity) -- s --> (electricity)-industry_locally_available_electricity
+  - energy_cokesoven_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_cokesoven_transformation
+  slots:
+  - energy_cokesoven_consumption-(coal_gas)
+  - energy_cokesoven_consumption-(electricity)
+  - energy_cokesoven_consumption-(coupling_carrier)
+  - (loss)-energy_cokesoven_consumption
+energy_cokesoven_transformation:
+  sector: energy
+  use: energetic
+  energy_balance_group: coal conversion
+  links:
+  - energy_cokesoven_transformation-(coal) -- s --> (coal)-energy_distribution_coal
+  slots:
+  - energy_cokesoven_transformation-(coal)
+  - (cokes)-energy_cokesoven_transformation
+  - (coal_gas)-energy_cokesoven_transformation
+  - (loss)-energy_cokesoven_transformation
+  - (coupling_carrier)-energy_cokesoven_transformation
 energy_distribution_algae_diesel:
   sector: energy
   use: energetic
@@ -1036,6 +1061,7 @@ energy_distribution_coal_gas:
   - energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_current_transformation
   - energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_bat_transformation
   - energy_distribution_coal_gas-(coal_gas) -- f --> (coal_gas)-energy_import_coal_gas
+  - energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_cokesoven_transformation
   slots:
   - energy_distribution_coal_gas-(coal_gas)
   - (coal_gas)-energy_distribution_coal_gas
@@ -1043,7 +1069,8 @@ energy_distribution_cokes:
   sector: energy
   use: energetic
   energy_balance_group: distribution
-  links: 
+  links:
+  - energy_distribution_cokes-(cokes) -- d --> (cokes)-energy_cokesoven_transformation
   slots:
   - (cokes)-energy_distribution_cokes
   - energy_distribution_cokes-(coal)
