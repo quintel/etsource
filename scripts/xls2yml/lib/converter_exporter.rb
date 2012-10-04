@@ -5,6 +5,7 @@ module ETE
     ATTRIBUTES = [
       :availability,
       :average_effective_output_of_nominal_capacity_over_lifetime,
+      :co2_free,
       :costs_per_mj,
       :decrease_in_nominal_capacity_over_lifetime,
       :demand_expected_value,
