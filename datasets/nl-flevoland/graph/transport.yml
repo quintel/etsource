@@ -17,7 +17,7 @@
   :typical_nominal_input_capacity: 0.01
 transport_car_using_compressed_natural_gas-(compressed_network_gas): {conversion: 1.0}
 (car_kms)-transport_car_using_compressed_natural_gas: {conversion: 0.4}
-(loss)-transport_car_using_compressed_natural_gas: {conversion: 0.6}
+(loss)-transport_car_using_compressed_natural_gas: {}
 transport_car_using_compressed_natural_gas-(compressed_network_gas) -- s --> (compressed_network_gas)-transport_road_compressor_network_gas: {share: 1.0}
 
 :transport_car_using_diesel_mix:
@@ -39,7 +39,7 @@ transport_car_using_compressed_natural_gas-(compressed_network_gas) -- s --> (co
   :typical_nominal_input_capacity: 0.01
 transport_car_using_diesel_mix-(diesel_mix): {conversion: 1.0}
 (car_kms)-transport_car_using_diesel_mix: {conversion: 0.409500409500409}
-(loss)-transport_car_using_diesel_mix: {conversion: 0.590499590499591}
+(loss)-transport_car_using_diesel_mix: {}
 transport_car_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_road_mixer_diesel: {share: 1.0}
 
 :transport_car_using_electricity:
@@ -68,7 +68,7 @@ transport_car_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_road
   :peak_load_units: 0.0
 transport_car_using_electricity-(electricity): {conversion: 1.0}
 (car_kms)-transport_car_using_electricity: {conversion: 1.18203309692671}
-(loss)-transport_car_using_electricity: {conversion: -0.182033096926714}
+(loss)-transport_car_using_electricity: {}
 transport_car_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_road_electricity: {share: 1.0}
 
 :transport_car_using_gasoline_mix:
@@ -90,7 +90,7 @@ transport_car_using_electricity-(electricity) -- s --> (electricity)-transport_f
   :typical_nominal_input_capacity: 0.01
 transport_car_using_gasoline_mix-(gasoline_mix): {conversion: 1.0}
 (car_kms)-transport_car_using_gasoline_mix: {conversion: 0.349167091001673}
-(loss)-transport_car_using_gasoline_mix: {conversion: 0.650832908998327}
+(loss)-transport_car_using_gasoline_mix: {}
 transport_car_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transport_road_mixer_gasoline: {share: 1.0}
 
 :transport_car_using_lpg:
@@ -112,7 +112,7 @@ transport_car_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transpor
   :typical_nominal_input_capacity: 0.01
 transport_car_using_lpg-(lpg): {conversion: 1.0}
 (car_kms)-transport_car_using_lpg: {conversion: 0.448979591836735}
-(loss)-transport_car_using_lpg: {conversion: 0.551020408163265}
+(loss)-transport_car_using_lpg: {}
 transport_car_using_lpg-(lpg) -- s --> (lpg)-transport_final_demand_for_road_lpg: {share: 1.0}
 
 :transport_final_demand_bio_ethanol:
@@ -365,21 +365,21 @@ transport_ship_using_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-t
 :transport_train_using_coal:
   :demand_expected_value: 0.0
 transport_train_using_coal-(coal): {conversion: 1.0}
-(loss)-transport_train_using_coal: {conversion: 0.7}
+(loss)-transport_train_using_coal: {}
 (not_defined)-transport_train_using_coal: {conversion: 0.3}
 transport_train_using_coal-(coal) -- s --> (coal)-transport_final_demand_for_rail_coal: {share: 1.0}
 
 :transport_train_using_diesel:
   :demand_expected_value: 29725473.3425829
 transport_train_using_diesel-(diesel_mix): {conversion: 1.0}
-(loss)-transport_train_using_diesel: {conversion: 0.7}
+(loss)-transport_train_using_diesel: {}
 (not_defined)-transport_train_using_diesel: {conversion: 0.3}
 transport_train_using_diesel-(diesel_mix) -- s --> (diesel_mix)-transport_rail_mixer_diesel: {share: 1.0}
 
 :transport_train_using_electricity:
   :demand_expected_value: 132345808.544051
 transport_train_using_electricity-(electricity): {conversion: 1.0}
-(loss)-transport_train_using_electricity: {conversion: 0.1}
+(loss)-transport_train_using_electricity: {}
 (not_defined)-transport_train_using_electricity: {conversion: 0.9}
 transport_train_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_rail_electricity: {share: 1.0}
 
@@ -402,7 +402,7 @@ transport_train_using_electricity-(electricity) -- s --> (electricity)-transport
   :typical_nominal_input_capacity: 0.01
 transport_truck_using_compressed_natural_gas-(compressed_network_gas): {conversion: 1.0}
 (truck_kms)-transport_truck_using_compressed_natural_gas: {conversion: 0.4}
-(loss)-transport_truck_using_compressed_natural_gas: {conversion: 0.6}
+(loss)-transport_truck_using_compressed_natural_gas: {}
 transport_truck_using_compressed_natural_gas-(compressed_network_gas) -- s --> (compressed_network_gas)-transport_road_compressor_network_gas: {share: 1.0}
 
 :transport_truck_using_diesel_mix:
@@ -424,7 +424,7 @@ transport_truck_using_compressed_natural_gas-(compressed_network_gas) -- s --> (
   :typical_nominal_input_capacity: 0.01
 transport_truck_using_diesel_mix-(diesel_mix): {conversion: 1.0}
 (truck_kms)-transport_truck_using_diesel_mix: {conversion: 0.409500409500409}
-(loss)-transport_truck_using_diesel_mix: {conversion: 0.590499590499591}
+(loss)-transport_truck_using_diesel_mix: {}
 transport_truck_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_road_mixer_diesel: {share: 1.0}
 
 :transport_truck_using_electricity:
@@ -453,7 +453,7 @@ transport_truck_using_diesel_mix-(diesel_mix) -- s --> (diesel_mix)-transport_ro
   :peak_load_units: 0.0
 transport_truck_using_electricity-(electricity): {conversion: 1.0}
 (truck_kms)-transport_truck_using_electricity: {conversion: 1.18203309692671}
-(loss)-transport_truck_using_electricity: {conversion: -0.182033096926714}
+(loss)-transport_truck_using_electricity: {}
 transport_truck_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_road_electricity: {share: 1.0}
 
 :transport_truck_using_gasoline_mix:
@@ -475,13 +475,13 @@ transport_truck_using_electricity-(electricity) -- s --> (electricity)-transport
   :typical_nominal_input_capacity: 0.01
 transport_truck_using_gasoline_mix-(gasoline_mix): {conversion: 1.0}
 (truck_kms)-transport_truck_using_gasoline_mix: {conversion: 0.349167091001673}
-(loss)-transport_truck_using_gasoline_mix: {conversion: 0.650832908998327}
+(loss)-transport_truck_using_gasoline_mix: {}
 transport_truck_using_gasoline_mix-(gasoline_mix) -- s --> (gasoline_mix)-transport_road_mixer_gasoline: {share: 1.0}
 
 :transport_useful_demand_car_kms:
   :preset_demand: 3201548797.92882
 transport_useful_demand_car_kms-(car_kms): {conversion: 1.0}
-(loss)-transport_useful_demand_car_kms: {conversion: 1.0}
+(loss)-transport_useful_demand_car_kms: {}
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_electricity: {share: 0.0}
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_diesel_mix: {share: 0.473062209682277}
 transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_gasoline_mix: {share: 0.474923155879233}
@@ -521,7 +521,7 @@ transport_useful_demand_trains-(not_defined) -- s --> (not_defined)-transport_tr
 :transport_useful_demand_truck_kms:
   :preset_demand: 1194632284.10025
 transport_useful_demand_truck_kms-(truck_kms): {conversion: 1.0}
-(loss)-transport_useful_demand_truck_kms: {conversion: 1.0}
+(loss)-transport_useful_demand_truck_kms: {}
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_electricity: {share: 0.0}
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_diesel_mix: {share: 1.0}
 transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_gasoline_mix: {share: 0.0}
