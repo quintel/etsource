@@ -200,6 +200,7 @@ module ETE
         when 3 then 'f'
         when 4 then 'c'
         when 5 then 'i'
+        when 6 then 'inverse_f'
         end
         unless child
           raise "Error parsing link, missing child converter! " +
@@ -208,6 +209,12 @@ module ETE
             "carrier: #{carrier}, " +
             "link_type: #{link_type}"
         end
+        # Ugly!
+        arrow = if link_type == 'inverse_f'
+          "<-- f --"
+        else
+          "-- #{link_type} -->"
+        end
         out[parent] ||= []
         if include_share
           share = row[:share].nil? ? nil : row[:share].to_f
@@ -215,7 +222,7 @@ module ETE
           # the max demand attribute is defined in the converter export csv.
           # right side converter
           max_demand = converter_attributes[child][:max_demand]
-          s = "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}: {"
+          s = "#{parent}-(#{carrier}) #{arrow} (#{carrier})-#{child}: {"
           attrs = []
           attrs << "share: #{share}" if share
           # attrs << "max_demand: #{max_demand}" if max_demand
@@ -224,7 +231,7 @@ module ETE
           s +="}"
           out[parent] << s
         else
-          out[parent] << "#{parent}-(#{carrier}) -- #{link_type} --> (#{carrier})-#{child}"
+          out[parent] << "#{parent}-(#{carrier}) #{arrow} (#{carrier})-#{child}"
         end
       end
       out
