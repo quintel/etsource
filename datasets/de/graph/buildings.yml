@@ -57,7 +57,7 @@ buildings_appliances_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildin
 buildings_collective_chp_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
 (electricity)-buildings_collective_chp_gas_power_fuelmix: {conversion: 0.28}
 (steam_hot_water)-buildings_collective_chp_gas_power_fuelmix: {conversion: 0.46}
-(loss)-buildings_collective_chp_gas_power_fuelmix: {conversion: 0.26}
+(loss)-buildings_collective_chp_gas_power_fuelmix: {}
 buildings_collective_chp_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
 
 :buildings_collective_chp_wood_pellets:
@@ -89,7 +89,7 @@ buildings_collective_chp_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_pow
 buildings_collective_chp_wood_pellets-(wood_pellets): {conversion: 1.0}
 (electricity)-buildings_collective_chp_wood_pellets: {conversion: 0.28}
 (steam_hot_water)-buildings_collective_chp_wood_pellets: {conversion: 0.46}
-(loss)-buildings_collective_chp_wood_pellets: {conversion: 0.26}
+(loss)-buildings_collective_chp_wood_pellets: {}
 buildings_collective_chp_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
 :buildings_collective_geothermal:
@@ -144,7 +144,7 @@ buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_e
 buildings_cooling_airconditioning-(electricity): {conversion: 0.25}
 buildings_cooling_airconditioning-(ambient_cold): {conversion: 0.75}
 (cooling)-buildings_cooling_airconditioning: {conversion: 1.0}
-(loss)-buildings_cooling_airconditioning: {conversion: 0.0}
+(loss)-buildings_cooling_airconditioning: {}
 buildings_cooling_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
 buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
@@ -183,7 +183,7 @@ buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> 
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.1}
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
 (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
-(loss)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+(loss)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {}
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
@@ -208,7 +208,7 @@ buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -
 buildings_cooling_heatpump_air_water_network_gas-(network_gas): {conversion: 0.588235294117647}
 buildings_cooling_heatpump_air_water_network_gas-(ambient_cold): {conversion: 0.411764705882353}
 (cooling)-buildings_cooling_heatpump_air_water_network_gas: {conversion: 1.0}
-(loss)-buildings_cooling_heatpump_air_water_network_gas: {conversion: 0.0}
+(loss)-buildings_cooling_heatpump_air_water_network_gas: {}
 buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
 buildings_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_cooling_gas: {share: 1.0}
 
@@ -395,7 +395,7 @@ buildings_final_demand_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energ
   :heat_output_capacity: 1.0
 buildings_heat_network_connection_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-buildings_heat_network_connection_steam_hot_water: {conversion: 1.0}
-(loss)-buildings_heat_network_connection_steam_hot_water: {conversion: 0.0}
+(loss)-buildings_heat_network_connection_steam_hot_water: {}
 buildings_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water: {share: 1.0}
 
 :buildings_heating_savings_from_insulation_useable_heat:
@@ -429,14 +429,14 @@ buildings_heating_savings_from_recovery_useable_heat-(useable_heat): {conversion
   :demand_expected_value: 17668237646.4462
 buildings_lighting_efficient_fluorescent-(electricity): {conversion: 1.0}
 (light)-buildings_lighting_efficient_fluorescent: {conversion: 0.2}
-(loss)-buildings_lighting_efficient_fluorescent: {conversion: 0.8}
+(loss)-buildings_lighting_efficient_fluorescent: {}
 buildings_lighting_efficient_fluorescent-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
 :buildings_lighting_led:
   :demand_expected_value: 327189586.045301
 buildings_lighting_led-(electricity): {conversion: 1.0}
 (light)-buildings_lighting_led: {conversion: 0.45}
-(loss)-buildings_lighting_led: {conversion: 0.55}
+(loss)-buildings_lighting_led: {}
 buildings_lighting_led-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
 :buildings_lighting_savings_from_daylight_control_light:
@@ -479,7 +479,7 @@ buildings_lighting_savings_from_motion_detection_light-(light): {conversion: 1.0
   :demand_expected_value: 69016553306.4306
 buildings_lighting_standard_fluorescent_electricity-(electricity): {conversion: 1.0}
 (light)-buildings_lighting_standard_fluorescent_electricity: {conversion: 0.16}
-(loss)-buildings_lighting_standard_fluorescent_electricity: {conversion: 0.84}
+(loss)-buildings_lighting_standard_fluorescent_electricity: {}
 buildings_lighting_standard_fluorescent_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
 :buildings_local_production_electricity:
@@ -517,7 +517,7 @@ buildings_local_production_electricity-(electricity) -- d --> (electricity)-buil
   :heat_output_capacity: 0.0
   :peak_load_units: 149630.124338438
 buildings_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
-(loss)-buildings_solar_pv_solar_radiation: {conversion: 0.84}
+(loss)-buildings_solar_pv_solar_radiation: {}
 (electricity)-buildings_solar_pv_solar_radiation: {conversion: 0.16}
 buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
 
@@ -541,7 +541,7 @@ buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 0.133
 buildings_space_heater_coal-(coal): {conversion: 1.0}
-(loss)-buildings_space_heater_coal: {conversion: 0.2}
+(loss)-buildings_space_heater_coal: {}
 (useable_heat)-buildings_space_heater_coal: {conversion: 0.8}
 buildings_space_heater_coal-(coal) -- s --> (coal)-buildings_final_demand_for_space_heating_coal: {share: 1.0}
 
@@ -574,7 +574,7 @@ buildings_space_heater_coal-(coal) -- s --> (coal)-buildings_final_demand_for_sp
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity): {conversion: 0.111111111111111}
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
 (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
-(loss)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 0.0}
+(loss)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {}
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity: {share: 1.0}
 
@@ -598,7 +598,7 @@ buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electrici
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 0.142
 buildings_space_heater_crude_oil-(crude_oil): {conversion: 1.0}
-(loss)-buildings_space_heater_crude_oil: {conversion: 0.15}
+(loss)-buildings_space_heater_crude_oil: {}
 (useable_heat)-buildings_space_heater_crude_oil: {conversion: 0.85}
 buildings_space_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_for_space_heating_crude_oil: {share: 1.0}
 
@@ -653,7 +653,7 @@ buildings_space_heater_district_heating_steam_hot_water-(steam_hot_water) -- s -
   :peak_load_units: 44689.5335760381
 buildings_space_heater_electricity-(electricity): {conversion: 1.0}
 (useable_heat)-buildings_space_heater_electricity: {conversion: 1.0}
-(loss)-buildings_space_heater_electricity: {conversion: 0.0}
+(loss)-buildings_space_heater_electricity: {}
 buildings_space_heater_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity: {share: 1.0}
 
 :buildings_space_heater_heatpump_air_water_network_gas:
@@ -678,7 +678,7 @@ buildings_space_heater_electricity-(electricity) -- s --> (electricity)-building
 buildings_space_heater_heatpump_air_water_network_gas-(network_gas): {conversion: 0.5}
 buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat): {conversion: 0.5}
 (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas: {conversion: 1.0}
-(loss)-buildings_space_heater_heatpump_air_water_network_gas: {conversion: 0.0}
+(loss)-buildings_space_heater_heatpump_air_water_network_gas: {}
 buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
 buildings_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_space_heating_gas: {share: 1.0}
 
@@ -703,7 +703,7 @@ buildings_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (ne
   :heat_output_capacity: 0.043
 buildings_space_heater_network_gas-(network_gas): {conversion: 1.0}
 (useable_heat)-buildings_space_heater_network_gas: {conversion: 1.067}
-(loss)-buildings_space_heater_network_gas: {conversion: -0.0669999999999999}
+(loss)-buildings_space_heater_network_gas: {}
 buildings_space_heater_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_space_heating_gas: {share: 1.0}
 
 :buildings_space_heater_solar_thermal:
@@ -727,7 +727,7 @@ buildings_space_heater_network_gas-(network_gas) -- s --> (network_gas)-building
   :heat_output_capacity: 0.175
 buildings_space_heater_solar_thermal-(solar_thermal): {conversion: 1.0}
 (useable_heat)-buildings_space_heater_solar_thermal: {conversion: 0.95}
-(loss)-buildings_space_heater_solar_thermal: {conversion: 0.05}
+(loss)-buildings_space_heater_solar_thermal: {}
 buildings_space_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-buildings_final_demand_for_space_heating_solar: {share: 1.0}
 
 :buildings_space_heater_wood_pellets:
@@ -751,7 +751,7 @@ buildings_space_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-bu
   :heat_output_capacity: 0.137
 buildings_space_heater_wood_pellets-(wood_pellets): {conversion: 1.0}
 (useable_heat)-buildings_space_heater_wood_pellets: {conversion: 0.82}
-(loss)-buildings_space_heater_wood_pellets: {conversion: 0.18}
+(loss)-buildings_space_heater_wood_pellets: {}
 buildings_space_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildings_final_demand_for_space_heating_wood_pellets: {share: 1.0}
 
 :buildings_useful_demand_after_insulation_cooling:
