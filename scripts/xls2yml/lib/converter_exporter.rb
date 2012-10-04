@@ -1,19 +1,13 @@
 module ETE
   class ConverterExporter
-    # Attributes we're reading from the CSV file. We discard the others
 
+    # Attributes we're reading from the CSV file. We discard the others
     ATTRIBUTES = [
       :availability,
       :average_effective_output_of_nominal_capacity_over_lifetime,
-      :ccs_investment_per_mw_input,
-      :ccs_operation_and_maintenance_cost_per_full_load_hour,
-      :co2_free,
-      :construction_time,
       :costs_per_mj,
-      :decommissioning_costs_per_mw_input,
       :decrease_in_nominal_capacity_over_lifetime,
       :demand_expected_value,
-      :economic_lifetime,
       :electrical_efficiency_when_using_coal,
       :electrical_efficiency_when_using_wood_pellets,
       :forecasting_error,
@@ -25,9 +19,6 @@ module ETE
       :network_capacity_available_in_mw,
       :network_capacity_used_in_mw,
       :network_expansion_costs_in_euro_per_mw,
-      :operation_and_maintenance_cost_fixed_per_mw_input,
-      :operation_and_maintenance_cost_variable_per_full_load_hour,
-      :part_ets,
       :part_load_efficiency_penalty,
       :part_load_operating_point,
       :peak_load_units_present,
@@ -39,11 +30,8 @@ module ETE
       :simult_wd,
       :simult_we,
       :simult_supply,
-      :technical_lifetime,
-      :typical_effective_input_capacity,
-      :typical_nominal_input_capacity,
       :variability,
-      :wacc,
+      :typical_nominal_input_capacity,
       :electricity_output_capacity,
       :heat_output_capacity
     ]
