@@ -1,6 +1,7 @@
 :energy_chp_combined_cycle_gas_power_fuelmix:
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :demand_expected_value: 10091907408.842
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -9,6 +10,7 @@
   :households_supplied_per_unit: 1.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.11
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.409215141453102
@@ -33,6 +35,7 @@ energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_po
 :energy_chp_ultra_supercritical_coal:
   :availability: 0.88
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.31
   :electrical_efficiency_when_using_wood_pellets: 0.34
@@ -41,6 +44,7 @@ energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_po
   :households_supplied_per_unit: 1.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -69,6 +73,7 @@ energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energ
 :energy_chp_ultra_supercritical_crude_oil:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -76,6 +81,7 @@ energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energ
   :households_supplied_per_unit: 1.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :purchase_price_per_mw_input: 190000.0
@@ -93,6 +99,7 @@ energy_chp_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
 :energy_chp_ultra_supercritical_lignite:
   :availability: 0.97
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -100,6 +107,7 @@ energy_chp_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
   :households_supplied_per_unit: 1.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :purchase_price_per_mw_input: 505050.505050505
@@ -117,6 +125,7 @@ energy_chp_ultra_supercritical_lignite-(lignite) -- s --> (lignite)-energy_distr
 :energy_chp_ultra_supercritical_wood_pellets:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -125,6 +134,7 @@ energy_chp_ultra_supercritical_lignite-(lignite) -- s --> (lignite)-energy_distr
   :households_supplied_per_unit: 1.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :purchase_price_per_mw_input: 850852.713178295
@@ -140,6 +150,7 @@ energy_chp_ultra_supercritical_wood_pellets-(wood_pellets): {conversion: 1.0}
 energy_chp_ultra_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
 :energy_cokesoven_consumption:
+  :co2_free: 0.0
   :preset_demand: 7803836562.52224
 energy_cokesoven_consumption-(coal_gas): {conversion: 0.96}
 energy_cokesoven_consumption-(electricity): {conversion: 0.04}
@@ -150,6 +161,7 @@ energy_cokesoven_consumption-(electricity) -- s --> (electricity)-industry_local
 energy_cokesoven_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_cokesoven_transformation: {share: 1.0}
 
 :energy_cokesoven_transformation:
+  :co2_free: 0.0
   :demand_expected_value: 79817561655.6424
 energy_cokesoven_transformation-(coal): {conversion: 1.0}
 (cokes)-energy_cokesoven_transformation: {conversion: 0.721479206028441}
@@ -159,12 +171,14 @@ energy_cokesoven_transformation-(coal): {conversion: 1.0}
 energy_cokesoven_transformation-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
 :energy_distribution_algae_diesel:
+  :co2_free: 0.0
 energy_distribution_algae_diesel-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-energy_distribution_algae_diesel: {conversion: 1.0}
 energy_distribution_algae_diesel-(algae_diesel) -- c --> (algae_diesel)-energy_production_algae_diesel: {}
 energy_distribution_algae_diesel-(algae_diesel) -- f --> (algae_diesel)-energy_import_algae_diesel: {}
 
 :energy_distribution_bio_ethanol:
+  :co2_free: 0.0
 energy_distribution_bio_ethanol-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-energy_distribution_bio_ethanol: {conversion: 1.0}
 (loss)-energy_distribution_bio_ethanol: {}
@@ -172,18 +186,21 @@ energy_distribution_bio_ethanol-(bio_ethanol) -- c --> (bio_ethanol)-energy_prod
 energy_distribution_bio_ethanol-(bio_ethanol) -- f --> (bio_ethanol)-energy_import_bio_ethanol: {}
 
 :energy_distribution_bio_oil:
+  :co2_free: 0.0
 energy_distribution_bio_oil-(bio_oil): {conversion: 1.0}
 (bio_oil)-energy_distribution_bio_oil: {conversion: 1.0}
 energy_distribution_bio_oil-(bio_oil) -- c --> (bio_oil)-energy_production_bio_oil: {}
 energy_distribution_bio_oil-(bio_oil) -- f --> (bio_oil)-energy_import_bio_oil: {}
 
 :energy_distribution_bio_residues_for_firing:
+  :co2_free: 0.0
   :max_demand: 2840600775.1938
 (wood_pellets)-energy_distribution_bio_residues_for_firing: {conversion: 1.0}
 energy_distribution_bio_residues_for_firing-(bio_residues_for_firing): {conversion: 1.0}
 energy_distribution_bio_residues_for_firing-(bio_residues_for_firing) -- s --> (bio_residues_for_firing)-energy_production_bio_residues_for_firing: {share: 1.0}
 
 :energy_distribution_biodiesel:
+  :co2_free: 0.0
 energy_distribution_biodiesel-(biodiesel): {conversion: 1.0}
 (biodiesel)-energy_distribution_biodiesel: {conversion: 1.0}
 (loss)-energy_distribution_biodiesel: {}
@@ -191,11 +208,13 @@ energy_distribution_biodiesel-(biodiesel) -- c --> (biodiesel)-energy_production
 energy_distribution_biodiesel-(biodiesel) -- f --> (biodiesel)-energy_import_biodiesel: {}
 
 :energy_distribution_biogas:
+  :co2_free: 0.0
 energy_distribution_biogas-(biogas): {conversion: 1.0}
 (biogas)-energy_distribution_biogas: {conversion: 1.0}
 energy_distribution_biogas-(biogas) -- s --> (biogas)-energy_production_biogas: {share: 1.0}
 
 :energy_distribution_biogenic_waste:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
 energy_distribution_biogenic_waste-(biogenic_waste): {conversion: 1.0}
 (waste_mix)-energy_distribution_biogenic_waste: {conversion: 1.0}
@@ -203,6 +222,7 @@ energy_distribution_biogenic_waste-(biogenic_waste) -- f --> (biogenic_waste)-en
 energy_distribution_biogenic_waste-(biogenic_waste) -- f --> (biogenic_waste)-energy_production_biogenic_waste: {priority: 1}
 
 :energy_distribution_coal:
+  :co2_free: 0.0
 energy_distribution_coal-(loss): {conversion: 0.0}
 (loss)-energy_distribution_coal: {}
 energy_distribution_coal-(coal): {conversion: 1.0}
@@ -211,6 +231,7 @@ energy_distribution_coal-(coal) -- c --> (coal)-energy_extraction_coal: {}
 energy_distribution_coal-(coal) -- f --> (coal)-energy_import_coal: {}
 
 :energy_distribution_coal_gas:
+  :co2_free: 0.0
 energy_distribution_coal_gas-(coal_gas): {conversion: 1.0}
 (coal_gas)-energy_distribution_coal_gas: {conversion: 1.0}
 energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_steel_blastfurnace_current_transformation: {share: 1.0}
@@ -219,17 +240,20 @@ energy_distribution_coal_gas-(coal_gas) -- f --> (coal_gas)-energy_import_coal_g
 energy_distribution_coal_gas-(coal_gas) -- d --> (coal_gas)-energy_cokesoven_transformation: {share: 1.0}
 
 :energy_distribution_cokes:
+  :co2_free: 0.0
 (cokes)-energy_distribution_cokes: {conversion: 1.0}
 energy_distribution_cokes-(coal): {conversion: 1.0}
 energy_distribution_cokes-(cokes) -- d --> (cokes)-energy_cokesoven_transformation: {share: 1.0}
 energy_distribution_cokes-(cokes) -- f --> (cokes)-energy_import_cokes: {share: 1.0}
 
 :energy_distribution_corn:
+  :co2_free: 0.0
 energy_distribution_corn-(corn): {conversion: 1.0}
 (corn)-energy_distribution_corn: {conversion: 1.0}
 energy_distribution_corn-(corn) -- s --> (corn)-energy_production_corn: {share: 1.0}
 
 :energy_distribution_crude_oil:
+  :co2_free: 0.0
   :demand_expected_value: 53610425641.3254
 energy_distribution_crude_oil-(crude_oil): {conversion: 1.0}
 (crude_oil)-energy_distribution_crude_oil: {conversion: 0.999891117157874}
@@ -238,12 +262,14 @@ energy_distribution_crude_oil-(crude_oil) -- c --> (crude_oil)-energy_extraction
 energy_distribution_crude_oil-(crude_oil) -- f --> (crude_oil)-energy_import_crude_oil: {}
 
 :energy_distribution_crude_oil_loss:
+  :co2_free: 0.0
   :demand_expected_value: 5837255.51138778
 energy_distribution_crude_oil_loss-(loss): {conversion: 1.0}
 (loss)-energy_distribution_crude_oil_loss: {}
 energy_distribution_crude_oil_loss-(loss) -- d --> (loss)-energy_distribution_crude_oil: {}
 
 :energy_distribution_diesel:
+  :co2_free: 0.0
 energy_distribution_diesel-(diesel): {conversion: 1.0}
 (diesel)-energy_distribution_diesel: {conversion: 1.0}
 (loss)-energy_distribution_diesel: {}
@@ -251,6 +277,7 @@ energy_distribution_diesel-(diesel) -- s --> (diesel)-energy_production_diesel: 
 energy_distribution_diesel-(diesel) -- f --> (diesel)-energy_import_diesel: {}
 
 :energy_distribution_gasoline:
+  :co2_free: 0.0
 energy_distribution_gasoline-(gasoline): {conversion: 1.0}
 (gasoline)-energy_distribution_gasoline: {conversion: 1.0}
 (loss)-energy_distribution_gasoline: {}
@@ -258,6 +285,7 @@ energy_distribution_gasoline-(gasoline) -- s --> (gasoline)-energy_production_ga
 energy_distribution_gasoline-(gasoline) -- f --> (gasoline)-energy_import_gasoline: {}
 
 :energy_distribution_greengas:
+  :co2_free: 0.0
 energy_distribution_greengas-(loss): {conversion: 0.0}
 (loss)-energy_distribution_greengas: {}
 energy_distribution_greengas-(greengas): {conversion: 1.0}
@@ -266,11 +294,13 @@ energy_distribution_greengas-(greengas) -- f --> (greengas)-energy_import_greeng
 energy_distribution_greengas-(greengas) -- c --> (greengas)-energy_upgrade_biogas: {share: 0.0}
 
 :energy_distribution_heavy_fuel_oil:
+  :co2_free: 0.0
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil): {conversion: 1.0}
 (heavy_fuel_oil)-energy_distribution_heavy_fuel_oil: {conversion: 1.0}
 energy_distribution_heavy_fuel_oil-(heavy_fuel_oil) -- s --> (heavy_fuel_oil)-energy_production_heavy_fuel_oil: {share: 1.0}
 
 :energy_distribution_kerosene:
+  :co2_free: 0.0
 energy_distribution_kerosene-(kerosene): {conversion: 1.0}
 (kerosene)-energy_distribution_kerosene: {conversion: 1.0}
 (loss)-energy_distribution_kerosene: {}
@@ -278,46 +308,54 @@ energy_distribution_kerosene-(kerosene) -- s --> (kerosene)-energy_production_ke
 energy_distribution_kerosene-(kerosene) -- f --> (kerosene)-energy_import_kerosene: {}
 
 :energy_distribution_lignite:
+  :co2_free: 0.0
 energy_distribution_lignite-(lignite): {conversion: 1.0}
 (lignite)-energy_distribution_lignite: {conversion: 1.0}
 energy_distribution_lignite-(lignite) -- s --> (lignite)-energy_extraction_lignite: {share: 1.0}
 
 :energy_distribution_lpg:
+  :co2_free: 0.0
 energy_distribution_lpg-(lpg): {conversion: 1.0}
 (lpg)-energy_distribution_lpg: {conversion: 1.0}
 energy_distribution_lpg-(lpg) -- s --> (lpg)-energy_production_lpg: {share: 1.0}
 energy_distribution_lpg-(lpg) -- f --> (lpg)-energy_import_lpg: {}
 
 :energy_distribution_manure:
+  :co2_free: 0.0
 energy_distribution_manure-(manure): {conversion: 1.0}
 (manure)-energy_distribution_manure: {conversion: 1.0}
 energy_distribution_manure-(manure) -- s --> (manure)-energy_production_manure: {share: 1.0}
 
 :energy_distribution_network_gas_loss:
+  :co2_free: 0.0
   :demand_expected_value: 139445548.327597
 energy_distribution_network_gas_loss-(loss): {conversion: 1.0}
 (loss)-energy_distribution_network_gas_loss: {}
 energy_distribution_network_gas_loss-(loss) -- d --> (loss)-energy_national_gas_network_natural_gas: {}
 
 :energy_distribution_non_biogenic_waste:
+  :co2_free: 0.0
 energy_distribution_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 (waste_mix)-energy_distribution_non_biogenic_waste: {conversion: 1.0}
 energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- f --> (non_biogenic_waste)-energy_import_non_biogenic_waste: {}
 energy_distribution_non_biogenic_waste-(non_biogenic_waste) -- f --> (non_biogenic_waste)-energy_production_non_biogenic_waste: {priority: 1}
 
 :energy_distribution_torrified_biomass_pellets:
+  :co2_free: 0.0
 energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets): {conversion: 1.0}
 (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {conversion: 1.0}
 energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets) -- c --> (torrified_biomass_pellets)-energy_torrefaction_wood: {share: 0.0}
 energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets) -- f --> (torrified_biomass_pellets)-energy_import_torrified_biomass_pellets: {}
 
 :energy_distribution_uranium_oxide:
+  :co2_free: 0.0
 energy_distribution_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-energy_distribution_uranium_oxide: {conversion: 1.0}
 (loss)-energy_distribution_uranium_oxide: {}
 energy_distribution_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_treatment_uranium_oxide: {share: 1.0}
 
 :energy_distribution_waste_mix:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
 energy_distribution_waste_mix-(waste_mix): {conversion: 1.0}
 (waste_mix)-energy_distribution_waste_mix: {conversion: 1.0}
@@ -325,11 +363,13 @@ energy_distribution_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_distributi
 energy_distribution_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_distribution_non_biogenic_waste: {share: 0.62}
 
 :energy_distribution_wood:
+  :co2_free: 0.0
 energy_distribution_wood-(wood): {conversion: 1.0}
 (wood)-energy_distribution_wood: {conversion: 1.0}
 energy_distribution_wood-(wood) -- s --> (wood)-energy_production_wood: {share: 1.0}
 
 :energy_distribution_wood_pellets:
+  :co2_free: 0.0
 energy_distribution_wood_pellets-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-energy_distribution_wood_pellets: {conversion: 1.0}
 energy_distribution_wood_pellets-(wood_pellets) -- f --> (wood_pellets)-energy_distribution_bio_residues_for_firing: {priority: 1}
@@ -337,52 +377,62 @@ energy_distribution_wood_pellets-(wood_pellets) -- c --> (wood_pellets)-energy_p
 energy_distribution_wood_pellets-(wood_pellets) -- f --> (wood_pellets)-energy_import_wood_pellets: {}
 
 :energy_export_algae_diesel:
+  :co2_free: 0.0
 energy_export_algae_diesel-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-energy_export_algae_diesel: {conversion: 1.0}
 energy_export_algae_diesel-(algae_diesel) -- i --> (algae_diesel)-energy_distribution_algae_diesel: {}
 
 :energy_export_bio_ethanol:
+  :co2_free: 0.0
 energy_export_bio_ethanol-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-energy_export_bio_ethanol: {conversion: 1.0}
 energy_export_bio_ethanol-(bio_ethanol) -- i --> (bio_ethanol)-energy_distribution_bio_ethanol: {}
 
 :energy_export_bio_oil:
+  :co2_free: 0.0
 energy_export_bio_oil-(bio_oil): {conversion: 1.0}
 (bio_oil)-energy_export_bio_oil: {conversion: 1.0}
 energy_export_bio_oil-(bio_oil) -- i --> (bio_oil)-energy_distribution_bio_oil: {}
 
 :energy_export_biodiesel:
+  :co2_free: 0.0
 energy_export_biodiesel-(biodiesel): {conversion: 1.0}
 (biodiesel)-energy_export_biodiesel: {conversion: 1.0}
 energy_export_biodiesel-(biodiesel) -- i --> (biodiesel)-energy_distribution_biodiesel: {}
 
 :energy_export_coal:
+  :co2_free: 0.0
 energy_export_coal-(coal): {conversion: 1.0}
 (coal)-energy_export_coal: {conversion: 1.0}
 energy_export_coal-(coal) -- i --> (coal)-energy_distribution_coal: {}
 
 :energy_export_coal_gas:
+  :co2_free: 0.0
 energy_export_coal_gas-(coal_gas): {conversion: 1.0}
 (coal_gas)-energy_export_coal_gas: {conversion: 1.0}
 energy_export_coal_gas-(coal_gas) -- i --> (coal_gas)-energy_distribution_coal_gas: {share: 1.0}
 
 :energy_export_cokes:
+  :co2_free: 0.0
 energy_export_cokes-(cokes): {conversion: 1.0}
 (cokes)-energy_export_cokes: {conversion: 1.0}
 energy_export_cokes-(cokes) -- i --> (cokes)-energy_distribution_cokes: {share: 1.0}
 
 :energy_export_crude_oil:
+  :co2_free: 0.0
 energy_export_crude_oil-(crude_oil): {conversion: 1.0}
 (crude_oil)-energy_export_crude_oil: {conversion: 1.0}
 energy_export_crude_oil-(crude_oil) -- i --> (crude_oil)-energy_distribution_crude_oil: {}
 
 :energy_export_diesel:
+  :co2_free: 0.0
 energy_export_diesel-(diesel): {conversion: 1.0}
 (diesel)-energy_export_diesel: {conversion: 1.0}
 energy_export_diesel-(diesel) -- i --> (diesel)-energy_distribution_diesel: {}
 
 :energy_export_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -400,47 +450,56 @@ energy_export_electricity-(electricity): {conversion: 1.0}
 energy_export_electricity-(electricity) -- i --> (electricity)-energy_power_hv_network_electricity: {}
 
 :energy_export_gasoline:
+  :co2_free: 0.0
 energy_export_gasoline-(gasoline): {conversion: 1.0}
 (gasoline)-energy_export_gasoline: {conversion: 1.0}
 energy_export_gasoline-(gasoline) -- i --> (gasoline)-energy_distribution_gasoline: {}
 
 :energy_export_greengas:
+  :co2_free: 0.0
 energy_export_greengas-(greengas): {conversion: 1.0}
 (greengas)-energy_export_greengas: {conversion: 1.0}
 energy_export_greengas-(greengas) -- i --> (greengas)-energy_distribution_greengas: {}
 
 :energy_export_kerosene:
+  :co2_free: 0.0
 energy_export_kerosene-(kerosene): {conversion: 1.0}
 (kerosene)-energy_export_kerosene: {conversion: 1.0}
 energy_export_kerosene-(kerosene) -- i --> (kerosene)-energy_distribution_kerosene: {}
 
 :energy_export_lpg:
+  :co2_free: 0.0
 energy_export_lpg-(lpg): {conversion: 1.0}
 (lpg)-energy_export_lpg: {conversion: 1.0}
 energy_export_lpg-(lpg) -- i --> (lpg)-energy_distribution_lpg: {}
 
 :energy_export_network_gas:
+  :co2_free: 0.0
 energy_export_network_gas-(network_gas): {conversion: 1.0}
 (network_gas)-energy_export_network_gas: {conversion: 1.0}
 energy_export_network_gas-(network_gas) -- i --> (network_gas)-energy_national_gas_network_natural_gas: {}
 
 :energy_export_uranium_oxide:
+  :co2_free: 0.0
 energy_export_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-energy_export_uranium_oxide: {conversion: 1.0}
 energy_export_uranium_oxide-(uranium_oxide) -- i --> (uranium_oxide)-energy_distribution_uranium_oxide: {}
 
 :energy_export_waste_mix:
+  :co2_free: 0.0
 energy_export_waste_mix-(waste_mix): {conversion: 1.0}
 (waste_mix)-energy_export_waste_mix: {conversion: 1.0}
 energy_export_waste_mix-(waste_mix) -- i --> (waste_mix)-energy_distribution_waste_mix: {}
 
 :energy_extraction_coal:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_extraction_coal-(coal): {conversion: 1.0}
 (coal)-energy_extraction_coal: {conversion: 1.0}
 (loss)-energy_extraction_coal: {}
 
 :energy_extraction_crude_oil:
+  :co2_free: 0.0
   :preset_demand: 6581872288.46375
 energy_extraction_crude_oil-(loss): {conversion: 0.0}
 (loss)-energy_extraction_crude_oil: {}
@@ -448,19 +507,23 @@ energy_extraction_crude_oil-(crude_oil): {conversion: 1.0}
 (crude_oil)-energy_extraction_crude_oil: {conversion: 1.0}
 
 :energy_extraction_lignite:
+  :co2_free: 0.0
 energy_extraction_lignite-(lignite): {conversion: 1.0}
 (lignite)-energy_extraction_lignite: {conversion: 1.0}
 
 :energy_extraction_natural_gas:
+  :co2_free: 0.0
   :preset_demand: 191000000000.0
 energy_extraction_natural_gas-(natural_gas): {conversion: 1.0}
 (natural_gas)-energy_extraction_natural_gas: {conversion: 1.0}
 
 :energy_extraction_uranium_oxide:
+  :co2_free: 0.0
 energy_extraction_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-energy_extraction_uranium_oxide: {conversion: 1.0}
 
 :energy_final_demand_crude_oil:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :preset_demand: 0.0
 energy_final_demand_crude_oil-(crude_oil): {conversion: 1.0}
@@ -469,6 +532,7 @@ energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distributi
 
 :energy_final_demand_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
@@ -488,6 +552,7 @@ energy_final_demand_electricity-(electricity): {conversion: 1.0}
 energy_final_demand_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity: {share: 1.0}
 
 :energy_final_demand_network_gas:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :preset_demand: 0.0
 energy_final_demand_network_gas-(network_gas): {conversion: 1.0}
@@ -495,6 +560,7 @@ energy_final_demand_network_gas-(network_gas): {conversion: 1.0}
 energy_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
 
 :energy_final_demand_steam_hot_water:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :preset_demand: 0.0
 energy_final_demand_steam_hot_water-(steam_hot_water): {conversion: 1.0}
@@ -504,6 +570,7 @@ energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)
 :energy_heat_network_backup_heater_gas_power_fuelmix:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 5381786208.75646
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -512,6 +579,7 @@ energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 54000.0
@@ -526,12 +594,14 @@ energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix): {conver
 energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
 
 :energy_heat_network_loss:
+  :co2_free: 0.0
   :demand_expected_value: 276296760.872355
 energy_heat_network_loss-(loss): {conversion: 1.0}
 (loss)-energy_heat_network_loss: {}
 energy_heat_network_loss-(loss) -- d --> (loss)-energy_heat_network_steam_hot_water: {}
 
 :energy_heat_network_steam_hot_water:
+  :co2_free: 0.0
 energy_heat_network_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_heat_network_steam_hot_water: {conversion: 0.970559641540222}
 (loss)-energy_heat_network_steam_hot_water: {}
@@ -552,11 +622,13 @@ energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_import_steam_hot_water: {}
 
 :energy_heat_network_unused_steam_hot_water:
+  :co2_free: 0.0
 energy_heat_network_unused_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_heat_network_unused_steam_hot_water: {conversion: 1.0}
 energy_heat_network_unused_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-energy_heat_network_steam_hot_water: {}
 
 :energy_heat_remainder_from_heat_network_steam_hot_water:
+  :co2_free: 0.0
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water: {conversion: 1.0}
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-industry_unused_local_production_steam_hot_water: {}
@@ -564,11 +636,13 @@ energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- i -
 energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_backup_heater_gas_power_fuelmix: {}
 
 :energy_heat_remainder_from_heat_network_unused_steam_hot_water:
+  :co2_free: 0.0
 energy_heat_remainder_from_heat_network_unused_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_heat_remainder_from_heat_network_unused_steam_hot_water: {conversion: 1.0}
 energy_heat_remainder_from_heat_network_unused_steam_hot_water-(steam_hot_water) -- i --> (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water: {}
 
 :energy_heat_remainder_from_heat_network_used_steam_hot_water:
+  :co2_free: 0.0
 energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_heat_remainder_from_heat_network_used_steam_hot_water: {conversion: 1.0}
 energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water: {share: 1.0}
@@ -576,6 +650,7 @@ energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water) -
 :energy_heater_for_heat_network_coal:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -583,6 +658,7 @@ energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water) -
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 140466.666666667
@@ -599,6 +675,7 @@ energy_heater_for_heat_network_coal-(coal) -- s --> (coal)-energy_distribution_c
 :energy_heater_for_heat_network_crude_oil:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -606,6 +683,7 @@ energy_heater_for_heat_network_coal-(coal) -- s --> (coal)-energy_distribution_c
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 42000.0
@@ -622,6 +700,7 @@ energy_heater_for_heat_network_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
 :energy_heater_for_heat_network_geothermal:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -630,6 +709,7 @@ energy_heater_for_heat_network_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 1000000.0
@@ -645,6 +725,7 @@ energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-env
 :energy_heater_for_heat_network_lignite:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -652,6 +733,7 @@ energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-env
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 42000.0
@@ -668,6 +750,7 @@ energy_heater_for_heat_network_lignite-(lignite) -- s --> (lignite)-energy_distr
 :energy_heater_for_heat_network_network_gas:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -675,6 +758,7 @@ energy_heater_for_heat_network_lignite-(lignite) -- s --> (lignite)-energy_distr
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 45000.0
@@ -691,6 +775,7 @@ energy_heater_for_heat_network_network_gas-(network_gas) -- s --> (network_gas)-
 :energy_heater_for_heat_network_waste_mix:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -699,6 +784,7 @@ energy_heater_for_heat_network_network_gas-(network_gas) -- s --> (network_gas)-
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 42000.0
@@ -715,6 +801,7 @@ energy_heater_for_heat_network_waste_mix-(waste_mix) -- s --> (waste_mix)-energy
 :energy_heater_for_heat_network_wood_pellets:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -722,6 +809,7 @@ energy_heater_for_heat_network_waste_mix-(waste_mix) -- s --> (waste_mix)-energy
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.0
   :part_load_operating_point: 0.0
   :purchase_price_per_mw_input: 162941.333333333
@@ -736,47 +824,58 @@ energy_heater_for_heat_network_wood_pellets-(wood_pellets): {conversion: 1.0}
 energy_heater_for_heat_network_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
 :energy_import_algae_diesel:
+  :co2_free: 0.0
 energy_import_algae_diesel-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-energy_import_algae_diesel: {conversion: 1.0}
 
 :energy_import_bio_ethanol:
+  :co2_free: 0.0
 energy_import_bio_ethanol-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-energy_import_bio_ethanol: {conversion: 1.0}
 
 :energy_import_bio_oil:
+  :co2_free: 0.0
 energy_import_bio_oil-(bio_oil): {conversion: 1.0}
 (bio_oil)-energy_import_bio_oil: {conversion: 1.0}
 
 :energy_import_biodiesel:
+  :co2_free: 0.0
 energy_import_biodiesel-(biodiesel): {conversion: 1.0}
 (biodiesel)-energy_import_biodiesel: {conversion: 1.0}
 
 :energy_import_biogenic_waste:
+  :co2_free: 0.0
 energy_import_biogenic_waste-(biogenic_waste): {conversion: 1.0}
 (biogenic_waste)-energy_import_biogenic_waste: {conversion: 1.0}
 
 :energy_import_coal:
+  :co2_free: 0.0
 energy_import_coal-(coal): {conversion: 1.0}
 (coal)-energy_import_coal: {conversion: 1.0}
 
 :energy_import_coal_gas:
+  :co2_free: 0.0
 energy_import_coal_gas-(coal_gas): {conversion: 1.0}
 (coal_gas)-energy_import_coal_gas: {conversion: 1.0}
 
 :energy_import_cokes:
+  :co2_free: 0.0
 energy_import_cokes-(cokes): {conversion: 1.0}
 (cokes)-energy_import_cokes: {conversion: 1.0}
 
 :energy_import_crude_oil:
+  :co2_free: 0.0
 energy_import_crude_oil-(crude_oil): {conversion: 1.0}
 (crude_oil)-energy_import_crude_oil: {conversion: 1.0}
 
 :energy_import_diesel:
+  :co2_free: 0.0
 energy_import_diesel-(diesel): {conversion: 1.0}
 (diesel)-energy_import_diesel: {conversion: 1.0}
 
 :energy_import_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -793,55 +892,67 @@ energy_import_electricity-(imported_electricity): {conversion: 1.0}
 (imported_electricity)-energy_import_electricity: {conversion: 1.0}
 
 :energy_import_gasoline:
+  :co2_free: 0.0
 energy_import_gasoline-(gasoline): {conversion: 1.0}
 (gasoline)-energy_import_gasoline: {conversion: 1.0}
 
 :energy_import_greengas:
+  :co2_free: 0.0
 energy_import_greengas-(greengas): {conversion: 1.0}
 (greengas)-energy_import_greengas: {conversion: 1.0}
 
 :energy_import_kerosene:
+  :co2_free: 0.0
 energy_import_kerosene-(kerosene): {conversion: 1.0}
 (kerosene)-energy_import_kerosene: {conversion: 1.0}
 
 :energy_import_lng:
+  :co2_free: 0.0
 (loss)-energy_import_lng: {}
 (natural_gas)-energy_import_lng: {conversion: 1.0}
 energy_import_lng-(lng): {conversion: 1.0}
 
 :energy_import_lpg:
+  :co2_free: 0.0
 energy_import_lpg-(lpg): {conversion: 1.0}
 (lpg)-energy_import_lpg: {conversion: 1.0}
 
 :energy_import_natural_gas:
+  :co2_free: 0.0
 energy_import_natural_gas-(natural_gas): {conversion: 1.0}
 (natural_gas)-energy_import_natural_gas: {conversion: 1.0}
 
 :energy_import_non_biogenic_waste:
+  :co2_free: 0.0
 energy_import_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 (non_biogenic_waste)-energy_import_non_biogenic_waste: {conversion: 1.0}
 
 :energy_import_steam_hot_water:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_import_steam_hot_water-(imported_steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-energy_import_steam_hot_water: {conversion: 1.0}
 
 :energy_import_torrified_biomass_pellets:
+  :co2_free: 0.0
 energy_import_torrified_biomass_pellets-(torrified_biomass_pellets): {conversion: 1.0}
 (torrified_biomass_pellets)-energy_import_torrified_biomass_pellets: {conversion: 1.0}
 
 :energy_import_uranium_oxide:
+  :co2_free: 0.0
 energy_import_uranium_oxide-(loss): {conversion: 0.0}
 (loss)-energy_import_uranium_oxide: {}
 energy_import_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-energy_import_uranium_oxide: {conversion: 1.0}
 
 :energy_import_wood_pellets:
+  :co2_free: 0.0
 energy_import_wood_pellets-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-energy_import_wood_pellets: {conversion: 1.0}
 
 :energy_interconnector_imported_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -859,6 +970,7 @@ energy_interconnector_imported_electricity-(imported_electricity): {conversion: 
 energy_interconnector_imported_electricity-(imported_electricity) -- s --> (imported_electricity)-energy_import_electricity: {share: 1.0}
 
 :energy_mixer_for_gas_power_fuel:
+  :co2_free: 0.0
   :demand_expected_value: 85080430816.9281
 energy_mixer_for_gas_power_fuel-(bio_oil): {conversion: 0.0}
 energy_mixer_for_gas_power_fuel-(crude_oil): {conversion: 0.0}
@@ -869,6 +981,7 @@ energy_mixer_for_gas_power_fuel-(bio_oil) -- s --> (bio_oil)-energy_distribution
 energy_mixer_for_gas_power_fuel-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_national_gas_network_natural_gas:
+  :co2_free: 0.0
   :demand_expected_value: 117331339040.431
 energy_national_gas_network_natural_gas-(greengas): {conversion: 0.0}
 (network_gas)-energy_national_gas_network_natural_gas: {conversion: 0.998811523421892}
@@ -880,6 +993,7 @@ energy_national_gas_network_natural_gas-(greengas) -- s --> (greengas)-energy_di
 :energy_power_combined_cycle_ccs_coal:
   :availability: 0.87
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.981071814381664
+  :co2_free: 0.85
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.373
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -888,6 +1002,7 @@ energy_national_gas_network_natural_gas-(greengas) -- s --> (greengas)-energy_di
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.4
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.0364
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -913,6 +1028,7 @@ energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torri
 :energy_power_combined_cycle_ccs_gas_power_fuelmix:
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.979125780553078
+  :co2_free: 0.85
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -920,6 +1036,7 @@ energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torri
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.2
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.0482
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -943,6 +1060,7 @@ energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (
 :energy_power_combined_cycle_coal:
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.453
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -951,6 +1069,7 @@ energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.036
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -976,6 +1095,7 @@ energy_power_combined_cycle_coal-(torrified_biomass_pellets) -- s --> (torrified
 :energy_power_combined_cycle_gas_power_fuelmix:
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :demand_expected_value: 63610769230.7692
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -984,6 +1104,7 @@ energy_power_combined_cycle_coal-(torrified_biomass_pellets) -- s --> (torrified
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.11
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.0464
   :part_load_operating_point: 0.7
   :peak_load_units_present: 3.08928571428571
@@ -1007,6 +1128,7 @@ energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
 :energy_power_engine_diesel:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1015,6 +1137,7 @@ energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :purchase_price_per_mw_input: 225000.0
@@ -1031,6 +1154,7 @@ energy_power_engine_diesel-(diesel) -- s --> (diesel)-energy_distribution_diesel
 :energy_power_geothermal:
   :availability: 0.95
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1039,6 +1163,7 @@ energy_power_engine_diesel-(diesel) -- s --> (diesel)-energy_distribution_diesel
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 1.5
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1061,6 +1186,7 @@ energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {s
 
 :energy_power_hv_network_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :demand_expected_value: 45953470636.2609
   :electrical_efficiency_when_using_coal: 0.0
@@ -1113,6 +1239,7 @@ energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) -- c --> (electricity)-energy_power_turbine_network_gas: {share: 0.0}
 
 :energy_power_hv_network_loss:
+  :co2_free: 0.0
   :demand_expected_value: 1273170285.42825
 energy_power_hv_network_loss-(loss): {conversion: 1.0}
 (electricity)-energy_power_hv_network_loss: {conversion: 1.0}
@@ -1121,6 +1248,7 @@ energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_elec
 :energy_power_hydro_mountain:
   :availability: 0.98
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1129,6 +1257,7 @@ energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_elec
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 100.0
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1150,6 +1279,7 @@ energy_power_hydro_mountain-(water): {conversion: 1.0}
 energy_power_hydro_mountain-(water) -- s --> (water)-environment_water: {share: 1.0}
 
 :energy_power_hydro_mountain_pumped:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_power_hydro_mountain_pumped-(electricity): {conversion: 1.0}
 (loss)-energy_power_hydro_mountain_pumped: {}
@@ -1158,6 +1288,7 @@ energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_p
 :energy_power_hydro_river:
   :availability: 0.98
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1166,6 +1297,7 @@ energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_p
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.0
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1188,6 +1320,7 @@ energy_power_hydro_river-(water) -- s --> (water)-environment_water: {share: 1.0
 
 :energy_power_lv_network_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1218,6 +1351,7 @@ energy_power_lv_network_electricity-(electricity) -- i --> (electricity)-buildin
 
 :energy_power_mv_distribution_network_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1248,6 +1382,7 @@ energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electri
 
 :energy_power_mv_transport_network_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1277,6 +1412,7 @@ energy_power_mv_transport_network_electricity-(electricity) -- f --> (electricit
 :energy_power_nuclear_gen2_uranium_oxide:
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.96969696969697
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
@@ -1284,6 +1420,7 @@ energy_power_mv_transport_network_electricity-(electricity) -- f --> (electricit
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 5.0
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :purchase_price_per_mw_input: 640000.0
@@ -1300,6 +1437,7 @@ energy_power_nuclear_gen2_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
 :energy_power_nuclear_gen3_uranium_oxide:
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.96969696969697
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1308,6 +1446,7 @@ energy_power_nuclear_gen2_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 5.0
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1331,6 +1470,7 @@ energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
 :energy_power_solar_csp_solar_radiation:
   :availability: 0.99
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1339,6 +1479,7 @@ energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 2.0
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1362,6 +1503,7 @@ energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiati
 :energy_power_solar_pv_solar_radiation:
   :availability: 0.98
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.83
+  :co2_free: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.05
@@ -1369,6 +1511,7 @@ energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiati
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.133333333333333
+  :part_ets: 0.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1392,6 +1535,7 @@ energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiatio
 :energy_power_supercritical_coal:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.36
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1400,6 +1544,7 @@ energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiatio
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.018
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1425,6 +1570,7 @@ energy_power_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_
 :energy_power_supercritical_waste_mix:
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.97
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1433,6 +1579,7 @@ energy_power_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.5
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1456,6 +1603,7 @@ energy_power_supercritical_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_dis
 
 :energy_power_transformer_lv_mv_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1484,6 +1632,7 @@ energy_power_transformer_lv_mv_electricity-(electricity) -- f --> (electricity)-
 
 :energy_power_transformer_mv_hv_electricity:
   :availability: 0.0
+  :co2_free: 0.0
   :costs_per_mj: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1513,6 +1662,7 @@ energy_power_transformer_mv_hv_electricity-(electricity) -- i --> (electricity)-
 :energy_power_turbine_network_gas:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1521,6 +1671,7 @@ energy_power_transformer_mv_hv_electricity-(electricity) -- i --> (electricity)-
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.1
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.034
   :part_load_operating_point: 0.65
   :purchase_price_per_mw_input: 185931.957653061
@@ -1537,6 +1688,7 @@ energy_power_turbine_network_gas-(gas_power_fuelmix) -- s --> (gas_power_fuelmix
 :energy_power_ultra_supercritical_ccs_coal:
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98116169544741
+  :co2_free: 0.85
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.361
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1545,6 +1697,7 @@ energy_power_turbine_network_gas-(gas_power_fuelmix) -- s --> (gas_power_fuelmix
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.4
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.0425
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1570,6 +1723,7 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
 :energy_power_ultra_supercritical_coal:
   :availability: 0.88
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.46
   :electrical_efficiency_when_using_wood_pellets: 0.33
@@ -1578,6 +1732,7 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.046
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1605,6 +1760,7 @@ energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-ene
 :energy_power_ultra_supercritical_cofiring_wood_pellets:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1613,6 +1769,7 @@ energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-ene
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1636,6 +1793,7 @@ energy_power_ultra_supercritical_cofiring_wood_pellets-(wood_pellets) -- s --> (
 :energy_power_ultra_supercritical_crude_oil:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1644,6 +1802,7 @@ energy_power_ultra_supercritical_cofiring_wood_pellets-(wood_pellets) -- s --> (
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.0225
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1667,6 +1826,7 @@ energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-ener
 :energy_power_ultra_supercritical_gas_power_fuelmix:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
   :demand_expected_value: 5994694356.77746
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1675,6 +1835,7 @@ energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-ener
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.04
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.294429368479445
@@ -1698,6 +1859,7 @@ energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix) -- s --> 
 :energy_power_ultra_supercritical_lignite:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.9875
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.4
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1706,6 +1868,7 @@ energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix) -- s --> 
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.3
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1731,6 +1894,7 @@ energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets) -- s --> (t
 :energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.96969696969697
+  :co2_free: 0.85
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.305
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1739,6 +1903,7 @@ energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets) -- s --> (t
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.4
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1764,6 +1929,7 @@ energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets)
 :energy_power_wind_turbine_coastal:
   :availability: 0.95
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 500474226.804124
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1772,6 +1938,7 @@ energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets)
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.2
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 18.7291666666667
@@ -1795,6 +1962,7 @@ energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air: {share
 :energy_power_wind_turbine_inland:
   :availability: 0.95
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 1225298969.07217
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1803,6 +1971,7 @@ energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air: {share
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.2
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 51.3053613053613
@@ -1826,6 +1995,7 @@ energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air: {share:
 :energy_power_wind_turbine_offshore:
   :availability: 0.92
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :electrical_efficiency_when_using_coal: 0.0
   :electrical_efficiency_when_using_wood_pellets: 0.0
@@ -1834,6 +2004,7 @@ energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air: {share:
   :households_supplied_per_unit: 0.0
   :installing_costs_per_mw_input: 0.0
   :land_use_per_unit: 0.5
+  :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
   :peak_load_units_present: 0.0
@@ -1855,30 +2026,36 @@ energy_power_wind_turbine_offshore-(wind): {conversion: 1.0}
 energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air: {share: 1.0}
 
 :energy_production_algae_diesel:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_production_algae_diesel-(algae_diesel): {conversion: 1.0}
 (algae_diesel)-energy_production_algae_diesel: {conversion: 1.0}
 
 :energy_production_bio_ethanol:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_production_bio_ethanol-(bio_ethanol): {conversion: 1.0}
 (bio_ethanol)-energy_production_bio_ethanol: {conversion: 1.0}
 
 :energy_production_bio_oil:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_production_bio_oil-(bio_oil): {conversion: 1.0}
 (bio_oil)-energy_production_bio_oil: {conversion: 1.0}
 
 :energy_production_bio_residues_for_firing:
+  :co2_free: 0.0
 energy_production_bio_residues_for_firing-(bio_residues_for_firing): {conversion: 1.0}
 (bio_residues_for_firing)-energy_production_bio_residues_for_firing: {conversion: 1.0}
 
 :energy_production_biodiesel:
+  :co2_free: 0.0
   :preset_demand: 0.0
 energy_production_biodiesel-(biodiesel): {conversion: 1.0}
 (biodiesel)-energy_production_biodiesel: {conversion: 1.0}
 
 :energy_production_biogas:
+  :co2_free: 0.0
 (biogas)-energy_production_biogas: {conversion: 1.0}
 energy_production_biogas-(manure): {conversion: 0.5}
 energy_production_biogas-(corn): {conversion: 0.5}
@@ -1886,21 +2063,25 @@ energy_production_biogas-(manure) -- s --> (manure)-energy_distribution_manure: 
 energy_production_biogas-(corn) -- s --> (corn)-energy_distribution_corn: {share: 1.0}
 
 :energy_production_biogenic_waste:
+  :co2_free: 0.0
   :max_demand: 529316459.080783
 energy_production_biogenic_waste-(biogenic_waste): {conversion: 1.0}
 (biogenic_waste)-energy_production_biogenic_waste: {conversion: 1.0}
 
 :energy_production_cokes:
+  :co2_free: 0.0
 energy_production_cokes-(coal): {conversion: 1.0}
 (coal)-energy_production_cokes: {conversion: 0.838517889372545}
 (loss)-energy_production_cokes: {}
 energy_production_cokes-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
 :energy_production_corn:
+  :co2_free: 0.0
 energy_production_corn-(corn): {conversion: 1.0}
 (corn)-energy_production_corn: {conversion: 1.0}
 
 :energy_production_diesel:
+  :co2_free: 0.0
   :demand_expected_value: 10565052052.8987
 energy_production_diesel-(crude_oil): {conversion: 1.0}
 (loss)-energy_production_diesel: {}
@@ -1908,6 +2089,7 @@ energy_production_diesel-(crude_oil): {conversion: 1.0}
 energy_production_diesel-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_production_gasoline:
+  :co2_free: 0.0
   :demand_expected_value: 6390939068.18037
 energy_production_gasoline-(crude_oil): {conversion: 1.0}
 (loss)-energy_production_gasoline: {}
@@ -1915,12 +2097,14 @@ energy_production_gasoline-(crude_oil): {conversion: 1.0}
 energy_production_gasoline-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_production_heavy_fuel_oil:
+  :co2_free: 0.0
 (loss)-energy_production_heavy_fuel_oil: {}
 (heavy_fuel_oil)-energy_production_heavy_fuel_oil: {conversion: 1.0}
 energy_production_heavy_fuel_oil-(crude_oil): {conversion: 1.0}
 energy_production_heavy_fuel_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_production_kerosene:
+  :co2_free: 0.0
   :demand_expected_value: 348234512.553147
 energy_production_kerosene-(crude_oil): {conversion: 1.0}
 (loss)-energy_production_kerosene: {}
@@ -1928,6 +2112,7 @@ energy_production_kerosene-(crude_oil): {conversion: 1.0}
 energy_production_kerosene-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_production_lpg:
+  :co2_free: 0.0
   :demand_expected_value: 554250050.179588
 energy_production_lpg-(crude_oil): {conversion: 1.0}
 (loss)-energy_production_lpg: {}
@@ -1935,30 +2120,36 @@ energy_production_lpg-(crude_oil): {conversion: 1.0}
 energy_production_lpg-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
 
 :energy_production_manure:
+  :co2_free: 0.0
 energy_production_manure-(manure): {conversion: 1.0}
 (manure)-energy_production_manure: {conversion: 1.0}
 
 :energy_production_non_biogenic_waste:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
   :max_demand: 863621591.131803
 energy_production_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
 (non_biogenic_waste)-energy_production_non_biogenic_waste: {conversion: 1.0}
 
 :energy_production_solar_thermal:
+  :co2_free: 0.0
 energy_production_solar_thermal-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-energy_production_solar_thermal: {conversion: 1.0}
 energy_production_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-environment_sun: {share: 1.0}
 
 :energy_production_wood:
+  :co2_free: 0.0
 energy_production_wood-(wood): {conversion: 1.0}
 (wood)-energy_production_wood: {conversion: 1.0}
 
 :energy_production_wood_pellets:
+  :co2_free: 0.0
 (wood_pellets)-energy_production_wood_pellets: {conversion: 1.0}
 energy_production_wood_pellets-(wood): {conversion: 1.0}
 energy_production_wood_pellets-(wood) -- s --> (wood)-energy_distribution_wood: {share: 1.0}
 
 :energy_steel_blastfurnace_bat_transformation:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
 energy_steel_blastfurnace_bat_transformation-(coal): {conversion: 0.339208661186715}
 energy_steel_blastfurnace_bat_transformation-(cokes): {conversion: 0.660791338813285}
@@ -1969,6 +2160,7 @@ energy_steel_blastfurnace_bat_transformation-(coal) -- s --> (coal)-energy_distr
 energy_steel_blastfurnace_bat_transformation-(cokes) -- s --> (cokes)-energy_distribution_cokes: {share: 1.0}
 
 :energy_steel_blastfurnace_current_transformation:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
 energy_steel_blastfurnace_current_transformation-(coal): {conversion: 0.339208661186715}
 energy_steel_blastfurnace_current_transformation-(cokes): {conversion: 0.660791338813285}
@@ -1979,6 +2171,7 @@ energy_steel_blastfurnace_current_transformation-(coal) -- s --> (coal)-energy_d
 energy_steel_blastfurnace_current_transformation-(cokes) -- s --> (cokes)-energy_distribution_cokes: {share: 1.0}
 
 :energy_steel_hisarna_transformation:
+  :co2_free: 0.0
   :demand_expected_value: 0.0
 energy_steel_hisarna_transformation-(coal): {conversion: 1.0}
 energy_steel_hisarna_transformation-(torrified_biomass_pellets): {conversion: 0.0}
@@ -1989,6 +2182,7 @@ energy_steel_hisarna_transformation-(coal) -- s --> (coal)-energy_distribution_c
 energy_steel_hisarna_transformation-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
 :energy_torrefaction_wood:
+  :co2_free: 0.0
 energy_torrefaction_wood-(network_gas): {conversion: 0.052993333}
 energy_torrefaction_wood-(wood): {conversion: 0.947006667}
 (torrified_biomass_pellets)-energy_torrefaction_wood: {conversion: 0.91}
@@ -1997,6 +2191,7 @@ energy_torrefaction_wood-(network_gas) -- s --> (network_gas)-energy_national_ga
 energy_torrefaction_wood-(wood) -- s --> (wood)-energy_distribution_wood: {share: 1.0}
 
 :energy_treatment_natural_gas:
+  :co2_free: 0.0
 energy_treatment_natural_gas-(natural_gas): {conversion: 1.0}
 (natural_gas)-energy_treatment_natural_gas: {conversion: 0.987012987012987}
 (loss)-energy_treatment_natural_gas: {}
@@ -2005,6 +2200,7 @@ energy_treatment_natural_gas-(natural_gas) -- s --> (natural_gas)-energy_import_
 energy_treatment_natural_gas-(natural_gas) -- f --> (natural_gas)-energy_import_natural_gas: {}
 
 :energy_treatment_uranium_oxide:
+  :co2_free: 0.0
 energy_treatment_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-energy_treatment_uranium_oxide: {conversion: 1.0}
 (loss)-energy_treatment_uranium_oxide: {}
@@ -2012,6 +2208,7 @@ energy_treatment_uranium_oxide-(uranium_oxide) -- f --> (uranium_oxide)-energy_i
 energy_treatment_uranium_oxide-(uranium_oxide) -- c --> (uranium_oxide)-energy_extraction_uranium_oxide: {}
 
 :energy_upgrade_biogas:
+  :co2_free: 0.0
 energy_upgrade_biogas-(biogas): {conversion: 1.0}
 (loss)-energy_upgrade_biogas: {}
 (greengas)-energy_upgrade_biogas: {conversion: 0.92}
