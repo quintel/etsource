@@ -20,6 +20,7 @@ module ETE
       :network_capacity_available_in_mw,
       :network_capacity_used_in_mw,
       :network_expansion_costs_in_euro_per_mw,
+      :part_ets,
       :part_load_efficiency_penalty,
       :part_load_operating_point,
       :peak_load_units_present,
