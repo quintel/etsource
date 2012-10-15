@@ -10,9 +10,9 @@ min_value: 0.0
 min_value_gql:
 query: |-
   EACH(
-              UPDATE(V(energy_chp_ultra_supercritical_coal), number_of_units, USER_INPUT()),
-              UPDATE(OUTPUT_LINKS(V(energy_chp_ultra_supercritical_coal),constant), share, V(energy_chp_ultra_supercritical_coal, production_based_on_number_of_units)),
-            )
+    UPDATE(V(energy_chp_ultra_supercritical_coal), number_of_units, USER_INPUT()),
+    UPDATE(L(energy_chp_ultra_supercritical_coal), preset_demand_by_electricity_production, V(energy_chp_ultra_supercritical_coal, production_based_on_number_of_units))
+  )
 share_group: ""
 start_value:
 start_value_gql: present:V(energy_chp_ultra_supercritical_coal,number_of_units)
