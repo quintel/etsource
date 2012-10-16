@@ -141,8 +141,8 @@ energy_cokesoven_consumption-(coal_gas): {conversion: 0.96}
 energy_cokesoven_consumption-(electricity): {conversion: 0.04}
 energy_cokesoven_consumption-(coupling_carrier): {conversion: 10.2279899144691, reset_to_zero: true}
 (loss)-energy_cokesoven_consumption: {}
-energy_cokesoven_consumption-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas: {share: 1.0}
 energy_cokesoven_consumption-(electricity) -- s --> (electricity)-industry_locally_available_electricity: {share: 1.0}
+energy_cokesoven_consumption-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas: {share: 1.0}
 energy_cokesoven_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_cokesoven_transformation: {share: 1.0}
 
 :energy_cokesoven_transformation:
@@ -1953,13 +1953,6 @@ energy_production_biogas-(corn) -- s --> (corn)-energy_distribution_corn: {share
   :max_demand: 226100000000.0
 energy_production_biogenic_waste-(biogenic_waste): {conversion: 1.0}
 (biogenic_waste)-energy_production_biogenic_waste: {conversion: 1.0}
-
-:energy_production_cokes:
-  :co2_free: 0.0
-energy_production_cokes-(coal): {conversion: 1.0}
-(coal)-energy_production_cokes: {conversion: 0.838517889372545}
-(loss)-energy_production_cokes: {}
-energy_production_cokes-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
 :energy_production_corn:
   :co2_free: 0.0

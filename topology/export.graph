@@ -335,7 +335,7 @@ buildings_final_demand_coal:
   use: energetic
   energy_balance_group: final consumption
   links:
-  - buildings_final_demand_coal-(coal) -- s --> (coal)-energy_production_cokes
+  - buildings_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal
   slots:
   - buildings_final_demand_coal-(coal)
   - (coal)-buildings_final_demand_coal
@@ -952,8 +952,8 @@ energy_cokesoven_consumption:
   use: energetic
   energy_balance_group: energy sector own use
   links:
-  - energy_cokesoven_consumption-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas
   - energy_cokesoven_consumption-(electricity) -- s --> (electricity)-industry_locally_available_electricity
+  - energy_cokesoven_consumption-(coal_gas) -- s --> (coal_gas)-energy_distribution_coal_gas
   - energy_cokesoven_consumption-(coupling_carrier) -- s --> (coupling_carrier)-energy_cokesoven_transformation
   slots:
   - energy_cokesoven_consumption-(coal_gas)
@@ -2305,16 +2305,6 @@ energy_production_biogenic_waste:
   slots:
   - energy_production_biogenic_waste-(biogenic_waste)
   - (biogenic_waste)-energy_production_biogenic_waste
-energy_production_cokes:
-  sector: energy
-  use: undefined
-  energy_balance_group: coal conversion
-  links:
-  - energy_production_cokes-(coal) -- s --> (coal)-energy_distribution_coal
-  slots:
-  - energy_production_cokes-(coal)
-  - (coal)-energy_production_cokes
-  - ! '(loss)-energy_production_cokes: {type: :elastic}'
 energy_production_corn:
   sector: energy
   use: undefined
@@ -2733,7 +2723,7 @@ households_final_demand_coal:
   use: energetic
   energy_balance_group: final consumption
   links:
-  - households_final_demand_coal-(coal) -- s --> (coal)-energy_production_cokes
+  - households_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal
   slots:
   - households_final_demand_coal-(coal)
   - (coal)-households_final_demand_coal
@@ -3547,10 +3537,10 @@ households_water_heater_heatpump_air_water_electricity:
   use: energetic
   energy_balance_group: technologies
   links:
-  - households_water_heater_heatpump_air_water_electricity-(electricity) -- s -->
-    (electricity)-households_final_demand_for_hot_water_electricity
   - households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s -->
     (ambient_heat)-environment_air
+  - households_water_heater_heatpump_air_water_electricity-(electricity) -- s -->
+    (electricity)-households_final_demand_for_hot_water_electricity
   slots:
   - households_water_heater_heatpump_air_water_electricity-(electricity)
   - households_water_heater_heatpump_air_water_electricity-(ambient_heat)
@@ -3776,7 +3766,7 @@ industry_final_demand_coal:
   use: energetic
   energy_balance_group: final consumption
   links:
-  - industry_final_demand_coal-(coal) -- s --> (coal)-energy_production_cokes
+  - industry_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal
   slots:
   - industry_final_demand_coal-(coal)
   - (coal)-industry_final_demand_coal
@@ -3794,7 +3784,7 @@ industry_final_demand_coal_non_energetic:
   use: non_energetic
   energy_balance_group: final consumption
   links:
-  - industry_final_demand_coal_non_energetic-(coal) -- s --> (coal)-energy_production_cokes
+  - industry_final_demand_coal_non_energetic-(coal) -- s --> (coal)-energy_distribution_coal
   slots:
   - industry_final_demand_coal_non_energetic-(coal)
   - (coal)-industry_final_demand_coal_non_energetic
@@ -3946,8 +3936,8 @@ industry_other_metals_burner:
   energy_balance_group: technologies
   links:
   - industry_other_metals_burner-(coal) -- s --> (coal)-industry_final_demand_coal
-  - industry_other_metals_burner-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil
   - industry_other_metals_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  - industry_other_metals_burner-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil
   slots:
   - industry_other_metals_burner-(coal)
   - industry_other_metals_burner-(crude_oil)
@@ -3969,8 +3959,8 @@ industry_other_metals_process_heat:
   use: energetic
   energy_balance_group: preferred technologies
   links:
-  - industry_other_metals_process_heat-(useable_heat) -- f --> (useable_heat)-industry_other_metals_burner
   - industry_other_metals_process_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water
+  - industry_other_metals_process_heat-(useable_heat) -- f --> (useable_heat)-industry_other_metals_burner
   slots:
   - industry_other_metals_process_heat-(useable_heat)
   - (not_defined)-industry_other_metals_process_heat
@@ -4004,8 +3994,8 @@ industry_steel_blastfurnace_burner:
   use: energetic
   energy_balance_group: technologies
   links:
-  - industry_steel_blastfurnace_burner-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas
   - industry_steel_blastfurnace_burner-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  - industry_steel_blastfurnace_burner-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas
   slots:
   - industry_steel_blastfurnace_burner-(coal_gas)
   - industry_steel_blastfurnace_burner-(network_gas)
@@ -4225,7 +4215,7 @@ other_final_demand_coal:
   use: energetic
   energy_balance_group: final consumption
   links:
-  - other_final_demand_coal-(coal) -- s --> (coal)-energy_production_cokes
+  - other_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal
   slots:
   - other_final_demand_coal-(coal)
   - (coal)-other_final_demand_coal
