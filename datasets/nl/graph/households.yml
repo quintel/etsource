@@ -295,7 +295,7 @@ households_cooling_heatpump_ground_water_electricity-(electricity) -- s --> (ele
   :demand_expected_value: 230000000.0
 households_final_demand_coal-(coal): {conversion: 1.0}
 (coal)-households_final_demand_coal: {conversion: 1.0}
-households_final_demand_coal-(coal) -- s --> (coal)-energy_production_cokes: {share: 1.0}
+households_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
 :households_final_demand_crude_oil:
   :co2_free: 0.0
@@ -1287,8 +1287,8 @@ households_water_heater_heatpump_air_water_electricity-(electricity): {conversio
 households_water_heater_heatpump_air_water_electricity-(ambient_heat): {conversion: 0.666666666666667}
 (useable_heat)-households_water_heater_heatpump_air_water_electricity: {conversion: 1.0}
 (loss)-households_water_heater_heatpump_air_water_electricity: {}
-households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
 :households_water_heater_heatpump_ground_water_electricity:
   :availability: 0.0
