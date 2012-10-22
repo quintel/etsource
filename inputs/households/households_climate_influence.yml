@@ -1,0 +1,19 @@
+---
+factor: 100.0
+id: 607
+max_value: 5.0
+min_value: -5.0
+query: |-
+ x = USER_INPUT() / 100.0;
+ heat_factor = - 0.0893386 * x;
+
+ EACH(
+  UPDATE(V(households_new_houses_useful_demand_for_heating), preset_demand, heat_factor),
+  UPDATE(V(households_old_houses_useful_demand_for_heating), preset_demand, heat_factor)
+ )
+share_group: ""
+start_value: 0.0
+start_value_gql:
+unit: '%'
+updateable_period: future
+default_unit: '%'
