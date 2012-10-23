@@ -42,7 +42,7 @@ describe "biogas_production" do
 
   context "updating a_biogas_chp using an input" do
     before :all do
-      input = Input.new(lookup_id: 123, updateable_period: 'future', 
+      input = Input.new(lookup_id: 123, update_period: 'future',
                         query: "UPDATE(L(a_biogas_chp), demand, USER_INPUT())")
       load_scenario do
         move_slider input, 5000
