@@ -4,13 +4,23 @@ id: 607
 max_value: 5.0
 min_value: -5.0
 query: |-
- x = USER_INPUT() / 100.0;
- heat_factor = - 0.0893386 * x;
+  x = USER_INPUT() / 100.0;
+  heat_factor = 1 - 0.0893386 * x;
 
- EACH(
-  UPDATE(V(households_new_houses_useful_demand_for_heating), preset_demand, heat_factor),
-  UPDATE(V(households_old_houses_useful_demand_for_heating), preset_demand, heat_factor)
- )
+  cool_factor = SUM(1,
+    PRODUCT( 0.5669449741015228,    x   ),
+    PRODUCT( 0.15981051550292244,   x**2),
+    PRODUCT( 0.025375493972840838,  x**3),
+    PRODUCT( 0.0016321071413778218, x**4)
+  );
+
+  EACH(
+    UPDATE(V(households_new_houses_useful_demand_for_heating), preset_demand, heat_factor),
+    UPDATE(V(households_old_houses_useful_demand_for_heating), preset_demand, heat_factor),
+    UPDATE(V(households_new_houses_useful_demand_for_cooling), preset_demand, cool_factor),
+    UPDATE(V(households_old_houses_useful_demand_for_cooling), preset_demand, cool_factor)
+  )
+
 share_group: ""
 start_value: 0.0
 start_value_gql:
