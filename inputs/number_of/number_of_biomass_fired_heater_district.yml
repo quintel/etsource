@@ -11,7 +11,7 @@ min_value_gql:
 query: |-
   EACH(
     UPDATE(V(energy_heater_for_heat_network_wood_pellets), number_of_units, USER_INPUT()),
-    UPDATE(L(energy_heater_for_heat_network_wood_pellets), preset_demand_by_electricity_production, V(energy_heater_for_heat_network_wood_pellets, production_based_on_number_of_heat_units))
+    UPDATE(OUTPUT_LINKS(V(energy_heater_for_heat_network_wood_pellets),constant), share, V(energy_heater_for_heat_network_wood_pellets, production_based_on_number_of_heat_units)),
   )
 share_group: ""
 start_value:
