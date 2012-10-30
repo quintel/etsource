@@ -7,7 +7,7 @@ agriculture_burner_crude_oil:
   - agriculture_burner_crude_oil-(crude_oil) -- s --> (crude_oil)-agriculture_final_demand_for_heat_crude_oil
   slots:
   - agriculture_burner_crude_oil-(crude_oil)
-  - ! '(loss)-agriculture_burner_crude_oil: {type: :elastic}'
+  - ! '(loss)-agriculture_burner_crude_oil: {type: :loss}'
   - (useable_heat)-agriculture_burner_crude_oil
 agriculture_burner_network_gas:
   sector: agriculture
@@ -17,7 +17,7 @@ agriculture_burner_network_gas:
   - agriculture_burner_network_gas-(network_gas) -- s --> (network_gas)-agriculture_final_demand_for_heat_network_gas
   slots:
   - agriculture_burner_network_gas-(network_gas)
-  - ! '(loss)-agriculture_burner_network_gas: {type: :elastic}'
+  - ! '(loss)-agriculture_burner_network_gas: {type: :loss}'
   - (useable_heat)-agriculture_burner_network_gas
 agriculture_burner_wood_pellets:
   sector: agriculture
@@ -27,7 +27,7 @@ agriculture_burner_wood_pellets:
   - agriculture_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-agriculture_final_demand_for_heat_wood_pellets
   slots:
   - agriculture_burner_wood_pellets-(wood_pellets)
-  - ! '(loss)-agriculture_burner_wood_pellets: {type: :elastic}'
+  - ! '(loss)-agriculture_burner_wood_pellets: {type: :loss}'
   - (useable_heat)-agriculture_burner_wood_pellets
 agriculture_chp_engine_gas_power_fuelmix:
   sector: agriculture
@@ -37,7 +37,7 @@ agriculture_chp_engine_gas_power_fuelmix:
   - agriculture_chp_engine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
   - agriculture_chp_engine_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-agriculture_chp_engine_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-agriculture_chp_engine_gas_power_fuelmix: {type: :loss}'
   - (steam_hot_water)-agriculture_chp_engine_gas_power_fuelmix
   - (electricity)-agriculture_chp_engine_gas_power_fuelmix
 agriculture_final_demand_crude_oil:
@@ -233,7 +233,7 @@ buildings_collective_chp_gas_power_fuelmix:
   - buildings_collective_chp_gas_power_fuelmix-(gas_power_fuelmix)
   - (electricity)-buildings_collective_chp_gas_power_fuelmix
   - (steam_hot_water)-buildings_collective_chp_gas_power_fuelmix
-  - ! '(loss)-buildings_collective_chp_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-buildings_collective_chp_gas_power_fuelmix: {type: :loss}'
 buildings_collective_chp_wood_pellets:
   sector: buildings
   use: energetic
@@ -244,7 +244,7 @@ buildings_collective_chp_wood_pellets:
   - buildings_collective_chp_wood_pellets-(wood_pellets)
   - (electricity)-buildings_collective_chp_wood_pellets
   - (steam_hot_water)-buildings_collective_chp_wood_pellets
-  - ! '(loss)-buildings_collective_chp_wood_pellets: {type: :elastic}'
+  - ! '(loss)-buildings_collective_chp_wood_pellets: {type: :loss}'
 buildings_collective_geothermal:
   sector: buildings
   use: energetic
@@ -265,7 +265,7 @@ buildings_cooling_airconditioning:
   - buildings_cooling_airconditioning-(electricity)
   - buildings_cooling_airconditioning-(ambient_cold)
   - (cooling)-buildings_cooling_airconditioning
-  - ! '(loss)-buildings_cooling_airconditioning: {type: :elastic}'
+  - ! '(loss)-buildings_cooling_airconditioning: {type: :loss}'
 buildings_cooling_collective_cooling_network_electricity:
   sector: buildings
   use: energetic
@@ -293,7 +293,7 @@ buildings_cooling_collective_heatpump_water_water_ts_electricity:
   - buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold)
   - (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
   - ! '(loss)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {type:
-    :elastic}'
+    :loss}'
 buildings_cooling_heatpump_air_water_network_gas:
   sector: buildings
   use: energetic
@@ -305,7 +305,7 @@ buildings_cooling_heatpump_air_water_network_gas:
   - buildings_cooling_heatpump_air_water_network_gas-(network_gas)
   - buildings_cooling_heatpump_air_water_network_gas-(ambient_cold)
   - (cooling)-buildings_cooling_heatpump_air_water_network_gas
-  - ! '(loss)-buildings_cooling_heatpump_air_water_network_gas: {type: :elastic}'
+  - ! '(loss)-buildings_cooling_heatpump_air_water_network_gas: {type: :loss}'
 buildings_cooling_savings_from_recirculation_cooling:
   sector: buildings
   use: energetic
@@ -542,7 +542,7 @@ buildings_heat_network_connection_steam_hot_water:
   slots:
   - buildings_heat_network_connection_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-buildings_heat_network_connection_steam_hot_water
-  - ! '(loss)-buildings_heat_network_connection_steam_hot_water: {type: :elastic}'
+  - ! '(loss)-buildings_heat_network_connection_steam_hot_water: {type: :loss}'
 buildings_heating_savings_from_insulation_useable_heat:
   sector: buildings
   use: energetic
@@ -576,7 +576,7 @@ buildings_lighting_efficient_fluorescent:
   slots:
   - buildings_lighting_efficient_fluorescent-(electricity)
   - (light)-buildings_lighting_efficient_fluorescent
-  - ! '(loss)-buildings_lighting_efficient_fluorescent: {type: :elastic}'
+  - ! '(loss)-buildings_lighting_efficient_fluorescent: {type: :loss}'
 buildings_lighting_led:
   sector: buildings
   use: energetic
@@ -586,7 +586,7 @@ buildings_lighting_led:
   slots:
   - buildings_lighting_led-(electricity)
   - (light)-buildings_lighting_led
-  - ! '(loss)-buildings_lighting_led: {type: :elastic}'
+  - ! '(loss)-buildings_lighting_led: {type: :loss}'
 buildings_lighting_savings_from_daylight_control_light:
   sector: buildings
   use: energetic
@@ -612,7 +612,7 @@ buildings_lighting_standard_fluorescent_electricity:
   slots:
   - buildings_lighting_standard_fluorescent_electricity-(electricity)
   - (light)-buildings_lighting_standard_fluorescent_electricity
-  - ! '(loss)-buildings_lighting_standard_fluorescent_electricity: {type: :elastic}'
+  - ! '(loss)-buildings_lighting_standard_fluorescent_electricity: {type: :loss}'
 buildings_local_production_electricity:
   sector: buildings
   use: undefined
@@ -633,7 +633,7 @@ buildings_solar_pv_solar_radiation:
   - buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
   slots:
   - buildings_solar_pv_solar_radiation-(solar_radiation)
-  - ! '(loss)-buildings_solar_pv_solar_radiation: {type: :elastic}'
+  - ! '(loss)-buildings_solar_pv_solar_radiation: {type: :loss}'
   - (electricity)-buildings_solar_pv_solar_radiation
 buildings_space_heater_coal:
   sector: buildings
@@ -643,7 +643,7 @@ buildings_space_heater_coal:
   - buildings_space_heater_coal-(coal) -- s --> (coal)-buildings_final_demand_for_space_heating_coal
   slots:
   - buildings_space_heater_coal-(coal)
-  - ! '(loss)-buildings_space_heater_coal: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_coal: {type: :loss}'
   - (useable_heat)-buildings_space_heater_coal
 buildings_space_heater_collective_heatpump_water_water_ts_electricity:
   sector: buildings
@@ -659,7 +659,7 @@ buildings_space_heater_collective_heatpump_water_water_ts_electricity:
   - buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat)
   - (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity
   - ! '(loss)-buildings_space_heater_collective_heatpump_water_water_ts_electricity:
-    {type: :elastic}'
+    {type: :loss}'
 buildings_space_heater_crude_oil:
   sector: buildings
   use: energetic
@@ -668,7 +668,7 @@ buildings_space_heater_crude_oil:
   - buildings_space_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_final_demand_for_space_heating_crude_oil
   slots:
   - buildings_space_heater_crude_oil-(crude_oil)
-  - ! '(loss)-buildings_space_heater_crude_oil: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_crude_oil: {type: :loss}'
   - (useable_heat)-buildings_space_heater_crude_oil
 buildings_space_heater_district_heating_steam_hot_water:
   sector: buildings
@@ -689,7 +689,7 @@ buildings_space_heater_electricity:
   slots:
   - buildings_space_heater_electricity-(electricity)
   - (useable_heat)-buildings_space_heater_electricity
-  - ! '(loss)-buildings_space_heater_electricity: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_electricity: {type: :loss}'
 buildings_space_heater_heatpump_air_water_network_gas:
   sector: buildings
   use: energetic
@@ -702,7 +702,7 @@ buildings_space_heater_heatpump_air_water_network_gas:
   - buildings_space_heater_heatpump_air_water_network_gas-(network_gas)
   - buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat)
   - (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas
-  - ! '(loss)-buildings_space_heater_heatpump_air_water_network_gas: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_heatpump_air_water_network_gas: {type: :loss}'
 buildings_space_heater_network_gas:
   sector: buildings
   use: energetic
@@ -712,7 +712,7 @@ buildings_space_heater_network_gas:
   slots:
   - buildings_space_heater_network_gas-(network_gas)
   - (useable_heat)-buildings_space_heater_network_gas
-  - ! '(loss)-buildings_space_heater_network_gas: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_network_gas: {type: :loss}'
 buildings_space_heater_solar_thermal:
   sector: buildings
   use: energetic
@@ -722,7 +722,7 @@ buildings_space_heater_solar_thermal:
   slots:
   - buildings_space_heater_solar_thermal-(solar_thermal)
   - (useable_heat)-buildings_space_heater_solar_thermal
-  - ! '(loss)-buildings_space_heater_solar_thermal: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_solar_thermal: {type: :loss}'
 buildings_space_heater_wood_pellets:
   sector: buildings
   use: energetic
@@ -732,7 +732,7 @@ buildings_space_heater_wood_pellets:
   slots:
   - buildings_space_heater_wood_pellets-(wood_pellets)
   - (useable_heat)-buildings_space_heater_wood_pellets
-  - ! '(loss)-buildings_space_heater_wood_pellets: {type: :elastic}'
+  - ! '(loss)-buildings_space_heater_wood_pellets: {type: :loss}'
 buildings_useful_demand_after_insulation_cooling:
   sector: buildings
   use: energetic
@@ -896,7 +896,7 @@ energy_chp_combined_cycle_gas_power_fuelmix:
   - energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
   - energy_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_chp_combined_cycle_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-energy_chp_combined_cycle_gas_power_fuelmix: {type: :loss}'
   - (steam_hot_water)-energy_chp_combined_cycle_gas_power_fuelmix
   - (electricity)-energy_chp_combined_cycle_gas_power_fuelmix
 energy_chp_ultra_supercritical_coal:
@@ -911,7 +911,7 @@ energy_chp_ultra_supercritical_coal:
   - energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets)
   - energy_chp_ultra_supercritical_coal-(wood_pellets)
   - energy_chp_ultra_supercritical_coal-(coal)
-  - ! '(loss)-energy_chp_ultra_supercritical_coal: {type: :elastic}'
+  - ! '(loss)-energy_chp_ultra_supercritical_coal: {type: :loss}'
   - (steam_hot_water)-energy_chp_ultra_supercritical_coal
   - (electricity)-energy_chp_ultra_supercritical_coal
 energy_chp_ultra_supercritical_crude_oil:
@@ -924,7 +924,7 @@ energy_chp_ultra_supercritical_crude_oil:
   - energy_chp_ultra_supercritical_crude_oil-(crude_oil)
   - (electricity)-energy_chp_ultra_supercritical_crude_oil
   - (steam_hot_water)-energy_chp_ultra_supercritical_crude_oil
-  - ! '(loss)-energy_chp_ultra_supercritical_crude_oil: {type: :elastic}'
+  - ! '(loss)-energy_chp_ultra_supercritical_crude_oil: {type: :loss}'
 energy_chp_ultra_supercritical_lignite:
   sector: energy
   use: undefined
@@ -935,7 +935,7 @@ energy_chp_ultra_supercritical_lignite:
   - energy_chp_ultra_supercritical_lignite-(lignite)
   - (electricity)-energy_chp_ultra_supercritical_lignite
   - (steam_hot_water)-energy_chp_ultra_supercritical_lignite
-  - ! '(loss)-energy_chp_ultra_supercritical_lignite: {type: :elastic}'
+  - ! '(loss)-energy_chp_ultra_supercritical_lignite: {type: :loss}'
 energy_chp_ultra_supercritical_wood_pellets:
   sector: energy
   use: energetic
@@ -944,7 +944,7 @@ energy_chp_ultra_supercritical_wood_pellets:
   - energy_chp_ultra_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
   slots:
   - energy_chp_ultra_supercritical_wood_pellets-(wood_pellets)
-  - ! '(loss)-energy_chp_ultra_supercritical_wood_pellets: {type: :elastic}'
+  - ! '(loss)-energy_chp_ultra_supercritical_wood_pellets: {type: :loss}'
   - (steam_hot_water)-energy_chp_ultra_supercritical_wood_pellets
   - (electricity)-energy_chp_ultra_supercritical_wood_pellets
 energy_cokesoven_consumption:
@@ -959,7 +959,7 @@ energy_cokesoven_consumption:
   - energy_cokesoven_consumption-(coal_gas)
   - energy_cokesoven_consumption-(electricity)
   - energy_cokesoven_consumption-(coupling_carrier)
-  - ! '(loss)-energy_cokesoven_consumption: {type: :elastic}'
+  - ! '(loss)-energy_cokesoven_consumption: {type: :loss}'
 energy_cokesoven_transformation:
   sector: energy
   use: energetic
@@ -970,7 +970,7 @@ energy_cokesoven_transformation:
   - energy_cokesoven_transformation-(coal)
   - (cokes)-energy_cokesoven_transformation
   - (coal_gas)-energy_cokesoven_transformation
-  - ! '(loss)-energy_cokesoven_transformation: {type: :elastic}'
+  - ! '(loss)-energy_cokesoven_transformation: {type: :loss}'
   - (coupling_carrier)-energy_cokesoven_transformation
 energy_distribution_algae_diesel:
   sector: energy
@@ -992,7 +992,7 @@ energy_distribution_bio_ethanol:
   slots:
   - energy_distribution_bio_ethanol-(bio_ethanol)
   - (bio_ethanol)-energy_distribution_bio_ethanol
-  - ! '(loss)-energy_distribution_bio_ethanol: {type: :elastic}'
+  - ! '(loss)-energy_distribution_bio_ethanol: {type: :loss}'
 energy_distribution_bio_oil:
   sector: energy
   use: undefined
@@ -1023,7 +1023,7 @@ energy_distribution_biodiesel:
   slots:
   - energy_distribution_biodiesel-(biodiesel)
   - (biodiesel)-energy_distribution_biodiesel
-  - ! '(loss)-energy_distribution_biodiesel: {type: :elastic}'
+  - ! '(loss)-energy_distribution_biodiesel: {type: :loss}'
 energy_distribution_biogas:
   sector: energy
   use: undefined
@@ -1052,7 +1052,7 @@ energy_distribution_coal:
   - energy_distribution_coal-(coal) -- f --> (coal)-energy_import_coal
   slots:
   - energy_distribution_coal-(loss)
-  - ! '(loss)-energy_distribution_coal: {type: :elastic}'
+  - ! '(loss)-energy_distribution_coal: {type: :loss}'
   - energy_distribution_coal-(coal)
   - (coal)-energy_distribution_coal
 energy_distribution_coal_gas:
@@ -1096,7 +1096,7 @@ energy_distribution_crude_oil:
   slots:
   - energy_distribution_crude_oil-(crude_oil)
   - (crude_oil)-energy_distribution_crude_oil
-  - ! '(loss)-energy_distribution_crude_oil: {type: :elastic}'
+  - ! '(loss)-energy_distribution_crude_oil: {type: :loss}'
 energy_distribution_crude_oil_loss:
   sector: energy
   use: undefined
@@ -1105,7 +1105,7 @@ energy_distribution_crude_oil_loss:
   - energy_distribution_crude_oil_loss-(loss) -- d --> (loss)-energy_distribution_crude_oil
   slots:
   - energy_distribution_crude_oil_loss-(loss)
-  - ! '(loss)-energy_distribution_crude_oil_loss: {type: :elastic}'
+  - ! '(loss)-energy_distribution_crude_oil_loss: {type: :loss}'
 energy_distribution_diesel:
   sector: energy
   use: undefined
@@ -1116,7 +1116,7 @@ energy_distribution_diesel:
   slots:
   - energy_distribution_diesel-(diesel)
   - (diesel)-energy_distribution_diesel
-  - ! '(loss)-energy_distribution_diesel: {type: :elastic}'
+  - ! '(loss)-energy_distribution_diesel: {type: :loss}'
 energy_distribution_gasoline:
   sector: energy
   use: undefined
@@ -1127,7 +1127,7 @@ energy_distribution_gasoline:
   slots:
   - energy_distribution_gasoline-(gasoline)
   - (gasoline)-energy_distribution_gasoline
-  - ! '(loss)-energy_distribution_gasoline: {type: :elastic}'
+  - ! '(loss)-energy_distribution_gasoline: {type: :loss}'
 energy_distribution_greengas:
   sector: energy
   use: undefined
@@ -1137,7 +1137,7 @@ energy_distribution_greengas:
   - energy_distribution_greengas-(greengas) -- c --> (greengas)-energy_upgrade_biogas
   slots:
   - energy_distribution_greengas-(loss)
-  - ! '(loss)-energy_distribution_greengas: {type: :elastic}'
+  - ! '(loss)-energy_distribution_greengas: {type: :loss}'
   - energy_distribution_greengas-(greengas)
   - (greengas)-energy_distribution_greengas
 energy_distribution_heavy_fuel_oil:
@@ -1159,7 +1159,7 @@ energy_distribution_kerosene:
   slots:
   - energy_distribution_kerosene-(kerosene)
   - (kerosene)-energy_distribution_kerosene
-  - ! '(loss)-energy_distribution_kerosene: {type: :elastic}'
+  - ! '(loss)-energy_distribution_kerosene: {type: :loss}'
 energy_distribution_lignite:
   sector: energy
   use: undefined
@@ -1196,7 +1196,7 @@ energy_distribution_network_gas_loss:
   - energy_distribution_network_gas_loss-(loss) -- d --> (loss)-energy_national_gas_network_natural_gas
   slots:
   - energy_distribution_network_gas_loss-(loss)
-  - ! '(loss)-energy_distribution_network_gas_loss: {type: :elastic}'
+  - ! '(loss)-energy_distribution_network_gas_loss: {type: :loss}'
 energy_distribution_non_biogenic_waste:
   sector: energy
   use: undefined
@@ -1228,7 +1228,7 @@ energy_distribution_uranium_oxide:
   slots:
   - energy_distribution_uranium_oxide-(uranium_oxide)
   - (uranium_oxide)-energy_distribution_uranium_oxide
-  - ! '(loss)-energy_distribution_uranium_oxide: {type: :elastic}'
+  - ! '(loss)-energy_distribution_uranium_oxide: {type: :loss}'
 energy_distribution_waste_mix:
   sector: energy
   use: undefined
@@ -1420,7 +1420,7 @@ energy_extraction_coal:
   slots:
   - energy_extraction_coal-(coal)
   - (coal)-energy_extraction_coal
-  - ! '(loss)-energy_extraction_coal: {type: :elastic}'
+  - ! '(loss)-energy_extraction_coal: {type: :loss}'
 energy_extraction_crude_oil:
   sector: energy
   use: undefined
@@ -1428,7 +1428,7 @@ energy_extraction_crude_oil:
   links: 
   slots:
   - energy_extraction_crude_oil-(loss)
-  - ! '(loss)-energy_extraction_crude_oil: {type: :elastic}'
+  - ! '(loss)-energy_extraction_crude_oil: {type: :loss}'
   - energy_extraction_crude_oil-(crude_oil)
   - (crude_oil)-energy_extraction_crude_oil
 energy_extraction_lignite:
@@ -1463,7 +1463,7 @@ energy_final_demand_crude_oil:
   - energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
   - energy_final_demand_crude_oil-(crude_oil)
-  - ! '(loss)-energy_final_demand_crude_oil: {type: :elastic}'
+  - ! '(loss)-energy_final_demand_crude_oil: {type: :loss}'
 energy_final_demand_electricity:
   sector: energy
   use: energetic
@@ -1472,7 +1472,7 @@ energy_final_demand_electricity:
   - energy_final_demand_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
   slots:
   - energy_final_demand_electricity-(electricity)
-  - ! '(loss)-energy_final_demand_electricity: {type: :elastic}'
+  - ! '(loss)-energy_final_demand_electricity: {type: :loss}'
 energy_final_demand_network_gas:
   sector: energy
   use: energetic
@@ -1481,7 +1481,7 @@ energy_final_demand_network_gas:
   - energy_final_demand_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
   - energy_final_demand_network_gas-(network_gas)
-  - ! '(loss)-energy_final_demand_network_gas: {type: :elastic}'
+  - ! '(loss)-energy_final_demand_network_gas: {type: :loss}'
 energy_final_demand_steam_hot_water:
   sector: energy
   use: energetic
@@ -1490,7 +1490,7 @@ energy_final_demand_steam_hot_water:
   - energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-energy_heat_network_steam_hot_water
   slots:
   - energy_final_demand_steam_hot_water-(steam_hot_water)
-  - ! '(loss)-energy_final_demand_steam_hot_water: {type: :elastic}'
+  - ! '(loss)-energy_final_demand_steam_hot_water: {type: :loss}'
 energy_heat_network_backup_heater_gas_power_fuelmix:
   sector: energy
   use: undefined
@@ -1500,7 +1500,7 @@ energy_heat_network_backup_heater_gas_power_fuelmix:
     (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
   - energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_heat_network_backup_heater_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-energy_heat_network_backup_heater_gas_power_fuelmix: {type: :loss}'
   - (steam_hot_water)-energy_heat_network_backup_heater_gas_power_fuelmix
 energy_heat_network_loss:
   sector: energy
@@ -1510,7 +1510,7 @@ energy_heat_network_loss:
   - energy_heat_network_loss-(loss) -- d --> (loss)-energy_heat_network_steam_hot_water
   slots:
   - energy_heat_network_loss-(loss)
-  - ! '(loss)-energy_heat_network_loss: {type: :elastic}'
+  - ! '(loss)-energy_heat_network_loss: {type: :loss}'
 energy_heat_network_steam_hot_water:
   sector: energy
   use: energetic
@@ -1534,7 +1534,7 @@ energy_heat_network_steam_hot_water:
   slots:
   - energy_heat_network_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-energy_heat_network_steam_hot_water
-  - ! '(loss)-energy_heat_network_steam_hot_water: {type: :elastic}'
+  - ! '(loss)-energy_heat_network_steam_hot_water: {type: :loss}'
 energy_heat_network_unused_steam_hot_water:
   sector: energy
   use: energetic
@@ -1587,7 +1587,7 @@ energy_heater_for_heat_network_coal:
   slots:
   - energy_heater_for_heat_network_coal-(coal)
   - (steam_hot_water)-energy_heater_for_heat_network_coal
-  - ! '(loss)-energy_heater_for_heat_network_coal: {type: :elastic}'
+  - ! '(loss)-energy_heater_for_heat_network_coal: {type: :loss}'
 energy_heater_for_heat_network_crude_oil:
   sector: energy
   use: energetic
@@ -1597,7 +1597,7 @@ energy_heater_for_heat_network_crude_oil:
   slots:
   - energy_heater_for_heat_network_crude_oil-(crude_oil)
   - (steam_hot_water)-energy_heater_for_heat_network_crude_oil
-  - ! '(loss)-energy_heater_for_heat_network_crude_oil: {type: :elastic}'
+  - ! '(loss)-energy_heater_for_heat_network_crude_oil: {type: :loss}'
 energy_heater_for_heat_network_geothermal:
   sector: energy
   use: undefined
@@ -1616,7 +1616,7 @@ energy_heater_for_heat_network_lignite:
   slots:
   - energy_heater_for_heat_network_lignite-(lignite)
   - (steam_hot_water)-energy_heater_for_heat_network_lignite
-  - ! '(loss)-energy_heater_for_heat_network_lignite: {type: :elastic}'
+  - ! '(loss)-energy_heater_for_heat_network_lignite: {type: :loss}'
 energy_heater_for_heat_network_network_gas:
   sector: energy
   use: energetic
@@ -1626,7 +1626,7 @@ energy_heater_for_heat_network_network_gas:
   slots:
   - energy_heater_for_heat_network_network_gas-(network_gas)
   - (steam_hot_water)-energy_heater_for_heat_network_network_gas
-  - ! '(loss)-energy_heater_for_heat_network_network_gas: {type: :elastic}'
+  - ! '(loss)-energy_heater_for_heat_network_network_gas: {type: :loss}'
 energy_heater_for_heat_network_waste_mix:
   sector: energy
   use: energetic
@@ -1636,7 +1636,7 @@ energy_heater_for_heat_network_waste_mix:
   slots:
   - energy_heater_for_heat_network_waste_mix-(waste_mix)
   - (steam_hot_water)-energy_heater_for_heat_network_waste_mix
-  - ! '(loss)-energy_heater_for_heat_network_waste_mix: {type: :elastic}'
+  - ! '(loss)-energy_heater_for_heat_network_waste_mix: {type: :loss}'
 energy_heater_for_heat_network_wood_pellets:
   sector: energy
   use: energetic
@@ -1646,7 +1646,7 @@ energy_heater_for_heat_network_wood_pellets:
   slots:
   - energy_heater_for_heat_network_wood_pellets-(wood_pellets)
   - (steam_hot_water)-energy_heater_for_heat_network_wood_pellets
-  - ! '(loss)-energy_heater_for_heat_network_wood_pellets: {type: :elastic}'
+  - ! '(loss)-energy_heater_for_heat_network_wood_pellets: {type: :loss}'
 energy_import_algae_diesel:
   sector: energy
   use: energetic
@@ -1765,7 +1765,7 @@ energy_import_lng:
   energy_balance_group: import
   links: 
   slots:
-  - ! '(loss)-energy_import_lng: {type: :elastic}'
+  - ! '(loss)-energy_import_lng: {type: :loss}'
   - (natural_gas)-energy_import_lng
   - energy_import_lng-(lng)
 energy_import_lpg:
@@ -1815,7 +1815,7 @@ energy_import_uranium_oxide:
   links: 
   slots:
   - energy_import_uranium_oxide-(loss)
-  - ! '(loss)-energy_import_uranium_oxide: {type: :elastic}'
+  - ! '(loss)-energy_import_uranium_oxide: {type: :loss}'
   - energy_import_uranium_oxide-(uranium_oxide)
   - (uranium_oxide)-energy_import_uranium_oxide
 energy_import_wood_pellets:
@@ -1859,7 +1859,7 @@ energy_national_gas_network_natural_gas:
   - energy_national_gas_network_natural_gas-(greengas)
   - (network_gas)-energy_national_gas_network_natural_gas
   - energy_national_gas_network_natural_gas-(natural_gas)
-  - ! '(loss)-energy_national_gas_network_natural_gas: {type: :elastic}'
+  - ! '(loss)-energy_national_gas_network_natural_gas: {type: :loss}'
 energy_power_combined_cycle_ccs_coal:
   sector: energy
   use: undefined
@@ -1870,7 +1870,7 @@ energy_power_combined_cycle_ccs_coal:
   slots:
   - energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets)
   - energy_power_combined_cycle_ccs_coal-(coal)
-  - ! '(loss)-energy_power_combined_cycle_ccs_coal: {type: :elastic}'
+  - ! '(loss)-energy_power_combined_cycle_ccs_coal: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_ccs_coal
 energy_power_combined_cycle_ccs_gas_power_fuelmix:
   sector: energy
@@ -1881,7 +1881,7 @@ energy_power_combined_cycle_ccs_gas_power_fuelmix:
     (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
   - energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix
 energy_power_combined_cycle_coal:
   sector: energy
@@ -1893,7 +1893,7 @@ energy_power_combined_cycle_coal:
   slots:
   - energy_power_combined_cycle_coal-(torrified_biomass_pellets)
   - energy_power_combined_cycle_coal-(coal)
-  - ! '(loss)-energy_power_combined_cycle_coal: {type: :elastic}'
+  - ! '(loss)-energy_power_combined_cycle_coal: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_coal
 energy_power_combined_cycle_gas_power_fuelmix:
   sector: energy
@@ -1903,7 +1903,7 @@ energy_power_combined_cycle_gas_power_fuelmix:
   - energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
   - energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_power_combined_cycle_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-energy_power_combined_cycle_gas_power_fuelmix: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_gas_power_fuelmix
 energy_power_engine_diesel:
   sector: energy
@@ -1914,7 +1914,7 @@ energy_power_engine_diesel:
   slots:
   - energy_power_engine_diesel-(diesel)
   - (electricity)-energy_power_engine_diesel
-  - ! '(loss)-energy_power_engine_diesel: {type: :elastic}'
+  - ! '(loss)-energy_power_engine_diesel: {type: :loss}'
 energy_power_geothermal:
   sector: energy
   use: undefined
@@ -1923,7 +1923,7 @@ energy_power_geothermal:
   - energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
   slots:
   - energy_power_geothermal-(geothermal)
-  - ! '(loss)-energy_power_geothermal: {type: :elastic}'
+  - ! '(loss)-energy_power_geothermal: {type: :loss}'
   - (electricity)-energy_power_geothermal
 energy_power_hv_network_electricity:
   sector: energy
@@ -1965,7 +1965,7 @@ energy_power_hv_network_electricity:
   slots:
   - energy_power_hv_network_electricity-(electricity)
   - (electricity)-energy_power_hv_network_electricity
-  - ! '(loss)-energy_power_hv_network_electricity: {type: :elastic}'
+  - ! '(loss)-energy_power_hv_network_electricity: {type: :loss}'
 energy_power_hv_network_loss:
   sector: energy
   use: undefined
@@ -1983,7 +1983,7 @@ energy_power_hydro_mountain:
   - energy_power_hydro_mountain-(water) -- s --> (water)-environment_water
   slots:
   - energy_power_hydro_mountain-(water)
-  - ! '(loss)-energy_power_hydro_mountain: {type: :elastic}'
+  - ! '(loss)-energy_power_hydro_mountain: {type: :loss}'
   - (electricity)-energy_power_hydro_mountain
 energy_power_hydro_mountain_pumped:
   sector: energy
@@ -1993,7 +1993,7 @@ energy_power_hydro_mountain_pumped:
   - energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
   slots:
   - energy_power_hydro_mountain_pumped-(electricity)
-  - ! '(loss)-energy_power_hydro_mountain_pumped: {type: :elastic}'
+  - ! '(loss)-energy_power_hydro_mountain_pumped: {type: :loss}'
 energy_power_hydro_river:
   sector: energy
   use: undefined
@@ -2002,7 +2002,7 @@ energy_power_hydro_river:
   - energy_power_hydro_river-(water) -- s --> (water)-environment_water
   slots:
   - energy_power_hydro_river-(water)
-  - ! '(loss)-energy_power_hydro_river: {type: :elastic}'
+  - ! '(loss)-energy_power_hydro_river: {type: :loss}'
   - (electricity)-energy_power_hydro_river
 energy_power_lv_network_electricity:
   sector: energy
@@ -2046,7 +2046,7 @@ energy_power_nuclear_gen2_uranium_oxide:
   - energy_power_nuclear_gen2_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_distribution_uranium_oxide
   slots:
   - energy_power_nuclear_gen2_uranium_oxide-(uranium_oxide)
-  - ! '(loss)-energy_power_nuclear_gen2_uranium_oxide: {type: :elastic}'
+  - ! '(loss)-energy_power_nuclear_gen2_uranium_oxide: {type: :loss}'
   - (electricity)-energy_power_nuclear_gen2_uranium_oxide
 energy_power_nuclear_gen3_uranium_oxide:
   sector: energy
@@ -2056,7 +2056,7 @@ energy_power_nuclear_gen3_uranium_oxide:
   - energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_distribution_uranium_oxide
   slots:
   - energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide)
-  - ! '(loss)-energy_power_nuclear_gen3_uranium_oxide: {type: :elastic}'
+  - ! '(loss)-energy_power_nuclear_gen3_uranium_oxide: {type: :loss}'
   - (electricity)-energy_power_nuclear_gen3_uranium_oxide
 energy_power_solar_csp_solar_radiation:
   sector: energy
@@ -2066,7 +2066,7 @@ energy_power_solar_csp_solar_radiation:
   - energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
   slots:
   - energy_power_solar_csp_solar_radiation-(solar_radiation)
-  - ! '(loss)-energy_power_solar_csp_solar_radiation: {type: :elastic}'
+  - ! '(loss)-energy_power_solar_csp_solar_radiation: {type: :loss}'
   - (electricity)-energy_power_solar_csp_solar_radiation
 energy_power_solar_pv_solar_radiation:
   sector: energy
@@ -2076,7 +2076,7 @@ energy_power_solar_pv_solar_radiation:
   - energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
   slots:
   - energy_power_solar_pv_solar_radiation-(solar_radiation)
-  - ! '(loss)-energy_power_solar_pv_solar_radiation: {type: :elastic}'
+  - ! '(loss)-energy_power_solar_pv_solar_radiation: {type: :loss}'
   - (electricity)-energy_power_solar_pv_solar_radiation
 energy_power_supercritical_coal:
   sector: energy
@@ -2088,7 +2088,7 @@ energy_power_supercritical_coal:
   slots:
   - energy_power_supercritical_coal-(torrified_biomass_pellets)
   - energy_power_supercritical_coal-(coal)
-  - ! '(loss)-energy_power_supercritical_coal: {type: :elastic}'
+  - ! '(loss)-energy_power_supercritical_coal: {type: :loss}'
   - (electricity)-energy_power_supercritical_coal
 energy_power_supercritical_waste_mix:
   sector: energy
@@ -2098,7 +2098,7 @@ energy_power_supercritical_waste_mix:
   - energy_power_supercritical_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_distribution_waste_mix
   slots:
   - energy_power_supercritical_waste_mix-(waste_mix)
-  - ! '(loss)-energy_power_supercritical_waste_mix: {type: :elastic}'
+  - ! '(loss)-energy_power_supercritical_waste_mix: {type: :loss}'
   - (steam_hot_water)-energy_power_supercritical_waste_mix
   - (electricity)-energy_power_supercritical_waste_mix
 energy_power_transformer_lv_mv_electricity:
@@ -2130,7 +2130,7 @@ energy_power_turbine_network_gas:
   slots:
   - energy_power_turbine_network_gas-(gas_power_fuelmix)
   - (electricity)-energy_power_turbine_network_gas
-  - ! '(loss)-energy_power_turbine_network_gas: {type: :elastic}'
+  - ! '(loss)-energy_power_turbine_network_gas: {type: :loss}'
 energy_power_ultra_supercritical_ccs_coal:
   sector: energy
   use: undefined
@@ -2142,7 +2142,7 @@ energy_power_ultra_supercritical_ccs_coal:
   slots:
   - energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets)
   - energy_power_ultra_supercritical_ccs_coal-(coal)
-  - ! '(loss)-energy_power_ultra_supercritical_ccs_coal: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_ccs_coal: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_ccs_coal
 energy_power_ultra_supercritical_coal:
   sector: energy
@@ -2156,7 +2156,7 @@ energy_power_ultra_supercritical_coal:
   - energy_power_ultra_supercritical_coal-(wood_pellets)
   - energy_power_ultra_supercritical_coal-(torrified_biomass_pellets)
   - energy_power_ultra_supercritical_coal-(coal)
-  - ! '(loss)-energy_power_ultra_supercritical_coal: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_coal: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_coal
 energy_power_ultra_supercritical_cofiring_wood_pellets:
   sector: energy
@@ -2167,7 +2167,7 @@ energy_power_ultra_supercritical_cofiring_wood_pellets:
     (wood_pellets)-energy_distribution_wood_pellets
   slots:
   - energy_power_ultra_supercritical_cofiring_wood_pellets-(wood_pellets)
-  - ! '(loss)-energy_power_ultra_supercritical_cofiring_wood_pellets: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_cofiring_wood_pellets: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_cofiring_wood_pellets
 energy_power_ultra_supercritical_crude_oil:
   sector: energy
@@ -2177,7 +2177,7 @@ energy_power_ultra_supercritical_crude_oil:
   - energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
   - energy_power_ultra_supercritical_crude_oil-(crude_oil)
-  - ! '(loss)-energy_power_ultra_supercritical_crude_oil: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_crude_oil: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_crude_oil
 energy_power_ultra_supercritical_gas_power_fuelmix:
   sector: energy
@@ -2187,7 +2187,7 @@ energy_power_ultra_supercritical_gas_power_fuelmix:
   - energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix) -- s -->
     (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
-  - ! '(loss)-energy_power_ultra_supercritical_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_gas_power_fuelmix: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix
   - energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix)
 energy_power_ultra_supercritical_lignite:
@@ -2201,7 +2201,7 @@ energy_power_ultra_supercritical_lignite:
   slots:
   - energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets)
   - energy_power_ultra_supercritical_lignite-(lignite)
-  - ! '(loss)-energy_power_ultra_supercritical_lignite: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_lignite: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_lignite
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
   sector: energy
@@ -2214,7 +2214,7 @@ energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
   slots:
   - energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets)
   - energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(lignite)
-  - ! '(loss)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {type: :elastic}'
+  - ! '(loss)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite
 energy_power_wind_turbine_coastal:
   sector: energy
@@ -2224,7 +2224,7 @@ energy_power_wind_turbine_coastal:
   - energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air
   slots:
   - energy_power_wind_turbine_coastal-(wind)
-  - ! '(loss)-energy_power_wind_turbine_coastal: {type: :elastic}'
+  - ! '(loss)-energy_power_wind_turbine_coastal: {type: :loss}'
   - (electricity)-energy_power_wind_turbine_coastal
 energy_power_wind_turbine_inland:
   sector: energy
@@ -2234,7 +2234,7 @@ energy_power_wind_turbine_inland:
   - energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air
   slots:
   - energy_power_wind_turbine_inland-(wind)
-  - ! '(loss)-energy_power_wind_turbine_inland: {type: :elastic}'
+  - ! '(loss)-energy_power_wind_turbine_inland: {type: :loss}'
   - (electricity)-energy_power_wind_turbine_inland
 energy_power_wind_turbine_offshore:
   sector: energy
@@ -2244,7 +2244,7 @@ energy_power_wind_turbine_offshore:
   - energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air
   slots:
   - energy_power_wind_turbine_offshore-(wind)
-  - ! '(loss)-energy_power_wind_turbine_offshore: {type: :elastic}'
+  - ! '(loss)-energy_power_wind_turbine_offshore: {type: :loss}'
   - (electricity)-energy_power_wind_turbine_offshore
 energy_production_algae_diesel:
   sector: energy
@@ -2321,7 +2321,7 @@ energy_production_diesel:
   - energy_production_diesel-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
   - energy_production_diesel-(crude_oil)
-  - ! '(loss)-energy_production_diesel: {type: :elastic}'
+  - ! '(loss)-energy_production_diesel: {type: :loss}'
   - (diesel)-energy_production_diesel
 energy_production_gasoline:
   sector: energy
@@ -2331,7 +2331,7 @@ energy_production_gasoline:
   - energy_production_gasoline-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
   - energy_production_gasoline-(crude_oil)
-  - ! '(loss)-energy_production_gasoline: {type: :elastic}'
+  - ! '(loss)-energy_production_gasoline: {type: :loss}'
   - (gasoline)-energy_production_gasoline
 energy_production_heavy_fuel_oil:
   sector: energy
@@ -2340,7 +2340,7 @@ energy_production_heavy_fuel_oil:
   links:
   - energy_production_heavy_fuel_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
-  - ! '(loss)-energy_production_heavy_fuel_oil: {type: :elastic}'
+  - ! '(loss)-energy_production_heavy_fuel_oil: {type: :loss}'
   - (heavy_fuel_oil)-energy_production_heavy_fuel_oil
   - energy_production_heavy_fuel_oil-(crude_oil)
 energy_production_kerosene:
@@ -2351,7 +2351,7 @@ energy_production_kerosene:
   - energy_production_kerosene-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
   - energy_production_kerosene-(crude_oil)
-  - ! '(loss)-energy_production_kerosene: {type: :elastic}'
+  - ! '(loss)-energy_production_kerosene: {type: :loss}'
   - (kerosene)-energy_production_kerosene
 energy_production_lpg:
   sector: energy
@@ -2361,7 +2361,7 @@ energy_production_lpg:
   - energy_production_lpg-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   slots:
   - energy_production_lpg-(crude_oil)
-  - ! '(loss)-energy_production_lpg: {type: :elastic}'
+  - ! '(loss)-energy_production_lpg: {type: :loss}'
   - (lpg)-energy_production_lpg
 energy_production_manure:
   sector: energy
@@ -2416,7 +2416,7 @@ energy_steel_blastfurnace_bat_transformation:
   - energy_steel_blastfurnace_bat_transformation-(coal)
   - energy_steel_blastfurnace_bat_transformation-(cokes)
   - (coal_gas)-energy_steel_blastfurnace_bat_transformation
-  - ! '(loss)-energy_steel_blastfurnace_bat_transformation: {type: :elastic}'
+  - ! '(loss)-energy_steel_blastfurnace_bat_transformation: {type: :loss}'
   - (coupling_carrier)-energy_steel_blastfurnace_bat_transformation
 energy_steel_blastfurnace_current_transformation:
   sector: energy
@@ -2429,7 +2429,7 @@ energy_steel_blastfurnace_current_transformation:
   - energy_steel_blastfurnace_current_transformation-(coal)
   - energy_steel_blastfurnace_current_transformation-(cokes)
   - (coal_gas)-energy_steel_blastfurnace_current_transformation
-  - ! '(loss)-energy_steel_blastfurnace_current_transformation: {type: :elastic}'
+  - ! '(loss)-energy_steel_blastfurnace_current_transformation: {type: :loss}'
   - (coupling_carrier)-energy_steel_blastfurnace_current_transformation
 energy_steel_hisarna_transformation:
   sector: energy
@@ -2442,7 +2442,7 @@ energy_steel_hisarna_transformation:
   - energy_steel_hisarna_transformation-(coal)
   - energy_steel_hisarna_transformation-(torrified_biomass_pellets)
   - (steam_hot_water)-energy_steel_hisarna_transformation
-  - ! '(loss)-energy_steel_hisarna_transformation: {type: :elastic}'
+  - ! '(loss)-energy_steel_hisarna_transformation: {type: :loss}'
   - (coupling_carrier)-energy_steel_hisarna_transformation
 energy_torrefaction_wood:
   sector: energy
@@ -2455,7 +2455,7 @@ energy_torrefaction_wood:
   - energy_torrefaction_wood-(network_gas)
   - energy_torrefaction_wood-(wood)
   - (torrified_biomass_pellets)-energy_torrefaction_wood
-  - ! '(loss)-energy_torrefaction_wood: {type: :elastic}'
+  - ! '(loss)-energy_torrefaction_wood: {type: :loss}'
 energy_treatment_natural_gas:
   sector: energy
   use: undefined
@@ -2467,7 +2467,7 @@ energy_treatment_natural_gas:
   slots:
   - energy_treatment_natural_gas-(natural_gas)
   - (natural_gas)-energy_treatment_natural_gas
-  - ! '(loss)-energy_treatment_natural_gas: {type: :elastic}'
+  - ! '(loss)-energy_treatment_natural_gas: {type: :loss}'
 energy_treatment_uranium_oxide:
   sector: energy
   use: undefined
@@ -2478,7 +2478,7 @@ energy_treatment_uranium_oxide:
   slots:
   - energy_treatment_uranium_oxide-(uranium_oxide)
   - (uranium_oxide)-energy_treatment_uranium_oxide
-  - ! '(loss)-energy_treatment_uranium_oxide: {type: :elastic}'
+  - ! '(loss)-energy_treatment_uranium_oxide: {type: :loss}'
 energy_upgrade_biogas:
   sector: energy
   use: undefined
@@ -2487,7 +2487,7 @@ energy_upgrade_biogas:
   - energy_upgrade_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
   slots:
   - energy_upgrade_biogas-(biogas)
-  - ! '(loss)-energy_upgrade_biogas: {type: :elastic}'
+  - ! '(loss)-energy_upgrade_biogas: {type: :loss}'
   - (greengas)-energy_upgrade_biogas
 environment_air:
   sector: environment
@@ -2496,7 +2496,7 @@ environment_air:
   links: 
   slots:
   - environment_air-(loss)
-  - ! '(loss)-environment_air: {type: :elastic}'
+  - ! '(loss)-environment_air: {type: :loss}'
 environment_earth:
   sector: environment
   use: energetic
@@ -2504,7 +2504,7 @@ environment_earth:
   links: 
   slots:
   - environment_earth-(loss)
-  - ! '(loss)-environment_earth: {type: :elastic}'
+  - ! '(loss)-environment_earth: {type: :loss}'
 environment_sun:
   sector: environment
   use: energetic
@@ -2512,7 +2512,7 @@ environment_sun:
   links: 
   slots:
   - environment_sun-(loss)
-  - ! '(loss)-environment_sun: {type: :elastic}'
+  - ! '(loss)-environment_sun: {type: :loss}'
 environment_water:
   sector: environment
   use: energetic
@@ -2520,7 +2520,7 @@ environment_water:
   links: 
   slots:
   - environment_water-(loss)
-  - ! '(loss)-environment_water: {type: :elastic}'
+  - ! '(loss)-environment_water: {type: :loss}'
 households_appliances_clothes_dryer_electricity:
   sector: households
   use: energetic
@@ -2530,7 +2530,7 @@ households_appliances_clothes_dryer_electricity:
   slots:
   - households_appliances_clothes_dryer_electricity-(electricity)
   - (not_defined)-households_appliances_clothes_dryer_electricity
-  - ! '(loss)-households_appliances_clothes_dryer_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_clothes_dryer_electricity: {type: :loss}'
 households_appliances_computer_media_electricity:
   sector: households
   use: energetic
@@ -2540,7 +2540,7 @@ households_appliances_computer_media_electricity:
   slots:
   - households_appliances_computer_media_electricity-(electricity)
   - (not_defined)-households_appliances_computer_media_electricity
-  - ! '(loss)-households_appliances_computer_media_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_computer_media_electricity: {type: :loss}'
 households_appliances_dishwasher_electricity:
   sector: households
   use: energetic
@@ -2550,7 +2550,7 @@ households_appliances_dishwasher_electricity:
   slots:
   - households_appliances_dishwasher_electricity-(electricity)
   - (not_defined)-households_appliances_dishwasher_electricity
-  - ! '(loss)-households_appliances_dishwasher_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_dishwasher_electricity: {type: :loss}'
 households_appliances_fridge_freezer_electricity:
   sector: households
   use: energetic
@@ -2560,7 +2560,7 @@ households_appliances_fridge_freezer_electricity:
   slots:
   - households_appliances_fridge_freezer_electricity-(electricity)
   - (not_defined)-households_appliances_fridge_freezer_electricity
-  - ! '(loss)-households_appliances_fridge_freezer_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_fridge_freezer_electricity: {type: :loss}'
 households_appliances_other_electricity:
   sector: households
   use: energetic
@@ -2570,7 +2570,7 @@ households_appliances_other_electricity:
   slots:
   - households_appliances_other_electricity-(electricity)
   - (not_defined)-households_appliances_other_electricity
-  - ! '(loss)-households_appliances_other_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_other_electricity: {type: :loss}'
 households_appliances_television_electricity:
   sector: households
   use: energetic
@@ -2580,7 +2580,7 @@ households_appliances_television_electricity:
   slots:
   - households_appliances_television_electricity-(electricity)
   - (not_defined)-households_appliances_television_electricity
-  - ! '(loss)-households_appliances_television_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_television_electricity: {type: :loss}'
 households_appliances_vacuum_cleaner_electricity:
   sector: households
   use: energetic
@@ -2590,7 +2590,7 @@ households_appliances_vacuum_cleaner_electricity:
   slots:
   - households_appliances_vacuum_cleaner_electricity-(electricity)
   - (not_defined)-households_appliances_vacuum_cleaner_electricity
-  - ! '(loss)-households_appliances_vacuum_cleaner_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_vacuum_cleaner_electricity: {type: :loss}'
 households_appliances_washing_machine_electricity:
   sector: households
   use: energetic
@@ -2600,7 +2600,7 @@ households_appliances_washing_machine_electricity:
   slots:
   - households_appliances_washing_machine_electricity-(electricity)
   - (not_defined)-households_appliances_washing_machine_electricity
-  - ! '(loss)-households_appliances_washing_machine_electricity: {type: :elastic}'
+  - ! '(loss)-households_appliances_washing_machine_electricity: {type: :loss}'
 households_collective_chp_network_gas:
   sector: households
   use: energetic
@@ -2609,7 +2609,7 @@ households_collective_chp_network_gas:
   - households_collective_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
   - households_collective_chp_network_gas-(network_gas)
-  - ! '(loss)-households_collective_chp_network_gas: {type: :elastic}'
+  - ! '(loss)-households_collective_chp_network_gas: {type: :loss}'
   - (steam_hot_water)-households_collective_chp_network_gas
   - (electricity)-households_collective_chp_network_gas
 households_collective_chp_wood_pellets:
@@ -2620,7 +2620,7 @@ households_collective_chp_wood_pellets:
   - households_collective_chp_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
   slots:
   - households_collective_chp_wood_pellets-(wood_pellets)
-  - ! '(loss)-households_collective_chp_wood_pellets: {type: :elastic}'
+  - ! '(loss)-households_collective_chp_wood_pellets: {type: :loss}'
   - (steam_hot_water)-households_collective_chp_wood_pellets
   - (electricity)-households_collective_chp_wood_pellets
 households_collective_geothermal:
@@ -2641,7 +2641,7 @@ households_cooker_halogen_electricity:
   slots:
   - households_cooker_halogen_electricity-(electricity)
   - (useable_heat)-households_cooker_halogen_electricity
-  - ! '(loss)-households_cooker_halogen_electricity: {type: :elastic}'
+  - ! '(loss)-households_cooker_halogen_electricity: {type: :loss}'
 households_cooker_induction_electricity:
   sector: households
   use: energetic
@@ -2650,7 +2650,7 @@ households_cooker_induction_electricity:
   - households_cooker_induction_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooking_electricity
   slots:
   - households_cooker_induction_electricity-(electricity)
-  - ! '(loss)-households_cooker_induction_electricity: {type: :elastic}'
+  - ! '(loss)-households_cooker_induction_electricity: {type: :loss}'
   - (useable_heat)-households_cooker_induction_electricity
 households_cooker_network_gas:
   sector: households
@@ -2661,7 +2661,7 @@ households_cooker_network_gas:
   slots:
   - households_cooker_network_gas-(network_gas)
   - (useable_heat)-households_cooker_network_gas
-  - ! '(loss)-households_cooker_network_gas: {type: :elastic}'
+  - ! '(loss)-households_cooker_network_gas: {type: :loss}'
 households_cooker_resistive_electricity:
   sector: households
   use: energetic
@@ -2671,7 +2671,7 @@ households_cooker_resistive_electricity:
   slots:
   - households_cooker_resistive_electricity-(electricity)
   - (useable_heat)-households_cooker_resistive_electricity
-  - ! '(loss)-households_cooker_resistive_electricity: {type: :elastic}'
+  - ! '(loss)-households_cooker_resistive_electricity: {type: :loss}'
 households_cooker_wood_pellets:
   sector: households
   use: energetic
@@ -2681,7 +2681,7 @@ households_cooker_wood_pellets:
   slots:
   - households_cooker_wood_pellets-(wood_pellets)
   - (useable_heat)-households_cooker_wood_pellets
-  - ! '(loss)-households_cooker_wood_pellets: {type: :elastic}'
+  - ! '(loss)-households_cooker_wood_pellets: {type: :loss}'
 households_cooling_airconditioning_electricity:
   sector: households
   use: energetic
@@ -2692,7 +2692,7 @@ households_cooling_airconditioning_electricity:
   slots:
   - households_cooling_airconditioning_electricity-(electricity)
   - households_cooling_airconditioning_electricity-(ambient_cold)
-  - ! '(loss)-households_cooling_airconditioning_electricity: {type: :elastic}'
+  - ! '(loss)-households_cooling_airconditioning_electricity: {type: :loss}'
   - (cooling)-households_cooling_airconditioning_electricity
 households_cooling_heatpump_air_water_electricity:
   sector: households
@@ -2704,7 +2704,7 @@ households_cooling_heatpump_air_water_electricity:
   slots:
   - households_cooling_heatpump_air_water_electricity-(electricity)
   - households_cooling_heatpump_air_water_electricity-(ambient_cold)
-  - ! '(loss)-households_cooling_heatpump_air_water_electricity: {type: :elastic}'
+  - ! '(loss)-households_cooling_heatpump_air_water_electricity: {type: :loss}'
   - (cooling)-households_cooling_heatpump_air_water_electricity
 households_cooling_heatpump_ground_water_electricity:
   sector: households
@@ -2716,7 +2716,7 @@ households_cooling_heatpump_ground_water_electricity:
   slots:
   - households_cooling_heatpump_ground_water_electricity-(electricity)
   - households_cooling_heatpump_ground_water_electricity-(ambient_cold)
-  - ! '(loss)-households_cooling_heatpump_ground_water_electricity: {type: :elastic}'
+  - ! '(loss)-households_cooling_heatpump_ground_water_electricity: {type: :loss}'
   - (cooling)-households_cooling_heatpump_ground_water_electricity
 households_final_demand_coal:
   sector: households
@@ -2977,7 +2977,7 @@ households_heat_network_connection_steam_hot_water:
   slots:
   - households_heat_network_connection_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-households_heat_network_connection_steam_hot_water
-  - ! '(loss)-households_heat_network_connection_steam_hot_water: {type: :elastic}'
+  - ! '(loss)-households_heat_network_connection_steam_hot_water: {type: :loss}'
 households_lighting_efficient_fluorescent_electricity:
   sector: households
   use: energetic
@@ -2986,7 +2986,7 @@ households_lighting_efficient_fluorescent_electricity:
   - households_lighting_efficient_fluorescent_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_lighting_electricity
   slots:
   - households_lighting_efficient_fluorescent_electricity-(electricity)
-  - ! '(loss)-households_lighting_efficient_fluorescent_electricity: {type: :elastic}'
+  - ! '(loss)-households_lighting_efficient_fluorescent_electricity: {type: :loss}'
   - (light)-households_lighting_efficient_fluorescent_electricity
 households_lighting_incandescent_electricity:
   sector: households
@@ -2996,7 +2996,7 @@ households_lighting_incandescent_electricity:
   - households_lighting_incandescent_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_lighting_electricity
   slots:
   - households_lighting_incandescent_electricity-(electricity)
-  - ! '(loss)-households_lighting_incandescent_electricity: {type: :elastic}'
+  - ! '(loss)-households_lighting_incandescent_electricity: {type: :loss}'
   - (light)-households_lighting_incandescent_electricity
 households_lighting_led_electricity:
   sector: households
@@ -3006,7 +3006,7 @@ households_lighting_led_electricity:
   - households_lighting_led_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_lighting_electricity
   slots:
   - households_lighting_led_electricity-(electricity)
-  - ! '(loss)-households_lighting_led_electricity: {type: :elastic}'
+  - ! '(loss)-households_lighting_led_electricity: {type: :loss}'
   - (light)-households_lighting_led_electricity
 households_locally_available_electricity:
   sector: households
@@ -3103,7 +3103,7 @@ households_solar_pv_solar_radiation:
   - households_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
   slots:
   - households_solar_pv_solar_radiation-(solar_radiation)
-  - ! '(loss)-households_solar_pv_solar_radiation: {type: :elastic}'
+  - ! '(loss)-households_solar_pv_solar_radiation: {type: :loss}'
   - (electricity)-households_solar_pv_solar_radiation
 households_space_heater_coal:
   sector: households
@@ -3113,7 +3113,7 @@ households_space_heater_coal:
   - households_space_heater_coal-(coal) -- s --> (coal)-households_final_demand_for_space_heating_coal
   slots:
   - households_space_heater_coal-(coal)
-  - ! '(loss)-households_space_heater_coal: {type: :elastic}'
+  - ! '(loss)-households_space_heater_coal: {type: :loss}'
   - (useable_heat)-households_space_heater_coal
 households_space_heater_combined_network_gas:
   sector: households
@@ -3123,7 +3123,7 @@ households_space_heater_combined_network_gas:
   - households_space_heater_combined_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_space_heating_network_gas
   slots:
   - households_space_heater_combined_network_gas-(network_gas)
-  - ! '(loss)-households_space_heater_combined_network_gas: {type: :elastic}'
+  - ! '(loss)-households_space_heater_combined_network_gas: {type: :loss}'
   - (useable_heat)-households_space_heater_combined_network_gas
 households_space_heater_crude_oil:
   sector: households
@@ -3133,7 +3133,7 @@ households_space_heater_crude_oil:
   - households_space_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-households_final_demand_for_space_heating_crude_oil
   slots:
   - households_space_heater_crude_oil-(crude_oil)
-  - ! '(loss)-households_space_heater_crude_oil: {type: :elastic}'
+  - ! '(loss)-households_space_heater_crude_oil: {type: :loss}'
   - (useable_heat)-households_space_heater_crude_oil
 households_space_heater_district_heating_steam_hot_water:
   sector: households
@@ -3153,7 +3153,7 @@ households_space_heater_electricity:
   - households_space_heater_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
   slots:
   - households_space_heater_electricity-(electricity)
-  - ! '(loss)-households_space_heater_electricity: {type: :elastic}'
+  - ! '(loss)-households_space_heater_electricity: {type: :loss}'
   - (useable_heat)-households_space_heater_electricity
 households_space_heater_heatpump_add_on_electricity:
   sector: households
@@ -3165,7 +3165,7 @@ households_space_heater_heatpump_add_on_electricity:
   slots:
   - households_space_heater_heatpump_add_on_electricity-(electricity)
   - households_space_heater_heatpump_add_on_electricity-(ambient_heat)
-  - ! '(loss)-households_space_heater_heatpump_add_on_electricity: {type: :elastic}'
+  - ! '(loss)-households_space_heater_heatpump_add_on_electricity: {type: :loss}'
   - (useable_heat)-households_space_heater_heatpump_add_on_electricity
 households_space_heater_heatpump_air_water_electricity:
   sector: households
@@ -3179,7 +3179,7 @@ households_space_heater_heatpump_air_water_electricity:
   slots:
   - households_space_heater_heatpump_air_water_electricity-(electricity)
   - households_space_heater_heatpump_air_water_electricity-(ambient_heat)
-  - ! '(loss)-households_space_heater_heatpump_air_water_electricity: {type: :elastic}'
+  - ! '(loss)-households_space_heater_heatpump_air_water_electricity: {type: :loss}'
   - (useable_heat)-households_space_heater_heatpump_air_water_electricity
   - (cooling)-households_space_heater_heatpump_air_water_electricity
 households_space_heater_heatpump_ground_water_electricity:
@@ -3194,7 +3194,7 @@ households_space_heater_heatpump_ground_water_electricity:
   slots:
   - households_space_heater_heatpump_ground_water_electricity-(electricity)
   - households_space_heater_heatpump_ground_water_electricity-(ambient_heat)
-  - ! '(loss)-households_space_heater_heatpump_ground_water_electricity: {type: :elastic}'
+  - ! '(loss)-households_space_heater_heatpump_ground_water_electricity: {type: :loss}'
   - (useable_heat)-households_space_heater_heatpump_ground_water_electricity
 households_space_heater_micro_chp_network_gas:
   sector: households
@@ -3205,7 +3205,7 @@ households_space_heater_micro_chp_network_gas:
   - households_space_heater_micro_chp_network_gas-(network_gas) -- f --> (network_gas)-households_final_demand_for_space_heating_network_gas
   slots:
   - households_space_heater_micro_chp_network_gas-(network_gas)
-  - ! '(loss)-households_space_heater_micro_chp_network_gas: {type: :elastic}'
+  - ! '(loss)-households_space_heater_micro_chp_network_gas: {type: :loss}'
   - (electricity)-households_space_heater_micro_chp_network_gas
   - (useable_heat)-households_space_heater_micro_chp_network_gas
 households_space_heater_network_gas:
@@ -3216,7 +3216,7 @@ households_space_heater_network_gas:
   - households_space_heater_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_space_heating_network_gas
   slots:
   - households_space_heater_network_gas-(network_gas)
-  - ! '(loss)-households_space_heater_network_gas: {type: :elastic}'
+  - ! '(loss)-households_space_heater_network_gas: {type: :loss}'
   - (useable_heat)-households_space_heater_network_gas
 households_space_heater_wood_pellets:
   sector: households
@@ -3226,7 +3226,7 @@ households_space_heater_wood_pellets:
   - households_space_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-households_final_demand_for_space_heating_wood_pellets
   slots:
   - households_space_heater_wood_pellets-(wood_pellets)
-  - ! '(loss)-households_space_heater_wood_pellets: {type: :elastic}'
+  - ! '(loss)-households_space_heater_wood_pellets: {type: :loss}'
   - (useable_heat)-households_space_heater_wood_pellets
 households_useful_demand_clothes_dryer:
   sector: households
@@ -3235,7 +3235,7 @@ households_useful_demand_clothes_dryer:
   links: 
   slots:
   - households_useful_demand_clothes_dryer-(not_defined)
-  - ! '(loss)-households_useful_demand_clothes_dryer: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_clothes_dryer: {type: :loss}'
 households_useful_demand_computer_media:
   sector: households
   use: energetic
@@ -3243,7 +3243,7 @@ households_useful_demand_computer_media:
   links: 
   slots:
   - households_useful_demand_computer_media-(not_defined)
-  - ! '(loss)-households_useful_demand_computer_media: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_computer_media: {type: :loss}'
 households_useful_demand_cooking_useable_heat:
   sector: households
   use: energetic
@@ -3256,7 +3256,7 @@ households_useful_demand_cooking_useable_heat:
   - households_useful_demand_cooking_useable_heat-(useable_heat) -- s --> (useable_heat)-households_cooker_wood_pellets
   slots:
   - households_useful_demand_cooking_useable_heat-(useable_heat)
-  - ! '(loss)-households_useful_demand_cooking_useable_heat: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_cooking_useable_heat: {type: :loss}'
 households_useful_demand_dishwasher:
   sector: households
   use: energetic
@@ -3264,7 +3264,7 @@ households_useful_demand_dishwasher:
   links: 
   slots:
   - households_useful_demand_dishwasher-(not_defined)
-  - ! '(loss)-households_useful_demand_dishwasher: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_dishwasher: {type: :loss}'
 households_useful_demand_for_cooling_after_insulation:
   sector: households
   use: energetic
@@ -3425,7 +3425,7 @@ households_useful_demand_fridge_freezer:
   links: 
   slots:
   - households_useful_demand_fridge_freezer-(not_defined)
-  - ! '(loss)-households_useful_demand_fridge_freezer: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_fridge_freezer: {type: :loss}'
 households_useful_demand_hot_water:
   sector: households
   use: energetic
@@ -3446,7 +3446,7 @@ households_useful_demand_light:
   - households_useful_demand_light-(light) -- s --> (light)-households_lighting_incandescent_electricity
   slots:
   - households_useful_demand_light-(light)
-  - ! '(loss)-households_useful_demand_light: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_light: {type: :loss}'
 households_useful_demand_other_appliances:
   sector: households
   use: energetic
@@ -3454,7 +3454,7 @@ households_useful_demand_other_appliances:
   links: 
   slots:
   - households_useful_demand_other_appliances-(not_defined)
-  - ! '(loss)-households_useful_demand_other_appliances: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_other_appliances: {type: :loss}'
 households_useful_demand_television:
   sector: households
   use: energetic
@@ -3462,7 +3462,7 @@ households_useful_demand_television:
   links: 
   slots:
   - households_useful_demand_television-(not_defined)
-  - ! '(loss)-households_useful_demand_television: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_television: {type: :loss}'
 households_useful_demand_vacuum_cleaner:
   sector: households
   use: energetic
@@ -3470,7 +3470,7 @@ households_useful_demand_vacuum_cleaner:
   links: 
   slots:
   - households_useful_demand_vacuum_cleaner-(not_defined)
-  - ! '(loss)-households_useful_demand_vacuum_cleaner: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_vacuum_cleaner: {type: :loss}'
 households_useful_demand_washing_machine:
   sector: households
   use: energetic
@@ -3478,7 +3478,7 @@ households_useful_demand_washing_machine:
   links: 
   slots:
   - households_useful_demand_washing_machine-(not_defined)
-  - ! '(loss)-households_useful_demand_washing_machine: {type: :elastic}'
+  - ! '(loss)-households_useful_demand_washing_machine: {type: :loss}'
 households_water_heater_coal:
   sector: households
   use: energetic
@@ -3488,7 +3488,7 @@ households_water_heater_coal:
   slots:
   - households_water_heater_coal-(coal)
   - (useable_heat)-households_water_heater_coal
-  - ! '(loss)-households_water_heater_coal: {type: :elastic}'
+  - ! '(loss)-households_water_heater_coal: {type: :loss}'
 households_water_heater_combined_network_gas:
   sector: households
   use: energetic
@@ -3497,7 +3497,7 @@ households_water_heater_combined_network_gas:
   - households_water_heater_combined_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas
   slots:
   - households_water_heater_combined_network_gas-(network_gas)
-  - ! '(loss)-households_water_heater_combined_network_gas: {type: :elastic}'
+  - ! '(loss)-households_water_heater_combined_network_gas: {type: :loss}'
   - (useable_heat)-households_water_heater_combined_network_gas
 households_water_heater_crude_oil:
   sector: households
@@ -3508,7 +3508,7 @@ households_water_heater_crude_oil:
   slots:
   - households_water_heater_crude_oil-(crude_oil)
   - (useable_heat)-households_water_heater_crude_oil
-  - ! '(loss)-households_water_heater_crude_oil: {type: :elastic}'
+  - ! '(loss)-households_water_heater_crude_oil: {type: :loss}'
 households_water_heater_district_heating_steam_hot_water:
   sector: households
   use: energetic
@@ -3519,7 +3519,7 @@ households_water_heater_district_heating_steam_hot_water:
   slots:
   - households_water_heater_district_heating_steam_hot_water-(steam_hot_water)
   - (useable_heat)-households_water_heater_district_heating_steam_hot_water
-  - ! '(loss)-households_water_heater_district_heating_steam_hot_water: {type: :elastic}'
+  - ! '(loss)-households_water_heater_district_heating_steam_hot_water: {type: :loss}'
 households_water_heater_fuel_cell_chp_network_gas:
   sector: households
   use: energetic
@@ -3529,7 +3529,7 @@ households_water_heater_fuel_cell_chp_network_gas:
   - households_water_heater_fuel_cell_chp_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas
   slots:
   - households_water_heater_fuel_cell_chp_network_gas-(network_gas)
-  - ! '(loss)-households_water_heater_fuel_cell_chp_network_gas: {type: :elastic}'
+  - ! '(loss)-households_water_heater_fuel_cell_chp_network_gas: {type: :loss}'
   - (electricity)-households_water_heater_fuel_cell_chp_network_gas
   - (useable_heat)-households_water_heater_fuel_cell_chp_network_gas
 households_water_heater_heatpump_air_water_electricity:
@@ -3545,7 +3545,7 @@ households_water_heater_heatpump_air_water_electricity:
   - households_water_heater_heatpump_air_water_electricity-(electricity)
   - households_water_heater_heatpump_air_water_electricity-(ambient_heat)
   - (useable_heat)-households_water_heater_heatpump_air_water_electricity
-  - ! '(loss)-households_water_heater_heatpump_air_water_electricity: {type: :elastic}'
+  - ! '(loss)-households_water_heater_heatpump_air_water_electricity: {type: :loss}'
 households_water_heater_heatpump_ground_water_electricity:
   sector: households
   use: energetic
@@ -3558,7 +3558,7 @@ households_water_heater_heatpump_ground_water_electricity:
   slots:
   - households_water_heater_heatpump_ground_water_electricity-(electricity)
   - households_water_heater_heatpump_ground_water_electricity-(ambient_heat)
-  - ! '(loss)-households_water_heater_heatpump_ground_water_electricity: {type: :elastic}'
+  - ! '(loss)-households_water_heater_heatpump_ground_water_electricity: {type: :loss}'
   - (useable_heat)-households_water_heater_heatpump_ground_water_electricity
 households_water_heater_micro_chp_network_gas:
   sector: households
@@ -3569,7 +3569,7 @@ households_water_heater_micro_chp_network_gas:
   - households_water_heater_micro_chp_network_gas-(network_gas) -- f --> (network_gas)-households_final_demand_for_hot_water_network_gas
   slots:
   - households_water_heater_micro_chp_network_gas-(network_gas)
-  - ! '(loss)-households_water_heater_micro_chp_network_gas: {type: :elastic}'
+  - ! '(loss)-households_water_heater_micro_chp_network_gas: {type: :loss}'
   - (electricity)-households_water_heater_micro_chp_network_gas
   - (useable_heat)-households_water_heater_micro_chp_network_gas
 households_water_heater_network_gas:
@@ -3580,7 +3580,7 @@ households_water_heater_network_gas:
   - households_water_heater_network_gas-(network_gas) -- s --> (network_gas)-households_final_demand_for_hot_water_network_gas
   slots:
   - households_water_heater_network_gas-(network_gas)
-  - ! '(loss)-households_water_heater_network_gas: {type: :elastic}'
+  - ! '(loss)-households_water_heater_network_gas: {type: :loss}'
   - (useable_heat)-households_water_heater_network_gas
 households_water_heater_resistive_electricity:
   sector: households
@@ -3590,7 +3590,7 @@ households_water_heater_resistive_electricity:
   - households_water_heater_resistive_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity
   slots:
   - households_water_heater_resistive_electricity-(electricity)
-  - ! '(loss)-households_water_heater_resistive_electricity: {type: :elastic}'
+  - ! '(loss)-households_water_heater_resistive_electricity: {type: :loss}'
   - (useable_heat)-households_water_heater_resistive_electricity
 households_water_heater_solar_thermal:
   sector: households
@@ -3600,7 +3600,7 @@ households_water_heater_solar_thermal:
   - households_water_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-households_final_demand_for_hot_water_solar_thermal
   slots:
   - households_water_heater_solar_thermal-(solar_thermal)
-  - ! '(loss)-households_water_heater_solar_thermal: {type: :elastic}'
+  - ! '(loss)-households_water_heater_solar_thermal: {type: :loss}'
   - (useable_heat)-households_water_heater_solar_thermal
 households_water_heater_wood_pellets:
   sector: households
@@ -3611,7 +3611,7 @@ households_water_heater_wood_pellets:
   slots:
   - households_water_heater_wood_pellets-(wood_pellets)
   - (useable_heat)-households_water_heater_wood_pellets
-  - ! '(loss)-households_water_heater_wood_pellets: {type: :elastic}'
+  - ! '(loss)-households_water_heater_wood_pellets: {type: :loss}'
 industry_aluminium_burner:
   sector: industry
   use: energetic
@@ -3621,7 +3621,7 @@ industry_aluminium_burner:
   slots:
   - industry_aluminium_burner-(network_gas)
   - (useable_heat)-industry_aluminium_burner
-  - ! '(loss)-industry_aluminium_burner: {type: :elastic}'
+  - ! '(loss)-industry_aluminium_burner: {type: :loss}'
 industry_aluminium_carbothermalreduction:
   sector: industry
   use: energetic
@@ -3633,7 +3633,7 @@ industry_aluminium_carbothermalreduction:
   - industry_aluminium_carbothermalreduction-(electricity)
   - industry_aluminium_carbothermalreduction-(useable_heat)
   - (not_defined)-industry_aluminium_carbothermalreduction
-  - ! '(loss)-industry_aluminium_carbothermalreduction: {type: :elastic}'
+  - ! '(loss)-industry_aluminium_carbothermalreduction: {type: :loss}'
 industry_aluminium_electrolysis_bat:
   sector: industry
   use: energetic
@@ -3645,7 +3645,7 @@ industry_aluminium_electrolysis_bat:
   - industry_aluminium_electrolysis_bat-(electricity)
   - industry_aluminium_electrolysis_bat-(useable_heat)
   - (not_defined)-industry_aluminium_electrolysis_bat
-  - ! '(loss)-industry_aluminium_electrolysis_bat: {type: :elastic}'
+  - ! '(loss)-industry_aluminium_electrolysis_bat: {type: :loss}'
 industry_aluminium_electrolysis_current:
   sector: industry
   use: energetic
@@ -3657,7 +3657,7 @@ industry_aluminium_electrolysis_current:
   - industry_aluminium_electrolysis_current-(electricity)
   - industry_aluminium_electrolysis_current-(useable_heat)
   - (not_defined)-industry_aluminium_electrolysis_current
-  - ! '(loss)-industry_aluminium_electrolysis_current: {type: :elastic}'
+  - ! '(loss)-industry_aluminium_electrolysis_current: {type: :loss}'
 industry_aluminium_production:
   sector: industry
   use: energetic
@@ -3681,7 +3681,7 @@ industry_aluminium_smeltoven:
   - industry_aluminium_smeltoven-(electricity)
   - industry_aluminium_smeltoven-(useable_heat)
   - (not_defined)-industry_aluminium_smeltoven
-  - ! '(loss)-industry_aluminium_smeltoven: {type: :elastic}'
+  - ! '(loss)-industry_aluminium_smeltoven: {type: :loss}'
 industry_burner_coal:
   sector: industry
   use: energetic
@@ -3691,7 +3691,7 @@ industry_burner_coal:
   slots:
   - industry_burner_coal-(coal)
   - (useable_heat)-industry_burner_coal
-  - ! '(loss)-industry_burner_coal: {type: :elastic}'
+  - ! '(loss)-industry_burner_coal: {type: :loss}'
 industry_burner_crude_oil:
   sector: industry
   use: energetic
@@ -3701,7 +3701,7 @@ industry_burner_crude_oil:
   slots:
   - industry_burner_crude_oil-(crude_oil)
   - (useable_heat)-industry_burner_crude_oil
-  - ! '(loss)-industry_burner_crude_oil: {type: :elastic}'
+  - ! '(loss)-industry_burner_crude_oil: {type: :loss}'
 industry_burner_network_gas:
   sector: industry
   use: energetic
@@ -3710,7 +3710,7 @@ industry_burner_network_gas:
   - industry_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_heat_network_gas
   slots:
   - industry_burner_network_gas-(network_gas)
-  - ! '(loss)-industry_burner_network_gas: {type: :elastic}'
+  - ! '(loss)-industry_burner_network_gas: {type: :loss}'
   - (useable_heat)-industry_burner_network_gas
 industry_burner_wood_pellets:
   sector: industry
@@ -3720,7 +3720,7 @@ industry_burner_wood_pellets:
   - industry_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-industry_final_demand_for_heat_wood_pellets
   slots:
   - industry_burner_wood_pellets-(wood_pellets)
-  - ! '(loss)-industry_burner_wood_pellets: {type: :elastic}'
+  - ! '(loss)-industry_burner_wood_pellets: {type: :loss}'
   - (useable_heat)-industry_burner_wood_pellets
 industry_chp_combined_cycle_gas_power_fuelmix:
   sector: industry
@@ -3731,7 +3731,7 @@ industry_chp_combined_cycle_gas_power_fuelmix:
   - industry_chp_combined_cycle_gas_power_fuelmix-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
   - industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
-  - ! '(loss)-industry_chp_combined_cycle_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-industry_chp_combined_cycle_gas_power_fuelmix: {type: :loss}'
   - (steam_hot_water)-industry_chp_combined_cycle_gas_power_fuelmix
   - (electricity)-industry_chp_combined_cycle_gas_power_fuelmix
   - industry_chp_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix)
@@ -3745,7 +3745,7 @@ industry_chp_supercritical_wood_pellets:
   - industry_chp_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
   slots:
   - industry_chp_supercritical_wood_pellets-(wood_pellets)
-  - ! '(loss)-industry_chp_supercritical_wood_pellets: {type: :elastic}'
+  - ! '(loss)-industry_chp_supercritical_wood_pellets: {type: :loss}'
   - (steam_hot_water)-industry_chp_supercritical_wood_pellets
   - (electricity)-industry_chp_supercritical_wood_pellets
 industry_chp_ultra_supercritical_coal:
@@ -3758,7 +3758,7 @@ industry_chp_ultra_supercritical_coal:
   slots:
   - industry_chp_ultra_supercritical_coal-(torrified_biomass_pellets)
   - industry_chp_ultra_supercritical_coal-(coal)
-  - ! '(loss)-industry_chp_ultra_supercritical_coal: {type: :elastic}'
+  - ! '(loss)-industry_chp_ultra_supercritical_coal: {type: :loss}'
   - (steam_hot_water)-industry_chp_ultra_supercritical_coal
   - (electricity)-industry_chp_ultra_supercritical_coal
 industry_final_demand_coal:
@@ -3943,7 +3943,7 @@ industry_other_metals_burner:
   - industry_other_metals_burner-(crude_oil)
   - industry_other_metals_burner-(network_gas)
   - (useable_heat)-industry_other_metals_burner
-  - ! '(loss)-industry_other_metals_burner: {type: :elastic}'
+  - ! '(loss)-industry_other_metals_burner: {type: :loss}'
 industry_other_metals_process_electricity:
   sector: industry
   use: energetic
@@ -3953,7 +3953,7 @@ industry_other_metals_process_electricity:
   slots:
   - industry_other_metals_process_electricity-(electricity)
   - (not_defined)-industry_other_metals_process_electricity
-  - ! '(loss)-industry_other_metals_process_electricity: {type: :elastic}'
+  - ! '(loss)-industry_other_metals_process_electricity: {type: :loss}'
 industry_other_metals_process_heat:
   sector: industry
   use: energetic
@@ -3964,7 +3964,7 @@ industry_other_metals_process_heat:
   slots:
   - industry_other_metals_process_heat-(useable_heat)
   - (not_defined)-industry_other_metals_process_heat
-  - ! '(loss)-industry_other_metals_process_heat: {type: :elastic}'
+  - ! '(loss)-industry_other_metals_process_heat: {type: :loss}'
 industry_other_metals_production:
   sector: industry
   use: energetic
@@ -3988,7 +3988,7 @@ industry_steel_blastfurnace_bat_consumption:
   - industry_steel_blastfurnace_bat_consumption-(useable_heat)
   - industry_steel_blastfurnace_bat_consumption-(coupling_carrier)
   - (not_defined)-industry_steel_blastfurnace_bat_consumption
-  - ! '(loss)-industry_steel_blastfurnace_bat_consumption: {type: :elastic}'
+  - ! '(loss)-industry_steel_blastfurnace_bat_consumption: {type: :loss}'
 industry_steel_blastfurnace_burner:
   sector: industry
   use: energetic
@@ -4000,7 +4000,7 @@ industry_steel_blastfurnace_burner:
   - industry_steel_blastfurnace_burner-(coal_gas)
   - industry_steel_blastfurnace_burner-(network_gas)
   - (useable_heat)-industry_steel_blastfurnace_burner
-  - ! '(loss)-industry_steel_blastfurnace_burner: {type: :elastic}'
+  - ! '(loss)-industry_steel_blastfurnace_burner: {type: :loss}'
 industry_steel_blastfurnace_current_consumption:
   sector: industry
   use: energetic
@@ -4014,7 +4014,7 @@ industry_steel_blastfurnace_current_consumption:
   - industry_steel_blastfurnace_current_consumption-(useable_heat)
   - industry_steel_blastfurnace_current_consumption-(coupling_carrier)
   - (not_defined)-industry_steel_blastfurnace_current_consumption
-  - ! '(loss)-industry_steel_blastfurnace_current_consumption: {type: :elastic}'
+  - ! '(loss)-industry_steel_blastfurnace_current_consumption: {type: :loss}'
 industry_steel_electricfurnace:
   sector: industry
   use: energetic
@@ -4026,7 +4026,7 @@ industry_steel_electricfurnace:
   - industry_steel_electricfurnace-(electricity)
   - industry_steel_electricfurnace-(useable_heat)
   - (not_defined)-industry_steel_electricfurnace
-  - ! '(loss)-industry_steel_electricfurnace: {type: :elastic}'
+  - ! '(loss)-industry_steel_electricfurnace: {type: :loss}'
 industry_steel_electricfurnace_burner:
   sector: industry
   use: energetic
@@ -4036,7 +4036,7 @@ industry_steel_electricfurnace_burner:
   slots:
   - industry_steel_electricfurnace_burner-(network_gas)
   - (useable_heat)-industry_steel_electricfurnace_burner
-  - ! '(loss)-industry_steel_electricfurnace_burner: {type: :elastic}'
+  - ! '(loss)-industry_steel_electricfurnace_burner: {type: :loss}'
 industry_steel_hisarna_consumption:
   sector: industry
   use: energetic
@@ -4050,7 +4050,7 @@ industry_steel_hisarna_consumption:
   - industry_steel_hisarna_consumption-(useable_heat)
   - industry_steel_hisarna_consumption-(coupling_carrier)
   - (not_defined)-industry_steel_hisarna_consumption
-  - ! '(loss)-industry_steel_hisarna_consumption: {type: :elastic}'
+  - ! '(loss)-industry_steel_hisarna_consumption: {type: :loss}'
 industry_steel_production:
   sector: industry
   use: energetic
@@ -4107,7 +4107,7 @@ industry_useful_demand_electricity_non_energetic:
   - industry_useful_demand_electricity_non_energetic-(electricity) -- s --> (electricity)-industry_final_demand_electricity_non_energetic
   slots:
   - industry_useful_demand_electricity_non_energetic-(electricity)
-  - ! '(loss)-industry_useful_demand_electricity_non_energetic: {type: :elastic}'
+  - ! '(loss)-industry_useful_demand_electricity_non_energetic: {type: :loss}'
 industry_useful_demand_network_gas_non_energetic:
   sector: industry
   use: non_energetic
@@ -4148,7 +4148,7 @@ other_burner_coal:
   slots:
   - other_burner_coal-(coal)
   - (useable_heat)-other_burner_coal
-  - ! '(loss)-other_burner_coal: {type: :elastic}'
+  - ! '(loss)-other_burner_coal: {type: :loss}'
 other_burner_crude_oil:
   sector: other
   use: energetic
@@ -4158,7 +4158,7 @@ other_burner_crude_oil:
   slots:
   - other_burner_crude_oil-(crude_oil)
   - (useable_heat)-other_burner_crude_oil
-  - ! '(loss)-other_burner_crude_oil: {type: :elastic}'
+  - ! '(loss)-other_burner_crude_oil: {type: :loss}'
 other_burner_network_gas:
   sector: other
   use: energetic
@@ -4168,7 +4168,7 @@ other_burner_network_gas:
   slots:
   - other_burner_network_gas-(network_gas)
   - (useable_heat)-other_burner_network_gas
-  - ! '(loss)-other_burner_network_gas: {type: :elastic}'
+  - ! '(loss)-other_burner_network_gas: {type: :loss}'
 other_burner_wood_pellets:
   sector: other
   use: energetic
@@ -4178,7 +4178,7 @@ other_burner_wood_pellets:
   slots:
   - other_burner_wood_pellets-(wood_pellets)
   - (useable_heat)-other_burner_wood_pellets
-  - ! '(loss)-other_burner_wood_pellets: {type: :elastic}'
+  - ! '(loss)-other_burner_wood_pellets: {type: :loss}'
 other_chp_engine_gas_power_fuelmix:
   sector: other
   use: energetic
@@ -4187,7 +4187,7 @@ other_chp_engine_gas_power_fuelmix:
   - other_chp_engine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
   - other_chp_engine_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-other_chp_engine_gas_power_fuelmix: {type: :elastic}'
+  - ! '(loss)-other_chp_engine_gas_power_fuelmix: {type: :loss}'
   - (steam_hot_water)-other_chp_engine_gas_power_fuelmix
   - (electricity)-other_chp_engine_gas_power_fuelmix
 other_chp_supercritical_wood_pellets:
@@ -4198,7 +4198,7 @@ other_chp_supercritical_wood_pellets:
   - other_chp_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
   slots:
   - other_chp_supercritical_wood_pellets-(wood_pellets)
-  - ! '(loss)-other_chp_supercritical_wood_pellets: {type: :elastic}'
+  - ! '(loss)-other_chp_supercritical_wood_pellets: {type: :loss}'
   - (steam_hot_water)-other_chp_supercritical_wood_pellets
   - (electricity)-other_chp_supercritical_wood_pellets
 other_electricity_for_electricity:
@@ -4398,7 +4398,7 @@ transport_car_using_compressed_natural_gas:
   slots:
   - transport_car_using_compressed_natural_gas-(compressed_network_gas)
   - (car_kms)-transport_car_using_compressed_natural_gas
-  - ! '(loss)-transport_car_using_compressed_natural_gas: {type: :elastic}'
+  - ! '(loss)-transport_car_using_compressed_natural_gas: {type: :loss}'
 transport_car_using_diesel_mix:
   sector: transport
   use: energetic
@@ -4408,7 +4408,7 @@ transport_car_using_diesel_mix:
   slots:
   - transport_car_using_diesel_mix-(diesel_mix)
   - (car_kms)-transport_car_using_diesel_mix
-  - ! '(loss)-transport_car_using_diesel_mix: {type: :elastic}'
+  - ! '(loss)-transport_car_using_diesel_mix: {type: :loss}'
 transport_car_using_electricity:
   sector: transport
   use: energetic
@@ -4418,7 +4418,7 @@ transport_car_using_electricity:
   slots:
   - transport_car_using_electricity-(electricity)
   - (car_kms)-transport_car_using_electricity
-  - ! '(loss)-transport_car_using_electricity: {type: :elastic}'
+  - ! '(loss)-transport_car_using_electricity: {type: :loss}'
 transport_car_using_gasoline_mix:
   sector: transport
   use: energetic
@@ -4428,7 +4428,7 @@ transport_car_using_gasoline_mix:
   slots:
   - transport_car_using_gasoline_mix-(gasoline_mix)
   - (car_kms)-transport_car_using_gasoline_mix
-  - ! '(loss)-transport_car_using_gasoline_mix: {type: :elastic}'
+  - ! '(loss)-transport_car_using_gasoline_mix: {type: :loss}'
 transport_car_using_lpg:
   sector: transport
   use: energetic
@@ -4438,7 +4438,7 @@ transport_car_using_lpg:
   slots:
   - transport_car_using_lpg-(lpg)
   - (car_kms)-transport_car_using_lpg
-  - ! '(loss)-transport_car_using_lpg: {type: :elastic}'
+  - ! '(loss)-transport_car_using_lpg: {type: :loss}'
 transport_final_demand_bio_ethanol:
   sector: transport
   use: energetic
@@ -4795,7 +4795,7 @@ transport_train_using_coal:
   - transport_train_using_coal-(coal) -- s --> (coal)-transport_final_demand_for_rail_coal
   slots:
   - transport_train_using_coal-(coal)
-  - ! '(loss)-transport_train_using_coal: {type: :elastic}'
+  - ! '(loss)-transport_train_using_coal: {type: :loss}'
   - (not_defined)-transport_train_using_coal
 transport_train_using_diesel:
   sector: transport
@@ -4805,7 +4805,7 @@ transport_train_using_diesel:
   - transport_train_using_diesel-(diesel_mix) -- s --> (diesel_mix)-transport_rail_mixer_diesel
   slots:
   - transport_train_using_diesel-(diesel_mix)
-  - ! '(loss)-transport_train_using_diesel: {type: :elastic}'
+  - ! '(loss)-transport_train_using_diesel: {type: :loss}'
   - (not_defined)-transport_train_using_diesel
 transport_train_using_electricity:
   sector: transport
@@ -4815,7 +4815,7 @@ transport_train_using_electricity:
   - transport_train_using_electricity-(electricity) -- s --> (electricity)-transport_final_demand_for_rail_electricity
   slots:
   - transport_train_using_electricity-(electricity)
-  - ! '(loss)-transport_train_using_electricity: {type: :elastic}'
+  - ! '(loss)-transport_train_using_electricity: {type: :loss}'
   - (not_defined)-transport_train_using_electricity
 transport_truck_using_compressed_natural_gas:
   sector: transport
@@ -4827,7 +4827,7 @@ transport_truck_using_compressed_natural_gas:
   slots:
   - transport_truck_using_compressed_natural_gas-(compressed_network_gas)
   - (truck_kms)-transport_truck_using_compressed_natural_gas
-  - ! '(loss)-transport_truck_using_compressed_natural_gas: {type: :elastic}'
+  - ! '(loss)-transport_truck_using_compressed_natural_gas: {type: :loss}'
 transport_truck_using_diesel_mix:
   sector: transport
   use: energetic
@@ -4837,7 +4837,7 @@ transport_truck_using_diesel_mix:
   slots:
   - transport_truck_using_diesel_mix-(diesel_mix)
   - (truck_kms)-transport_truck_using_diesel_mix
-  - ! '(loss)-transport_truck_using_diesel_mix: {type: :elastic}'
+  - ! '(loss)-transport_truck_using_diesel_mix: {type: :loss}'
 transport_truck_using_electricity:
   sector: transport
   use: energetic
@@ -4847,7 +4847,7 @@ transport_truck_using_electricity:
   slots:
   - transport_truck_using_electricity-(electricity)
   - (truck_kms)-transport_truck_using_electricity
-  - ! '(loss)-transport_truck_using_electricity: {type: :elastic}'
+  - ! '(loss)-transport_truck_using_electricity: {type: :loss}'
 transport_truck_using_gasoline_mix:
   sector: transport
   use: energetic
@@ -4857,7 +4857,7 @@ transport_truck_using_gasoline_mix:
   slots:
   - transport_truck_using_gasoline_mix-(gasoline_mix)
   - (truck_kms)-transport_truck_using_gasoline_mix
-  - ! '(loss)-transport_truck_using_gasoline_mix: {type: :elastic}'
+  - ! '(loss)-transport_truck_using_gasoline_mix: {type: :loss}'
 transport_useful_demand_car_kms:
   sector: transport
   use: energetic
@@ -4870,7 +4870,7 @@ transport_useful_demand_car_kms:
   - transport_useful_demand_car_kms-(car_kms) -- s --> (car_kms)-transport_car_using_compressed_natural_gas
   slots:
   - transport_useful_demand_car_kms-(car_kms)
-  - ! '(loss)-transport_useful_demand_car_kms: {type: :elastic}'
+  - ! '(loss)-transport_useful_demand_car_kms: {type: :loss}'
 transport_useful_demand_crude_oil_non_energetic:
   sector: transport
   use: non_energetic
@@ -4924,4 +4924,4 @@ transport_useful_demand_truck_kms:
   - transport_useful_demand_truck_kms-(truck_kms) -- s --> (truck_kms)-transport_truck_using_compressed_natural_gas
   slots:
   - transport_useful_demand_truck_kms-(truck_kms)
-  - ! '(loss)-transport_useful_demand_truck_kms: {type: :elastic}'
+  - ! '(loss)-transport_useful_demand_truck_kms: {type: :loss}'
