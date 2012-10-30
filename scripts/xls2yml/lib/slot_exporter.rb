@@ -120,7 +120,7 @@ module ETE
       if carrier_efficient?
         :carrier_efficient
       elsif output? && @carrier_key == 'loss'
-        :elastic
+        :loss
       elsif @data[:flexible]
         :elastic
       end
