@@ -248,7 +248,7 @@ industry_chp_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torr
   :demand_expected_value: 64500000000.0
 industry_final_demand_coal-(coal): {conversion: 1.0}
 (coal)-industry_final_demand_coal: {conversion: 1.0}
-industry_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+industry_final_demand_coal-(coal) -- s --> (coal)-industry_transformation_generic_coal: {share: 1.0}
 
 :industry_final_demand_coal_gas:
   :co2_free: 0.0
@@ -552,6 +552,14 @@ industry_steel_production-(not_defined) -- f --> (not_defined)-industry_steel_bl
 industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_blastfurnace_bat_consumption: {share: 0.0}
 industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_hisarna_consumption: {share: 0.0}
 industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_electricfurnace: {share: 0.019}
+
+:industry_transformation_generic_coal:
+  :co2_free: 0.0
+  :demand_expected_value: 75000000000.0
+industry_transformation_generic_coal-(coal): {conversion: 1.0}
+(coal)-industry_transformation_generic_coal: {conversion: 0.86}
+(loss)-industry_transformation_generic_coal: {}
+industry_transformation_generic_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
 :industry_unused_local_production_steam_hot_water:
   :co2_free: 0.0
