@@ -3766,7 +3766,7 @@ industry_final_demand_coal:
   use: energetic
   energy_balance_group: final consumption
   links:
-  - industry_final_demand_coal-(coal) -- s --> (coal)-energy_distribution_coal
+  - industry_final_demand_coal-(coal) -- s --> (coal)-industry_transformation_generic_coal
   slots:
   - industry_final_demand_coal-(coal)
   - (coal)-industry_final_demand_coal
@@ -4063,6 +4063,16 @@ industry_steel_production:
   slots:
   - industry_steel_production-(not_defined)
   - (not_defined)-industry_steel_production
+industry_transformation_generic_coal:
+  sector: industry
+  use: energetic
+  energy_balance_group: coal conversion
+  links:
+  - industry_transformation_generic_coal-(coal) -- s --> (coal)-energy_distribution_coal
+  slots:
+  - industry_transformation_generic_coal-(coal)
+  - (coal)-industry_transformation_generic_coal
+  - ! '(loss)-industry_transformation_generic_coal: {type: :loss}'
 industry_unused_local_production_steam_hot_water:
   sector: industry
   use: energetic
