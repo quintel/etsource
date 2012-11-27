@@ -6,15 +6,10 @@
 SUM(
   V(
     INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),
-    "output_of_crude_oil + output_of_coal +output_of_network_gas + output_of_coal_gas"
+    "output_of_crude_oil + output_of_coal + output_of_coal_gas"
   ),
   PRODUCT(
-    V(energy_national_gas_network_natural_gas,sustainability_share),
-    NEG(SUM(
-      V(
-        INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),
-        output_of_network_gas
-      )
-    ))
+    SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),output_of_network_gas)),
+    Q(share_of_natural_gas_in_gas_network)
   )
 )
