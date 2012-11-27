@@ -3975,6 +3975,15 @@ industry_other_metals_production:
   slots:
   - industry_other_metals_production-(not_defined)
   - (not_defined)-industry_other_metals_production
+industry_own_use_coal:
+  sector: industry
+  use: energetic
+  energy_balance_group: energy sector own use
+  links:
+  - industry_own_use_coal-(coal) -- s --> (coal)-industry_transformation_generic_coal
+  slots:
+  - industry_own_use_coal-(coal)
+  - ! '(loss)-industry_own_use_coal: {type: :loss}'
 industry_steel_blastfurnace_bat_consumption:
   sector: industry
   use: energetic
