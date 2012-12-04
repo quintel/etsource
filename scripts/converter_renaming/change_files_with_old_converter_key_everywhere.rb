@@ -36,8 +36,8 @@ replacements = {}
 CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
   #this is how the columns of the CSV are ordered
   id, old_key, new_key = row
-  old_key.strip!
-  new_key.strip!
+  old_key.strip
+  new_key.strip
   replacements[old_key] = new_key unless old_key == new_key
 end
 
@@ -50,20 +50,21 @@ files =
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml")
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml") + 
 
-# etengine
-Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - \
-# local
-Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - \
-# unimportant
-Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*") - \
-Dir.glob(PATH_OF_REPOSITORIES + "/etengine/statusLog") - \
- # safer in separate migration
-Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") - \
-# unimportant
-Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*")
-#etmodel must be done with separate migration
+  # etengine
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") -
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*") - 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/statusLog") -
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") -
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*") +
+
+  # merit order module
+  Dir.glob(PATH_OF_REPOSITORIES + "/merit/**/*")
+
+  #etmodel must be done with separate migration
+
 
 # Clean up file list with hidden files (that start with .) or files that are actually directories
 files.delete_if do |file_name|
@@ -92,9 +93,13 @@ for file in files
         File.open file, "w" do |update|
           update.puts content
         end
-        puts "I changed #{old_key} to #{new_key} keys in #{file}"
+        puts "I changed #{old_key} to 
+                  #{new_key} keys in 
+                  #{file}"
       else
-        puts "Script can change #{old_key} to #{new_key} keys in #{file}"
+        puts "Script can change #{old_key} to 
+                  #{new_key} keys in 
+                  #{file}"
       end
     end
   end
