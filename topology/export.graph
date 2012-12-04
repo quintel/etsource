@@ -1961,7 +1961,7 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_wood_pellets
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_gas_power_fuelmix
   slots:
   - energy_power_hv_network_electricity-(electricity)
   - (electricity)-energy_power_hv_network_electricity
@@ -2121,16 +2121,16 @@ energy_power_transformer_mv_hv_electricity:
   slots:
   - energy_power_transformer_mv_hv_electricity-(electricity)
   - (electricity)-energy_power_transformer_mv_hv_electricity
-energy_power_turbine_network_gas:
+energy_power_turbine_gas_power_fuelmix:
   sector: energy
   use: energetic
   energy_balance_group: central power generation
   links:
-  - energy_power_turbine_network_gas-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
+  - energy_power_turbine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
   slots:
-  - energy_power_turbine_network_gas-(gas_power_fuelmix)
-  - (electricity)-energy_power_turbine_network_gas
-  - ! '(loss)-energy_power_turbine_network_gas: {type: :loss}'
+  - energy_power_turbine_gas_power_fuelmix-(gas_power_fuelmix)
+  - (electricity)-energy_power_turbine_gas_power_fuelmix
+  - ! '(loss)-energy_power_turbine_gas_power_fuelmix: {type: :loss}'
 energy_power_ultra_supercritical_ccs_coal:
   sector: energy
   use: undefined
