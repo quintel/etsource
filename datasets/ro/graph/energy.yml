@@ -922,7 +922,7 @@ energy_interconnector_imported_electricity-(imported_electricity) -- s --> (impo
 
 :energy_mixer_for_gas_power_fuel:
   :co2_free: 0.0
-  :demand_expected_value: 176483236012.912
+  :demand_expected_value: 151487348676.738
 energy_mixer_for_gas_power_fuel-(bio_oil): {conversion: 0.0}
 energy_mixer_for_gas_power_fuel-(crude_oil): {conversion: 0.0}
 energy_mixer_for_gas_power_fuel-(network_gas): {conversion: 1.0}
@@ -1164,7 +1164,7 @@ energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_wood_pellets: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel: {}
-energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas: {}
+energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_gas_power_fuelmix: {}
 
 :energy_power_hv_network_loss:
   :co2_free: 0.0
@@ -1557,7 +1557,7 @@ energy_power_transformer_mv_hv_electricity-(electricity): {conversion: 1.0}
 energy_power_transformer_mv_hv_electricity-(electricity) -- f --> (electricity)-energy_power_hv_network_electricity: {}
 energy_power_transformer_mv_hv_electricity-(electricity) -- i --> (electricity)-energy_power_mv_transport_network_electricity: {}
 
-:energy_power_turbine_network_gas:
+:energy_power_turbine_gas_power_fuelmix:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
@@ -1574,10 +1574,10 @@ energy_power_transformer_mv_hv_electricity-(electricity) -- i --> (electricity)-
   :variability: 0.0
   :electricity_output_capacity: 150.0
   :heat_output_capacity: 0.0
-energy_power_turbine_network_gas-(gas_power_fuelmix): {conversion: 1.0}
-(electricity)-energy_power_turbine_network_gas: {conversion: 0.34}
-(loss)-energy_power_turbine_network_gas: {}
-energy_power_turbine_network_gas-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
+energy_power_turbine_gas_power_fuelmix-(gas_power_fuelmix): {conversion: 1.0}
+(electricity)-energy_power_turbine_gas_power_fuelmix: {conversion: 0.34}
+(loss)-energy_power_turbine_gas_power_fuelmix: {}
+energy_power_turbine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel: {share: 1.0}
 
 :energy_power_ultra_supercritical_ccs_coal:
   :availability: 0.85
