@@ -1,0 +1,11 @@
+# Total demand for electricity including network losses
+
+- unit = mj
+
+SUM(
+  V(G(final_demand_electricity),demand).sum,
+  PRODUCT(
+    V(energy_power_transformer_mv_hv_electricity,demand),
+    V(energy_power_hv_network_electricity,"loss_output_conversion / electricity_output_conversion")
+  )
+)
