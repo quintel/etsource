@@ -61,6 +61,7 @@ files =
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*") - 
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/statusLog") -
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etengine_staging.sql") -
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/tengine_dev_backup.sql") -
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*") +
 
   # merit order module
