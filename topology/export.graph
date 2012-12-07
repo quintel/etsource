@@ -888,17 +888,17 @@ buildings_useful_demand_light:
   slots:
   - buildings_useful_demand_light-(light)
   - (light)-buildings_useful_demand_light
-energy_chp_combined_cycle_natural_gas:
+energy_chp_combined_cycle_network_gas:
   sector: energy
   use: energetic
   energy_balance_group: central CHPs
   links:
-  - energy_chp_combined_cycle_natural_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
+  - energy_chp_combined_cycle_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - energy_chp_combined_cycle_natural_gas-(network_gas)
-  - ! '(loss)-energy_chp_combined_cycle_natural_gas: {type: :loss}'
-  - (steam_hot_water)-energy_chp_combined_cycle_natural_gas
-  - (electricity)-energy_chp_combined_cycle_natural_gas
+  - energy_chp_combined_cycle_network_gas-(network_gas)
+  - ! '(loss)-energy_chp_combined_cycle_network_gas: {type: :loss}'
+  - (steam_hot_water)-energy_chp_combined_cycle_network_gas
+  - (electricity)-energy_chp_combined_cycle_network_gas
 energy_chp_ultra_supercritical_coal:
   sector: energy
   use: undefined
@@ -1491,17 +1491,16 @@ energy_final_demand_steam_hot_water:
   slots:
   - energy_final_demand_steam_hot_water-(steam_hot_water)
   - ! '(loss)-energy_final_demand_steam_hot_water: {type: :loss}'
-energy_heat_network_backup_heater_gas_power_fuelmix:
+energy_heat_network_backup_heater_network_gas:
   sector: energy
   use: undefined
   energy_balance_group: central heat generation
   links:
-  - energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix) -- s -->
-    (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
+  - energy_heat_network_backup_heater_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - energy_heat_network_backup_heater_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_heat_network_backup_heater_gas_power_fuelmix: {type: :loss}'
-  - (steam_hot_water)-energy_heat_network_backup_heater_gas_power_fuelmix
+  - energy_heat_network_backup_heater_network_gas-(network_gas)
+  - ! '(loss)-energy_heat_network_backup_heater_network_gas: {type: :loss}'
+  - (steam_hot_water)-energy_heat_network_backup_heater_network_gas
 energy_heat_network_loss:
   sector: energy
   use: undefined
@@ -1516,7 +1515,7 @@ energy_heat_network_steam_hot_water:
   use: energetic
   energy_balance_group: distribution
   links:
-  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_combined_cycle_natural_gas
+  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_combined_cycle_network_gas
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_power_supercritical_waste_mix
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_coal
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_geothermal
@@ -1554,7 +1553,7 @@ energy_heat_remainder_from_heat_network_steam_hot_water:
   - energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- i
     --> (steam_hot_water)-agriculture_unused_local_production_steam_hot_water
   - energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water) -- f
-    --> (steam_hot_water)-energy_heat_network_backup_heater_gas_power_fuelmix
+    --> (steam_hot_water)-energy_heat_network_backup_heater_network_gas
   slots:
   - energy_heat_remainder_from_heat_network_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-energy_heat_remainder_from_heat_network_steam_hot_water
@@ -1872,17 +1871,16 @@ energy_power_combined_cycle_ccs_coal:
   - energy_power_combined_cycle_ccs_coal-(coal)
   - ! '(loss)-energy_power_combined_cycle_ccs_coal: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_ccs_coal
-energy_power_combined_cycle_ccs_gas_power_fuelmix:
+energy_power_combined_cycle_ccs_network_gas:
   sector: energy
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix) -- s -->
-    (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
+  - energy_power_combined_cycle_ccs_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - energy_power_combined_cycle_ccs_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_power_combined_cycle_ccs_gas_power_fuelmix: {type: :loss}'
-  - (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix
+  - energy_power_combined_cycle_ccs_network_gas-(network_gas)
+  - ! '(loss)-energy_power_combined_cycle_ccs_network_gas: {type: :loss}'
+  - (electricity)-energy_power_combined_cycle_ccs_network_gas
 energy_power_combined_cycle_coal:
   sector: energy
   use: undefined
@@ -1895,16 +1893,16 @@ energy_power_combined_cycle_coal:
   - energy_power_combined_cycle_coal-(coal)
   - ! '(loss)-energy_power_combined_cycle_coal: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_coal
-energy_power_combined_cycle_gas_power_fuelmix:
+energy_power_combined_cycle_network_gas:
   sector: energy
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
+  - energy_power_combined_cycle_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - energy_power_combined_cycle_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-energy_power_combined_cycle_gas_power_fuelmix: {type: :loss}'
-  - (electricity)-energy_power_combined_cycle_gas_power_fuelmix
+  - energy_power_combined_cycle_network_gas-(network_gas)
+  - ! '(loss)-energy_power_combined_cycle_network_gas: {type: :loss}'
+  - (electricity)-energy_power_combined_cycle_network_gas
 energy_power_engine_diesel:
   sector: energy
   use: energetic
@@ -1931,8 +1929,8 @@ energy_power_hv_network_electricity:
   energy_balance_group: electricity network
   links:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_solar_pv_solar_radiation
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_combined_cycle_natural_gas
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_network_gas
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_combined_cycle_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_supercritical_waste_mix
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_coal
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_ccs_coal
@@ -1942,7 +1940,7 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_coal
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_ccs_coal
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_crude_oil
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_gas_power_fuelmix
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_coal
   - energy_power_hv_network_electricity-(electricity) -- f --> (electricity)-energy_interconnector_imported_electricity
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_nuclear_gen3_uranium_oxide
@@ -1956,12 +1954,12 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_geothermal
   - energy_power_hv_network_electricity-(electricity) -- i --> (electricity)-energy_power_transformer_mv_hv_electricity
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_nuclear_gen2_uranium_oxide
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_ccs_gas_power_fuelmix
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_ccs_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_lignite
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_wood_pellets
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_gas_power_fuelmix
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas
   slots:
   - energy_power_hv_network_electricity-(electricity)
   - (electricity)-energy_power_hv_network_electricity
@@ -2121,16 +2119,16 @@ energy_power_transformer_mv_hv_electricity:
   slots:
   - energy_power_transformer_mv_hv_electricity-(electricity)
   - (electricity)-energy_power_transformer_mv_hv_electricity
-energy_power_turbine_gas_power_fuelmix:
+energy_power_turbine_network_gas:
   sector: energy
   use: energetic
   energy_balance_group: central power generation
   links:
-  - energy_power_turbine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
+  - energy_power_turbine_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - energy_power_turbine_gas_power_fuelmix-(gas_power_fuelmix)
-  - (electricity)-energy_power_turbine_gas_power_fuelmix
-  - ! '(loss)-energy_power_turbine_gas_power_fuelmix: {type: :loss}'
+  - energy_power_turbine_network_gas-(network_gas)
+  - (electricity)-energy_power_turbine_network_gas
+  - ! '(loss)-energy_power_turbine_network_gas: {type: :loss}'
 energy_power_ultra_supercritical_ccs_coal:
   sector: energy
   use: undefined
@@ -2179,17 +2177,6 @@ energy_power_ultra_supercritical_crude_oil:
   - energy_power_ultra_supercritical_crude_oil-(crude_oil)
   - ! '(loss)-energy_power_ultra_supercritical_crude_oil: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_crude_oil
-energy_power_ultra_supercritical_gas_power_fuelmix:
-  sector: energy
-  use: energetic
-  energy_balance_group: central power generation
-  links:
-  - energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix) -- s -->
-    (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
-  slots:
-  - ! '(loss)-energy_power_ultra_supercritical_gas_power_fuelmix: {type: :loss}'
-  - (electricity)-energy_power_ultra_supercritical_gas_power_fuelmix
-  - energy_power_ultra_supercritical_gas_power_fuelmix-(gas_power_fuelmix)
 energy_power_ultra_supercritical_lignite:
   sector: energy
   use: undefined
@@ -2203,6 +2190,16 @@ energy_power_ultra_supercritical_lignite:
   - energy_power_ultra_supercritical_lignite-(lignite)
   - ! '(loss)-energy_power_ultra_supercritical_lignite: {type: :loss}'
   - (electricity)-energy_power_ultra_supercritical_lignite
+energy_power_ultra_supercritical_network_gas:
+  sector: energy
+  use: energetic
+  energy_balance_group: central power generation
+  links:
+  - energy_power_ultra_supercritical_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
+  slots:
+  - ! '(loss)-energy_power_ultra_supercritical_network_gas: {type: :loss}'
+  - (electricity)-energy_power_ultra_supercritical_network_gas
+  - energy_power_ultra_supercritical_network_gas-(network_gas)
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
   sector: energy
   use: undefined
@@ -4194,17 +4191,17 @@ other_burner_wood_pellets:
   - other_burner_wood_pellets-(wood_pellets)
   - (useable_heat)-other_burner_wood_pellets
   - ! '(loss)-other_burner_wood_pellets: {type: :loss}'
-other_chp_engine_gas_power_fuelmix:
+other_chp_engine_network_gas:
   sector: other
   use: energetic
   energy_balance_group: local CHPs
   links:
-  - other_chp_engine_gas_power_fuelmix-(gas_power_fuelmix) -- s --> (gas_power_fuelmix)-energy_mixer_for_gas_power_fuel
+  - other_chp_engine_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - other_chp_engine_gas_power_fuelmix-(gas_power_fuelmix)
-  - ! '(loss)-other_chp_engine_gas_power_fuelmix: {type: :loss}'
-  - (steam_hot_water)-other_chp_engine_gas_power_fuelmix
-  - (electricity)-other_chp_engine_gas_power_fuelmix
+  - other_chp_engine_network_gas-(network_gas)
+  - ! '(loss)-other_chp_engine_network_gas: {type: :loss}'
+  - (steam_hot_water)-other_chp_engine_network_gas
+  - (electricity)-other_chp_engine_network_gas
 other_chp_supercritical_wood_pellets:
   sector: other
   use: energetic
@@ -4348,7 +4345,7 @@ other_local_production_electricity:
   energy_balance_group: locally available
   links:
   - other_local_production_electricity-(electricity) -- f --> (electricity)-energy_power_lv_network_electricity
-  - other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_engine_gas_power_fuelmix
+  - other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_engine_network_gas
   - other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_supercritical_wood_pellets
   slots:
   - other_local_production_electricity-(electricity)
@@ -4359,7 +4356,7 @@ other_local_production_steam_hot_water:
   energy_balance_group: locally available
   links:
   - other_local_production_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
-  - other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_engine_gas_power_fuelmix
+  - other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_engine_network_gas
   - other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_supercritical_wood_pellets
   slots:
   - other_local_production_steam_hot_water-(steam_hot_water)
