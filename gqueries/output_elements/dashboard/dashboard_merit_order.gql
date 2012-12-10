@@ -1,0 +1,7 @@
+- unit = hash
+
+GROUP(merit_order_converters_for_dashboard).each_with_object({}){ |c,h|
+  h[c.key] = {
+    :profitable => c.converter_api.profitable
+  }
+}
