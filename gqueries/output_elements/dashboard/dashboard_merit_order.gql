@@ -2,6 +2,13 @@
 
 GROUP(merit_order_converters_for_dashboard).each_with_object({}){ |c,h|
   h[c.key] = {
-    :profitable => c.converter_api.profitable
+    :profitable => c.converter_api.profitable,
+    :full_load_hours => c.converter_api.full_load_hours,
+    :position => c.converter_api.merit_order_position,
+    :capacity =>  c.converter_api.effective_input_capacity *
+                  c.converter_api.electricity_output_conversion *
+                  c.converter_api.availability *
+                  c.converter_api.number_of_units,
+    :profits => c.converter_api.profits_per_mwh
   }
 }
