@@ -146,6 +146,16 @@ module ETE
           ATTRIBUTES.each do |attr|
             attrs[attr] = row[attr].to_f if row[attr]
           end
+
+          if carrier_efficiency = carrier_efficiency_hash(attrs)
+            attrs[:carrier_efficiency] = carrier_efficiency
+          end
+
+          # Delete efficiency attributes from the top-level dataset.
+          EFFICIENCY_ATTRIBUTES.map(&:last).flatten.each do |key|
+            attrs.delete(key)
+          end
+
           # Copying peak_load_units_present to peak_load_units
           # https://github.com/dennisschoenmakers/etengine/issues/386
           attrs[:peak_load_units] = attrs[:peak_load_units_present] if attrs[:peak_load_units_present]

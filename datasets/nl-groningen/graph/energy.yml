@@ -2,8 +2,6 @@
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5242.69085487077
   :households_supplied_per_unit: 1.0
@@ -32,8 +30,6 @@ energy_chp_combined_cycle_network_gas-(network_gas) -- s --> (network_gas)-energ
   :availability: 0.88
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.31
-  :electrical_efficiency_when_using_wood_pellets: 0.34
   :forecasting_error: 0.0
   :full_load_hours: 6950.0
   :households_supplied_per_unit: 1.0
@@ -51,13 +47,14 @@ energy_chp_combined_cycle_network_gas-(network_gas) -- s --> (network_gas)-energ
   :variability: 0.0
   :electricity_output_capacity: 539.130434782609
   :heat_output_capacity: 695.652173913044
+  :carrier_efficiency: {:electricity: {:coal: 0.31, :torrified_biomass_pellets: 0.31, :lignite: 0.31, :wood_pellets: 0.34}}
   :peak_load_units: 0.0
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_coal-(wood_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_coal-(coal): {conversion: 1.0}
 (loss)-energy_chp_ultra_supercritical_coal: {}
 (steam_hot_water)-energy_chp_ultra_supercritical_coal: {conversion: 0.4}
-(electricity)-energy_chp_ultra_supercritical_coal: {conversion: 0.41}
+(electricity)-energy_chp_ultra_supercritical_coal: {}
 energy_chp_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
@@ -66,8 +63,6 @@ energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energ
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3504.0
   :households_supplied_per_unit: 1.0
@@ -89,8 +84,6 @@ energy_chp_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
   :availability: 0.97
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4204.8
   :households_supplied_per_unit: 1.0
@@ -113,8 +106,6 @@ energy_chp_ultra_supercritical_lignite-(lignite) -- s --> (lignite)-energy_distr
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 6097.77777777778
   :households_supplied_per_unit: 1.0
@@ -417,8 +408,6 @@ energy_export_diesel-(diesel) -- i --> (diesel)-energy_distribution_diesel: {}
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5427.6084
   :households_supplied_per_unit: 0.0
@@ -518,8 +507,6 @@ energy_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distributi
   :co2_free: 0.0
   :costs_per_mj: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2067.24960263973
   :households_supplied_per_unit: 0.0
@@ -555,8 +542,6 @@ energy_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 5381786208.75646
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -630,8 +615,6 @@ energy_heat_remainder_from_heat_network_used_steam_hot_water-(steam_hot_water) -
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -651,8 +634,6 @@ energy_heater_for_heat_network_coal-(coal) -- s --> (coal)-energy_distribution_c
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -673,8 +654,6 @@ energy_heater_for_heat_network_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3672.39293209657
   :households_supplied_per_unit: 0.0
@@ -693,8 +672,6 @@ energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-env
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -714,8 +691,6 @@ energy_heater_for_heat_network_lignite-(lignite) -- s --> (lignite)-energy_distr
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -736,8 +711,6 @@ energy_heater_for_heat_network_network_gas-(network_gas) -- s --> (network_gas)-
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -757,8 +730,6 @@ energy_heater_for_heat_network_waste_mix-(waste_mix) -- s --> (waste_mix)-energy
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 0.0
@@ -828,8 +799,6 @@ energy_import_diesel-(diesel): {conversion: 1.0}
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5427.6084
   :households_supplied_per_unit: 0.0
@@ -905,8 +874,6 @@ energy_import_wood_pellets-(wood_pellets): {conversion: 1.0}
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 0.0
   :households_supplied_per_unit: 0.0
@@ -945,8 +912,6 @@ energy_national_gas_network_natural_gas-(greengas) -- s --> (greengas)-energy_di
   :availability: 0.87
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.981071814381664
   :co2_free: 0.85
-  :electrical_efficiency_when_using_coal: 0.373
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5971.71063829788
   :households_supplied_per_unit: 0.0
@@ -964,11 +929,12 @@ energy_national_gas_network_natural_gas-(greengas) -- s --> (greengas)-energy_di
   :variability: 0.0
   :electricity_output_capacity: 658.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.373, :torrified_biomass_pellets: 0.373, :lignite: 0.373, :wood_pellets: 0.0}}
   :peak_load_units: 0.0
 energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_combined_cycle_ccs_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_combined_cycle_ccs_coal: {}
-(electricity)-energy_power_combined_cycle_ccs_coal: {conversion: 0.373}
+(electricity)-energy_power_combined_cycle_ccs_coal: {}
 energy_power_combined_cycle_ccs_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
@@ -976,8 +942,6 @@ energy_power_combined_cycle_ccs_coal-(torrified_biomass_pellets) -- s --> (torri
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.979125780553078
   :co2_free: 0.85
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4818.0
   :households_supplied_per_unit: 0.0
@@ -1005,8 +969,6 @@ energy_power_combined_cycle_ccs_network_gas-(network_gas) -- s --> (network_gas)
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.453
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 6324.11
   :households_supplied_per_unit: 0.0
@@ -1024,11 +986,12 @@ energy_power_combined_cycle_ccs_network_gas-(network_gas) -- s --> (network_gas)
   :variability: 0.0
   :electricity_output_capacity: 800.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.453, :torrified_biomass_pellets: 0.453, :lignite: 0.453, :wood_pellets: 0.0}}
   :peak_load_units: 0.0
 energy_power_combined_cycle_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_combined_cycle_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_combined_cycle_coal: {}
-(electricity)-energy_power_combined_cycle_coal: {conversion: 0.453}
+(electricity)-energy_power_combined_cycle_coal: {}
 energy_power_combined_cycle_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_combined_cycle_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
@@ -1036,8 +999,6 @@ energy_power_combined_cycle_coal-(torrified_biomass_pellets) -- s --> (torrified
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4377.28937728938
   :households_supplied_per_unit: 0.0
@@ -1065,8 +1026,6 @@ energy_power_combined_cycle_network_gas-(network_gas) -- s --> (network_gas)-ene
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3504.0
   :households_supplied_per_unit: 0.0
@@ -1087,8 +1046,6 @@ energy_power_engine_diesel-(diesel) -- s --> (diesel)-energy_distribution_diesel
   :availability: 0.95
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8250.0
   :households_supplied_per_unit: 0.0
@@ -1117,8 +1074,6 @@ energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {s
   :co2_free: 0.0
   :costs_per_mj: 0.0
   :demand_expected_value: 45953470636.2609
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -1177,8 +1132,6 @@ energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_elec
   :availability: 0.98
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3942.0
   :households_supplied_per_unit: 0.0
@@ -1213,8 +1166,6 @@ energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_p
   :availability: 0.98
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2700.0
   :households_supplied_per_unit: 0.0
@@ -1242,8 +1193,6 @@ energy_power_hydro_river-(water) -- s --> (water)-environment_water: {share: 1.0
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -1273,8 +1222,6 @@ energy_power_lv_network_electricity-(electricity) -- i --> (electricity)-buildin
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -1304,8 +1251,6 @@ energy_power_mv_distribution_network_electricity-(electricity) -- i --> (electri
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -1333,8 +1278,6 @@ energy_power_mv_transport_network_electricity-(electricity) -- f --> (electricit
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.96969696969697
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5256.0
   :households_supplied_per_unit: 0.0
@@ -1355,8 +1298,6 @@ energy_power_nuclear_gen2_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.96969696969697
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 7884.0
   :households_supplied_per_unit: 0.0
@@ -1384,8 +1325,6 @@ energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)
   :availability: 0.99
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 500.0
   :households_supplied_per_unit: 0.0
@@ -1413,8 +1352,6 @@ energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiati
   :availability: 0.98
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.83
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.05
   :full_load_hours: 1050.0
   :households_supplied_per_unit: 0.0
@@ -1442,8 +1379,6 @@ energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiatio
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.36
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4400.0
   :households_supplied_per_unit: 0.0
@@ -1461,11 +1396,12 @@ energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiatio
   :variability: 0.0
   :electricity_output_capacity: 800.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.36, :torrified_biomass_pellets: 0.36, :lignite: 0.36, :wood_pellets: 0.0}}
   :peak_load_units: 0.0
 energy_power_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_supercritical_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_supercritical_coal: {}
-(electricity)-energy_power_supercritical_coal: {conversion: 0.36}
+(electricity)-energy_power_supercritical_coal: {}
 energy_power_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
@@ -1473,8 +1409,6 @@ energy_power_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_
   :availability: 0.9
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.97
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 6190.0
   :households_supplied_per_unit: 0.0
@@ -1503,8 +1437,6 @@ energy_power_supercritical_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_dis
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -1532,8 +1464,6 @@ energy_power_transformer_lv_mv_electricity-(electricity) -- f --> (electricity)-
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -1561,8 +1491,6 @@ energy_power_transformer_mv_hv_electricity-(electricity) -- i --> (electricity)-
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 1000.0
   :households_supplied_per_unit: 0.0
@@ -1583,8 +1511,6 @@ energy_power_turbine_network_gas-(network_gas) -- s --> (network_gas)-energy_nat
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98116169544741
   :co2_free: 0.85
-  :electrical_efficiency_when_using_coal: 0.361
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5971.71063829788
   :households_supplied_per_unit: 0.0
@@ -1602,11 +1528,12 @@ energy_power_turbine_network_gas-(network_gas) -- s --> (network_gas)-energy_nat
   :variability: 0.0
   :electricity_output_capacity: 637.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.361, :torrified_biomass_pellets: 0.361, :lignite: 0.361, :wood_pellets: 0.0}}
   :peak_load_units: 0.0
 energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_ccs_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_ccs_coal: {}
-(electricity)-energy_power_ultra_supercritical_ccs_coal: {conversion: 0.361}
+(electricity)-energy_power_ultra_supercritical_ccs_coal: {}
 energy_power_ultra_supercritical_ccs_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
@@ -1615,8 +1542,6 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.46
-  :electrical_efficiency_when_using_wood_pellets: 0.33
   :forecasting_error: 0.0
   :full_load_hours: 6950.0
   :households_supplied_per_unit: 0.0
@@ -1634,12 +1559,13 @@ energy_power_ultra_supercritical_ccs_coal-(torrified_biomass_pellets) -- s --> (
   :variability: 0.0
   :electricity_output_capacity: 800.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.46, :torrified_biomass_pellets: 0.46, :lignite: 0.46, :wood_pellets: 0.33}}
   :peak_load_units: 0.0
 energy_power_ultra_supercritical_coal-(wood_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_coal-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_coal-(coal): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_coal: {}
-(electricity)-energy_power_ultra_supercritical_coal: {conversion: 0.46}
+(electricity)-energy_power_ultra_supercritical_coal: {}
 energy_power_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
@@ -1648,8 +1574,6 @@ energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-ene
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 6329.1
   :households_supplied_per_unit: 0.0
@@ -1677,8 +1601,6 @@ energy_power_ultra_supercritical_cofiring_wood_pellets-(wood_pellets) -- s --> (
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3504.0
   :households_supplied_per_unit: 0.0
@@ -1706,8 +1628,6 @@ energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-ener
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.9875
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.4
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 6329.1
   :households_supplied_per_unit: 0.0
@@ -1725,11 +1645,12 @@ energy_power_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-ener
   :variability: 0.0
   :electricity_output_capacity: 800.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.4, :torrified_biomass_pellets: 0.4, :lignite: 0.4, :wood_pellets: 0.0}}
   :peak_load_units: 0.0
 energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_lignite-(lignite): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_lignite: {}
-(electricity)-energy_power_ultra_supercritical_lignite: {conversion: 0.4}
+(electricity)-energy_power_ultra_supercritical_lignite: {}
 energy_power_ultra_supercritical_lignite-(lignite) -- s --> (lignite)-energy_distribution_lignite: {share: 1.0}
 energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
@@ -1738,8 +1659,6 @@ energy_power_ultra_supercritical_lignite-(torrified_biomass_pellets) -- s --> (t
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
   :co2_free: 0.0
   :demand_expected_value: 5994694356.77746
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2856.39475375497
   :households_supplied_per_unit: 0.0
@@ -1767,8 +1686,6 @@ energy_power_ultra_supercritical_network_gas-(network_gas) -- s --> (network_gas
   :availability: 0.85
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.96969696969697
   :co2_free: 0.85
-  :electrical_efficiency_when_using_coal: 0.305
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 5971.71063829788
   :households_supplied_per_unit: 0.0
@@ -1786,11 +1703,12 @@ energy_power_ultra_supercritical_network_gas-(network_gas) -- s --> (network_gas
   :variability: 0.0
   :electricity_output_capacity: 660.0
   :heat_output_capacity: 0.0
+  :carrier_efficiency: {:electricity: {:coal: 0.305, :torrified_biomass_pellets: 0.305, :lignite: 0.305, :wood_pellets: 0.0}}
   :peak_load_units: 0.0
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(lignite): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {}
-(electricity)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {conversion: 0.305}
+(electricity)-energy_power_ultra_supercritical_oxyfuel_ccs_lignite: {}
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(lignite) -- s --> (lignite)-energy_distribution_lignite: {share: 1.0}
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 
@@ -1798,8 +1716,6 @@ energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets)
   :availability: 0.95
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.05
   :full_load_hours: 2400.0
   :households_supplied_per_unit: 0.0
@@ -1827,8 +1743,6 @@ energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air: {share
   :availability: 0.95
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.05
   :full_load_hours: 2145.0
   :households_supplied_per_unit: 0.0
@@ -1856,8 +1770,6 @@ energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air: {share:
   :availability: 0.92
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.05
   :full_load_hours: 3300.0
   :households_supplied_per_unit: 0.0
