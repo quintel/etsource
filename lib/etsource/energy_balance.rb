@@ -3,6 +3,9 @@ module ETSource
   # This class contains the EnergyBalance of a certain Area.
   # The EnergyBalance contains per energy carrier how much is produced
   # tranformed, used (finaly demand) etc.
+  #
+  # Currently, it is presumed that the EnergyBalance values are provided
+  # in ktoe, the standard of the IEA.
   class EnergyBalance
 
     DIRECTORY = 'energy_balances'
@@ -10,10 +13,11 @@ module ETSource
     attr_accessor :area_code, :unit
 
     def initialize(area_code = :nl, unit = :pj)
-      @area_code = area_code.to_s
+      @area_code = area_code
       @unit = unit
     end
 
+    # Returns the energy balance item in the correct unit
     def get(use, carrier)
       convert(get_ktoe(use,carrier), unit)
     end
@@ -22,7 +26,7 @@ module ETSource
     # @return [Float]
     def get_ktoe(use, carrier)
       get_row(use)[carrier.downcase.strip.gsub(/\ /,"_").to_sym] ||
-        raise("#{carrier} not found in EnergyBalance for #{@area_code}")
+        raise("#{carrier} not found in EnergyBalance for #{area_code}")
     end
 
     # basicly the same as get, but then in one big string, separates by comma
@@ -36,16 +40,21 @@ module ETSource
     private
     #######
 
+    # Get a row from the CSV file
+    # Returns a CSV::Row object
     def get_row(use)
       row = table.find do |row|
         row[0].downcase.delete("*").gsub(/\s/,"_").strip == use.downcase.strip.gsub(/\s/,"_")
       end || raise("#{use} not found in EnergyBalance for #{area_code}")
     end
 
+    # Load the whole table
+    # Returns a CSV object
     def table
       CSV.table("#{ETSource.root}/#{self.class::DIRECTORY}/#{area_code}.csv")
     end
 
+    # Converts a value from the ktoe to 'unit'
     def convert(value, unit)
       case unit
       when :pj
@@ -53,7 +62,7 @@ module ETSource
       when :twh
         value * 0.01163
       else
-        raise "unit #{unit} unknown!"
+        raise "Cannot converr. Unit #{unit} unknown!"
       end
     end
 
