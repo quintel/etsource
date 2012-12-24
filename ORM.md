@@ -36,12 +36,11 @@ gquery.errors.message
 => {:unit=>["can't be blank"]}
 ```
 
-Validation will be run at three levels:
+Validation can run at three levels:
 
-1. We can have the Continuous Integration server checking whether all objects
-   are valid, thus to prevent malicious data.
-2. You will not be able to save the File through the ORM when the object is not
-   valid.
+1. We can have a **Continuous Integration server** checking whether all objects
+   are valid.
+2. You will not be able to save an object through the ORM when it is invalid.
 3. ETengine import of ETSource date will only proceed when all objects are
    valid.
 
