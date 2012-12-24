@@ -18,7 +18,8 @@ class ActiveDocument
 
   # Changing the key changes a part of the file_path
   def key=(new_key)
-    # DEBT: assuming file_path in other places never contains the key
+    raise DuplicateKeyError.new(new_key) if self.class.find(new_key)
+    raise InvalidKeyError.new(new_key) if new_key == ""
     self.file_path = self.file_path.gsub(key,new_key)
   end
 

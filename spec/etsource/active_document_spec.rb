@@ -13,7 +13,9 @@ module ETSource
 
 end
 
-describe ETSource::SomeDocument do
+module ETSource
+
+describe SomeDocument do
 
   before(:each) do
     copy_fixtures_to_tmp
@@ -32,6 +34,20 @@ describe ETSource::SomeDocument do
       some_document.description.should include "MECE" #testing some words
       some_document.description.should include "graph." #testing some words
       some_document.unit.should == 'kg'
+    end
+
+    it "loads a document from a subfolder" do
+      another_document = ETSource::SomeDocument.find('bar')
+      expect(another_document).to_not be_nil
+    end
+
+  end
+
+  describe "key" do
+
+    it "it impossible to set a empty or nil key" do
+      expect(-> { some_document.key = nil }).to raise_error
+      expect(-> { some_document.key = "" }).to raise_error
     end
 
   end
@@ -80,19 +96,29 @@ describe ETSource::SomeDocument do
 
       it "should delete the old file" do
         old_path = some_document.file_path
-        some_document.key = "bar"
+        some_document.key = "foo2"
         some_document.save!
         expect { File.read(old_path) }.to raise_error
       end
 
       it "should create a new file" do
-        some_document.key = "bar"
+        some_document.key = "foo2"
         some_document.save!
         expect { File.read(some_document.file_path) }.to_not raise_error
+      end
+
+      context 'when another object with that key already exists' do
+
+        it 'raises error' do
+          expect(-> { some_document.key = 'bar'}).to raise_error(DuplicateKeyError)
+        end
+
       end
 
     end
 
   end
 
-end
+end #describe SomeDocument
+
+end #module
