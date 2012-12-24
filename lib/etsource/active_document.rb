@@ -4,14 +4,21 @@ class ActiveDocument
 
   attr_accessor :file_path
 
-  def initialize(attr_hash)
-    @last_saved_file_path = attr_hash[:file_path]
-    attr_hash.each do |key,value|
+  def initialize(file_path, opts = nil)
+    self.file_path = @last_saved_file_path = file_path
+
+    opts.each do |key, value|
       self.send("#{key}=", value)
-    end
+    end unless opts.nil?
   end
 
-  # e.g. general/co2/total_co2_emissions.gql returns total_co2_emissions
+  # Returns the key part of the path. Folders and extensions of course are
+  # not part of the key.
+  #
+  # Example:
+  #
+  #   general/co2/total_co2_emissions.gql returns total_co2_emissions
+  #
   def key
     File.basename(file_path, ".#{self.class::FILE_SUFFIX}")
   end
@@ -30,7 +37,7 @@ class ActiveDocument
   # Return the object with the key if it exists
   # Returns nil if the object is not found
   def self.find(key)
-    results = self.all.select{|i|i.key == key}
+    results = self.all.select { |i| i.key == key }
     raise "Double keys found: #{results.inspect}!" if results.size > 1
     results.first
   end
@@ -109,7 +116,7 @@ class ActiveDocument
 
   def self.load_from_file(path)
     parsed_content = ETSource::Parser.new(File.read(path)).to_hash
-    new(parsed_content.merge({file_path:path}))
+    new(path, parsed_content)
   end
 
 
