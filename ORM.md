@@ -6,9 +6,9 @@ The object relation mapper for ETSource is designed to:
 2. Run validations
 3. Easier import of ETSource
 
-## 1 Common way to (mass) manipulate update
+## Easy scripts to (mass) manipulate objects
 
-e.g.
+E.g. when you would like to update all the percentage units for gqueries:
 
 ```Ruby
 Gquery.all.each do |gquery|
@@ -19,7 +19,7 @@ end
 
 And hurray! You have changed all those gqueries.
 
-## 2 Run validations
+## Run validations
 
 When you are updating/manipulating an object, you can (or must) run validations.
 
@@ -39,7 +39,13 @@ gquery.errors.message
 Validation will be run at three levels:
 
 1. We can have the Continuous Integration server checking whether all objects
-are valid, thus to prevent malicious data.
+   are valid, thus to prevent malicious data.
 2. You will not be able to save the File through the ORM when the object is not
-valid.
-3. ETengine import will not proceed when an object is invalid.
+   valid.
+3. ETengine import of ETSource date will only proceed when all objects are
+   valid.
+
+## Easier import for data from ETSource
+
+With the ORM it will be easier to import all the objects needed for instance
+for ETEngine.
