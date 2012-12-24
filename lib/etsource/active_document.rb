@@ -71,10 +71,10 @@ class ActiveDocument
   # to yaml, or the 'document' style.
   def file_contents
     parser = ETSource::Parser.new(to_hash)
-    if self.class::FILE_SUFFIX == 'gql'
-      parser.to_text
-    else
+    if self.class::FILE_SUFFIX == 'yml'
       parser.to_yaml
+    else
+      parser.to_text
     end
   end
 
@@ -82,7 +82,7 @@ class ActiveDocument
   def to_hash
     instance_variables.inject({}) do |hash, var|
       key = var[1..-1].to_sym #take out the leading @
-      unless not_exported_variables.include? key
+      unless not_exported_variables.include?(key)
         hash[key] = instance_variable_get(var)
       end
       hash
