@@ -20,10 +20,39 @@ describe SomeDocument do
   before(:each) do
     copy_fixtures_to_tmp
     stub_const("ETSource::SomeDocument::DIRECTORY",
-               "tmp/fixtures/#{ETSource::SomeDocument::DIRECTORY}")
+               "tmp/fixtures/#{SomeDocument::DIRECTORY}")
   end
 
-  let(:some_document){ some_document = ETSource::SomeDocument.find('foo') }
+  let(:some_document){ some_document = SomeDocument.find('foo') }
+
+  describe 'new' do
+    context 'given dumb key' do
+      xit 'creates a new document' do
+        some_document = SomeDocument.new('key')
+        expect(some_document.save!).to be_true
+      end
+      xit 'raises and error when the key already exists' do
+        expect(-> { SomeDocument.new('new') } ).to \
+          raise_error DuplicateKeyError
+      end
+    end
+    context 'given file_path' do
+      xit 'creates a new document' do
+        some_document = SomeDocument.new('my_map1/new')
+        expect(some_document.save!).to be_true
+      end
+      xit 'raises and error when the key already exists' do
+        SomeDocument.new({file_path: 'my_map1/new'}).save!
+        expect(-> { SomeDocument.new('my_map1/new') } ).to \
+          raise_error DuplicateKeyError
+      end
+    end
+    context 'given full file path' do
+      xit 'creates' do
+        some_document = SomeDocument.new('/tmp/foo')
+      end
+    end
+  end
 
   describe "load" do
 
