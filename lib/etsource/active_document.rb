@@ -26,6 +26,8 @@ class ActiveDocument
     self.load_directory
   end
 
+  # Return the object with the key if it exists
+  # Returns nil if the object is not found
   def self.find(key)
     results = self.all.select{|i|i.key == key}
     raise "Double keys found: #{results.inspect}!" if results.size > 1
@@ -98,15 +100,15 @@ class ActiveDocument
   # optimize this by just loading the keys, until we need more.
   def self.load_directory
     items = []
-    Dir.glob("#{ETSource.root}/#{self::DIRECTORY}/**/*.{yml,gql}") do |file_path|
-      items << load_from_file(file_path)
+    Dir.glob("#{ETSource.root}/#{self::DIRECTORY}/**/*.#{self::FILE_SUFFIX}") do |path|
+      items << load_from_file(path)
     end
     items
   end
 
-  def self.load_from_file(file_path)
-    parsed_content = ETSource::Parser.new(File.read(file_path)).to_hash
-    new(parsed_content.merge({file_path:file_path}))
+  def self.load_from_file(path)
+    parsed_content = ETSource::Parser.new(File.read(path)).to_hash
+    new(parsed_content.merge({file_path:path}))
   end
 
 
