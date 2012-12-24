@@ -1,9 +1,9 @@
-desc "Open an Irb session preloaded with this library"
-task :console do
-  sh "irb -rubygems -I lib -r #{File.expand_path("../..",__FILE__)}/etsource.rb"
+namespace :console do
+  task :run do
+    command = system("which pry > /dev/null 2>&1") ? 'pry' : 'irb'
+    exec "#{ command } -I./lib -r./lib/etsource.rb"
+  end
 end
 
-desc "Open an Pry session preloaded with this library"
-task :pry do
-  sh "pry -rubygems -Ilib -r#{File.expand_path("../..",__FILE__)}/etsource.rb"
-end
+desc 'Open a pry or irb session preloaded with Turbine'
+task console: ['console:run']
