@@ -23,11 +23,18 @@ module ETSource
     Encoding.default_external = Encoding::UTF_8
     Encoding.default_internal = Encoding::UTF_8
 
-    VARIABLE_PREFIX = "-"
+    ATTR_PREFIX  = "-"
+    ATTR_LINE    = /#{ATTR_PREFIX}\s(.+)\s=\s(.+)/
+    COMMENT_LINE = /^#(.+)/
 
     attr_reader :hash, :text
 
-    def initialize(input)
+    # Creates a new Parser,
+    #
+    # params: input as [String, Hash or YAML]
+    #         comments: which attribute do you like to be on top of the doc?
+    #         body:     which attribute gets multi-line at the end of the doc?
+    def initialize(input, comments = :description, body = :query)
       raise ArgumentError unless input && input.length > 0
       if input[0..2] == "---" #file containing yaml
         @hash = YAML.load(input).to_hash
@@ -50,9 +57,9 @@ module ETSource
         query_lines    = []
         text.lines.each do |line|
           case line
-          when /^#/
+          when COMMENT_LINE
             comment_lines << line
-          when /^#{VARIABLE_PREFIX}.*=/
+          when ATTR_LINE
             variable_lines << line
           else
             query_lines << line
@@ -60,8 +67,12 @@ module ETSource
         end
 
         variables = variable_lines.inject({}) do |hash, line|
-          key,value = line.match(/-\s*([\w_]+)\s*=\s*(.*)\n/).captures
-          hash.merge key.strip.to_sym => value.strip
+          line.match(ATTR_LINE)
+          if $2.include?(",")
+            hash.merge $1.strip.to_sym => $2.split(",").map(&:strip)
+          else
+            hash.merge $1.strip.to_sym => $2.strip
+          end
         end
 
         # remove trailing #-symbols
@@ -96,10 +107,10 @@ module ETSource
 
         hash.each do |key, value|
           unless key == :query or key == :description
-            if value == "" #since we dont like extra spaces :)
-              out += "#{VARIABLE_PREFIX} #{key} =\n"
+            if value.is_a?(Array)
+              out += "#{ATTR_PREFIX} #{key} = #{value.join(", ")}\n"
             else
-              out += "#{VARIABLE_PREFIX} #{key} = #{value}\n"
+              out += "#{ATTR_PREFIX} #{key} = #{value}\n"
             end
           end
         end

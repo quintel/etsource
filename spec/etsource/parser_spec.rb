@@ -10,7 +10,8 @@ describe ETSource::Parser do
 - unit = %
 - deprecated_key = foo
 - foo = bar
-- baz =
+- baz = 1
+- array = a, b, c
 
 SUM(
   1,
@@ -26,9 +27,12 @@ TEXT
       unit:            "%",
       deprecated_key:  "foo",
       foo:             "bar",
-      baz:             ""
+      baz:             1,
+      array:           ["a","b","c"]
     }
   end
+
+  let(:p) { ETSource::Parser.new(text) }
 
   describe "initialize" do
     it "should raise an error when empty string is provided" do
@@ -40,7 +44,6 @@ TEXT
   describe "to_hash" do
 
     it "parses comments" do
-      p = ETSource::Parser.new(text)
       expect(p.to_hash[:description]).to eql "line1\nline2"
     end
 
@@ -55,11 +58,14 @@ TEXT
     end
 
     it "parses attributes" do
-      p = ETSource::Parser.new(text)
       expect(p.to_hash[:unit]).to eql "%"
       expect(p.to_hash[:deprecated_key]).to eql "foo"
       expect(p.to_hash[:foo]).to eql "bar"
-      expect(p.to_hash[:baz]).to eql ""
+      expect(p.to_hash[:baz]).to eql "1"
+    end
+
+    it "parses arrays" do
+      expect(p.to_hash[:array]).to eql ["a","b","c"]
     end
 
     it "should parse query" do
