@@ -39,37 +39,37 @@ TEXT
 
   describe "to_hash" do
 
-    it "should parse comments" do
+    it "parses comments" do
       p = ETSource::Parser.new(text)
-      p.to_hash[:description].should == "line1\nline2"
+      expect(p.to_hash[:description]).to eql "line1\nline2"
     end
 
-    it "should respect trailing spaces, even though we dislike them" do
+    it "respects trailing spaces, even though we dislike them" do
       p = ETSource::Parser.new("# line1 \n# line2\n")
-      p.to_hash[:description].should == "line1 \nline2"
+      expect(p.to_hash[:description]).to eql "line1 \nline2"
     end
 
-    it "should repect trailing empty lines, even though we dislike them" do
+    it "respects trailing empty lines, even though we dislike them" do
       p = ETSource::Parser.new("SUM(\n  1,\n  2\n)\n")
-      p.to_hash[:query].should == "SUM(\n  1,\n  2\n)\n"
+      expect(p.to_hash[:query]).to eql "SUM(\n  1,\n  2\n)\n"
     end
 
-    it "should parse variables" do
+    it "parses attributes" do
       p = ETSource::Parser.new(text)
-      p.to_hash[:unit].should == "%"
-      p.to_hash[:deprecated_key].should == "foo"
-      p.to_hash[:foo].should == "bar"
-      p.to_hash[:baz].should == ""
+      expect(p.to_hash[:unit]).to eql "%"
+      expect(p.to_hash[:deprecated_key]).to eql "foo"
+      expect(p.to_hash[:foo]).to eql "bar"
+      expect(p.to_hash[:baz]).to eql ""
     end
 
     it "should parse query" do
       p = ETSource::Parser.new(text)
-      p.to_hash[:query].should == "SUM(\n  1,\n  2\n)\n"
+      expect(p.to_hash[:query]).to eql "SUM(\n  1,\n  2\n)\n"
     end
 
     it "should give itself back" do
       p = ETSource::Parser.new(text)
-      p.to_text.should == text
+      expect(p.to_text).to eql text
     end
   end
 
@@ -77,12 +77,12 @@ TEXT
 
     it "should parse completely" do
       p = ETSource::Parser.new(hash)
-      p.to_text.should == text
+      expect(p.to_text).to eql text
     end
 
     it "should give itself back" do
       p = ETSource::Parser.new(hash)
-      p.to_hash.should == hash
+      expect(p.to_hash).to eql hash
     end
 
   end
@@ -90,19 +90,19 @@ TEXT
   describe "to_yaml" do
     it "should parse from hash" do
       p = ETSource::Parser.new({foo: :bar, 1 => "two"})
-      p.to_yaml.should == "---\nfoo: :bar\n1: two\n"
+      expect(p.to_yaml).to eql "---\nfoo: :bar\n1: two\n"
     end
 
     it "should parse from existing yaml file" do
       copy_fixtures_to_tmp
       path = "#{ETSource.root}/tmp/fixtures/inputs/agriculture_electricity_demand.yml"
       p = ETSource::Parser.new(YAML.load_file(path))
-      p.to_yaml.should == File.read(path)
+      expect(p.to_yaml).to eql File.read(path)
     end
 
     it "should parse Symbol keys as strings" do
       p = ETSource::Parser.new({foo: :bar})
-      p.to_yaml.should == "---\nfoo: :bar\n"
+      expect(p.to_yaml).to eql "---\nfoo: :bar\n"
     end
   end
 
