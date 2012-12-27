@@ -27,30 +27,37 @@ describe SomeDocument do
 
   describe 'new' do
     context 'given dumb key' do
-      xit 'creates a new document' do
-        some_document = SomeDocument.new('key')
-        expect(some_document.save!).to be_true
+      it 'creates a new document' do
+        expect(SomeDocument.new('key')).to be_a(SomeDocument)
       end
       xit 'raises and error when the key already exists' do
-        expect(-> { SomeDocument.new('new') } ).to \
+        expect(-> { SomeDocument.new('foo') } ).to \
           raise_error DuplicateKeyError
       end
     end
     context 'given file_path' do
-      xit 'creates a new document' do
+      it 'creates a new document' do
         some_document = SomeDocument.new('my_map1/new')
+        #TODO: make Parser smarter, so we can do without these attributes
+        some_document.query = "this"
+        some_document.description = "that"
         expect(some_document.save!).to be_true
       end
       xit 'raises and error when the key already exists' do
-        SomeDocument.new({file_path: 'my_map1/new'}).save!
-        expect(-> { SomeDocument.new('my_map1/new') } ).to \
+        SomeDocument.new('my_map1/new').save!
+        expect(-> { SomeDocument.new('my_map2/new') } ).to \
           raise_error DuplicateKeyError
       end
     end
-    context 'given full file path' do
-      xit 'creates' do
-        some_document = SomeDocument.new('/tmp/foo')
-      end
+  end
+
+  describe "absolute_file_path" do
+    it "returns the absolute_path" do
+      ETSource.stub!(:root) { "/tmp" }
+      stub_const("ETSource::SomeDocument::DIRECTORY", "some_documents")
+      some_document = SomeDocument.new('foo')
+
+      expect(some_document.absolute_file_path).to eql '/tmp/some_documents/foo.suffix'
     end
   end
 
@@ -73,6 +80,10 @@ describe SomeDocument do
   end
 
   describe "key" do
+
+    it "returns just the key part" do
+      expect(some_document.key).to eql 'foo'
+    end
 
     it "it impossible to set a empty or nil key" do
       expect(-> { some_document.key = nil }).to raise_error
@@ -146,6 +157,34 @@ describe SomeDocument do
 
     end
 
+  end
+
+  describe "(Private) normalize_path" do
+    # assume ETSource.root is in /tmp
+    # and the Directory is some_documents
+    before do
+      ETSource.stub!(:root) { "/tmp" }
+      stub_const("ETSource::SomeDocument::DIRECTORY", "some_documents")
+      @some_document = SomeDocument.new('foo')
+    end
+
+    it "accepts just a key" do
+      expect(@some_document.send(:normalize_path, 'foo')).to \
+        eql 'some_documents/foo.suffix'
+    end
+    it "accepts a path" do
+      expect(@some_document.send(:normalize_path, "some_documents/foo")).to \
+        eql "some_documents/foo.suffix"
+    end
+    it "accepts a path with suffix" do
+      expect(@some_document.send(:normalize_path, "some_documents/foo.suffix")).to \
+        eql "some_documents/foo.suffix"
+    end
+    it "raises an error if given a full path" do
+      expect(-> { @some_document.send(:normalize_path,
+                                      "/some_documents/foo.suffix") }).to \
+        raise_error InvalidKeyError
+    end
   end
 
 end #describe SomeDocument

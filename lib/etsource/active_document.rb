@@ -4,8 +4,8 @@ class ActiveDocument
 
   attr_accessor :file_path
 
-  def initialize(file_path, opts = nil)
-    self.file_path = @last_saved_file_path = file_path
+  def initialize(path, opts = nil)
+    @file_path = @last_saved_file_path = normalize_path(path)
 
     opts.each do |key, value|
       self.send("#{key}=", value)
@@ -23,6 +23,11 @@ class ActiveDocument
     File.basename(file_path, ".#{self.class::FILE_SUFFIX}")
   end
 
+  # Returns the absolute path to the document.
+  def absolute_file_path
+    File.join(ETSource.root, file_path)
+  end
+
   # Changing the key changes a part of the file_path
   def key=(new_key)
     raise DuplicateKeyError.new(new_key) if self.class.find(new_key)
@@ -38,12 +43,15 @@ class ActiveDocument
   # Returns nil if the object is not found
   def self.find(key)
     results = self.all.select { |i| i.key == key }
-    raise "Double keys found: #{results.inspect}!" if results.size > 1
+    raise "Duplicate key found: #{results.inspect}!" if results.size > 1
     results.first
   end
 
+  # Saves the document (to file)
+  # Returns true when succeeded, otherwise raises an Error
   def save!
     save_to_file
+    true
   end
 
   def destroy!
@@ -58,9 +66,24 @@ class ActiveDocument
   private
   #######
 
+  # Takes a path and normalized it: 
+  # * It adds the suffix, if it does not have that all ready
+  # * It makes the path absolute.
+  def normalize_path(path)
+    raise InvalidKeyError.new(path) if path =~ /^\//
+    unless path =~ /\.#{self.class::FILE_SUFFIX}$/
+      path = "#{path}.#{self.class::FILE_SUFFIX}"
+    end
+    unless path =~ /^#{self.class::DIRECTORY}/
+      path = File.join(self.class::DIRECTORY, path)
+    end
+    path
+  end
+
   # saves it to file
   def save_to_file
-    f = File.open(file_path, 'w')
+    FileUtils.mkdir_p(File.dirname(absolute_file_path))
+    f = File.open(absolute_file_path, 'w')
     f.write(file_contents)
     f.close
 
@@ -116,7 +139,9 @@ class ActiveDocument
 
   def self.load_from_file(path)
     parsed_content = ETSource::Parser.new(File.read(path)).to_hash
-    new(path, parsed_content)
+    relative_path = path.gsub("#{ETSource.root}/","")
+
+    new(relative_path, parsed_content)
   end
 
 
