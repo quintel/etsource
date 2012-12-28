@@ -26,6 +26,7 @@ module ETSource
     ATTR_PREFIX  = "-"
     ATTR_LINE    = /#{ATTR_PREFIX}\s(.+)\s=\s(.+)/
     COMMENT_LINE = /^#(.+)/
+    GQUERY_LINE  = /[^\s]+/
 
     attr_reader :hash, :text
 
@@ -43,6 +44,7 @@ module ETSource
       elsif input.is_a?(String) && input.length > 0
         @text = input
       end
+      @comments = ""; @variables = {}; @query = ""
     end
 
     # @return [Hash{Symbol=>String}]
@@ -52,36 +54,50 @@ module ETSource
     #
     def to_hash
       @hash ||= begin
-        comment_lines  = []
-        variable_lines = []
-        query_lines    = []
-        text.lines.each do |line|
-          case line
-          when COMMENT_LINE
-            comment_lines << line
-          when ATTR_LINE
-            variable_lines << line
-          else
-            query_lines << line
-          end
-        end
+        process_text
 
-        variables = variable_lines.inject({}) do |hash, line|
-          line.match(ATTR_LINE)
-          if $2.include?(",")
-            hash.merge $1.strip.to_sym => $2.split(",").map(&:strip)
-          else
-            hash.merge $1.strip.to_sym => $2.strip
-          end
-        end
+        @hash = {}
+        @hash.merge!({description: @comments.strip}) unless @comments.empty?
+        @hash.merge!({query: @query.lstrip}) unless @query.empty?
 
-        # remove trailing #-symbols
-        description = comment_lines.map{ |l| l[1..-1].lstrip.gsub(/\n/, "") }.join("\n")
-        query = query_lines.join.lstrip
-
-        @hash = { description: description, query: query }.merge(variables)
+        @hash.merge!(@variables)
       end
 
+    end
+
+    # Central method that goes through all the text
+    def process_text
+      text.lines.each do |line|
+      case line
+        when COMMENT_LINE
+          add_comment(line)
+        when ATTR_LINE
+          add_variable(line)
+        when GQUERY_LINE
+          add_query(line)
+        else
+          #leave it
+        end
+      end
+    end
+
+    def add_comment(comment_text)
+      @comments += comment_text[2..-1]
+    end
+
+    def add_variable(variable_text)
+      match_data = variable_text.match(ATTR_LINE)
+      key = match_data[1]; value = match_data[2]
+
+      if value.include?(",")
+        @variables[key.strip.to_sym] = value.split(",").map(&:strip)
+      else
+        @variables[key.strip.to_sym] = value.strip
+      end
+    end
+
+    def add_query(query_text)
+      @query += query_text
     end
 
     def to_yaml

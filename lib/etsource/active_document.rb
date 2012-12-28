@@ -2,7 +2,7 @@ module ETSource
 
 class ActiveDocument
 
-  attr_accessor :file_path
+  attr_accessor :file_path, :description
 
   def initialize(path, opts = nil)
     @file_path = @last_saved_file_path = normalize_path(path)
@@ -43,7 +43,7 @@ class ActiveDocument
   # Returns nil if the object is not found
   def self.find(key)
     results = self.all.select { |i| i.key == key }
-    raise "Duplicate key found: #{results.inspect}!" if results.size > 1
+    raise DuplicateKeyError.new(key) if results.size > 1
     results.first
   end
 

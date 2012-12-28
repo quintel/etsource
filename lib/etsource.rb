@@ -8,6 +8,7 @@ require_relative 'etsource/errors'
 
 require_relative 'etsource/input'
 require_relative 'etsource/gquery'
+require_relative 'etsource/converter'
 
 require_relative 'etsource/dataset'
 
