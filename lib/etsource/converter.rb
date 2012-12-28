@@ -2,6 +2,8 @@ module ETSource
 
 class Converter < ActiveDocument
 
+  DIRECTORY = 'converters'
+
   attr_accessor :sector,
                 :use,
                 :energy_balance_group,
@@ -25,8 +27,7 @@ class Converter < ActiveDocument
                 :electricity_output_capacity,
                 :heat_output_capacity
 
-  FILE_SUFFIX = 'ad'
-  DIRECTORY   = 'converters'
+  validates :co2_free, presence: true, numericality: true
 
 end
 
