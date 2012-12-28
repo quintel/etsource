@@ -91,6 +91,16 @@ TEXT
       expect(p.to_hash).to eql hash
     end
 
+    it "parses one attribute" do
+      p = ETSource::Parser.new({foo: 'bar'})
+      expect(p.to_text).to eql "- foo = bar\n"
+    end
+
+    it "parses two attributes" do
+      p = ETSource::Parser.new({foo: 'bar', fool: 'bars'})
+      expect(p.to_text).to eql "- foo = bar\n- fool = bars\n"
+    end
+
   end
 
   describe "to_yaml" do
