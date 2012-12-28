@@ -1,5 +1,6 @@
 require 'yaml'
 require 'csv'
+require 'active_model'
 
 require_relative 'etsource/active_document'
 require_relative 'etsource/parser'

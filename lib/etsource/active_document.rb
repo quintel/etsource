@@ -2,6 +2,10 @@ module ETSource
 
 class ActiveDocument
 
+  include ActiveModel::Validations
+
+  validates_presence_of :description
+
   attr_accessor :file_path, :description
 
   def initialize(path, opts = nil)
