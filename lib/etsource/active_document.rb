@@ -4,7 +4,7 @@ class ActiveDocument
 
   include ActiveModel::Validations
 
-  validates_presence_of :description
+  FILE_SUFFIX = 'ad'
 
   attr_accessor :file_path, :description
 
