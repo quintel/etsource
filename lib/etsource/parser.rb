@@ -92,12 +92,23 @@ module ETSource
       if value.include?(",")
         @variables[key.strip.to_sym] = value.split(",").map(&:strip)
       else
-        @variables[key.strip.to_sym] = value.strip
+        @variables[key.strip.to_sym] = cast(value.strip)
       end
     end
 
     def add_query(query_text)
       @query += query_text
+    end
+
+    def cast(text)
+      case text
+      when /\A[-+]?[0-9]*\.[0-9]+([eE][-+]?[0-9]+)?\z/
+        text.to_f
+      when /\A[-+]?\d+\z/
+        text.to_i
+      else
+        text
+      end
     end
 
     def to_yaml

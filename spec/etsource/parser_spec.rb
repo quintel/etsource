@@ -60,9 +60,19 @@ TEXT
       expect(p.to_hash[:foo]).to eql "bar"
     end
 
-    xit "respects numbers" do
+    it "respects integers" do
       p = Parser.new("- number = 1")
       expect(p.to_hash[:number]).to eql 1
+    end
+
+    it "respects floats" do
+      p = Parser.new("- number = 1.0")
+      expect(p.to_hash[:number]).to eql 1.0
+    end
+
+    it "respects floats as scientific notations" do
+      p = Parser.new("- number = 1.0e+0")
+      expect(p.to_hash[:number]).to eql 1.0
     end
 
     it "parses arrays" do
