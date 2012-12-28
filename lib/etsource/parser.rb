@@ -102,8 +102,12 @@ module ETSource
     def to_text
       @text ||= begin
 
-        out = "# #{hash[:description].gsub("\n", "\n# ")}\n"
-        out += "\n"
+        out = ""
+
+        if hash[:description]
+          out += "# #{hash[:description].gsub("\n", "\n# ")}\n"
+          out += "\n"
+        end
 
         hash.each do |key, value|
           unless key == :query or key == :description
@@ -115,8 +119,10 @@ module ETSource
           end
         end
 
-        out += "\n"
-        out += hash[:query]
+        if hash[:query]
+          out += "\n"
+          out += hash[:query]
+        end
 
         @text = out
       end
