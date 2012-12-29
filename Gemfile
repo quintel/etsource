@@ -1,12 +1,13 @@
 source "https://rubygems.org"
 ruby "1.9.3"
 
-gem 'rspec'
-gem 'guard'
-gem 'guard-rspec'
-gem 'rb-fsevent', '~> 0.9.1'
-
-gem 'simplecov'
+group :test do
+  gem 'rspec'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'simplecov'
+end
 
 gem 'activemodel'
 
