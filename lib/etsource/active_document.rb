@@ -107,7 +107,7 @@ class ActiveDocument
   # Depending on the format, file_content will be something similar
   # to yaml, or the 'document' style.
   def file_contents
-    parser = ETSource::Parser.new(to_hash)
+    parser = ETSource::HashToTextParser.new(to_hash)
     if self.class::FILE_SUFFIX == 'yml'
       parser.to_yaml
     else
@@ -142,7 +142,7 @@ class ActiveDocument
   end
 
   def self.load_from_file(path)
-    parsed_content = ETSource::Parser.new(File.read(path)).to_hash
+    parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
     relative_path = path.gsub("#{ETSource.root}/","")
 
     new(relative_path, parsed_content)
