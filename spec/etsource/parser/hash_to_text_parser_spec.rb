@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 module ETSource
 
   describe HashToTextParser do
@@ -29,12 +31,47 @@ module ETSource
 
       it "parses one attribute" do
         p = HashToTextParser.new({foo: 'bar'})
-        expect(p.to_text).to eql "- foo = bar\n"
+        expect(p.to_text).to eql "- foo = bar"
       end
 
       it "parses two attributes" do
         p = HashToTextParser.new({foo: 'bar', fool: 'bars'})
-        expect(p.to_text).to eql "- foo = bar\n- fool = bars\n"
+        expect(p.to_text).to eql "- foo = bar\n- fool = bars"
+      end
+
+      it "parses comments" do
+        p = HashToTextParser.new({description: "hi\nthere!"})
+        expect(p.to_text).to eql "# hi\n# there!"
+      end
+
+      it "parses query on one line" do
+        query = "SUM(1+2)"
+        p = HashToTextParser.new({query: query})
+        expect(p.to_text).to eql query
+      end
+
+      it "parses query on two lines" do
+        query = "SUM\n  (1,\n  2\n)"
+        p = HashToTextParser.new({query: query})
+        expect(p.to_text).to eql query
+      end
+
+      it "puts empty lines between comments and attributes" do
+        hash = { description: "hi!", foo: 'bar' }
+        p = HashToTextParser.new(hash)
+        expect(p.to_text).to eql "# hi!\n\n- foo = bar"
+      end
+
+      it "puts empty lines between attributes and query" do
+        hash = { foo: 'bar', query: "SUM(1,2)" }
+        p = HashToTextParser.new(hash)
+        expect(p.to_text).to eql "- foo = bar\n\nSUM(1,2)"
+      end
+
+      it "puts empty lines between comments and query" do
+        hash = { description: 'hi', query: "SUM(1,2)" }
+        p = HashToTextParser.new(hash)
+        expect(p.to_text).to eql "# hi\n\nSUM(1,2)"
       end
 
     end # describe to_text

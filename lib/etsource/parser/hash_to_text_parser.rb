@@ -25,33 +25,39 @@ module ETSource
 
     def initialize(input)
       raise ArgumentError unless input.is_a?(Hash)
-      @hash = input
+      @comments   = input.delete(:description)
+      @query      = input.delete(:query)
+      @attributes = input
     end
 
     def to_text
-      text = ""
+      [comment_block, attributes_block, query_block].compact.join("\n\n")
+    end
 
-      if hash[:description]
-        text += "# #{hash[:description].gsub("\n", "\n# ")}\n"
-        text += "\n"
-      end
+    #######
+    private
+    #######
 
-      hash.each do |key, value|
-        unless key == :query or key == :description
-          if value.is_a?(Array)
-            text += "#{ATTR_PREFIX} #{key} = #{value.join(", ")}\n"
-          else
-            text += "#{ATTR_PREFIX} #{key} = #{value}\n"
-          end
+    def comment_block
+      "# #{@comments.gsub("\n", "\n# ")}" if @comments
+    end
+
+    def attributes_block
+      return if @attributes.empty?
+
+      lines = []
+      @attributes.each do |key, value|
+        if value.is_a?(Array)
+          lines << "#{ATTR_PREFIX} #{key} = #{value.join(", ")}"
+        else
+          lines << "#{ATTR_PREFIX} #{key} = #{value}"
         end
       end
+      lines.join("\n")
+    end
 
-      if hash[:query]
-        text += "\n"
-        text += hash[:query]
-      end
-
-      text
+    def query_block
+      @query
     end
 
   end # class HashToTextParser

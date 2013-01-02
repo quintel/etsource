@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 module ETSource
 
   describe TextToHashParser do
