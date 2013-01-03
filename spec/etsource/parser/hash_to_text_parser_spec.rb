@@ -27,6 +27,11 @@ module ETSource
         expect(p.to_text).to eql "- foo = bar\n- fool = bars"
       end
 
+      it 'parses attributes as an array' do
+        p = HashToTextParser.new({array: ["a","b"]})
+        expect(p.to_text).to eql "- array = a, b"
+      end
+
       it "parses comments" do
         p = HashToTextParser.new({description: "hi\nthere!"})
         expect(p.to_text).to eql "# hi\n# there!"
