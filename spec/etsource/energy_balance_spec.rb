@@ -4,7 +4,7 @@ module ETSource
 
 describe EnergyBalance do
 
-  let(:energy_balance) { EnergyBalance.new(:nl) }
+  let(:eb) { EnergyBalance.new(:nl) }
 
   describe '#new' do
 
@@ -13,67 +13,70 @@ describe EnergyBalance do
     end
 
     it "should be by default take the Netherlands and unit = PJ" do
-      energy_balance = EnergyBalance.new
-      expect(energy_balance.area_code).to eql :nl
-      expect(energy_balance.unit).to eql :pj
+      eb = EnergyBalance.new
+      expect(eb.area_code).to eql :nl
+      expect(eb.unit).to eql :pj
     end
   end
 
   describe "#get" do
 
-    it "should return correct value for NL when asked for a specific attribute" do
-      energy_balance.stub(:get_ktoe).and_return 6
-      expect(energy_balance.get("Residential","coal_and_peat")).to eql 0.251208
+    it "returns correct value for NL when asked for a specific attribute" do
+      eb.stub(:get_ktoe).and_return 6
+      expect(eb.get("Residential","coal_and_peat")).to eql 0.251208
     end
 
-    it "should work with other units" do
-      energy_balance.unit = :twh
-      energy_balance.stub(:get_ktoe).and_return 6
-      expect(energy_balance.get("Residential","coal_and_peat")).to eql 0.06978
+    it "works with other units" do
+      eb.unit = :twh
+      eb.stub(:get_ktoe).and_return 6
+      expect(eb.get("Residential","coal_and_peat")).to eql 0.06978
     end
 
     it "raises an error when an unknown unit is requested" do 
-      energy_balance.unit = :i_do_not_exist
-      energy_balance.stub(:get_ktoe).and_return 6
-      expect(->{ energy_balance.get("Residential","coal_and_peat") }).to \
+      eb.unit = :i_do_not_exist
+      eb.stub(:get_ktoe).and_return 6
+      expect(->{ eb.get("Residential","coal_and_peat") }).to \
         raise_error UnknownUnitError
     end
 
-    it "should be flexible on case used" do
-      expect(energy_balance.get("residential","coal_and_peat")).to_not be_nil
-      expect(energy_balance.get("Residential","Coal_and_peat")).to_not be_nil
+    it "is flexible on case used" do
+      expect(eb.get("residential","coal_and_peat")).to_not be_nil
+      expect(eb.get("Residential","Coal_and_peat")).to_not be_nil
     end
 
-    it "should find long names with spaces and astrixes" do
-      expect(energy_balance.get("International Marine Bunkers","Coal_and_peat")).to_not be_nil
+    it "finds long names with spaces and astrixes" do
+      expect(eb.get("International Marine Bunkers","Coal_and_peat")).to_not \
+        be_nil
     end
 
-    it "should find long names when it uses underscores" do
-      expect(energy_balance.get("international_marine_bunkers","coal_and_peat")).to_not be_nil
+    it "finds long names when it uses underscores" do
+      expect(eb.get("international_marine_bunkers","coal_and_peat")).to_not \
+        be_nil
     end
 
-    it "should find carriers with spaces" do
-      expect(energy_balance.get("international_marine_bunkers","coal and peat")).to_not be_nil
+    it "finds carriers with spaces" do
+      expect(eb.get("international_marine_bunkers","coal and peat")).to_not \
+        be_nil
     end
 
-    it "should not complain about trailing spaces" do
-      expect(energy_balance.get("residential ", " coal_and_peat")).to_not be_nil
+    it "does not complain about trailing spaces" do
+      expect(eb.get("residential ", " coal_and_peat")).to_not be_nil
     end
 
-    it "should raise an error when use is not known" do
-      expect { energy_balance.get("foo", "coal_and_peat") }.to raise_error
+    it "raises an error when use is not known" do
+      expect { eb.get("foo", "coal_and_peat") }.to raise_error
     end
 
-    it "should raise an error when carrier is not known" do
-      expect { energy_balance.get("residential", "kryptonite") }.to raise_error
+    it "raises an error when carrier is not known" do
+      expect { eb.get("residential", "kryptonite") }.to raise_error
     end
 
   end
 
   describe "#query" do
 
-    it "should return a value when asked for a specific number" do
-      expect(energy_balance.query("residential,coal_and_peat")).to_not be_nil
+    it "returns a value when asked for a specific number" do
+      expect(eb.query("residential,coal_and_peat")).to_not be_nil
     end
 
   end
