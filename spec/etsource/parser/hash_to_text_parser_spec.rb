@@ -4,18 +4,6 @@ module ETSource
 
   describe HashToTextParser do
 
-    let(:hash) do
-      {
-        description:     "line1\nline2",
-        query:           "SUM(\n  1,\n  2\n)\n",
-        unit:            "%",
-        deprecated_key:  "foo",
-        foo:             "bar",
-        baz:             1,
-        array:           ["a","b","c"]
-      }
-    end
-
     describe 'new' do
       it "should create a new parser" do
         expect(-> { HashToTextParser.new({}) }).to_not raise_error
