@@ -1,8 +1,8 @@
 module ETSource
 
-class Converter < ActiveDocument
+class Node < ActiveDocument
 
-  DIRECTORY = 'converters'
+  DIRECTORY = 'nodes'
 
   attr_accessor :sector,
                 :use,
