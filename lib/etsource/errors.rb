@@ -22,11 +22,6 @@ module ETSource
     end
   end
 
-  # Added a node to a graph, when one already exists with the same key.
-  MissingAttributeError = error_class do |attribute|
-    "Missing mandatory #{ attribute }"
-  end
-
   DuplicateKeyError = error_class do |key|
     "Duplicate key found: #{ key }"
   end
