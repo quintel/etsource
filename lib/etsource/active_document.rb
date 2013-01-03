@@ -140,10 +140,10 @@ class ActiveDocument
     parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
     relative_path = path.gsub("#{ETSource.root}/","")
 
-    subclass = relative_path.match(/\/(\w+)\.\w+\.#{FILE_SUFFIX}/)
+    subclass = /(\w+)(?=\.\w+\.#{FILE_SUFFIX})/.match(relative_path)
 
     if subclass
-      klass = "ETSource::#{subclass[1].classify}".constantize
+      klass = "ETSource::#{subclass.to_s.classify}".constantize
       klass.new(relative_path, parsed_content)
     else
       new(relative_path, parsed_content)
