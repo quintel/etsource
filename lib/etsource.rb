@@ -12,10 +12,10 @@ require_relative 'etsource/active_document'
 
 require_relative 'etsource/input'
 require_relative 'etsource/gquery'
-require_relative 'etsource/converter'
-require_relative 'etsource/converter/tech_converter.rb'
-require_relative 'etsource/converter/demand_converter.rb'
-require_relative 'etsource/converter/stat_converter.rb'
+require_relative 'etsource/node'
+require_relative 'etsource/node/converter'
+require_relative 'etsource/node/demand_node'
+require_relative 'etsource/node/stat_node'
 
 require_relative 'etsource/dataset'
 
