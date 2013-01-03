@@ -29,4 +29,8 @@ module ETSource
   InvalidKeyError = error_class do |key|
     "Invalid key entered: #{ key }"
   end
+
+  UnknownUnitError = error_class do |unit|
+    "Invalid unit requested: #{ unit }"
+  end
 end
