@@ -25,7 +25,9 @@ class Node < ActiveDocument
                 :part_load_operating_point,
                 :variability,
                 :electricity_output_capacity,
-                :heat_output_capacity
+                :heat_output_capacity,
+                :preset_demand,
+                :expected_demand
 
   validates :co2_free, presence: true, numericality: true
 

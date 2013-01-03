@@ -27,11 +27,11 @@ TEXT
       it "should create a new parser" do
         expect(-> { TextToHashParser.new("SUM(1,2)") }).to_not raise_error
       end
-      it "should raise an error when empty string is provided" do
-        expect { TextToHashParser.new("") }.to raise_error(ArgumentError)
+      it "should not raise an error when empty string is provided" do
+        expect { TextToHashParser.new("") }.to_not raise_error
       end
       it "should raise an error when nil is provided" do
-        expect { TextToHashParser.new(nil) }.to raise_error(ArgumentError)
+        expect { TextToHashParser.new(nil) }.to_not raise_error
       end
     end
 

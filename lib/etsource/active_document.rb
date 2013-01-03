@@ -95,7 +95,7 @@ class ActiveDocument
   end
 
   def delete_old_file
-    File.delete(@last_saved_file_path) #delete old file
+    File.delete(@last_saved_file_path)
     @last_saved_file_path = file_path
   end
 
@@ -140,7 +140,14 @@ class ActiveDocument
     parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
     relative_path = path.gsub("#{ETSource.root}/","")
 
-    new(relative_path, parsed_content)
+    subclass = relative_path.match(/\/(\w+)\.\w+\.#{FILE_SUFFIX}/)
+
+    if subclass
+      klass = "ETSource::#{subclass[1].classify}".constantize
+      klass.new(relative_path, parsed_content)
+    else
+      new(relative_path, parsed_content)
+    end
   end
 
 

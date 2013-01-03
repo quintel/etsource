@@ -22,7 +22,6 @@ module ETSource
     GQUERY_LINE  = /[^\s]+/
 
     def initialize(input)
-      raise ArgumentError unless input && input.length > 0
       @text = input
       @comments = ""; @variables = {}; @query = ""
     end
@@ -35,6 +34,7 @@ module ETSource
     def to_hash
       split_text
 
+      # TODO: ugly, fix me please
       hash = {}
       hash.merge!({description: @comments.strip}) unless @comments.empty?
       hash.merge!({query: @query.lstrip}) unless @query.empty?

@@ -13,8 +13,14 @@ describe Node do
   end
 
   describe '#all' do
-    it 'returns at least one node' do
-      expect(Node.all).to have_at_least(1).nodes
+    it 'returns all the subclasses that have been defined' do
+      expect(Node.all).to have(3).nodes
+    end
+  end
+
+  describe '#find' do
+    it 'returns a node in its right class' do
+      expect(Node.find('converter.foo')).to be_a(Converter)
     end
   end
 
