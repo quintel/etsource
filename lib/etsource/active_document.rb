@@ -107,12 +107,7 @@ class ActiveDocument
   # Depending on the format, file_content will be something similar
   # to yaml, or the 'document' style.
   def file_contents
-    parser = ETSource::HashToTextParser.new(to_hash)
-    if self.class::FILE_SUFFIX == 'yml'
-      parser.to_yaml
-    else
-      parser.to_text
-    end
+    parser = ETSource::HashToTextParser.new(to_hash).to_text
   end
 
   # Creates a hash of the current Object.
