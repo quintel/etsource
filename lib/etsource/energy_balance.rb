@@ -62,7 +62,7 @@ module ETSource
       when :twh
         value * 0.01163
       else
-        raise "Cannot converr. Unit #{unit} unknown!"
+        raise UnknownUnitError.new(unit)
       end
     end
 

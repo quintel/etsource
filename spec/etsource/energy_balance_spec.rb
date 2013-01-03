@@ -32,6 +32,13 @@ describe EnergyBalance do
       expect(energy_balance.get("Residential","coal_and_peat")).to eql 0.06978
     end
 
+    it "raises an error when an unknown unit is requested" do 
+      energy_balance.unit = :i_do_not_exist
+      energy_balance.stub(:get_ktoe).and_return 6
+      expect(->{ energy_balance.get("Residential","coal_and_peat") }).to \
+        raise_error UnknownUnitError
+    end
+
     it "should be flexible on case used" do
       expect(energy_balance.get("residential","coal_and_peat")).to_not be_nil
       expect(energy_balance.get("Residential","Coal_and_peat")).to_not be_nil
