@@ -8,10 +8,6 @@ class Dataset
     @area_code = area_code
   end
 
-  def converters
-    ETSource::Converters.all(area_code)
-  end
-
 end
 
 end
