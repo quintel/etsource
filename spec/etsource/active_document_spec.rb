@@ -157,6 +157,28 @@ describe SomeDocument do
 
     end
 
+  end # describe save!
+
+  describe 'destroy!' do
+
+    it "should delete the file" do
+      path = some_document.file_path
+      some_document.destroy!
+      expect(File.exists?(path)).to be_false
+    end
+
+  end
+
+  describe 'inspect' do
+
+    it 'should contain the key' do
+      expect(some_document.to_s).to include some_document.key
+    end
+
+    it 'should contain the class name' do
+      expect(some_document.to_s).to include some_document.class.to_s
+    end
+
   end
 
   describe "(Private) normalize_path" do
