@@ -2,8 +2,6 @@ require 'yaml'
 require 'csv'
 require 'active_model'
 
-require_relative 'core_ext/class/subclasses.rb'
-
 require_relative 'etsource/base'
 require_relative 'etsource/parser/hash_to_text_parser'
 require_relative 'etsource/parser/text_to_hash_parser'
