@@ -104,8 +104,8 @@ class ActiveDocument
     File.delete(file_path)
   end
 
-  # Depending on the format, file_content will be something similar
-  # to yaml, or the 'document' style.
+  # Return the file_contents for this object, which is a parsed
+  # version.
   def file_contents
     parser = ETSource::HashToTextParser.new(to_hash).to_text
   end
