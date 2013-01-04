@@ -24,21 +24,6 @@ describe Node do
     end
   end
 
-  describe '#co2_free' do
-    it 'validates presence' do
-      expect(node.valid?).to be_false
-      node.co2_free = 1
-      expect(node.valid?).to be_true
-    end
-
-    it 'validates numericality' do
-      node.co2_free = 1
-      expect(node.valid?).to be_true
-      node.co2_free = "a"
-      expect(node.valid?).to be_false
-    end
-  end
-
 end #describe Node 
 
 end #module
