@@ -26,7 +26,7 @@ module ETSource
     # @return [Float]
     def get_ktoe(use, carrier)
       get_row(use)[carrier.downcase.strip.gsub(/\ /,"_").to_sym] ||
-        raise("#{carrier} not found in EnergyBalance for #{area_code}")
+        raise(UnknownCarrierError.new(carrier, area_code))
     end
 
     # basicly the same as get, but then in one big string, separates by comma
@@ -45,7 +45,8 @@ module ETSource
     def get_row(use)
       row = table.find do |row|
         row[0].downcase.delete("*").gsub(/\s/,"_").strip == use.downcase.strip.gsub(/\s/,"_")
-      end || raise("#{use} not found in EnergyBalance for #{area_code}")
+      end
+      row || raise(UnknownUseError.new(use, area_code))
     end
 
     # Load the whole table
