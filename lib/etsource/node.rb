@@ -29,8 +29,6 @@ class Node < ActiveDocument
                 :preset_demand,
                 :expected_demand
 
-  validates :co2_free, presence: true, numericality: true
-
 end
 
 end

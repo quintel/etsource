@@ -63,8 +63,8 @@ describe EnergyBalance do
       expect(eb.get("residential ", " coal_and_peat")).to_not be_nil
     end
 
-    it "raises an error when use is not known" do
-      expect { eb.get("foo", "coal_and_peat") }.to raise_error
+    it "raises UnknownUseError when use is not known" do
+      expect { eb.get("foo", "coal_and_peat") }.to raise_error(UnknownUseError)
     end
 
     it "raises an error when carrier is not known" do

@@ -13,6 +13,7 @@ require_relative 'etsource/gquery'
 require_relative 'etsource/node'
 require_relative 'etsource/node/converter'
 require_relative 'etsource/node/demand_node'
+require_relative 'etsource/node/final_demand_node'
 require_relative 'etsource/node/stat_node'
 
 require_relative 'etsource/dataset'

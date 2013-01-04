@@ -26,11 +26,23 @@ module ETSource
     "Duplicate key found: #{ key }"
   end
 
+  MissingAttributeError = error_class do |attribute, object|
+    "Missing attribute #{ attribute } for #{ object }"
+  end
+
   InvalidKeyError = error_class do |key|
     "Invalid key entered: #{ key }"
   end
 
   UnknownUnitError = error_class do |unit|
     "Invalid unit requested: #{ unit }"
+  end
+
+  UnknownUseError = error_class do |use, area|
+    "Unknown use #{ use } for #{ area }"
+  end
+
+  UnknownCarrierError = error_class do |carrier, area|
+    "Unknown use #{ carrier } for #{ area }"
   end
 end

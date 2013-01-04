@@ -14,7 +14,7 @@ describe Node do
 
   describe '#all' do
     it 'returns all the subclasses that have been defined' do
-      expect(Node.all).to have(3).nodes
+      expect(Node.all).to have(4).nodes
     end
   end
 
