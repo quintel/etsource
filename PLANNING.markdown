@@ -7,21 +7,21 @@ current Excel file and optimizing the input and permutations that happen to it.
 
 ### List of sub objectives
 
-* (NEED) Defining the Graph structure with Version Control (VC)
-* (NICE) Cut up the definition of the Graph in subgraph which can be added to
+* `need` Defining the Graph structure with Version Control (VC)
+* `nice` Cut up the definition of the Graph in subgraph which can be added to
   each other (e.g. households etc.) to make it more managable.
-* (NEED) Read the Final Demand energy balance values and link them to the
+* `need` Read the Final Demand energy balance values and link them to the
   appropiate converter(s).
-* (NICE) Use standardized Energy Balances for different countries
-* (NEED) A clean object mapper for the fundamental objects, such as converters,
+* `nice` Use standardized Energy Balances for different countries
+* `need` A clean object mapper for the fundamental objects, such as converters,
   links, graphs, energy balances etc in order to make e.g. validations happen
-* (NEED) Validations of input data (e.g. is everything defined that we need?,
+* `need` Validations of input data (e.g. is everything defined that we need?,
   are there no loose ends?)
-* (NEED) Division up of Converters into Nodes, Converters, UsefulDemandNodes,
+* `need` Division up of Converters into Nodes, Converters, UsefulDemandNodes,
   FinalDemandNodes, etc in order to make validations manageable.
-* (NEED) Define technology/market shares and application shares in an
+* `need` Define technology/market shares and application shares in an
   understable and standardized way
-* (NEED) Being able to import/load all the required objects from ETSource.
+* `need` Being able to import/load all the required objects from ETSource.
 
 Later, we want *other* people from outside of Quintel also to work more closely
 with datasets. This will have to be taken into account when making our design
@@ -34,30 +34,38 @@ In this project the challenges we have can be subdivised in two flavors:
 transposing data to our Graph structure. (2) Making sure that the data is
 sound, and that we can run validations, mass updates etc.
 
-### Mapping Data to Graph (Principles)
+### Mapping Data to Graph
 
-1. Have something that can build up a graph easily and transparantly.[**DONE**]
+1. **Proof** that we can build up a graph easily and transparantly. **DONE**
+   with Turbine
 2. **Proof** that we can reproduce the ability of the current InputExcel to
-   generate `preset_demands` from `final_demands` in the graph.  [**80% DONE**]
-3. Start abstracting final_demands from Energy Balances. [**20%**]
+   generate `preset_demands` from `final_demands` in the graph. **80% DONE**
+with Refinery
+3. Start abstracting final_demands from Energy Balances. **20% DONE** with
+   ETSource
 4. Start abstracting technology shares and application shares to ETSource.
 5. Clean library-style imports from ETSource/Refinery in ETEngine
 
-### Data Integrity and moving data (Practice)
+### Data Integrity and moving data
 
 This borders the projects Dataset Restructuring that Alexander and Wouter are
 working on.
 
-1. **Proof** that we can use validations on objects. [**DONE**]
-2. Create the foundations for the data mapper [**DONE**]
+1. **Proof** that we can use validations on objects. **DONE**
+2. Create the foundations for the data mapper **DONE**
 3. Define subclassed for Converters/Nodes and experiment with Concerns
    (instance mixins)
 4. Split Topoplogy in files per sector
 5. Split converters in one file per converter
-6. Port converters attributes to ETSource (**Q**: and think about what need to
+6. Port converters attributes to ETSource ( **Q**: and think about what need to
    be changed? attributes <-> methods?)
 
-## Current situation
+### Timing
+
+To be added later when list of activities is complete we can start making an
+estimate of time of migration.
+
+## Current situation (IST analysis)
 
 In order to understand what we are replacing, we should thing about the curent
 responsabilities of the InputExcel and the Datasets.
@@ -113,21 +121,23 @@ Of course, everybody from Quintel in involved, but most importantly:
 
 ## Risks
 
-#### Too much
+List of risks, and the ideas to do something with them:
+
+#### 1. Wanting too much
 
 We might be waning to change to much so that nothing moves anymore.
 
 We could mitigate this by being very critical on 'need-to-haves' and
 'nice-to-haves'.
 
-#### Migration
+#### 2. Migration might be daunting
 
 Migrating from current solution to the new one might be a big move. It might
 be so big that we cannot find the guts or time.
 
 We might mitigate this risk by moving in a quiet time (e.g. summer?)
 
-#### Moving people
+#### 3. People might not want to change.
 
 The peoples minds will have to migrate too from the old solution to the new.
 Some things will not be possible any more, which might lead to a lot of
@@ -152,3 +162,4 @@ complaints or a pessimistic atmosphere.
 [Turbine]: https://github.com/quintel/turbine
 [Refinery]: https://github.com/quintel/refinery
 [ETSource]: https://github.com/quintel/etsource
+[ETEngine]: https://github.com/quintel/etengine
