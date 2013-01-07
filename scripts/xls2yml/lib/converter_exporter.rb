@@ -31,7 +31,6 @@ module ETE
       :simult_se,
       :simult_wd,
       :simult_we,
-      :simult_supply,
       :variability,
       :typical_nominal_input_capacity,
       :electricity_output_capacity,
