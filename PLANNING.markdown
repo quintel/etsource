@@ -1,27 +1,33 @@
-# The Road to a better InputTool
+# The Road towards a better InputTool
 
-## Objective
+## Main objective
 
-The project 'to a better InputTool' is primary concerned with replacing the
-current Excel file and optimizing the input and permutations that happen to it.
+The project 'towards a better InputTool' is primary concerned with replacing
+the current Excel file and optimizing the input and permutations.
 
-### List of sub objectives
+Reasons why:
+* Currently it is hard to manage data without any version control being
+available in Excel.
+* Furthermore, there is no (proper) debugging.
+* Unit tests in Excel.
+
+### Requirements
 
 * `need` Defining the Graph structure with Version Control (VC)
-* `nice` Cut up the definition of the Graph in subgraph which can be added to
-  each other (e.g. households etc.) to make it more managable.
 * `need` Read the Final Demand energy balance values and link them to the
   appropiate converter(s).
-* `nice` Use standardized Energy Balances for different countries
 * `need` A clean object mapper for the fundamental objects, such as converters,
-  links, graphs, energy balances etc in order to make e.g. validations happen
+  links, graphs, energy balances etc in order to make e.g. validations happen.
 * `need` Validations of input data (e.g. is everything defined that we need?,
-  are there no loose ends?)
-* `need` Dividing up Converters into Nodes, Converters, UsefulDemandNodes,
+  are there no loose ends?).
+* `need` Division up of Converters into Nodes, Converters, UsefulDemandNodes,
   FinalDemandNodes, etc in order to make validations manageable.
 * `need` Define technology/market shares and application shares in an
-  understable and standardized way
+  understable and standardized way.
 * `need` Being able to import/load all the required objects from ETSource.
+* `nice` Cut up the definition of the Graph in subgraph which can be added to
+  each other (e.g. households etc.) to make it more managable.
+* `nice` Use standardized Energy Balances for different countries.
 
 Later, we want *other* people from outside of Quintel also to work more closely
 with datasets. This will have to be taken into account when making our design
@@ -36,23 +42,26 @@ sound, and that we can run validations, mass updates etc.
 
 ### Mapping Data to Graph
 
-1. **Proof** that we can build up a graph easily and transparantly. **DONE**
-   with Turbine
-2. **Proof** that we can reproduce the ability of the current InputExcel to
-   generate `preset_demands` from `final_demands` in the graph. **80% DONE**
-with Refinery
-3. Start abstracting final_demands from Energy Balances. **20% DONE** with
-   ETSource
-4. Start abstracting technology shares and application shares to ETSource.
-5. Clean library-style imports from ETSource/Refinery in ETEngine
+1. **Proof of Concept** that we can build up a graph easily and transparantly. **DONE**
+   with [Turbine].
+2. **Proof of Concept** that we can reproduce the ability of the current InputExcel to
+   generate `preset_demands` from `final_demands` in the graph. **88% DONE**
+with Refinery.
+3. Build the current ETSource graph in Turbine.
+4. Calculate the current ETSource graph with Refinery.
+5. Start abstracting final_demands from Energy Balances. **Initiated** with
+   ETSource.
+6. Abstracting technology shares and application shares to ETSource.
+7. Abstracting production characteristics to ETSource.
+8. Abstracting converter efficiencies for other areas.
+8. All other stuff (such as costs, energy balance group colors, whatever).
+9. Map country-specific data/adjustments from ETSource. (Area)
+10. Clean library-style imports from ETSource/Refinery in ETEngine.
 
 ### Data Integrity and moving data
 
-This borders the projects Dataset Restructuring that Alexander and Wouter are
-working on.
-
 1. **Proof** that we can use validations on objects. **DONE**
-2. Create the foundations for the data mapper **DONE**
+2. Create foundations for the data mapper **DONE**
 3. Define subclassed for Converters/Nodes and experiment with Concerns
    (instance mixins)
 4. Split Topoplogy into files per sector
@@ -134,9 +143,33 @@ Of course, everybody from Quintel is involved, but most importantly:
   Restructuring (~0.1 FTE)
 * Wouter Meyers: (~0.1 FTE) providing input for Data changes and validations.
 
-## Risks
+## Discussion / Questions
 
-List of risks, and the ideas to do something with them:
+#### How do we want to deal with area dependent properties?
+
+Currently, a converter can have different properties depending on the area. The
+(same) coal power plant in Germany can be more or less efficient
+
+This creates all kinds of challenges:
+* Since converters can have different efficiencies for different carriers, the
+  list of property specs per country quickly explodes.
+* Hard to track where properties come from and redundant data.
+* More maintenance
+
+##### Possible solutions:
+
+1. Making graph the unique difference point for areas, and creating sub graphs,
+   so that we can reuse parts of it in other graphs.
+
+   Of course, nodes can occur in different graphs, so that e.g. the Netherlands
+   uses 500 nodes in a certain order, while Germany has 800, of which 400 are
+   the same.
+
+   Difficulties:
+   * What to do with Gqueries that refer to Nodes that do not exist anymore???
+
+
+## Risks
 
 #### 1. Wanting too much
 
