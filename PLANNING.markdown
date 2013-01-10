@@ -17,7 +17,7 @@ current Excel file and optimizing the input and permutations that happen to it.
   links, graphs, energy balances etc in order to make e.g. validations happen
 * `need` Validations of input data (e.g. is everything defined that we need?,
   are there no loose ends?)
-* `need` Division up of Converters into Nodes, Converters, UsefulDemandNodes,
+* `need` Dividing up Converters into Nodes, Converters, UsefulDemandNodes,
   FinalDemandNodes, etc in order to make validations manageable.
 * `need` Define technology/market shares and application shares in an
   understable and standardized way
@@ -29,7 +29,7 @@ choices.
 
 ## Road Map / Planning
 
-In this project the challenges we have can be subdivised in two flavors:
+In this project the challenges we have can be subdivided in two flavors:
 (1) Mapping data to graph: the technological challenge of mapping and
 transposing data to our Graph structure. (2) Making sure that the data is
 sound, and that we can run validations, mass updates etc.
@@ -55,8 +55,8 @@ working on.
 2. Create the foundations for the data mapper **DONE**
 3. Define subclassed for Converters/Nodes and experiment with Concerns
    (instance mixins)
-4. Split Topoplogy in files per sector
-5. Split converters in one file per converter
+4. Split Topoplogy into files per sector
+5. Split converters into one file per converter
 6. Port converters attributes to ETSource ( **Q**: and think about what need to
    be changed? attributes <-> methods?)
 
@@ -67,24 +67,24 @@ estimate of time of migration.
 
 ## Current situation (IST analysis)
 
-In order to understand what we are replacing, we should thing about the curent
+In order to understand what we are replacing, we should think about the curent
 responsabilities of the InputExcel and the Datasets.
 
 ### InputExcel
 
 The InputExcel file has the following responsibilities:
 * Defining
-  * `converters`, amongst which "final demand"
+  * `converters`, among others "final demand"
   * `links`
   * `energy_balance_groups`
 * Defining the structure of the graph
   * (between which converters?, what kind of links?)
-* Calculating the Final Energy Demand back to Usefull Energy Demand
-* Taking input from a 'Dataset' and use that for defining attributes
+* Calculating Useful Energy Demand from Final Energy Demand
+* Taking input from a 'Dataset' and using that for defining attributes
 
 ### Datasets
 
-Currenly, the datasets are another Excel files, many of them are outdated. They
+Currenly, the datasets are (yet more) Excel files, many of them are outdated. They
 basically list and permutate attributes for Converters and links (shared), put
 them in one big column which can be copy-pasted (or linked) to the
 InputExcel.
@@ -94,7 +94,7 @@ exist: sometimes data is defined and 'lives' in the InputExcel.
 
 ## Applications/Libraries involved:
 
-Currenly we the following applications:
+Currenly we use the following applications:
 
 * [Turbine][Turbine]: responsible for defining a graph with nodes and edges and
   setting and getting its properties
@@ -109,7 +109,7 @@ Currenly we the following applications:
 
 ## Resource Management
 
-Of course, everybody from Quintel in involved, but most importantly:
+Of course, everybody from Quintel is involved, but most importantly:
 
 * Dennis Schoenmakers: project manager (~0.4 FTE)
 * Anthony Williams: Driving Technical Developer, Quality Assurance  (1 FTE)
@@ -125,10 +125,12 @@ List of risks, and the ideas to do something with them:
 
 #### 1. Wanting too much
 
-We might be waning to change to much so that nothing moves anymore.
+We might be waning to change too much so that nothing moves anymore.
 
 We could mitigate this by being very critical on 'need-to-haves' and
 'nice-to-haves'.
+Or we could define some first quick wins and gain momentum by successfully 
+completing these first steps.
 
 #### 2. Migration might be daunting
 
@@ -142,6 +144,9 @@ We might mitigate this risk by moving in a quiet time (e.g. summer?)
 The peoples minds will have to migrate too from the old solution to the new.
 Some things will not be possible any more, which might lead to a lot of
 complaints or a pessimistic atmosphere.
+
+We can mitigate this by pointing out the benefits of leaving behind the 
+InputExcel, which is universally loathed.
 
 ### Clean up old stuff
 
