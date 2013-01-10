@@ -60,6 +60,21 @@ working on.
 6. Port converters attributes to ETSource ( **Q**: and think about what need to
    be changed? attributes <-> methods?)
 
+### Clean up old stuff
+
+1. Delete excess stuff on ETSource, ETEngine
+
+### Documentation and Training
+
+1. Create proper documentation (if not already exists) on the technology and
+   the use of the different parts of the new solution.
+2. Explaing to others how the new stuff works in a presentation
+
+### Wrap up
+
+1. Create recommendations for next project
+2. File debts
+
 ### Timing
 
 To be added later when list of activities is complete we can start making an
@@ -125,12 +140,14 @@ List of risks, and the ideas to do something with them:
 
 #### 1. Wanting too much
 
-We might be waning to change too much so that nothing moves anymore.
+We might be wanting to change too much so that nothing moves anymore.
 
 We could mitigate this by being very critical on 'need-to-haves' and
 'nice-to-haves'.
 Or we could define some first quick wins and gain momentum by successfully 
 completing these first steps.
+We can also choose to temporarily remove some functionality in the ETM and
+add it later in a Phase 2.
 
 #### 2. Migration might be daunting
 
@@ -146,22 +163,9 @@ Some things will not be possible any more, which might lead to a lot of
 complaints or a pessimistic atmosphere.
 
 We can mitigate this by pointing out the benefits of leaving behind the 
-InputExcel, which is universally loathed.
+InputExcel, which is universally seen as a 'sub-optimal' solution.
 
-### Clean up old stuff
 
-1. Delete excess stuff on ETSource, ETEngine
-
-### Documentation and Training
-
-1. Create proper documentation (if not already exists) on the technology and
-   the use of the different parts of the new solution.
-2. Explaing to others how the new stuff works in a presentation
-
-### Wrap up
-
-1. Create recommendations for next project
-2. File debts
 
 
 [Turbine]: https://github.com/quintel/turbine
