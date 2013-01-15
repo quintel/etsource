@@ -1,0 +1,11 @@
+# Returns the cost of an FTE in euro
+
+- unit = euro
+
+IF( QUERY_DELTA( -> { Q(total_man_years) } ) == 0,
+  0.0,
+  DIVIDE(
+    QUERY_DELTA( -> { Q(total_costs) } ),
+    QUERY_DELTA( -> { Q(total_man_years) } )
+  )
+)
