@@ -80,7 +80,7 @@ files.delete_if do |file_name|
 require 'iconv' unless String.method_defined?(:encode)
 for file in files
   next unless File.file?(file)
-  content = File.read(file)
+  content = File.read(file).force_encoding('utf-8')
 
   #puts "processing #{file}"
   # Actual replacement
