@@ -82,7 +82,11 @@ for file in files
   next unless File.file?(file)
   content = File.read(file).force_encoding('utf-8')
 
+<<<<<<< Updated upstream
   #puts "processing #{file}"
+=======
+  #puts "-- processing #{file}"
+>>>>>>> Stashed changes
   # Actual replacement
   replacements.each do |old_key, new_key|
     raise "can't be nil! (found in #{file_name}: #{old_key} & #{new_key})" if (old_key.nil? || new_key.nil?)
@@ -90,7 +94,12 @@ for file in files
     # straightforward renaming all occurences
     if content.include? old_key
 
+<<<<<<< Updated upstream
       #puts "content found!"
+=======
+      #puts "-- replacing #{old_key} with #{new_key}"
+
+>>>>>>> Stashed changes
       # Only replace if REPLACEMENT_FLAG == 1
       if REPLACEMENT_FLAG == 1
         content = content.gsub(old_key, new_key)
