@@ -11,7 +11,7 @@ min_value_gql:
 query: |-
   EACH(
     UPDATE(LINK(buildings_cooling_heatpump_air_water_network_gas,buildings_useful_demand_after_insulation_recirculation_recovery_cooling), share, DIVIDE(USER_INPUT(),100)),
-    UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning), share,
+    UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning_electricity), share,
       ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling)),UPDATE_COLLECTION()), share))), 1)}
     )
   )

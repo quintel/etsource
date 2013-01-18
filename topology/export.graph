@@ -254,18 +254,18 @@ buildings_collective_geothermal:
   slots:
   - buildings_collective_geothermal-(geothermal)
   - (steam_hot_water)-buildings_collective_geothermal
-buildings_cooling_airconditioning:
+buildings_cooling_airconditioning_electricity:
   sector: buildings
   use: energetic
   energy_balance_group: technologies
   links:
-  - buildings_cooling_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air
-  - buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
+  - buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
+  - buildings_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
   slots:
-  - buildings_cooling_airconditioning-(electricity)
-  - buildings_cooling_airconditioning-(ambient_cold)
-  - (cooling)-buildings_cooling_airconditioning
-  - ! '(loss)-buildings_cooling_airconditioning: {type: :loss}'
+  - buildings_cooling_airconditioning_electricity-(electricity)
+  - buildings_cooling_airconditioning_electricity-(ambient_cold)
+  - (cooling)-buildings_cooling_airconditioning_electricity
+  - ! '(loss)-buildings_cooling_airconditioning_electricity: {type: :loss}'
 buildings_cooling_collective_cooling_network_electricity:
   sector: buildings
   use: energetic
@@ -567,26 +567,26 @@ buildings_heating_savings_from_recovery_useable_heat:
   slots:
   - buildings_heating_savings_from_recovery_useable_heat-(useable_heat)
   - (useable_heat)-buildings_heating_savings_from_recovery_useable_heat
-buildings_lighting_efficient_fluorescent:
+buildings_lighting_efficient_fluorescent_electricity:
   sector: buildings
   use: energetic
   energy_balance_group: technologies
   links:
-  - buildings_lighting_efficient_fluorescent-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity
+  - buildings_lighting_efficient_fluorescent_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity
   slots:
-  - buildings_lighting_efficient_fluorescent-(electricity)
-  - (light)-buildings_lighting_efficient_fluorescent
-  - ! '(loss)-buildings_lighting_efficient_fluorescent: {type: :loss}'
-buildings_lighting_led:
+  - buildings_lighting_efficient_fluorescent_electricity-(electricity)
+  - (light)-buildings_lighting_efficient_fluorescent_electricity
+  - ! '(loss)-buildings_lighting_efficient_fluorescent_electricity: {type: :loss}'
+buildings_lighting_led_electricity:
   sector: buildings
   use: energetic
   energy_balance_group: technologies
   links:
-  - buildings_lighting_led-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity
+  - buildings_lighting_led_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity
   slots:
-  - buildings_lighting_led-(electricity)
-  - (light)-buildings_lighting_led
-  - ! '(loss)-buildings_lighting_led: {type: :loss}'
+  - buildings_lighting_led_electricity-(electricity)
+  - (light)-buildings_lighting_led_electricity
+  - ! '(loss)-buildings_lighting_led_electricity: {type: :loss}'
 buildings_lighting_savings_from_daylight_control_light:
   sector: buildings
   use: energetic
@@ -767,7 +767,7 @@ buildings_useful_demand_after_insulation_recirculation_recovery_cooling:
   - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
     -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
   - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
-    -- f --> (cooling)-buildings_cooling_airconditioning
+    -- f --> (cooling)-buildings_cooling_airconditioning_electricity
   slots:
   - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
   - (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling
@@ -779,9 +779,9 @@ buildings_useful_demand_after_motion_detection_daylight_control_light:
   - buildings_useful_demand_after_motion_detection_daylight_control_light-(light)
     -- f --> (light)-buildings_lighting_standard_fluorescent_electricity
   - buildings_useful_demand_after_motion_detection_daylight_control_light-(light)
-    -- s --> (light)-buildings_lighting_efficient_fluorescent
+    -- s --> (light)-buildings_lighting_efficient_fluorescent_electricity
   - buildings_useful_demand_after_motion_detection_daylight_control_light-(light)
-    -- s --> (light)-buildings_lighting_led
+    -- s --> (light)-buildings_lighting_led_electricity
   slots:
   - buildings_useful_demand_after_motion_detection_daylight_control_light-(light)
   - (light)-buildings_useful_demand_after_motion_detection_daylight_control_light
