@@ -106,7 +106,7 @@ buildings_collective_geothermal-(geothermal): {conversion: 1.0}
 (steam_hot_water)-buildings_collective_geothermal: {conversion: 1.0}
 buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
 
-:buildings_cooling_airconditioning:
+:buildings_cooling_airconditioning_electricity:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
@@ -127,12 +127,12 @@ buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_e
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 0.0025
   :peak_load_units: 2103562.59360854
-buildings_cooling_airconditioning-(electricity): {conversion: 0.25}
-buildings_cooling_airconditioning-(ambient_cold): {conversion: 0.75}
-(cooling)-buildings_cooling_airconditioning: {conversion: 1.0}
-(loss)-buildings_cooling_airconditioning: {}
-buildings_cooling_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
-buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
+buildings_cooling_airconditioning_electricity-(electricity): {conversion: 0.25}
+buildings_cooling_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
+(cooling)-buildings_cooling_airconditioning_electricity: {conversion: 1.0}
+(loss)-buildings_cooling_airconditioning_electricity: {}
+buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+buildings_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :buildings_cooling_collective_cooling_network_electricity:
   :co2_free: 0.0
@@ -423,21 +423,21 @@ buildings_heating_savings_from_recirculation_useable_heat-(useable_heat): {conve
 buildings_heating_savings_from_recovery_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-buildings_heating_savings_from_recovery_useable_heat: {conversion: 1.0}
 
-:buildings_lighting_efficient_fluorescent:
+:buildings_lighting_efficient_fluorescent_electricity:
   :co2_free: 0.0
   :demand_expected_value: 14619976498.2374
-buildings_lighting_efficient_fluorescent-(electricity): {conversion: 1.0}
-(light)-buildings_lighting_efficient_fluorescent: {conversion: 0.2}
-(loss)-buildings_lighting_efficient_fluorescent: {}
-buildings_lighting_efficient_fluorescent-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
+buildings_lighting_efficient_fluorescent_electricity-(electricity): {conversion: 1.0}
+(light)-buildings_lighting_efficient_fluorescent_electricity: {conversion: 0.2}
+(loss)-buildings_lighting_efficient_fluorescent_electricity: {}
+buildings_lighting_efficient_fluorescent_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
-:buildings_lighting_led:
+:buildings_lighting_led_electricity:
   :co2_free: 0.0
   :demand_expected_value: 270740305.522914
-buildings_lighting_led-(electricity): {conversion: 1.0}
-(light)-buildings_lighting_led: {conversion: 0.45}
-(loss)-buildings_lighting_led: {}
-buildings_lighting_led-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
+buildings_lighting_led_electricity-(electricity): {conversion: 1.0}
+(light)-buildings_lighting_led_electricity: {conversion: 0.45}
+(loss)-buildings_lighting_led_electricity: {}
+buildings_lighting_led_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
 :buildings_lighting_savings_from_daylight_control_light:
   :availability: 0.0
@@ -735,7 +735,7 @@ buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity: {share: 0.0}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.00639413357291865}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0443311301826165}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning: {share: 0.949274736244465}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning_electricity: {share: 0.949274736244465}
 
 :buildings_useful_demand_after_motion_detection_daylight_control_light:
   :co2_free: 0.0
@@ -743,8 +743,8 @@ buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light): {conversion: 1.0}
 (light)-buildings_useful_demand_after_motion_detection_daylight_control_light: {conversion: 1.0}
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- f --> (light)-buildings_lighting_standard_fluorescent_electricity: {share: 0.75}
-buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_efficient_fluorescent: {share: 0.24}
-buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_led: {share: 0.01}
+buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_efficient_fluorescent_electricity: {share: 0.24}
+buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_led_electricity: {share: 0.01}
 
 :buildings_useful_demand_after_motion_detection_light:
   :co2_free: 0.0
