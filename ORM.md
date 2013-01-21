@@ -48,3 +48,41 @@ Validation can run at three levels:
 
 With the ORM it will be easier to import all the objects needed for instance
 for ETEngine.
+
+### Role of datasets in Object Mapper
+
+Dataset will be a pivotal role in querying information, e.g:
+
+```Ruby
+dataset = ETSource::Dataset.load(:nl)
+=> <ETSource::EnergyBalance CSV :nl>
+```
+
+```Ruby
+dataset.nodes
+=> [<Node..., ..., ...]
+```
+
+So, when you want to get the preset_demand from a `Node`, you would have to
+specify the dataset first.
+
+```Ruby
+dataset.node(:foo).preset_demand
+=> 330.21 #PJ
+```
+
+or:
+
+```Ruby
+ETSource::Node.load(:foo).preset_demand(Dataset.load(:nl))
+=> 330.21 #PJ
+```
+
+Of course you can loop through all the datasets, e.g. for comparing stuff:
+
+```Ruby
+ETSource::Dataset.all.map do |dataset|
+  dataset.node(:foo).preset_demand
+end
+=> [2983.32, 3219,03]
+```
