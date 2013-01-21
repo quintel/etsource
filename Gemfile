@@ -11,5 +11,7 @@ end
 
 gem 'activemodel'
 
+gem 'rubel'
+
 gem 'rake'
 gem 'pry'

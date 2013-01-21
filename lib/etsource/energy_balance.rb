@@ -25,7 +25,7 @@ module ETSource
     # Returns the ktoe value from the EnergyBalance table
     # @return [Float]
     def get_ktoe(use, carrier)
-      get_row(use)[carrier.downcase.strip.gsub(/\ /,"_").to_sym] ||
+      get_row(use)[carrier.to_s.downcase.strip.gsub(/\ /,"_").to_sym] ||
         raise(UnknownCarrierError.new(carrier, area_code))
     end
 
@@ -44,7 +44,8 @@ module ETSource
     # Returns a CSV::Row object
     def get_row(use)
       row = table.find do |row|
-        row[0].downcase.delete("*").gsub(/\s/,"_").strip == use.downcase.strip.gsub(/\s/,"_")
+        row[0].downcase.delete("*").gsub(/\s/,"_").strip ==
+          use.to_s.downcase.strip.gsub(/\s/,"_")
       end
       row || raise(UnknownUseError.new(use, area_code))
     end

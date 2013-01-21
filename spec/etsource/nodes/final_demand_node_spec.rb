@@ -24,10 +24,10 @@ describe FinalDemandNode do
     end
   end
 
-  describe '#energy_balance' do
+  describe '#preset_demand' do
     it 'should return the same number that is defined in the energy balance' do
-      fd = FinalDemandNode.find('final_demand_node.fd')
-      expect(fd.energy_balance(:nl)).to eql(312.33528)
+      fd = Node.find('final_demand_node.fd')
+      expect(fd.preset_demand).to eql(312.33528)
     end
   end
 
