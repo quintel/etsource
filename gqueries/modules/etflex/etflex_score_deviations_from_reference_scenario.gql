@@ -1,8 +1,6 @@
-# DEBT: enclose slider values in separate gqueries.
-#
 # We have defined a scenario that should be the ideal candidate for this
-# for every slider that is above its reference scenario counterpart, ONE
-# (extra) penalty point is given
+# for every slider that is away from its reference scenario counterpart, 
+# maximally ONE (extra) penalty point is given
 #
 # Reference values:
 #
@@ -24,19 +22,18 @@
 
 - unit = #
 
-[
-  Q(etflex_slider_insulation) > 2.8,
-  V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms) > 0.75,
-  V(households_lighting_led_electricity,share_of_households_useful_demand_light) > 0.9,
-  V(households_water_heater_micro_chp_network_gas, share_of_households_useful_demand_for_hot_water_after_solar_heater_and_add_on) > 0.05,
-  V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on) > 0.50,
-  Q(market_penetration_of_solar_heater_for_hot_water_in_households) > 0.25,
+- [
+  0.111111 * (INPUT_VALUE(households_insulation_level_old_houses) - 2.8)**2,
+  1.0e-4 * (INPUT_VALUE(transport_cars_electric_share) - 75.0)**2,
+  1.0e-4 * (INPUT_VALUE(households_lighting_light_emitting_diode_share) - 90.0)**2,
+  1.0e-4 * (INPUT_VALUE(households_heating_micro_chp_share) - 5.0)**2,
+  1.0e-4 * (INPUT_VALUE(households_heating_heat_pump_ground_share) - 50.0)**2,
+  1.0e-4 * (INPUT_VALUE(households_hot_water_solar_water_heater_share) - 25.0)**2,
 
-  V(energy_power_ultra_supercritical_coal, number_of_units) > 0,
-  V(energy_power_combined_cycle_ccs_network_gas, number_of_units) > 6,
-  V(energy_power_nuclear_gen3_uranium_oxide,number_of_units) > 0,
-  V(energy_power_wind_turbine_offshore, number_of_units) > 1600,
-  (V(households_solar_pv_solar_radiation, number_of_units) * V(households_solar_pv_solar_radiation, land_use_per_unit) / AREA(roof_surface_available_pv)) > 0.41,
-  V(energy_national_gas_network_natural_gas,greengas_input_conversion) > 0.03
-
-].count(true) * -1
+  0.01 * (INPUT_VALUE(number_of_pulverized_coal) - 0.0)**2,
+  0.027778 * (INPUT_VALUE(number_of_gas_ccgt_ccs) - 6.0)**2,
+  0.25 * (INPUT_VALUE(number_of_nuclear_3rd_gen) - 0.0)**2,
+  3.90625e-7 * (INPUT_VALUE(number_of_wind_offshore) - 1600.0)**2,
+  1.0e-4 * (INPUT_VALUE(households_market_penetration_solar_panels) - 41.0)**2,
+  1.0e-4 * (INPUT_VALUE(green_gas_total_share) - 3.0)**2
+].sum
