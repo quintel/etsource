@@ -1,21 +1,18 @@
 module ETSource
 
-# FinalDemandNodes have access to the EnergyBalance
-class FinalDemandNode < DemandNode
+  # FinalDemandNode has access to the EnergyBalance through the
+  # energy_balance_query.
+  class FinalDemandNode < DemandNode
 
-  attr_accessor :energy_balance_use
-  attr_accessor :energy_balance_carrier
+    attr_accessor :query
 
-  def energy_balance(area = :nl)
-    eb = EnergyBalance.new(area)
-    eb.get(energy_balance_use, energy_balance_carrier)
+    # TODO: optimize for performance
+    def preset_demand
+      Runtime.new.execute(query)
+    end
+
+    validates_presence_of(:query)
+
   end
-
-  # -------------------------- Validations -----------------------------------
-
-  validate :energy_balance_use,     presence: true, numericality: true
-  validate :energy_balance_carrier, presence: true, numericality: true
-
-end
 
 end

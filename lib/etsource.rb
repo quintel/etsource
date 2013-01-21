@@ -16,6 +16,8 @@ require_relative 'etsource/node/demand_node'
 require_relative 'etsource/node/final_demand_node'
 require_relative 'etsource/node/stat_node'
 
+require_relative 'etsource/runtime'
+
 require_relative 'etsource/dataset'
 
 require_relative 'etsource/energy_balance'
