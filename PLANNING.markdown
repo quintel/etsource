@@ -47,23 +47,27 @@ sound, and that we can run validations, mass updates etc.
 2. **Proof of Concept** that we can reproduce the ability of the current InputExcel to
    generate `preset_demands` from `final_demands` in the graph. **88% DONE**
 with Refinery.
-3. Build the current ETSource graph in Turbine.
-4. Calculate the current ETSource graph with Refinery.
-5. Start abstracting final_demands from Energy Balances. **Initiated** with
-   ETSource.
-6. Abstracting technology shares and application shares to ETSource.
-7. Abstracting production characteristics to ETSource.
-8. Abstracting converter efficiencies for other areas.
-8. All other stuff (such as costs, energy balance group colors, whatever).
-9. Map country-specific data/adjustments from ETSource. (Area)
-10. Clean library-style imports from ETSource/Refinery in ETEngine.
+3. `new` Build the current ETSource graph in Turbine/Refinery. **DONE**
+4. `new` Calculate the current ETSource graph with Refinery. **33% DONE**
+5. `new` Start abstracting final_demands from Energy Balances. **DONE** with
+   ETSource. **HELP WANTED FROM WOUTER/CHAEL**
+5. `new` Refinery validations
+5. `new` Refinery efficiencies
+6. `new` Adding DataSet and making that top level for other objects.
+7. Abstracting technology shares and application shares to ETSource.
+8. Abstracting production characteristics to ETSource.
+9. Abstracting converter efficiencies for other areas.
+10. All other stuff (such as costs, energy balance group colors, whatever).
+11. Map country-specific data/adjustments from ETSource. (Area)
+12. Clean library-style imports from ETSource/Refinery in ETEngine.
+13. Validating demands with EnergyBalance `primary_demands`
 
 ### Data Integrity and moving data
 
 1. **Proof** that we can use validations on objects. **DONE**
 2. Create foundations for the data mapper **DONE**
-3. Define subclassed for Converters/Nodes and experiment with Concerns
-   (instance mixins)
+3. `waiting` Define subclassed for Converters/Nodes and experiment with Concerns
+   (instance mixins) **WAITING ON CHAEL AND WOUTER**
 4. Split Topoplogy into files per sector
 5. Split converters into one file per converter
 6. Port converters attributes to ETSource ( **Q**: and think about what need to
