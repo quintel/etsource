@@ -38,9 +38,6 @@ describe SomeDocument do
     context 'given file_path' do
       it 'creates a new document' do
         some_document = SomeDocument.new('my_map1/new')
-        #TODO: make Parser smarter, so we can do without these attributes
-        some_document.query = "this"
-        some_document.description = "that"
         expect(some_document.save!).to be_true
       end
       xit 'raises and error when the key already exists' do
@@ -61,7 +58,7 @@ describe SomeDocument do
     end
   end
 
-  describe "load" do
+  describe "find" do
 
     it "should load a some_document from file" do
       some_document.key.should == 'foo'
@@ -70,6 +67,11 @@ describe SomeDocument do
       some_document.description.should include "MECE" #testing some words
       some_document.description.should include "graph." #testing some words
       some_document.unit.should == 'kg'
+    end
+
+    it "should find by Symbol" do
+      some_document = ETSource::SomeDocument.find(:foo)
+      expect(some_document.key).to eql 'foo'
     end
 
     it "loads a document from a subfolder" do

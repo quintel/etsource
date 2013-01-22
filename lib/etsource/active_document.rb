@@ -9,7 +9,7 @@ class ActiveDocument
   attr_accessor :file_path, :description
 
   def initialize(path, opts = nil)
-    @file_path = @last_saved_file_path = normalize_path(path)
+    @file_path = @last_saved_file_path = normalize_path(path.to_s)
 
     opts.each do |key, value|
       self.send("#{key}=", value)
@@ -46,7 +46,7 @@ class ActiveDocument
   # Return the object with the key if it exists
   # Returns nil if the object is not found
   def self.find(key)
-    results = self.all.select { |i| i.key == key }
+    results = self.all.select { |i| i.key == key.to_s }
     raise DuplicateKeyError.new(key) if results.size > 1
     results.first
   end

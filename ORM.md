@@ -1,6 +1,6 @@
-# Object Relation Mapper for ETSource
+# Object Mapper for ETSource
 
-The object relation mapper for ETSource is designed to:
+The object mapper for ETSource is designed to:
 
 1. Provide a common way to (mass) manipulate objects in ETSource
 2. Run validations
@@ -59,8 +59,8 @@ dataset = ETSource::Dataset.load(:nl)
 ```
 
 ```Ruby
-dataset.nodes
-=> [<Node..., ..., ...]
+dataset.nodes.first.demand
+=> 320.21 PJ
 ```
 
 So, when you want to get the preset_demand from a `Node`, you would have to

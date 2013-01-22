@@ -202,7 +202,7 @@ module ETE
         when 3 then 'f'
         when 4 then 'c'
         when 5 then 'i'
-        when 6 then 'inverse_f'
+        when 6 then 'inverse_f' #actuall this is a "pres
         end
         unless child
           raise "Error parsing link, missing child converter! " +
