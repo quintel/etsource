@@ -26,16 +26,20 @@ describe FinalDemandNode do
 
   describe '#preset_demand' do
 
-    context 'with the Dutch EnergyBalance' do
+    context 'with the Dutch dataset' do
+
       it 'returns the correct number' do
         expect(node.preset_demand(dataset_nl)).to eql(312.33528)
       end
+
     end
 
-    context 'with the UK EnergyBalance' do
+    context 'with the UK dataset' do
+
       it 'returns the correct number' do
         expect(node.preset_demand(dataset_uk)).to eql(156.16764)
       end
+
     end
 
   end

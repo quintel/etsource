@@ -31,9 +31,9 @@ module ETSource; describe Dataset do
 
   end # describe #load
 
-  describe "#dataset" do
+  describe "#energy_balance" do
 
-    it "has a dataset" do
+    it "has a energy_balance" do
       dataset = Dataset.find(:nl)
       expect(dataset.energy_balance).to be_a(EnergyBalance)
     end
