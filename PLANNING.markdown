@@ -47,20 +47,21 @@ sound, and that we can run validations, mass updates etc.
 2. **Proof of Concept** that we can reproduce the ability of the current InputExcel to
    generate `preset_demands` from `final_demands` in the graph. **88% DONE**
 with Refinery.
-3. `new` Build the current ETSource graph in Turbine/Refinery. **DONE**
-4. `new` Calculate the current ETSource graph with Refinery. **33% DONE**
-5. `new` Start abstracting final_demands from Energy Balances. **DONE** with
+3. Build the current ETSource graph in Turbine/Refinery. **DONE**
+4. Calculate the current ETSource graph with Refinery. **33% DONE**
+5. Start abstracting final_demands from Energy Balances. **DONE** with
    ETSource. **HELP WANTED FROM WOUTER/CHAEL**
-5. `new` Refinery validations
-5. `new` Refinery efficiencies
-6. `new` Adding DataSet and making that top level for other objects.
-7. Abstracting technology shares and application shares to ETSource.
-8. Abstracting production characteristics to ETSource.
-9. Abstracting converter efficiencies for other areas.
-10. All other stuff (such as costs, energy balance group colors, whatever).
-11. Map country-specific data/adjustments from ETSource. (Area)
-12. Clean library-style imports from ETSource/Refinery in ETEngine.
-13. Validating demands with EnergyBalance `primary_demands`
+5. Refinery validations **DONE**
+6. Refinery `child_share` and `parent_share` **DONE**
+7. Refinery efficiencies
+8. Adding DataSet and making that top level for other objects.
+9. Abstracting technology shares and application shares to ETSource.
+10. Abstracting production characteristics to ETSource.
+11. Abstracting converter efficiencies for other areas.
+12. All other stuff (such as costs, energy balance group colors, whatever).
+13. Map country-specific data/adjustments from ETSource. (Area)
+14. Clean library-style imports from ETSource/Refinery in ETEngine.
+15. Validating demands with EnergyBalance `primary_demands`
 
 ### Data Integrity and moving data
 
