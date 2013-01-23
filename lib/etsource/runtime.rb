@@ -13,7 +13,7 @@ module ETSource
     end
 
     def energy_balance
-      @energy_balance ||= EnergyBalance.find(dataset.key)
+      dataset.energy_balance
     end
 
     # ------------------ QUERY FUNCTIONS -------------------------------------
