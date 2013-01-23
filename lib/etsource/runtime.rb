@@ -18,8 +18,7 @@ module ETSource
 
     # ------------------ QUERY FUNCTIONS -------------------------------------
 
-    # EnergyBalance: takes a value from the EnergyBalance for the
-    # current dataset
+    # takes a value from the EnergyBalance for the current Dataset.
     def EB(use, carrier)
       energy_balance.get(use, carrier)
     end
