@@ -68,6 +68,7 @@ TEXT
       end
 
       it "parses arrays" do
+        p = TextToHashParser.new("- array = a, b, c")
         expect(p.to_hash[:array]).to eql ["a","b","c"]
       end
 
