@@ -4,7 +4,16 @@ module ETSource
 
   describe Runtime do
 
-    let(:runtime) { ETSource::Runtime.new }
+    before(:each) do
+      copy_fixtures_to_tmp
+      stub_const("ETSource::Dataset::DIRECTORY",
+                 "tmp/fixtures/#{Dataset::DIRECTORY}")
+      stub_const("ETSource::EnergyBalance::DIRECTORY",
+                 "tmp/fixtures/#{EnergyBalance::DIRECTORY}")
+    end
+
+    let(:dataset) { Dataset.find(:nl) }
+    let(:runtime) { Runtime.new(dataset) }
 
     it "executes basic ruby code" do
       expect(runtime.execute("1+1")).to eql 2

@@ -10,11 +10,17 @@ module ETSource
 
     DIRECTORY = 'energy_balances'
 
-    attr_accessor :area_code, :unit
+    attr_accessor :key, :unit
 
-    def initialize(area_code = :nl, unit = :pj)
-      @area_code = area_code
+    def initialize(key = :nl, unit = :pj)
+      @key  = key
       @unit = unit
+    end
+
+    # Loads a stored energy balance
+    def self.find(key)
+      raise InvalidKeyError.new(key) unless key
+      new(key)
     end
 
     # Returns the energy balance item in the correct unit
@@ -26,7 +32,7 @@ module ETSource
     # @return [Float]
     def get_ktoe(use, carrier)
       get_row(use)[carrier.to_s.downcase.strip.gsub(/\ /,"_").to_sym] ||
-        raise(UnknownCarrierError.new(carrier, area_code))
+        raise(UnknownCarrierError.new(carrier, key))
     end
 
     # basicly the same as get, but then in one big string, separates by comma
@@ -47,13 +53,13 @@ module ETSource
         row[0].downcase.delete("*").gsub(/\s/,"_").strip ==
           use.to_s.downcase.strip.gsub(/\s/,"_")
       end
-      row || raise(UnknownUseError.new(use, area_code))
+      row || raise(UnknownUseError.new(use, key))
     end
 
     # Load the whole table
     # Returns a CSV object
     def table
-      CSV.table("#{ETSource.root}/#{self.class::DIRECTORY}/#{area_code}.csv")
+      CSV.table("#{ETSource.root}/#{self.class::DIRECTORY}/#{key}.csv")
     end
 
     # Converts a value from the ktoe to 'unit'
