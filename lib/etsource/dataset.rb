@@ -63,5 +63,10 @@ module ETSource
                   :area,
                   :number_of_existing_households
 
+    # Returns the Energy Balance for this area/dataset.
+    def energy_balance
+      @energy_balance ||= EnergyBalance.find(area)
+    end
+
   end
 end
