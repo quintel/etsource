@@ -7,9 +7,7 @@ describe Node do
   let(:node) { Node.new('foo') }
 
   before(:each) do
-    copy_fixtures_to_tmp
-    stub_const("ETSource::Node::DIRECTORY",
-               "tmp/fixtures/#{Node::DIRECTORY}")
+    use_fixtures
   end
 
   describe '#all' do

@@ -9,11 +9,7 @@ describe FinalDemandNode do
   let(:node)       { Node.find('final_demand_node.fd') }
 
   before(:each) do
-    copy_fixtures_to_tmp
-    stub_const("ETSource::Node::DIRECTORY",
-               "tmp/fixtures/#{Node::DIRECTORY}")
-    stub_const("ETSource::EnergyBalance::DIRECTORY",
-               "tmp/fixtures/#{EnergyBalance::DIRECTORY}")
+    use_fixtures
   end
 
   describe '#all' do
