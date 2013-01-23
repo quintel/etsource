@@ -3,11 +3,7 @@ require 'spec_helper'
 module ETSource; describe Dataset do
 
   before(:each) do
-    copy_fixtures_to_tmp
-    stub_const("ETSource::Dataset::DIRECTORY",
-               "tmp/fixtures/#{Dataset::DIRECTORY}")
-    stub_const("ETSource::EnergyBalance::DIRECTORY",
-               "tmp/fixtures/#{EnergyBalance::DIRECTORY}")
+    use_fixtures
   end
 
   describe "#new" do
