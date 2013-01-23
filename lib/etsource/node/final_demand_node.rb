@@ -6,9 +6,10 @@ module ETSource
 
     attr_accessor :query
 
-    # TODO: optimize for performance
-    def preset_demand
-      Runtime.new.execute(query)
+    # returns the preset demand for this node based on the outcome of the query
+    # in the context of the +dataset+
+    def preset_demand(dataset)
+      Runtime.new(dataset).execute(query)
     end
 
     validates_presence_of(:query)

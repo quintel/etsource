@@ -17,16 +17,20 @@ module ETSource; describe Dataset do
 
   end # describe #new
 
-  describe "#load" do
+  describe "#find" do
 
-    it "loads a dataset from file" do
+    it "finds the Dutch dataset from file" do
       dataset = Dataset.find(:nl)
       expect(dataset).to be_a(Dataset)
+      expect(dataset.key).to eql 'nl'
+    end
+
+    it "finds the UK dataset from file" do
+      dataset = Dataset.find(:uk)
+      expect(dataset).to be_a(Dataset)
+      expect(dataset.key).to eql 'uk'
     end
 
   end # describe #load
-
-  describe "#nodes" do
-  end
 
 end ; end

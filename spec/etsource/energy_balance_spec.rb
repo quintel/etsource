@@ -6,7 +6,7 @@ describe EnergyBalance do
 
   let(:eb) { EnergyBalance.new(:nl) }
 
-  describe '#new' do
+  describe 'new' do
 
     it "should be able to create a new one" do
       expect(-> { EnergyBalance.new } ).to_not raise_error
@@ -14,9 +14,22 @@ describe EnergyBalance do
 
     it "should be by default take the Netherlands and unit = PJ" do
       eb = EnergyBalance.new
-      expect(eb.area_code).to eql :nl
+      expect(eb.key).to eql :nl
       expect(eb.unit).to eql :pj
     end
+  end
+
+  describe "find" do
+
+    it "finds the dutch one" do
+      eb = EnergyBalance.find(:nl)
+      expect(eb.key).to eql :nl
+    end
+
+    it "raises an error when key is invalid" do
+      expect { EnergyBalance.find(nil) }.to raise_error InvalidKeyError
+    end
+
   end
 
   describe "#get" do
