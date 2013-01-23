@@ -32,10 +32,21 @@ module ETSource
       expect(runtime.execute("EB(residential, natural_gas)")).to be > -1
     end
 
-    it "executes combinations of the above" do
-      query = "EB('residential', 'natural Gas')"
+    it "executes Area functions" do
+      expect(runtime.execute("AREA(number_inhabitants)")).to be > -1
+    end
+
+    it "executes combinations of queries and algorithms" do
+      query = "EB('residential', 'natural_gas')"
       eb_function = runtime.execute(query)
       expect(runtime.execute("#{query} * 2")).to eql eb_function * 2
+    end
+
+    it "executes combinations of different queries" do
+      queries = ["EB(residential, natural_gas)", "AREA(number_inhabitants)"]
+      outcomes = queries.map { |q| runtime.execute(q) }
+      expect(runtime.execute(queries.join(" + "))).to eql outcomes.reduce(:+)
+      expect(runtime.execute(queries.join(" * "))).to eql outcomes.reduce(:*)
     end
 
   end
