@@ -1,0 +1,12 @@
+# The heat from the gas CHP in industry, excluding the part from the sustainable green gas.
+
+- unit = pj
+- deprecated_key = industy_chp_fossil_heat
+
+DIVIDE(
+  SUM(
+    V(industry_chp_combined_cycle_gas_power_fuelmix,output_of_heat_carriers),
+    NEG(V(industry_chp_combined_cycle_gas_power_fuelmix,"output_of_heat_carriers*sustainability_share"))
+  ),
+  BILLIONS
+)

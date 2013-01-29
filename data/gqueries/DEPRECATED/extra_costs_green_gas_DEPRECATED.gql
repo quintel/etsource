@@ -1,0 +1,12 @@
+- deprecated_key = extra_costs_green_gas
+# This query returns the additional costs made for the added green gas.
+# It is used in the total cost calculation.
+
+- unit = euro
+
+PRODUCT(
+   V(energy_national_gas_network_natural_gas,input_of_greengas),
+       SUM(V(CARRIER(greengas),cost_per_mj),
+       NEG(V(CARRIER(natural_gas),cost_per_mj))
+   )
+)

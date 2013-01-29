@@ -1,0 +1,14 @@
+- deprecated_key = share_domestic_electrity_production
+# 
+
+- unit = factor
+
+MIN(1,
+ SUM(
+   1,
+   NEG(
+     DIVIDE( 
+     V(energy_interconnector_imported_electricity,demand),
+     V(energy_power_hv_network_electricity,demand))
+     )
+  ))

@@ -1,0 +1,15 @@
+# The household energy use besides gas and electricity, in GJ per year per household. Energy used by the micro-CHP is deducted, as this is added with gas use.
+
+- deprecated_key = households_other_energy_use_per_households
+- unit = 
+
+DIVIDE(DIVIDE(
+     SUM(V(EXCLUDE(INTERSECTION(G(final_demand_cbs),SECTOR(households)),
+
+    V(households_final_demand_electricity,households_final_demand_network_gas )),demand),NEG(SUM(
+
+    V(Q(micro_chp),output_of_steam_hot_water))
+
+))
+
+,AREA(number_households)),1000)

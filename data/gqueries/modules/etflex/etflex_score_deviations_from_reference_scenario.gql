@@ -1,0 +1,42 @@
+# DEBT: enclose slider values in separate gqueries.
+#
+# We have defined a scenario that should be the ideal candidate for this
+# for every slider that is above its reference scenario counterpart, ONE
+# (extra) penalty point is given
+#
+# Reference values:
+#
+# DEMAND
+# * Isolation:         2.8
+# * Electric cars:      75%
+# * LED:                90%
+# * Fuel cell:           5%
+# * heat pump:          50%
+# * solar water heater: 25%
+#
+# SUPPLY
+# * coal plants:         0
+# * gas plants:          6
+# * nuclear:             0
+# * wind mills:       1600
+# * solar:              41%
+# * green gas:           3%
+
+- unit = #
+
+[
+  Q(etflex_slider_insulation) > 2.8,
+  V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms) > 0.75,
+  V(households_lighting_led_electricity,share_of_households_useful_demand_light) > 0.9,
+  V(households_water_heater_micro_chp_network_gas, share_of_households_useful_demand_for_hot_water_after_solar_heater_and_add_on) > 0.05,
+  V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on) > 0.50,
+  Q(market_penetration_of_solar_heater_for_hot_water_in_households) > 0.25,
+
+  V(energy_power_ultra_supercritical_coal, number_of_units) > 0,
+  V(energy_power_combined_cycle_ccs_network_gas, number_of_units) > 6,
+  V(energy_power_nuclear_gen3_uranium_oxide,number_of_units) > 0,
+  V(energy_power_wind_turbine_offshore, number_of_units) > 1600,
+  (V(households_solar_pv_solar_radiation, number_of_units) * V(households_solar_pv_solar_radiation, land_use_per_unit) / AREA(roof_surface_available_pv)) > 0.41,
+  V(energy_national_gas_network_natural_gas,greengas_input_conversion) > 0.03
+
+].count(true) * -1

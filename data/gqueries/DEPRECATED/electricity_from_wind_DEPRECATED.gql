@@ -1,0 +1,16 @@
+- deprecated_key = electricity_from_wind
+# All electricity made by wind turbines in the area.
+# 
+# not dynamic!
+
+- unit = mj
+
+SUM
+(
+ V(
+  energy_power_wind_turbine_inland,
+  energy_power_wind_turbine_coastal,
+  energy_power_wind_turbine_offshore,
+   output_of_electricity
+  )
+)

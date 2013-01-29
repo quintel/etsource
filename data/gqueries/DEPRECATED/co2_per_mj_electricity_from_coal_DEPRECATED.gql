@@ -1,0 +1,14 @@
+- deprecated_key = co2_per_mj_electricity_from_coal
+# This returns the co2 emission in kg CO2 per MJ electricity produced by coal plants
+
+- unit = kg
+
+IF(
+   EQUALS(
+    SUM(V( Q(electricity_producing_converters_coal), output_of_electricity)),0,),
+    0,
+    DIVIDE(
+     SUM(V( Q(electricity_producing_converters_coal), primary_co2_emission )),
+     SUM(V( Q(electricity_producing_converters_coal), output_of_electricity ))
+     )
+  )

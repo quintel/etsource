@@ -1,0 +1,9 @@
+- deprecated_key = agriculture_percentage_energy_use_of_total
+# 
+
+- unit = factor
+
+DIVIDE(
+SUM(V(INTERSECTION(G(final_demand_cbs),SECTOR(agriculture)),final_demand)),
+SUM(V(G(final_demand_cbs),final_demand))
+)

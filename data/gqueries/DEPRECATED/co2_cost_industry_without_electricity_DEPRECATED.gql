@@ -1,0 +1,13 @@
+- deprecated_key = co2_cost_industry_without_electricity
+# Same as co2_cost_industry, only with the CO2 costs for electricity decucted, because these are already calculated in the energy sector
+
+- unit = euro
+
+PRODUCT(
+                AREA(co2_price), 
+                SUM (
+                         1, 
+                         NEG( AREA(co2_percentage_free))
+                ),  
+                Q(co2_emission_industry_without_electricity)
+)
