@@ -1,0 +1,12 @@
+- unit = boolean
+
+IF(
+  GOAL_IS_SET(renewable_percentage),
+
+  GREATER_OR_EQUAL(
+    PRODUCT(100,Q(renewability)),
+    GOAL_USER_VALUE(renewable_percentage)
+  ),
+
+  nil
+)

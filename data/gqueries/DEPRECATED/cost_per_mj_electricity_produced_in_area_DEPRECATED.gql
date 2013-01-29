@@ -1,0 +1,9 @@
+- deprecated_key = cost_per_mj_electricity_produced_in_area
+# This query returns the cost of electricity produced in the area. It can be used to determine the cost of imported electricity if it is used in other areas.
+
+- unit = euro
+
+PRODUCT(
+  Q(cost_domestic_electricity),
+  INVERSE(SUM(V(GROUP(electricity_production),output_of_electricity)))
+)
