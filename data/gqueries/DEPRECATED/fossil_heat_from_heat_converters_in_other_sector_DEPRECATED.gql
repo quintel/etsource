@@ -1,0 +1,25 @@
+# The fossil fuels, minus the sustainable part of the fuels.
+- deprecated_key = fossil_heat_from_converters_in_other_sector
+
+
+- unit = mj
+
+SUM(
+  V(
+    other_burner_network_gas, 
+    other_burner_crude_oil, 
+    other_burner_coal,
+    other_final_demand_steam_hot_water,
+      output_of_heat_carriers)
+  
+,NEG(
+
+SUM(
+  V(
+    other_burner_network_gas, 
+    other_burner_crude_oil, 
+    other_burner_coal,
+    other_final_demand_steam_hot_water,"
+      output_of_heat_carriers * sustainability_share ")
+  )
+))

@@ -1,0 +1,12 @@
+# Added sustainable to allow future deviations of 1
+
+- deprecated_key = total_cost_of_primary_algae_diesel
+- unit = euro
+
+PRODUCT(
+  SUM(
+    V(G(final_demand_cbs), primary_demand_of_algae_diesel)
+  )
+  ,
+  V(CARRIER(algae_diesel),"cost_per_mj * sustainable")
+)

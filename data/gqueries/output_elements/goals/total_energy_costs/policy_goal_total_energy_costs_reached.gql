@@ -1,0 +1,12 @@
+- unit = boolean
+
+IF(
+  GOAL_IS_SET(total_energy_costs),
+
+  LESS_OR_EQUAL(
+    UNIT(Q(total_costs),billions),
+    Q(policy_goal_total_energy_costs_target_value)
+  ),
+
+  nil
+)

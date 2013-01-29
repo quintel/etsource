@@ -1,0 +1,14 @@
+# Are we sure about this unit?
+
+- unit = euro
+
+IF(
+  GOAL_IS_SET(electricity_costs),
+
+  PRODUCT(
+    QUERY_PRESENT(policy_goal_electricity_costs_value),
+    SUM(1,DIVIDE(GOAL_USER_VALUE(electricity_costs),100))
+  ),
+
+  nil
+)

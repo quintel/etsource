@@ -1,0 +1,16 @@
+# 
+
+- deprecated_key = co2_emission_percent_change_from_1990_corrected_for_electricity_import
+- unit = %
+
+DIVIDE(
+       SUM(
+            DIVIDE(
+                   Q(total_co2_emissions),
+                   BILLIONS
+                   )
+           ,NEG(AREA(co2_emission_1990))
+           )
+          ,
+       AREA(co2_emission_1990)
+       )
