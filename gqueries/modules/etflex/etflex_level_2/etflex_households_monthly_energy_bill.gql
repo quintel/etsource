@@ -1,12 +1,7 @@
 - unit = euro
 
-DIVIDE (
-  DIVIDE (
-    SUM (
-      V(households_final_demand_network_gas, "demand * weighted_carrier_cost_per_mj"),
-      V(households_final_demand_electricity, demand) * Q(average_costs_of_produced_electricity)
-    ),
-    AREA(number_households)
-  ),
-  MONTHS_PER_YEAR
-)
+SUM (
+  V(households_final_demand_network_gas, "demand * weighted_carrier_cost_per_mj"),
+  V(households_final_demand_electricity, demand) * Q(average_costs_of_produced_electricity)
+) / AREA(number_households) / MONTHS_PER_YEAR
+
