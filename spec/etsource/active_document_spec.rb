@@ -124,9 +124,19 @@ describe SomeDocument do
 
   describe "save!" do
 
+    context 'new file' do
+
+      it 'writes to disk' do
+        some_document = SomeDocument.new('the_king_of_pop')
+        some_document.save!
+        File.read
+      end
+
+    end
+
     context 'when nothing changed' do
 
-      it "should not change anything when nothing changed" do
+      it "does not write to disk" do
         cache = File.read(some_document.file_path)
         some_document.save!
         cache.should == File.read(some_document.file_path)

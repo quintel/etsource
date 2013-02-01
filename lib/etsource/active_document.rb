@@ -1,3 +1,5 @@
+require 'file_utils'
+
 module ETSource
 
 class ActiveDocument
