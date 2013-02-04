@@ -1,4 +1,4 @@
-require 'file_utils'
+require 'fileutils'
 
 module ETSource
 

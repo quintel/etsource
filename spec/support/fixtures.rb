@@ -16,7 +16,7 @@ end
 def stub_directories
   ETSource.constants.each do |constant_name|
     if defined?(ETSource.const_get(constant_name)::DIRECTORY)
-      directory = ETSource.const_get(constant_name)::DIRECTORY
+      directory = ETSource.const_get(constant_name)::DIRECTORY.gsub(/^data\//,'')
       unless directory.match /tmp\/fixtures/
         stub_const("ETSource::#{constant_name}::DIRECTORY",
                    "tmp/fixtures/#{directory}")

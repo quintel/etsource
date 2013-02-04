@@ -8,7 +8,7 @@ module ETSource
   # in ktoe, the standard of the IEA.
   class EnergyBalance
 
-    DIRECTORY = 'energy_balances'
+    DIRECTORY = 'data/energy_balances'
 
     attr_accessor :key, :unit
 
