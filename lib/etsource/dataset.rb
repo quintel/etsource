@@ -1,7 +1,7 @@
 module ETSource
   class Dataset < ActiveDocument
 
-    DIRECTORY = 'datasets_new'
+    DIRECTORY = 'data/datasets'
 
     attr_accessor :annual_infrastructure_cost_electricity,
                   :annual_infrastructure_cost_gas,
