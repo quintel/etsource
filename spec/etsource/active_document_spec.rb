@@ -128,8 +128,7 @@ describe SomeDocument do
 
       it 'writes to disk' do
         some_document = SomeDocument.new('the_king_of_pop')
-        some_document.save!
-        File.read
+        expect(some_document.save!).to be_true
       end
 
     end
