@@ -1,0 +1,12 @@
+# Total score calculated for ETFlex
+# This is a temporary score, as it needs work from one of the modelers.
+#
+MAX(0,
+    SUM(
+        Q(etflex_score_base),
+        Q(etflex_households_production_renewable_energy_per_household),
+        -10 * Q(etflex_households_co2_emissions_per_household),
+        -Q(etflex_households_monthly_energy_bill),
+        -0.05 * Q(etflex_households_final_demand_electricity_per_household)
+    )
+)
