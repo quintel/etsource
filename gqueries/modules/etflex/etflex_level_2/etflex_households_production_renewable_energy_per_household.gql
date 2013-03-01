@@ -1,12 +1,9 @@
-# Percentage of renewable energy used in a household
+# Production of renewable energy used in a household
 
-- unit = %
+- unit = kwh
 
-DIVIDE(
-  SUM(
-    V(households_solar_pv_solar_radiation, output_of_electricity),
-    V(households_water_heater_solar_thermal, demand),
-    V(households_space_heater_heatpump_ground_water_electricity, input_of_ambient_heat)
-  ) / AREA (number_households),
-  Q(etflex_households_final_demand_energy_per_household)
-) * 100
+SUM(
+  V(households_solar_pv_solar_radiation, output_of_electricity),
+  V(households_water_heater_solar_thermal, demand),
+  V(households_space_heater_heatpump_ground_water_electricity, input_of_ambient_heat)
+) / AREA (number_households) / MJ_PER_KWH
