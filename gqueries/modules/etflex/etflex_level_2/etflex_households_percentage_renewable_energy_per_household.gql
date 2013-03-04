@@ -5,8 +5,8 @@
 DIVIDE(
   SUM(
     V(households_solar_pv_solar_radiation, output_of_electricity),
-    V(households_water_heater_solar_thermal, demand),
-    V(households_space_heater_heatpump_ground_water_electricity, input_of_ambient_heat)
-  ) / AREA (number_households),
+    V(households_water_heater_solar_thermal, output_of_useable_heat),
+    V(households_space_heater_heatpump_ground_water_electricity, "output_of_useable_heat * sustainability_share")
+  ) / AREA (number_households) / MJ_PER_KWH,
   Q(etflex_households_final_demand_energy_per_household)
 ) * 100
