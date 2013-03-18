@@ -38,8 +38,6 @@ buildings_appliances_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildin
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 18638805970.1493
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3942.0
   :households_supplied_per_unit: 1.0
@@ -52,7 +50,6 @@ buildings_appliances_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildin
   :simult_se: 0.0
   :simult_wd: -0.75
   :simult_we: -0.75
-  :simult_supply: 1.0
   :variability: 0.0
   :electricity_output_capacity: 0.472635658914729
   :heat_output_capacity: 0.606666666666667
@@ -68,8 +65,6 @@ buildings_collective_chp_natural_gas-(network_gas) -- s --> (network_gas)-energy
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 6097.77777777778
   :households_supplied_per_unit: 1.0
@@ -82,7 +77,6 @@ buildings_collective_chp_natural_gas-(network_gas) -- s --> (network_gas)-energy
   :simult_se: 0.0
   :simult_wd: -0.75
   :simult_we: -0.75
-  :simult_supply: 1.0
   :variability: 0.0
   :electricity_output_capacity: 47.9166666666667
   :heat_output_capacity: 72.9166666666667
@@ -98,8 +92,6 @@ buildings_collective_chp_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-ene
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 3672.39293209657
   :households_supplied_per_unit: 1.0
@@ -114,13 +106,11 @@ buildings_collective_geothermal-(geothermal): {conversion: 1.0}
 (steam_hot_water)-buildings_collective_geothermal: {conversion: 1.0}
 buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
 
-:buildings_cooling_airconditioning:
+:buildings_cooling_airconditioning_electricity:
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 45490320000.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2240.0
   :households_supplied_per_unit: 1.0
@@ -133,17 +123,16 @@ buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_e
   :simult_se: 1.0
   :simult_wd: 0.0
   :simult_we: 0.0
-  :simult_supply: 0.0
   :variability: 0.0
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 0.0025
   :peak_load_units: 2256464.28571429
-buildings_cooling_airconditioning-(electricity): {conversion: 0.25}
-buildings_cooling_airconditioning-(ambient_cold): {conversion: 0.75}
-(cooling)-buildings_cooling_airconditioning: {conversion: 1.0}
-(loss)-buildings_cooling_airconditioning: {}
-buildings_cooling_airconditioning-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
-buildings_cooling_airconditioning-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
+buildings_cooling_airconditioning_electricity-(electricity): {conversion: 0.25}
+buildings_cooling_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
+(cooling)-buildings_cooling_airconditioning_electricity: {conversion: 1.0}
+(loss)-buildings_cooling_airconditioning_electricity: {}
+buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+buildings_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :buildings_cooling_collective_cooling_network_electricity:
   :co2_free: 0.0
@@ -157,8 +146,6 @@ buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> 
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2190.0
   :households_supplied_per_unit: 1.0
@@ -171,7 +158,6 @@ buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> 
   :simult_se: 1.0
   :simult_wd: 0.0
   :simult_we: 0.0
-  :simult_supply: 0.0
   :variability: 0.0
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 8.681
@@ -187,8 +173,6 @@ buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -
   :availability: 0.0
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4000.0
   :households_supplied_per_unit: 1.0
@@ -242,8 +226,6 @@ buildings_final_demand_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distrib
   :co2_free: 0.0
   :costs_per_mj: 0.0
   :demand_expected_value: 120000000000.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8306.14510334129
   :households_supplied_per_unit: 0.0
@@ -398,8 +380,6 @@ buildings_final_demand_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energ
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 985313432.835821
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 8760.0
   :households_supplied_per_unit: 0.0
@@ -418,9 +398,7 @@ buildings_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (st
 :buildings_heating_savings_from_insulation_useable_heat:
   :availability: 0.0
   :co2_free: 0.0
-  :costs_per_mj: 0.00583522009534733
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
+  :costs_per_mj: 0.00583522
   :forecasting_error: 0.0
   :full_load_hours: 0.0
   :households_supplied_per_unit: 0.0
@@ -445,29 +423,27 @@ buildings_heating_savings_from_recirculation_useable_heat-(useable_heat): {conve
 buildings_heating_savings_from_recovery_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-buildings_heating_savings_from_recovery_useable_heat: {conversion: 1.0}
 
-:buildings_lighting_efficient_fluorescent:
+:buildings_lighting_efficient_fluorescent_electricity:
   :co2_free: 0.0
   :demand_expected_value: 14692260098.7074
-buildings_lighting_efficient_fluorescent-(electricity): {conversion: 1.0}
-(light)-buildings_lighting_efficient_fluorescent: {conversion: 0.2}
-(loss)-buildings_lighting_efficient_fluorescent: {}
-buildings_lighting_efficient_fluorescent-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
+buildings_lighting_efficient_fluorescent_electricity-(electricity): {conversion: 1.0}
+(light)-buildings_lighting_efficient_fluorescent_electricity: {conversion: 0.2}
+(loss)-buildings_lighting_efficient_fluorescent_electricity: {}
+buildings_lighting_efficient_fluorescent_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
-:buildings_lighting_led:
+:buildings_lighting_led_electricity:
   :co2_free: 0.0
   :demand_expected_value: 272078890.716804
-buildings_lighting_led-(electricity): {conversion: 1.0}
-(light)-buildings_lighting_led: {conversion: 0.45}
-(loss)-buildings_lighting_led: {}
-buildings_lighting_led-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
+buildings_lighting_led_electricity-(electricity): {conversion: 1.0}
+(light)-buildings_lighting_led_electricity: {conversion: 0.45}
+(loss)-buildings_lighting_led_electricity: {}
+buildings_lighting_led_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_lighting_electricity: {share: 1.0}
 
 :buildings_lighting_savings_from_daylight_control_light:
   :availability: 0.0
   :co2_free: 0.0
   :costs_per_mj: 0.00932887774993038
   :demand_expected_value: 684772865.535301
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 0.0
   :households_supplied_per_unit: 0.0
@@ -485,8 +461,6 @@ buildings_lighting_savings_from_daylight_control_light-(light): {conversion: 1.0
   :co2_free: 0.0
   :costs_per_mj: 0.00556947925368978
   :demand_expected_value: 524036668.866928
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 0.0
   :households_supplied_per_unit: 0.0
@@ -521,8 +495,6 @@ buildings_local_production_electricity-(electricity) -- d --> (electricity)-buil
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.83
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.05
   :full_load_hours: 1000.0
   :households_supplied_per_unit: 0.0
@@ -535,7 +507,6 @@ buildings_local_production_electricity-(electricity) -- d --> (electricity)-buil
   :simult_se: -0.37
   :simult_wd: -0.38
   :simult_we: 0.0
-  :simult_supply: 1.0
   :variability: 1.0
   :electricity_output_capacity: 0.015
   :heat_output_capacity: 0.0
@@ -550,8 +521,6 @@ buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 1042.44
   :households_supplied_per_unit: 0.0
@@ -572,8 +541,6 @@ buildings_space_heater_coal-(coal) -- s --> (coal)-buildings_final_demand_for_sp
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 295283541.341654
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4380.0
   :households_supplied_per_unit: 1.0
@@ -586,7 +553,6 @@ buildings_space_heater_coal-(coal) -- s --> (coal)-buildings_final_demand_for_sp
   :simult_se: 0.0
   :simult_wd: 1.0
   :simult_we: 1.0
-  :simult_supply: 0.0
   :variability: 0.0
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 2.251
@@ -603,8 +569,6 @@ buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electrici
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 6000000000.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 981.12
   :households_supplied_per_unit: 0.0
@@ -625,8 +589,6 @@ buildings_space_heater_crude_oil-(crude_oil) -- s --> (crude_oil)-buildings_fina
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 9000000000.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2500.0
   :households_supplied_per_unit: 0.0
@@ -646,8 +608,6 @@ buildings_space_heater_district_heating_steam_hot_water-(steam_hot_water) -- s -
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 2124190717.62869
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 1716.96
   :households_supplied_per_unit: 0.0
@@ -660,7 +620,6 @@ buildings_space_heater_district_heating_steam_hot_water-(steam_hot_water) -- s -
   :simult_se: 0.0
   :simult_wd: 1.0
   :simult_we: 1.0
-  :simult_supply: 0.0
   :variability: 0.0
   :electricity_output_capacity: 0.0
   :heat_output_capacity: 0.081
@@ -675,8 +634,6 @@ buildings_space_heater_electricity-(electricity) -- s --> (electricity)-building
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 1971049622.13323
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 4380.0
   :households_supplied_per_unit: 1.0
@@ -699,8 +656,6 @@ buildings_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (ne
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 118014510882.57
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 2000.0
   :households_supplied_per_unit: 0.0
@@ -721,8 +676,6 @@ buildings_space_heater_network_gas-(network_gas) -- s --> (network_gas)-building
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 791.666666666667
   :households_supplied_per_unit: 0.0
@@ -743,8 +696,6 @@ buildings_space_heater_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-bu
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
   :co2_free: 0.0
   :demand_expected_value: 0.0
-  :electrical_efficiency_when_using_coal: 0.0
-  :electrical_efficiency_when_using_wood_pellets: 0.0
   :forecasting_error: 0.0
   :full_load_hours: 1016.16
   :households_supplied_per_unit: 0.0
@@ -784,7 +735,7 @@ buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity: {share: 0.0}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.0}
 buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning: {share: 1.0}
+buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning_electricity: {share: 1.0}
 
 :buildings_useful_demand_after_motion_detection_daylight_control_light:
   :co2_free: 0.0
@@ -792,8 +743,8 @@ buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light): {conversion: 1.0}
 (light)-buildings_useful_demand_after_motion_detection_daylight_control_light: {conversion: 1.0}
 buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- f --> (light)-buildings_lighting_standard_fluorescent_electricity: {share: 0.75}
-buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_efficient_fluorescent: {share: 0.24}
-buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_led: {share: 0.01}
+buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_efficient_fluorescent_electricity: {share: 0.24}
+buildings_useful_demand_after_motion_detection_daylight_control_light-(light) -- s --> (light)-buildings_lighting_led_electricity: {share: 0.01}
 
 :buildings_useful_demand_after_motion_detection_light:
   :co2_free: 0.0

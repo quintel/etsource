@@ -1,0 +1,11 @@
+IF(INPUT_VALUE(households_heating_micro_chp_share) > 0,
+  "micro_chp",
+  IF(INPUT_VALUE(households_heating_gas_combi_heater_share) > 50,
+    "combi_boiler",
+    IF(INPUT_VALUE(households_heating_heat_pump_ground_share) > 50,
+      "heatpump_ground",
+      "error"
+    )
+  )
+)
+

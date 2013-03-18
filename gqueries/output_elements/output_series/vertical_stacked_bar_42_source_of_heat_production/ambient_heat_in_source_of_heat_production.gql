@@ -1,6 +1,20 @@
 #
 
-
 - unit = pj
 
-DIVIDE(PRODUCT(DIVIDE(SUM(V(G(heat_production),input_of_ambient_carriers)),SUM(V(G(heat_production),output_of_heat_and_cooling_carriers))),SUM(V(G(heat_production),output_of_heat_and_cooling_carriers))),BILLIONS)
+DIVIDE(
+  PRODUCT(
+    DIVIDE(
+      SUM(
+        V(G(heat_production),input_of_ambient_carriers)
+      ),
+      SUM(
+        V(G(heat_production),demand)
+      )
+    ),
+    SUM(
+      V(G(heat_production),output_of_heat_and_cooling_carriers)
+    )
+  ),
+  BILLIONS
+)
