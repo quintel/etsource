@@ -312,15 +312,15 @@ module ETE
               if output_carrier == :coal
                 # Biocoal is not specified in InputExcel, but has the same
                 # efficiency as ordinary coal.
-                ":#{ output_carrier }: #{ attributes[key] }, " \
-                ":torrified_biomass_pellets: #{ attributes[key] }, " \
-                ":lignite: #{ attributes[key] }"
+                "#{ output_carrier }: #{ attributes[key] }, " \
+                "torrified_biomass_pellets: #{ attributes[key] }, " \
+                "lignite: #{ attributes[key] }"
               else
-                ":#{ output_carrier }: #{ attributes[key] }"
+                "#{ output_carrier }: #{ attributes[key] }"
               end
             end
 
-          efficiencies.push(":#{ carrier }: {#{ c_efficiency.join(', ') }}")
+          efficiencies.push("#{ carrier }: {#{ c_efficiency.join(', ') }}")
         end
       end
 
