@@ -1,0 +1,13 @@
+- factor = 1.0
+- id = 395
+- max_value = 3.0
+- min_value = 1.5
+- unit = x
+- update_period = future
+- step_value = 0.1
+- start_value_gql = present:AREA(ventilation_rate)
+
+EACH(
+  UPDATE(V(buildings_useful_demand_for_space_heating), preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) }),
+  UPDATE(V(buildings_useful_demand_cooling),                     preset_demand, -> { USER_INPUT() / AREA(ventilation_rate) * V(UPDATE_OBJECT(), preset_demand) })
+)
