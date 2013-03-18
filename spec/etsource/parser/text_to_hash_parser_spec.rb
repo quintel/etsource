@@ -67,9 +67,9 @@ TEXT
         expect(p.to_hash[:number]).to eql 1.0
       end
 
-      it "parses arrays" do
+      it "does not parse arrays" do
         p = TextToHashParser.new("- array = a, b, c")
-        expect(p.to_hash[:array]).to eql ["a","b","c"]
+        expect(p.to_hash[:array]).to eql "a, b, c"
       end
 
       it "should parse query" do
