@@ -9,6 +9,7 @@ origin_dir = ARGV[0]
 
 Dir.glob("#{origin_dir}/**/*.yml").each do |file_name|
   contents = YAML.load_file(file_name).to_hash
+  contents['description'] = contents.delete('comments')
   input = ETSource::Input.new(file_name, contents)
   input.save!
 end
