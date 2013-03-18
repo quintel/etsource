@@ -57,6 +57,7 @@ files =
 
   # etengine
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") -
+  Dir.glob(PATH_OF_REPOSITORIES + "/etengine/tmp/**/*") - 
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/etsource_export/**/*") - 
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/log/**/*") - 
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/statusLog") -
@@ -80,9 +81,8 @@ files.delete_if do |file_name|
 require 'iconv' unless String.method_defined?(:encode)
 for file in files
   next unless File.file?(file)
-  content = File.read(file)
+  content = File.read(file).force_encoding('utf-8')
 
-  #puts "processing #{file}"
   # Actual replacement
   replacements.each do |old_key, new_key|
     raise "can't be nil! (found in #{file_name}: #{old_key} & #{new_key})" if (old_key.nil? || new_key.nil?)
@@ -90,7 +90,6 @@ for file in files
     # straightforward renaming all occurences
     if content.include? old_key
 
-      #puts "content found!"
       # Only replace if REPLACEMENT_FLAG == 1
       if REPLACEMENT_FLAG == 1
         content = content.gsub(old_key, new_key)
