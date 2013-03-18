@@ -70,11 +70,7 @@ module ETSource
       match_data = variable_text.match(ATTR_LINE)
       key = match_data[1]; value = match_data[2]
 
-      if value.include?(",")
-        @variables[key.strip.to_sym] = value.split(",").map(&:strip)
-      else
-        @variables[key.strip.to_sym] = cast(value.strip)
-      end
+      @variables[key.strip.to_sym] = cast(value.strip)
     end
 
     def add_query(query_text)
