@@ -1,0 +1,13 @@
+- factor = 1.0
+- id = 584
+- min_value = 0.0
+- unit = #
+- update_period = future
+- step_value = 1.0
+- start_value_gql = present:V(energy_power_engine_diesel,number_of_units)
+- max_value_gql = present:PRODUCT(DIVIDE(Q(total_electricity_produced),V(energy_power_engine_diesel,typical_electricity_production_per_unit)),2)
+
+EACH(
+  UPDATE(V(energy_power_engine_diesel), number_of_units, USER_INPUT()),
+  UPDATE(L(energy_power_engine_diesel), preset_demand_by_electricity_production, V(energy_power_engine_diesel, production_based_on_number_of_units))
+)
