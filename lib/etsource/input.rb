@@ -5,7 +5,8 @@ module ETSource
     attr_accessor :comments, :factor, :id, :label, :label_query, :max_value,
                   :max_value_gql, :min_value, :min_value_gql, :query,
                   :share_group, :start_value, :start_value_gql, :unit,
-                  :update_period, :update_type, :default_unit, :dependent_on
+                  :update_period, :update_type, :default_unit, :dependent_on,
+                  :step_value
 
     DIRECTORY = 'data/inputs'
 
