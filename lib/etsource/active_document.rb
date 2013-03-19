@@ -68,6 +68,17 @@ class ActiveDocument
     "<#{self.class}: #{key}>"
   end
 
+  # Creates a hash of the current Object.
+  def to_hash
+    instance_variables.inject({}) do |hash, var|
+      key = var[1..-1].to_sym #take out the leading @
+      unless not_exported_variables.include?(key)
+        hash[key] = instance_variable_get(var)
+      end
+      hash
+    end
+  end
+
   #######
   private
   #######
@@ -110,17 +121,6 @@ class ActiveDocument
   # version.
   def file_contents
     parser = ETSource::HashToTextParser.new(to_hash).to_text
-  end
-
-  # Creates a hash of the current Object.
-  def to_hash
-    instance_variables.inject({}) do |hash, var|
-      key = var[1..-1].to_sym #take out the leading @
-      unless not_exported_variables.include?(key)
-        hash[key] = instance_variable_get(var)
-      end
-      hash
-    end
   end
 
   # Do not export these instance_variables
