@@ -57,6 +57,18 @@ TEXT
         expect(p.to_hash[:foo]).to eql "bar"
       end
 
+      it "parses attributes to nil when its empty with a space" do
+        p = TextToHashParser.new("- unit = ")
+        expect(p.to_hash[:unit]).to eq ""
+        expect(p.to_hash[:query]).to be_nil
+      end
+
+      it "parses attributes to nil when its empty without a space" do
+        p = TextToHashParser.new("- unit =")
+        expect(p.to_hash[:unit]).to eq ""
+        expect(p.to_hash[:query]).to be_nil
+      end
+
       it "respects integers" do
         p = TextToHashParser.new("- number = 1")
         expect(p.to_hash[:number]).to eql 1
