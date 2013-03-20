@@ -5,7 +5,7 @@ module ETSource
     attr_accessor :description, :query, :unit, :deprecated_key
 
     FILE_SUFFIX = 'gql'
-    DIRECTORY   = 'gqueries'
+    DIRECTORY   = 'data/gqueries'
 
   end # class Guery
 
