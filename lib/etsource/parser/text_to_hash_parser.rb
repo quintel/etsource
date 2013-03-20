@@ -18,7 +18,7 @@ module ETSource
 
     ATTR_PREFIX  = "-"
     ATTR_LINE    = /#{ATTR_PREFIX}\s(.+)\s=\s(.+)/
-    COMMENT_LINE = /^#(.+)/
+    COMMENT_LINE = /^#(.*)/
     GQUERY_LINE  = /[^\s]+/
 
     def initialize(input)
@@ -62,8 +62,13 @@ module ETSource
       end
     end
 
+    # TODO: prettyify code.
     def add_comment(comment_text)
-      @comments += comment_text[2..-1]
+      if comment_text == "#\n"
+        @comments += comment_text[1..-1]
+      else
+        @comments += comment_text[2..-1]
+      end
     end
 
     def add_variable(variable_text)

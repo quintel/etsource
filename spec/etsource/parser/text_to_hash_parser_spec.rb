@@ -46,6 +46,11 @@ TEXT
         expect(p.to_hash[:description]).to eql "line1 \nline2"
       end
 
+      it "respects empty lines" do
+        p = TextToHashParser.new("# line1\n#\n# line2\n")
+        expect(p.to_hash[:description]).to eql "line1\n\nline2"
+      end
+
       it "parses attributes" do
         expect(p.to_hash[:unit]).to eql "%"
         expect(p.to_hash[:deprecated_key]).to eql "foo"
