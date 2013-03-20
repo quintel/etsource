@@ -5,24 +5,54 @@
 ### Master:
 ![Master branch](https://semaphoreapp.com/api/v1/projects/63d00abb0b002bb34bdbe9602aee85a2a0d42f56/25174/badge.png)
 
-### Ruby:
-![Ruby branch](https://semaphoreapp.com/api/v1/projects/63d00abb0b002bb34bdbe9602aee85a2a0d42f56/20838/badge.png)
+# Console / Object Mapper
+
+You can load the objects through the console
+
+    rake console
+
+E.g. get a Gquery:
+
+    pry(main)> ETSource::Gquery.all.last
+    => <ETSource::Gquery: share_of_transport_in_final_demand>
+
+Then you can change stuff:
+
+    pry(main)> gquery.unit = "number"
+    => "number"
+    pry(main)> gquery.save!
+    => true
+
+Then you have saved the new unit to disk.
+
+This way you can easily mass-update any properties for gqueries, inputs etc.
+
+For example, if you want to append an exclamation mark to each input key:
+
+```ruby
+ETSource::Input.all.each do |input|
+  input.key = input.key + "!"
+  input.save!
+end
+```
 
 # Folder structure
 
-## models
+## data
+
+The `data` folder is the previsioned new folder where all the data is stored.
+Currently, it contains the `gueries` and `inputs`, that are used by the
+Object Mapper.
+
+### data/gqueries
+
+### models
 
 The model folders contains other models. Mostly for illustration, documentation
 and testing purposes. These models can be run and tested using the etengine
 command line interface. For instance, models/minimal contains the minimal set
 of files and content for a simple two-converter graph. To illustrate the
 behaviour of flex-max links see the `models/flex_max folder`.
-
-## gqueries
-
-Gqueries nested within folders. The folders names are
-concatenated and become the group of a gquery. E.g. The gquery co2 defined in:
-/gqueries/foo/bar/co2.yml will be assigned to the gquery\_group `foo_bar`.
 
 ## scripts
 
