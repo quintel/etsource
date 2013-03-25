@@ -11,6 +11,10 @@ require_relative 'etsource/active_document'
 
 require_relative 'etsource/input'
 require_relative 'etsource/gquery'
+require_relative 'etsource/dataset'
+require_relative 'etsource/energy_balance'
+require_relative 'etsource/carrier'
+
 require_relative 'etsource/node'
 require_relative 'etsource/node/converter'
 require_relative 'etsource/node/demand_node'
@@ -19,6 +23,3 @@ require_relative 'etsource/node/stat_node'
 
 require_relative 'etsource/runtime'
 
-require_relative 'etsource/dataset'
-
-require_relative 'etsource/energy_balance'
