@@ -74,6 +74,5 @@ module ETSource
       end
     end
 
-  end
-
-end
+  end # Dataset
+end # ETSource
