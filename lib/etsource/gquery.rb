@@ -1,6 +1,7 @@
 module ETSource
 
-  class Gquery < ActiveDocument
+  class Gquery
+    include ActiveDocument
 
     attr_accessor :description, :query, :unit, :deprecated_key
 
