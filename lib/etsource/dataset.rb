@@ -1,5 +1,6 @@
 module ETSource
-  class Dataset < ActiveDocument
+  class Dataset
+    include ActiveDocument
 
     DIRECTORY = 'data/datasets'
 

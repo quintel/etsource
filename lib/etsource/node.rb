@@ -1,6 +1,7 @@
 module ETSource
 
-  class Node < ActiveDocument
+  class Node
+    include ActiveDocument
 
     DIRECTORY = 'nodes'
 
