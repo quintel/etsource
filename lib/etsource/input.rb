@@ -1,6 +1,7 @@
 module ETSource
 
-  class Input < ActiveDocument
+  class Input
+    include ActiveDocument
 
     attr_accessor :comments, :factor, :id, :label, :label_query, :max_value,
                   :max_value_gql, :min_value, :min_value_gql, :query,

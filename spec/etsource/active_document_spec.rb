@@ -2,18 +2,14 @@ require 'spec_helper'
 
 module ETSource
 
-  class SomeDocument < ActiveDocument
+  class SomeDocument
+    include ActiveDocument
 
     attr_accessor :description, :unit, :query
 
     FILE_SUFFIX = 'suffix'
     DIRECTORY   = 'active_document'
-
   end
-
-end
-
-module ETSource
 
 describe SomeDocument do
 
