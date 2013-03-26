@@ -10,6 +10,7 @@ group :test do
 end
 
 gem 'activemodel'
+gem 'virtus'
 
 gem 'rubel'
 
