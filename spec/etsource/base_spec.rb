@@ -5,7 +5,7 @@ describe ETSource do
   describe "root" do
 
     it "should return a string" do
-      ETSource.root.size.should be > 1
+      expect(ETSource.root.size).to be > 1
     end
 
   end

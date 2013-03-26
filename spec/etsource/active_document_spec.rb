@@ -61,12 +61,12 @@ describe SomeDocument do
   describe "find" do
 
     it "should load a some_document from file" do
-      some_document.key.should == 'foo'
-      some_document.file_path.should include some_document.key
-      some_document.description.size.should > 0
-      some_document.description.should include "MECE" #testing some words
-      some_document.description.should include "graph." #testing some words
-      some_document.unit.should == 'kg'
+      expect(some_document.key).to eq('foo')
+      expect(some_document.file_path).to include some_document.key
+      expect(some_document.description.size).to be > 0
+      expect(some_document.description).to include "MECE" #testing some words
+      expect(some_document.description).to include "graph." #testing some words
+      expect(some_document.unit).to eq('kg')
     end
 
     it "should find by Symbol" do
@@ -98,16 +98,16 @@ describe SomeDocument do
 
     context 'when nothing changed' do
       it "should be the same as the original" do
-        some_document.send(:file_contents).should == \
-          File.read("#{ETSource.root}/spec/fixtures/active_document/foo.suffix")
+        expect(some_document.send(:file_contents)).to eq(
+          File.read("#{ETSource.root}/spec/fixtures/active_document/foo.suffix"))
       end
     end
 
     context 'when something has changed' do
       it "should not be the same as the original" do
         some_document.unit = "Mtonne"
-        some_document.send(:file_contents).should_not == \
-          File.read("#{ETSource.root}/spec/fixtures/active_document/foo.suffix")
+        expect(some_document.send(:file_contents)).to_not eq(
+          File.read("#{ETSource.root}/spec/fixtures/active_document/foo.suffix"))
       end
     end
   end
@@ -116,8 +116,8 @@ describe SomeDocument do
 
     it "should change when the key has changed" do
       some_document.key = "total_co2_emitted"
-      some_document.key.should == "total_co2_emitted"
-      some_document.file_path.should include "total_co2_emitted"
+      expect(some_document.key).to eq("total_co2_emitted")
+      expect(some_document.file_path).to include "total_co2_emitted"
     end
 
   end
@@ -138,7 +138,7 @@ describe SomeDocument do
       it "does not write to disk" do
         cache = File.read(some_document.file_path)
         some_document.save!
-        cache.should == File.read(some_document.file_path)
+        expect(cache).to eq(File.read(some_document.file_path))
       end
 
     end
@@ -161,7 +161,12 @@ describe SomeDocument do
       context 'when another object with that key already exists' do
 
         it 'raises error' do
-          expect(-> { some_document.key = 'bar'}).to raise_error(DuplicateKeyError)
+          pending 'Pending re-introduction of duplicate-key check' do
+            # Was temporarily removed due to stack overflows with the
+            # ETengine specs.
+            expect(-> { some_document.key = 'bar'}).
+              to raise_error(DuplicateKeyError)
+          end
         end
 
       end
