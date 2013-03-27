@@ -145,10 +145,11 @@ module ETSource
       def load_from_file(path)
         parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
         relative_path = path.gsub("#{ETSource.root}/","")
+        without_ext = File.basename(relative_path).chomp(".#{ self::FILE_SUFFIX }")
 
-        subclass = /(\w+)(?=\.\w+\.#{FILE_SUFFIX})/.match(relative_path)
+        if without_ext.include?('.')
+          subclass = without_ext.split('.').last
 
-        if subclass
           klass = "ETSource::#{subclass.to_s.classify}".constantize
           klass.new(relative_path, parsed_content)
         else
