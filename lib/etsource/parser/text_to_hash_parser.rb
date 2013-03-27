@@ -73,9 +73,18 @@ module ETSource
 
     def add_variable(variable_text)
       match_data = variable_text.match(ATTR_LINE)
-      key = match_data[1]; value = match_data[2]
+      key, value = match_data[1..2]
 
-      @variables[key.strip.to_sym] = cast(value.strip)
+      @variables[key.strip.to_sym] =
+        if array = value.strip.match(/^\[(?<items>[^\]]*)\]$/)
+          # Convert [arrays, of values] back into Ruby arrays, casting each
+          # value back to the correct type.
+          array[:items].strip.split(',').map do |value|
+            cast(value.strip)
+          end
+        else
+          cast(value.strip)
+        end
     end
 
     def add_query(query_text)

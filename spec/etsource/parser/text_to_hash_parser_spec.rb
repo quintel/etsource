@@ -84,9 +84,24 @@ TEXT
         expect(p.to_hash[:number]).to eql 1.0
       end
 
-      it "does not parse arrays" do
-        p = TextToHashParser.new("- array = a, b, c")
-        expect(p.to_hash[:array]).to eql "a, b, c"
+      it "parses arrays of strings" do
+        p = TextToHashParser.new("- array = [a, b, c]")
+        expect(p.to_hash[:array]).to eql %w(a b c)
+      end
+
+      it "parses arrays of numerics" do
+        p = TextToHashParser.new("- array = [2, 2.1, 2.0e3]")
+        expect(p.to_hash[:array]).to eql [2, 2.1, 2000.0]
+      end
+
+      it "parses empty arrays" do
+        p = TextToHashParser.new("- array = []")
+        expect(p.to_hash[:array]).to eql []
+      end
+
+      it "parses empty arrays with whitespace" do
+        p = TextToHashParser.new("- array = [ ]  ")
+        expect(p.to_hash[:array]).to eql []
       end
 
       it "should parse query" do
