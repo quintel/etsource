@@ -3,12 +3,16 @@ module ETSource
   class Node
     include ActiveDocument
 
-    DIRECTORY = 'nodes'
+    DIRECTORY = 'data/nodes'
 
     attribute :sector,               String
     attribute :use,                  String
     attribute :has_loss,             Boolean
     attribute :energy_balance_group, String
+
+    # Temporary storage for link and slot strings.
+    attribute :links,                Set[String]
+    attribute :slots,                Set[String]
 
     # Numeric attributes.
     [ :availability,
