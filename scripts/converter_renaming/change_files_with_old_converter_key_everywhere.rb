@@ -36,24 +36,26 @@ replacements = {}
 CSV.foreach(CSV_WITH_REPLACEMENTS) do |row|
   #this is how the columns of the CSV are ordered
   id, old_key, new_key = row
-  old_key.strip
-  new_key.strip
+  old_key.strip!
+  new_key.strip!
   replacements[old_key] = new_key unless old_key == new_key
 end
 
 # Define which files we will be going through
 files =
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/presets/**/*") +
+  #Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") 
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/models/**/*") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/inputs/**/*") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/gqueries/**/*") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_defaults/graph/converter_costs.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/must_run_merit_order_converters.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/inputs/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/gqueries/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/graphs/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/nodes/**/*") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/nl/graph/employment.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_wizards/households/config.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_globals/merit_order_converters.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_wizards/households/transformer.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_defaults/graph/converter_costs.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_globals/must_run_merit_order_converters.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_globals/merit_order.yml") +
 
   # etengine
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") -
@@ -66,7 +68,8 @@ files =
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*") +
 
   # merit order module
-  Dir.glob(PATH_OF_REPOSITORIES + "/merit/**/*")
+  Dir.glob(PATH_OF_REPOSITORIES + "/merit/**/*") - 
+  Dir.glob(PATH_OF_REPOSITORIES + "/merit/output/**/*")
 
   #etmodel must be done with separate migration
 
