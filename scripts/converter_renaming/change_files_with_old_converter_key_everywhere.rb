@@ -49,13 +49,13 @@ files =
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/gqueries/**/*") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/graphs/**/*") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/nodes/**/*") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/nl/graph/employment.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_wizards/households/config.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_globals/merit_order_converters.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_wizards/households/transformer.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_defaults/graph/converter_costs.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_globals/must_run_merit_order_converters.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/_globals/merit_order.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") +
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_defaults/graph/converter_costs.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/must_run_merit_order_converters.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order.yml") +
 
   # etengine
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") -
