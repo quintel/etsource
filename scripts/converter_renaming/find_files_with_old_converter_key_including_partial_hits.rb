@@ -87,19 +87,20 @@ end
 
 #Then we define which files we will be going through
 etsourcefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/scripts/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") 
 
-notInputExcelfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") + \
+notInputExcelfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/nl/graph/employment.yml") + \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") + \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") + \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml")
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_defaults/graph/converter_costs.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "etsource/datasets/_globals/must_run_merit_order_converters.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "etsource/datasets/_globals/merit_order.yml") 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/must_run_merit_order_converters.yml") + 
+  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order.yml") 
 # Do the same for dataset files 
-datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/**/*") + \
+datasetfiles = Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/datasets/**/*") + \
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/topology/**/*") - \
   notInputExcelfiles
 
@@ -111,7 +112,8 @@ enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/etengine/db/old_migrate/**/*")
 
 # Do the same for the merit files
-meritfiles = Dir.glob(PATH_OF_REPOSITORIES + "/merit/**/*")
+meritfiles = Dir.glob(PATH_OF_REPOSITORIES + "/merit/**/*") - \
+  Dir.glob(PATH_OF_REPOSITORIES + "/merit/output/**/*")
 
 find_old_names_in_files(replacements, etsourcefiles, "etsource")
 find_old_names_in_files(replacements, notInputExcelfiles, "notInputExcelfiles")
