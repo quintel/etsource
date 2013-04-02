@@ -39,6 +39,7 @@ def find_old_names_in_files(replacements, files, server)
   puts "Looking through #{files.count} files on the dataset" if server == "dataset"
   puts "Looking through #{files.count} files on Etengine" if server == "engine"
   puts "Looking through #{files.count} files on merit" if server == "merit"
+  puts "Looking through #{files.count} files on mechanical turk" if server == "mechanical_turk"
 
   old_files_found = 0
 
@@ -63,7 +64,7 @@ def find_old_names_in_files(replacements, files, server)
             File.open(file)
           puts "The script can change the old key in #{file} from 
           #{old_key} to 
-          #{new_key}" if content.gsub(/share_of_#{old_key}\b/, "share_of_" + new_key) if (server == "etsource" || server == "notInputExcelfiles" || server == "merit")
+          #{new_key}" if content.gsub(/share_of_#{old_key}\b/, "share_of_" + new_key) if (server == "etsource" || server == "notInputExcelfiles" || server == "merit" || server == "mechanical_turk")
           puts "#{old_key} in #{file}"                                                      if content.gsub(/share_of_#{old_key}\b/, "share_of_" + new_key) if server == "dataset"
           old_files_found = old_files_found + 1                                             if content.gsub(/share_of_#{old_key}\b/, "share_of_" + new_key) 
         end
@@ -115,10 +116,14 @@ enginefiles = Dir.glob(PATH_OF_REPOSITORIES + "/etengine/**/*") - \
 meritfiles = Dir.glob(PATH_OF_REPOSITORIES + "/merit/**/*") - \
   Dir.glob(PATH_OF_REPOSITORIES + "/merit/output/**/*")
 
+# Do the same for mechanical turk
+mechanicalTurkFiles = Dir.glob(PATH_OF_REPOSITORIES + "/mechanical_turk/**/*")
+
 find_old_names_in_files(replacements, etsourcefiles, "etsource")
 find_old_names_in_files(replacements, notInputExcelfiles, "notInputExcelfiles")
 find_old_names_in_files(replacements, datasetfiles, "dataset")
 find_old_names_in_files(replacements, enginefiles, "engine")
 find_old_names_in_files(replacements, meritfiles, "merit")
+find_old_names_in_files(replacements, mechanicalTurkFiles, "mechanical_turk")
 puts "------------------------------------"
 
