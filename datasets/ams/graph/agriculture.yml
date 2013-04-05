@@ -58,6 +58,30 @@ agriculture_burner_wood_pellets-(wood_pellets): {conversion: 1.0}
 (useable_heat)-agriculture_burner_wood_pellets: {conversion: 0.760824742268041}
 agriculture_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-agriculture_final_demand_for_heat_wood_pellets: {share: 1.0}
 
+:agriculture_chp_engine_biogas:
+  :availability: 0.0
+  :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
+  :co2_free: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 8000.0
+  :households_supplied_per_unit: 1.0
+  :land_use_per_unit: 0.0
+  :part_ets: 0.0
+  :part_load_efficiency_penalty: 0.1
+  :part_load_operating_point: 0.7
+  :peak_load_units_present: 0.0
+  :simult_sd: 0.0
+  :simult_se: 0.0
+  :simult_wd: -0.75
+  :simult_we: -0.75
+  :variability: 0.0
+  :electricity_output_capacity: 0.0
+  :peak_load_units: 0.0
+(loss)-agriculture_chp_engine_biogas: {}
+(steam_hot_water)-agriculture_chp_engine_biogas: {conversion: 0.0}
+(electricity)-agriculture_chp_engine_biogas: {conversion: 0.0}
+agriculture_chp_engine_biogas-(biogas): {conversion: 1.0}
+
 :agriculture_chp_engine_network_gas:
   :availability: 0.97
   :average_effective_output_of_nominal_capacity_over_lifetime: 1.0
@@ -197,6 +221,7 @@ agriculture_locally_available_electricity-(electricity): {conversion: 1.0}
 (electricity)-agriculture_locally_available_electricity: {conversion: 1.0}
 agriculture_locally_available_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity: {}
 agriculture_locally_available_electricity-(electricity) -- c --> (electricity)-agriculture_chp_engine_network_gas: {share: 0.0}
+agriculture_locally_available_electricity-(electricity) -- c --> (electricity)-agriculture_chp_engine_biogas: {share: 0.0}
 
 :agriculture_locally_available_steam_hot_water:
   :co2_free: 0.0
@@ -204,6 +229,7 @@ agriculture_locally_available_steam_hot_water-(steam_hot_water): {conversion: 1.
 (steam_hot_water)-agriculture_locally_available_steam_hot_water: {conversion: 1.0}
 agriculture_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water: {}
 agriculture_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-agriculture_chp_engine_network_gas: {}
+agriculture_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-agriculture_chp_engine_biogas: {}
 
 :agriculture_unused_local_production_steam_hot_water:
   :co2_free: 0.0
