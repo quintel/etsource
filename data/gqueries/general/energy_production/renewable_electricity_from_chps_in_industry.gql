@@ -6,7 +6,12 @@
 DIVIDE(
   SUM(
     V(industry_chp_supercritical_wood_pellets, output_of_electricity),
-    V(industry_chp_combined_cycle_gas_power_fuelmix, "output_of_electricity * sustainability_share")
+    V(
+      industry_chp_combined_cycle_gas_power_fuelmix,
+      industry_chp_engine_gas_power_fuelmix,
+      industry_chp_turbine_gas_power_fuelmix,
+      "output_of_electricity * sustainability_share"
+    )
   ),
   BILLIONS
 )
