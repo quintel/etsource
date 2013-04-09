@@ -33,7 +33,7 @@ module ETE
       if s.blank? || s == 'NULL'
         nil
       elsif s.is_a?(String)
-        s.gsub(',', '.').strip
+        s.gsub(',', '.').strip.force_encoding("ISO-8859-1")
       else
         s
       end
