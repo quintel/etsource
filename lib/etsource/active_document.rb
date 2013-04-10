@@ -56,7 +56,9 @@ module ETSource
       # Changing the key changes a part of the file_path
       def key=(new_key)
         raise InvalidKeyError.new(new_key) if new_key == ""
-        self.file_path = self.file_path.gsub(key, new_key)
+
+        self.file_path = self.file_path.gsub(
+          Regexp.new(Regexp.escape(key)), new_key)
       end
 
       # Saves the document (to file)
@@ -129,7 +131,11 @@ module ETSource
 
     module ClassMethods
       def all
-        load_directory
+        if superclass.ancestors.include?(ActiveDocument)
+          load_directory.select { |model| model.is_a?(self) }
+        else
+          load_directory
+        end
       end
 
       # Return the object with the key if it exists
@@ -152,8 +158,8 @@ module ETSource
 
       def load_from_file(path)
         parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
-        relative_path = path.gsub("#{ETSource.root}/","")
-        without_ext = File.basename(relative_path).chomp(".#{ self::FILE_SUFFIX }")
+        relative_path  = path.gsub("#{ETSource.root}/","")
+        without_ext    = File.basename(relative_path).chomp(".#{ self::FILE_SUFFIX }")
 
         if without_ext.include?('.')
           subclass = without_ext.split('.').last
@@ -161,14 +167,60 @@ module ETSource
           klass = "ETSource::#{subclass.to_s.classify}".constantize
           klass.new(relative_path, parsed_content)
         else
-          new(relative_path, parsed_content)
+          if subclassed_document?
+            # If the current class is not the top-most model (e.g. Node), then
+            # filenames without an explicit subclass should use the top-most
+            # class, and not the current one.
+            topmost_document_class.new(relative_path, parsed_content)
+          else
+            new(relative_path, parsed_content)
+          end
         end
       end
 
+      # Public: The underscored version of the class name, unless it isn't
+      # a subclass of an ActiveDocument.
+      #
+      # Returns a string or nil.
       def subclass_suffix
-        if superclass.ancestors.include?(ActiveDocument)
+        if subclassed_document?
           ETSource::Util.underscore(name.split('::').last)
         end
+      end
+
+      # Public: Is this class a subclass of an ActiveDocument. This enables
+      # ActiveModel-style Single Table Inheritance so that documents with a
+      # subclass key instantiate the correct classes.
+      #
+      # Returns true or false.
+      def subclassed_document?
+        @subclassed_doc ||= superclass.ancestors.include?(ActiveDocument)
+      end
+
+      # Public: Figures out the top-most superclass which includes
+      # ActiveDocument.
+      #
+      # For example:
+      #
+      #   class A
+      #     include ActiveDocument
+      #   end
+      #
+      #   class B < A ; end
+      #   class C < B ; end
+      #
+      #   C.topmost_document_class
+      #   # => A
+      #
+      # Returns a class.
+      def topmost_document_class
+        topmost = superclass
+
+        while topmost.subclass_suffix
+          topmost = topmost.superclass
+        end
+
+        topmost
       end
     end # ClassMethods
   end # ActiveDocument
