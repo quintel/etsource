@@ -37,7 +37,15 @@ module ETSource
       #   general/co2/total_co2_emissions.gql returns total_co2_emissions
       #
       def key
-        File.basename(file_path, ".#{self.class::FILE_SUFFIX}")
+        without_ext = File.basename(file_path, ".#{self.class::FILE_SUFFIX}")
+
+        if subclass_suffix = self.class.subclass_suffix
+          # This is an ActiveDocument subclass, so remove the class from the
+          # filename also.
+          without_ext.chomp(".#{ subclass_suffix }")
+        else
+          without_ext
+        end
       end
 
       # Returns the absolute path to the document.
@@ -48,7 +56,7 @@ module ETSource
       # Changing the key changes a part of the file_path
       def key=(new_key)
         raise InvalidKeyError.new(new_key) if new_key == ""
-        self.file_path = self.file_path.gsub(key,new_key)
+        self.file_path = self.file_path.gsub(key, new_key)
       end
 
       # Saves the document (to file)
@@ -156,6 +164,12 @@ module ETSource
           new(relative_path, parsed_content)
         end
       end
+
+      def subclass_suffix
+        if superclass.ancestors.include?(ActiveDocument)
+          ETSource::Util.underscore(name.split('::').last)
+        end
+      end
     end # ClassMethods
   end # ActiveDocument
-end #e ETSource
+end # ETSource
