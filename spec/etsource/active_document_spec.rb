@@ -2,18 +2,20 @@ require 'spec_helper'
 
 module ETSource
 
-  class SomeDocument < ActiveDocument
+  class SomeDocument
+    include ActiveDocument
 
-    attr_accessor :description, :unit, :query
+    attribute :description, String
+    attribute :unit,        String
+    attribute :query,       String
+
+    # Ignore validation except in the validation tests.
+    validates :query, presence: true, if: :do_validation
+    attr_accessor :do_validation
 
     FILE_SUFFIX = 'suffix'
     DIRECTORY   = 'active_document'
-
   end
-
-end
-
-module ETSource
 
 describe SomeDocument do
 
@@ -45,6 +47,28 @@ describe SomeDocument do
         expect(-> { SomeDocument.new('my_map2/new') } ).to \
           raise_error DuplicateKeyError
       end
+    end
+  end
+
+  describe 'to_hash' do
+    it 'is empty when no attributes have been set' do
+      expect(SomeDocument.new('a').to_hash).to be_empty
+    end
+
+    it 'contains attributes set by the user' do
+      document = SomeDocument.new('a', unit: '%', description: 'Mine')
+      hash     = document.to_hash
+
+      expect(hash).to include(unit: '%')
+      expect(hash).to include(description: 'Mine')
+    end
+
+    it 'omits attributes which have no value' do
+      document = SomeDocument.new('a', unit: '%')
+      hash     = document.to_hash
+
+      expect(hash).to_not have_key(:query)
+      expect(hash).to_not have_key(:description)
     end
   end
 
@@ -122,6 +146,24 @@ describe SomeDocument do
 
   end
 
+  describe 'valid?' do
+    let(:document) do
+      SomeDocument.new('key').tap do |doc|
+        doc.do_validation = true
+      end
+    end
+
+    it 'is false if validation fails' do
+      document.query = nil
+      expect(document).to_not be_valid
+    end
+
+    it 'is true if validation succeeds' do
+      document.query = 'MAX(0, 0)'
+      expect(document).to be_valid
+    end
+  end
+
   describe "save!" do
 
     context 'new file' do
@@ -141,6 +183,11 @@ describe SomeDocument do
         expect(cache).to eq(File.read(some_document.file_path))
       end
 
+    end
+
+    context 'when validation fails' do
+      it 'does not save the file'
+      it 'raises an exception'
     end
 
     context 'when the key changed' do

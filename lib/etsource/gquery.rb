@@ -1,12 +1,14 @@
 module ETSource
-
-  class Gquery < ActiveDocument
-
-    attr_accessor :description, :query, :unit, :deprecated_key
+  class Gquery
+    include ActiveDocument
 
     FILE_SUFFIX = 'gql'
     DIRECTORY   = 'data/gqueries'
 
-  end # class Guery
+    attribute :description,    String
+    attribute :query,          String
+    attribute :unit,           String
+    attribute :deprecated_key, String
 
-end # module ETSource
+  end # Guery
+end #  ETSource
