@@ -17,6 +17,12 @@ module ETSource
     DIRECTORY   = 'active_document'
   end
 
+  class OtherDocument < SomeDocument
+  end
+
+  class FinalDocument < OtherDocument
+  end
+
 describe SomeDocument do
 
   before(:each) do
@@ -221,6 +227,42 @@ describe SomeDocument do
     end
 
   end # describe save!
+
+  describe '#all' do
+    context 'on a "leaf" class' do
+      it 'returns only members of that class' do
+        expect(FinalDocument.all).to have(1).document
+      end
+    end
+
+    context 'on a "branch" class' do
+      it "returns members of that class, and it's subclasses" do
+        classes = OtherDocument.all.map(&:class).uniq
+
+        expect(classes).to have(2).elements
+
+        expect(classes).to include(OtherDocument)
+        expect(classes).to include(FinalDocument)
+      end
+    end
+  end # all
+
+  describe 'changing the key on subclassed documents' do
+    let(:doc) { OtherDocument.new('fd.other_document.suffix') }
+    before { doc.key = 'pd' }
+
+    it 'retains the extension and subclass' do
+      expect(doc.key).to eql('pd')
+    end
+
+    it 'retains the subclass suffix' do
+      expect(File.basename(doc.file_path)).
+        to eql([
+          doc.key,
+          doc.class.subclass_suffix,
+          doc.class::FILE_SUFFIX].join('.'))
+    end
+  end
 
   describe 'destroy!' do
 
