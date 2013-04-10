@@ -5,11 +5,19 @@ $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 require 'fileutils'
 require 'pathname'
 require 'etsource'
+require 'active_support/core_ext/hash/indifferent_access'
 
 ROOT_PATH = Pathname.new(__FILE__).dirname.parent.expand_path
 DATA_PATH = ROOT_PATH.join('data/nodes')
 
-nodes   = YAML.load_file(ROOT_PATH.join('topology/export.graph'))
+nodes = YAML.load_file(ROOT_PATH.join('topology/export.graph')).with_indifferent_access
+
+Dir.glob('datasets/nl/graph/**.yml').each do |file|
+  YAML.load_file(file).each do |key, properties|
+    nodes[key].merge!(properties) if nodes[key]
+  end
+end
+
 sectors = nodes.group_by { |key, data| data['sector'] || 'nosector' }
 
 # Given a node key and data, tries to infer what Node subclass it should be
@@ -48,6 +56,7 @@ sectors.each do |sector, nodes|
   nodes.each do |key, data|
 
     # Refactor Slots
+    raise("No Slots??!! For #{key}") unless data['slots']
     out_slots, in_slots = data['slots'].partition { |s| s.match(/^\(/) }
     data[:in_slots]  = in_slots.map  { |slot| slot.match(/\((.*)\)/)[1] }
     data[:out_slots] = out_slots.map { |slot| slot.match(/\((.*)\)/)[1] }
