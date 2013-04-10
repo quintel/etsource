@@ -1,11 +1,16 @@
 module ETSource
-  class Carrier < ActiveDocument
-
-    attr_accessor :cost_per_mj, :sustainable, :mj_per_kg,
-                  :co2_conversion_per_mj, :infinite,
-                  :typical_production_per_km2, :kg_per_liter
+  class Carrier
+    include ActiveDocument
 
     DIRECTORY = 'data/carrier'
 
-  end
-end
+    attribute :sustainable,                Boolean
+    attribute :infinite,                   Boolean
+    attribute :cost_per_mj,                Float
+    attribute :mj_per_kg,                  Float
+    attribute :co2_conversion_per_mj,      Float
+    attribute :typical_production_per_km2, Float
+    attribute :kg_per_liter,               Float
+
+  end # Carrier
+end # ETSource
