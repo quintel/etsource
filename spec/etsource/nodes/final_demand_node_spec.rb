@@ -6,7 +6,7 @@ describe FinalDemandNode do
 
   let(:dataset_nl) { Dataset.find(:nl) }
   let(:dataset_uk) { Dataset.find(:uk) }
-  let(:node)       { Node.find('fd.final_demand_node') }
+  let(:node)       { Node.find('fd') }
 
   before(:each) do
     use_fixtures
@@ -16,11 +16,32 @@ describe FinalDemandNode do
     it "finds existing stuff" do
       expect(FinalDemandNode.all).to have_at_least(1).nodes
     end
+
+    it 'removes the subclass from the key' do
+      expect(FinalDemandNode.find('fd').key).
+        to_not include('.final_demand_node')
+    end
+  end
+
+  describe 'changing the key' do
+    let(:node) { FinalDemandNode.find('fd').tap { |n| n.key = 'pd' } }
+
+    it 'retains the extension and subclass' do
+      expect(node.key).to eql('pd')
+    end
+
+    it 'retains the subclass suffix' do
+      expect(File.basename(node.file_path)).
+        to eql([
+          node.key,
+          node.class.subclass_suffix,
+          node.class::FILE_SUFFIX].join('.'))
+    end
   end
 
   describe '#find' do
     it "finds the fixture" do
-      expect(FinalDemandNode.find('fd.final_demand_node')).to_not be_nil
+      expect(FinalDemandNode.find('fd')).to_not be_nil
     end
   end
 
