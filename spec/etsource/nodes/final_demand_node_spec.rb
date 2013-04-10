@@ -23,22 +23,6 @@ describe FinalDemandNode do
     end
   end
 
-  describe 'changing the key' do
-    let(:node) { FinalDemandNode.find('fd').tap { |n| n.key = 'pd' } }
-
-    it 'retains the extension and subclass' do
-      expect(node.key).to eql('pd')
-    end
-
-    it 'retains the subclass suffix' do
-      expect(File.basename(node.file_path)).
-        to eql([
-          node.key,
-          node.class.subclass_suffix,
-          node.class::FILE_SUFFIX].join('.'))
-    end
-  end
-
   describe '#find' do
     it "finds the fixture" do
       expect(FinalDemandNode.find('fd')).to_not be_nil
