@@ -6,7 +6,7 @@ describe FinalDemandNode do
 
   let(:dataset_nl) { Dataset.find(:nl) }
   let(:dataset_uk) { Dataset.find(:uk) }
-  let(:node)       { Node.find('final_demand_node.fd') }
+  let(:node)       { Node.find('fd.final_demand_node') }
 
   before(:each) do
     use_fixtures
@@ -20,7 +20,7 @@ describe FinalDemandNode do
 
   describe '#find' do
     it "finds the fixture" do
-      expect(FinalDemandNode.find('final_demand_node.fd')).to_not be_nil
+      expect(FinalDemandNode.find('fd.final_demand_node')).to_not be_nil
     end
   end
 
