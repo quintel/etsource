@@ -54,7 +54,7 @@ describe Node do
 
   describe '#find' do
     it 'returns a node in its right class' do
-      expect(Node.find('foo.converter')).to be_a(Converter)
+      expect(Node.find('foo')).to be_a(Converter)
     end
   end
 
