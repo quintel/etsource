@@ -73,7 +73,7 @@ module ETSource
       end
 
       def to_s
-        "<#{self.class}: #{key}>"
+        "#<#{self.class}: #{key}>"
       end
 
       # Public: Creates a hash containing the document's attributes, omitting
@@ -184,7 +184,7 @@ module ETSource
       # Returns a string or nil.
       def subclass_suffix
         if subclassed_document?
-          ETSource::Util.underscore(name.split('::').last)
+          name.split('::').last.underscore
         end
       end
 
