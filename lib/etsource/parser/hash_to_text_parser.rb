@@ -47,8 +47,8 @@ module ETSource
 
       lines = []
       @attributes.each do |key, value|
-        if value.is_a?(Array)
-          lines << "#{ATTR_PREFIX} #{key} = [#{value.join(", ")}]"
+        if value.is_a?(Array) || value.is_a?(Set)
+          lines << "#{ATTR_PREFIX} #{key} = [#{value.to_a.join(", ")}]"
         else
           lines << "#{ATTR_PREFIX} #{key} = #{value}"
         end
