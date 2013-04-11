@@ -1,6 +1,8 @@
 module ETSource
   # Error class which serves as a base for all errors which occur in ETSource.
-  ETSourceError = Class.new(StandardError)
+  class ETSourceError < StandardError
+    def initialize(*args) ; super(make_message(*args)) ; end
+  end
 
   # Internal: Creates a new error class which inherits from ETSourceError,
   # whose message is created by evaluating the block you give.
@@ -16,10 +18,7 @@ module ETSource
   #
   # Returns an exception class.
   def self.error_class(superclass = ETSourceError, &block)
-    Class.new(superclass) do
-      def initialize(*args) ; super(make_message(*args)) ; end
-      define_method(:make_message, &block)
-    end
+    Class.new(superclass) { define_method(:make_message, &block) }
   end
 
   DuplicateKeyError = error_class do |key|
