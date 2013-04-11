@@ -44,4 +44,20 @@ module ETSource
   UnknownCarrierError = error_class do |carrier, area|
     "Unknown use #{ carrier } for #{ area }"
   end
+
+  InvalidLinkError = error_class do |link|
+    "#{ link.inspect } is not a valid link"
+  end
+
+  UnknownLinkTypeError = error_class(InvalidLinkError) do |link, type|
+    "#{ link.inspect } uses unknown link type: #{ type }"
+  end
+
+  UnknownLinkNodeError = error_class(InvalidLinkError) do |link, key|
+    "Unknown node #{ key } in link #{ link.inspect }"
+  end
+
+  UnknownLinkCarrierError = error_class(InvalidLinkError) do |link, carrier|
+    "Unknown carrier #{ carrier } in link #{ link.inspect }"
+  end
 end
