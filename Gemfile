@@ -14,6 +14,7 @@ end
 
 gem 'activemodel'
 gem 'virtus'
+gem 'turbine-graph', require: 'turbine'
 
 gem 'rubel'
 

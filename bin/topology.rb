@@ -9,6 +9,7 @@ require 'active_support/core_ext/hash/indifferent_access'
 
 ROOT_PATH = Pathname.new(__FILE__).dirname.parent.expand_path
 DATA_PATH = ROOT_PATH.join('data/nodes')
+TOPO_PATH = ROOT_PATH.join('data/topology')
 
 nodes = YAML.load_file(ROOT_PATH.join('topology/export.graph')).with_indifferent_access
 
@@ -35,6 +36,10 @@ def subclass(key, data)
   end
 end
 
+unless File.directory?(TOPO_PATH)
+  FileUtils.mkdir_p(TOPO_PATH)
+end
+
 # +sectors+ is now a hash where each key is a sector, and each value an array
 # containing all the nodes in that sector. The values look like this:
 #
@@ -42,7 +47,8 @@ end
 #     [ 'node_two_key', node_one_attributes_hash ], ... ]
 
 sectors.each do |sector, nodes|
-  directory = DATA_PATH.join(sector)
+  directory    = DATA_PATH.join(sector)
+  sector_links = []
 
   puts "#{ sector } (at #{ directory.to_s })"
   puts '-' * ((sector.length + directory.to_s.length) + 6)
@@ -54,10 +60,11 @@ sectors.each do |sector, nodes|
   end
 
   nodes.each do |key, data|
-
     # Refactor Slots
     raise("No Slots??!! For #{key}") unless data['slots']
+
     out_slots, in_slots = data['slots'].partition { |s| s.match(/^\(/) }
+
     data[:in_slots]  = in_slots.map  { |slot| slot.match(/\((.*)\)/)[1] }
     data[:out_slots] = out_slots.map { |slot| slot.match(/\((.*)\)/)[1] }
 
@@ -66,7 +73,7 @@ sectors.each do |sector, nodes|
     suffix = ".#{ type }" if type
 
     # Throw away links and (old) slots
-    data.delete('links')
+    sector_links.push(*data.delete('links'))
     data.delete('slots')
 
     dumped = ETSource::HashToTextParser.new(data).to_text
@@ -74,6 +81,8 @@ sectors.each do |sector, nodes|
     File.write(directory.join("#{ key }#{ suffix }.ad"), dumped)
     puts "* Wrote node #{ key.inspect } as a #{ type || 'node' }"
   end
+
+  File.write(TOPO_PATH.join("#{ sector }.links"), "#{ sector_links.join("\n") }\n")
 
   puts
 end
