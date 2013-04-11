@@ -3,8 +3,8 @@ require 'spec_helper'
 describe ETSource do
 
   describe "root" do
-    it "should return a string" do
-      expect(ETSource.root.size).to be > 1
+    it "should return a Pathname" do
+      expect(ETSource.root).to be_a(Pathname)
     end
   end
 
@@ -14,7 +14,7 @@ describe ETSource do
     end
 
     it 'is a subdirectory of the root path' do
-      expect(ETSource.data_dir.to_s).to include(ETSource.root)
+      expect(ETSource.data_dir.to_s).to include(ETSource.root.to_s)
     end
   end
 
