@@ -1,5 +1,6 @@
 require 'yaml'
 require 'csv'
+require 'pathname'
 
 require 'active_model'
 require 'virtus'

@@ -2,7 +2,7 @@ module ETSource
   # Parent directory where all the 'models' live
   # such as inputs, gqueries etc.
   def self.root
-    File.expand_path('../../..',__FILE__)
+    @root ||= Pathname.new(__FILE__).dirname.expand_path.parent.parent
   end
 
   # Public: Path to the directory in which ActiveDocument files typically
