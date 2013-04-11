@@ -4,8 +4,6 @@ module ETSource
 
 describe FinalDemandNode do
 
-  let(:dataset_nl) { Dataset.find(:nl) }
-  let(:dataset_uk) { Dataset.find(:uk) }
   let(:node)       { Node.find('fd') }
 
   before(:each) do
@@ -34,7 +32,7 @@ describe FinalDemandNode do
     context 'with the Dutch dataset' do
 
       it 'returns the correct number' do
-        expect(node.demand(dataset_nl)).to eql(312.33528)
+        expect(node.demand(:nl)).to eql(312.33528)
       end
 
     end
@@ -42,7 +40,7 @@ describe FinalDemandNode do
     context 'with the UK dataset' do
 
       it 'returns the correct number' do
-        expect(node.demand(dataset_uk)).to eql(156.16764)
+        expect(node.demand(:uk)).to eql(156.16764)
       end
 
     end
