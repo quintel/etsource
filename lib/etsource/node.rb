@@ -1,5 +1,4 @@
 module ETSource
-
   class Node
     include ActiveDocument
 
@@ -39,6 +38,33 @@ module ETSource
     # xls2yml script.
     attribute :electrical_efficiency_when_using_coal, Float
     attribute :electrical_efficiency_when_using_wood_pellets, Float
+
+    # Public: Returns the Turbine::Node which corresponds with this Node.
+    attr_reader :turbine
+
+    # Public: Creates a new Node. See ActiveDocument#initialize.
+    #
+    # Returns a Node.
+    def initialize(*)
+      super
+      @turbine = Turbine::Node.new(key)
+    end
+
+    def self.all
+      super.tap do |nodes|
+        links_dir = ETSource::Util::TOPOLOGY_DIR
+
+        ETSource::Util.foreach_link(links_dir) do |link, *, filename|
+          begin
+            ETSource::Util.establish_link(link, nodes)
+          rescue InvalidLinkError => exception
+            # Add information about which file contained the offending link.
+            exception.message.gsub!(/$/, " (in file #{ filename })")
+            raise exception
+          end
+        end
+      end
+    end
 
   end # Node
 end # ETSource

@@ -3,6 +3,7 @@ require 'csv'
 
 require 'active_model'
 require 'virtus'
+require 'turbine'
 
 require_relative 'etsource/base'
 require_relative 'etsource/parser/hash_to_text_parser'

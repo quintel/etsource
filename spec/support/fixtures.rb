@@ -23,4 +23,6 @@ def stub_directories
       end
     end
   end
+
+  stub_const('ETSource::Util::TOPOLOGY_DIR', 'tmp/fixtures/data/topology')
 end
