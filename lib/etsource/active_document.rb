@@ -84,6 +84,14 @@ module ETSource
         attributes.reject { |_, value| value.nil? }
       end
 
+      # Public: Compares this document with another, so that they may be
+      # sorted by the order of their keys.
+      #
+      # Returns -1, 0, or 1.
+      def <=>(other)
+        key <=> other.key
+      end
+
       #######
       private
       #######
