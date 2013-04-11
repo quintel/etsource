@@ -10,18 +10,6 @@ describe Node do
     use_fixtures
   end
 
-  describe '#links' do
-    let(:node) { Node.new('key', links: %w(1 2)) }
-
-    it 'is a Set' do
-      expect(node.links).to be_a(Set)
-    end
-
-    it 'contains the links we defined' do
-      expect(node.links.to_a).to eql(%w(1 2))
-    end
-  end
-
   describe '#in_slots' do
     let(:node) { Node.new('key', in_slots: %w(in_one in_two)) }
 
