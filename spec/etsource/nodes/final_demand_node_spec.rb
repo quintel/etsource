@@ -29,12 +29,12 @@ describe FinalDemandNode do
     end
   end
 
-  describe '#preset_demand' do
+  describe '#demand' do
 
     context 'with the Dutch dataset' do
 
       it 'returns the correct number' do
-        expect(node.preset_demand(dataset_nl)).to eql(312.33528)
+        expect(node.demand(dataset_nl)).to eql(312.33528)
       end
 
     end
@@ -42,7 +42,7 @@ describe FinalDemandNode do
     context 'with the UK dataset' do
 
       it 'returns the correct number' do
-        expect(node.preset_demand(dataset_uk)).to eql(156.16764)
+        expect(node.demand(dataset_uk)).to eql(156.16764)
       end
 
     end

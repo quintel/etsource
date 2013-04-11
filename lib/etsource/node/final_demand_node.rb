@@ -4,11 +4,11 @@ module ETSource
   # energy_balance_query.
   class FinalDemandNode < DemandNode
 
-    attr_accessor :query
+    attribute :query, String
 
     # returns the preset demand for this node based on the outcome of the query
     # in the context of the +dataset+
-    def preset_demand(dataset)
+    def demand(dataset)
       Runtime.new(dataset).execute(query)
     end
 
