@@ -10,11 +10,8 @@ module ETSource
     attribute :has_loss,             Boolean
     attribute :energy_balance_group, String
 
-    # Temporary storage for link
-    attribute :links,                Set[String]
-
-    attribute :in_slots,          Set[String]
-    attribute :out_slots,         Set[String]
+    attribute :in_slots,             Set[String]
+    attribute :out_slots,            Set[String]
 
     # Numeric attributes.
     [ :availability,
