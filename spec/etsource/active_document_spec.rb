@@ -2,18 +2,26 @@ require 'spec_helper'
 
 module ETSource
 
-  class SomeDocument < ActiveDocument
+  class SomeDocument
+    include ActiveDocument
 
-    attr_accessor :description, :unit, :query
+    attribute :description, String
+    attribute :unit,        String
+    attribute :query,       String
+
+    # Ignore validation except in the validation tests.
+    validates :query, presence: true, if: :do_validation
+    attr_accessor :do_validation
 
     FILE_SUFFIX = 'suffix'
     DIRECTORY   = 'active_document'
-
   end
 
-end
+  class OtherDocument < SomeDocument
+  end
 
-module ETSource
+  class FinalDocument < OtherDocument
+  end
 
 describe SomeDocument do
 
@@ -39,12 +47,40 @@ describe SomeDocument do
       it 'creates a new document' do
         some_document = SomeDocument.new('my_map1/new')
         expect(some_document.save!).to be_true
+        expect(some_document.key).to eq 'new'
+      end
+      it 'saves in that folder' do
+        some_document = SomeDocument.new('my_map1/new')
+        expect(some_document.key).to eq 'new'
+        expect(some_document.file_path).to match /my_map1\/new/
       end
       xit 'raises and error when the key already exists' do
         SomeDocument.new('my_map1/new').save!
         expect(-> { SomeDocument.new('my_map2/new') } ).to \
           raise_error DuplicateKeyError
       end
+    end
+  end
+
+  describe 'to_hash' do
+    it 'is empty when no attributes have been set' do
+      expect(SomeDocument.new('a').to_hash).to be_empty
+    end
+
+    it 'contains attributes set by the user' do
+      document = SomeDocument.new('a', unit: '%', description: 'Mine')
+      hash     = document.to_hash
+
+      expect(hash).to include(unit: '%')
+      expect(hash).to include(description: 'Mine')
+    end
+
+    it 'omits attributes which have no value' do
+      document = SomeDocument.new('a', unit: '%')
+      hash     = document.to_hash
+
+      expect(hash).to_not have_key(:query)
+      expect(hash).to_not have_key(:description)
     end
   end
 
@@ -122,6 +158,24 @@ describe SomeDocument do
 
   end
 
+  describe 'valid?' do
+    let(:document) do
+      SomeDocument.new('key').tap do |doc|
+        doc.do_validation = true
+      end
+    end
+
+    it 'is false if validation fails' do
+      document.query = nil
+      expect(document).to_not be_valid
+    end
+
+    it 'is true if validation succeeds' do
+      document.query = 'MAX(0, 0)'
+      expect(document).to be_valid
+    end
+  end
+
   describe "save!" do
 
     context 'new file' do
@@ -141,6 +195,11 @@ describe SomeDocument do
         expect(cache).to eq(File.read(some_document.file_path))
       end
 
+    end
+
+    context 'when validation fails' do
+      it 'does not save the file'
+      it 'raises an exception'
     end
 
     context 'when the key changed' do
@@ -174,6 +233,42 @@ describe SomeDocument do
     end
 
   end # describe save!
+
+  describe '#all' do
+    context 'on a "leaf" class' do
+      it 'returns only members of that class' do
+        expect(FinalDocument.all).to have(1).document
+      end
+    end
+
+    context 'on a "branch" class' do
+      it "returns members of that class, and it's subclasses" do
+        classes = OtherDocument.all.map(&:class).uniq
+
+        expect(classes).to have(2).elements
+
+        expect(classes).to include(OtherDocument)
+        expect(classes).to include(FinalDocument)
+      end
+    end
+  end # all
+
+  describe 'changing the key on subclassed documents' do
+    let(:doc) { OtherDocument.new('fd.other_document.suffix') }
+    before { doc.key = 'pd' }
+
+    it 'retains the extension and subclass' do
+      expect(doc.key).to eql('pd')
+    end
+
+    it 'retains the subclass suffix' do
+      expect(File.basename(doc.file_path)).
+        to eql([
+          doc.key,
+          doc.class.subclass_suffix,
+          doc.class::FILE_SUFFIX].join('.'))
+    end
+  end
 
   describe 'destroy!' do
 
