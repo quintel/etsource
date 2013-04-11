@@ -320,6 +320,22 @@ describe SomeDocument do
     end
   end
 
+  describe '#<=>' do
+    let(:node) { Node.new('f') }
+
+    it 'is -1 when the node has an "earlier" key' do
+      expect(Node.new('a') <=> node).to eql(-1)
+    end
+
+    it 'is 0 when the node has an equal key' do
+      expect(Node.new('f') <=> node).to eql(0)
+    end
+
+    it 'is 1 when the node has a "later" key' do
+      expect(Node.new('z') <=> node).to eql(1)
+    end
+  end # <=>
+
 end #describe SomeDocument
 
 end #module
