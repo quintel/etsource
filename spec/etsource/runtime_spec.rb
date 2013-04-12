@@ -2,11 +2,7 @@ require 'spec_helper'
 
 module ETSource
 
-  describe Runtime do
-
-    before(:each) do
-      use_fixtures
-    end
+  describe Runtime, :fixtures do
 
     let(:dataset) { Dataset.find(:nl) }
     let(:runtime) { Runtime.new(dataset) }

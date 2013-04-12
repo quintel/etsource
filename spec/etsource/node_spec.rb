@@ -2,12 +2,8 @@ require 'spec_helper'
 
 module ETSource
 
-describe Node do
+describe Node, :fixtures do
   let(:node) { Node.new('foo') }
-
-  before do
-    use_fixtures
-  end
 
   describe '#establish_links!' do
     let(:node)   { Node.new('key') }
