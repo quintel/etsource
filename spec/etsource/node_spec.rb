@@ -5,6 +5,16 @@ module ETSource
 describe Node, :fixtures do
   let(:node) { Node.new('foo') }
 
+  describe 'Semaphore is getting annoying...' do
+    it 'should just work, damnit', :focus do
+      carriers = Collection.new(Carrier.all)
+
+      puts carriers.map(&:key).inspect
+      puts carriers.find('coal').inspect
+      puts carriers.find('corn').inspect
+    end
+  end
+
   describe 'setting up links' do
     let(:node)     { Node.new('key') }
     let(:parent)   { Node.new('parent') }
