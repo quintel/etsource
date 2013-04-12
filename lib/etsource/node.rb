@@ -50,6 +50,12 @@ module ETSource
       @turbine = Turbine::Node.new(key)
     end
 
+    # Public: An array containing all the Nodes in the graph.
+    #
+    # Also sets up the edges ("links") between each of the nodes via the
+    # Turbine::Node instance (accessible as Node#turbine).
+    #
+    # Returns an Array of Nodes.
     def self.all
       super.tap do |nodes|
         links_dir = ETSource.data_dir.join('topology')
@@ -65,7 +71,6 @@ module ETSource
             raise exception
           end
         end
-
       end
     end
 
