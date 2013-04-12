@@ -37,5 +37,29 @@ module ETSource
         expect(elements).to eql(raw)
       end
     end
+
+    describe 'when a document key changes' do
+      before { collection.find('one') ; node_one.key = 'new' }
+
+      it 'returns the document when given the old key' do
+        expect(collection.find('one')).to eql(node_one)
+      end
+
+      it 'does not return the document when given the new key' do
+        expect(collection.find('new')).to be_nil
+      end
+
+      context 'with a refreshed collection' do
+        let(:refreshed) { collection.refresh }
+
+        it 'does not return the document when given the old key' do
+          expect(refreshed.find('one')).to be_nil
+        end
+
+        it 'does returns the document when given the new key' do
+          expect(refreshed.find('new')).to eql(node_one)
+        end
+      end # with a refreshed collection
+    end # when a document key changes
   end # Collection
 end # ETSource
