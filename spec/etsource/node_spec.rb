@@ -5,10 +5,17 @@ module ETSource
 describe Node, :fixtures do
   let(:node) { Node.new('foo') }
 
-  describe '#establish_links!' do
-    let(:node)   { Node.new('key') }
-    let(:parent) { Node.new('parent') }
-    before       { ETSource::Util.establish_links!([node, parent], link_data) }
+  describe 'setting up links' do
+    let(:node)     { Node.new('key') }
+    let(:parent)   { Node.new('parent') }
+    let(:nodes)    { Collection.new([node, parent]) }
+    let(:carriers) { Collection.new(Carrier.all) }
+
+    before do
+      link_data.each do |link|
+        ETSource::Util.establish_link(link, nodes, carriers)
+      end
+    end
 
     context 'with a single, share link' do
       let(:link_data) { [ 'key-(coal) -- s --> (coal)-parent' ] }
@@ -95,10 +102,11 @@ describe Node, :fixtures do
       let(:link_data) { [] }
 
       it 'raises an InvalidLinkError' do
-        links = ['key-(coal) - s -> (coal)-parent']
+        link = 'key-(coal) - s -> (coal)-parent'
 
-        expect { ETSource::Util.establish_links!([node, parent], links) }.
-          to raise_error(ETSource::InvalidLinkError)
+        expect do
+          ETSource::Util.establish_link(link, nodes, carriers)
+        end.to raise_error(ETSource::InvalidLinkError)
       end
     end # with an invalid link type
 
@@ -106,10 +114,11 @@ describe Node, :fixtures do
       let(:link_data) { [] }
 
       it 'raises an InvalidLinkError' do
-        links = ['key-(coal) -- a --> (coal)-parent']
+        link = 'key-(coal) -- a --> (coal)-parent'
 
-        expect { ETSource::Util.establish_links!([node, parent], links) }.
-          to raise_error(ETSource::UnknownLinkTypeError)
+        expect do
+          ETSource::Util.establish_link(link, nodes, carriers)
+        end.to raise_error(ETSource::UnknownLinkTypeError)
       end
     end # with an invalid link type
 
@@ -117,10 +126,11 @@ describe Node, :fixtures do
       let(:link_data) { [] }
 
       it 'raises an InvalidLinkError' do
-        links = ['key-(coal) -- s --> (coal)-nope']
+        link = 'key-(coal) -- s --> (coal)-nope'
 
-        expect { ETSource::Util.establish_links!([node, parent], links) }.
-          to raise_error(ETSource::UnknownLinkNodeError)
+        expect do
+          ETSource::Util.establish_link(link, nodes, carriers)
+        end.to raise_error(ETSource::UnknownLinkNodeError)
       end
     end # with an invalid link type
 
@@ -129,13 +139,14 @@ describe Node, :fixtures do
 
       it 'raises an InvalidLinkCarrierError' do
         # Where iid=infinite improbability drive. Obviously. :)
-        links = ['key-(iid) -- s --> (iid)-parent']
+        link = 'key-(iid) -- s --> (iid)-parent'
 
-        expect { ETSource::Util.establish_links!([node, parent], links) }.
-          to raise_error(ETSource::UnknownLinkCarrierError)
+        expect do
+          ETSource::Util.establish_link(link, nodes, carriers)
+        end.to raise_error(ETSource::UnknownLinkCarrierError)
       end
     end # with a non-existent carrier
-  end # establish_links!
+  end # setting up links
 
   describe '#turbine' do
     let(:node) { Node.new('key') }

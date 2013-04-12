@@ -11,10 +11,8 @@ module ETSource
     def find(key)
       documents = __getobj__ # getobj is from SimpleDelegator
 
-      # index = documents.bsearch { |document| document.key <=> key }
-      # index && documents[index] || nil
-
-      documents.detect { |document| document.key == key }
+      index = documents.bsearch { |document| document.key <=> key }
+      index && documents[index] || nil
     end
   end # Collection
 end # ETSource
