@@ -1,10 +1,6 @@
 require 'spec_helper'
 
-module ETSource; describe Dataset do
-
-  before(:each) do
-    use_fixtures
-  end
+module ETSource; describe Dataset, :fixures do
 
   describe "#new" do
 

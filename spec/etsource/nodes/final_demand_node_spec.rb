@@ -2,13 +2,8 @@ require 'spec_helper'
 
 module ETSource
 
-describe FinalDemandNode do
-
-  let(:node)       { Node.find('fd') }
-
-  before(:each) do
-    use_fixtures
-  end
+describe FinalDemandNode, :fixtures do
+  let(:node) { Node.find('fd') }
 
   describe '#all' do
     it "finds existing stuff" do
