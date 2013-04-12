@@ -8,7 +8,7 @@ module ETSource
   # in ktoe, the standard of the IEA.
   class EnergyBalance
 
-    DIRECTORY = 'data/energy_balances'
+    DIRECTORY = 'energy_balances'
 
     attr_accessor :key, :unit
 
@@ -59,7 +59,7 @@ module ETSource
     # Load the whole table
     # Returns a CSV object
     def table
-      CSV.table("#{ETSource.root}/#{self.class::DIRECTORY}/#{key}.csv")
+      CSV.table("#{ETSource.data_dir}/#{self.class::DIRECTORY}/#{key}.csv")
     end
 
     # Converts a value from the ktoe to 'unit'

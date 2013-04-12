@@ -10,7 +10,7 @@ module ETSource
   #
   # Returns a Pathname.
   def self.data_dir
-    @data_dir ||= Pathname.new(root).join('data')
+    @data_dir ||= root.join('data')
   end
 
   # Public: Wrap around a block of code to work with a temporarily altered
