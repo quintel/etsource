@@ -47,11 +47,7 @@ module ETSource
       carriers = Collection.new(Carrier.all)
 
       # Debugging failures on Semaphore, depite it passing locally...
-      if first_carrier = carriers.first
-        puts first_carrier.file_path
-      else
-        puts "No carriers found"
-      end
+      puts carriers.inspect
 
       links.each { |link| establish_link(link, nodes, carriers) }
 
