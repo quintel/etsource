@@ -37,14 +37,14 @@ module ETSource
       #   general/co2/total_co2_emissions.gql returns total_co2_emissions
       #
       def key
-        without_ext = File.basename(file_path, ".#{self.class::FILE_SUFFIX}")
+        without_ext = file_path.basename(".#{self.class::FILE_SUFFIX}")
 
         if subclass_suffix = self.class.subclass_suffix
           # This is an ActiveDocument subclass, so remove the class from the
           # filename also.
-          without_ext.chomp(".#{ subclass_suffix }")
+          without_ext.to_s.chomp(".#{ subclass_suffix }")
         else
-          without_ext
+          without_ext.to_s
         end
       end
 
@@ -131,8 +131,8 @@ module ETSource
 
       # saves it to file
       def save_to_file
-        FileUtils.mkdir_p(File.dirname(file_path))
-        f = File.open(file_path, 'w')
+        FileUtils.mkdir_p(file_path.dirname)
+        f = file_path.open('w')
         f.write(file_contents)
         f.close
 
@@ -140,13 +140,13 @@ module ETSource
       end
 
       def delete_old_file
-        File.delete(@last_saved_file_path)
+        @last_saved_file_path.delete
         @last_saved_file_path = file_path
       end
 
       # Delete the file
       def destroy_file
-        File.delete(file_path)
+        file_path.delete
       end
 
       # Return the file_contents for this object, which is a parsed
@@ -192,9 +192,8 @@ module ETSource
       end
 
       def load_from_file(path)
-        parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
-
         path           = Pathname.new(path)
+        parsed_content = ETSource::TextToHashParser.new(path.read).to_hash
         relative_path  = path.relative_path_from(directory)
         without_ext    = relative_path.basename.sub_ext('')
 
