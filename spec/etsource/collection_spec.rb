@@ -13,6 +13,11 @@ module ETSource
         expect(collection.find('two')).to eql(node_two)
       end
 
+      it 'returns the document when there are similar entries' do
+        collection.push(Node.new('ona'))
+        expect(collection.find('one')).to eql(node_one)
+      end
+
       it 'returns nil when no document matches' do
         expect(collection.find('nope')).to be_nil
       end
