@@ -64,13 +64,8 @@ module ETSource
       def key=(new_key)
         raise InvalidKeyError.new(new_key) if new_key.nil? || new_key == ""
 
-        suffixes = [ self.class.subclass_suffix,
-                     self.class::FILE_SUFFIX ].compact.join('.')
-
         file_dir = file_path.relative_path_from(directory)
-        new_path = "#{ new_key }.#{ suffixes }"
-
-        self.file_path = normalize_path(file_dir.dirname.join(new_path))
+        self.file_path = normalize_path(file_dir.dirname.join(new_key))
       end
 
       # Saves the document (to file)
