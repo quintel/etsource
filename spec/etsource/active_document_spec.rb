@@ -23,11 +23,7 @@ module ETSource
   class FinalDocument < OtherDocument
   end
 
-describe SomeDocument do
-
-  before(:each) do
-    use_fixtures
-  end
+describe SomeDocument, :fixtures do
 
   let(:some_document){ some_document = SomeDocument.find('foo') }
 

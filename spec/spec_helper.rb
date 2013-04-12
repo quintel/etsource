@@ -24,4 +24,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Use a (safe) copy of spec/fixtures as the data-source when the "fixtures"
+  # metadata is set on a spec group or example.
+  config.include ETSource::Spec::Fixtures, fixtures: true
 end
