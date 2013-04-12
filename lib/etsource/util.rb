@@ -13,12 +13,6 @@ module ETSource
       (?<parent>[\w_]+)          # Parent node key
     /xi
 
-    # Path to the links directory, relative to the ETSource.root.
-    #
-    # TEMPORARY... will be removed once refactoring ETSource.root / fixtures
-    # is done.
-    TOPOLOGY_DIR = 'data/topology'.freeze
-
     # Public: Given a path to a directory, yields an array of links for each
     # "links" file in that directory. Does not recurse into subdirectories.
     #

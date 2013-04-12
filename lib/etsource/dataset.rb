@@ -2,7 +2,7 @@ module ETSource
   class Dataset
     include ActiveDocument
 
-    DIRECTORY = 'data/datasets'
+    DIRECTORY = 'datasets'
 
     # General Attributes
     attribute :country,                  String
