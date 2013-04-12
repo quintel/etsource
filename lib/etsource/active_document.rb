@@ -48,8 +48,6 @@ module ETSource
         end
       end
 
-      # Changing the key changes a part of the file_path
-
       # Public: Change the key of the document.
       #
       # This changes the key component of the file path ONLY; you may not
