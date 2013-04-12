@@ -82,21 +82,11 @@ describe SomeDocument do
     end
   end
 
-  describe "absolute_file_path" do
-    it "returns the absolute_path" do
-      ETSource.stub!(:root) { "/tmp" }
-      stub_const("ETSource::SomeDocument::DIRECTORY", "some_documents")
-      some_document = SomeDocument.new('foo')
-
-      expect(some_document.absolute_file_path).to eql '/tmp/some_documents/foo.suffix'
-    end
-  end
-
   describe "find" do
 
     it "should load a some_document from file" do
       expect(some_document.key).to eq('foo')
-      expect(some_document.file_path).to include some_document.key
+      expect(some_document.file_path.to_s).to include some_document.key
       expect(some_document.description.size).to be > 0
       expect(some_document.description).to include "MECE" #testing some words
       expect(some_document.description).to include "graph." #testing some words
@@ -116,17 +106,84 @@ describe SomeDocument do
   end
 
   describe "key" do
-
     it "returns just the key part" do
       expect(some_document.key).to eql 'foo'
     end
+  end
 
-    it "it impossible to set a empty or nil key" do
-      expect(-> { some_document.key = nil }).to raise_error
-      expect(-> { some_document.key = "" }).to raise_error
+  describe 'key=' do
+    context 'setting the key to nil' do
+      let(:doc) { SomeDocument.new('key') }
+
+      it 'raises InvalidKeyError' do
+        expect { doc.key = nil }.to raise_error(InvalidKeyError)
+      end
     end
 
-  end
+    context 'setting an empty key' do
+      let(:doc) { SomeDocument.new('key') }
+
+      it 'raises InvalidKeyError' do
+        expect { doc.key = '' }.to raise_error(InvalidKeyError)
+      end
+    end
+
+    context 'when the document is at the class DIRECTORY root' do
+      let(:doc) { SomeDocument.new('key') }
+      before    { doc.key = 'new' }
+
+      it 'changes the document key' do
+        expect(doc.key).to eql('new')
+      end
+
+      it 'puts the file at the DIRECTORY root' do
+        expect(doc.file_path).
+          to eql(SomeDocument.directory.join('new.suffix'))
+      end
+    end
+
+    context 'when the document path includes a subdirectory' do
+      let(:doc) { SomeDocument.new('dir/key') }
+      before    { doc.key = 'new' }
+
+      it 'changes the document key' do
+        expect(doc.key).to eql('new')
+      end
+
+      it 'puts the file in the subdirectory' do
+        expect(doc.file_path).
+          to eql(SomeDocument.directory.join('dir/new.suffix'))
+      end
+    end
+
+    context 'when the document name contains the suffix substring' do
+      let(:doc) { SomeDocument.new('suffix.suffix') }
+      before    { doc.key = 'new' }
+
+      it 'changes the document key' do
+        expect(doc.key).to eql('new')
+      end
+
+      it 'puts the file at the DIRECTORY root' do
+        # Asserts that the suffix is not altered.
+        expect(doc.file_path).
+          to eql(SomeDocument.directory.join('new.suffix'))
+      end
+    end
+
+    context 'when the document is a subclass' do
+      let(:doc) { FinalDocument.new('okay') }
+      before    { doc.key = 'new' }
+
+      it 'changes the document key' do
+        expect(doc.key).to eql('new')
+      end
+
+      it 'retains the subclass string in the filename' do
+        expect(doc.file_path.to_s).to include('.final_document')
+      end
+    end
+  end # key=
 
   describe "file_contents" do
 
@@ -151,7 +208,7 @@ describe SomeDocument do
     it "should change when the key has changed" do
       some_document.key = "total_co2_emitted"
       expect(some_document.key).to eq("total_co2_emitted")
-      expect(some_document.file_path).to include "total_co2_emitted"
+      expect(some_document.file_path.to_s).to include "total_co2_emitted"
     end
 
   end
@@ -290,34 +347,6 @@ describe SomeDocument do
 
   end
 
-  describe "(Private) normalize_path" do
-    # assume ETSource.root is in /tmp
-    # and the Directory is some_documents
-    before do
-      ETSource.stub!(:root) { "/tmp" }
-      stub_const("ETSource::SomeDocument::DIRECTORY", "some_documents")
-      @some_document = SomeDocument.new('foo')
-    end
-
-    it "accepts just a key" do
-      expect(@some_document.send(:normalize_path, 'foo')).to \
-        eql 'some_documents/foo.suffix'
-    end
-    it "accepts a path" do
-      expect(@some_document.send(:normalize_path, "some_documents/foo")).to \
-        eql "some_documents/foo.suffix"
-    end
-    it "accepts a path with suffix" do
-      expect(@some_document.send(:normalize_path, "some_documents/foo.suffix")).to \
-        eql "some_documents/foo.suffix"
-    end
-    it "raises an error if given a full path" do
-      expect(-> { @some_document.send(:normalize_path,
-                                      "/some_documents/foo.suffix") }).to \
-        raise_error InvalidKeyError
-    end
-  end
-
   describe '#<=>' do
     let(:node) { Node.new('f') }
 
@@ -333,6 +362,63 @@ describe SomeDocument do
       expect(Node.new('z') <=> node).to eql(1)
     end
   end # <=>
+
+  describe 'path normalization' do
+    context 'given a path which includes the DIRECTORY' do
+      let(:node) { SomeDocument.new('active_document/foo.suffix') }
+
+      it 'the DIRECTORY still gets prepended' do
+        expect(node.file_path).
+          to eq(SomeDocument.directory.join('active_document/foo.suffix'))
+      end
+    end
+
+    context 'given a path in a subdirectory' do
+      let(:node) { SomeDocument.new('special/foo.suffix') }
+
+      it 'does not change the given path' do
+        expect(node.file_path).
+          to eq(SomeDocument.directory.join('special/foo.suffix'))
+      end
+    end
+
+    context 'given a path which contains a subdirectory and no key' do
+      let(:node) { SomeDocument.new('special/foo') }
+
+      it 'does not change the given path' do
+        expect(node.file_path.sub_ext('')).
+          to eq(SomeDocument.directory.join('special/foo'))
+      end
+
+      it 'adds the file extension' do
+        expect(node.file_path.extname).to eq('.suffix')
+      end
+    end
+
+    context 'given only a key' do
+      let(:node) { SomeDocument.new('foo') }
+
+      it 'adds the document directory' do
+        expect(node.file_path.to_s).to match(%r{active_document/})
+      end
+
+      it 'adds the file extension' do
+        expect(node.file_path.extname).to eq('.suffix')
+      end
+
+      it 'sets the filename to equal the key' do
+        expect(node.file_path.basename.sub_ext('').to_s).to eq('foo')
+      end
+    end
+
+    context 'given an absolute path' do
+      let(:node) { SomeDocument.new('/tmp/foo') }
+
+      it 'raises an error' do
+        expect { node }.to raise_error(InvalidKeyError)
+      end
+    end
+  end # path normalization
 
 end #describe SomeDocument
 
