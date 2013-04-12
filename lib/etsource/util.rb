@@ -35,25 +35,6 @@ module ETSource
       nil
     end
 
-    # Public: Given an array of nodes, sets up Turbine edges between them in
-    # accordance with the +links+ strings held in the nodes.
-    #
-    # links - An array containing all the link definitions (as strings).
-    # nodes - An array containing zero or more Nodes.
-    #
-    # Returns nothing.
-    def self.establish_links!(nodes, links)
-      nodes    = Collection.new(nodes)
-      carriers = Collection.new(Carrier.all)
-
-      # Debugging failures on Semaphore, depite it passing locally...
-      puts carriers.inspect
-
-      links.each { |link| establish_link(link, nodes, carriers) }
-
-      nil
-    end
-
     # Internal: Given a string defining a link, sets up a Turbine::Edge
     # between the nodes.
     #
