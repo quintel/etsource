@@ -130,9 +130,10 @@ module ETSource
       # saves it to file
       def save_to_file
         FileUtils.mkdir_p(file_path.dirname)
-        f = file_path.open('w')
-        f.write(file_contents)
-        f.close
+
+        file_path.open('w') do |file|
+          file.write(file_contents)
+        end
 
         delete_old_file unless @last_saved_file_path == file_path
       end
