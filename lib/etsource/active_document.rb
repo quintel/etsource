@@ -101,12 +101,22 @@ module ETSource
       # * It makes the path absolute.
       def normalize_path(path)
         raise InvalidKeyError.new(path) if path =~ /^\//
+
         unless path =~ /\.#{self.class::FILE_SUFFIX}$/
           path = "#{path}.#{self.class::FILE_SUFFIX}"
         end
-        unless path =~ /^#{self.class::DIRECTORY}/
+
+        unless path =~ /(?:\/|^)#{self.class::DIRECTORY}\//
           path = File.join(self.class::DIRECTORY, path)
         end
+
+        data_without_root =
+          ETSource.data_dir.to_s.gsub!(/^#{ ETSource.root }\//, '')
+
+        unless path =~ /#{ data_without_root }\//
+          path = File.join(data_without_root, path)
+        end
+
         path
       end
 
@@ -158,7 +168,7 @@ module ETSource
       # optimize this by just loading the keys, until we need more.
       def load_directory
         items = []
-        Dir.glob("#{ETSource.root}/#{self::DIRECTORY}/**/*.#{self::FILE_SUFFIX}") do |path|
+        Dir.glob("#{ETSource.data_dir}/#{self::DIRECTORY}/**/*.#{self::FILE_SUFFIX}") do |path|
           items << load_from_file(path)
         end
         items

@@ -26,9 +26,7 @@ module ETSource
 describe SomeDocument do
 
   before(:each) do
-    copy_fixtures_to_tmp
-    stub_const("ETSource::SomeDocument::DIRECTORY",
-               "tmp/fixtures/#{SomeDocument::DIRECTORY}")
+    use_fixtures
   end
 
   let(:some_document){ some_document = SomeDocument.find('foo') }

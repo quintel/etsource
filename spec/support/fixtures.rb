@@ -14,15 +14,6 @@ end
 # Stub out all the directories of classes that have a DIRECTORY constant
 # to use the fixtures directory.
 def stub_directories
-  ETSource.constants.each do |constant_name|
-    if defined?(ETSource.const_get(constant_name)::DIRECTORY)
-      directory = ETSource.const_get(constant_name)::DIRECTORY.gsub(/^data\//,'')
-      unless directory.match /tmp\/fixtures/
-        stub_const("ETSource::#{constant_name}::DIRECTORY",
-                   "tmp/fixtures/#{directory}")
-      end
-    end
-  end
-
-  stub_const('ETSource::Util::TOPOLOGY_DIR', 'tmp/fixtures/data/topology')
+  ETSource.stub!(:data_dir).
+   and_return(Pathname.new(ETSource.root.join('tmp/fixtures')))
 end

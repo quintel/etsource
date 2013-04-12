@@ -3,7 +3,7 @@ module ETSource
     include ActiveDocument
 
     FILE_SUFFIX = 'gql'
-    DIRECTORY   = 'data/gqueries'
+    DIRECTORY   = 'gqueries'
 
     attribute :description,    String
     attribute :query,          String

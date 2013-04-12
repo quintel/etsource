@@ -3,10 +3,9 @@ require 'spec_helper'
 module ETSource
 
 describe Node do
-
   let(:node) { Node.new('foo') }
 
-  before(:each) do
+  before do
     use_fixtures
   end
 

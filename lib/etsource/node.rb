@@ -2,7 +2,7 @@ module ETSource
   class Node
     include ActiveDocument
 
-    DIRECTORY = 'data/nodes'
+    DIRECTORY = 'nodes'
 
     attribute :sector,               String
     attribute :use,                  String
@@ -52,7 +52,7 @@ module ETSource
 
     def self.all
       super.tap do |nodes|
-        links_dir = ETSource::Util::TOPOLOGY_DIR
+        links_dir = ETSource.data_dir.join('topology')
 
         ETSource::Util.foreach_link(links_dir) do |link, *, filename|
           begin
