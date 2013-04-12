@@ -190,7 +190,7 @@ describe SomeDocument do
     context 'when nothing changed' do
       it "should be the same as the original" do
         expect(some_document.send(:file_contents)).to eq(
-          File.read("#{ETSource.root}/spec/fixtures/active_document/foo.suffix"))
+          ETSource.root.join('spec/fixtures/active_document/foo.suffix').read)
       end
     end
 
@@ -198,7 +198,7 @@ describe SomeDocument do
       it "should not be the same as the original" do
         some_document.unit = "Mtonne"
         expect(some_document.send(:file_contents)).to_not eq(
-          File.read("#{ETSource.root}/spec/fixtures/active_document/foo.suffix"))
+          ETSource.root.join('spec/fixtures/active_document/foo.suffix').read)
       end
     end
   end
@@ -245,9 +245,9 @@ describe SomeDocument do
     context 'when nothing changed' do
 
       it "does not write to disk" do
-        cache = File.read(some_document.file_path)
+        cache = some_document.file_path.read
         some_document.save!
-        expect(cache).to eq(File.read(some_document.file_path))
+        expect(cache).to eq(some_document.file_path.read)
       end
 
     end
@@ -263,13 +263,13 @@ describe SomeDocument do
         old_path = some_document.file_path
         some_document.key = "foo2"
         some_document.save!
-        expect { File.read(old_path) }.to raise_error
+        expect { old_path.read }.to raise_error
       end
 
       it "should create a new file" do
         some_document.key = "foo2"
         some_document.save!
-        expect { File.read(some_document.file_path) }.to_not raise_error
+        expect { some_document.file_path.read }.to_not raise_error
       end
 
       context 'when another object with that key already exists' do
@@ -317,7 +317,7 @@ describe SomeDocument do
     end
 
     it 'retains the subclass suffix' do
-      expect(File.basename(doc.file_path)).
+      expect(doc.file_path.basename.to_s).
         to eql([
           doc.key,
           doc.class.subclass_suffix,
@@ -330,7 +330,7 @@ describe SomeDocument do
     it "should delete the file" do
       path = some_document.file_path
       some_document.destroy!
-      expect(File.exists?(path)).to be_false
+      expect(path.exist?).to be_false
     end
 
   end
