@@ -43,20 +43,24 @@ module ETSource
     #
     # Returns nothing.
     def self.establish_links!(nodes, links)
-      links.each { |link| establish_link(link, nodes) }
+      nodes    = Collection.new(nodes)
+      carriers = Collection.new(Carrier.all)
+      links.each { |link| establish_link(link, nodes, carriers) }
+
       nil
     end
 
     # Internal: Given a string defining a link, sets up a Turbine::Edge
     # between the nodes.
     #
-    # link  - The raw link definition string.
-    # nodes - All the nodes defined in the graph.
+    # link     - The raw link definition string.
+    # nodes    - All the nodes defined in the graph in a Collection.
+    # carriers - A list of all carriers in the dataset, in a Collection
     #
     # Raises Turbine::DuplicateEdgeError if the edge already exists.
     #
     # Returns the edge which was created.
-    def self.establish_link(link, nodes)
+    def self.establish_link(link, nodes, carriers)
       data = LINK_RE.match(link)
 
       raise InvalidLinkError.new(link) if data.nil?
@@ -69,11 +73,11 @@ module ETSource
         when 'i' then :inverse_flexible
       end
 
-      parent  = nodes.detect { |other| other.key == data['parent'] }
-      child   = nodes.detect { |other| other.key == data['child'] }
+      parent  = nodes.find(data['parent'])
+      child   = nodes.find(data['child'])
 
       props   = { type: type, reversed: ! data['reversed'].nil? }
-      carrier = Carrier.find(data['carrier'])
+      carrier = carriers.find(data['carrier'])
 
       raise UnknownLinkNodeError.new(link, data['parent'])     if parent.nil?
       raise UnknownLinkNodeError.new(link, data['child'])      if child.nil?
@@ -81,7 +85,7 @@ module ETSource
       raise UnknownLinkTypeError.new(link, data['type'])       if type.nil?
       raise UnknownLinkCarrierError.new(link, data['carrier']) if carrier.nil?
 
-      e = parent.turbine.connect_to(child.turbine, carrier.key, props)
+      parent.turbine.connect_to(child.turbine, carrier.key, props)
     end
 
   end # Util

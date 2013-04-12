@@ -53,10 +53,12 @@ module ETSource
     def self.all
       super.tap do |nodes|
         links_dir = ETSource.data_dir.join('topology')
+        nodes     = Collection.new(nodes)
+        carriers  = Collection.new(Carrier.all)
 
         ETSource::Util.foreach_link(links_dir) do |link, *, filename|
           begin
-            ETSource::Util.establish_link(link, nodes)
+            ETSource::Util.establish_link(link, nodes, carriers)
           rescue InvalidLinkError => exception
             # Add information about which file contained the offending link.
             exception.message.gsub!(/$/, " (in file #{ filename })")

@@ -15,6 +15,7 @@ end
 gem 'activemodel'
 gem 'virtus'
 gem 'turbine-graph', require: 'turbine'
+gem 'bsearch' # Not required on Ruby 2.0.
 
 gem 'rubel'
 
