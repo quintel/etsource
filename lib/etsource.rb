@@ -1,7 +1,6 @@
 require 'yaml'
 require 'csv'
 require 'pathname'
-require 'bsearch'
 require 'delegate'
 
 require 'active_model'
