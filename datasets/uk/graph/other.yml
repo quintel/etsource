@@ -105,15 +105,6 @@ other_chp_engine_network_gas-(network_gas): {conversion: 1.0}
 (electricity)-other_chp_engine_network_gas: {conversion: 0.29}
 other_chp_engine_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
 
-:other_chp_supercritical_wood_pellets:
-  :co2_free: 0.0
-  :demand_expected_value: 0.0
-other_chp_supercritical_wood_pellets-(wood_pellets): {conversion: 1.0}
-(loss)-other_chp_supercritical_wood_pellets: {}
-(steam_hot_water)-other_chp_supercritical_wood_pellets: {conversion: 0.41}
-(electricity)-other_chp_supercritical_wood_pellets: {conversion: 0.23}
-other_chp_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
-
 :other_electricity_for_electricity:
   :co2_free: 0.0
   :demand_expected_value: 0.0
@@ -229,7 +220,6 @@ other_local_production_electricity-(electricity): {conversion: 1.0}
 (electricity)-other_local_production_electricity: {conversion: 1.0}
 other_local_production_electricity-(electricity) -- f --> (electricity)-energy_power_lv_network_electricity: {}
 other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_engine_network_gas: {share: 0.0}
-other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_supercritical_wood_pellets: {share: 0.0}
 
 :other_local_production_steam_hot_water:
   :co2_free: 0.0
@@ -237,7 +227,6 @@ other_local_production_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-other_local_production_steam_hot_water: {conversion: 1.0}
 other_local_production_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water: {}
 other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_engine_network_gas: {}
-other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_supercritical_wood_pellets: {}
 
 :other_unused_local_production_steam_hot_water:
   :co2_free: 0.0
