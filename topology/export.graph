@@ -51,6 +51,17 @@ agriculture_chp_engine_network_gas:
   - ! '(loss)-agriculture_chp_engine_network_gas: {type: :loss}'
   - (steam_hot_water)-agriculture_chp_engine_network_gas
   - (electricity)-agriculture_chp_engine_network_gas
+agriculture_chp_supercritical_wood_pellets:
+  sector: agriculture
+  use: energetic
+  energy_balance_group: central CHPs
+  links:
+  - agriculture_chp_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
+  slots:
+  - ! '(loss)-agriculture_chp_supercritical_wood_pellets: {type: :loss}'
+  - (steam_hot_water)-agriculture_chp_supercritical_wood_pellets
+  - (electricity)-agriculture_chp_supercritical_wood_pellets
+  - agriculture_chp_supercritical_wood_pellets-(wood_pellets)
 agriculture_final_demand_crude_oil:
   sector: agriculture
   use: energetic
@@ -144,6 +155,7 @@ agriculture_locally_available_electricity:
   - agriculture_locally_available_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity
   - agriculture_locally_available_electricity-(electricity) -- c --> (electricity)-agriculture_chp_engine_network_gas
   - agriculture_locally_available_electricity-(electricity) -- c --> (electricity)-agriculture_chp_engine_biogas
+  - agriculture_locally_available_electricity-(electricity) -- c --> (electricity)-agriculture_chp_supercritical_wood_pellets
   slots:
   - agriculture_locally_available_electricity-(electricity)
   - (electricity)-agriculture_locally_available_electricity
@@ -155,6 +167,7 @@ agriculture_locally_available_steam_hot_water:
   - agriculture_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
   - agriculture_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-agriculture_chp_engine_network_gas
   - agriculture_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-agriculture_chp_engine_biogas
+  - agriculture_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-agriculture_chp_supercritical_wood_pellets
   slots:
   - agriculture_locally_available_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-agriculture_locally_available_steam_hot_water
