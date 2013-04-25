@@ -5,10 +5,13 @@
 
 DIVIDE(
 	MAX(
-        SUM(
+		SUM(
 			V(agriculture_final_demand_electricity,demand),
 			NEG(
 				V(agriculture_chp_engine_network_gas,output_of_electricity)
+			),
+			NEG(	
+				V(agriculture_chp_engine_biogas,output_of_electricity)
 			)
 		),
 		0
