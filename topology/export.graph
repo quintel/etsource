@@ -2613,6 +2613,17 @@ households_appliances_washing_machine_electricity:
   - households_appliances_washing_machine_electricity-(electricity)
   - (not_defined)-households_appliances_washing_machine_electricity
   - ! '(loss)-households_appliances_washing_machine_electricity: {type: :loss}'
+households_collective_chp_biogas:
+  sector: households
+  use: energetic
+  energy_balance_group: central CHPs
+  links:
+  - households_collective_chp_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
+  slots:
+  - ! '(loss)-households_collective_chp_biogas: {type: :loss}'
+  - (steam_hot_water)-households_collective_chp_biogas
+  - (electricity)-households_collective_chp_biogas
+  - households_collective_chp_biogas-(biogas)
 households_collective_chp_network_gas:
   sector: households
   use: energetic
@@ -2967,6 +2978,7 @@ households_final_demand_steam_hot_water:
   - households_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-households_collective_chp_network_gas
   - households_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-households_collective_chp_wood_pellets
   - households_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-households_collective_geothermal
+  - households_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-households_collective_chp_biogas
   slots:
   - households_final_demand_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-households_final_demand_steam_hot_water
@@ -3032,6 +3044,7 @@ households_locally_available_electricity:
   - households_locally_available_electricity-(electricity) -- d --> (electricity)-households_water_heater_micro_chp_network_gas
   - households_locally_available_electricity-(electricity) -- d --> (electricity)-households_space_heater_micro_chp_network_gas
   - households_locally_available_electricity-(electricity) -- d --> (electricity)-households_water_heater_fuel_cell_chp_network_gas
+  - households_locally_available_electricity-(electricity) -- d --> (electricity)-households_collective_chp_biogas
   slots:
   - households_locally_available_electricity-(electricity)
   - (electricity)-households_locally_available_electricity
