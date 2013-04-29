@@ -962,17 +962,6 @@ energy_chp_ultra_supercritical_lignite:
   - (electricity)-energy_chp_ultra_supercritical_lignite
   - (steam_hot_water)-energy_chp_ultra_supercritical_lignite
   - ! '(loss)-energy_chp_ultra_supercritical_lignite: {type: :loss}'
-energy_chp_ultra_supercritical_wood_pellets:
-  sector: energy
-  use: energetic
-  energy_balance_group: central CHPs
-  links:
-  - energy_chp_ultra_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
-  slots:
-  - energy_chp_ultra_supercritical_wood_pellets-(wood_pellets)
-  - ! '(loss)-energy_chp_ultra_supercritical_wood_pellets: {type: :loss}'
-  - (steam_hot_water)-energy_chp_ultra_supercritical_wood_pellets
-  - (electricity)-energy_chp_ultra_supercritical_wood_pellets
 energy_cokesoven_consumption_coal_gas:
   sector: energy
   use: energetic
@@ -1554,7 +1543,6 @@ energy_heat_network_steam_hot_water:
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_network_gas
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_waste_mix
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_wood_pellets
-  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_wood_pellets
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_import_steam_hot_water
   slots:
   - energy_heat_network_steam_hot_water-(steam_hot_water)
@@ -1983,7 +1971,6 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_ccs_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_lignite
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_wood_pellets
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas
   slots:
