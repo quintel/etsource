@@ -33,7 +33,7 @@ buildings_appliances_wood_pellets-(wood_pellets): {conversion: 1.0}
 (not_defined)-buildings_appliances_wood_pellets: {conversion: 1.0}
 buildings_appliances_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildings_final_demand_for_appliances_wood_pellets: {share: 1.0}
 
-:buildings_collective_chp_natural_gas:
+:buildings_collective_chp_network_gas:
   :availability: 0.97
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
   :co2_free: 0.0
@@ -54,11 +54,11 @@ buildings_appliances_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-buildin
   :electricity_output_capacity: 1.7205
   :heat_output_capacity: 1.6275
   :peak_load_units: 0.0
-buildings_collective_chp_natural_gas-(network_gas): {conversion: 1.0}
-(electricity)-buildings_collective_chp_natural_gas: {conversion: 0.37}
-(steam_hot_water)-buildings_collective_chp_natural_gas: {conversion: 0.35}
-(loss)-buildings_collective_chp_natural_gas: {}
-buildings_collective_chp_natural_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
+buildings_collective_chp_network_gas-(network_gas): {conversion: 1.0}
+(electricity)-buildings_collective_chp_network_gas: {conversion: 0.37}
+(steam_hot_water)-buildings_collective_chp_network_gas: {conversion: 0.35}
+(loss)-buildings_collective_chp_network_gas: {}
+buildings_collective_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
 
 :buildings_collective_chp_wood_pellets:
   :availability: 0.97
@@ -363,7 +363,7 @@ buildings_final_demand_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-en
 buildings_final_demand_steam_hot_water-(steam_hot_water): {conversion: 1.0}
 (steam_hot_water)-buildings_final_demand_steam_hot_water: {conversion: 1.0}
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-buildings_heat_network_connection_steam_hot_water: {share: 0.0}
-buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_natural_gas: {share: 0.0}
+buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_network_gas: {share: 0.0}
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_wood_pellets: {share: 0.0}
 buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_geothermal: {share: 0.0}
 
@@ -486,7 +486,7 @@ buildings_local_production_electricity-(electricity): {conversion: 1.0}
 (electricity)-buildings_local_production_electricity: {conversion: 1.0}
 buildings_local_production_electricity-(electricity) -- f --> (electricity)-energy_power_lv_network_electricity: {}
 buildings_local_production_electricity-(electricity) -- c --> (electricity)-buildings_solar_pv_solar_radiation: {share: 0.0}
-buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_natural_gas: {}
+buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_network_gas: {}
 buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_wood_pellets: {}
 
 :buildings_solar_pv_solar_radiation:
