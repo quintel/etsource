@@ -249,17 +249,17 @@ buildings_appliances_wood_pellets:
   slots:
   - buildings_appliances_wood_pellets-(wood_pellets)
   - (not_defined)-buildings_appliances_wood_pellets
-buildings_collective_chp_natural_gas:
+buildings_collective_chp_network_gas:
   sector: buildings
   use: energetic
   energy_balance_group: central CHPs
   links:
-  - buildings_collective_chp_natural_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
+  - buildings_collective_chp_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas
   slots:
-  - buildings_collective_chp_natural_gas-(network_gas)
-  - (electricity)-buildings_collective_chp_natural_gas
-  - (steam_hot_water)-buildings_collective_chp_natural_gas
-  - ! '(loss)-buildings_collective_chp_natural_gas: {type: :loss}'
+  - buildings_collective_chp_network_gas-(network_gas)
+  - (electricity)-buildings_collective_chp_network_gas
+  - (steam_hot_water)-buildings_collective_chp_network_gas
+  - ! '(loss)-buildings_collective_chp_network_gas: {type: :loss}'
 buildings_collective_chp_wood_pellets:
   sector: buildings
   use: energetic
@@ -544,7 +544,7 @@ buildings_final_demand_steam_hot_water:
   energy_balance_group: final consumption
   links:
   - buildings_final_demand_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-buildings_heat_network_connection_steam_hot_water
-  - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_natural_gas
+  - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_network_gas
   - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_wood_pellets
   - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_geothermal
   slots:
@@ -646,7 +646,7 @@ buildings_local_production_electricity:
   links:
   - buildings_local_production_electricity-(electricity) -- f --> (electricity)-energy_power_lv_network_electricity
   - buildings_local_production_electricity-(electricity) -- c --> (electricity)-buildings_solar_pv_solar_radiation
-  - buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_natural_gas
+  - buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_network_gas
   - buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_wood_pellets
   slots:
   - buildings_local_production_electricity-(electricity)
