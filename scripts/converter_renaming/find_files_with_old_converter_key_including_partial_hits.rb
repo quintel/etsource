@@ -79,7 +79,7 @@ def find_old_names_in_files(replacements, files, server)
       end
     end
   end
-  puts "#{old_files_found} old keys found. Changes can be made on ETsource by the change script." if server == "etsource" || server == "notInputExcelfiles"
+  puts "#{old_files_found} old keys found. Changes can be made on ETsource by the change script." if server == "etsource" || server == "notInputExcelfiles" || server == "merit" || server == "mechanical_turk"
   puts "#{old_files_found} old keys found that can be changed by InputExcel, after which the xls2yml script can change the names here." if server == "dataset"
   puts "#{old_files_found} old keys found that need attention on ETengine. Also partial matches are shown. Changes need to be made on ETengine to fix this." if server == "engine"
 end

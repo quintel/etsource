@@ -6,13 +6,13 @@
 - update_period = future
 - step_value = 0.1
 - share_group = district_heating_buildings
-- start_value_gql = present:V(buildings_collective_chp_natural_gas,steam_hot_water_output_link_share)
+- start_value_gql = present:V(buildings_collective_chp_network_gas,steam_hot_water_output_link_share)
 
 UPDATE(
   FIRST(
     LINKS(
       OUTPUT_SLOTS(
-        LOOKUP(buildings_collective_chp_natural_gas),
+        LOOKUP(buildings_collective_chp_network_gas),
         steam_hot_water
       )
     )
