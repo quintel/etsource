@@ -8,4 +8,7 @@
 - update_type = %
 - step_value = 1.0
 
-UPDATE(V(energy_power_supercritical_waste_mix), initial_investment, USER_INPUT())
+EACH(
+    UPDATE(V(energy_power_supercritical_waste_mix), initial_investment, USER_INPUT()),
+    UPDATE(V(energy_chp_supercritical_waste_mix), initial_investment, USER_INPUT())
+)
