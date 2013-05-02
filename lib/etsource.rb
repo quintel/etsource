@@ -20,6 +20,7 @@ require_relative 'etsource/gquery'
 require_relative 'etsource/dataset'
 require_relative 'etsource/energy_balance'
 require_relative 'etsource/carrier'
+require_relative 'etsource/share_data'
 
 require_relative 'etsource/node'
 require_relative 'etsource/node/converter'
