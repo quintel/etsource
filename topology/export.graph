@@ -925,6 +925,17 @@ energy_chp_combined_cycle_network_gas:
   - ! '(loss)-energy_chp_combined_cycle_network_gas: {type: :loss}'
   - (steam_hot_water)-energy_chp_combined_cycle_network_gas
   - (electricity)-energy_chp_combined_cycle_network_gas
+energy_chp_supercritical_waste_mix:
+  sector: energy
+  use: energetic
+  energy_balance_group: central power generation
+  links:
+  - energy_chp_supercritical_waste_mix-(waste_mix) -- s --> (waste_mix)-energy_distribution_waste_mix
+  slots:
+  - ! '(loss)-energy_chp_supercritical_waste_mix: {type: :loss}'
+  - (steam_hot_water)-energy_chp_supercritical_waste_mix
+  - (electricity)-energy_chp_supercritical_waste_mix
+  - energy_chp_supercritical_waste_mix-(waste_mix)
 energy_chp_ultra_supercritical_coal:
   sector: energy
   use: undefined
@@ -1544,6 +1555,7 @@ energy_heat_network_steam_hot_water:
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_waste_mix
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_wood_pellets
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_import_steam_hot_water
+  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_supercritical_waste_mix
   slots:
   - energy_heat_network_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-energy_heat_network_steam_hot_water
@@ -1973,6 +1985,7 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_supercritical_waste_mix
   slots:
   - energy_power_hv_network_electricity-(electricity)
   - (electricity)-energy_power_hv_network_electricity
