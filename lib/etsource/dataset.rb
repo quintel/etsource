@@ -77,5 +77,12 @@ module ETSource
       @energy_balance ||= EnergyBalance.find(area)
     end
 
+    def shares(key)
+      key = key.to_sym
+
+      @shares      ||= Hash.new
+      @shares[key] ||= ShareData.new(area, key)
+    end
+
   end # Dataset
 end # ETSource
