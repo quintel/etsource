@@ -77,6 +77,11 @@ module ETSource
       @energy_balance ||= EnergyBalance.find(area)
     end
 
+    # Public: Retrieves the ShareData for the file whose name matches +key+.
+    #
+    # key - The name of the shares file to load.
+    #
+    # Returns a ShareData.
     def shares(key)
       key = key.to_sym
 
