@@ -28,6 +28,10 @@ module ETSource
       expect(runtime.execute("AREA(number_inhabitants)")).to be > -1
     end
 
+    it 'executes SHARE functions' do
+      expect(runtime.execute("SHARE(cars, gasoline)")).to eq(0.1)
+    end
+
     it "executes combinations of queries and algorithms" do
       query = "EB('residential', 'natural_gas')"
       eb_function = runtime.execute(query)
