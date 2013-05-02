@@ -43,6 +43,13 @@ module ETSource
       row(attribute)[1]
     end
 
+    # Public: A human-readable version of the ShareData. Useful for debugging.
+    #
+    # Returns a string.
+    def inspect
+      "#<#{ self.class.name } area=#{ area } file_key=#{ file_key }>"
+    end
+
     #######
     private
     #######
