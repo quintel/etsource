@@ -60,4 +60,12 @@ module ETSource
   UnknownLinkCarrierError = error_class(InvalidLinkError) do |link, carrier|
     "Unknown carrier #{ carrier.inspect } in link #{ link.inspect }"
   end
+
+  UnknownShareDataError = error_class do |path|
+    "No share data file exists at #{ path.to_s.inspect }"
+  end
+
+  UnknownShareAttributeError = error_class do |key, file_key|
+    "Unknown share data row #{ key.inspect } in share data #{ file_key }"
+  end
 end
