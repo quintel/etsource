@@ -11,7 +11,7 @@ describe FinalDemandNode, :fixtures do
     end
 
     it 'removes the subclass from the key' do
-      expect(FinalDemandNode.find('fd').key).
+      expect(FinalDemandNode.find('fd').key.to_s).
         to_not include('.final_demand_node')
     end
   end

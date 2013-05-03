@@ -4,7 +4,7 @@ module ETSource; describe Dataset, :fixures do
   describe "#new" do
     it "sets key" do
       dataset = Dataset.new(:nl)
-      expect(dataset.key).to eql "nl"
+      expect(dataset.key).to eql(:nl)
     end
   end # describe #new
 
@@ -12,13 +12,13 @@ module ETSource; describe Dataset, :fixures do
     it "finds the Dutch dataset from file" do
       dataset = Dataset.find(:nl)
       expect(dataset).to be_a(Dataset)
-      expect(dataset.key).to eql 'nl'
+      expect(dataset.key).to eql(:nl)
     end
 
     it "finds the UK dataset from file" do
       dataset = Dataset.find(:uk)
       expect(dataset).to be_a(Dataset)
-      expect(dataset.key).to eql 'uk'
+      expect(dataset.key).to eql(:uk)
     end
   end # describe #load
 

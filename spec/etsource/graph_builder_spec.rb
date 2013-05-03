@@ -28,10 +28,10 @@ module ETSource
       end # nodes
 
       context 'edges' do
-        let(:foo_edges) { graph.node('foo').out_edges.to_a }
-        let(:bar_edges) { graph.node('bar').out_edges.to_a }
-        let(:baz_edges) { graph.node('baz').out_edges.to_a }
-        let(:fd_edges)  { graph.node('fd').out_edges.to_a  }
+        let(:foo_edges) { graph.node(:foo).out_edges.to_a }
+        let(:bar_edges) { graph.node(:bar).out_edges.to_a }
+        let(:baz_edges) { graph.node(:baz).out_edges.to_a }
+        let(:fd_edges)  { graph.node(:fd).out_edges.to_a  }
 
         it 'are all established' do
           expect(foo_edges).to have(1).edge
@@ -50,14 +50,14 @@ module ETSource
     end # .build
 
     describe '.establish_edge' do
-      let(:node)     { Node.new('key') }
-      let(:parent)   { Node.new('parent') }
+      let(:node)     { Node.new(:key) }
+      let(:parent)   { Node.new(:parent) }
       let(:nodes)    { Collection.new([node, parent]) }
       let(:carriers) { Collection.new(Carrier.all) }
 
       let!(:graph)    { Turbine::Graph.new }
-      let!(:t_node)   { graph.add(Turbine::Node.new('key', model: node)) }
-      let!(:t_parent) { graph.add(Turbine::Node.new('parent', model: parent)) }
+      let!(:t_node)   { graph.add(Turbine::Node.new(:key, model: node)) }
+      let!(:t_parent) { graph.add(Turbine::Node.new(:parent, model: parent)) }
 
       before do
         link_data.each do |link|
@@ -121,7 +121,7 @@ module ETSource
           let(:edge) { t_node.in_edges.first }
 
           it 'sets the carrier (label) to coal' do
-            expect(edge.label).to eql('coal')
+            expect(edge.label).to eql(:coal)
           end
         end # the coal edge
 
@@ -129,7 +129,7 @@ module ETSource
           let(:edge) { t_node.in_edges.to_a.last }
 
           it 'sets the carrier (label) to corn' do
-            expect(edge.label).to eql('corn')
+            expect(edge.label).to eql(:corn)
           end
         end # the corn edge
       end # with multiple links using different carriers

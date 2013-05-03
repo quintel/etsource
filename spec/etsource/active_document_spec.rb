@@ -28,33 +28,45 @@ describe SomeDocument, :fixtures do
   let(:some_document){ some_document = SomeDocument.find('foo') }
 
   describe 'new' do
-    context 'given dumb key' do
+    context 'given a dumb key' do
       it 'creates a new document' do
         expect(SomeDocument.new('key')).to be_a(SomeDocument)
       end
+
+      it 'sets the key (as a symbol)' do
+        expect(SomeDocument.new('key').key).to eql(:key)
+      end
+
       xit 'raises and error when the key already exists' do
         expect(-> { SomeDocument.new('foo') } ).to \
           raise_error DuplicateKeyError
       end
-    end
-    context 'given file_path' do
+    end # given a dumb key
+
+    context 'given a file_path' do
       it 'creates a new document' do
         some_document = SomeDocument.new('my_map1/new')
         expect(some_document.save!).to be_true
-        expect(some_document.key).to eq 'new'
+        expect(some_document.key).to eql(:new)
       end
+
+      it 'sets the key (as a symbol)' do
+        expect(SomeDocument.new('a/b/thing').key).to eql(:thing)
+      end
+
       it 'saves in that folder' do
         some_document = SomeDocument.new('my_map1/new')
-        expect(some_document.key).to eq 'new'
+        expect(some_document.key).to eql(:new)
         expect(some_document.file_path.to_s).to match /my_map1\/new/
       end
+
       xit 'raises and error when the key already exists' do
         SomeDocument.new('my_map1/new').save!
         expect(-> { SomeDocument.new('my_map2/new') } ).to \
           raise_error DuplicateKeyError
       end
-    end
-  end
+    end # given a file path
+  end # new
 
   describe 'to_hash' do
     it 'is empty when no attributes have been set' do
@@ -81,8 +93,8 @@ describe SomeDocument, :fixtures do
   describe "find" do
 
     it "should load a some_document from file" do
-      expect(some_document.key).to eq('foo')
-      expect(some_document.file_path.to_s).to include some_document.key
+      expect(some_document.key).to eql(:foo)
+      expect(some_document.file_path.to_s).to include(some_document.key.to_s)
       expect(some_document.description.size).to be > 0
       expect(some_document.description).to include "MECE" #testing some words
       expect(some_document.description).to include "graph." #testing some words
@@ -91,11 +103,16 @@ describe SomeDocument, :fixtures do
 
     it "should find by Symbol" do
       some_document = ETSource::SomeDocument.find(:foo)
-      expect(some_document.key).to eql 'foo'
+      expect(some_document.key).to eql(:foo)
+    end
+
+    it "should find by String" do
+      some_document = ETSource::SomeDocument.find('foo')
+      expect(some_document.key).to eql(:foo)
     end
 
     it "loads a document from a subfolder" do
-      another_document = ETSource::SomeDocument.find('bar')
+      another_document = ETSource::SomeDocument.find(:bar)
       expect(another_document).to_not be_nil
     end
 
@@ -103,7 +120,7 @@ describe SomeDocument, :fixtures do
 
   describe "key" do
     it "returns just the key part" do
-      expect(some_document.key).to eql 'foo'
+      expect(some_document.key).to eql(:foo)
     end
   end
 
@@ -129,7 +146,7 @@ describe SomeDocument, :fixtures do
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
-        expect(doc.key).to eql('new')
+        expect(doc.key).to eql(:new)
       end
 
       it 'puts the file at the DIRECTORY root' do
@@ -143,7 +160,7 @@ describe SomeDocument, :fixtures do
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
-        expect(doc.key).to eql('new')
+        expect(doc.key).to eql(:new)
       end
 
       it 'puts the file in the subdirectory' do
@@ -157,7 +174,7 @@ describe SomeDocument, :fixtures do
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
-        expect(doc.key).to eql('new')
+        expect(doc.key).to eql(:new)
       end
 
       it 'puts the file at the DIRECTORY root' do
@@ -172,7 +189,7 @@ describe SomeDocument, :fixtures do
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
-        expect(doc.key).to eql('new')
+        expect(doc.key).to eql(:new)
       end
 
       it 'retains the subclass string in the filename' do
@@ -202,8 +219,8 @@ describe SomeDocument, :fixtures do
   describe "file_path" do
 
     it "should change when the key has changed" do
-      some_document.key = "total_co2_emitted"
-      expect(some_document.key).to eq("total_co2_emitted")
+      some_document.key = :total_co2_emitted
+      expect(some_document.key).to eql(:total_co2_emitted)
       expect(some_document.file_path.to_s).to include "total_co2_emitted"
     end
 
@@ -309,7 +326,7 @@ describe SomeDocument, :fixtures do
     before { doc.key = 'pd' }
 
     it 'retains the extension and subclass' do
-      expect(doc.key).to eql('pd')
+      expect(doc.key).to eql(:pd)
     end
 
     it 'retains the subclass suffix' do
@@ -334,11 +351,11 @@ describe SomeDocument, :fixtures do
   describe 'inspect' do
 
     it 'should contain the key' do
-      expect(some_document.to_s).to include some_document.key
+      expect(some_document.to_s).to include(some_document.key.to_s)
     end
 
     it 'should contain the class name' do
-      expect(some_document.to_s).to include some_document.class.to_s
+      expect(some_document.to_s).to include(some_document.class.to_s)
     end
 
   end

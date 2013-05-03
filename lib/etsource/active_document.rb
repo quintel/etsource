@@ -42,9 +42,9 @@ module ETSource
         if subclass_suffix = self.class.subclass_suffix
           # This is an ActiveDocument subclass, so remove the class from the
           # filename also.
-          without_ext.to_s.chomp(".#{ subclass_suffix }")
+          without_ext.to_s.chomp(".#{ subclass_suffix }").to_sym
         else
-          without_ext.to_s
+          without_ext.to_s.to_sym
         end
       end
 
@@ -63,7 +63,7 @@ module ETSource
         raise InvalidKeyError.new(new_key) if new_key.nil? || new_key == ""
 
         file_dir = file_path.relative_path_from(directory)
-        self.file_path = normalize_path(file_dir.dirname.join(new_key))
+        self.file_path = normalize_path(file_dir.dirname.join(new_key.to_s))
       end
 
       # Saves the document (to file)
@@ -175,7 +175,7 @@ module ETSource
       # Return the object with the key if it exists
       # Returns nil if the object is not found
       def find(key)
-        results = all.select { |i| i.key == key.to_s }
+        results = all.select { |i| i.key == key.to_sym }
         raise DuplicateKeyError.new(key) if results.size > 1
         results.first
       end
