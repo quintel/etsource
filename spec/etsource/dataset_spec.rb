@@ -22,6 +22,22 @@ module ETSource; describe Dataset, :fixures do
     end
   end # describe #load
 
+  describe '#path' do
+    let(:dataset) { Dataset.new(:kr) }
+
+    it 'includes the data directory' do
+      expect(dataset.path.to_s).to include(ETSource.data_dir.to_s)
+    end
+
+    it 'points to the datasets subdirectory' do
+      expect(dataset.path.to_s).to include('/datasets/')
+    end
+
+    it 'includes the dataset key' do
+      expect(dataset.path.to_s).to end_with('/kr')
+    end
+  end
+
   describe "#energy_balance" do
     it "has a energy_balance" do
       dataset = Dataset.find(:nl)
@@ -30,10 +46,11 @@ module ETSource; describe Dataset, :fixures do
   end
 
   describe '#shares' do
-    let(:shares) { Dataset.find(:nl).shares(:cars) }
+    let(:dataset) { Dataset.find(:nl) }
+    let(:shares)  { dataset.shares(:cars) }
 
     it 'returns a ShareData for the correct area' do
-      expect(shares.area).to eql(:nl)
+      expect(shares.dataset).to eql(dataset)
     end
 
     it 'returns a ShareData for the correct file key' do
