@@ -39,40 +39,5 @@ module ETSource
     attribute :electrical_efficiency_when_using_coal, Float
     attribute :electrical_efficiency_when_using_wood_pellets, Float
 
-    # Public: Returns the Turbine::Node which corresponds with this Node.
-    attr_reader :turbine
-
-    # Public: Creates a new Node. See ActiveDocument#initialize.
-    #
-    # Returns a Node.
-    def initialize(*)
-      super
-      @turbine = Turbine::Node.new(key)
-    end
-
-    # Public: An array containing all the Nodes in the graph.
-    #
-    # Also sets up the edges ("links") between each of the nodes via the
-    # Turbine::Node instance (accessible as Node#turbine).
-    #
-    # Returns an Array of Nodes.
-    def self.all
-      super.tap do |nodes|
-        links_dir = ETSource.data_dir.join('topology')
-        nodes     = Collection.new(nodes)
-        carriers  = Collection.new(Carrier.all)
-
-        ETSource::Util.foreach_link(links_dir) do |link, *, filename|
-          begin
-            ETSource::Util.establish_link(link, nodes, carriers)
-          rescue InvalidLinkError => exception
-            # Add information about which file contained the offending link.
-            exception.message.gsub!(/$/, " (in file #{ filename })")
-            raise exception
-          end
-        end
-      end
-    end
-
   end # Node
 end # ETSource
