@@ -12,7 +12,7 @@ module ETSource
     #
     # Returns the element from the collection, or nil if none matched.
     def find(key)
-      table[key]
+      table[key.to_sym]
     end
 
     # Public: A new copy of the collection without the key cache; this will
