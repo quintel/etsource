@@ -86,7 +86,15 @@ module ETSource
       key = key.to_sym
 
       @shares      ||= Hash.new
-      @shares[key] ||= ShareData.new(area, key)
+      @shares[key] ||= ShareData.new(self, key)
+    end
+
+    # Public: Path to the directory in which the dataset specific data is
+    # stored.
+    #
+    # Returns a Pathname.
+    def path
+      ETSource.data_dir.join(DIRECTORY).join(key.to_s)
     end
 
   end # Dataset

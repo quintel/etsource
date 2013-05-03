@@ -4,10 +4,11 @@ module ETSource
   describe ShareData, :fixtures do
     describe 'when initialized' do
       context 'with a valid area and share data file' do
-        let(:data) { ShareData.new(:nl, :cars) }
+        let(:dataset) { Dataset.find(:nl) }
+        let(:data)    { ShareData.new(dataset, :cars) }
 
-        it 'sets the area key' do
-          expect(data.area).to eql(:nl)
+        it 'sets the dataset' do
+          expect(data.dataset).to eql(dataset)
         end
 
         it 'sets the data key' do
@@ -21,7 +22,7 @@ module ETSource
       end
 
       context 'with an invalid area' do
-        let(:data) { ShareData.new(:no, :cars) }
+        let(:data) { ShareData.new(Dataset.new(:no), :cars) }
 
         it 'raises UnknownShareDataError' do
           expect { data }.to raise_error(UnknownShareDataError)
@@ -37,7 +38,7 @@ module ETSource
       end
 
       context 'when an invalid share data file' do
-        let(:data) { ShareData.new(:nl, :nope) }
+        let(:data) { ShareData.new(Dataset.find(:nl), :nope) }
 
         it 'raises UnknownShareDataError' do
           expect { data }.to raise_error(UnknownShareDataError)
@@ -54,7 +55,7 @@ module ETSource
     end
 
     describe '#get' do
-      let(:data) { ShareData.new(:nl, :trucks) }
+      let(:data) { ShareData.new(Dataset.find(:nl), :trucks) }
 
       context 'when the attribute exists' do
         it 'returns the attribute as a float' do
