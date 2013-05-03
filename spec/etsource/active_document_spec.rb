@@ -46,7 +46,7 @@ describe SomeDocument, :fixtures do
       it 'saves in that folder' do
         some_document = SomeDocument.new('my_map1/new')
         expect(some_document.key).to eq 'new'
-        expect(some_document.file_path).to match /my_map1\/new/
+        expect(some_document.file_path.to_s).to match /my_map1\/new/
       end
       xit 'raises and error when the key already exists' do
         SomeDocument.new('my_map1/new').save!
