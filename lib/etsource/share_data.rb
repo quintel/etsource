@@ -1,20 +1,16 @@
 module ETSource
   # Parses data about edge shares from datasets/$AREA/shares files.
   class ShareData
-    DIRECTORY = 'data/datasets/:area/shares'
-
-    attr_reader :area, :file_key
+    attr_reader :dataset, :file_key
 
     # Public: Creates a new ShareData instance.
     #
-    # area     - The key for the area; share data is scoped by region, so you
-    #            must specify the area code for the region.
-    # file_key - The name of the file, minus extension, from which to read
-    #            share data.
+    # dataset  - The corresponding Dataset, whose share data is to be read.
+    # file_key - The name of the data file, minus extension.
     #
     # Returns a ShareData.
-    def initialize(area, file_key)
-      @area     = area.to_sym
+    def initialize(dataset, file_key)
+      @dataset  = dataset
       @file_key = file_key.to_sym
 
       unless path.file?
@@ -26,9 +22,7 @@ module ETSource
     #
     # Returns a Pathname.
     def path
-      ETSource.root.
-        join(DIRECTORY.gsub(/:area/, @area.to_s)).
-        join("#{ @file_key }.csv")
+      @dataset.path.join("shares/#{ @file_key }.csv")
     end
 
     # Public: The share value whose name matches +attribute+.
@@ -47,7 +41,7 @@ module ETSource
     #
     # Returns a string.
     def inspect
-      "#<#{ self.class.name } area=#{ area } file_key=#{ file_key }>"
+      "#<#{ self.class.name } area=#{ @dataset.key } file_key=#{ file_key }>"
     end
 
     #######
@@ -74,7 +68,7 @@ module ETSource
     #
     # Returns a string.
     def full_key
-      "#{ @area }.#{ @file_key }"
+      "#{ @dataset.key }.#{ @file_key }"
     end
 
   end # ShareData
