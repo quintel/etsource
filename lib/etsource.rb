@@ -4,8 +4,9 @@ require 'pathname'
 require 'delegate'
 
 require 'active_model'
-require 'virtus'
+require 'rubel'
 require 'turbine'
+require 'virtus'
 
 require_relative 'etsource/base'
 require_relative 'etsource/parser/hash_to_text_parser'

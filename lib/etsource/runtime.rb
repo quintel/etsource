@@ -1,8 +1,5 @@
-require 'rubel'
-
 module ETSource
   class Runtime < ::Rubel::Base
-
     attr_reader :dataset
 
     # Creates a new runtime in the +context+ of a dataset.
@@ -28,11 +25,7 @@ module ETSource
 
     alias query execute
 
-    def energy_balance
-      dataset.energy_balance
-    end
-
-    # ------------------ QUERY FUNCTIONS -------------------------------------
+    # Query Functions --------------------------------------------------------
 
     # takes a value from the EnergyBalance for the current Dataset.
     def EB(use, carrier)
@@ -76,6 +69,13 @@ module ETSource
     #######
 
     # Helpers ----------------------------------------------------------------
+
+    # Internal: The EnergyBalance data for the datasets region.
+    #
+    # Returns an EnergyBalance.
+    def energy_balance
+      dataset.energy_balance
+    end
 
     # Internal: Retrieves a Node by it's key, or an edge by the key of the
     # parent node, child node, and carrier.
