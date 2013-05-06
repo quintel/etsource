@@ -27,12 +27,16 @@ module ETSource
 
     # Query Functions --------------------------------------------------------
 
-    # takes a value from the EnergyBalance for the current Dataset.
+    # Public: Takes a value from the EnergyBalance for the current Dataset.
+    #
+    # Returns an object.
     def EB(use, carrier)
       energy_balance.get(use, carrier)
     end
 
-    # Gets a property from the current Area.
+    # Public: Gets a property from the current Area.
+    #
+    # Returns an object.
     def AREA(property)
       dataset.send(property)
     end
