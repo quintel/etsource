@@ -6,8 +6,9 @@ module ETSource
     attr_reader :dataset
 
     # Creates a new runtime in the +context+ of a dataset.
-    def initialize(dataset)
+    def initialize(dataset, graph)
       @dataset = dataset
+      @graph   = graph
       super()
     end
 

@@ -10,7 +10,7 @@ module ETSource
     # in the context of the +area_code+
     def demand(area_code)
       dataset = Dataset.find(area_code)
-      Runtime.new(dataset).execute(query)
+      Runtime.new(dataset, GraphBuilder.build).execute(query)
     end
 
     validates_presence_of(:query)
