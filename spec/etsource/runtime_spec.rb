@@ -5,7 +5,7 @@ module ETSource
   describe Runtime, :fixtures do
 
     let(:dataset) { Dataset.find(:nl) }
-    let(:runtime) { Runtime.new(dataset) }
+    let(:runtime) { Runtime.new(dataset, Turbine::Graph.new) }
 
     it "executes basic ruby code" do
       expect(runtime.execute("1+1")).to eql 2
