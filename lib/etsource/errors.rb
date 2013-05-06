@@ -1,7 +1,12 @@
 module ETSource
+
   # Error class which serves as a base for all errors which occur in ETSource.
   class ETSourceError < StandardError
     def initialize(*args) ; super(make_message(*args)) ; end
+  end
+
+  # Superclass for errors which occur when calculating the Rubel attributes.
+  class CalculationError < ETSourceError
   end
 
   # Internal: Creates a new error class which inherits from ETSourceError,
@@ -41,6 +46,16 @@ module ETSource
     "Unknown use #{ use } for #{ area }"
   end
 
+  UnknownShareDataError = error_class do |path|
+    "No share data file exists at #{ path.to_s.inspect }"
+  end
+
+  UnknownShareAttributeError = error_class do |key, file_key|
+    "Unknown share data row #{ key.inspect } in share data #{ file_key }"
+  end
+
+  # Graph Structure / Topology Errors ----------------------------------------
+
   UnknownCarrierError = error_class do |carrier, area|
     "Unknown use #{ carrier } for #{ area }"
   end
@@ -61,11 +76,19 @@ module ETSource
     "Unknown carrier #{ carrier.inspect } in link #{ link.inspect }"
   end
 
-  UnknownShareDataError = error_class do |path|
-    "No share data file exists at #{ path.to_s.inspect }"
+  # Rubel Attribute Errors ---------------------------------------------------
+
+  InvalidLookupError = error_class(CalculationError) do |keys|
+    "Could not perform a lookup with #{ keys.inspect }. Give a single key " \
+    "to look up a Node, or three keys to look up an edge."
   end
 
-  UnknownShareAttributeError = error_class do |key, file_key|
-    "Unknown share data row #{ key.inspect } in share data #{ file_key }"
+  UnknownNodeError = error_class(InvalidLookupError) do |key|
+    "No node exists with the key #{ key.inspect }"
   end
-end
+
+  UnknownEdgeError = error_class(InvalidLookupError) do |keys|
+    "Could not find edge '#{ keys.first } -#{ keys[1] }-> #{ keys.last }'"
+  end
+
+end # ETSource

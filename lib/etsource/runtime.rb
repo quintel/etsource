@@ -12,6 +12,22 @@ module ETSource
       super()
     end
 
+    # Public: Executes a query. This is idential to Rubel's +execute+ method
+    # except that we remove the "rescue" block since it unnecessarily catches
+    # and re-raises errors with the generic RuntimeError and truncates
+    # backtraces.
+    #
+    # Returns the result of the query.
+    def execute(query)
+      if query.is_a?(::String)
+        query = sanitized_proc(query)
+      end
+
+      instance_exec(&query)
+    end
+
+    alias query execute
+
     def energy_balance
       dataset.energy_balance
     end
@@ -43,6 +59,51 @@ module ETSource
     # do not exist.
     def SHARE(file_key, attribute)
       dataset.shares(file_key).get(attribute)
+    end
+
+    # Public: Given keys to look up a node or edge, retrieves the demand
+    # attribute of the object.
+    #
+    # *keys - Keys used to identify the node or edge.
+    #
+    # Returns a numeric.
+    def DEMAND(*keys)
+      lookup(*keys).get(:demand)
+    end
+
+    #######
+    private
+    #######
+
+    # Helpers ----------------------------------------------------------------
+
+    # Internal: Retrieves a Node by it's key, or an edge by the key of the
+    # parent node, child node, and carrier.
+    #
+    # keys* - One or more keys.
+    #
+    # Returns the Turbine::Node or Turbine::Edge. Raises
+    def lookup(*keys)
+      keys = keys.map(&:to_sym)
+
+      if keys.one?
+        # A single key looks up a node by its key.
+        @graph.node(keys.first) || raise(UnknownNodeError.new(keys.first))
+      elsif keys.length == 3
+        # Three keys looks up an edge by its parent and child node keys, and
+        # the name of the carrier.
+
+        # Assert that both nodes exist.
+        parent = lookup(keys[0])
+        child  = lookup(keys[1])
+
+        parent.out_edges(keys.last).detect do |edge|
+          edge.to.key == keys[1]
+        end || raise(UnknownEdgeError.new(keys))
+      else
+        # Any other number of keys is invalid.
+        raise InvalidLookupError.new(keys)
+      end
     end
 
   end # Runtime
