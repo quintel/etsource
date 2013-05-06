@@ -7,6 +7,14 @@ module ETSource
     let(:graph)   { Turbine::Graph.new }
     let(:runtime) { Runtime.new(dataset, graph) }
 
+    let!(:parent)       { graph.add(Turbine::Node.new(:parent)) }
+    let!(:child)        { graph.add(Turbine::Node.new(:child)) }
+    let!(:orphan)       { graph.add(Turbine::Node.new(:orphan)) }
+
+    let!(:pc_elec_edge) { parent.connect_to(child, :electricity) }
+    let!(:pc_gas_edge)  { parent.connect_to(child, :gas) }
+    let!(:cp_gas_edge)  { child.connect_to(parent, :gas) }
+
     it "executes basic ruby code" do
       expect(runtime.execute("1+1")).to eql 2
       expect(runtime.execute("[1,2,3].reduce(:+)")).to eql 6
@@ -40,14 +48,8 @@ module ETSource
 
     context 'DEMAND' do
       before do
-        parent = graph.add(Turbine::Node.new(:parent, demand: 50.0))
-        child  = graph.add(Turbine::Node.new(:child,  demand: 25.0))
-
-        graph.add(Turbine::Node.new(:orphan))
-
-        parent.connect_to(child, :electricity, demand: 15.0)
-        parent.connect_to(child, :gas, demand: 20.0)
-        child.connect_to(parent, :gas, demand: 10.0)
+        parent.set(:demand, 50.0)
+        pc_gas_edge.set(:demand, 20.0)
       end
 
       it 'retrieves demand of nodes' do
@@ -88,6 +90,50 @@ module ETSource
           to raise_error(InvalidLookupError)
       end
     end # DEMAND
+
+    context 'PARENT_SHARE' do
+      before do
+        pc_gas_edge.set(:parent_share, 0.3)
+        pc_gas_edge.set(:child_share, 0.5)
+        pc_elec_edge.set(:parent_share, 0.7)
+      end
+
+      it 'retrieves the parent share of the selected edge' do
+        expect(runtime.execute('PARENT_SHARE(parent, child, gas)')).to eq(0.3)
+      end
+
+      it 'raises an error if the edge does not exist' do
+        expect { runtime.execute('PARENT_SHARE(parent, orphan, gas)') }.
+          to raise_error(UnknownEdgeError)
+      end
+
+      it 'raises an error if the edge carrier does not exist' do
+        expect { runtime.execute('PARENT_SHARE(parent, child, entropy)') }.
+          to raise_error(UnknownEdgeError)
+      end
+    end
+
+    context 'CHILD_SHARE' do
+      before do
+        pc_gas_edge.set(:parent_share, 0.3)
+        pc_gas_edge.set(:child_share, 0.5)
+        pc_elec_edge.set(:parent_share, 0.7)
+      end
+
+      it 'retrieves the parent share of the selected edge' do
+        expect(runtime.execute('CHILD_SHARE(parent, child, gas)')).to eq(0.5)
+      end
+
+      it 'raises an error if the edge does not exist' do
+        expect { runtime.execute('CHILD_SHARE(parent, orphan, gas)') }.
+          to raise_error(UnknownEdgeError)
+      end
+
+      it 'raises an error if the edge carrier does not exist' do
+        expect { runtime.execute('CHILD_SHARE(parent, child, entropy)') }.
+          to raise_error(UnknownEdgeError)
+      end
+    end
 
     it "executes combinations of queries and algorithms" do
       query = "EB('residential', 'natural_gas')"

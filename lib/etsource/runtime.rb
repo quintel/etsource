@@ -64,6 +64,30 @@ module ETSource
       lookup(*keys).get(:demand)
     end
 
+    # Public: Given keys to look up an edge, retrieves the value of the edge's
+    # :parent_share attribute.
+    #
+    # parent_key - The key of the parent node.
+    # child_key  - The key of the child node.
+    # carrier    - The name of the carrier.
+    #
+    # Returns a numeric.
+    def PARENT_SHARE(parent_key, child_key, carrier)
+      lookup(parent_key, child_key, carrier).get(:parent_share)
+    end
+
+    # Public: Given keys to look up an edge, retrieves the value of the edge's
+    # :child_share attribute.
+    #
+    # parent_key - The key of the parent node.
+    # child_key  - The key of the child node.
+    # carrier    - The name of the carrier.
+    #
+    # Returns a numeric.
+    def CHILD_SHARE(parent_key, child_key, carrier)
+      lookup(parent_key, child_key, carrier).get(:child_share)
+    end
+
     #######
     private
     #######
