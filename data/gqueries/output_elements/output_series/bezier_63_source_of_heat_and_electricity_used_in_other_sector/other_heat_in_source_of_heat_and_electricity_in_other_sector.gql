@@ -8,7 +8,10 @@ DIVIDE(
         SUM(
             V(other_useful_demand_useable_heat,demand),
             NEG(
-                V(other_chp_engine_network_gas,output_of_heat_carriers)
+                SUM(
+                    V(other_chp_engine_network_gas,output_of_heat_carriers),
+                    V(other_chp_engine_biogas,output_of_heat_carriers)
+                )
             )
         ),
         0
