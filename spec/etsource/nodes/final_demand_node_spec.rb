@@ -2,13 +2,8 @@ require 'spec_helper'
 
 module ETSource
 
-describe FinalDemandNode do
-
-  let(:node)       { Node.find('fd') }
-
-  before(:each) do
-    use_fixtures
-  end
+describe FinalDemandNode, :fixtures do
+  let(:node) { Node.find('fd') }
 
   describe '#all' do
     it "finds existing stuff" do
@@ -16,7 +11,7 @@ describe FinalDemandNode do
     end
 
     it 'removes the subclass from the key' do
-      expect(FinalDemandNode.find('fd').key).
+      expect(FinalDemandNode.find('fd').key.to_s).
         to_not include('.final_demand_node')
     end
   end

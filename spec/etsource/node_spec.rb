@@ -2,14 +2,7 @@ require 'spec_helper'
 
 module ETSource
 
-describe Node do
-
-  let(:node) { Node.new('foo') }
-
-  before(:each) do
-    use_fixtures
-  end
-
+describe Node, :fixtures do
   describe '#in_slots' do
     let(:node) { Node.new('key', in_slots: %w(in_one in_two)) }
 

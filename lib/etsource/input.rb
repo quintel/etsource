@@ -2,7 +2,7 @@ module ETSource
   class Input
     include ActiveDocument
 
-    DIRECTORY = 'data/inputs'
+    DIRECTORY = 'inputs'
 
     attribute :id,              Integer
     attribute :query,           String
