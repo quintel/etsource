@@ -9,10 +9,4 @@ group :test do
   gem 'simplecov'
 end
 
-gem 'activemodel'
-gem 'virtus'
-
-gem 'rubel'
-
-gem 'rake'
-gem 'pry'
+gemspec
