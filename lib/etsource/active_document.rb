@@ -134,6 +134,7 @@ module ETSource
 
         file_path.open('w') do |file|
           file.write(file_contents)
+          file.write("\n")
         end
 
         delete_old_file unless @last_saved_file_path == file_path
