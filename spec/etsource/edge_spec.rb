@@ -168,7 +168,7 @@ module ETSource
     end # changing the filename
 
     describe 'parsing an AD file' do
-      let(:edge) { Edge.find('bar-foo@gas') }
+      let(:edge) { Edge.find('bar-foo@coal') }
 
       it 'sets the supplier' do
         expect(edge.supplier).to eq(:foo)
@@ -179,7 +179,7 @@ module ETSource
       end
 
       it 'sets the carrier' do
-        expect(edge.carrier).to eq(:gas)
+        expect(edge.carrier).to eq(:coal)
       end
 
       it 'sets the type' do
