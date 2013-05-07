@@ -15,6 +15,7 @@ require_relative 'etsource/errors'
 require_relative 'etsource/active_document'
 require_relative 'etsource/collection'
 
+require_relative 'etsource/edge'
 require_relative 'etsource/input'
 require_relative 'etsource/gquery'
 require_relative 'etsource/dataset'
