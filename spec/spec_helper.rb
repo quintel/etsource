@@ -6,6 +6,8 @@ require 'support/fixtures'
 
 require_relative '../lib/etsource.rb'
 
+require 'shoulda-matchers'
+
 RSpec.configure do |config|
   # Use only the new "expect" syntax.
   config.expect_with(:rspec) { |c| c.syntax = :expect }

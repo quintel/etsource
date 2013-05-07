@@ -54,6 +54,11 @@ module ETSource
     "Unknown share data row #{ key.inspect } in share data #{ file_key }"
   end
 
+  NonMatchingNodesError = error_class(InvalidKeyError) do |node, path, attrs|
+    "Cannot specify different #{ node } node in the key and attributes: " \
+    "got #{ path.to_s.inspect } and #{ attrs.to_s.inspect }"
+  end
+
   # Graph Structure / Topology Errors ----------------------------------------
 
   UnknownCarrierError = error_class do |carrier, area|

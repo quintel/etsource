@@ -36,6 +36,7 @@ module ETSource
       #
       #   general/co2/total_co2_emissions.gql returns total_co2_emissions
       #
+      # Returns a Symbol.
       def key
         without_ext = file_path.basename(".#{self.class::FILE_SUFFIX}")
 
@@ -56,7 +57,7 @@ module ETSource
       # file is currently saved at a/b/c.thing.suffix, and you change the key
       # to "z", the new path will be a/b/z.thing.suffix.
       #
-      # key - The new key.
+      # new_key - The new key.
       #
       # Returns whatever you gave.
       def key=(new_key)
