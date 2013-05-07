@@ -1,15 +1,6 @@
 source "https://rubygems.org"
 ruby "1.9.3"
 
-gem 'activemodel'
-gem 'virtus'
-gem 'turbine-graph', require: 'turbine'
-
-gem 'rubel'
-
-gem 'rake'
-gem 'pry'
-
 group :test do
   gem 'rspec'
   gem 'guard'
@@ -21,3 +12,5 @@ group :test do
   # Growl notifications in Guard.
   gem 'ruby_gntp', require: false
 end
+
+gemspec

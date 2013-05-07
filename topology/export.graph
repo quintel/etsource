@@ -32,7 +32,7 @@ agriculture_burner_wood_pellets:
 agriculture_chp_engine_biogas:
   sector: agriculture
   use: energetic
-  energy_balance_group: central CHPs
+  energy_balance_group: local CHPs
   links:
   - agriculture_chp_engine_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
   slots:
@@ -54,7 +54,7 @@ agriculture_chp_engine_network_gas:
 agriculture_chp_supercritical_wood_pellets:
   sector: agriculture
   use: energetic
-  energy_balance_group: central CHPs
+  energy_balance_group: local CHPs
   links:
   - agriculture_chp_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
   slots:
@@ -2617,7 +2617,7 @@ households_appliances_washing_machine_electricity:
 households_collective_chp_biogas:
   sector: households
   use: energetic
-  energy_balance_group: central CHPs
+  energy_balance_group: local CHPs
   links:
   - households_collective_chp_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
   slots:
@@ -3770,17 +3770,6 @@ industry_chp_engine_gas_power_fuelmix:
   - (steam_hot_water)-industry_chp_engine_gas_power_fuelmix
   - (electricity)-industry_chp_engine_gas_power_fuelmix
   - industry_chp_engine_gas_power_fuelmix-(gas_power_fuelmix)
-industry_chp_supercritical_wood_pellets:
-  sector: industry
-  use: energetic
-  energy_balance_group: central CHPs
-  links:
-  - industry_chp_supercritical_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
-  slots:
-  - industry_chp_supercritical_wood_pellets-(wood_pellets)
-  - ! '(loss)-industry_chp_supercritical_wood_pellets: {type: :loss}'
-  - (steam_hot_water)-industry_chp_supercritical_wood_pellets
-  - (electricity)-industry_chp_supercritical_wood_pellets
 industry_chp_turbine_gas_power_fuelmix:
   sector: industry
   use: energetic
@@ -3956,7 +3945,6 @@ industry_locally_available_electricity:
   links:
   - industry_locally_available_electricity-(electricity) -- f --> (electricity)-energy_power_mv_distribution_network_electricity
   - industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_combined_cycle_gas_power_fuelmix
-  - industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_supercritical_wood_pellets
   - industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_ultra_supercritical_coal
   - industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_turbine_gas_power_fuelmix
   - industry_locally_available_electricity-(electricity) -- c --> (electricity)-industry_chp_engine_gas_power_fuelmix
@@ -3969,7 +3957,6 @@ industry_locally_available_steam_hot_water:
   energy_balance_group: locally available
   links:
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_combined_cycle_gas_power_fuelmix
-  - industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_supercritical_wood_pellets
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-industry_chp_ultra_supercritical_coal
   - industry_locally_available_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_steel_hisarna_transformation_coal
@@ -4253,6 +4240,17 @@ other_burner_wood_pellets:
   - other_burner_wood_pellets-(wood_pellets)
   - (useable_heat)-other_burner_wood_pellets
   - ! '(loss)-other_burner_wood_pellets: {type: :loss}'
+other_chp_engine_biogas:
+  sector: other
+  use: energetic
+  energy_balance_group: local CHPs
+  links:
+  - other_chp_engine_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
+  slots:
+  - ! '(loss)-other_chp_engine_biogas: {type: :loss}'
+  - (steam_hot_water)-other_chp_engine_biogas
+  - (electricity)-other_chp_engine_biogas
+  - other_chp_engine_biogas-(biogas)
 other_chp_engine_network_gas:
   sector: other
   use: energetic
@@ -4397,6 +4395,7 @@ other_local_production_electricity:
   links:
   - other_local_production_electricity-(electricity) -- f --> (electricity)-energy_power_lv_network_electricity
   - other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_engine_network_gas
+  - other_local_production_electricity-(electricity) -- c --> (electricity)-other_chp_engine_biogas
   slots:
   - other_local_production_electricity-(electricity)
   - (electricity)-other_local_production_electricity
@@ -4407,6 +4406,7 @@ other_local_production_steam_hot_water:
   links:
   - other_local_production_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_network_steam_hot_water
   - other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_engine_network_gas
+  - other_local_production_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-other_chp_engine_biogas
   slots:
   - other_local_production_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-other_local_production_steam_hot_water
