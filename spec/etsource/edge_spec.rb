@@ -142,6 +142,31 @@ module ETSource
       end
     end # changing the key on an Edge
 
+    describe 'changing the filename' do
+      let(:edge) { Edge.new('left-right@gas') }
+      before { edge.file_path = 'yes-no@electricity.ad' }
+
+      it 'updates the file path' do
+        expect(edge.file_path.to_s).to match(/yes-no@electricity\.ad$/)
+      end
+
+      it 'updates the supplier node' do
+        expect(edge.supplier).to eql(:no)
+      end
+
+      it 'updates the consumer node' do
+        expect(edge.consumer).to eql(:yes)
+      end
+
+      it 'updates the carrier' do
+        expect(edge.carrier).to eql(:electricity)
+      end
+
+      it 'updates the key' do
+        expect(edge.key).to eql(:'yes-no@electricity')
+      end
+    end # changing the filename
+
     describe 'parsing an AD file' do
       let(:edge) { Edge.find('bar-foo@gas') }
 
