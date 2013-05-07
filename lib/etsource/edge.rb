@@ -55,6 +55,17 @@ module ETSource
       update_key_fragments!
     end
 
+    # Public: Sets the new path for the document. Also updates the consumer
+    # and supplier node keys, and the carrier.
+    #
+    # path - A string or Pathname to the document file.
+    #
+    # Returns the path.
+    def file_path=(path)
+      @file_path = directory.join(path)
+      update_key_fragments!
+    end
+
     # Public: Sets the key of the consumer ("child" or "left") node.
     #
     # consumer - The consumer node key as a string or symbol.
