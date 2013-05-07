@@ -4,8 +4,6 @@ module ETSource
 
     DIRECTORY = 'edges'
 
-    attribute :supplier,     Symbol
-    attribute :consumer,     Symbol
     attribute :type,         Symbol
     attribute :parent_share, Float
     attribute :child_share,  Float
@@ -14,9 +12,14 @@ module ETSource
 
     validates :supplier, presence: true
     validates :consumer, presence: true
+    validates :carrier,  presence: true
 
     validates :type, inclusion: { in: [ :share, :flexible, :constant,
                                         :inverse_flexible, :dependent ] }
+
+    attr_reader :supplier
+    attr_reader :consumer
+    attr_reader :carrier
 
     # Public: Creates a new Edge. Extracts the consumer and supplier
     # attributes from the edge if they aren't explicitly specified in the
@@ -27,13 +30,8 @@ module ETSource
     #
     # Returns an Edge.
     def initialize(path, attrs = {})
-      keys  = keys_from_filename(path)
-      attrs = Hash[ [:consumer, :supplier].zip(keys) ].merge(attrs)
-
-      assert_node_key_match!(:consumer, keys[0], attrs)
-      assert_node_key_match!(:supplier, keys[1], attrs)
-
-      super(path, attrs)
+      super
+      update_key_fragments!
     end
 
     # Public: The unique key which identifies this edge.
@@ -43,7 +41,7 @@ module ETSource
     #
     # Returns a Symbol.
     def key
-      :"#{ consumer }-#{ supplier }"
+      :"#{ consumer }-#{ supplier }@#{ carrier }"
     end
 
     # Public: Sets a new key for the edge. This changes the consumer and
@@ -54,7 +52,35 @@ module ETSource
     # Returns whatever you gave.
     def key=(new_key)
       super
-      self.consumer, self.supplier = keys_from_filename(file_path)
+      update_key_fragments!
+    end
+
+    # Public: Sets the key of the consumer ("child" or "left") node.
+    #
+    # consumer - The consumer node key as a string or symbol.
+    #
+    # Returns the key.
+    def consumer=(consumer)
+      @consumer = consumer && consumer.to_sym
+    end
+
+    # Public: Sets the key of the supplier ("parent" or "right") node.
+    #
+    # supplier - The supplier node key as a string or symbol.
+    #
+    # Returns the key.
+    def supplier=(supplier)
+      @supplier = supplier && supplier.to_sym
+    end
+
+    # Public: Sets the name of the carrier; the type of energy which passes
+    # through the edge.
+    #
+    # carrier - The name of the carrier.
+    #
+    # Returns the key.
+    def carrier=(carrier)
+      @carrier = carrier && carrier.to_sym
     end
 
     #######
@@ -71,21 +97,23 @@ module ETSource
 
       name = Pathname.new(path).basename(".#{ self.class::FILE_SUFFIX }").to_s
 
-      unless name.match(/^[\w_]+-[\w_]+$/)
+      unless name.match(/^[\w_]+-[\w_]+@[\w_]+$/)
         raise InvalidKeyError.new(path)
       end
 
-      name.split('-').map(&:to_sym)
+      name.split(/[-@]/).map(&:to_sym)
     end
 
-    # Internal: Asserts that the key for a node in the path matches the node
-    # specified in the attributes hash.
+    # Internal: When the key of filename is updated, also sets the consumer,
+    # supplier, and carrier keys.
     #
-    # Returns nothing; raises NonMatchingNodesError if the nodes do not match.
-    def assert_node_key_match!(node, from_path, attrs)
-      if attrs[node] != from_path
-        raise NonMatchingNodesError.new(node, from_path, attrs[node])
-      end
+    # Returns nothing.
+    def update_key_fragments!
+      keys = keys_from_filename(file_path)
+
+      self.consumer = keys[0]
+      self.supplier = keys[1]
+      self.carrier  = keys[2]
     end
   end # Edge
 end # ETSource
