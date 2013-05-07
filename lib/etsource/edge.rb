@@ -43,7 +43,7 @@ module ETSource
     #
     # Returns a Symbol.
     def key
-      :"#{ consumer },#{ supplier }"
+      :"#{ consumer }-#{ supplier }"
     end
 
     # Public: Sets a new key for the edge. This changes the consumer and
@@ -71,11 +71,11 @@ module ETSource
 
       name = Pathname.new(path).basename(".#{ self.class::FILE_SUFFIX }").to_s
 
-      unless name.match(/^[\w_]+,[\w_]+$/)
+      unless name.match(/^[\w_]+-[\w_]+$/)
         raise InvalidKeyError.new(path)
       end
 
-      name.split(',').map(&:to_sym)
+      name.split('-').map(&:to_sym)
     end
 
     # Internal: Asserts that the key for a node in the path matches the node

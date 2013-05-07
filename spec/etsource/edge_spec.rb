@@ -2,14 +2,14 @@ require 'spec_helper'
 
 module ETSource
   describe Edge, :fixtures, :focus do
-    it { expect(Edge.new('a,b')).to validate_presence_of(:consumer) }
-    it { expect(Edge.new('a,b')).to validate_presence_of(:supplier) }
-    it { expect(Edge.new('a,b')).to ensure_inclusion_of(:type).
+    it { expect(Edge.new('a-b')).to validate_presence_of(:consumer) }
+    it { expect(Edge.new('a-b')).to validate_presence_of(:supplier) }
+    it { expect(Edge.new('a-b')).to ensure_inclusion_of(:type).
          in_array([ :share, :flexible, :constant,
                     :inverse_flexible, :dependent ]) }
 
     describe 'when creating a new Edge' do
-      let(:edge) { Edge.new('left,right.ad') }
+      let(:edge) { Edge.new('left-right.ad') }
 
       it 'sets the consumer from the filename' do
         expect(edge.consumer).to eq(:left)
@@ -20,11 +20,11 @@ module ETSource
       end
 
       it 'sets the edge key' do
-        expect(edge.key).to eq(:'left,right')
+        expect(edge.key).to eq(:'left-right')
       end
 
       it 'sets the filename' do
-        expect(edge.file_path.to_s).to match(%r{left,right\.ad$})
+        expect(edge.file_path.to_s).to match(%r{left-right\.ad$})
       end
     end # when creating a new Edge
 
@@ -42,61 +42,61 @@ module ETSource
       end
 
       it 'raises an error when one edge key is blank' do
-        expect { Edge.new('left,') }.to raise_error(InvalidKeyError)
+        expect { Edge.new('left-') }.to raise_error(InvalidKeyError)
       end
 
       it "raises an error when the supplier key doesn't match" do
-        expect { Edge.new('left,right', consumer: :left, supplier: :no) }.
+        expect { Edge.new('left-right', consumer: :left, supplier: :no) }.
           to raise_error(InvalidKeyError, /supplier node/)
       end
 
       it "raises an error when the consumer key doesn't match" do
-        expect { Edge.new('left,right', consumer: :no, supplier: :right) }.
+        expect { Edge.new('left-right', consumer: :no, supplier: :right) }.
           to raise_error(InvalidKeyError, /consumer node/)
       end
     end # creating an Edge with an invalid key
 
     describe 'changing the key on an Edge' do
-      let(:edge) { Edge.new('left,right') }
+      let(:edge) { Edge.new('left-right') }
 
       context 'changing the supplier node only' do
-        before { edge.key = 'left,other' }
+        before { edge.key = 'left-other' }
 
-        it { expect(edge.key).to eq(:'left,other') }
+        it { expect(edge.key).to eq(:'left-other') }
         it { expect(edge.supplier).to eq(:other) }
         it { expect(edge.consumer).to eq(:left) }
       end
 
       context 'changing the consumer node only' do
-        before { edge.key = 'other,right' } 
+        before { edge.key = 'other-right' } 
 
-        it { expect(edge.key).to eq(:'other,right') }
+        it { expect(edge.key).to eq(:'other-right') }
         it { expect(edge.supplier).to eq(:right) }
         it { expect(edge.consumer).to eq(:other) }
       end
 
       context 'changing both nodes with a string' do
-        before { edge.key = 'one,two' }
+        before { edge.key = 'one-two' }
 
-        it { expect(edge.key).to eq(:'one,two') }
+        it { expect(edge.key).to eq(:'one-two') }
         it { expect(edge.supplier).to eq(:two) }
         it { expect(edge.consumer).to eq(:one) }
       end
 
       context 'changing both nodes using a symbol' do
-        before { edge.key = :'one,two' }
+        before { edge.key = :'one-two' }
 
-        it { expect(edge.key).to eq(:'one,two') }
+        it { expect(edge.key).to eq(:'one-two') }
         it { expect(edge.supplier).to eq(:two) }
         it { expect(edge.consumer).to eq(:one) }
       end
 
       it 'raises an error when omitting the supplier key' do
-        expect { edge.key = 'left,' }.to raise_error(InvalidKeyError)
+        expect { edge.key = 'left-' }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when omitting the producer key' do
-        expect { edge.key = ',right' }.to raise_error(InvalidKeyError)
+        expect { edge.key = '-right' }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when providing only one node key' do
@@ -113,7 +113,7 @@ module ETSource
     end # changing the key on an Edge
 
     describe 'parsing an AD file' do
-      let(:edge) { Edge.find('bar,foo') }
+      let(:edge) { Edge.find('bar-foo') }
 
       it 'sets the supplier' do
         expect(edge.supplier).to eq(:foo)
