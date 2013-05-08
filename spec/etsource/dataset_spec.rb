@@ -3,7 +3,7 @@ require 'spec_helper'
 module ETSource; describe Dataset, :fixures do
   describe "#new" do
     it "sets key" do
-      dataset = Dataset.new(:nl)
+      dataset = Dataset.new(key: :nl)
       expect(dataset.key).to eql(:nl)
     end
   end # describe #new
@@ -23,7 +23,7 @@ module ETSource; describe Dataset, :fixures do
   end # describe #load
 
   describe '#path' do
-    let(:dataset) { Dataset.new(:kr) }
+    let(:dataset) { Dataset.new(key: :kr) }
 
     it 'includes the data directory' do
       expect(dataset.path.to_s).to include(ETSource.data_dir.to_s)

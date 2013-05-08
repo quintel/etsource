@@ -50,8 +50,8 @@ module ETSource
     end # .build
 
     describe '.establish_edge' do
-      let(:node)     { Node.new(:key) }
-      let(:parent)   { Node.new(:parent) }
+      let(:node)     { Node.new(key: :key) }
+      let(:parent)   { Node.new(key: :parent) }
       let(:nodes)    { Collection.new([node, parent]) }
       let(:carriers) { Collection.new(Carrier.all) }
 
@@ -66,7 +66,7 @@ module ETSource
       end
 
       context 'with a single, share link' do
-        let(:link_data) { [ Edge.new('key-parent@coal', type: :share) ] }
+        let(:link_data) { [ Edge.new(key: 'key-parent@coal', type: :share) ] }
         let(:edge)      { t_node.in_edges.first }
 
         it 'adds a single incoming edge' do
@@ -91,7 +91,7 @@ module ETSource
       end # with a single, share link
 
       context 'with a reversed link' do
-        let(:link_data) { [ Edge.new('key-parent@coal', type: :share, reversed: true) ] }
+        let(:link_data) { [ Edge.new(key: 'key-parent@coal', type: :share, reversed: true) ] }
         let(:edge)      { t_node.in_edges.first }
 
         it 'adds a single incoming edge' do
@@ -113,8 +113,8 @@ module ETSource
 
       context 'with multiple links using different carriers' do
         let(:link_data) { [
-          Edge.new('key-parent@coal', type: :share),
-          Edge.new('key-parent@corn', type: :share),
+          Edge.new(key: 'key-parent@coal', type: :share),
+          Edge.new(key: 'key-parent@corn', type: :share),
         ] }
 
         describe 'the coal edge' do
@@ -137,7 +137,7 @@ module ETSource
       [ :share, :flexible, :constant,
         :dependent, :inverse_flexible ].each do |type|
         describe "with link.type=#{type}" do
-          let(:link_data) { [ Edge.new('key-parent@coal', type: type) ] }
+          let(:link_data) { [ Edge.new(key: 'key-parent@coal', type: type) ] }
           let(:edge)      { t_node.in_edges.first }
 
           it "sets the link type to #{type.inspect}" do
@@ -150,7 +150,7 @@ module ETSource
         let(:link_data) { [] }
 
         it 'raises an InvalidLinkError' do
-          link = Edge.new('key-nope@coal', type: :share)
+          link = Edge.new(key: 'key-nope@coal', type: :share)
 
           expect do
             GraphBuilder.establish_edge(link, graph, nodes, carriers)
@@ -163,7 +163,7 @@ module ETSource
 
         it 'raises an InvalidLinkCarrierError' do
           # Where iid=infinite improbability drive. Obviously. :)
-          link = Edge.new('key-parent@iid', type: :share)
+          link = Edge.new(key: 'key-parent@iid', type: :share)
 
           expect do
             GraphBuilder.establish_edge(link, graph, nodes, carriers)

@@ -151,19 +151,17 @@ module ETSource
 
           if without_ext.to_s.include?('.')
             subclass = without_ext.to_s.split('.').last
-
             klass = "ETSource::#{subclass.to_s.classify}".constantize
-            klass.new(relative_path.to_s, parsed_content)
+          elsif subclassed_document?
+            # If the current class is not the top-most model (e.g. Node), then
+            # filenames without an explicit subclass should use the top-most
+            # class, and not the current one.
+            klass = topmost_document_class
           else
-            if subclassed_document?
-              # If the current class is not the top-most model (e.g. Node), then
-              # filenames without an explicit subclass should use the top-most
-              # class, and not the current one.
-              topmost_document_class.new(relative_path.to_s, parsed_content)
-            else
-              new(relative_path.to_s, parsed_content)
-            end
+            klass = self
           end
+
+          klass.new(parsed_content.merge(path: relative_path.to_s))
         end
       end # ClassMethods
 

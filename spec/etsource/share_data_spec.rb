@@ -22,7 +22,7 @@ module ETSource
       end
 
       context 'with an invalid area' do
-        let(:data) { ShareData.new(Dataset.new(:no), :cars) }
+        let(:data) { ShareData.new(Dataset.new(key: :no), :cars) }
 
         it 'raises UnknownShareDataError' do
           expect { data }.to raise_error(UnknownShareDataError)
