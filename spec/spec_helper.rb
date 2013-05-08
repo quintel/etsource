@@ -6,6 +6,8 @@ require 'support/fixtures'
 
 require_relative '../lib/etsource.rb'
 
+require 'shoulda-matchers'
+
 RSpec.configure do |config|
   # Use only the new "expect" syntax.
   config.expect_with(:rspec) { |c| c.syntax = :expect }
@@ -24,4 +26,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Use a (safe) copy of spec/fixtures as the data-source when the "fixtures"
+  # metadata is set on a spec group or example.
+  config.include ETSource::Spec::Fixtures, fixtures: true
 end

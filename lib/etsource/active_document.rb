@@ -36,29 +36,35 @@ module ETSource
       #
       #   general/co2/total_co2_emissions.gql returns total_co2_emissions
       #
+      # Returns a Symbol.
       def key
-        without_ext = File.basename(file_path, ".#{self.class::FILE_SUFFIX}")
+        without_ext = file_path.basename(".#{self.class::FILE_SUFFIX}")
 
         if subclass_suffix = self.class.subclass_suffix
           # This is an ActiveDocument subclass, so remove the class from the
           # filename also.
-          without_ext.chomp(".#{ subclass_suffix }")
+          without_ext.to_s.chomp(".#{ subclass_suffix }").to_sym
         else
-          without_ext
+          without_ext.to_s.to_sym
         end
       end
 
-      # Returns the absolute path to the document.
-      def absolute_file_path
-        File.join(ETSource.root, file_path)
-      end
-
-      # Changing the key changes a part of the file_path
+      # Public: Change the key of the document.
+      #
+      # This changes the key component of the file path ONLY; you may not
+      # provide a file extension; you may not provide a custom subclass
+      # string, and you may not provide a subdirectory. For example, if the
+      # file is currently saved at a/b/c.thing.suffix, and you change the key
+      # to "z", the new path will be a/b/z.thing.suffix.
+      #
+      # new_key - The new key.
+      #
+      # Returns whatever you gave.
       def key=(new_key)
-        raise InvalidKeyError.new(new_key) if new_key == ""
+        raise InvalidKeyError.new(new_key) if new_key.nil? || new_key == ""
 
-        self.file_path = self.file_path.gsub(
-          Regexp.new(Regexp.escape(key)), new_key)
+        file_dir = file_path.relative_path_from(directory)
+        self.file_path = normalize_path(file_dir.dirname.join(new_key.to_s))
       end
 
       # Saves the document (to file)
@@ -73,7 +79,7 @@ module ETSource
       end
 
       def to_s
-        "<#{self.class}: #{key}>"
+        "#<#{self.class}: #{key}>"
       end
 
       # Public: Creates a hash containing the document's attributes, omitting
@@ -84,6 +90,14 @@ module ETSource
         attributes.reject { |_, value| value.nil? }
       end
 
+      # Public: Compares this document with another, so that they may be
+      # sorted by the order of their keys.
+      #
+      # Returns -1, 0, or 1.
+      def <=>(other)
+        key <=> other.key
+      end
+
       #######
       private
       #######
@@ -92,40 +106,62 @@ module ETSource
       # * It adds the suffix, if it does not have that all ready
       # * It makes the path absolute.
       def normalize_path(path)
-        raise InvalidKeyError.new(path) if path =~ /^\//
-        unless path =~ /\.#{self.class::FILE_SUFFIX}$/
-          path = "#{path}.#{self.class::FILE_SUFFIX}"
+        raise InvalidKeyError.new(path) if path.to_s =~ %r{^/}
+
+        path = directory.join(path.to_s)
+
+        # When this is a subclass, and the user did not specify the subclass
+        # name in the file (which happens when they call #key=) we need to
+        # explicity add it.
+        if self.class.subclassed_document? &&
+              ! path.basename.to_s.include?(self.class.subclass_suffix)
+
+          suffixes = [ self.class.subclass_suffix,
+                       self.class::FILE_SUFFIX ].compact.join('.')
+
+          path = Pathname.new("#{ path.sub_ext('').to_s }.#{ suffixes }")
+        elsif path.extname.to_s != self.class::FILE_SUFFIX
+          # No filename was specified; common when calling #new.
+          path = path.sub_ext(".#{ self.class::FILE_SUFFIX }")
         end
-        unless path =~ /^#{self.class::DIRECTORY}/
-          path = File.join(self.class::DIRECTORY, path)
-        end
+
         path
       end
 
       # saves it to file
       def save_to_file
-        FileUtils.mkdir_p(File.dirname(absolute_file_path))
-        f = File.open(absolute_file_path, 'w')
-        f.write(file_contents)
-        f.close
+        FileUtils.mkdir_p(file_path.dirname)
+
+        file_path.open('w') do |file|
+          file.write(file_contents)
+          file.write("\n") unless file_contents[-1] == "\n"
+        end
 
         delete_old_file unless @last_saved_file_path == file_path
       end
 
       def delete_old_file
-        File.delete(@last_saved_file_path)
+        @last_saved_file_path.delete
         @last_saved_file_path = file_path
       end
 
       # Delete the file
       def destroy_file
-        File.delete(file_path)
+        file_path.delete
       end
 
       # Return the file_contents for this object, which is a parsed
       # version.
       def file_contents
         parser = ETSource::HashToTextParser.new(to_hash).to_text
+      end
+
+      # Public: The absolute path to the directory in which the documents
+      # are stored.
+      #
+      # Returns a Pathname.
+      def directory
+        self.class.directory
       end
     end # InstanceMethods
 
@@ -141,7 +177,7 @@ module ETSource
       # Return the object with the key if it exists
       # Returns nil if the object is not found
       def find(key)
-        results = all.select { |i| i.key == key.to_s }
+        results = all.select { |i| i.key == key.to_sym }
         raise DuplicateKeyError.new(key) if results.size > 1
         results.first
       end
@@ -150,30 +186,31 @@ module ETSource
       # optimize this by just loading the keys, until we need more.
       def load_directory
         items = []
-        Dir.glob("#{ETSource.root}/#{self::DIRECTORY}/**/*.#{self::FILE_SUFFIX}") do |path|
+        Dir.glob("#{ETSource.data_dir}/#{self::DIRECTORY}/**/*.#{self::FILE_SUFFIX}") do |path|
           items << load_from_file(path)
         end
         items
       end
 
       def load_from_file(path)
-        parsed_content = ETSource::TextToHashParser.new(File.read(path)).to_hash
-        relative_path  = path.gsub("#{ETSource.root}/","")
-        without_ext    = File.basename(relative_path).chomp(".#{ self::FILE_SUFFIX }")
+        path           = Pathname.new(path)
+        parsed_content = ETSource::TextToHashParser.new(path.read).to_hash
+        relative_path  = path.relative_path_from(directory)
+        without_ext    = relative_path.basename.sub_ext('')
 
-        if without_ext.include?('.')
-          subclass = without_ext.split('.').last
+        if without_ext.to_s.include?('.')
+          subclass = without_ext.to_s.split('.').last
 
           klass = "ETSource::#{subclass.to_s.classify}".constantize
-          klass.new(relative_path, parsed_content)
+          klass.new(relative_path.to_s, parsed_content)
         else
           if subclassed_document?
             # If the current class is not the top-most model (e.g. Node), then
             # filenames without an explicit subclass should use the top-most
             # class, and not the current one.
-            topmost_document_class.new(relative_path, parsed_content)
+            topmost_document_class.new(relative_path.to_s, parsed_content)
           else
-            new(relative_path, parsed_content)
+            new(relative_path.to_s, parsed_content)
           end
         end
       end
@@ -184,7 +221,7 @@ module ETSource
       # Returns a string or nil.
       def subclass_suffix
         if subclassed_document?
-          ETSource::Util.underscore(name.split('::').last)
+          name.split('::').last.underscore
         end
       end
 
@@ -221,6 +258,14 @@ module ETSource
         end
 
         topmost
+      end
+
+      # Public: The absolute path to the directory in which the documents
+      # are stored.
+      #
+      # Returns a Pathname.
+      def directory
+        ETSource.data_dir.join(self::DIRECTORY)
       end
     end # ClassMethods
   end # ActiveDocument

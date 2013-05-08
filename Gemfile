@@ -7,6 +7,10 @@ group :test do
   gem 'guard-rspec'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'simplecov'
+  gem 'shoulda-matchers'
+
+  # Growl notifications in Guard.
+  gem 'ruby_gntp', require: false
 end
 
 gemspec
