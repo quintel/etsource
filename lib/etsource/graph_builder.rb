@@ -40,7 +40,7 @@ module ETSource
     #
     # Returns nothing.
     def build_nodes!
-      @nodes.each do |node|
+      @nodes.sort_by(&:key).each do |node|
         @graph.add(Turbine::Node.new(node.key, model: node))
       end
     end
@@ -49,7 +49,7 @@ module ETSource
     #
     # Returns nothing.
     def establish_edges!
-      @edges.each do |edge|
+      @edges.sort_by(&:key).each do |edge|
         self.class.establish_edge(edge, @graph, @nodes, @carriers)
       end
     end
