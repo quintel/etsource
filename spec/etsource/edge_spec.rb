@@ -28,7 +28,7 @@ module ETSource
       end
 
       it 'sets the filename' do
-        expect(edge.file_path.to_s).to match(%r{left-right@gas\.ad$})
+        expect(edge.path.to_s).to match(%r{left-right@gas\.ad$})
       end
     end # when creating a new Edge
 
@@ -68,7 +68,7 @@ module ETSource
         it { expect(edge.supplier).to eq(:other) }
         it { expect(edge.consumer).to eq(:left) }
         it { expect(edge.carrier).to eq(:gas) }
-        it { expect(edge.file_path.to_s).
+        it { expect(edge.path.to_s).
                to match(%{left-other@gas\.ad$}) }
       end
 
@@ -78,7 +78,7 @@ module ETSource
         it { expect(edge.key).to eq(:'other-right@gas') }
         it { expect(edge.supplier).to eq(:right) }
         it { expect(edge.consumer).to eq(:other) }
-        it { expect(edge.file_path.to_s).to match(%{other-right@gas\.ad$}) }
+        it { expect(edge.path.to_s).to match(%{other-right@gas\.ad$}) }
       end
 
       context 'changing the carrier only' do
@@ -88,7 +88,7 @@ module ETSource
         it { expect(edge.supplier).to eq(:right) }
         it { expect(edge.consumer).to eq(:left) }
         it { expect(edge.carrier).to eq(:electricity) }
-        it { expect(edge.file_path.to_s).
+        it { expect(edge.path.to_s).
                to match(%{left-right@electricity\.ad$}) }
       end
 
@@ -99,7 +99,7 @@ module ETSource
         it { expect(edge.supplier).to eq(:two) }
         it { expect(edge.consumer).to eq(:one) }
         it { expect(edge.carrier).to eq(:electricity) }
-        it { expect(edge.file_path.to_s).
+        it { expect(edge.path.to_s).
                to match(%{one-two@electricity\.ad$}) }
       end
 
@@ -110,7 +110,7 @@ module ETSource
         it { expect(edge.supplier).to eq(:two) }
         it { expect(edge.consumer).to eq(:one) }
         it { expect(edge.carrier).to eq(:gas) }
-        it { expect(edge.file_path.to_s).to match(%{one-two@gas\.ad$}) }
+        it { expect(edge.path.to_s).to match(%{one-two@gas\.ad$}) }
       end
 
       it 'raises an error when omitting the supplier key' do
@@ -144,10 +144,10 @@ module ETSource
 
     describe 'changing the filename' do
       let(:edge) { Edge.new('left-right@gas') }
-      before { edge.file_path = 'yes-no@electricity.ad' }
+      before { edge.path = 'yes-no@electricity.ad' }
 
       it 'updates the file path' do
-        expect(edge.file_path.to_s).to match(/yes-no@electricity\.ad$/)
+        expect(edge.path.to_s).to match(/yes-no@electricity\.ad$/)
       end
 
       it 'updates the supplier node' do
