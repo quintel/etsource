@@ -4,7 +4,7 @@ module ETSource
 
 describe Node, :fixtures do
   describe '#in_slots' do
-    let(:node) { Node.new('key', in_slots: %w(in_one in_two)) }
+    let(:node) { Node.new(key: 'key', in_slots: %w(in_one in_two)) }
 
     it 'is a Set' do
       expect(node.in_slots).to be_a(Set)
@@ -16,7 +16,7 @@ describe Node, :fixtures do
   end
 
   describe '#out_slots' do
-    let(:node) { Node.new('key', out_slots: %w(out_one out_two)) }
+    let(:node) { Node.new(key: 'key', out_slots: %w(out_one out_two)) }
 
     it 'is a Set' do
       expect(node.out_slots).to be_a(Set)

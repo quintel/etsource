@@ -2,15 +2,17 @@ require 'fileutils'
 
 module ETSource
   module ActiveDocument
-    extend ActiveSupport::Concern
-
-    include Virtus
-    include ActiveModel::Validations
-    include ActiveDocument::Persistence
-    include ActiveDocument::Finders
-    include ActiveDocument::Naming
-    include ActiveDocument::Subclassing
-    include InstanceMethods
+    def self.included(base)
+      base.class_eval do
+        include Virtus
+        include ActiveModel::Validations
+        include ActiveDocument::Persistence
+        include ActiveDocument::Finders
+        include ActiveDocument::Naming
+        include ActiveDocument::Subclassing
+        include ActiveDocument::Last
+      end
+    end
 
     # Public: The file extension. You can customise this in subclasses.
     #
@@ -24,17 +26,32 @@ module ETSource
 
     # Contains the methods which are available on instances of ActiveDocument
     # classes. This has to be a separate module so that we can ensure that
-    # Virtus' +initialize+ method is added before ActiveDocument's; otherwise
-    # the string +path+ attribute is misinterpreted by Virtus as a hash of
-    # attributes.
-    module InstanceMethods
-      def initialize(path, attributes = {})
-        super(attributes)
+    # Virtus' +initialize+ method is added before ActiveDocument's.
+    module Last
+      # Public: Creates a new document
+      #
+      # attributes - A hash of attributes to be set on the document. You must
+      #              at least provide a :path or :key attribute which is used
+      #              to name the document.
+      #
+      # Returns your new document.
+      def initialize(attributes)
+        path = attributes.delete(:path)
+        key  = attributes.delete(:key)
 
-        set_attributes_from_filename!(path)
+        if path.nil? && key.nil?
+          raise NoPathOrKeyError.new(self.class)
+        end
+
+        path ? (self.path = path) : (self.key = key)
         @last_saved_file_path = self.path.dup
+
+        super(attributes)
       end
 
+      # Public: A human-readable version of the document.
+      #
+      # Returns a String.
       def to_s
         "#<#{self.class}: #{key}>"
       end
@@ -46,6 +63,6 @@ module ETSource
       def to_hash
         attributes.reject { |_, value| value.nil? }
       end
-    end # InstanceMethods
+    end # Last
   end # ActiveDocument
 end # ETSource

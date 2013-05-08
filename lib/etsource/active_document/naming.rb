@@ -3,6 +3,10 @@ module ETSource
     module Naming
       extend ActiveSupport::Concern
 
+      # A subdirectory path which is meaningless, and thus gets converted to
+      # nil instead.
+      NO_DIR = '.'.freeze
+
       included do
         # Public: The unique key used to identify the document.
         #
@@ -80,8 +84,9 @@ module ETSource
 
         relative = directory.join(path.to_s).relative_path_from(directory)
         name     = relative.basename.to_s.split('.', 2).first
+        subdir   = relative.dirname.to_s
 
-        @subdirectory = relative.dirname.to_s
+        @subdirectory = subdir == NO_DIR ? nil : subdir
 
         self.key = name
       end

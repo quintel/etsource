@@ -25,46 +25,60 @@ module ETSource
 
 describe SomeDocument, :fixtures do
 
-  let(:some_document){ some_document = SomeDocument.find('foo') }
+  let(:some_document) { some_document = SomeDocument.find('foo') }
 
   describe 'new' do
+    context 'given no key or path' do
+      it 'raises an error' do
+        expect { SomeDocument.new({}) }.to raise_error(NoPathOrKeyError)
+      end
+    end # given no key or path
+
     context 'given a dumb key' do
       it 'creates a new document' do
-        expect(SomeDocument.new('key')).to be_a(SomeDocument)
+        expect(SomeDocument.new(key: 'key')).to be_a(SomeDocument)
       end
 
       it 'sets the key (as a symbol)' do
-        expect(SomeDocument.new('key').key).to eql(:key)
+        expect(SomeDocument.new(key: 'key').key).to eql(:key)
+      end
+
+      it 'sets no subdirectory' do
+        expect(SomeDocument.new(path: 'key').subdirectory).to be_nil
       end
 
       xit 'raises and error when the key already exists' do
-        expect(-> { SomeDocument.new('foo') } ).to \
+        expect(-> { SomeDocument.new(key: 'foo') } ).to \
           raise_error DuplicateKeyError
       end
     end # given a dumb key
 
     context 'given a path' do
       it 'creates a new document' do
-        some_document = SomeDocument.new('my_map1/new')
+        some_document = SomeDocument.new(path: 'my_map1/new')
         expect(some_document.save!).to be_true
         expect(some_document.key).to eql(:new)
       end
 
       it 'sets the key (as a symbol)' do
-        expect(SomeDocument.new('a/b/thing').key).to eql(:thing)
+        expect(SomeDocument.new(path: 'a/b/thing').key).to eql(:thing)
       end
 
       it 'saves in that folder' do
-        some_document = SomeDocument.new('my_map1/new')
+        some_document = SomeDocument.new(path: 'my_map1/new')
         expect(some_document.key).to eql(:new)
-        expect(some_document.subdirectory).to eq('my_map1')
         expect(some_document.path.to_s).to match /my_map1\/new/
       end
 
-      xit 'raises and error when the key already exists' do
-        SomeDocument.new('my_map1/new').save!
+      it 'sets no subdirectory' do
+        document = SomeDocument.new(path: 'my_map1/new')
+        expect(document.subdirectory).to eq('my_map1')
+      end
 
-        expect(-> { SomeDocument.new('my_map2/new') } ).to \
+      xit 'raises and error when the key already exists' do
+        SomeDocument.new(path: 'my_map1/new').save!
+
+        expect(-> { SomeDocument.new(path: 'my_map2/new') } ).to \
           raise_error DuplicateKeyError
       end
     end # given a file path
@@ -72,11 +86,11 @@ describe SomeDocument, :fixtures do
 
   describe 'to_hash' do
     it 'is empty when no attributes have been set' do
-      expect(SomeDocument.new('a').to_hash).to be_empty
+      expect(SomeDocument.new(key: 'a').to_hash).to be_empty
     end
 
     it 'contains attributes set by the user' do
-      document = SomeDocument.new('a', unit: '%', description: 'Mine')
+      document = SomeDocument.new(key: 'a', unit: '%', description: 'Mine')
       hash     = document.to_hash
 
       expect(hash).to include(unit: '%')
@@ -84,7 +98,7 @@ describe SomeDocument, :fixtures do
     end
 
     it 'omits attributes which have no value' do
-      document = SomeDocument.new('a', unit: '%')
+      document = SomeDocument.new(key: 'a', unit: '%')
       hash     = document.to_hash
 
       expect(hash).to_not have_key(:query)
@@ -128,7 +142,7 @@ describe SomeDocument, :fixtures do
 
   describe 'key=' do
     context 'setting the key to nil' do
-      let(:doc) { SomeDocument.new('key') }
+      let(:doc) { SomeDocument.new(key: 'key') }
 
       it 'raises InvalidKeyError' do
         expect { doc.key = nil }.to raise_error(InvalidKeyError)
@@ -136,7 +150,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'setting an empty key' do
-      let(:doc) { SomeDocument.new('key') }
+      let(:doc) { SomeDocument.new(key: 'key') }
 
       it 'raises InvalidKeyError' do
         expect { doc.key = '' }.to raise_error(InvalidKeyError)
@@ -144,7 +158,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'when the document is at the class DIRECTORY root' do
-      let(:doc) { SomeDocument.new('key') }
+      let(:doc) { SomeDocument.new(key: 'key') }
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
@@ -158,7 +172,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'when the document path includes a subdirectory' do
-      let(:doc) { SomeDocument.new('dir/key') }
+      let(:doc) { SomeDocument.new(path: 'dir/key') }
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
@@ -172,7 +186,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'when the document name contains the suffix substring' do
-      let(:doc) { SomeDocument.new('suffix.suffix') }
+      let(:doc) { SomeDocument.new(path: 'suffix.suffix') }
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
@@ -186,7 +200,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'when the document is a subclass' do
-      let(:doc) { FinalDocument.new('okay') }
+      let(:doc) { FinalDocument.new(path: 'okay') }
       before    { doc.key = 'new' }
 
       it 'changes the document key' do
@@ -201,7 +215,7 @@ describe SomeDocument, :fixtures do
 
   context '#path=' do
     context 'on a "base" class instance' do
-      let(:document) { SomeDocument.new('abc') }
+      let(:document) { SomeDocument.new(path: 'abc') }
 
       it 'sets the new key' do
         document.path = 'def'
@@ -230,7 +244,7 @@ describe SomeDocument, :fixtures do
     end # on a "base" class instance
 
     context 'with an absolute path' do
-      let(:document) { SomeDocument.new('abc') }
+      let(:document) { SomeDocument.new(path: 'abc') }
 
       it 'sets legal paths' do
         document.path = document.directory.join('efg')
@@ -244,7 +258,7 @@ describe SomeDocument, :fixtures do
     end # with an absolute path
 
     context 'on a subclass instance' do
-      let(:document) { FinalDocument.new('abc') }
+      let(:document) { FinalDocument.new(key: 'abc') }
 
       it 'retains the subclass prefix' do
         document.path = 'abc.other_document.suffix'
@@ -283,7 +297,7 @@ describe SomeDocument, :fixtures do
 
   describe 'valid?' do
     let(:document) do
-      SomeDocument.new('key').tap do |doc|
+      SomeDocument.new(key: 'key').tap do |doc|
         doc.do_validation = true
       end
     end
@@ -304,7 +318,7 @@ describe SomeDocument, :fixtures do
     context 'new file' do
 
       it 'writes to disk' do
-        some_document = SomeDocument.new('the_king_of_pop')
+        some_document = SomeDocument.new(key: 'the_king_of_pop')
         expect(some_document.save!).to be_true
       end
 
@@ -377,7 +391,7 @@ describe SomeDocument, :fixtures do
   end # all
 
   describe 'changing the key on subclassed documents' do
-    let(:doc) { OtherDocument.new('fd.other_document.suffix') }
+    let(:doc) { OtherDocument.new(path: 'fd.other_document.suffix') }
     before { doc.key = 'pd' }
 
     it 'retains the extension and subclass' do
@@ -416,24 +430,24 @@ describe SomeDocument, :fixtures do
   end
 
   describe '#<=>' do
-    let(:node) { Node.new('f') }
+    let(:node) { Node.new(key: 'f') }
 
     it 'is -1 when the node has an "earlier" key' do
-      expect(Node.new('a') <=> node).to eql(-1)
+      expect(Node.new(key: 'a') <=> node).to eql(-1)
     end
 
     it 'is 0 when the node has an equal key' do
-      expect(Node.new('f') <=> node).to eql(0)
+      expect(Node.new(key: 'f') <=> node).to eql(0)
     end
 
     it 'is 1 when the node has a "later" key' do
-      expect(Node.new('z') <=> node).to eql(1)
+      expect(Node.new(key: 'z') <=> node).to eql(1)
     end
   end # <=>
 
   describe 'path normalization' do
     context 'given a path which includes the DIRECTORY' do
-      let(:node) { SomeDocument.new('active_document/foo.suffix') }
+      let(:node) { SomeDocument.new(path: 'active_document/foo.suffix') }
 
       it 'the DIRECTORY still gets prepended' do
         expect(node.path).
@@ -442,7 +456,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'given a path in a subdirectory' do
-      let(:node) { SomeDocument.new('special/foo.suffix') }
+      let(:node) { SomeDocument.new(path: 'special/foo.suffix') }
 
       it 'does not change the given path' do
         expect(node.path).
@@ -451,7 +465,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'given a path which contains a subdirectory and no key' do
-      let(:node) { SomeDocument.new('special/foo') }
+      let(:node) { SomeDocument.new(path: 'special/foo') }
 
       it 'does not change the given path' do
         expect(node.path.sub_ext('')).
@@ -464,7 +478,7 @@ describe SomeDocument, :fixtures do
     end
 
     context 'given only a key' do
-      let(:node) { SomeDocument.new('foo') }
+      let(:node) { SomeDocument.new(path: 'foo') }
 
       it 'adds the document directory' do
         expect(node.path.to_s).to match(%r{active_document/})
@@ -480,10 +494,10 @@ describe SomeDocument, :fixtures do
     end
 
     context 'given an absolute path' do
-      let(:node) { SomeDocument.new('/tmp/foo') }
+      let(:node) { SomeDocument.new(path: '/tmp/foo') }
 
       it 'raises an error' do
-        expect { node }.to raise_error(InvalidKeyError)
+        expect { node }.to raise_error(IllegalDirectoryError)
       end
     end
   end # path normalization
