@@ -13,6 +13,7 @@ module ETSource
         extend  ClassMethods
 
         attr_accessor :file_path, :description
+        attr_reader :key, :subdirectory
       end
     end
 
@@ -25,28 +26,10 @@ module ETSource
     # attributes.
     module InstanceMethods
       def initialize(path, attributes = {})
-        @file_path = @last_saved_file_path = normalize_path(path.to_s)
         super(attributes)
-      end
 
-      # Returns the key part of the path. Folders and extensions of course are
-      # not part of the key.
-      #
-      # Example:
-      #
-      #   general/co2/total_co2_emissions.gql returns total_co2_emissions
-      #
-      # Returns a Symbol.
-      def key
-        without_ext = file_path.basename(".#{self.class::FILE_SUFFIX}")
-
-        if subclass_suffix = self.class.subclass_suffix
-          # This is an ActiveDocument subclass, so remove the class from the
-          # filename also.
-          without_ext.to_s.chomp(".#{ subclass_suffix }").to_sym
-        else
-          without_ext.to_s.to_sym
-        end
+        set_attributes_from_filename!(path)
+        @last_saved_file_path = self.path.dup
       end
 
       # Public: Change the key of the document.
@@ -62,9 +45,9 @@ module ETSource
       # Returns whatever you gave.
       def key=(new_key)
         raise InvalidKeyError.new(new_key) if new_key.nil? || new_key == ""
+        @key = new_key.to_sym
 
-        file_dir = file_path.relative_path_from(directory)
-        self.file_path = normalize_path(file_dir.dirname.join(new_key.to_s))
+        set_attributes_from_key!(@key)
       end
 
       # Saves the document (to file)
@@ -98,62 +81,52 @@ module ETSource
         key <=> other.key
       end
 
-      #######
-      private
-      #######
+      # Public: The absolute path to the document.
+      #
+      # Returns a Pathname.
+      def path
+        filename = [key, self.class.subclass_suffix, self.class::FILE_SUFFIX]
+        filename = filename.compact.join('.')
 
-      # Takes a path and normalized it:
-      # * It adds the suffix, if it does not have that all ready
-      # * It makes the path absolute.
-      def normalize_path(path)
-        raise InvalidKeyError.new(path) if path.to_s =~ %r{^/}
+        if subdirectory
+          directory.join(subdirectory).join(filename)
+        else
+          directory.join(filename)
+        end
+      end
 
-        path = directory.join(path.to_s)
+      # Public: Sets a new path for the document.
+      #
+      # You may:
+      #
+      #   * Provide an absolute path if the path is within the +directory+ for
+      #     these documents.
+      #   * Provide a non-absolute path, which will be relative to the
+      #     document +directory+.
+      #   * Omit the +subclass_suffix+ used to tell ActiveDocument which
+      #     subclass to instantiate.
+      #   * Omit the file extension.
+      #
+      # You may not:
+      #
+      #   * Change the file extension; new extensions will be ignored.
+      #   * Change the +subclass_suffix+; new suffixes will be ignored.
+      #
+      # Returns the path you gave.
+      def path=(path)
+        path = Pathname.new(path)
 
-        # When this is a subclass, and the user did not specify the subclass
-        # name in the file (which happens when they call #key=) we need to
-        # explicity add it.
-        if self.class.subclassed_document? &&
-              ! path.basename.to_s.include?(self.class.subclass_suffix)
-
-          suffixes = [ self.class.subclass_suffix,
-                       self.class::FILE_SUFFIX ].compact.join('.')
-
-          path = Pathname.new("#{ path.sub_ext('').to_s }.#{ suffixes }")
-        elsif path.extname.to_s != self.class::FILE_SUFFIX
-          # No filename was specified; common when calling #new.
-          path = path.sub_ext(".#{ self.class::FILE_SUFFIX }")
+        if path.absolute?
+          relative = path.relative_path_from(directory)
+        else
+          relative = path
         end
 
-        path
-      end
-
-      # saves it to file
-      def save_to_file
-        FileUtils.mkdir_p(file_path.dirname)
-
-        file_path.open('w') do |file|
-          file.write(file_contents)
-          file.write("\n") unless file_contents[-1] == "\n"
+        if relative.to_s.include?('..')
+          raise IllegalDirectoryError.new(path, directory)
         end
 
-        delete_old_file unless @last_saved_file_path == file_path
-      end
-
-      def delete_old_file
-        @last_saved_file_path.delete
-        @last_saved_file_path = file_path
-      end
-
-      # Delete the file
-      def destroy_file
-        file_path.delete
-      end
-
-      # Return the file_contents for this object, which is a parsed
-      # version.
-      def file_contents
-        parser = ETSource::HashToTextParser.new(to_hash).to_text
+        set_attributes_from_filename!(relative)
       end
 
       # Public: The absolute path to the directory in which the documents
@@ -162,6 +135,82 @@ module ETSource
       # Returns a Pathname.
       def directory
         self.class.directory
+      end
+
+      #######
+      private
+      #######
+
+      # Internal: Given the name of the ActiveDocument file, without a
+      # subclass suffix or file extension, returns a hash of attributes
+      # extracted from the filename.
+      #
+      # This can be overridden to provide more complex file naming.
+      #
+      # Returns a hash.
+      def attributes_from_basename(filename)
+        {}
+      end
+
+      # Internal: Used to extract from a filename the attributes which are
+      # assigned to the document. You can customise the behaviour of this
+      # method by overriding +attributes_from_basename+.
+      #
+      # Returns nothing.
+      def set_attributes_from_filename!(path)
+        raise InvalidKeyError.new(path) if path.to_s[0] == '/'
+
+        relative = directory.join(path.to_s).relative_path_from(directory)
+        name     = relative.basename.to_s.split('.', 2).first
+
+        @subdirectory = relative.dirname.to_s
+
+        self.key = name
+      end
+
+      # Internal: When the key is updated, we also update any attributes whose
+      # values are stored as part of the key.
+      #
+      # For example, in "edge" the name of both nodes and the carrier are
+      # substrings in the key:
+      #
+      #   consumer-supplier@carrier
+      #
+      # This method reads the key and updates each of these attributes.
+      #
+      # Returns nothing.
+      def set_attributes_from_key!(key)
+        attributes_from_basename(key.to_s).each do |key, value|
+          public_send(:"#{ key }=", value)
+        end
+      end
+
+      # saves it to file
+      def save_to_file
+        FileUtils.mkdir_p(path.dirname)
+
+        path.open('w') do |file|
+          file.write(file_contents)
+          file.write("\n") unless file_contents[-1] == "\n"
+        end
+
+        delete_old_file unless @last_saved_file_path == path
+      end
+
+      def delete_old_file
+        @last_saved_file_path.delete
+        @last_saved_file_path = path
+      end
+
+      # Delete the file
+      def destroy_file
+        path.delete
+      end
+
+      # Return the file_contents for this object, which is a parsed
+      # version.
+      def file_contents
+        parser = ETSource::HashToTextParser.new(to_hash).to_text
       end
     end # InstanceMethods
 

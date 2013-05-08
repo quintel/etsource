@@ -43,7 +43,7 @@ describe SomeDocument, :fixtures do
       end
     end # given a dumb key
 
-    context 'given a file_path' do
+    context 'given a path' do
       it 'creates a new document' do
         some_document = SomeDocument.new('my_map1/new')
         expect(some_document.save!).to be_true
@@ -57,11 +57,13 @@ describe SomeDocument, :fixtures do
       it 'saves in that folder' do
         some_document = SomeDocument.new('my_map1/new')
         expect(some_document.key).to eql(:new)
-        expect(some_document.file_path.to_s).to match /my_map1\/new/
+        expect(some_document.subdirectory).to eq('my_map1')
+        expect(some_document.path.to_s).to match /my_map1\/new/
       end
 
       xit 'raises and error when the key already exists' do
         SomeDocument.new('my_map1/new').save!
+
         expect(-> { SomeDocument.new('my_map2/new') } ).to \
           raise_error DuplicateKeyError
       end
@@ -94,7 +96,7 @@ describe SomeDocument, :fixtures do
 
     it "should load a some_document from file" do
       expect(some_document.key).to eql(:foo)
-      expect(some_document.file_path.to_s).to include(some_document.key.to_s)
+      expect(some_document.path.to_s).to include(some_document.key.to_s)
       expect(some_document.description.size).to be > 0
       expect(some_document.description).to include "MECE" #testing some words
       expect(some_document.description).to include "graph." #testing some words
@@ -150,7 +152,7 @@ describe SomeDocument, :fixtures do
       end
 
       it 'puts the file at the DIRECTORY root' do
-        expect(doc.file_path).
+        expect(doc.path).
           to eql(SomeDocument.directory.join('new.suffix'))
       end
     end
@@ -164,7 +166,7 @@ describe SomeDocument, :fixtures do
       end
 
       it 'puts the file in the subdirectory' do
-        expect(doc.file_path).
+        expect(doc.path).
           to eql(SomeDocument.directory.join('dir/new.suffix'))
       end
     end
@@ -179,8 +181,7 @@ describe SomeDocument, :fixtures do
 
       it 'puts the file at the DIRECTORY root' do
         # Asserts that the suffix is not altered.
-        expect(doc.file_path).
-          to eql(SomeDocument.directory.join('new.suffix'))
+        expect(doc.path).to eql(SomeDocument.directory.join('new.suffix'))
       end
     end
 
@@ -193,10 +194,66 @@ describe SomeDocument, :fixtures do
       end
 
       it 'retains the subclass string in the filename' do
-        expect(doc.file_path.to_s).to include('.final_document')
+        expect(doc.path.to_s).to include('.final_document')
       end
     end
   end # key=
+
+  context '#path=' do
+    context 'on a "base" class instance' do
+      let(:document) { SomeDocument.new('abc') }
+
+      it 'sets the new key' do
+        document.path = 'def'
+        expect(document.key).to eq(:def)
+      end
+
+      it 'ignores new subclass prefixes' do
+        document.path = 'def.final_document.ad'
+        expect(document.path).to eql(SomeDocument.directory.join('def.suffix'))
+      end
+
+      it 'ignores new file extensions' do
+        document.path = 'def.omg'
+        expect(document.path.to_s).to match(%r{/def\.suffix$})
+      end
+
+      it 'sets new subdirectories' do
+        document.path = 'yes/no/omg'
+        expect(document.subdirectory).to eq('yes/no')
+      end
+
+      it 'raises an error if the path is above the document root' do
+        expect { document.path = '../omg' }.
+          to raise_error(IllegalDirectoryError)
+      end
+    end # on a "base" class instance
+
+    context 'with an absolute path' do
+      let(:document) { SomeDocument.new('abc') }
+
+      it 'sets legal paths' do
+        document.path = document.directory.join('efg')
+        expect(document.path).to eq(document.directory.join('efg.suffix'))
+      end
+
+      it 'raises an error if the path is above the document root' do
+        expect { document.path = document.directory.dirname.join('efg') }.
+          to raise_error(IllegalDirectoryError)
+      end
+    end # with an absolute path
+
+    context 'on a subclass instance' do
+      let(:document) { FinalDocument.new('abc') }
+
+      it 'retains the subclass prefix' do
+        document.path = 'abc.other_document.suffix'
+
+        expect(document.path.to_s).to     include('final_document')
+        expect(document.path.to_s).to_not include('other_document')
+      end
+    end # on a subclass instance
+  end # path=
 
   describe "file_contents" do
 
@@ -216,14 +273,12 @@ describe SomeDocument, :fixtures do
     end
   end
 
-  describe "file_path" do
-
+  describe "path" do
     it "should change when the key has changed" do
       some_document.key = :total_co2_emitted
       expect(some_document.key).to eql(:total_co2_emitted)
-      expect(some_document.file_path.to_s).to include "total_co2_emitted"
+      expect(some_document.path.to_s).to include "total_co2_emitted"
     end
-
   end
 
   describe 'valid?' do
@@ -258,9 +313,9 @@ describe SomeDocument, :fixtures do
     context 'when nothing changed' do
 
       it "does not write to disk" do
-        cache = some_document.file_path.read
+        cache = some_document.path.read
         some_document.save!
-        expect(cache).to eq(some_document.file_path.read)
+        expect(cache).to eq(some_document.path.read)
       end
 
     end
@@ -273,7 +328,7 @@ describe SomeDocument, :fixtures do
     context 'when the key changed' do
 
       it "should delete the old file" do
-        old_path = some_document.file_path
+        old_path = some_document.path
         some_document.key = "foo2"
         some_document.save!
         expect { old_path.read }.to raise_error
@@ -282,7 +337,7 @@ describe SomeDocument, :fixtures do
       it "should create a new file" do
         some_document.key = "foo2"
         some_document.save!
-        expect { some_document.file_path.read }.to_not raise_error
+        expect { some_document.path.read }.to_not raise_error
       end
 
       context 'when another object with that key already exists' do
@@ -330,7 +385,7 @@ describe SomeDocument, :fixtures do
     end
 
     it 'retains the subclass suffix' do
-      expect(doc.file_path.basename.to_s).
+      expect(doc.path.basename.to_s).
         to eql([
           doc.key,
           doc.class.subclass_suffix,
@@ -341,7 +396,7 @@ describe SomeDocument, :fixtures do
   describe 'destroy!' do
 
     it "should delete the file" do
-      path = some_document.file_path
+      path = some_document.path
       some_document.destroy!
       expect(path.exist?).to be_false
     end
@@ -381,7 +436,7 @@ describe SomeDocument, :fixtures do
       let(:node) { SomeDocument.new('active_document/foo.suffix') }
 
       it 'the DIRECTORY still gets prepended' do
-        expect(node.file_path).
+        expect(node.path).
           to eq(SomeDocument.directory.join('active_document/foo.suffix'))
       end
     end
@@ -390,7 +445,7 @@ describe SomeDocument, :fixtures do
       let(:node) { SomeDocument.new('special/foo.suffix') }
 
       it 'does not change the given path' do
-        expect(node.file_path).
+        expect(node.path).
           to eq(SomeDocument.directory.join('special/foo.suffix'))
       end
     end
@@ -399,12 +454,12 @@ describe SomeDocument, :fixtures do
       let(:node) { SomeDocument.new('special/foo') }
 
       it 'does not change the given path' do
-        expect(node.file_path.sub_ext('')).
+        expect(node.path.sub_ext('')).
           to eq(SomeDocument.directory.join('special/foo'))
       end
 
       it 'adds the file extension' do
-        expect(node.file_path.extname).to eq('.suffix')
+        expect(node.path.extname).to eq('.suffix')
       end
     end
 
@@ -412,15 +467,15 @@ describe SomeDocument, :fixtures do
       let(:node) { SomeDocument.new('foo') }
 
       it 'adds the document directory' do
-        expect(node.file_path.to_s).to match(%r{active_document/})
+        expect(node.path.to_s).to match(%r{active_document/})
       end
 
       it 'adds the file extension' do
-        expect(node.file_path.extname).to eq('.suffix')
+        expect(node.path.extname).to eq('.suffix')
       end
 
       it 'sets the filename to equal the key' do
-        expect(node.file_path.basename.sub_ext('').to_s).to eq('foo')
+        expect(node.path.basename.sub_ext('').to_s).to eq('foo')
       end
     end
 
