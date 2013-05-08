@@ -2,7 +2,7 @@ module ETSource
   class Dataset
     include ActiveDocument
 
-    DIRECTORY = 'data/datasets'
+    DIRECTORY = 'datasets'
 
     # General Attributes
     attribute :country,                  String
@@ -75,6 +75,26 @@ module ETSource
     # Returns the Energy Balance for this area/dataset.
     def energy_balance
       @energy_balance ||= EnergyBalance.find(area)
+    end
+
+    # Public: Retrieves the ShareData for the file whose name matches +key+.
+    #
+    # key - The name of the shares file to load.
+    #
+    # Returns a ShareData.
+    def shares(key)
+      key = key.to_sym
+
+      @shares      ||= Hash.new
+      @shares[key] ||= ShareData.new(self, key)
+    end
+
+    # Public: Path to the directory in which the dataset specific data is
+    # stored.
+    #
+    # Returns a Pathname.
+    def path
+      ETSource.data_dir.join(DIRECTORY).join(key.to_s)
     end
 
   end # Dataset

@@ -1,9 +1,8 @@
 module ETSource
-
   class Node
     include ActiveDocument
 
-    DIRECTORY = 'data/nodes'
+    DIRECTORY = 'nodes'
 
     attribute :sector,               String
     attribute :use,                  String
