@@ -1,26 +1,21 @@
-def use_fixtures
-  copy_fixtures_to_tmp
-  stub_directories
-end
+module ETSource
+  module Spec
+    # Included into RSpec examples and groups when they ask for it. Changes
+    # the fixture directory and creates a copy of the fixtures.
+    module Fixtures
+      def self.included(klass)
+        dir = Pathname.new(ETSource.root.join('tmp/fixtures'))
 
-# copy files to a temporary directory and use this directory as a
-# fixtures directory, so were are sure that the fixtures are 'reset'.
-def copy_fixtures_to_tmp
-  FileUtils.rm_r    "#{ETSource.root}/tmp/fixtures" , force: true
-  FileUtils.mkdir_p "#{ETSource.root}/tmp/fixtures"
-  FileUtils.cp_r    "#{ETSource.root}/spec/fixtures", "#{ETSource.root}/tmp"
-end
+        klass.around(:each) do |example|
+          ETSource.with_data_dir(dir) { example.run }
+        end
 
-# Stub out all the directories of classes that have a DIRECTORY constant
-# to use the fixtures directory.
-def stub_directories
-  ETSource.constants.each do |constant_name|
-    if defined?(ETSource.const_get(constant_name)::DIRECTORY)
-      directory = ETSource.const_get(constant_name)::DIRECTORY.gsub(/^data\//,'')
-      unless directory.match /tmp\/fixtures/
-        stub_const("ETSource::#{constant_name}::DIRECTORY",
-                   "tmp/fixtures/#{directory}")
+        klass.before(:each) do
+          FileUtils.rm_r(dir, force: true)
+          FileUtils.mkdir_p(dir)
+          FileUtils.cp_r(ETSource.root.join('spec/fixtures'), dir.parent)
+        end
       end
-    end
-  end
-end
+    end # Fixtures
+  end # Spec
+end # ETSource
