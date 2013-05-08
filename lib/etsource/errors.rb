@@ -43,6 +43,10 @@ module ETSource
     "Invalid key entered: #{ key.inspect }"
   end
 
+  NoPathOrKeyError = error_class(InvalidKeyError) do |klass|
+    "Cannot create a new #{ klass.name } without a :path or :key"
+  end
+
   UnknownUnitError = error_class do |unit|
     "Invalid unit requested: #{ unit }"
   end

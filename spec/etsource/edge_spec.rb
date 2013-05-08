@@ -2,14 +2,14 @@ require 'spec_helper'
 
 module ETSource
   describe Edge, :fixtures do
-    it { expect(Edge.new('a-b@gas')).to validate_presence_of(:consumer) }
-    it { expect(Edge.new('a-b@gas')).to validate_presence_of(:supplier) }
-    it { expect(Edge.new('a-b@gas')).to ensure_inclusion_of(:type).
+    it { expect(Edge.new(key: 'a-b@gas')).to validate_presence_of(:consumer) }
+    it { expect(Edge.new(key: 'a-b@gas')).to validate_presence_of(:supplier) }
+    it { expect(Edge.new(key: 'a-b@gas')).to ensure_inclusion_of(:type).
          in_array([ :share, :flexible, :constant,
                     :inverse_flexible, :dependent ]) }
 
     describe 'when creating a new Edge' do
-      let(:edge) { Edge.new('left-right@gas.ad') }
+      let(:edge) { Edge.new(path: 'left-right@gas.ad') }
 
       it 'sets the consumer from the filename' do
         expect(edge.consumer).to eq(:left)
@@ -34,32 +34,32 @@ module ETSource
 
     describe 'creating an Edge with an invalid key' do
       it 'raises an error when the key is nil' do
-        expect { Edge.new(nil) }.to raise_error(InvalidKeyError)
+        expect { Edge.new(key: nil) }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when the key is blank' do
-        expect { Edge.new('') }.to raise_error(InvalidKeyError)
+        expect { Edge.new(key: '') }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when the key has only one edge' do
-        expect { Edge.new('left@gas') }.to raise_error(InvalidKeyError)
+        expect { Edge.new(key: 'left@gas') }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when one edge key is blank' do
-        expect { Edge.new('left-@gas') }.to raise_error(InvalidKeyError)
+        expect { Edge.new(key: 'left-@gas') }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when omitting the carrier' do
-        expect { Edge.new('one-two') }.to raise_error(InvalidKeyError)
+        expect { Edge.new(key: 'one-two') }.to raise_error(InvalidKeyError)
       end
 
       it 'raises an error when providing only the carrier' do
-        expect { Edge.new('@gas') }.to raise_error(InvalidKeyError)
+        expect { Edge.new(key: '@gas') }.to raise_error(InvalidKeyError)
       end
     end # creating an Edge with an invalid key
 
     describe 'changing the key on an Edge' do
-      let(:edge) { Edge.new('left-right@gas') }
+      let(:edge) { Edge.new(key: 'left-right@gas') }
 
       context 'changing the supplier node only' do
         before { edge.key = 'left-other@gas' }
@@ -143,7 +143,7 @@ module ETSource
     end # changing the key on an Edge
 
     describe 'changing the filename' do
-      let(:edge) { Edge.new('left-right@gas') }
+      let(:edge) { Edge.new(key: 'left-right@gas') }
       before { edge.path = 'yes-no@electricity.ad' }
 
       it 'updates the file path' do

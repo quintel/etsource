@@ -2,9 +2,9 @@ require 'spec_helper'
 
 module ETSource
   describe Collection do
-    let(:node_one)   { Node.new(:one) }
-    let(:node_two)   { Node.new(:two) }
-    let(:node_three) { Node.new(:three) }
+    let(:node_one)   { Node.new(key: :one) }
+    let(:node_two)   { Node.new(key: :two) }
+    let(:node_three) { Node.new(key: :three) }
     let(:raw)        { [node_one, node_two, node_three] }
     let(:collection) { Collection.new([node_one, node_two, node_three]) }
 
@@ -14,7 +14,7 @@ module ETSource
       end
 
       it 'returns the document when there are similar entries' do
-        collection.push(Node.new(:ona))
+        collection.push(Node.new(key: :ona))
         expect(collection.find(:one)).to eql(node_one)
       end
 
