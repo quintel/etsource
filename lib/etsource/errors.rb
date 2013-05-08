@@ -34,8 +34,13 @@ module ETSource
     "Missing attribute #{ attribute } for #{ object }"
   end
 
+  IllegalDirectoryError = error_class do |path, directory|
+    "The given path #{ path.to_s.inspect } does not appear to be a " \
+    "subdirectory of #{ directory.to_s.inspect }"
+  end
+
   InvalidKeyError = error_class do |key|
-    "Invalid key entered: #{ key }"
+    "Invalid key entered: #{ key.inspect }"
   end
 
   UnknownUnitError = error_class do |unit|
