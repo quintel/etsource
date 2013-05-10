@@ -51,10 +51,8 @@ files =
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/data/nodes/**/*") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/nl/graph/employment.yml") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/config.yml") +
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order_converters.yml") +
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_wizards/households/transformer.yml") + 
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_defaults/graph/converter_costs.yml") + 
-  Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/must_run_merit_order_converters.yml") + 
   Dir.glob(PATH_OF_REPOSITORIES + "/etsource/datasets/_globals/merit_order.yml") +
 
   # etengine
