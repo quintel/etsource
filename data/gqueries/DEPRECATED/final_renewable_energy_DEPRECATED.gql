@@ -1,8 +1,0 @@
-- deprecated_key = final_renewable_energy
-# The final demand that is filled by sustainable sources. This is only calculated over the energetic final demand. Also, the ambient heat that is used is added to the final demand.
-# 
-# It is important to notice that the ambient heat that is used should be calculated only 'left' of the final demand, otherwise the ambient heat is counted double. This is not possible yet, but should be fixed when it is.
-
-- unit = mj
-
-SUM(V(INTERSECTION(G(final_demand_cbs),USE(energetic))," demand * sustainability_share"), Q(ambient_heat_use))
