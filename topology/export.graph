@@ -961,17 +961,6 @@ energy_chp_ultra_supercritical_coal:
   - ! '(loss)-energy_chp_ultra_supercritical_coal: {type: :loss}'
   - (steam_hot_water)-energy_chp_ultra_supercritical_coal
   - ! '(electricity)-energy_chp_ultra_supercritical_coal: {type: :carrier_efficient}'
-energy_chp_ultra_supercritical_crude_oil:
-  sector: energy
-  use: undefined
-  energy_balance_group: central CHPs
-  links:
-  - energy_chp_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil
-  slots:
-  - energy_chp_ultra_supercritical_crude_oil-(crude_oil)
-  - (electricity)-energy_chp_ultra_supercritical_crude_oil
-  - (steam_hot_water)-energy_chp_ultra_supercritical_crude_oil
-  - ! '(loss)-energy_chp_ultra_supercritical_crude_oil: {type: :loss}'
 energy_chp_ultra_supercritical_lignite:
   sector: energy
   use: undefined
@@ -1557,7 +1546,6 @@ energy_heat_network_steam_hot_water:
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_geothermal
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_remainder_from_heat_network_used_steam_hot_water
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_lignite
-  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_crude_oil
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_coal
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_lignite
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_crude_oil
@@ -1991,7 +1979,6 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_nuclear_gen2_uranium_oxide
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_ccs_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_lignite
-  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_supercritical_waste_mix
