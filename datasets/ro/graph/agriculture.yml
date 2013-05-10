@@ -79,10 +79,17 @@ agriculture_burner_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-agricultu
   :heat_output_capacity: 0.833
   :peak_load_units: 0.0
 (loss)-agriculture_chp_engine_biogas: {}
-(steam_hot_water)-agriculture_chp_engine_biogas: {conversion: 0.8}
+(steam_hot_water)-agriculture_chp_engine_biogas: {conversion: 0.6}
+(dumped_heat)-agriculture_chp_engine_biogas: {conversion: 0.2}
 (electricity)-agriculture_chp_engine_biogas: {conversion: 0.2}
 agriculture_chp_engine_biogas-(biogas): {conversion: 1.0}
 agriculture_chp_engine_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas: {share: 1.0}
+
+:agriculture_chp_engine_biogas_dumped_heat:
+  :co2_free: 0.0
+agriculture_chp_engine_biogas_dumped_heat-(dumped_heat): {conversion: 1.0}
+(dumped_heat)-agriculture_chp_engine_biogas_dumped_heat: {conversion: 1.0}
+agriculture_chp_engine_biogas_dumped_heat-(dumped_heat) -- d --> (dumped_heat)-agriculture_chp_engine_biogas: {share: 1.0}
 
 :agriculture_chp_engine_network_gas:
   :availability: 0.97
