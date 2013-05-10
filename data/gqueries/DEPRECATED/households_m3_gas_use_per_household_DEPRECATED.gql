@@ -1,6 +1,0 @@
-- deprecated_key = households_m3_gas_use_per_household
-# This returns the household gas use in m3 per year, including that of the micro-CHP.
-
-- unit = m3
-
-DIVIDE(SUM(V(V(INTERSECTION(G(final_demand_cbs),SECTOR(households))), V(V(households_water_heater_micro_chp_network_gas),V(households_space_heater_micro_chp_network_gas)),"input_of_network_gas / 3517 * 100 ")),AREA(number_households))
