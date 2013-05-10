@@ -84,27 +84,6 @@ energy_chp_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_c
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
-:energy_chp_ultra_supercritical_crude_oil:
-  :availability: 0.89
-  :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
-  :co2_free: 0.0
-  :forecasting_error: 0.0
-  :full_load_hours: 3504.0
-  :households_supplied_per_unit: 1.0
-  :land_use_per_unit: 0.3
-  :part_ets: 1.0
-  :part_load_efficiency_penalty: 0.1
-  :part_load_operating_point: 0.7
-  :preset_demand: 0.0
-  :variability: 0.0
-  :electricity_output_capacity: 800.0
-  :heat_output_capacity: 631.578947368421
-energy_chp_ultra_supercritical_crude_oil-(crude_oil): {conversion: 1.0}
-(electricity)-energy_chp_ultra_supercritical_crude_oil: {conversion: 0.38}
-(steam_hot_water)-energy_chp_ultra_supercritical_crude_oil: {conversion: 0.3}
-(loss)-energy_chp_ultra_supercritical_crude_oil: {}
-energy_chp_ultra_supercritical_crude_oil-(crude_oil) -- s --> (crude_oil)-energy_distribution_crude_oil: {share: 1.0}
-
 :energy_chp_ultra_supercritical_lignite:
   :availability: 0.97
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
@@ -578,7 +557,6 @@ energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_geothermal: {share: 0.0}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- f --> (steam_hot_water)-energy_heat_remainder_from_heat_network_used_steam_hot_water: {}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_lignite: {}
-energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_crude_oil: {}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_coal: {share: 0.0}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_lignite: {share: 0.0}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_crude_oil: {share: 0.0}
@@ -1114,7 +1092,6 @@ energy_power_hv_network_electricity-(electricity) -- i --> (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_nuclear_gen2_uranium_oxide: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_combined_cycle_ccs_network_gas: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_lignite: {}
-energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_crude_oil: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_supercritical_waste_mix: {}
