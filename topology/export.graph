@@ -38,8 +38,18 @@ agriculture_chp_engine_biogas:
   slots:
   - ! '(loss)-agriculture_chp_engine_biogas: {type: :loss}'
   - (steam_hot_water)-agriculture_chp_engine_biogas
+  - (dumped_heat)-agriculture_chp_engine_biogas
   - (electricity)-agriculture_chp_engine_biogas
   - agriculture_chp_engine_biogas-(biogas)
+agriculture_chp_engine_biogas_dumped_heat:
+  sector: agriculture
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - agriculture_chp_engine_biogas_dumped_heat-(dumped_heat) -- d --> (dumped_heat)-agriculture_chp_engine_biogas
+  slots:
+  - agriculture_chp_engine_biogas_dumped_heat-(dumped_heat)
+  - (dumped_heat)-agriculture_chp_engine_biogas_dumped_heat
 agriculture_chp_engine_network_gas:
   sector: agriculture
   use: energetic
@@ -2622,9 +2632,19 @@ households_collective_chp_biogas:
   - households_collective_chp_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
   slots:
   - ! '(loss)-households_collective_chp_biogas: {type: :loss}'
+  - (dumped_heat)-households_collective_chp_biogas
   - (steam_hot_water)-households_collective_chp_biogas
   - (electricity)-households_collective_chp_biogas
   - households_collective_chp_biogas-(biogas)
+households_collective_chp_biogas_dumped_heat:
+  sector: households
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - households_collective_chp_biogas_dumped_heat-(dumped_heat) -- d --> (dumped_heat)-households_collective_chp_biogas
+  slots:
+  - households_collective_chp_biogas_dumped_heat-(dumped_heat)
+  - (dumped_heat)-households_collective_chp_biogas_dumped_heat
 households_collective_chp_network_gas:
   sector: households
   use: energetic
@@ -4249,8 +4269,18 @@ other_chp_engine_biogas:
   slots:
   - ! '(loss)-other_chp_engine_biogas: {type: :loss}'
   - (steam_hot_water)-other_chp_engine_biogas
+  - (dumped_heat)-other_chp_engine_biogas
   - (electricity)-other_chp_engine_biogas
   - other_chp_engine_biogas-(biogas)
+other_chp_engine_biogas_dumped_heat:
+  sector: other
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - other_chp_engine_biogas_dumped_heat-(dumped_heat) -- d --> (dumped_heat)-other_chp_engine_biogas
+  slots:
+  - other_chp_engine_biogas_dumped_heat-(dumped_heat)
+  - (dumped_heat)-other_chp_engine_biogas_dumped_heat
 other_chp_engine_network_gas:
   sector: other
   use: energetic
