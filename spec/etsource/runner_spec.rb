@@ -25,6 +25,15 @@ module ETSource
         # to convert to ktoe.
         expect(graph.node(:fd).get(:demand)).to eq(7460 * 0.041868)
       end
+
+      it 'sets the child share of edges using shares' do
+        edge = graph.node(:foo).out_edges.detect do |edge|
+          edge.to.key == :bar && edge.label == :coal
+        end
+
+        # Extracted from the nl/shares/cars.csv file.
+        expect(edge.get(:child_share)).to eq(0.1)
+      end
     end # calculate
   end # Runner
 end # ETSource
