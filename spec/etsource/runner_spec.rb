@@ -17,7 +17,15 @@ module ETSource
     end
 
     describe '#calculate' do
+      let(:edge)  { Edge.find('bar-foo@coal') }
       let(:graph) { runner.calculate }
+
+      # The Turbine edge.
+      let(:t_edge) do
+        graph.node(:foo).out_edges.detect do |edge|
+          edge.to.key == :bar && edge.label == :coal
+        end
+      end
 
       it 'sets demand of nodes using energy balances' do
         # This number is defined in the energy balance nl.csv file, and the
@@ -26,13 +34,28 @@ module ETSource
         expect(graph.node(:fd).get(:demand)).to eq(7460 * 0.041868)
       end
 
-      it 'sets the child share of edges using shares' do
-        edge = graph.node(:foo).out_edges.detect do |edge|
-          edge.to.key == :bar && edge.label == :coal
-        end
+      it 'sets the child share of edges using SHARE()' do
+        edge.sets = :child_share
+        edge.save!
 
         # Extracted from the nl/shares/cars.csv file.
-        expect(edge.get(:child_share)).to eq(0.1)
+        expect(t_edge.get(:child_share)).to eq(0.1)
+      end
+
+      it 'sets the parent share of edges using SHARE()' do
+        edge.sets = :parent_share
+        edge.save!
+
+        # Extracted from the nl/shares/cars.csv file.
+        expect(t_edge.get(:parent_share)).to eq(0.1)
+      end
+
+      it 'sets the demand of edges' do
+        edge.sets = :demand
+        edge.save!
+
+        # Extracted from the nl/shares/cars.csv file.
+        expect(t_edge.get(:demand)).to eq(0.1)
       end
     end # calculate
   end # Runner

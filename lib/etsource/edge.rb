@@ -8,18 +8,22 @@ module ETSource
     attribute :parent_share, Float
     attribute :child_share,  Float
     attribute :reversed,     Boolean, default: false
+    attribute :sets,         Symbol,  default: :child_share
     attribute :query,        String
+
+    attr_reader :supplier
+    attr_reader :consumer
+    attr_reader :carrier
 
     validates :supplier, presence: true
     validates :consumer, presence: true
     validates :carrier,  presence: true
 
-    validates :type, inclusion: { in: [ :share, :flexible, :constant,
-                                        :inverse_flexible, :dependent ] }
+    validates :type, inclusion: { in:
+      [ :share, :flexible, :constant, :inverse_flexible, :dependent ] }
 
-    attr_reader :supplier
-    attr_reader :consumer
-    attr_reader :carrier
+    validates :sets, inclusion: { in:
+      [ :child_share, :parent_share, :demand ] }
 
     # Public: The unique key which identifies this edge.
     #
