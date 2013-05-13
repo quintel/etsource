@@ -88,6 +88,14 @@ module ETSource
         it 'sets the :reversed property to false' do
           expect(edge.get(:reversed)).to be_false
         end
+
+        it 'sets the :model attribute' do
+          model = edge.get(:model)
+
+          expect(edge.label).to eq(model.carrier)
+          expect(edge.parent.key).to eq(model.supplier)
+          expect(edge.child.key).to eq(model.consumer)
+        end
       end # with a single, share link
 
       context 'with a reversed link' do
