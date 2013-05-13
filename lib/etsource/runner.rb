@@ -22,10 +22,10 @@ module ETSource
     # Returns the calculated Graph.
     def calculate
       graph.nodes.each do |node|
-        model = node.get(:model)
+        calculate_rubel_attribute(node, :demand)
 
-        if model.respond_to?(:query) && ! model.query.nil?
-          node.set(:demand, runtime.execute(model.query))
+        node.out_edges.each do |edge|
+          calculate_rubel_attribute(edge, :child_share)
         end
       end
 
@@ -46,5 +46,27 @@ module ETSource
     def runtime
       @runtime ||= Runtime.new(dataset, graph)
     end
+
+    #######
+    private
+    #######
+
+    # Internal: Given an +element+ and +attribute+ name, if the element has a
+    # "query" attribute, that query will be run with Rubel at the resulting
+    # values set to +attribute+.
+    #
+    # For example
+    #
+    #    calculate_rubel_attribute(node, :demand)
+    #
+    # Returns nothing.
+    def calculate_rubel_attribute(element, attribute)
+      model = element.get(:model)
+
+      if model.respond_to?(:query) && ! model.query.nil?
+        element.set(attribute, runtime.execute(model.query))
+      end
+    end
+
   end # Runner
 end # ETSource
