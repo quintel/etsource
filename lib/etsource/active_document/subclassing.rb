@@ -40,9 +40,9 @@ module ETSource
         #
         # Returns a class.
         def topmost_document_class
-          topmost = superclass
+          topmost = self
 
-          while topmost.subclass_suffix
+          while topmost.subclassed_document?
             topmost = topmost.superclass
           end
 
