@@ -12,7 +12,18 @@ module ETSource
     #
     # Returns the element from the collection, or nil if none matched.
     def find(key)
-      table[key.to_sym]
+      table[key.to_sym] ||
+        raise(DocumentNotFoundError.new(key, document_class))
+    end
+
+    # Public: Given a +key+, returns if a document with that key is contained
+    # in the collection.
+    #
+    # key - The key to look for.
+    #
+    # Returns true or false.
+    def key?(key)
+      table.key?(key)
     end
 
     # Public: A new copy of the collection without the key cache; this will
@@ -42,6 +53,16 @@ module ETSource
       @table ||= __getobj__.each_with_object(Hash.new) do |document, table|
         table[document.key] = document
       end
+    end
+
+    # Internal: Tries to determine what type of document is stored in the
+    # collection.
+    #
+    # Returns an ActiveDocument class, or nil/false.
+    def document_class
+      table.any? &&
+       (klass = table.first.last.class) &&
+        klass.topmost_document_class
     end
 
   end # Collection

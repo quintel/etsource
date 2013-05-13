@@ -162,7 +162,7 @@ module ETSource
 
           expect do
             GraphBuilder.establish_edge(link, graph, nodes, carriers)
-          end.to raise_error(ETSource::UnknownLinkNodeError)
+          end.to raise_error(ETSource::DocumentNotFoundError)
         end
       end # with an invalid link type
 
@@ -175,7 +175,7 @@ module ETSource
 
           expect do
             GraphBuilder.establish_edge(link, graph, nodes, carriers)
-          end.to raise_error(ETSource::UnknownLinkCarrierError)
+          end.to raise_error(ETSource::DocumentNotFoundError)
         end
       end # with a non-existent carrier
     end # .establish_edge

@@ -26,8 +26,9 @@ module ETSource
     Class.new(superclass) { define_method(:make_message, &block) }
   end
 
-  DocumentNotFoundError = error_class do |key, klass|
-    "Could not find a #{ klass.name } with the key #{ key.inspect }"
+  DocumentNotFoundError = error_class do |key, klass = nil|
+    name = klass && klass.name.demodulize.humanize.downcase || 'document'
+    "Could not find a #{ name } with the key #{ key.inspect }"
   end
 
   DuplicateKeyError = error_class do |key|
