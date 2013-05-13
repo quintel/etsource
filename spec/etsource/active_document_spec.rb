@@ -444,6 +444,47 @@ describe SomeDocument, :fixtures do
 
   end # describe save!
 
+  describe '#update_attributes!' do
+    let(:document) { SomeDocument.find('foo') }
+
+    context 'when successful' do
+      let(:result) do
+        document.update_attributes!(description: 'Archer', query: '*')
+      end
+
+      it 'returns true' do
+        expect(result).to be_true
+      end
+
+      it 'updates given attributes' do
+        expect { result }.to change {
+          document.attributes.values_at(:description, :query)
+        }.to(%w( Archer * ))
+      end
+
+      it 'leaves omitted attributes alone' do
+        expect { result }.to_not change(document, :unit)
+      end
+    end
+
+    context 'when validation fails' do
+      let(:result) do
+        document.do_validation = true
+        document.update_attributes!(description: 'Archer', query: nil)
+      end
+
+      it 'updates given attributes' do
+        expect { (result rescue nil) }.to change {
+          document.attributes.values_at(:description, :query)
+        }.to(['Archer', nil])
+      end
+
+      xit 'raises an error' do
+        expect { result }.to raise_error
+      end
+    end
+  end # update_attributes!
+
   describe '#all' do
     context 'on a "leaf" class' do
       it 'returns only members of that class' do

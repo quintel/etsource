@@ -35,24 +35,21 @@ module ETSource
       end
 
       it 'sets the child share of edges using SHARE()' do
-        edge.sets = :child_share
-        edge.save!
+        edge.update_attributes!(sets: :child_share)
 
         # Extracted from the nl/shares/cars.csv file.
         expect(t_edge.get(:child_share)).to eq(0.1)
       end
 
       it 'sets the parent share of edges using SHARE()' do
-        edge.sets = :parent_share
-        edge.save!
+        edge.update_attributes!(sets: :parent_share)
 
         # Extracted from the nl/shares/cars.csv file.
         expect(t_edge.get(:parent_share)).to eq(0.1)
       end
 
       it 'sets the demand of edges' do
-        edge.sets = :demand
-        edge.save!
+        edge.update_attributes!(sets: :demand)
 
         # Extracted from the nl/shares/cars.csv file.
         expect(t_edge.get(:demand)).to eq(0.1)
