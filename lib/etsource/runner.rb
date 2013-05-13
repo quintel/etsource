@@ -25,7 +25,7 @@ module ETSource
         calculate_rubel_attribute(node, :demand)
 
         node.out_edges.each do |edge|
-          calculate_rubel_attribute(edge, :child_share)
+          calculate_rubel_attribute(edge, edge.get(:model).sets)
         end
       end
 
