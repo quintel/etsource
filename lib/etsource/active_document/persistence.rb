@@ -86,6 +86,8 @@ module ETSource
       #
       # Returns true, or raises an error if the save fails.
       def save!
+        raise(InvalidDocumentError.new(self)) unless valid?
+
         # Ensure the directory exists.
         FileUtils.mkdir_p(path.dirname)
 

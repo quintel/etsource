@@ -408,8 +408,20 @@ describe SomeDocument, :fixtures do
     end
 
     context 'when validation fails' do
-      it 'does not save the file'
-      it 'raises an exception'
+      let(:result) do
+        some_document.do_validation = true
+        some_document.update_attributes!(description: 'Archer', query: nil)
+      end
+
+      it 'does not save the file' do
+        original_contents = some_document.path.read
+        (result rescue nil)
+        expect(some_document.path.read).to eq(original_contents)
+      end
+
+      it 'raises an exception' do
+        expect { result }.to raise_error(InvalidDocumentError)
+      end
     end
 
     context 'when the key changed' do
@@ -479,8 +491,9 @@ describe SomeDocument, :fixtures do
         }.to(['Archer', nil])
       end
 
-      xit 'raises an error' do
-        expect { result }.to raise_error
+      it 'raises an error' do
+        expect { result }.
+          to raise_error(ETSource::InvalidDocumentError, /Query/)
       end
     end
   end # update_attributes!
