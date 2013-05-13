@@ -31,6 +31,11 @@ module ETSource
     "Could not find a #{ name } with the key #{ key.inspect }"
   end
 
+  InvalidDocumentError = error_class do |document|
+    "#{ document.class.name.demodulize }(#{ document.key.inspect }) was " \
+    "not valid: #{ document.errors.to_a.join(", ") }"
+  end
+
   DuplicateKeyError = error_class do |key|
     "Duplicate key found: #{ key }"
   end
