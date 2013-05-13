@@ -28,7 +28,7 @@ module ETSource
     #
     # Returns a Symbol.
     def key
-      :"#{ consumer }-#{ supplier }@#{ carrier }"
+      self.class.key(consumer, supplier, carrier)
     end
 
     # Public: Sets the key of the consumer ("child" or "left") node.
@@ -59,6 +59,18 @@ module ETSource
       @carrier = carrier && carrier.to_sym
     end
 
+    # Public: Given +consumer+ and +supplier+ keys, and a +carrier+, returns
+    # the key which would be assigned to an edge with those attributes.
+    #
+    # consumer - The key of the consumer node.
+    # supplier - The key of the supplier node.
+    # carrier  - The carrier key.
+    #
+    # Returns a Symbol.
+    def self.key(consumer, supplier, carrier)
+      :"#{ consumer }-#{ supplier }@#{ carrier }"
+    end
+
     #######
     private
     #######
@@ -77,5 +89,6 @@ module ETSource
 
       Hash[ [:consumer, :supplier, :carrier].zip(values) ]
     end
+
   end # Edge
 end # ETSource
