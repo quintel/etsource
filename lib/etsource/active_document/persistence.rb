@@ -72,6 +72,16 @@ module ETSource
         self.class.directory
       end
 
+      # Public: Updates the document's attributes with those given, and saves.
+      #
+      # attributes - Attributes to be updated on the document.
+      #
+      # Returns true, or raises an error if the save fails.
+      def update_attributes!(attributes)
+        self.attributes = attributes
+        save!
+      end
+
       # Public: Saves the document to a file on disk.
       #
       # Returns true, or raises an error if the save fails.
