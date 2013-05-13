@@ -132,6 +132,25 @@ describe SomeDocument, :fixtures do
       expect(another_document).to_not be_nil
     end
 
+    it 'loads subclassed documents' do
+      document = OtherDocument.new(key: 'other')
+      document.save!
+
+      expect(SomeDocument.find('other')).to be
+    end
+
+    it 'raises an error if no document exists' do
+      expect { SomeDocument.find('omg') }.
+        to raise_error(DocumentNotFoundError)
+    end
+
+    it 'raises an error if the document belongs to a superclass' do
+      OtherDocument.new(key: 'other').save!
+
+      expect { FinalDocument.find('other') }.
+        to raise_error(DocumentNotFoundError)
+    end
+
   end
 
   describe "key" do
