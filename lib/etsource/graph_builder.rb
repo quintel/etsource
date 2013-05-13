@@ -64,7 +64,7 @@ module ETSource
       parent  = nodes.find(edge.supplier)
       child   = nodes.find(edge.consumer)
 
-      props   = { type: edge.type, reversed: edge.reversed? }
+      props   = { type: edge.type, reversed: edge.reversed?, model: edge }
       carrier = carriers.find(edge.carrier)
 
       raise UnknownLinkNodeError.new(edge, edge.supplier)   if parent.nil?
