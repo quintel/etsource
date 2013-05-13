@@ -21,7 +21,8 @@ module ETSource
         #
         # Returns an ActiveDocument, or nil if no such document exists.
         def find(key)
-          all.detect { |i| i.key == key.to_sym }
+          all.detect { |i| i.key == key.to_sym } ||
+            raise(DocumentNotFoundError.new(key, self))
         end
       end # ClassMethods
 
