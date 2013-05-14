@@ -269,6 +269,60 @@ describe SomeDocument, :fixtures do
     end # on a subclass instance
   end # path=
 
+  describe 'ns' do
+    it 'returns nil when the document is in the root' do
+      expect(SomeDocument.new(path: 'abc').ns).to be_nil
+    end
+
+    it 'returns "one" when the document is in a "one" subdirectory' do
+      expect(SomeDocument.new(path: 'one/abc').ns).to eq('one')
+    end
+
+    it 'returns "one.two" when the document is in "one/two" subdirectory' do
+      expect(SomeDocument.new(path: 'one/two/abc').ns).to eq('one.two')
+    end
+  end # ns
+
+  describe 'ns=' do
+    subject        { SomeDocument.new(path: 'one/abc') }
+    let(:dir)      { SomeDocument.directory }
+
+    context 'given nil' do
+      before { subject.ns = nil }
+
+      its(:ns)    { should be_nil }
+      its(:path) { should eq(dir.join('abc.suffix')) }
+    end # given nil
+
+    context 'given ""' do
+      before { subject.ns = '' }
+
+      its(:ns)    { should be_nil }
+      its(:path) { should eq(dir.join('abc.suffix')) }
+    end # given ''
+
+    context 'given "two"' do
+      before { subject.ns = 'two' }
+
+      its(:ns)   { should eq('two') }
+      its(:path) { should eq(dir.join('two/abc.suffix')) }
+    end # given "two"
+
+    context 'given "two.three"' do
+      before { subject.ns = 'two.three' }
+
+      its(:ns)   { should eq('two.three') }
+      its(:path) { should eq(dir.join('two/three/abc.suffix')) }
+    end # given "two.three"
+
+    context 'given "two/three"' do
+      before { subject.ns = 'two/three' }
+
+      its(:ns)   { should eq('two.three') }
+      its(:path) { should eq(dir.join('two/three/abc.suffix')) }
+    end # given "two/three"
+  end # ns=
+
   describe "file_contents" do
 
     context 'when nothing changed' do
