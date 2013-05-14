@@ -8,7 +8,8 @@ module ETSource
   # in ktoe, the standard of the IEA.
   class EnergyBalance
 
-    DIRECTORY = 'energy_balances'
+    DIRECTORY =     'energy_balances'
+    ORIGINAL_UNIT = :ktoe
 
     attr_accessor :key, :unit
 
@@ -18,21 +19,14 @@ module ETSource
     end
 
     # Loads a stored energy balance
-    def self.find(key)
+    def self.find(key, year = nil)
       raise InvalidKeyError.new(key) unless key
       new(key)
     end
 
     # Returns the energy balance item in the correct unit
     def get(use, carrier)
-      convert(get_ktoe(use,carrier), unit)
-    end
-
-    # Returns the ktoe value from the EnergyBalance table
-    # @return [Float]
-    def get_ktoe(use, carrier)
-      get_row(use)[carrier.to_s.downcase.strip.gsub(/\ /,"_").to_sym] ||
-        raise(UnknownCarrierError.new(carrier, key))
+      convert_to_unit(get_cell(use, carrier))
     end
 
     # basicly the same as get, but then in one big string, separates by comma
@@ -46,12 +40,19 @@ module ETSource
     private
     #######
 
+    # Returns the value from the EnergyBalance table
+    # @return [Float]
+    def get_cell(use, carrier)
+      get_row(use)[carrier.to_s.downcase.strip.gsub(/\ /, "_").to_sym] ||
+        raise(UnknownCarrierError.new(carrier, key))
+    end
+
     # Get a row from the CSV file
     # Returns a CSV::Row object
     def get_row(use)
       row = table.find do |row|
-        row[0].downcase.delete("*").gsub(/\s/,"_").strip ==
-          use.to_s.downcase.strip.gsub(/\s/,"_")
+        row[0].downcase.delete("*").gsub(/\s/, "_").strip ==
+          use.to_s.downcase.strip.gsub(/\s/, "_")
       end
       row || raise(UnknownUseError.new(use, key))
     end
@@ -62,16 +63,8 @@ module ETSource
       CSV.table("#{ETSource.data_dir}/#{self.class::DIRECTORY}/#{key}.csv")
     end
 
-    # Converts a value from the ktoe to 'unit'
-    def convert(value, unit)
-      case unit
-      when :pj
-        value * 0.041868
-      when :twh
-        value * 0.01163
-      else
-        raise UnknownUnitError.new(unit)
-      end
+    def convert_to_unit(value)
+      EnergyUnit.new(value, ORIGINAL_UNIT).to_unit(unit)
     end
 
   end # Dataset
