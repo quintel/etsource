@@ -2,7 +2,7 @@ module ETSource
   class Carrier
     include ActiveDocument
 
-    DIRECTORY = 'carrier'
+    DIRECTORY = 'carriers'
 
     attribute :sustainable,                Boolean
     attribute :infinite,                   Boolean
