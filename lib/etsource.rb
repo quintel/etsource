@@ -12,6 +12,8 @@ require_relative 'etsource/base'
 require_relative 'etsource/parser/hash_to_text_parser'
 require_relative 'etsource/parser/text_to_hash_parser'
 require_relative 'etsource/errors'
+require_relative 'etsource/energy_unit'
+
 require_relative 'etsource/active_document/persistence'
 require_relative 'etsource/active_document/finders'
 require_relative 'etsource/active_document/naming'
