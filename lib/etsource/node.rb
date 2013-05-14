@@ -4,13 +4,15 @@ module ETSource
 
     DIRECTORY = 'nodes'
 
-    attribute :sector,               String
     attribute :use,                  String
     attribute :has_loss,             Boolean
     attribute :energy_balance_group, String
 
     attribute :in_slots,             Set[String]
     attribute :out_slots,            Set[String]
+
+    alias_method :sector,  :ns
+    alias_method :sector=, :ns=
 
     # Numeric attributes.
     [ :availability,
