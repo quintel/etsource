@@ -35,19 +35,19 @@ describe EnergyBalance do
   describe "#get" do
 
     it "returns correct value for NL when asked for a specific attribute" do
-      eb.stub(:get_ktoe).and_return 6
+      eb.stub(:get_cell).and_return 6
       expect(eb.get("Residential","coal_and_peat")).to eql 0.251208
     end
 
     it "works with other units" do
       eb.unit = :twh
-      eb.stub(:get_ktoe).and_return 6
+      eb.stub(:get_cell).and_return 6
       expect(eb.get("Residential","coal_and_peat")).to eql 0.06978
     end
 
     it "raises an error when an unknown unit is requested" do 
       eb.unit = :i_do_not_exist
-      eb.stub(:get_ktoe).and_return 6
+      eb.stub(:get_cell).and_return 6
       expect(->{ eb.get("Residential","coal_and_peat") }).to \
         raise_error UnknownUnitError
     end
