@@ -19,11 +19,11 @@ module ETSource
     validates :consumer, presence: true
     validates :carrier,  presence: true
 
-    validates :type, inclusion: { in:
-      [ :share, :flexible, :constant, :inverse_flexible, :dependent ] }
+    validates :type, inclusion:
+      { in: [ :share, :flexible, :constant, :inverse_flexible, :dependent ] }
 
-    validates :sets, inclusion: { in:
-      [ :child_share, :parent_share, :demand ] }
+    validates :sets, unless: ->(m) { m.query.nil? }, inclusion:
+      { in: [ :child_share, :parent_share, :demand ] }
 
     # Public: The unique key which identifies this edge.
     #
