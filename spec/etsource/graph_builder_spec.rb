@@ -47,6 +47,47 @@ module ETSource
           expect(baz_edges.first.get(:type)).to eql(:inverse_flexible)
         end
       end # edges
+
+      context 'with a sector' do
+        before do
+          nodes = Collection.new(Node.all)
+          edges = Collection.new(Edge.all)
+
+          # Set foo and bar to be in "one".
+          nodes.find(:foo).update_attributes!(sector: 'one')
+          nodes.find(:bar).update_attributes!(sector: 'one')
+
+          edges.find('bar-foo@coal').update_attributes!(ns: 'one')
+          edges.find('baz-bar@corn').update_attributes!(ns: 'one')
+          edges.find('fd-bar@coal').update_attributes!(ns: 'one')
+
+          # Set baz and fd to be in "two".
+          nodes.find(:baz).update_attributes!(sector: 'two')
+          nodes.find(:fd).update_attributes!(sector: 'two')
+
+          edges.find('fd-baz@corn').update_attributes!(ns: 'two')
+        end
+
+        let(:graph) { GraphBuilder.build('one') }
+
+        it 'includes nodes in the sector' do
+          expect(graph.node(:foo)).to be
+          expect(graph.node(:bar)).to be
+        end
+
+        it 'excludes nodes not in the sector' do
+          expect(graph.node(:baz)).to_not be
+          expect(graph.node(:fd)).to_not be
+        end
+
+        it 'includes edges in the sector' do
+          expect(graph.node(:foo).out_edges.to_a.length).to eql(1)
+        end
+
+        it 'excludes subgraph bridge edges' do
+          expect(graph.node(:bar).out_edges.to_a).to be_empty
+        end
+      end # with a sector
     end # .build
 
     describe '.establish_edge' do
