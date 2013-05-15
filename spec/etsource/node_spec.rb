@@ -39,6 +39,24 @@ describe Node, :fixtures do
     end
   end
 
+  describe '#sector' do
+    it 'is an alias of #ns' do
+      expect(Node.new(path: 'energy/a').sector).to eq('energy')
+    end
+  end
+
+  describe '#sector=' do
+    let(:node) { Node.new(key: 'a', sector: 'energy') }
+
+    it 'sets the sector' do
+      expect(node.sector).to eq('energy')
+    end
+
+    it 'is an alias of #ns=' do
+      expect(node.ns).to eq('energy')
+    end
+  end
+
 end #describe Node 
 
 end #module
