@@ -34,6 +34,54 @@ module ETSource
         set_attributes_from_key!(@key)
       end
 
+      # Public: The namespace in which the document is stored.
+      #
+      # This is determined by the name of the subdirectory in which the
+      # document has been saved.
+      #
+      # This is aliased in some subclasses, such as Node#sector.
+      #
+      # For example:
+      #
+      #   Document.new(path: 'abc').ns         # => nil
+      #   Document.new(path: 'one/abc').ns     # => "one"
+      #   Document.new(path: 'one/two/abc').ns # => "one.two"
+      #
+      # Returns a string.
+      def ns
+        document_dir = path.dirname
+
+        if document_dir != directory
+          document_dir.relative_path_from(directory).to_s.gsub('/', '.')
+        end
+      end
+
+      # Public: Sets a new namespace for the document.
+      #
+      # This is equivilent to setting a new subdirectory, with slashes
+      # subsituted for dots.
+      #
+      # namespace - The namespace to be set
+      #
+      # For example:
+      #
+      #   # Set no namespace. Document is stored in ./
+      #   document.ns = nil
+      #
+      #   # Set a namespace. Document is stored in ./energy/consumption/
+      #   document.ns = 'energy.consumption'
+      #
+      # Returns the given namespace.
+      def ns=(namespace)
+        new_path = directory
+
+        unless namespace.nil? || namespace.length == 0
+          new_path = new_path.join(namespace.gsub('.', '/'))
+        end
+
+        self.path = new_path.join(key.to_s)
+      end
+
       # Public: Compares this document with another, so that they may be
       # sorted by the order of their keys.
       #
