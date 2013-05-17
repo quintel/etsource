@@ -17,13 +17,13 @@ module ETSource
     end
 
     describe '#calculate' do
-      let(:edge)  { Edge.find('bar-foo@coal') }
+      let(:edge)  { Edge.find('baz-bar@corn') }
       let(:graph) { runner.calculate }
 
       # The Turbine edge.
       let(:t_edge) do
-        graph.node(:foo).out_edges.detect do |edge|
-          edge.to.key == :bar && edge.label == :coal
+        graph.node(:bar).out_edges.detect do |edge|
+          edge.to.key == :baz && edge.label == :corn
         end
       end
 
@@ -31,7 +31,8 @@ module ETSource
         # This number is defined in the energy balance nl.csv file, and the
         # query is `EB(residential, natural_gas) * 1.0`. We multiply by 0.04
         # to convert to ktoe.
-        expect(graph.node(:fd).get(:demand)).to eq(7460 * 0.041868)
+        expect(graph.node(:fd).get(:demand)).
+          to eq(ETSource::EnergyUnit.new(7460.0, :ktoe).to_unit(:pj))
       end
 
       it 'sets the child share of edges using SHARE()' do
@@ -49,10 +50,23 @@ module ETSource
       end
 
       it 'sets the demand of edges' do
-        edge.update_attributes!(sets: :demand)
+        edge.update_attributes!(query: '100.0', sets: :demand)
+
+        ratio   = Rational('10000000/31233528')
+        i_ratio = Rational('1') - ratio
+
+        shares = {
+          'bar-@corn' => ratio,
+          'bar-@coal' => i_ratio,
+          'fd+@corn'  => ratio,
+          'fd+@coal'  => i_ratio }
+
+        shares.each do |slot_key, share|
+          Slot.find(slot_key).update_attributes!(share: share)
+        end
 
         # Extracted from the nl/shares/cars.csv file.
-        expect(t_edge.get(:demand)).to eq(0.1)
+        expect(t_edge.get(:demand)).to eq(100.0)
       end
     end # calculate
   end # Runner

@@ -23,7 +23,7 @@ module ETSource
 
     # What proportion of the total energy flow in or out of the node is
     # through this slot?
-    attribute :share, BigDecimal, default: 1.0
+    attribute :share, Float, default: 1.0
 
     # Public: The key of the node to which the slot beings.
     #
@@ -49,7 +49,21 @@ module ETSource
     #
     # Returns a Symbol.
     def key
-      :"#{ node }#{ direction == :in ? '+' : '-' }@#{ carrier }"
+      :"#{ node }#{ in? ? '+' : '-' }@#{ carrier }"
+    end
+
+    # Public: Is the direction of this Slot +:in+?
+    #
+    # Returns true or false.
+    def in?
+      direction == :in
+    end
+
+    # Public: Is the direction of this Slot +:out+?
+    #
+    # Returns true or false.
+    def out?
+      not in?
     end
 
     #######
