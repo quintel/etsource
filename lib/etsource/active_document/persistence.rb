@@ -97,10 +97,11 @@ module ETSource
         end
 
         # If the document has been renamed, delete the old file.
-        if @last_saved_file_path != path
+        if @last_saved_file_path != path && @last_saved_file_path.file?
           @last_saved_file_path.delete
-          @last_saved_file_path = path
         end
+
+        @last_saved_file_path = path
 
         true
       end
