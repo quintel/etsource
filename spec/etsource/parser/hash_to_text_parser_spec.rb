@@ -32,6 +32,26 @@ module ETSource
         expect(p.to_text).to eql "- array = [a, b]"
       end
 
+      it 'parses attributes as a Hash' do
+        p = HashToTextParser.new({hash: {one: 1, two: 2}})
+        expect(p.to_text).to eql "- hash.one = 1\n- hash.two = 2"
+      end
+
+      it 'parses attributes as a nested Hash' do
+        p = HashToTextParser.new({hash: {one: 1, two: { three: 4 }}})
+        expect(p.to_text).to eql "- hash.one = 1\n- hash.two.three = 4"
+      end
+
+      it 'parses attributes as a nested Hash with an array attribute' do
+        p = HashToTextParser.new({hash: {one: { two: [3, 4, 'a'] }}})
+        expect(p.to_text).to eql "- hash.one.two = [3, 4, a]"
+      end
+
+      it 'does not parse attributes as a nested Hash in an array' do
+        p = HashToTextParser.new({ array: [ { one: 2 } ] })
+        expect { p.to_text }.to raise_error(IllegalNestedHashError)
+      end
+
       it 'parses attributes as a Set' do
         p = HashToTextParser.new({set: Set.new(["a","b"])})
         expect(p.to_text).to eql "- set = [a, b]"

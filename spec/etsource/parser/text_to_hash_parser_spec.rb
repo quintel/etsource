@@ -104,6 +104,16 @@ TEXT
         expect(p.to_hash[:array]).to eql []
       end
 
+      it 'parses hashes' do
+        p = TextToHashParser.new("- hash.one = 1\n- hash.two = 2")
+        expect(p.to_hash[:hash]).to eql(one: 1, two: 2)
+      end
+
+      it 'parses nested hashes' do
+        p = TextToHashParser.new("- hash.one = 1\n- hash.two.three = 4")
+        expect(p.to_hash[:hash]).to eql(one: 1, two: { three: 4 })
+      end
+
       it "should parse query" do
         p = TextToHashParser.new("SUM(\n  1,\n  2\n)")
         expect(p.to_hash[:query]).to eql "SUM(\n  1,\n  2\n)"
