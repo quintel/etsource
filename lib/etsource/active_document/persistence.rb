@@ -120,7 +120,7 @@ module ETSource
       # Return the file_contents for this object, which is a parsed
       # version.
       def file_contents
-        parser = ETSource::HashToTextParser.new(to_hash).to_text
+        ETSource::HashToTextParser.new(to_hash).to_text
       end
 
       # ----------------------------------------------------------------------
