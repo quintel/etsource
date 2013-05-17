@@ -199,8 +199,13 @@ module ETSource
         expect(edge.child_share).to eq(1)
       end
 
-      it 'sets the query' do
-        expect(edge.query).to include('SHARE(cars, gasoline)')
+      it 'sets no query when none is present' do
+        expect(edge.query).to be_nil
+      end
+
+      it 'sets the query when one is present' do
+        expect(Edge.find('baz-bar@corn').query).
+          to include('SHARE(cars, gasoline)')
       end
     end # parsing an AD file
   end # Edge
