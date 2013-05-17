@@ -28,6 +28,7 @@ require_relative 'etsource/dataset'
 require_relative 'etsource/energy_balance'
 require_relative 'etsource/carrier'
 require_relative 'etsource/share_data'
+require_relative 'etsource/slot'
 require_relative 'etsource/graph_builder'
 require_relative 'etsource/runner'
 
