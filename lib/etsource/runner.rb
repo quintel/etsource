@@ -7,6 +7,19 @@ module ETSource
   class Runner
     attr_reader :dataset
 
+    # A Refinery catalyst; is given the initial Refinery graph and sets the
+    # share of all the Slots which are defined in ETSource.
+    SetSlotShares = ->(refinery) do
+      Slot.all.each do |model|
+        node = refinery.node(model.node)
+        slot = node.slots.public_send(model.direction, model.carrier)
+
+        slot.set(:share, model.share)
+      end
+
+      refinery
+    end
+
     # Public: Creates a new Runner.
     #
     # Returns a Runner.
@@ -29,7 +42,12 @@ module ETSource
         end
       end
 
-      graph
+      Refinery::Reactor.new(
+        Refinery::Catalyst::FromTurbine,
+        SetSlotShares,
+        Refinery::Catalyst::Calculators,
+        Refinery::Catalyst::Validation
+      ).run(graph)
     end
 
     # Public: The Turbine::Graph which represents the structure of the graph
