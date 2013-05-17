@@ -78,6 +78,11 @@ module ETSource
     "got #{ path.to_s.inspect } and #{ attrs.to_s.inspect }"
   end
 
+  IllegalNestedHashError = error_class do |values|
+    "Documents may not contain hashes nested inside arrays: " \
+    "#{ values.inspect }"
+  end
+
   # Graph Structure / Topology Errors ----------------------------------------
 
   UnknownCarrierError = error_class do |carrier, area|

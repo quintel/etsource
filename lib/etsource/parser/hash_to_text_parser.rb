@@ -42,24 +42,59 @@ module ETSource
       "# #{@comments.gsub("\n", "\n# ")}" if @comments
     end
 
-    def attributes_block
-      return if @attributes.empty?
-
-      lines = []
-      @attributes.each do |key, value|
-        if value.is_a?(Array) || value.is_a?(Set)
-          lines << "#{ATTR_PREFIX} #{key} = [#{value.to_a.join(", ")}]"
-        else
-          lines << "#{ATTR_PREFIX} #{key} = #{value}"
-        end
-      end
-      lines.join("\n")
-    end
-
     def query_block
       @query
     end
 
-  end # class HashToTextParser
+    # Internal: Lines containing the attributes for the document, whichi will
+    # be written to the file on disk.
+    #
+    # Returns a string.
+    def attributes_block
+      if (lines = lines_from_hash(@attributes)).any?
+        lines.join("\n")
+      end
+    end
 
-end # module ETSource::Parser
+    # Internal: Given a hash of attributes, returns an array of lines
+    # representing each key/value pair in the hash. Recurses into hashes.
+    #
+    # hash   - The hash of attributes to be formatted.
+    # prefix - An optional prefix to be prepended to each key name. Used when
+    #          formatting lines within nested hashes.
+    #
+    # Returns an array of strings.
+    def lines_from_hash(hash, prefix = nil)
+      hash.each_with_object([]) do |(key, value), collection|
+        collection.push(*lines(key, value, prefix))
+      end
+    end
+
+    # Internal: Given a key and value, formats each value to be saved into the
+    # document file.
+    #
+    # Returns an array of strings; each string a line in the document.
+    def lines(key, value, prefix)
+      case value
+      when Hash
+        lines_from_hash(value, attr_key(prefix, key))
+      when Array, Set
+        if value.any? { |value| value.is_a?(Hash) }
+          raise IllegalNestedHashError.new(value)
+        end
+
+        lines(key, "[#{ value.to_a.join(", ") }]", prefix)
+      else
+        [ "- #{ attr_key(prefix, key) } = #{ value }" ]
+      end
+    end
+
+    # Internal: Determines the name to be assigned to an attribute.
+    #
+    # Returns a string.
+    def attr_key(prefix, key)
+      prefix.nil? ? key.to_s : "#{ prefix }.#{ key }"
+    end
+
+  end # HashToTextParser
+end # ETSource::Parser
