@@ -94,6 +94,12 @@ module ETSource
       if model.respond_to?(:query) && ! model.query.nil?
         element.set(attribute, runtime.execute(model.query))
       end
+    rescue RuntimeError => ex
+      if model && model.query
+        ex.message.gsub!(/$/, " (executing: #{ model.query.inspect })")
+      end
+
+      raise ex
     end
 
   end # Runner
