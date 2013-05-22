@@ -33,24 +33,6 @@ namespace :import do
     end
   end
 
-  # Queries for final demand nodes.
-  FD_QUERIES = {
-    households_final_demand_coal:
-      "EB(residential, coal_and_peat)",
-    households_final_demand_crude_oil:
-      "EB(residential, oil_products)",
-    households_final_demand_network_gas:
-      "EB(residential, natural_gas)",
-    households_final_demand_solar_thermal:
-      "EB(residential, 'Geothermal Solar, etc.')",
-    households_final_demand_wood_pellets:
-      "EB(residential, biofuels_and_waste)",
-    households_final_demand_electricity:
-      "EB(residential, electricity)",
-    households_final_demand_steam_hot_water:
-      "EB(residential, heat)"
-  }.freeze
-
   # --------------------------------------------------------------------------
 
   # Loads ETSource.
@@ -63,16 +45,23 @@ namespace :import do
   end # task :setup
 
   # Sets the "query" attribute on final demand nodes.
-  task :final_demand_queries do
+  task :queries do
     print 'Setting final demand queries... '
     nodes = ETSource::Collection.new(ETSource::Node.all)
+    count = 0
 
-    FD_QUERIES.each do |key, query|
-      nodes.find(key).tap { |n| n.query = query; n.save! }
+    Pathname.glob(ETSource.data_dir.join('import/**/*.csv')).each do |path|
+      data = CSV.table(path).select { |row| row[:status] == 'necessary' }
+
+      data.each do |row|
+        nodes.find(row[:converter_key]).update_attributes!(query: row[:query])
+      end
+
+      count += data.length
     end
 
-    puts "done! (#{ FD_QUERIES.length } nodes)"
-  end # task :final_demand_queries
+    puts "done! (#{ count } nodes)"
+  end # task :queries
 
   desc <<-DESC
     Import nodes from the old format to ActiveDocument.
@@ -116,7 +105,7 @@ namespace :import do
       puts "done! (#{ nodes.length } nodes)"
     end # nodes_by_sector.each
 
-    Rake::Task['import:final_demand_queries'].invoke
+    Rake::Task['import:queries'].invoke
   end # task :nodes
 
   desc <<-DESC
