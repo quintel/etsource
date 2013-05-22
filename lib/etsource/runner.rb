@@ -35,13 +35,6 @@ module ETSource
     #
     # Returns the calculated Graph.
     def calculate
-      graph.nodes.each do |node|
-        calculate_rubel_attribute(node, :demand)
-
-        node.out_edges.each do |edge|
-          calculate_rubel_attribute(edge, edge.get(:model).sets)
-        end
-      end
 
       Refinery::Reactor.new(
         Refinery::Catalyst::Calculators,
@@ -62,10 +55,20 @@ module ETSource
     #
     # Returns a Turbine::Graph.
     def refinery_graph
-      @refinery ||= Refinery::Reactor.new(
-        Refinery::Catalyst::FromTurbine,
-        SetSlotShares
-      ).run(graph)
+      @refinery ||= begin
+        graph.nodes.each do |node|
+          calculate_rubel_attribute(node, :demand)
+
+          node.out_edges.each do |edge|
+            calculate_rubel_attribute(edge, edge.get(:model).sets)
+          end
+        end
+
+        Refinery::Reactor.new(
+          Refinery::Catalyst::FromTurbine,
+          SetSlotShares
+        ).run(graph)
+      end
     end
 
     # Public: The runtime used by the Runner to calculate Rubel attributes.
