@@ -8,8 +8,8 @@ module ETSource
     attribute :parent_share, Float
     attribute :child_share,  Float
     attribute :reversed,     Boolean, default: false
-    attribute :sets,         Symbol,  default: :child_share
     attribute :query,        String
+    attribute :sets,         Symbol,  default: :default_sets
 
     attr_reader :supplier
     attr_reader :consumer
@@ -73,6 +73,14 @@ module ETSource
     # Returns a Symbol.
     def self.key(consumer, supplier, carrier)
       :"#{ consumer }-#{ supplier }@#{ carrier }"
+    end
+
+    # Internal: The default value of the +sets+ attribute when no explicit
+    # value is specified by the user.
+    #
+    # Returns a symbol or nil.
+    def default_sets
+      query && query.match(/\S/) ? :child_share : nil
     end
 
     #######
