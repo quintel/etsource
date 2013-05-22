@@ -1,7 +1,7 @@
 module ETSource
 
   # Error class which serves as a base for all errors which occur in ETSource.
-  class ETSourceError < StandardError
+  class ETSourceError < RuntimeError
     def initialize(*args) ; super(make_message(*args)) ; end
   end
 
