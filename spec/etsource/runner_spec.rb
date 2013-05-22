@@ -8,6 +8,10 @@ module ETSource
       expect(runner.graph).to be_a(Turbine::Graph)
     end
 
+    it 'exposes the Refinery graph' do
+      expect(runner.refinery_graph).to be_a(Turbine::Graph)
+    end
+
     it 'exposes a runtime' do
       expect(runner.runtime).to be_an(ETSource::Runtime)
     end
