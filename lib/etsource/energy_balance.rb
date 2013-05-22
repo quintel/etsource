@@ -45,9 +45,11 @@ module ETSource
     def get_cell(use, carrier)
       normalized_carrier = normalize_key(carrier)
 
-      get_row(use).find do |key, *|
+      row = get_row(use).find do |key, *|
         normalize_key(key) == normalized_carrier
-      end.last || raise(UnknownCarrierError.new(carrier, key))
+      end
+
+      row && row.last || raise(UnknownCarrierError.new(carrier, key))
     end
 
     # Get a row from the CSV file
@@ -75,7 +77,8 @@ module ETSource
     # Returns a Symbol.
     def normalize_key(key)
       key.to_s.downcase.strip.
-        gsub(/[^a-zA-Z0-9_]+/, '_').
+        gsub(/\s+/, '_').
+        gsub(/[^a-zA-Z0-9_]+/, '').
         gsub(/_+/, '_').
         gsub(/_$/, '').
         to_sym
