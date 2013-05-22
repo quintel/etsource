@@ -68,7 +68,12 @@ module ETSource
     end
 
     def convert_to_unit(value)
-      EnergyUnit.new(value, ORIGINAL_UNIT).to_unit(unit)
+      if value.is_a?(Numeric)
+        EnergyUnit.new(value, ORIGINAL_UNIT).to_unit(unit)
+      else
+        puts "WARNING: Discarding non-numeric #{ value.inspect }"
+        0.0
+      end
     end
 
     # Internal: Converts the given key to a format which removes all special
