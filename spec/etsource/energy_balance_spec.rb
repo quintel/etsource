@@ -72,6 +72,14 @@ describe EnergyBalance, :fixtures do
         be_nil
     end
 
+    it 'finds special character carriers with special characters' do
+      expect(eb.get('imports', 'something (else)')).to_not be_nil
+    end
+
+    it 'finds special character carriers without special characters' do
+      expect(eb.get('imports', 'something_else')).to_not be_nil
+    end
+
     it "does not complain about trailing spaces" do
       expect(eb.get("residential ", " coal_and_peat")).to_not be_nil
     end
