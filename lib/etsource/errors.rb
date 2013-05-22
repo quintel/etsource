@@ -58,11 +58,11 @@ module ETSource
   end
 
   UnknownUnitError = error_class do |unit|
-    "Invalid unit requested: #{ unit }"
+    "Invalid unit requested: #{ unit.inspect }"
   end
 
   UnknownUseError = error_class do |use, area|
-    "Unknown use #{ use } for #{ area }"
+    "Unknown use #{ use.inspect } for #{ area.inspect }"
   end
 
   UnknownShareDataError = error_class do |path|
@@ -81,7 +81,7 @@ module ETSource
   # Graph Structure / Topology Errors ----------------------------------------
 
   UnknownCarrierError = error_class do |carrier, area|
-    "Unknown use #{ carrier } for #{ area }"
+    "Unknown carrier #{ carrier.inspect } for #{ area.inspect }"
   end
 
   InvalidLinkError = error_class do |link|
