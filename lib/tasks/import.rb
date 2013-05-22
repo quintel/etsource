@@ -212,7 +212,12 @@ namespace :import do
           path  = sector_dir.join(key.to_s)
 
           props = { path: path, type: type, reversed: ! data[:reversed].nil? }
-          props[:query] = queries[key.to_sym] if queries.key?(key.to_sym)
+
+          if queries.key?(key.to_sym)
+            # For the moment, assume shares are technology shares.
+            props[:sets]  = :parent_share
+            props[:query] = queries[key.to_sym] if queries.key?(key.to_sym)
+          end
 
           edge = Edge.new(props).tap { |e| e.save(false) }
 
