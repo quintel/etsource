@@ -5,7 +5,7 @@ module ETSource
   # the Rubel-based attributes, triggers the Refinery calculations, and
   # returns to results to you.
   class Runner
-    attr_reader :dataset
+    attr_reader :dataset, :sector
 
     # A Refinery catalyst; is given the initial Refinery graph and sets the
     # share of all the Slots which are defined in ETSource.
@@ -23,8 +23,9 @@ module ETSource
     # Public: Creates a new Runner.
     #
     # Returns a Runner.
-    def initialize(dataset)
+    def initialize(dataset, sector = nil)
       @dataset = dataset
+      @sector  = sector
     end
 
     # Public: Calculates the graph.
@@ -55,7 +56,7 @@ module ETSource
     #
     # Returns a Turbine::Graph.
     def graph
-      @graph ||= GraphBuilder.build
+      @graph ||= GraphBuilder.build(sector)
     end
 
     # Public: The runtime used by the Runner to calculate Rubel attributes.
