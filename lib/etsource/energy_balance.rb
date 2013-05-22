@@ -43,18 +43,20 @@ module ETSource
     # Returns the value from the EnergyBalance table
     # @return [Float]
     def get_cell(use, carrier)
-      get_row(use)[carrier.to_s.downcase.strip.gsub(/\ /, "_").to_sym] ||
-        raise(UnknownCarrierError.new(carrier, key))
+      normalized_carrier = normalize_key(carrier)
+
+      get_row(use).find do |key, *|
+        normalize_key(key) == normalized_carrier
+      end.last || raise(UnknownCarrierError.new(carrier, key))
     end
 
     # Get a row from the CSV file
     # Returns a CSV::Row object
     def get_row(use)
-      row = table.find do |row|
-        row[0].downcase.delete("*").gsub(/\s/, "_").strip ==
-          use.to_s.downcase.strip.gsub(/\s/, "_")
-      end
-      row || raise(UnknownUseError.new(use, key))
+      normalized_use = normalize_key(use)
+
+      table.find { |row| normalize_key(row[0]) == normalized_use } ||
+        raise(UnknownUseError.new(use, key))
     end
 
     # Load the whole table
@@ -65,6 +67,18 @@ module ETSource
 
     def convert_to_unit(value)
       EnergyUnit.new(value, ORIGINAL_UNIT).to_unit(unit)
+    end
+
+    # Internal: Converts the given key to a format which removes all special
+    # characters.
+    #
+    # Returns a Symbol.
+    def normalize_key(key)
+      key.to_s.downcase.strip.
+        gsub(/[^a-zA-Z0-9_]+/, '_').
+        gsub(/_+/, '_').
+        gsub(/_$/, '').
+        to_sym
     end
 
   end # Dataset
