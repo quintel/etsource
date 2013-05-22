@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module ETSource
   describe Runner, :fixtures do
-    let(:runner) { Runner.new(Dataset.find(:nl)) }
+    let(:runner) { Runner.new(Dataset.find(:nl), :simple_graph) }
 
     it 'exposes a graph' do
       expect(runner.graph).to be_a(Turbine::Graph)
@@ -14,6 +14,11 @@ module ETSource
 
     it 'provides access to the original dataset' do
       expect(runner.dataset).to be_an(ETSource::Dataset)
+    end
+
+    it 'accepts sector as an option' do
+      runner = Runner.new(Dataset.find(:nl), :households)
+      expect(runner.sector).to eq :households
     end
 
     describe '#calculate' do
