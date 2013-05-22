@@ -89,7 +89,7 @@ namespace :import do
       yield
       print Term::ANSIColor.green { '.' }
     rescue RuntimeError => ex
-      print Term::ANSIColor.red { 'F' }
+      print Term::ANSIColor.red { '!' }
       @errors.push(ex)
     end
 
