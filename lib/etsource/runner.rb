@@ -44,11 +44,9 @@ module ETSource
       end
 
       Refinery::Reactor.new(
-        Refinery::Catalyst::FromTurbine,
-        SetSlotShares,
         Refinery::Catalyst::Calculators,
         Refinery::Catalyst::Validation
-      ).run(graph)
+      ).run(refinery_graph)
     end
 
     # Public: The Turbine::Graph which represents the structure of the graph
@@ -57,6 +55,17 @@ module ETSource
     # Returns a Turbine::Graph.
     def graph
       @graph ||= GraphBuilder.build(sector)
+    end
+
+    # Public: Returns the Refinery graph which the Runner uses to calculate
+    # missing attributes.
+    #
+    # Returns a Turbine::Graph.
+    def refinery_graph
+      @refinery ||= Refinery::Reactor.new(
+        Refinery::Catalyst::FromTurbine,
+        SetSlotShares
+      ).run(graph)
     end
 
     # Public: The runtime used by the Runner to calculate Rubel attributes.
