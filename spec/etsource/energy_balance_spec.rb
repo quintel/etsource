@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module ETSource
 
-describe EnergyBalance do
+describe EnergyBalance, :fixtures do
 
   let(:eb) { EnergyBalance.new(:nl) }
 
