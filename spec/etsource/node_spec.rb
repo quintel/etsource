@@ -29,7 +29,7 @@ describe Node, :fixtures do
 
   describe '#all' do
     it 'returns all the subclasses that have been defined' do
-      expect(Node.all).to have(4).nodes
+      expect(Node.all).to have(5).nodes
     end
   end
 
