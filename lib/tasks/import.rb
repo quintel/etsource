@@ -40,10 +40,18 @@ namespace :import do
       queries = {}
 
       Pathname.glob(ETSource.data_dir.join('import/**/*.csv')).each do |path|
-        data = CSV.table(path).select { |row| row[:status] == 'necessary' }
+        data = CSV.table(path).select do |row|
+          row[:status].nil? || row[:status] == 'necessary'
+        end
 
         data.each do |row|
-          queries[row[:converter_key].to_sym] = row[:query]
+          if row[:converter_key]
+            key = row[:converter_key].to_sym
+          else
+            key = ETSource::Edge.key(row[:from], row[:to], row[:carrier])
+          end
+
+          queries[key] = row[:query]
         end
       end
 
@@ -147,8 +155,7 @@ namespace :import do
           data[:query] = queries[key.to_sym] if queries.key?(key.to_sym)
           data[:path]  = "#{ sector }/#{ key }"
 
-          node = klass.new(data)
-          node.save(false)
+          node = klass.new(data).tap { |n| n.save(false) }
 
           raise InvalidDocumentError.new(node) unless node.valid?
         end
@@ -205,9 +212,9 @@ namespace :import do
           path  = sector_dir.join(key.to_s)
 
           props = { path: path, type: type, reversed: ! data[:reversed].nil? }
+          props[:query] = queries[key.to_sym] if queries.key?(key.to_sym)
 
-          edge = Edge.new(props)
-          edge.save(false)
+          edge = Edge.new(props).tap { |e| e.save(false) }
 
           raise InvalidDocumentError.new(edge) unless edge.valid?
         end
