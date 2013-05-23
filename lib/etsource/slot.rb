@@ -23,7 +23,7 @@ module ETSource
 
     # What proportion of the total energy flow in or out of the node is
     # through this slot?
-    attribute :share, Float, default: 1.0
+    attribute :share, Float
 
     # Public: The key of the node to which the slot beings.
     #
@@ -40,6 +40,8 @@ module ETSource
     #
     # Returns a Symbol.
     attr_accessor :carrier
+
+    attribute :query, String
 
     validates :node,      presence: true
     validates :direction, presence: true, inclusion: { in: [:in, :out] }
