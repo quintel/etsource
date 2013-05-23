@@ -16,7 +16,10 @@ namespace :debug do
     runner = ETSource::Runner.new(ETSource::Dataset.find(:nl), :transport)
     exception = nil
 
-    print 'Setting up graph structure... '
+    puts 'Setting up graph structure... '
+    runner.graph
+
+    print 'Setting up Refinery graph... '
 
     silence_stream(STDOUT) do
       Refinery::Diagram::Calculable.new(runner.refinery_graph).
