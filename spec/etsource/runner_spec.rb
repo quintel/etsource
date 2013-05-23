@@ -38,10 +38,9 @@ module ETSource
 
       it 'sets demand of nodes using energy balances' do
         # This number is defined in the energy balance nl.csv file, and the
-        # query is `EB(residential, natural_gas) * 1.0`. We multiply by 0.04
-        # to convert to ktoe.
+        # query is `EB(residential, natural_gas) * 1.0`.
         expect(graph.node(:fd).get(:demand)).
-          to eq(ETSource::EnergyUnit.new(7460.0, :ktoe).to_unit(:pj))
+          to eq(ETSource::EnergyUnit.new(7460.0, :tj).to_unit(:pj))
       end
 
       it 'sets the child share of edges using SHARE()' do
@@ -69,9 +68,13 @@ module ETSource
       end
 
       it 'sets the demand of edges' do
-        edge.update_attributes!(query: '100.0', sets: :demand)
+        edge.update_attributes!(query: '5.0', sets: :demand)
 
-        ratio   = Rational('10000000/31233528')
+        # The final demand node has a demand of 7.46, and the edge going into
+        # bar has a demand of 5.0. The ratio is therefore 5/7.46 or, since
+        # Rational doesn't allow you to use fractions: 500/746:
+
+        ratio   = Rational('500/746')
         i_ratio = Rational('1') - ratio
 
         shares = {
@@ -84,8 +87,7 @@ module ETSource
           Slot.find(slot_key).update_attributes!(share: share)
         end
 
-        # Extracted from the nl/shares/cars.csv file.
-        expect(t_edge.get(:demand)).to eq(100.0)
+        expect(t_edge.get(:demand)).to eq(5.0)
       end
     end # calculate
   end # Runner
