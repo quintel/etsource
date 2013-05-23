@@ -22,7 +22,7 @@ namespace :debug do
     print 'Setting up Refinery graph... '
 
     silence_stream(STDOUT) do
-      Refinery::Diagram::Calculable.new(runner.refinery_graph).
+      Refinery::Diagram::InitialValues.new(runner.refinery_graph).
         draw_to(ETSource.root.join('tmp').join('before.png'))
     end
 
