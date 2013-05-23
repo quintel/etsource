@@ -9,7 +9,7 @@ module ETSource
   class EnergyBalance
 
     DIRECTORY =     'energy_balances'
-    ORIGINAL_UNIT = :ktoe
+    ORIGINAL_UNIT = :tj
 
     attr_accessor :key, :unit
 
