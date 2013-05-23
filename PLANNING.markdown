@@ -105,6 +105,10 @@ sound, and that we can run validations, mass updates etc.
 5. Split converters into one file per converter **DONE**
 6. Port converters attributes to ETSource (we keep attributes and methods as
    they are).
+   * costs
+   * fce
+   * much more in the InputExcel
+   * some more in the Research dataset
 7. Edges defined in ETSource **DONE**
 
 ### Clean up old stuff
