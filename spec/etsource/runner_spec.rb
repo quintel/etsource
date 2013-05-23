@@ -58,6 +58,16 @@ module ETSource
         expect(t_edge.get(:parent_share)).to eq(0.1)
       end
 
+      it 'sets the share of slots with explicit values' do
+        Slot.new(key: 'foo-@coal', share: 0.25).save!
+        expect(graph.node(:foo).slots.out(:coal).get(:share)).to eq(0.25)
+      end
+
+      it 'sets the share of slots with a query' do
+        Slot.new(key: 'foo-@coal', query: '0.5 / 2').save!
+        expect(graph.node(:foo).slots.out(:coal).get(:share)).to eq(0.25)
+      end
+
       it 'sets the demand of edges' do
         edge.update_attributes!(query: '100.0', sets: :demand)
 

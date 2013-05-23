@@ -7,18 +7,33 @@ module ETSource
   class Runner
     attr_reader :dataset, :sector
 
-    # A Refinery catalyst; is given the initial Refinery graph and sets the
-    # share of all the Slots which are defined in ETSource.
-    SetSlotShares = ->(refinery) do
-      Slot.all.each do |model|
-        node = refinery.node(model.node)
-        slot = node.slots.public_send(model.direction, model.carrier)
+    # Creates a Refinery catalyst which, given the initial Refinery graph,
+    # will set the share values for any slots where a share is explicitly
+    # specified, or calculated through a Rubel query.
+    #
+    # It expects to be called with a lambda telling the catalyst how to run
+    # the Rubel query.
+    #
+    #   SetSlotShares.call(->(query) { runtime.execute(query) })
+    #   # => #<TheRefineryCatalyst ...>
+    #
+    # Returns a lambda.
+    SetSlotShares = ->(perform) do
+      ->(refinery) do
+        Slot.all.each do |model|
+          node = refinery.node(model.node)
+          slot = node.slots.public_send(model.direction, model.carrier)
 
-        slot.set(:share, model.share)
+          if model.query
+            slot.set(:share, perform.call(model.query))
+          elsif model.share
+            slot.set(:share, model.share)
+          end
+        end
+
+        refinery
       end
-
-      refinery
-    end
+    end # SetSlotShares
 
     # Public: Creates a new Runner.
     #
@@ -35,7 +50,6 @@ module ETSource
     #
     # Returns the calculated Graph.
     def calculate
-
       Refinery::Reactor.new(
         Refinery::Catalyst::Calculators,
         Refinery::Catalyst::Validation
@@ -66,7 +80,7 @@ module ETSource
 
         Refinery::Reactor.new(
           Refinery::Catalyst::FromTurbine,
-          SetSlotShares
+          SetSlotShares.call(method(:query))
         ).run(graph)
       end
     end
@@ -95,13 +109,14 @@ module ETSource
       model = element.get(:model)
 
       if model.respond_to?(:query) && ! model.query.nil?
-        element.set(attribute, runtime.execute(model.query))
+        element.set(attribute, query(model.query))
       end
-    rescue RuntimeError => ex
-      if model && model.query
-        ex.message.gsub!(/$/, " (executing: #{ model.query.inspect })")
-      end
+    end
 
+    def query(string)
+      runtime.execute(string)
+    rescue RuntimeError => ex
+      ex.message.gsub!(/$/, " (executing: #{ string.inspect })")
       raise ex
     end
 
