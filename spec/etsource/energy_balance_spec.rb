@@ -36,13 +36,15 @@ describe EnergyBalance, :fixtures do
 
     it "returns correct value for NL when asked for a specific attribute" do
       eb.stub(:get_cell).and_return 6
-      expect(eb.get("Residential","coal_and_peat")).to eql 0.251208
+      expect(eb.get("Residential","coal_and_peat")).to eql 0.006
     end
 
     it "works with other units" do
       eb.unit = :twh
       eb.stub(:get_cell).and_return 6
-      expect(eb.get("Residential","coal_and_peat")).to eql 0.06978
+
+      expect(eb.get("Residential","coal_and_peat")).
+        to eql(EnergyUnit.new(6, :tj).to_unit(:twh))
     end
 
     it "raises an error when an unknown unit is requested" do 
