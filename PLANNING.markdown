@@ -8,8 +8,8 @@ the current Excel file and optimizing the input and permutations.
 Reasons why:
 * Currently it is hard to manage data without any version control being
 available in Excel.
-* Furthermore, there is no (proper) debugging.
-* Unit tests in Excel.
+* There is no (proper) debugging.
+* There are no tests possible in Excel.
 
 ### Requirements
 
@@ -42,41 +42,75 @@ sound, and that we can run validations, mass updates etc.
 
 ### Mapping Data to Graph
 
-1. **Proof of Concept** that we can build up a graph easily and transparantly. **DONE**
-   with [Turbine].
-2. **Proof of Concept** that we can reproduce the ability of the current InputExcel to
-   generate `preset_demands` from `final_demands` in the graph. **88% DONE**
-with Refinery.
+1. **Proof of Concept** that we can build up a graph easily and transparantly.
+   **DONE** with [Turbine].
+2. **Proof of Concept** that we can reproduce the ability of the current
+   InputExcel to generate `preset_demands` from `final_demands` in the graph.
+**PARTIALLY DONE** with Refinery.
 3. Build the current ETSource graph in Turbine/Refinery. **DONE**
-4. Calculate the current ETSource graph with Refinery. **33% DONE**
-5. Start abstracting final_demands from Energy Balances. **DONE** with
+4. Calculate the current ETSource graph with Refinery and start
+   abstracting final_demands from Energy Balances. **DONE** with
    ETSource. **HELP WANTED FROM WOUTER/CHAEL**
+   * transport **DONE**
+   * agriculture
+   * energy_production
 5. Refinery validations **DONE**
+   *Refinery performs some checks after its calculations to ensure that the
+   values make sense; that the energy flowing into a node through "in slots"
+   matches that which leaves through "out slots". It raises an error when
+   insufficient information is available to perform the calculation, listing
+   the nodes and edges which could not be given a "demand" value. A Diagram
+   generator can provide a visual representation instead.*
 6. Refinery `child_share` and `parent_share` **DONE**
-7. Refinery efficiencies
-8. Adding DataSet and making that top level for other objects.
-9. Abstracting technology shares and application shares to ETSource.
+   *Refinery implements - and uses - both.*
+7. Refinery efficiencies and conversions. **DONE, PENDING FURTHER DISCUSSIONS**
+   *Efficiency is implemented as in ETEngine: with an output "loss" slot.
+   Setting a "share" (otherwise known as "conversion" in ETEngine) on the loss
+   slot will model loss. For example, if the node is 90% efficient, adding a
+   loss slot with a share of 0.1 will have the desired effect.*
+   * carrier dependent efficiencies.
+8. Adding DataSet and making that top level for other objects. **DONE**
+9. Abstracting technology shares and application shares to ETSource. **DONE**
+   *ShareData files, stored in `datasets/:area`, allow you to define shares in
+   CSV format, and have those numbers made available through Rubel ("GQL")
+   queries.*
 10. Abstracting production characteristics to ETSource.
 11. Abstracting converter efficiencies for other areas.
 12. All other stuff (such as costs, energy balance group colors, whatever).
 13. Map country-specific data/adjustments from ETSource. (Area)
-14. Clean library-style imports from ETSource/Refinery in ETEngine.
+14. Clean library-style imports from ETSource/Refinery in ETEngine. **PART DONE**
+   *Partially done in a recent ETEngine commit, but reverted until a robust
+   way to use ETSource is added. We need to be able to support a Gem-style
+   import for production and users who don't modify ETSource, and a "local"
+   import for programmers and modellers (like the current system).*
 15. Validating demands with EnergyBalance `primary_demands`
+16. Add a "production" mode to ETSource.
+   *Production mode will disable Rubel queries, and instead load
+   pre-calculated values from a CSV file.*
 
 ### Data Integrity and moving data
 
 1. **Proof** that we can use validations on objects. **DONE**
 2. Create foundations for the data mapper **DONE**
 3. `waiting` Define subclassed for Converters/Nodes and experiment with Concerns
-   (instance mixins) **WAITING ON CHAEL AND WOUTER**
-4. Split Topoplogy into files per sector
-5. Split converters into one file per converter
-6. Port converters attributes to ETSource ( **Q**: and think about what need to
-   be changed? attributes <-> methods?)
+   (instance mixins) **DONE**
+   *Subclasses for some different types of nodes have been added already. This
+   allows us to support different validators on different types of node, as
+   well as custom attributes.*
+4. Split Topology into files per sector **DONE**
+   *Nodes, edges, and slots have all been split into one file each. It is
+   likely we will define subgraphs through subsets of edges. Presently,
+   subgraphs can be created by the sector in which the parent (supplier) node
+   belongs.*
+5. Split converters into one file per converter **DONE**
+6. Port converters attributes to ETSource (we keep attributes and methods as
+   they are).
+7. Edges defined in ETSource **DONE**
 
 ### Clean up old stuff
 
 1. Delete excess stuff on ETSource, ETEngine
+2. MUCH MORE!
 
 ### Documentation and Training
 
