@@ -998,13 +998,6 @@ energy_power_combined_cycle_network_gas-(network_gas): {conversion: 1.0}
 (electricity)-energy_power_combined_cycle_network_gas: {conversion: 0.6}
 energy_power_combined_cycle_network_gas-(network_gas) -- s --> (network_gas)-energy_national_gas_network_natural_gas: {share: 1.0}
 
-:energy_power_energy_sector_own_use:
-  :co2_free: 0.0
-  :preset_demand: 16380000000.0
-energy_power_energy_sector_own_use-(electricity): {conversion: 1.0}
-(loss)-energy_power_energy_sector_own_use: {}
-energy_power_energy_sector_own_use-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity: {share: 1.0}
-
 :energy_power_engine_diesel:
   :availability: 0.89
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.98
@@ -1304,6 +1297,13 @@ energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (loss)-energy_power_nuclear_gen3_uranium_oxide: {}
 (electricity)-energy_power_nuclear_gen3_uranium_oxide: {conversion: 0.36}
 energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_distribution_uranium_oxide: {share: 1.0}
+
+:energy_power_sector_own_use_electricity:
+  :co2_free: 0.0
+  :preset_demand: 16380000000.0
+energy_power_sector_own_use_electricity-(electricity): {conversion: 1.0}
+(loss)-energy_power_sector_own_use_electricity: {}
+energy_power_sector_own_use_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity: {share: 1.0}
 
 :energy_power_solar_csp_solar_radiation:
   :availability: 0.99

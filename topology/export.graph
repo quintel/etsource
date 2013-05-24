@@ -1927,15 +1927,6 @@ energy_power_combined_cycle_network_gas:
   - energy_power_combined_cycle_network_gas-(network_gas)
   - ! '(loss)-energy_power_combined_cycle_network_gas: {type: :loss}'
   - (electricity)-energy_power_combined_cycle_network_gas
-energy_power_energy_sector_own_use:
-  sector: energy
-  use: energetic
-  energy_balance_group: energy sector own use
-  links:
-  - energy_power_energy_sector_own_use-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
-  slots:
-  - energy_power_energy_sector_own_use-(electricity)
-  - ! '(loss)-energy_power_energy_sector_own_use: {type: :loss}'
 energy_power_engine_diesel:
   sector: energy
   use: energetic
@@ -2087,6 +2078,15 @@ energy_power_nuclear_gen3_uranium_oxide:
   - energy_power_nuclear_gen3_uranium_oxide-(uranium_oxide)
   - ! '(loss)-energy_power_nuclear_gen3_uranium_oxide: {type: :loss}'
   - (electricity)-energy_power_nuclear_gen3_uranium_oxide
+energy_power_sector_own_use_electricity:
+  sector: energy
+  use: energetic
+  energy_balance_group: energy sector own use
+  links:
+  - energy_power_sector_own_use_electricity-(electricity) -- s --> (electricity)-energy_power_hv_network_electricity
+  slots:
+  - energy_power_sector_own_use_electricity-(electricity)
+  - ! '(loss)-energy_power_sector_own_use_electricity: {type: :loss}'
 energy_power_solar_csp_solar_radiation:
   sector: energy
   use: undefined
