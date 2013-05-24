@@ -439,6 +439,13 @@ describe SomeDocument, :fixtures do
         expect { some_document.path.read }.to_not raise_error
       end
 
+      it 'works when the document is new' do
+        document = SomeDocument.new(key: 'yes')
+        document.key = 'no'
+
+        expect { document.save! }.to_not raise_error
+      end
+
       context 'when another object with that key already exists' do
 
         it 'raises error' do
