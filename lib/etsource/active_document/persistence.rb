@@ -84,9 +84,13 @@ module ETSource
 
       # Public: Saves the document to a file on disk.
       #
-      # Returns true, or raises an error if the save fails.
-      def save!
-        raise(InvalidDocumentError.new(self)) unless valid?
+      # validate - Whether to perform validation prior to saving.
+      #            Defaults to true. Setting this to false will save
+      #            the document even if the attributes are not valid.
+      #
+      # Returns true, or false if the validation failed.
+      def save(validate = true)
+        return false if validate && ! valid?
 
         # Ensure the directory exists.
         FileUtils.mkdir_p(path.dirname)
@@ -97,11 +101,20 @@ module ETSource
         end
 
         # If the document has been renamed, delete the old file.
-        if @last_saved_file_path != path
+        if @last_saved_file_path != path && @last_saved_file_path.file?
           @last_saved_file_path.delete
-          @last_saved_file_path = path
         end
 
+        @last_saved_file_path = path
+
+        true
+      end
+
+      # Public: Saves the document to a file on disk.
+      #
+      # Returns true, or raises an error if the save fails.
+      def save!
+        raise(InvalidDocumentError.new(self)) unless save
         true
       end
 

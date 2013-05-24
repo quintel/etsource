@@ -14,7 +14,7 @@ namespace :import do
     nodes.group_by { |key, data| data['sector'] || 'nosector' }
   end
 
-  # Given a node key and it's data, determines which subclass of Node should
+  # Given a node key and its data, determines which subclass of Node should
   # be used.
   def node_subclass(key, data)
     return ETSource::FinalDemandNode if key.to_s.match(/final_demand/)
@@ -33,23 +33,73 @@ namespace :import do
     end
   end
 
-  # Queries for final demand nodes.
-  FD_QUERIES = {
-    households_final_demand_coal:
-      "EB(residential, coal_and_peat)",
-    households_final_demand_crude_oil:
-      "EB(residential, oil_products)",
-    households_final_demand_network_gas:
-      "EB(residential, natural_gas)",
-    households_final_demand_solar_thermal:
-      "EB(residential, 'Geothermal Solar, etc.')",
-    households_final_demand_wood_pellets:
-      "EB(residential, biofuels_and_waste)",
-    households_final_demand_electricity:
-      "EB(residential, electricity)",
-    households_final_demand_steam_hot_water:
-      "EB(residential, heat)"
-  }.freeze
+  # Returns a hash containing all the queries defined in the data/import CSVs.
+  # Includes queries for nodes, edges, and slots.
+  def queries
+    @queries ||= begin
+      queries = {}
+
+      Pathname.glob(ETSource.data_dir.join('import/**/*.csv')).each do |path|
+        data = CSV.table(path).select do |row|
+          row[:status].nil? || row[:status] == 'necessary'
+        end
+
+        data.each do |row|
+          if row[:converter_key]
+            key = row[:converter_key].to_sym
+          else
+            key = ETSource::Edge.key(row[:from], row[:to], row[:carrier])
+          end
+
+          queries[key] = row[:query]
+        end
+      end
+
+      queries
+    end
+  end
+
+  # Used to nicely format the progress of an import.
+  #
+  # Create a new Import run with a message indicating the "type of thing"
+  # being imported, and wrap each imported thing in Runner#item. For example:
+  #
+  #   runner = ImportRun.new('nodes')
+  #   nodes.each { |node| runner.item { process node } }
+  #   runner.finish
+  #
+  # The class will catch any RuntimeErrors which are raised, and report all
+  # the failures at the end (when you call +finish+).
+  class ImportRun
+    def initialize(message)
+      @message = message
+      @errors  = []
+      @printed = false
+    end
+
+    # Wrap each single imported item in this method, to record the success or
+    # failure.
+    def item
+      unless @printed
+        # Print the initial message if this is the first item to be imported.
+        print "Processing #{ @message }: "
+        @printed = true
+      end
+
+      yield
+      print Term::ANSIColor.green { '.' }
+    rescue RuntimeError => ex
+      print Term::ANSIColor.red { '!' }
+      @errors.push(ex)
+    end
+
+    # Prints out error messages, if there were any.
+    def finish
+      puts '' ; puts ''
+      @errors.each { |error| puts error.message }
+      puts '' if @errors.any?
+    end
+  end # ImportRun
 
   # --------------------------------------------------------------------------
 
@@ -59,20 +109,9 @@ namespace :import do
 
     require 'fileutils'
     require 'etsource'
+    require 'term/ansicolor'
     require 'active_support/core_ext/hash/indifferent_access'
   end # task :setup
-
-  # Sets the "query" attribute on final demand nodes.
-  task :final_demand_queries do
-    print 'Setting final demand queries... '
-    nodes = ETSource::Collection.new(ETSource::Node.all)
-
-    FD_QUERIES.each do |key, query|
-      nodes.find(key).tap { |n| n.query = query; n.save! }
-    end
-
-    puts "done! (#{ FD_QUERIES.length } nodes)"
-  end # task :final_demand_queries
 
   desc <<-DESC
     Import nodes from the old format to ActiveDocument.
@@ -84,39 +123,46 @@ namespace :import do
     there are no hand-made changes.
   DESC
   task nodes: :setup do
+    include ETSource
+
     # Wipe out *everything* in the nodes directory; rather than simply
     # overwriting existing files, since some may have new naming conventions
     # since the previous import.
     FileUtils.rm_rf(ETSource::Node.directory)
 
+    runner = ImportRun.new('nodes')
+
     nodes_by_sector.each do |sector, nodes|
-      print "Processing nodes for #{ sector } sector... "
-
       nodes.each do |key, data|
-        raise "Node #{ key.inspect } has no slots?!" unless data['slots']
+        runner.item do
+          unless data['slots']
+            raise RuntimeError.new("Node #{ key.inspect } has no slots?!")
+          end
 
-        klass = node_subclass(key, data)
+          klass = node_subclass(key, data)
 
-        # Split the original slots array into two, containing the outgoing and
-        # incoming slots respectively. This is done by recognising that
-        # outgoing slots begin with the carrier key in (brackets).
-        out_slots, in_slots = data['slots'].partition { |s| s.match(/^\(/) }
+          # Split the original slots array into two, containing the outgoing
+          # and incoming slots respectively. This is done by recognising that
+          # outgoing slots begin with the carrier key in (brackets).
+          out_slots, in_slots = data['slots'].partition { |s| s.match(/^\(/) }
 
-        data[:in_slots]  = in_slots.map  { |slot| slot.match(/\((.*)\)/)[1] }
-        data[:out_slots] = out_slots.map { |slot| slot.match(/\((.*)\)/)[1] }
+          data[:in_slots]  = in_slots.map  { |s| s.match(/\((.*)\)/)[1] }
+          data[:out_slots] = out_slots.map { |s| s.match(/\((.*)\)/)[1] }
 
-        data.delete('links')
-        data.delete('slots')
+          data.delete('links')
+          data.delete('slots')
 
-        data[:path] = "#{ sector }/#{ key }"
+          data[:query] = queries[key.to_sym] if queries.key?(key.to_sym)
+          data[:path]  = "#{ sector }/#{ key }"
 
-        klass.new(data).save!
+          node = klass.new(data).tap { |n| n.save(false) }
+
+          raise InvalidDocumentError.new(node) unless node.valid?
+        end
       end
+    end
 
-      puts "done! (#{ nodes.length } nodes)"
-    end # nodes_by_sector.each
-
-    Rake::Task['import:final_demand_queries'].invoke
+    runner.finish
   end # task :nodes
 
   desc <<-DESC
@@ -142,37 +188,45 @@ namespace :import do
       (?<supplier>[\w_]+)        # Parent node key
     /xi
 
-    nodes_by_sector.each do |sector, nodes|
-      print "Processing edges for #{ sector } sector... "
+    runner = ImportRun.new('edges')
 
+    nodes_by_sector.each do |sector, nodes|
       sector_dir = Edge.directory.join(sector)
       edges      = nodes.map { |key, node| node['links'] }.flatten.compact
 
       edges.each do |link|
-        unless data = link_re.match(link)
-          raise "Non-matching link: #{ link.inspect } for #{ node_key.inspect }"
+        runner.item do
+          data = link_re.match(link)
+
+          type = case data[:type]
+            when 's' then :share
+            when 'f' then :flexible
+            when 'c' then :constant
+            when 'd' then :dependent
+            when 'i' then :inverse_flexible
+          end
+
+          # We currently have to construct the full path manually since Edge
+          # does not (yet) account for the sector.
+          key   = Edge.key(data[:consumer], data[:supplier], data[:carrier])
+          path  = sector_dir.join(key.to_s)
+
+          props = { path: path, type: type, reversed: ! data[:reversed].nil? }
+
+          if queries.key?(key.to_sym)
+            # For the moment, assume shares are technology shares.
+            props[:sets]  = :parent_share
+            props[:query] = queries[key.to_sym] if queries.key?(key.to_sym)
+          end
+
+          edge = Edge.new(props).tap { |e| e.save(false) }
+
+          raise InvalidDocumentError.new(edge) unless edge.valid?
         end
-
-        type = case data[:type]
-          when 's' then :share
-          when 'f' then :flexible
-          when 'c' then :constant
-          when 'd' then :dependent
-          when 'i' then :inverse_flexible
-        end
-
-        # We currently have to construct the full path manually since Edge
-        # does not (yet) account for the sector.
-        key   = Edge.key(data[:consumer], data[:supplier], data[:carrier])
-        path  = sector_dir.join(key.to_s)
-
-        props = { path: path, type: type, reversed: ! data[:reversed].nil? }
-
-        Edge.new(props).save!
       end
-
-      puts "done! (#{ edges.length } edges)"
     end # nodes_by_sector.each
+
+    runner.finish
   end # task :edges
 
   task all: ['import:nodes', 'import:edges'] do

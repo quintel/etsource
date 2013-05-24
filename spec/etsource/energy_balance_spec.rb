@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module ETSource
 
-describe EnergyBalance do
+describe EnergyBalance, :fixtures do
 
   let(:eb) { EnergyBalance.new(:nl) }
 
@@ -36,13 +36,15 @@ describe EnergyBalance do
 
     it "returns correct value for NL when asked for a specific attribute" do
       eb.stub(:get_cell).and_return 6
-      expect(eb.get("Residential","coal_and_peat")).to eql 0.251208
+      expect(eb.get("Residential","coal_and_peat")).to eql 0.006
     end
 
     it "works with other units" do
       eb.unit = :twh
       eb.stub(:get_cell).and_return 6
-      expect(eb.get("Residential","coal_and_peat")).to eql 0.06978
+
+      expect(eb.get("Residential","coal_and_peat")).
+        to eql(EnergyUnit.new(6, :tj).to_unit(:twh))
     end
 
     it "raises an error when an unknown unit is requested" do 
@@ -70,6 +72,14 @@ describe EnergyBalance do
     it "finds carriers with spaces" do
       expect(eb.get("international_marine_bunkers","coal and peat")).to_not \
         be_nil
+    end
+
+    it 'finds special character carriers with special characters' do
+      expect(eb.get('imports', 'something (else)')).to_not be_nil
+    end
+
+    it 'finds special character carriers without special characters' do
+      expect(eb.get('imports', 'something_else')).to_not be_nil
     end
 
     it "does not complain about trailing spaces" do

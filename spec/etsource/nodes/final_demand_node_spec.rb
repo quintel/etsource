@@ -27,7 +27,7 @@ describe FinalDemandNode, :fixtures do
     context 'with the Dutch dataset' do
 
       it 'returns the correct number' do
-        expect(node.demand(:nl)).to eql(312.33528)
+        expect(node.demand(:nl)).to eql(7460.0 / 1000) # TJ to PJ
       end
 
     end
@@ -35,7 +35,7 @@ describe FinalDemandNode, :fixtures do
     context 'with the UK dataset' do
 
       it 'returns the correct number' do
-        expect(node.demand(:uk)).to eql(156.16764)
+        expect(node.demand(:uk)).to eql(3730.0 / 1000) # TJ to PJ
       end
 
     end
