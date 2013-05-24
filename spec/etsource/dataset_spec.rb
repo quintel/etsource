@@ -47,14 +47,14 @@ module ETSource; describe Dataset, :fixures do
 
   describe '#shares' do
     let(:dataset) { Dataset.find(:nl) }
-    let(:shares)  { dataset.shares(:cars) }
+    let(:shares)  { dataset.shares(:electricity) }
 
     it 'returns a ShareData for the correct area' do
       expect(shares.dataset).to eql(dataset)
     end
 
     it 'returns a ShareData for the correct file key' do
-      expect(shares.file_key).to eql(:cars)
+      expect(shares.file_key).to eql(:electricity)
     end
 
     it 'raises UnknownShareDataError when no shares data exists' do

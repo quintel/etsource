@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 ruby "1.9.3"
 
+gem 'refinery', git: 'git@github.com:quintel/refinery.git'
+
 group :test do
   gem 'rspec'
   gem 'guard'
