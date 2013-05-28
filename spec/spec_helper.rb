@@ -4,6 +4,7 @@ require 'yaml'
 require 'support/coverage' if ENV['COVERAGE']
 require 'support/fixtures'
 
+ENV['ETSOURCE_ENV'] = 'test'
 require_relative '../lib/etsource.rb'
 
 require 'shoulda-matchers'
