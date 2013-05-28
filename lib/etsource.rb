@@ -9,8 +9,12 @@ require 'turbine'
 require 'virtus'
 require 'bundler'
 
-Bundler.setup
-require 'refinery'
+if %w( development test ).include?(ENV['ETSOURCE_ENV'])
+  Bundler.setup(ENV['ETSOURCE_ENV'])
+  require 'refinery'
+else
+  Bundler.setup
+end
 
 require_relative 'etsource/base'
 require_relative 'etsource/parser/hash_to_text_parser'
