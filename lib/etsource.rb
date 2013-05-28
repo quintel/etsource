@@ -13,7 +13,7 @@ if %w( development test ).include?(ENV['ETSOURCE_ENV'])
   Bundler.setup(ENV['ETSOURCE_ENV'])
   require 'refinery'
 else
-  Bundler.setup
+  Bundler.setup(:default)
 end
 
 require_relative 'etsource/base'
