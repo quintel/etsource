@@ -10,6 +10,7 @@ module ETSource
     attribute :label,           String
     attribute :label_query,     String
     attribute :comments,        String
+    attribute :priority,        Integer, default: 0
 
     attribute :max_value,       Float
     attribute :max_value_gql,   String
