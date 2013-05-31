@@ -77,17 +77,17 @@ user_values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
   households_replacement_of_existing_houses: 0.4
   households_insulation_level_old_houses: 2.5
   households_insulation_level_new_houses: 5.0
-  households_space_heater_combined_network_gas_share: 64.06354710000001
-  households_space_heater_micro_chp_network_gas_share: 16.125248100000004
-  households_space_heater_heatpump_ground_water_electricity_share: 5.375082700000001
-  households_space_heater_district_heating_steam_hot_water_share: 9.000000000000002
+  households_space_heater_combined_network_gas_share: 79.99966178587063
+  households_space_heater_micro_chp_network_gas_share: 0.0
+  households_space_heater_heatpump_ground_water_electricity_share: 0.07437454571453392
+  households_space_heater_district_heating_steam_hot_water_share: 3.0213647805244044
   households_space_heater_heatpump_add_on_electricity_share: 94.0
-  households_space_heater_electricity_share: 1.6125248000000003
-  households_space_heater_coal_share: 0.0
-  households_water_heater_combined_network_gas_share: 64.0
-  households_water_heater_fuel_cell_chp_network_gas_share: 5.0
-  households_water_heater_resistive_electricity_share: 0.0
-  households_water_heater_network_gas_share: 0.0
+  households_space_heater_electricity_share: 1.747801824291545
+  households_space_heater_coal_share: 0.061171998197237
+  households_water_heater_combined_network_gas_share: 71.50067201541563
+  households_water_heater_fuel_cell_chp_network_gas_share: 0.0
+  households_water_heater_resistive_electricity_share: 7.649202431948875
+  households_water_heater_network_gas_share: 12.617765649779269
   households_water_heater_solar_thermal_share: 15.0
   households_appliances_dishwasher_electricity_efficiency: 60.8
   households_appliances_fridge_freezer_electricity_efficiency: 74.8
@@ -126,7 +126,7 @@ user_values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
   buildings_space_heater_network_gas_share: 42.4
   buildings_space_heater_heatpump_air_water_network_gas_share: 25.0
   buildings_space_heater_collective_heatpump_water_water_ts_electricity_share: 20.0
-  buildings_heat_network_connection_steam_hot_water_share: 37.08107012111938
+  buildings_heat_network_connection_steam_hot_water_share: 30.046511627907
   buildings_cooling_heatpump_air_water_network_gas_share: 25.0
   buildings_cooling_airconditioning_share: 55.0
   buildings_cooling_collective_heatpump_water_water_ts_electricity_share: 20.0
@@ -151,8 +151,8 @@ user_values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
   costs_co2_free_allocation: 0.0
   investment_costs_co2_ccs: -20.0
   om_costs_co2_ccs: -40.0
-  number_of_energy_power_ultra_supercritical_coal: 0.0
-  number_of_energy_chp_ultra_supercritical_coal: 2.0
+  number_of_energy_power_ultra_supercritical_coal: 3.8
+  number_of_energy_chp_ultra_supercritical_coal: 2.8809256503920153
   number_of_energy_power_combined_cycle_network_gas: 0.0
   number_of_energy_power_ultra_supercritical_network_gas: 0.0
   number_of_energy_power_turbine_network_gas: 0.0
@@ -177,21 +177,21 @@ user_values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
   agriculture_final_demand_steam_hot_water_share: 51.7
   agriculture_useful_demand_useable_heat: -2.0
   agriculture_useful_demand_electricity: -3.0
-  number_of_agriculture_chp_engine_network_gas: 1267.25
+  number_of_agriculture_chp_engine_network_gas: 797.5225593706122
   industry_useful_demand_useable_heat: -1.0
   industry_useful_demand_crude_oil_non_energetic: -1.5
-  number_of_industry_chp_combined_cycle_gas_power_fuelmix: 74.4
-  households_water_heater_district_heating_steam_hot_water_share: 9.0
-  households_water_heater_heatpump_ground_water_electricity_share: 4.7171617183795105
+  number_of_industry_chp_combined_cycle_gas_power_fuelmix: 5.481278798971363
+  households_water_heater_district_heating_steam_hot_water_share: 2.571765840800793
+  households_water_heater_heatpump_ground_water_electricity_share: 4.71716171837951
   households_water_heater_wood_pellets_share: 0.0
-  households_water_heater_micro_chp_network_gas_share: 16.0
+  households_water_heater_micro_chp_network_gas_share: 0.0
   households_water_heater_crude_oil_share: 0.0
   households_water_heater_coal_share: 0.0
-  households_space_heater_wood_pellets_share: 2.7485808000000005
-  households_space_heater_heatpump_air_water_electricity_share: 1.0635828093087674
-  households_space_heater_network_gas_share: 0.0
-  households_space_heater_crude_oil_share: 0.0
-  buildings_collective_chp_network_gas_share: 62.91892987888061
+  households_space_heater_wood_pellets_share: 2.5407656468617645
+  households_space_heater_heatpump_air_water_electricity_share: 1.0635828093087676
+  households_space_heater_network_gas_share: 10.2563668956244
+  households_space_heater_crude_oil_share: 1.2349097136067249
+  buildings_collective_chp_network_gas_share: 69.95348837209299
   buildings_collective_chp_wood_pellets_share: 0.0
   buildings_collective_geothermal_share: 0.0
   buildings_space_heater_district_heating_steam_hot_water_share: 8.1
@@ -204,57 +204,27 @@ user_values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
   investment_costs_fuel_cell: -74.0
   number_of_energy_power_ultra_supercritical_ccs_coal: 0.0
   co_firing_biocoal_share: 0.0
-  co_firing_wood_pellets_share: 42.9
-  co_firing_coal_share: 57.1
+  co_firing_wood_pellets_share: 16.6037037
+  co_firing_coal_share: 83.3962963
   households_cooling_heatpump_ground_water_electricity_share: 0.0
   households_cooling_heatpump_air_water_electricity_share: 0.0
   households_cooling_airconditioning_electricity_share: 100.0
   households_climate_influence: 0.5
-  households_water_heater_heatpump_air_water_electricity_share: 0.9434323436759022
+  households_water_heater_heatpump_air_water_electricity_share: 0.943432343675902
   households_behavior_low_temperature_washing: 25.0
-  number_of_industry_chp_combined_cycle_gas_power_fuelmix: 31.68369247960326
   number_of_industry_chp_turbine_gas_power_fuelmix: 0.0
   number_of_industry_chp_engine_gas_power_fuelmix: 0.0
   number_of_agriculture_chp_supercritical_wood_pellets: 0.0
   number_of_agriculture_chp_engine_biogas: 0.0
-  number_of_agriculture_chp_engine_network_gas: 1563.7697242561023
   number_of_other_chp_engine_network_gas: 0.0
   number_of_other_chp_engine_biogas: 0.0
   number_of_energy_chp_supercritical_waste_mix: 0.0
-  number_of_energy_chp_ultra_supercritical_coal: 2.4209459246991725
-  number_of_energy_chp_combined_cycle_network_gas: 28.108820113398256
-  households_water_heater_wood_pellets_share: 0.0
-  households_water_heater_coal_share: 0.0
-  households_water_heater_resistive_electricity_share: 7.6492024319488765
-  households_water_heater_fuel_cell_chp_network_gas_share: 0.0
-  households_water_heater_combined_network_gas_share: 71.50067201541565
-  households_water_heater_network_gas_share: 12.617765649779273
-  households_water_heater_district_heating_steam_hot_water_share: 2.5717658408007935
-  households_water_heater_micro_chp_network_gas_share: 0.0
-  households_water_heater_crude_oil_share: 0.0
-  households_space_heater_micro_chp_network_gas_share: 0.0
-  households_space_heater_electricity_share: 1.7478018242915447
-  households_space_heater_crude_oil_share: 1.2349097136067246
-  households_space_heater_combined_network_gas_share: 79.99966178587061
-  households_space_heater_heatpump_ground_water_electricity_share: 0.0743745457145339
-  households_space_heater_wood_pellets_share: 2.540765646861764
-  households_space_heater_coal_share: 0.061171998197236996
-  households_space_heater_network_gas_share: 10.256366895624398
-  households_space_heater_district_heating_steam_hot_water_share: 3.021364780524404
+  number_of_energy_chp_combined_cycle_network_gas: 142.23062977379516
   households_collective_chp_network_gas_share: 0.0
   households_collective_chp_wood_pellets_share: 0.0
   households_collective_chp_biogas_share: 0.0
   households_collective_geothermal_share: 0.0
   households_heat_network_connection_steam_hot_water_share: 100.0
-  buildings_collective_chp_wood_pellets_share: 0.0
-  buildings_collective_chp_network_gas_share: 69.95348837209299
-  buildings_heat_network_connection_steam_hot_water_share: 30.046511627907
-  buildings_collective_geothermal_share: 0.0
-  households_cooling_heatpump_ground_water_electricity_share: 0.0
-  households_cooling_airconditioning_electricity_share: 100.0
-  co_firing_coal_share: 83.3962963
-  co_firing_wood_pellets_share: 16.6037037
-  number_of_energy_power_ultra_supercritical_coal: 3.8
   number_of_energy_heater_for_heat_network_wood_pellets: 28.1
 end_year: 2030
 in_start_menu: true
