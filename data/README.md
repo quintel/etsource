@@ -120,6 +120,59 @@ $ rake validate[../etsource/data]
 OK
 ```
 
+
+#### Special Attributes
+
+##### Node
+
+You can set a slot share ("conversion") for a node like so:
+
+```
+- input.gas = 0.4
+- input.oil = 0.6
+```
+
+This tells the node that is has two input slots; gas providing 40%, and oil
+providing 60% of the demanded energy. Swapping "input" for "output" does the
+same for output slots.
+
+A special "elastic" value will tell the node that this slot should fill up
+whatever share is required to sum to 1.0:
+
+```
+- output.heat = 0.2
+- output.electricity = 0.5
+- output.loss = elastic
+```
+
+This node outputs 20% of its energy has heat, and 50% as electricity. The
+elastic slot will therefore take the remaining 30%. A node may not contain
+more than one elastic input slot, and one elastic output slot.
+
+Slot share may vary depending on the share of the inputs; this is called
+"carrier efficiency", and is often used to model converters whose efficiency
+varies depending on the energy source given to them. In this case, you need
+to provide the efficiency of the slot if the node were to be given 100% of
+each input.
+
+```
+- output.electricity.coal = 0.4
+- output.electricity.biomass = 0.5
+```
+
+This tells ETSource/Tome that the "electricity" output slot has a share of 0.4
+when only coal is given to the node, and a share of 0.5 when only biomass is
+given. In reality, your node will likely have a split of inputs; you **must**
+provide a share for each input:
+
+```
+- input.coal = 0.7
+- input.biomass = 0.3
+- output.electricity.coal = 0.4
+- output.electricity.biomass = 0.5
+- output.loss = elastic
+```
+
 ## CSV Documents
 
 Throughout the ETSource repo are ".csv" files which contain raw data used by
