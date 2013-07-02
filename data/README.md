@@ -264,4 +264,4 @@ cannot edit.
 [console]:      https://github.com/quintel/tome#using-the-tome-console
 [import]:       https://github.com/quintel/tome#importing-legacy-etsource-files
 [slot]:         https://github.com/quintel/tome/blob/master/lib/tome/slot.rb
-[safe-to-edit]: https://github.com/quintel/tome#safe-to-edit
+[safe]:         https://github.com/quintel/tome#safe-to-edit
