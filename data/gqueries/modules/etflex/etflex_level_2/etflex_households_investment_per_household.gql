@@ -1,6 +1,5 @@
 # Investment costs for all relevant technologies
-# NOTE: we have 'boosted' the cost of insulation with a factor 6 based on nothing more than experience.
-# NOTE: the factor 30 is the lifetime of the insulation (also guestimated)
+# NOTE: the factor 30 is the lifetime of the insulation (guestimated)
 
 - unit = euro
 
@@ -15,5 +14,5 @@ SUM (
   V(households_cooling_airconditioning_electricity,"number_of_units * initial_investment"),
   V(households_solar_pv_solar_radiation,"number_of_units * initial_investment"),
   V(households_water_heater_solar_thermal,"initial_investment") * (INPUT_VALUE(households_water_heater_solar_thermal_share) / 50.0) * AREA(number_households),
-  V(households_old_houses_heating_savings_from_insulation, "demand * costs_per_mj * 30.0 * 6")
+  (35000.0 * (INPUT_VALUE(households_insulation_level_old_houses) - 1.0) / 2.0) * AREA(number_households)
 ) / AREA(number_households)

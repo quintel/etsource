@@ -18,6 +18,7 @@ module ETSource
     attribute :has_coastline,            Boolean, default: true
     attribute :has_cold_network,         Boolean, default: false
     attribute :has_climate,              Boolean, default: true
+    attribute :has_energy_storage,       Boolean, default: true
     attribute :has_employment,           Boolean, default: true
     attribute :has_fce,                  Boolean, default: true
     attribute :has_industry,             Boolean, default: true
