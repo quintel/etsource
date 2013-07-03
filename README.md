@@ -1,5 +1,12 @@
 # ETSource
 
+![Master branch build status][build-status]
+
+**This document is written from the perspective of the "new" ETSource
+repository which will come into being once the "Kill InputExcel" project is
+finished. This new repo can be found in the `./data` directory. Parts of the
+original readme, can be found [at the end][original]**
+
 ETSource contains the data used by Quintel applications for modelling energy
 transition. The files contained herein are a mixture of human-editable
 "documents", source files used to do offline calculations with [Tome][tome]
@@ -9,8 +16,6 @@ calculations for use in [ETEngine][etengine].
 You may also wish to view the [Tome readme][tome-readme] for information on
 loading the ETSource data in a console, importing data from the old InputExcel
 output files, or for instructions on exporting data for ETEngine.
-
-![Master branch build status][build-status]
 
 ## "Active" Documents
 
@@ -119,7 +124,6 @@ $ cd ~/code/tome
 $ rake validate[../etsource/data]
 OK
 ```
-
 
 #### Special Attributes
 
@@ -256,6 +260,80 @@ frequently overwritten when a new [Tome import][import] is performed. See
 Tome's list of [safe-to-edit files][safe] for a list of what you can and
 cannot edit.
 
+# Original README
+
+### Folder structure
+
+#### data
+
+The `data` folder is the previsioned new folder where all the data is stored.
+Currently, it contains the `gueries` and `inputs`, that are used by the
+Object Mapper.
+
+#### models
+
+The model folders contains other models. Mostly for illustration,
+documentation and testing purposes. These models can be run and tested using
+the etengine command line interface. For instance, models/minimal contains
+the minimal set of files and content for a simple two-converter graph. To
+illustrate the behaviour of flex-max links see the `models/flex_max folder`.
+
+#### scripts
+
+The folder 'scripts' contains the scripts used to alter the names and content
+of the queries.  The folder `change_reports` within 'scripts' contains the
+changes made in the queries, one for each of the query groups.
+
+### Rules and best practices
+
+Try to make one commit for each batch of changes you make to the files,
+related to one issue. For example, if a query is changed, try to alter all
+queries and inputs related to the query in a single commit.
+
+### Updating from the InputExcel guide
+
+You have to copy the zip file to the etsource directory and enter the
+following command in your terminal:
+
+    $ cd your-etsource-directory $ ruby scripts/xls2yml/xls2yml.rb
+
+If you changed anything converter keys, naming, structure, in general to the
+topology, you have to export all countries. If you only update a country
+dataset with new numbers, you don't have to update all countries.
+
+After this you can commit your changes.
+
+Adding or updating carriers, you have to do in
+etsource/datasets/.../carriers.yml.
+
+### Datasets
+
+A dataset is the collection of all _data buckets_ within a _section_. Look at
+it as one big _data bucket_. A dataset is virtual, and not commited to Github.
+The merging of all buckets happens during runtime. There are three independent
+levels: default, country and wizard datasets. Each can overwrite values of the
+former.
+
+#### Default Dataset (datasets/_defaults)
+
+Contains all the values that are a) the same for every country or b) should be
+treated as default/start values. Values here are overwritten in the country
+dataset. That means we can put the data that sometimes changes in a _default
+dataset_ and overwrite it in the _country dataset_ when it does actually
+change.
+
+#### Country Dataset (datasets/:area_code)
+
+The precise name would be area(-specific) dataset (area can be a country 'nl',
+or a region 'nl-drenthe'). But country dataset is a clear enough and
+human-friendly name and is easy on the lips.
+
+#### Overwriting Rules
+
+    # _defaults/area.yml ...  :area_data: :co2_price: 0.002 :has_fce: false
+    # nl/area.yml ...  :area_data: :number_of_households: 100_000 :has_fce: true
+    # => {:area_data: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
+
 [build-status]: https://semaphoreapp.com/api/v1/projects/63d00abb0b002bb34bdbe9602aee85a2a0d42f56/25174/badge.png
 [tome]:         https://github.com/quintel/tome
 [tome-readme]:  https://github.com/quintel/tome#readme
@@ -265,3 +343,4 @@ cannot edit.
 [import]:       https://github.com/quintel/tome#importing-legacy-etsource-files
 [slot]:         https://github.com/quintel/tome/blob/master/lib/tome/slot.rb
 [safe]:         https://github.com/quintel/tome#safe-to-edit
+[original]:     #original-readme
