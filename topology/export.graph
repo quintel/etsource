@@ -961,6 +961,33 @@ energy_chp_ultra_supercritical_coal:
   - ! '(loss)-energy_chp_ultra_supercritical_coal: {type: :loss}'
   - (steam_hot_water)-energy_chp_ultra_supercritical_coal
   - ! '(electricity)-energy_chp_ultra_supercritical_coal: {type: :carrier_efficient}'
+energy_chp_ultra_supercritical_coal_rdr:
+  sector: energy
+  use: energetic
+  energy_balance_group: central power generation
+  links:
+  - energy_chp_ultra_supercritical_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets
+  slots:
+  - energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets)
+  - energy_chp_ultra_supercritical_coal_rdr-(coal)
+  - ! '(loss)-energy_chp_ultra_supercritical_coal_rdr: {type: :loss}'
+  - ! '(electricity)-energy_chp_ultra_supercritical_coal_rdr: {type: :carrier_efficient}'
+energy_chp_ultra_supercritical_cofiring_coal_rdr:
+  sector: energy
+  use: energetic
+  energy_balance_group: central power generation
+  links:
+  - energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets) --
+    s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets
+  - energy_chp_ultra_supercritical_cofiring_coal_rdr-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
+  slots:
+  - energy_chp_ultra_supercritical_cofiring_coal_rdr-(wood_pellets)
+  - energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets)
+  - energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal)
+  - ! '(loss)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {type: :loss}'
+  - ! '(electricity)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {type: :carrier_efficient}'
 energy_chp_ultra_supercritical_lignite:
   sector: energy
   use: undefined
@@ -1982,6 +2009,10 @@ energy_power_hv_network_electricity:
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas
   - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_supercritical_waste_mix
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_coal_rdr
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_cofiring_coal_rdr
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_coal_rdr
+  - energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_cofiring_coal_rdr
   slots:
   - energy_power_hv_network_electricity-(electricity)
   - (electricity)-energy_power_hv_network_electricity
@@ -2187,6 +2218,34 @@ energy_power_ultra_supercritical_coal:
   - energy_power_ultra_supercritical_coal-(coal)
   - ! '(loss)-energy_power_ultra_supercritical_coal: {type: :loss}'
   - ! '(electricity)-energy_power_ultra_supercritical_coal: {type: :carrier_efficient}'
+energy_power_ultra_supercritical_coal_rdr:
+  sector: energy
+  use: energetic
+  energy_balance_group: central power generation
+  links:
+  - energy_power_ultra_supercritical_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_power_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s -->
+    (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets
+  slots:
+  - energy_power_ultra_supercritical_coal_rdr-(torrified_biomass_pellets)
+  - energy_power_ultra_supercritical_coal_rdr-(coal)
+  - ! '(loss)-energy_power_ultra_supercritical_coal_rdr: {type: :loss}'
+  - ! '(electricity)-energy_power_ultra_supercritical_coal_rdr: {type: :carrier_efficient}'
+energy_power_ultra_supercritical_cofiring_coal_rdr:
+  sector: energy
+  use: energetic
+  energy_balance_group: central power generation
+  links:
+  - energy_power_ultra_supercritical_cofiring_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal
+  - energy_power_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets)
+    -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets
+  - energy_power_ultra_supercritical_cofiring_coal_rdr-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets
+  slots:
+  - energy_power_ultra_supercritical_cofiring_coal_rdr-(wood_pellets)
+  - energy_power_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets)
+  - energy_power_ultra_supercritical_cofiring_coal_rdr-(coal)
+  - ! '(loss)-energy_power_ultra_supercritical_cofiring_coal_rdr: {type: :loss}'
+  - ! '(electricity)-energy_power_ultra_supercritical_cofiring_coal_rdr: {type: :carrier_efficient}'
 energy_power_ultra_supercritical_crude_oil:
   sector: energy
   use: undefined
