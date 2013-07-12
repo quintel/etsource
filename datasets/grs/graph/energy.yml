@@ -84,6 +84,54 @@ energy_chp_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_c
 energy_chp_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
+:energy_chp_ultra_supercritical_coal_rdr:
+  :availability: 0.88
+  :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 6587.21295924775
+  :households_supplied_per_unit: 1.0
+  :land_use_per_unit: 0.3
+  :part_ets: 1.0
+  :part_load_efficiency_penalty: 0.1
+  :part_load_operating_point: 0.7
+  :preset_demand: 0.0
+  :variability: 0.0
+  :electricity_output_capacity: 539.130434782609
+  :heat_output_capacity: 695.652173913044
+  :carrier_efficiency: {electricity: {coal: 0.31, torrified_biomass_pellets: 0.31, lignite: 0.31, wood_pellets: 0.0}}
+energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
+energy_chp_ultra_supercritical_coal_rdr-(coal): {conversion: 1.0}
+(loss)-energy_chp_ultra_supercritical_coal_rdr: {}
+(electricity)-energy_chp_ultra_supercritical_coal_rdr: {}
+energy_chp_ultra_supercritical_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
+
+:energy_chp_ultra_supercritical_cofiring_coal_rdr:
+  :availability: 0.88
+  :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 6587.21295924775
+  :households_supplied_per_unit: 1.0
+  :land_use_per_unit: 0.3
+  :part_ets: 1.0
+  :part_load_efficiency_penalty: 0.1
+  :part_load_operating_point: 0.7
+  :preset_demand: 0.0
+  :variability: 0.0
+  :electricity_output_capacity: 643.478260869565
+  :heat_output_capacity: 695.652173913043
+  :carrier_efficiency: {electricity: {coal: 0.37, torrified_biomass_pellets: 0.37, lignite: 0.37, wood_pellets: 0.34}}
+energy_chp_ultra_supercritical_cofiring_coal_rdr-(wood_pellets): {conversion: 0.5}
+energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
+energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal): {conversion: 0.5}
+(loss)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {}
+(electricity)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {}
+energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
+energy_chp_ultra_supercritical_cofiring_coal_rdr-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
+
 :energy_chp_ultra_supercritical_lignite:
   :availability: 0.97
   :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
@@ -1095,6 +1143,10 @@ energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_engine_diesel: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_turbine_network_gas: {}
 energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_supercritical_waste_mix: {}
+energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_coal_rdr: {}
+energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_power_ultra_supercritical_cofiring_coal_rdr: {}
+energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_coal_rdr: {}
+energy_power_hv_network_electricity-(electricity) <-- f -- (electricity)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {}
 
 :energy_power_hv_network_loss:
   :co2_free: 0.0
@@ -1548,6 +1600,54 @@ energy_power_ultra_supercritical_coal-(coal): {conversion: 0.882396602201971}
 energy_power_ultra_supercritical_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_power_ultra_supercritical_coal-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
+
+:energy_power_ultra_supercritical_coal_rdr:
+  :availability: 0.88
+  :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 6811.88364589448
+  :households_supplied_per_unit: 0.0
+  :land_use_per_unit: 0.3
+  :part_ets: 1.0
+  :part_load_efficiency_penalty: 0.046
+  :part_load_operating_point: 0.7
+  :preset_demand: 0.0
+  :variability: 0.0
+  :electricity_output_capacity: 800.0
+  :heat_output_capacity: 0.0
+  :carrier_efficiency: {electricity: {coal: 0.46, torrified_biomass_pellets: 0.46, lignite: 0.46, wood_pellets: 0.0}}
+energy_power_ultra_supercritical_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
+energy_power_ultra_supercritical_coal_rdr-(coal): {conversion: 1.0}
+(loss)-energy_power_ultra_supercritical_coal_rdr: {}
+(electricity)-energy_power_ultra_supercritical_coal_rdr: {}
+energy_power_ultra_supercritical_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_power_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
+
+:energy_power_ultra_supercritical_cofiring_coal_rdr:
+  :availability: 0.88
+  :average_effective_output_of_nominal_capacity_over_lifetime: 0.99
+  :co2_free: 0.0
+  :forecasting_error: 0.0
+  :full_load_hours: 6811.88364589448
+  :households_supplied_per_unit: 0.0
+  :land_use_per_unit: 0.3
+  :part_ets: 1.0
+  :part_load_efficiency_penalty: 0.046
+  :part_load_operating_point: 0.7
+  :preset_demand: 0.0
+  :variability: 0.0
+  :electricity_output_capacity: 730.434782608696
+  :heat_output_capacity: 0.0
+  :carrier_efficiency: {electricity: {coal: 0.46, torrified_biomass_pellets: 0.46, lignite: 0.46, wood_pellets: 0.33}}
+energy_power_ultra_supercritical_cofiring_coal_rdr-(wood_pellets): {conversion: 0.5}
+energy_power_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
+energy_power_ultra_supercritical_cofiring_coal_rdr-(coal): {conversion: 0.5}
+(loss)-energy_power_ultra_supercritical_cofiring_coal_rdr: {}
+(electricity)-energy_power_ultra_supercritical_cofiring_coal_rdr: {}
+energy_power_ultra_supercritical_cofiring_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+energy_power_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
+energy_power_ultra_supercritical_cofiring_coal_rdr-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
 
 :energy_power_ultra_supercritical_crude_oil:
   :availability: 0.89
