@@ -259,6 +259,27 @@ buildings_appliances_wood_pellets:
   slots:
   - buildings_appliances_wood_pellets-(wood_pellets)
   - (not_defined)-buildings_appliances_wood_pellets
+buildings_chp_engine_biogas:
+  sector: buildings
+  use: energetic
+  energy_balance_group: local CHPs
+  links:
+  - buildings_chp_engine_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
+  slots:
+  - ! '(loss)-buildings_chp_engine_biogas: {type: :loss}'
+  - (steam_hot_water)-buildings_chp_engine_biogas
+  - (dumped_heat)-buildings_chp_engine_biogas
+  - (electricity)-buildings_chp_engine_biogas
+  - buildings_chp_engine_biogas-(biogas)
+buildings_chp_engine_biogas_dumped_heat:
+  sector: buildings
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - buildings_chp_engine_biogas_dumped_heat-(dumped_heat) -- d --> (dumped_heat)-buildings_chp_engine_biogas
+  slots:
+  - buildings_chp_engine_biogas_dumped_heat-(dumped_heat)
+  - (dumped_heat)-buildings_chp_engine_biogas_dumped_heat
 buildings_collective_chp_network_gas:
   sector: buildings
   use: energetic
