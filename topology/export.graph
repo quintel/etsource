@@ -259,6 +259,27 @@ buildings_appliances_wood_pellets:
   slots:
   - buildings_appliances_wood_pellets-(wood_pellets)
   - (not_defined)-buildings_appliances_wood_pellets
+buildings_chp_engine_biogas:
+  sector: buildings
+  use: energetic
+  energy_balance_group: local CHPs
+  links:
+  - buildings_chp_engine_biogas-(biogas) -- s --> (biogas)-energy_distribution_biogas
+  slots:
+  - ! '(loss)-buildings_chp_engine_biogas: {type: :loss}'
+  - (steam_hot_water)-buildings_chp_engine_biogas
+  - (dumped_heat)-buildings_chp_engine_biogas
+  - (electricity)-buildings_chp_engine_biogas
+  - buildings_chp_engine_biogas-(biogas)
+buildings_chp_engine_biogas_dumped_heat:
+  sector: buildings
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - buildings_chp_engine_biogas_dumped_heat-(dumped_heat) -- d --> (dumped_heat)-buildings_chp_engine_biogas
+  slots:
+  - buildings_chp_engine_biogas_dumped_heat-(dumped_heat)
+  - (dumped_heat)-buildings_chp_engine_biogas_dumped_heat
 buildings_collective_chp_network_gas:
   sector: buildings
   use: energetic
@@ -557,6 +578,7 @@ buildings_final_demand_steam_hot_water:
   - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_network_gas
   - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_chp_wood_pellets
   - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_collective_geothermal
+  - buildings_final_demand_steam_hot_water-(steam_hot_water) -- s --> (steam_hot_water)-buildings_chp_engine_biogas
   slots:
   - buildings_final_demand_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-buildings_final_demand_steam_hot_water
@@ -658,6 +680,7 @@ buildings_local_production_electricity:
   - buildings_local_production_electricity-(electricity) -- c --> (electricity)-buildings_solar_pv_solar_radiation
   - buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_network_gas
   - buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_collective_chp_wood_pellets
+  - buildings_local_production_electricity-(electricity) -- d --> (electricity)-buildings_chp_engine_biogas
   slots:
   - buildings_local_production_electricity-(electricity)
   - (electricity)-buildings_local_production_electricity
