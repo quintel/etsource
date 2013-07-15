@@ -1,16 +1,20 @@
-- factor = 100.0
-- id = 335
-- max_value = 5.0
-- min_value = -5.0
-- start_value = 0.0
-- unit = %
+# This will update the number_inhabitants of the Area
+# The slider is displayed in millions to the user.
+# The demand for the following converters will be
+
+- factor = 0.000001
+- id = 639
+- max_value_gql = present:AREA(number_inhabitants) * 0.000001 * 2
+- min_value_gql = present:AREA(number_inhabitants) * 0.000001 * 0.5
+- start_value_gql = present:AREA(number_inhabitants)
+- unit = #
 - update_period = future
-- update_type = %y
+- update_type = mixed
 - step_value = 0.1
 
 EACH(
   UPDATE(AREA(), number_inhabitants, USER_INPUT()),
-  UPDATE(
+  UPDATE_WITH_FACTOR(
     V(households_useful_demand_light,
       households_useful_demand_cooking_useable_heat,
       households_appliances_dishwasher_electricity,
@@ -22,6 +26,6 @@ EACH(
       households_appliances_computer_media_electricity,
       households_useful_demand_hot_water,
       transport_useful_demand_car_kms
-      ), preset_demand, USER_INPUT()
+      ), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_inhabitants) })
     )
   )
