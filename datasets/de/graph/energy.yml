@@ -103,6 +103,7 @@ energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energ
 energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_coal_rdr-(coal): {conversion: 1.0}
 (loss)-energy_chp_ultra_supercritical_coal_rdr: {}
+(steam_hot_water)-energy_chp_ultra_supercritical_coal_rdr: {conversion: 0.39}
 (electricity)-energy_chp_ultra_supercritical_coal_rdr: {}
 energy_chp_ultra_supercritical_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
@@ -128,6 +129,7 @@ energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets): {c
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal): {conversion: 0.5}
 (loss)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {}
 (electricity)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {}
+(steam_hot_water)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {conversion: 0.39}
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets) -- s --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets: {share: 1.0}
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
@@ -613,6 +615,8 @@ energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_wood_pellets: {share: 16933886074.0}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_import_steam_hot_water: {}
 energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_supercritical_waste_mix: {}
+energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_coal_rdr: {}
+energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {}
 
 :energy_heat_network_unused_steam_hot_water:
   :co2_free: 0.0
