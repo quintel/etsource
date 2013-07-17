@@ -143,11 +143,16 @@ column name, and you'll get the share value:
 SHARE(cng, cars) # => 0.5
 ```
 
+CSV files containing shares can be given whatever name you want, but it should
+be consistent across every region, i.e. if you add a "cng.csv" file to
+"datasets/nl/shares", then a similar file should be added for the other
+regions also.
+
 ##### CHP(node_key)
 
-Research data containing demands of CHP nodes is at "data/datasets/:area/chp"
-and can be accessed by calling `CHP()` with name of the node whose demand you
-want:
+Research data containing demands of CHP nodes is at
+"data/datasets/:area/chp.csv" and can be accessed by calling `CHP()` with name
+of the node whose demand you want:
 
 ```ruby
 CHP(households_collective_chp_network_gas) # => 0.0
