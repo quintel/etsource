@@ -97,7 +97,7 @@ After the attributes section may come an optional query, used by Tome to
 dynamically set an attribute on the document. The query may be split over as
 many lines as you wish, and each line does not need any special prefix.
 
-```
+```ruby
 EB(residential, gas) +
   EB(residential, electricity) +
   EB(residential, infinite_improbability_drive)
@@ -112,6 +112,55 @@ may be "child_share", "parent_share", or "demand":
 ```
 - sets = parent_share
 MY( SPECIAL( QUERY( 1.0 ) ) )
+```
+
+##### EB(use, carrier)
+
+The `EB()` function returns the value of a cell from the energy balance data.
+This data is stored in a CSV file in "data/energy_blanace". Supply the use
+(the name of a row in the CSV) with a carrier (a column name):
+
+```ruby
+EB(industry, electricity) # => 140673.72
+```
+
+##### AREA(attribute)
+
+Retrieve a single attribute value from the area data with the `AREA()`
+function. The area data is stored in "data/datasets/:area/:area.ad".
+
+```ruby
+AREA(coast_line) # => 451.0
+```
+
+##### SHARE(file_name, attribute)
+
+Files containing share data (application and technology splits) are found at
+"data/datasets/:area/shares". Provide the name of the share file, plus the
+column name, and you'll get the share value:
+
+```ruby
+SHARE(cng, cars) # => 0.5
+```
+
+##### CHP(node_key)
+
+Research data containing demands of CHP nodes is at "data/datasets/:area/chp"
+and can be accessed by calling `CHP()` with name of the node whose demand you
+want:
+
+```ruby
+CHP(households_collective_chp_network_gas) # => 0.0
+```
+
+##### CENTRAL_PRODUCTION(node_key)
+
+Like CHP data, the energy output of central production nodes is specified in
+a separate CSV file. This is at "data/datasets/:area/central_producers.csv".
+Provide the node key to retrieve the demand:
+
+```ruby
+CENTRAL_PRODUCTION(energy_power_solar_csp_solar_radiation) # => 5678.0
 ```
 
 #### Before Committing...
