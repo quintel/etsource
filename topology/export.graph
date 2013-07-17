@@ -995,6 +995,7 @@ energy_chp_ultra_supercritical_coal_rdr:
   - energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets)
   - energy_chp_ultra_supercritical_coal_rdr-(coal)
   - ! '(loss)-energy_chp_ultra_supercritical_coal_rdr: {type: :loss}'
+  - (steam_hot_water)-energy_chp_ultra_supercritical_coal_rdr
   - ! '(electricity)-energy_chp_ultra_supercritical_coal_rdr: {type: :carrier_efficient}'
 energy_chp_ultra_supercritical_cofiring_coal_rdr:
   sector: energy
@@ -1011,6 +1012,7 @@ energy_chp_ultra_supercritical_cofiring_coal_rdr:
   - energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal)
   - ! '(loss)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {type: :loss}'
   - ! '(electricity)-energy_chp_ultra_supercritical_cofiring_coal_rdr: {type: :carrier_efficient}'
+  - (steam_hot_water)-energy_chp_ultra_supercritical_cofiring_coal_rdr
 energy_chp_ultra_supercritical_lignite:
   sector: energy
   use: undefined
@@ -1604,6 +1606,8 @@ energy_heat_network_steam_hot_water:
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_heater_for_heat_network_wood_pellets
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- c --> (steam_hot_water)-energy_import_steam_hot_water
   - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_supercritical_waste_mix
+  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_coal_rdr
+  - energy_heat_network_steam_hot_water-(steam_hot_water) -- d --> (steam_hot_water)-energy_chp_ultra_supercritical_cofiring_coal_rdr
   slots:
   - energy_heat_network_steam_hot_water-(steam_hot_water)
   - (steam_hot_water)-energy_heat_network_steam_hot_water
