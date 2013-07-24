@@ -3745,7 +3745,7 @@ industry_aluminium_burner_network_gas:
   use: energetic
   energy_balance_group: technologies
   links:
-  - industry_aluminium_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  - industry_aluminium_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas
   slots:
   - industry_aluminium_burner_network_gas-(network_gas)
   - (useable_heat)-industry_aluminium_burner_network_gas
@@ -3982,7 +3982,7 @@ industry_final_demand_for_heat_network_gas:
   use: energetic
   energy_balance_group: application
   links:
-  - industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  - industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_other_network_gas
   slots:
   - industry_final_demand_for_heat_network_gas-(network_gas)
   - (network_gas)-industry_final_demand_for_heat_network_gas
@@ -4004,6 +4004,15 @@ industry_final_demand_for_metal_coal:
   slots:
   - industry_final_demand_for_metal_coal-(coal)
   - (coal)-industry_final_demand_for_metal_coal
+industry_final_demand_for_metal_coal_gas:
+  sector: industry
+  use: energetic
+  energy_balance_group: application
+  links:
+  - industry_final_demand_for_metal_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas
+  slots:
+  - industry_final_demand_for_metal_coal_gas-(coal_gas)
+  - (coal_gas)-industry_final_demand_for_metal_coal_gas
 industry_final_demand_for_metal_electricity:
   sector: industry
   use: energetic
@@ -4013,6 +4022,15 @@ industry_final_demand_for_metal_electricity:
   slots:
   - industry_final_demand_for_metal_electricity-(electricity)
   - (electricity)-industry_final_demand_for_metal_electricity
+industry_final_demand_for_metal_network_gas:
+  sector: industry
+  use: energetic
+  energy_balance_group: application
+  links:
+  - industry_final_demand_for_metal_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  slots:
+  - industry_final_demand_for_metal_network_gas-(network_gas)
+  - (network_gas)-industry_final_demand_for_metal_network_gas
 industry_final_demand_for_other_coal:
   sector: industry
   use: energetic
@@ -4022,6 +4040,15 @@ industry_final_demand_for_other_coal:
   slots:
   - industry_final_demand_for_other_coal-(coal)
   - (coal)-industry_final_demand_for_other_coal
+industry_final_demand_for_other_coal_gas:
+  sector: industry
+  use: energetic
+  energy_balance_group: application
+  links:
+  - industry_final_demand_for_other_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas
+  slots:
+  - industry_final_demand_for_other_coal_gas-(coal_gas)
+  - (coal_gas)-industry_final_demand_for_other_coal_gas
 industry_final_demand_for_other_electricity:
   sector: industry
   use: energetic
@@ -4031,6 +4058,15 @@ industry_final_demand_for_other_electricity:
   slots:
   - industry_final_demand_for_other_electricity-(electricity)
   - (electricity)-industry_final_demand_for_other_electricity
+industry_final_demand_for_other_network_gas:
+  sector: industry
+  use: energetic
+  energy_balance_group: application
+  links:
+  - industry_final_demand_for_other_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  slots:
+  - industry_final_demand_for_other_network_gas-(network_gas)
+  - (network_gas)-industry_final_demand_for_other_network_gas
 industry_final_demand_network_gas:
   sector: industry
   use: energetic
@@ -4109,7 +4145,7 @@ industry_other_metals_burner_network_gas:
   energy_balance_group: technologies
   links:
   - industry_other_metals_burner_network_gas-(coal) -- s --> (coal)-industry_final_demand_for_metal_coal
-  - industry_other_metals_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  - industry_other_metals_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas
   - industry_other_metals_burner_network_gas-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil
   slots:
   - industry_other_metals_burner_network_gas-(coal)
@@ -4179,8 +4215,8 @@ industry_steel_blastfurnace_burner_coal_gas:
   use: energetic
   energy_balance_group: technologies
   links:
-  - industry_steel_blastfurnace_burner_coal_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
-  - industry_steel_blastfurnace_burner_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas
+  - industry_steel_blastfurnace_burner_coal_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas
+  - industry_steel_blastfurnace_burner_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_for_metal_coal_gas
   slots:
   - industry_steel_blastfurnace_burner_coal_gas-(coal_gas)
   - industry_steel_blastfurnace_burner_coal_gas-(network_gas)
@@ -4209,7 +4245,7 @@ industry_steel_electricfurnace_burner_network_gas:
   use: energetic
   energy_balance_group: technologies
   links:
-  - industry_steel_electricfurnace_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas
+  - industry_steel_electricfurnace_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas
   slots:
   - industry_steel_electricfurnace_burner_network_gas-(network_gas)
   - (useable_heat)-industry_steel_electricfurnace_burner_network_gas
