@@ -16,7 +16,7 @@
 industry_aluminium_burner_network_gas-(network_gas): {conversion: 1.0}
 (useable_heat)-industry_aluminium_burner_network_gas: {conversion: 0.9}
 (loss)-industry_aluminium_burner_network_gas: {}
-industry_aluminium_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+industry_aluminium_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas: {share: 1.0}
 
 :industry_aluminium_carbothermalreduction_electricity:
   :co2_free: 0.0
@@ -336,7 +336,7 @@ industry_final_demand_for_heat_crude_oil-(crude_oil) -- s --> (crude_oil)-indust
   :demand_expected_value: 1970354786.58871
 industry_final_demand_for_heat_network_gas-(network_gas): {conversion: 1.0}
 (network_gas)-industry_final_demand_for_heat_network_gas: {conversion: 1.0}
-industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_other_network_gas: {share: 1.0}
 
 :industry_final_demand_for_heat_wood_pellets:
   :co2_free: 0.0
@@ -351,11 +351,23 @@ industry_final_demand_for_metal_coal-(coal): {conversion: 1.0}
 (coal)-industry_final_demand_for_metal_coal: {conversion: 1.0}
 industry_final_demand_for_metal_coal-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
 
+:industry_final_demand_for_metal_coal_gas:
+  :co2_free: 0.0
+industry_final_demand_for_metal_coal_gas-(coal_gas): {conversion: 1.0}
+(coal_gas)-industry_final_demand_for_metal_coal_gas: {conversion: 1.0}
+industry_final_demand_for_metal_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas: {share: 1.0}
+
 :industry_final_demand_for_metal_electricity:
   :co2_free: 0.0
 industry_final_demand_for_metal_electricity-(electricity): {conversion: 1.0}
 (electricity)-industry_final_demand_for_metal_electricity: {conversion: 1.0}
 industry_final_demand_for_metal_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+
+:industry_final_demand_for_metal_network_gas:
+  :co2_free: 0.0
+industry_final_demand_for_metal_network_gas-(network_gas): {conversion: 1.0}
+(network_gas)-industry_final_demand_for_metal_network_gas: {conversion: 1.0}
+industry_final_demand_for_metal_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
 
 :industry_final_demand_for_other_coal:
   :co2_free: 0.0
@@ -363,11 +375,23 @@ industry_final_demand_for_other_coal-(coal): {conversion: 1.0}
 (coal)-industry_final_demand_for_other_coal: {conversion: 1.0}
 industry_final_demand_for_other_coal-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
 
+:industry_final_demand_for_other_coal_gas:
+  :co2_free: 0.0
+industry_final_demand_for_other_coal_gas-(coal_gas): {conversion: 1.0}
+(coal_gas)-industry_final_demand_for_other_coal_gas: {conversion: 1.0}
+industry_final_demand_for_other_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas: {share: 1.0}
+
 :industry_final_demand_for_other_electricity:
   :co2_free: 0.0
 industry_final_demand_for_other_electricity-(electricity): {conversion: 1.0}
 (electricity)-industry_final_demand_for_other_electricity: {conversion: 1.0}
 industry_final_demand_for_other_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+
+:industry_final_demand_for_other_network_gas:
+  :co2_free: 0.0
+industry_final_demand_for_other_network_gas-(network_gas): {conversion: 1.0}
+(network_gas)-industry_final_demand_for_other_network_gas: {conversion: 1.0}
+industry_final_demand_for_other_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
 
 :industry_final_demand_network_gas:
   :co2_free: 0.0
@@ -446,7 +470,7 @@ industry_other_metals_burner_network_gas-(network_gas): {conversion: 1.0}
 (useable_heat)-industry_other_metals_burner_network_gas: {conversion: 0.9}
 (loss)-industry_other_metals_burner_network_gas: {}
 industry_other_metals_burner_network_gas-(coal) -- s --> (coal)-industry_final_demand_for_metal_coal: {share: 1.0}
-industry_other_metals_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+industry_other_metals_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas: {share: 1.0}
 industry_other_metals_burner_network_gas-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil: {share: 1.0}
 
 :industry_other_metals_process_electricity:
@@ -512,8 +536,8 @@ industry_steel_blastfurnace_burner_coal_gas-(coal_gas): {conversion: 0.665}
 industry_steel_blastfurnace_burner_coal_gas-(network_gas): {conversion: 0.335}
 (useable_heat)-industry_steel_blastfurnace_burner_coal_gas: {conversion: 0.9}
 (loss)-industry_steel_blastfurnace_burner_coal_gas: {}
-industry_steel_blastfurnace_burner_coal_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
-industry_steel_blastfurnace_burner_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_coal_gas: {share: 1.0}
+industry_steel_blastfurnace_burner_coal_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas: {share: 1.0}
+industry_steel_blastfurnace_burner_coal_gas-(coal_gas) -- s --> (coal_gas)-industry_final_demand_for_metal_coal_gas: {share: 1.0}
 
 :industry_steel_blastfurnace_current_consumption_useable_heat:
   :co2_free: 0.0
@@ -545,7 +569,7 @@ industry_steel_blastfurnace_current_consumption_useable_heat-(coupling_carrier) 
 industry_steel_electricfurnace_burner_network_gas-(network_gas): {conversion: 1.0}
 (useable_heat)-industry_steel_electricfurnace_burner_network_gas: {conversion: 0.9}
 (loss)-industry_steel_electricfurnace_burner_network_gas: {}
-industry_steel_electricfurnace_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
+industry_steel_electricfurnace_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_metal_network_gas: {share: 1.0}
 
 :industry_steel_electricfurnace_electricity:
   :co2_free: 0.0
