@@ -322,7 +322,7 @@ industry_final_demand_electricity_non_energetic-(electricity) -- f --> (electric
   :demand_expected_value: 499963883100.0
 industry_final_demand_for_heat_coal-(coal): {conversion: 1.0}
 (coal)-industry_final_demand_for_heat_coal: {conversion: 1.0}
-industry_final_demand_for_heat_coal-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
+industry_final_demand_for_heat_coal-(coal) -- s --> (coal)-industry_final_demand_for_other_coal: {share: 1.0}
 
 :industry_final_demand_for_heat_crude_oil:
   :co2_free: 0.0
@@ -345,11 +345,23 @@ industry_final_demand_for_heat_wood_pellets-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-industry_final_demand_for_heat_wood_pellets: {conversion: 1.0}
 industry_final_demand_for_heat_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-industry_final_demand_wood_pellets: {share: 1.0}
 
+:industry_final_demand_for_metal_coal:
+  :co2_free: 0.0
+industry_final_demand_for_metal_coal-(coal): {conversion: 1.0}
+(coal)-industry_final_demand_for_metal_coal: {conversion: 1.0}
+industry_final_demand_for_metal_coal-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
+
 :industry_final_demand_for_metal_electricity:
   :co2_free: 0.0
 industry_final_demand_for_metal_electricity-(electricity): {conversion: 1.0}
 (electricity)-industry_final_demand_for_metal_electricity: {conversion: 1.0}
 industry_final_demand_for_metal_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+
+:industry_final_demand_for_other_coal:
+  :co2_free: 0.0
+industry_final_demand_for_other_coal-(coal): {conversion: 1.0}
+(coal)-industry_final_demand_for_other_coal: {conversion: 1.0}
+industry_final_demand_for_other_coal-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
 
 :industry_final_demand_for_other_electricity:
   :co2_free: 0.0
@@ -433,7 +445,7 @@ industry_other_metals_burner_network_gas-(crude_oil): {conversion: 0.0}
 industry_other_metals_burner_network_gas-(network_gas): {conversion: 1.0}
 (useable_heat)-industry_other_metals_burner_network_gas: {conversion: 0.9}
 (loss)-industry_other_metals_burner_network_gas: {}
-industry_other_metals_burner_network_gas-(coal) -- s --> (coal)-industry_final_demand_coal: {share: 1.0}
+industry_other_metals_burner_network_gas-(coal) -- s --> (coal)-industry_final_demand_for_metal_coal: {share: 1.0}
 industry_other_metals_burner_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_network_gas: {share: 1.0}
 industry_other_metals_burner_network_gas-(crude_oil) -- s --> (crude_oil)-industry_final_demand_crude_oil: {share: 1.0}
 
