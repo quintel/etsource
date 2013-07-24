@@ -338,6 +338,12 @@ industry_final_demand_for_heat_network_gas-(network_gas): {conversion: 1.0}
 (network_gas)-industry_final_demand_for_heat_network_gas: {conversion: 1.0}
 industry_final_demand_for_heat_network_gas-(network_gas) -- s --> (network_gas)-industry_final_demand_for_other_network_gas: {share: 1.0}
 
+:industry_final_demand_for_heat_steam_hot_water:
+  :co2_free: 0.0
+industry_final_demand_for_heat_steam_hot_water-(useable_heat): {conversion: 1.0}
+(useable_heat)-industry_final_demand_for_heat_steam_hot_water: {conversion: 1.0}
+industry_final_demand_for_heat_steam_hot_water-(useable_heat) -- s --> (useable_heat)-industry_final_demand_for_other_steam_hot_water: {share: 1.0}
+
 :industry_final_demand_for_heat_wood_pellets:
   :co2_free: 0.0
   :demand_expected_value: 8990000000.0
@@ -693,7 +699,7 @@ industry_useful_demand_network_gas_non_energetic-(network_gas) -- s --> (network
   :preset_demand: 407346900000.0
 industry_useful_demand_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-industry_useful_demand_useable_heat: {conversion: 1.0}
-industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_for_other_steam_hot_water: {share: 0.0557755564115009}
+industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_for_heat_steam_hot_water: {share: 0.0557755564115009}
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_coal: {share: 0.17838358411467}
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_crude_oil: {share: 0.1987247233255}
 industry_useful_demand_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_burner_wood_pellets: {share: 0.0176557131034997}
