@@ -25,7 +25,7 @@ industry_aluminium_carbothermalreduction_electricity-(electricity): {conversion:
 industry_aluminium_carbothermalreduction_electricity-(useable_heat): {conversion: 0.101497504159734}
 (not_defined)-industry_aluminium_carbothermalreduction_electricity: {conversion: 0.0277315585135885}
 (loss)-industry_aluminium_carbothermalreduction_electricity: {}
-industry_aluminium_carbothermalreduction_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_aluminium_carbothermalreduction_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_aluminium_carbothermalreduction_electricity-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner_network_gas: {share: 1.0}
 
 :industry_aluminium_electrolysis_bat_electricity:
@@ -35,7 +35,7 @@ industry_aluminium_electrolysis_bat_electricity-(electricity): {conversion: 0.94
 industry_aluminium_electrolysis_bat_electricity-(useable_heat): {conversion: 0.0502917953999313}
 (not_defined)-industry_aluminium_electrolysis_bat_electricity: {conversion: 0.017164435290079}
 (loss)-industry_aluminium_electrolysis_bat_electricity: {}
-industry_aluminium_electrolysis_bat_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_aluminium_electrolysis_bat_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_aluminium_electrolysis_bat_electricity-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner_network_gas: {share: 1.0}
 
 :industry_aluminium_electrolysis_current_electricity:
@@ -45,7 +45,7 @@ industry_aluminium_electrolysis_current_electricity-(electricity): {conversion: 
 industry_aluminium_electrolysis_current_electricity-(useable_heat): {conversion: 0.0596479791395046}
 (not_defined)-industry_aluminium_electrolysis_current_electricity: {conversion: 0.0162972620599739}
 (loss)-industry_aluminium_electrolysis_current_electricity: {}
-industry_aluminium_electrolysis_current_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_aluminium_electrolysis_current_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_aluminium_electrolysis_current_electricity-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner_network_gas: {share: 1.0}
 
 :industry_aluminium_production:
@@ -65,7 +65,7 @@ industry_aluminium_smeltoven_electricity-(electricity): {conversion: 0.543640897
 industry_aluminium_smeltoven_electricity-(useable_heat): {conversion: 0.456359102244389}
 (not_defined)-industry_aluminium_smeltoven_electricity: {conversion: 0.124688279301746}
 (loss)-industry_aluminium_smeltoven_electricity: {}
-industry_aluminium_smeltoven_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_aluminium_smeltoven_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_aluminium_smeltoven_electricity-(useable_heat) -- s --> (useable_heat)-industry_aluminium_burner_network_gas: {share: 1.0}
 
 :industry_burner_coal:
@@ -345,6 +345,18 @@ industry_final_demand_for_heat_wood_pellets-(wood_pellets): {conversion: 1.0}
 (wood_pellets)-industry_final_demand_for_heat_wood_pellets: {conversion: 1.0}
 industry_final_demand_for_heat_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-industry_final_demand_wood_pellets: {share: 1.0}
 
+:industry_final_demand_for_metal_electricity:
+  :co2_free: 0.0
+industry_final_demand_for_metal_electricity-(electricity): {conversion: 1.0}
+(electricity)-industry_final_demand_for_metal_electricity: {conversion: 1.0}
+industry_final_demand_for_metal_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+
+:industry_final_demand_for_other_electricity:
+  :co2_free: 0.0
+industry_final_demand_for_other_electricity-(electricity): {conversion: 1.0}
+(electricity)-industry_final_demand_for_other_electricity: {conversion: 1.0}
+industry_final_demand_for_other_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+
 :industry_final_demand_network_gas:
   :co2_free: 0.0
   :demand_expected_value: 1086628508.01507
@@ -431,7 +443,7 @@ industry_other_metals_burner_network_gas-(crude_oil) -- s --> (crude_oil)-indust
 industry_other_metals_process_electricity-(electricity): {conversion: 1.0}
 (not_defined)-industry_other_metals_process_electricity: {conversion: 0.5}
 (loss)-industry_other_metals_process_electricity: {}
-industry_other_metals_process_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_other_metals_process_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 
 :industry_other_metals_process_heat_useable_heat:
   :co2_free: 0.0
@@ -465,7 +477,7 @@ industry_steel_blastfurnace_bat_consumption_useable_heat-(useable_heat): {conver
 industry_steel_blastfurnace_bat_consumption_useable_heat-(coupling_carrier): {conversion: 2.58060403490938, reset_to_zero: true}
 (not_defined)-industry_steel_blastfurnace_bat_consumption_useable_heat: {conversion: 0.217578040136267}
 (loss)-industry_steel_blastfurnace_bat_consumption_useable_heat: {}
-industry_steel_blastfurnace_bat_consumption_useable_heat-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_blastfurnace_bat_consumption_useable_heat-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_steel_blastfurnace_bat_consumption_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner_coal_gas: {share: 1.0}
 industry_steel_blastfurnace_bat_consumption_useable_heat-(coupling_carrier) -- s --> (coupling_carrier)-energy_steel_blastfurnace_bat_transformation_cokes: {share: 1.0}
 
@@ -499,7 +511,7 @@ industry_steel_blastfurnace_current_consumption_useable_heat-(useable_heat): {co
 industry_steel_blastfurnace_current_consumption_useable_heat-(coupling_carrier): {conversion: 2.58060403490938, reset_to_zero: true}
 (not_defined)-industry_steel_blastfurnace_current_consumption_useable_heat: {conversion: 0.19582023612264}
 (loss)-industry_steel_blastfurnace_current_consumption_useable_heat: {}
-industry_steel_blastfurnace_current_consumption_useable_heat-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_blastfurnace_current_consumption_useable_heat-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_steel_blastfurnace_current_consumption_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_steel_blastfurnace_burner_coal_gas: {share: 1.0}
 industry_steel_blastfurnace_current_consumption_useable_heat-(coupling_carrier) -- s --> (coupling_carrier)-energy_steel_blastfurnace_current_transformation_cokes: {share: 1.0}
 
@@ -530,7 +542,7 @@ industry_steel_electricfurnace_electricity-(electricity): {conversion: 0.5027494
 industry_steel_electricfurnace_electricity-(useable_heat): {conversion: 0.497250589159466}
 (not_defined)-industry_steel_electricfurnace_electricity: {conversion: 0.111722091297896}
 (loss)-industry_steel_electricfurnace_electricity: {}
-industry_steel_electricfurnace_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_electricfurnace_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_steel_electricfurnace_electricity-(useable_heat) -- s --> (useable_heat)-industry_steel_electricfurnace_burner_network_gas: {share: 1.0}
 
 :industry_steel_hisarna_consumption_useable_heat:
@@ -541,7 +553,7 @@ industry_steel_hisarna_consumption_useable_heat-(useable_heat): {conversion: 0.9
 industry_steel_hisarna_consumption_useable_heat-(coupling_carrier): {conversion: 1.52560238625332, reset_to_zero: true}
 (not_defined)-industry_steel_hisarna_consumption_useable_heat: {conversion: 0.0984095719727931}
 (loss)-industry_steel_hisarna_consumption_useable_heat: {}
-industry_steel_hisarna_consumption_useable_heat-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_steel_hisarna_consumption_useable_heat-(electricity) -- s --> (electricity)-industry_final_demand_for_metal_electricity: {share: 1.0}
 industry_steel_hisarna_consumption_useable_heat-(useable_heat) -- s --> (useable_heat)-industry_final_demand_steam_hot_water: {share: 1.0}
 industry_steel_hisarna_consumption_useable_heat-(coupling_carrier) -- s --> (coupling_carrier)-energy_steel_hisarna_transformation_coal: {share: 1.0}
 
@@ -588,7 +600,7 @@ industry_useful_demand_crude_oil_non_energetic-(crude_oil) -- s --> (crude_oil)-
   :preset_demand: 718199459.213336
 industry_useful_demand_electricity-(electricity): {conversion: 1.0}
 (electricity)-industry_useful_demand_electricity: {conversion: 1.0}
-industry_useful_demand_electricity-(electricity) -- s --> (electricity)-industry_final_demand_electricity: {share: 1.0}
+industry_useful_demand_electricity-(electricity) -- s --> (electricity)-industry_final_demand_for_other_electricity: {share: 1.0}
 
 :industry_useful_demand_electricity_non_energetic:
   :co2_free: 1.0
