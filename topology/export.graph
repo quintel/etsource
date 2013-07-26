@@ -4360,7 +4360,15 @@ industry_transformation_generic_coal:
   slots:
   - industry_transformation_generic_coal-(coal)
   - (coal)-industry_transformation_generic_coal
-  - ! '(loss)-industry_transformation_generic_coal: {type: :loss}'
+industry_transformation_generic_losses_coal:
+  sector: industry
+  use: energetic
+  energy_balance_group: distribution
+  links:
+  - industry_transformation_generic_losses_coal-(coal) -- s --> (coal)-industry_transformation_generic_coal
+  slots:
+  - industry_transformation_generic_losses_coal-(coal)
+  - ! '(loss)-industry_transformation_generic_losses_coal: {type: :loss}'
 industry_unused_local_production_steam_hot_water:
   sector: industry
   use: energetic
