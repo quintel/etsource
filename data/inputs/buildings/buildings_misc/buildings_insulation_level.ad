@@ -1,15 +1,18 @@
 - id = 381
-- query =
-    UPDATE(
-      FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))),
-      share,
-      (1 - ((1 - 0.2) * AREA(insulation_level_buildings) / USER_INPUT() + 0.2))
-    )
 - priority = 0
-- max_value = 4.0
-- min_value = 1.0
-- start_value = 1.0
-- step_value = 0.1
 - factor = 1.0
+- id = 381
+- max_value = 3.0
+- min_value = 0.91
+- start_value = 0.91
 - update_period = future
+- step_value = 0.1
 - dependent_on = has_buildings
+- query =
+x = - 4396.5 + 7330.0 * USER_INPUT();
+y = 1.0 - 0.74 / (USER_INPUT() - 0.17);
+EACH(
+  UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, x),
+  UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))), share, y)
+)
+
