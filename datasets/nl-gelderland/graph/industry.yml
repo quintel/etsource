@@ -650,8 +650,14 @@ industry_steel_production-(not_defined) -- s --> (not_defined)-industry_steel_el
   :demand_expected_value: 1136813100.00389
 industry_transformation_generic_coal-(coal): {conversion: 1.0}
 (coal)-industry_transformation_generic_coal: {conversion: 1.0}
-(loss)-industry_transformation_generic_coal: {}
 industry_transformation_generic_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
+
+:industry_transformation_generic_losses_coal:
+  :co2_free: 0.0
+  :preset_demand: 0.0
+industry_transformation_generic_losses_coal-(coal): {conversion: 1.0}
+(loss)-industry_transformation_generic_losses_coal: {}
+industry_transformation_generic_losses_coal-(coal) -- s --> (coal)-industry_transformation_generic_coal: {share: 1.0}
 
 :industry_unused_local_production_steam_hot_water:
   :co2_free: 0.0
