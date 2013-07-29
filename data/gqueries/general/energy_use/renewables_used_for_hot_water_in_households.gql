@@ -3,7 +3,17 @@
 - unit = mj
 
 SUM(
-  V(Q(hot_water_converters_in_households),"input_of_wood_pellets + input_of_ambient_heat + input_of_solar_thermal + input_of_solar_radiation + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas "),
-  V(Q(hot_water_converters_in_households),"input_of_network_gas * sustainability_share"),
-  NEG(Q(gas_allocated_to_electricity_production_in_households_hot_water))
+  V(Q(hot_water_converters_in_households),
+  "input_of_wood_pellets + 
+  input_of_ambient_heat + 
+  input_of_solar_thermal + 
+  input_of_solar_radiation + 
+  input_of_greengas + 
+  input_of_biodiesel + 
+  input_of_bio_ethanol + 
+  input_of_algae_diesel + 
+  input_of_biogas + 
+  input_of_network_gas * sustainability_share"
+  ),
+  NEG(Q(gas_allocated_to_electricity_production_in_households_hot_water) * V(energy_national_gas_network_natural_gas, "sustainability_share"))
 )
