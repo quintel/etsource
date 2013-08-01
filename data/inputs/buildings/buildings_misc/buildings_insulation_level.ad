@@ -3,16 +3,21 @@
 - factor = 1.0
 - id = 381
 - max_value = 3.0
-- min_value = 0.91
-- start_value = 0.91
+- min_value = 0.9
+- start_value = 0.9
 - update_period = future
 - step_value = 0.1
 - dependent_on = has_buildings
 - query =
-x = - 4396.5 + 7330.0 * USER_INPUT();
-y = 1.0 - 0.74 / (USER_INPUT() - 0.17);
+
+cost_per_building = AREA(buildings_insulation_cost_constant_1) + AREA(buildings_insulation_cost_constant_2) * USER_INPUT();
+total_cost = cost_per_building * AREA(number_buildings);
+saving_fraction = 1.0 - AREA(buildings_insulation_constant_1) / (USER_INPUT() - AREA(buildings_insulation_constant_2));
+employment_per_building = AREA(buildings_insulation_employment_constant_1) + AREA(buildings_insulation_employment_constant_2) * USER_INPUT();
+total_employment = employment_per_building * AREA(number_buildings);
+
 EACH(
-  UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, x),
-  UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))), share, y)
-)
+UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, total_cost),
+UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))), share, saving_fraction),
+UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_cooling),useable_heat))), share, saving_fraction))
 
