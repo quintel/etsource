@@ -2052,7 +2052,7 @@ energy_power_hv_network_loss:
   - energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_electricity
   slots:
   - energy_power_hv_network_loss-(loss)
-  - (electricity)-energy_power_hv_network_loss
+  - ! '(loss)-energy_power_hv_network_loss: {type: :loss}'
 energy_power_hydro_mountain:
   sector: energy
   use: undefined
@@ -3356,22 +3356,6 @@ households_space_heater_wood_pellets:
   - households_space_heater_wood_pellets-(wood_pellets)
   - ! '(loss)-households_space_heater_wood_pellets: {type: :loss}'
   - (useable_heat)-households_space_heater_wood_pellets
-households_useful_demand_clothes_dryer:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_clothes_dryer-(not_defined)
-  - ! '(loss)-households_useful_demand_clothes_dryer: {type: :loss}'
-households_useful_demand_computer_media:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_computer_media-(not_defined)
-  - ! '(loss)-households_useful_demand_computer_media: {type: :loss}'
 households_useful_demand_cooking_useable_heat:
   sector: households
   use: energetic
@@ -3385,14 +3369,6 @@ households_useful_demand_cooking_useable_heat:
   slots:
   - households_useful_demand_cooking_useable_heat-(useable_heat)
   - ! '(loss)-households_useful_demand_cooking_useable_heat: {type: :loss}'
-households_useful_demand_dishwasher:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_dishwasher-(not_defined)
-  - ! '(loss)-households_useful_demand_dishwasher: {type: :loss}'
 households_useful_demand_for_cooling_after_insulation:
   sector: households
   use: energetic
@@ -3546,14 +3522,6 @@ households_useful_demand_for_space_heating_after_insulation_for_houses_with_sola
   slots:
   - households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-(useable_heat)
   - (useable_heat)-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater
-households_useful_demand_fridge_freezer:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_fridge_freezer-(not_defined)
-  - ! '(loss)-households_useful_demand_fridge_freezer: {type: :loss}'
 households_useful_demand_hot_water:
   sector: households
   use: energetic
@@ -3575,38 +3543,6 @@ households_useful_demand_light:
   slots:
   - households_useful_demand_light-(light)
   - ! '(loss)-households_useful_demand_light: {type: :loss}'
-households_useful_demand_other_appliances:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_other_appliances-(not_defined)
-  - ! '(loss)-households_useful_demand_other_appliances: {type: :loss}'
-households_useful_demand_television:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_television-(not_defined)
-  - ! '(loss)-households_useful_demand_television: {type: :loss}'
-households_useful_demand_vacuum_cleaner:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_vacuum_cleaner-(not_defined)
-  - ! '(loss)-households_useful_demand_vacuum_cleaner: {type: :loss}'
-households_useful_demand_washing_machine:
-  sector: households
-  use: energetic
-  energy_balance_group: useful consumption
-  links: 
-  slots:
-  - households_useful_demand_washing_machine-(not_defined)
-  - ! '(loss)-households_useful_demand_washing_machine: {type: :loss}'
 households_water_heater_coal:
   sector: households
   use: energetic
