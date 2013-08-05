@@ -1,12 +1,13 @@
 # The total man-years spent in NL on insulation.
 
-- query =
-    PRODUCT(
-      SUM(
-    	  PRODUCT(V(households_old_houses_heating_savings_from_insulation,demand), AREA(man_year_per_mj_insulation_per_year)),
-    	  PRODUCT(V(households_new_houses_heating_savings_from_insulation,demand), AREA(man_year_per_mj_insulation_per_year)),
-    	  PRODUCT(V(buildings_heating_savings_from_insulation_useable_heat,demand), AREA(man_year_per_mj_insulation_per_year))
-    	  ),
-    	AREA(economic_multiplier)
-    )
 - unit = man_years
+- query =
+
+PRODUCT(
+  SUM(
+    Q(insulation_old_houses_employment),
+    Q(insulation_new_houses_employment),
+    Q(insulation_buildings_employment)
+	  ),
+	AREA(economic_multiplier)
+)
