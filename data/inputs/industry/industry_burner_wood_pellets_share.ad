@@ -1,17 +1,18 @@
-- factor = 100.0
 - id = 219
+- query =
+    EACH(
+      UPDATE(LINK(industry_burner_wood_pellets,industry_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(industry_useful_demand_useable_heat,industry_burner_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(industry_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = ind_heat
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 3.5
+- start_value_gql = present:V(industry_burner_wood_pellets,share_of_industry_useful_demand_useable_heat)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = ind_heat
-- start_value_gql = present:V(industry_burner_wood_pellets,share_of_industry_useful_demand_useable_heat)
-
-EACH(
-            UPDATE(LINK(industry_burner_wood_pellets,industry_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
-            UPDATE(LINK(industry_useful_demand_useable_heat,industry_burner_network_gas), share,
-              ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(industry_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
-            )
-          )

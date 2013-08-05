@@ -1,8 +1,7 @@
 # this query returns the present number of old houses calculated from the area data 'number_households' and 'percentage_of_new_houses'
 # this query is used to set the max cap of the slider 'households_number_of old houses'
 
+- query =
+    percentage_of_old_houses = 100 - AREA(percentage_of_new_houses);
+    AREA(number_households) * (percentage_of_old_houses / 100)
 - unit = number
-
-percentage_of_old_houses = 100 - AREA(percentage_of_new_houses);
-
-AREA(number_households) * (percentage_of_old_houses / 100)

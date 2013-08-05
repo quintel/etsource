@@ -1,12 +1,12 @@
-- factor = 100.0
 - id = 427
+- query = UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(transport_train_using_coal),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
+- share_group = transport_train_tech
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 1.0
+- start_value_gql = present:V(transport_train_using_coal,share_of_transport_useful_demand_trains)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = transport_train_tech
-- start_value_gql = present:V(transport_train_using_coal,share_of_transport_useful_demand_trains)
-
-UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(transport_train_using_coal),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))

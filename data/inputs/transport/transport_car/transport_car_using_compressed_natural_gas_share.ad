@@ -1,17 +1,18 @@
-- factor = 100.0
 - id = 239
+- query =
+    EACH(
+      UPDATE(LINK(transport_car_using_compressed_natural_gas,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = transport_car_tech
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 1.0
+- start_value_gql = present:V(transport_car_using_compressed_natural_gas,share_of_transport_useful_demand_car_kms)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = transport_car_tech
-- start_value_gql = present:V(transport_car_using_compressed_natural_gas,share_of_transport_useful_demand_car_kms)
-
-EACH(
-            UPDATE(LINK(transport_car_using_compressed_natural_gas,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
-            UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share,
-              ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
-            )
-          )

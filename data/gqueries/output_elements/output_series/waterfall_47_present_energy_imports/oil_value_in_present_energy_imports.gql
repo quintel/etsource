@@ -1,10 +1,7 @@
-
-#
-
+- query =
+    present:DIVIDE(SUM(
+    	V(G(energy_import),output_of_crude_oil),
+    	NEG(V(G(energy_export),input_of_crude_oil))
+    	)
+    ,BILLIONS)
 - unit = pj
-
-present:DIVIDE(SUM(
-	V(G(energy_import),output_of_crude_oil),
-	NEG(V(G(energy_export),input_of_crude_oil))
-	)
-,BILLIONS)

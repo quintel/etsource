@@ -1,29 +1,30 @@
-- factor = 100.0
 - id = 16
+- query =
+    UPDATE(
+      V(
+        agriculture_chp_engine_biogas,
+        agriculture_chp_engine_network_gas,
+        energy_chp_combined_cycle_network_gas,
+        energy_power_combined_cycle_ccs_network_gas,
+        energy_power_combined_cycle_network_gas,
+        energy_power_turbine_network_gas,
+        energy_power_ultra_supercritical_network_gas,
+        households_collective_chp_biogas,
+        households_collective_chp_network_gas,
+        industry_chp_combined_cycle_gas_power_fuelmix,
+        industry_chp_engine_gas_power_fuelmix,
+        industry_chp_turbine_gas_power_fuelmix,
+        other_chp_engine_biogas,
+        other_chp_engine_network_gas,
+        buildings_collective_chp_network_gas
+      ), initial_investment, USER_INPUT()
+    )
+- priority = 0
 - max_value = 300.0
 - min_value = -100.0
 - start_value = 0.0
+- step_value = 1.0
+- factor = 100.0
 - unit = %
 - update_period = future
 - update_type = %
-- step_value = 1.0
-
-UPDATE(
-  V(
-    agriculture_chp_engine_biogas,
-    agriculture_chp_engine_network_gas,
-    energy_chp_combined_cycle_network_gas,
-    energy_power_combined_cycle_ccs_network_gas,
-    energy_power_combined_cycle_network_gas,
-    energy_power_turbine_network_gas,
-    energy_power_ultra_supercritical_network_gas,
-    households_collective_chp_biogas,
-    households_collective_chp_network_gas,
-    industry_chp_combined_cycle_gas_power_fuelmix,
-    industry_chp_engine_gas_power_fuelmix,
-    industry_chp_turbine_gas_power_fuelmix,
-    other_chp_engine_biogas,
-    other_chp_engine_network_gas,
-    buildings_collective_chp_network_gas
-  ), initial_investment, USER_INPUT()
-)

@@ -1,17 +1,17 @@
 # The share of coal in the primary demand (excluding imported_electricity)
 
+- query =
+    DIVIDE(
+    SUM(
+      V(G(final_demand_cbs), primary_demand_of_coal),
+      V(G(final_demand_cbs), primary_demand_of_lignite)
+       )
+    ,
+    SUM(
+      V(G(final_demand_cbs), primary_demand),
+      NEG(SUM(
+          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          ))
+       )
+    )
 - unit = factor
-
-DIVIDE(
-  SUM(
-    V(G(final_demand_cbs), primary_demand_of_coal),
-    V(G(final_demand_cbs), primary_demand_of_lignite)
-     )
-  ,
-  SUM(
-    V(G(final_demand_cbs), primary_demand),
-    NEG(SUM(
-        V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-        ))
-     )
-  )

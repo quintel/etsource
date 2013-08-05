@@ -1,15 +1,16 @@
-- factor = 100.0
 - id = 347
+- query =
+    UPDATE(
+      V(OUTPUT_SLOTS(LOOKUP(households_water_heater_resistive_electricity),useable_heat), "links.detect{|l| !l.flexible? }"),
+      share, USER_INPUT() / 100.0
+    )
+- share_group = hot_water_households
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 0.0
+- start_value_gql = present:Q(share_of_electric_boiler_in_hot_water_production_in_households)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = hot_water_households
-- start_value_gql = present:Q(share_of_electric_boiler_in_hot_water_production_in_households)
-
-UPDATE(
-  V(OUTPUT_SLOTS(LOOKUP(households_water_heater_resistive_electricity),useable_heat), "links.detect{|l| !l.flexible? }"),
-  share, USER_INPUT() / 100.0
-)

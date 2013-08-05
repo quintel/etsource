@@ -1,16 +1,17 @@
-- factor = 100.0
 - id = 400
+- query =
+    EACH(
+      UPDATE(LINK(buildings_lighting_standard_fluorescent_electricity,buildings_useful_demand_after_motion_detection_daylight_control_light), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(buildings_useful_demand_after_motion_detection_daylight_control_light,buildings_lighting_standard_fluorescent_electricity), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_motion_detection_daylight_control_light)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = lighting_buildings
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
+- start_value_gql = present:V(buildings_lighting_standard_fluorescent_electricity,share_of_buildings_useful_demand_after_motion_detection_daylight_control_light)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = lighting_buildings
-- start_value_gql = present:V(buildings_lighting_standard_fluorescent_electricity,share_of_buildings_useful_demand_after_motion_detection_daylight_control_light)
-
-EACH(
-            UPDATE(LINK(buildings_lighting_standard_fluorescent_electricity,buildings_useful_demand_after_motion_detection_daylight_control_light), share, DIVIDE(USER_INPUT(),100)),
-            UPDATE(LINK(buildings_useful_demand_after_motion_detection_daylight_control_light,buildings_lighting_standard_fluorescent_electricity), share,
-              ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_motion_detection_daylight_control_light)),UPDATE_COLLECTION()), share))), 1)}
-            )
-          )

@@ -1,11 +1,11 @@
-- deprecated_key = pl_hv_net_capacity_buffer_total_check
 # Checks if the total installed (de)central capacity is larger than a given buffer (1600MW)
 # If true, HV-network investments are required
 # See Q(total_investmetns_costs_of_hv_net)
 
+- query =
+    GREATER(
+        Q(hv_net_delta_capacity_total),
+        AREA(capacity_buffer_in_mj_s)
+    )
 - unit = boolean
-
-GREATER(
-    Q(hv_net_delta_capacity_total),
-    AREA(capacity_buffer_in_mj_s)
-)
+- deprecated_key = pl_hv_net_capacity_buffer_total_check

@@ -1,14 +1,14 @@
 # should be checked with: Q: households_cooling_electricity
 
+- query =
+    PRODUCT(
+        Q(electricity_used_for_cooling_in_households) /
+        V(Q(cooling_converters_in_households),demand).sum
+      ,
+        V(
+          households_useful_demand_for_cooling_after_insulation,
+          input_of_cooling
+        )
+    )
 - unit = mj
 - deprecated_key = cooling_from_electricity
-
-PRODUCT(
-    Q(electricity_used_for_cooling_in_households) /
-    V(Q(cooling_converters_in_households),demand).sum
-  ,
-    V(
-      households_useful_demand_for_cooling_after_insulation,
-      input_of_cooling
-    )
-)

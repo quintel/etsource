@@ -1,32 +1,32 @@
 # This query calculates what share of the useful output of the households_space_heater_heatpump_add_on_electricity is going to space heating
 # Note: this query might return an error in case the denominator is zero
 
+- query =
+    DIVIDE(
+      V(
+        LINK(
+          households_space_heater_heatpump_add_on_electricity,
+          households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
+        ), 
+        value
+      )
+    ,
+      SUM(
+        V(
+          LINK(
+            households_space_heater_heatpump_add_on_electricity,
+            households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
+          ), 
+          value
+        )
+      ,
+        V(
+          LINK(
+            households_space_heater_heatpump_add_on_electricity,
+            households_useful_demand_for_hot_water_for_houses_with_add_on
+          ), 
+          value
+        )
+      )
+    )
 - unit = factor
-
-DIVIDE(
-  V(
-    LINK(
-      households_space_heater_heatpump_add_on_electricity,
-      households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
-    ), 
-    value
-  )
-,
-  SUM(
-    V(
-      LINK(
-        households_space_heater_heatpump_add_on_electricity,
-        households_useful_demand_for_space_heating_after_insulation_for_houses_with_add_on
-      ), 
-      value
-    )
-  ,
-    V(
-      LINK(
-        households_space_heater_heatpump_add_on_electricity,
-        households_useful_demand_for_hot_water_for_houses_with_add_on
-      ), 
-      value
-    )
-  )
-)

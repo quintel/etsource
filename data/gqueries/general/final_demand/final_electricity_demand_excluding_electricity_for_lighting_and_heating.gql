@@ -1,27 +1,25 @@
-# 
-
+- query =
+    DIVIDE(
+     SUM(
+      V(
+       households_final_demand_for_cooling_electricity,
+       households_final_demand_for_cooking_electricity,
+       households_final_demand_for_appliances_electricity,
+       buildings_final_demand_for_cooling_electricity,
+       buildings_final_demand_for_appliances_electricity,
+       other_final_demand_electricity,
+       agriculture_final_demand_electricity,
+       industry_final_demand_electricity,
+       other_final_demand_electricity,output_of_electricity
+      ),
+      NEG(
+       SUM(
+        V(
+         agriculture_heatpump_water_water_ts_electricity,
+         agriculture_geothermal,input_of_electricity
+        )
+       )
+      )
+    ),BILLIONS)
 - unit = pj
 - deprecated_key = electricity_growth
-
-DIVIDE(
- SUM(
-  V(
-   households_final_demand_for_cooling_electricity,
-   households_final_demand_for_cooking_electricity,
-   households_final_demand_for_appliances_electricity,
-   buildings_final_demand_for_cooling_electricity,
-   buildings_final_demand_for_appliances_electricity,
-   other_final_demand_electricity,
-   agriculture_final_demand_electricity,
-   industry_final_demand_electricity,
-   other_final_demand_electricity,output_of_electricity
-  ),
-  NEG(
-   SUM(
-    V(
-     agriculture_heatpump_water_water_ts_electricity,
-     agriculture_geothermal,input_of_electricity
-    )
-   )
-  )
-),BILLIONS)

@@ -1,12 +1,12 @@
 # This is the loss of the energy export.
 
+- query =
+    SUM(
+      PRODUCT(
+        V(energy_export_electricity,demand),
+        INVERSE(V(energy_power_hv_network_electricity,electricity_output_conversion))
+      ),
+      NEG(V(energy_export_electricity,demand))
+    )
 - unit = mj
 - deprecated_key = electricity_export_losses
-
-SUM(
-  PRODUCT(
-    V(energy_export_electricity,demand),
-    INVERSE(V(energy_power_hv_network_electricity,electricity_output_conversion))
-  ),
-  NEG(V(energy_export_electricity,demand))
-)

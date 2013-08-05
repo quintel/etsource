@@ -1,16 +1,17 @@
-- factor = 100.0
 - id = 409
+- query =
+    EACH(
+      UPDATE(LINK(buildings_space_heater_crude_oil,buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,buildings_space_heater_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = heating_buildings
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
+- start_value_gql = present:V(buildings_space_heater_crude_oil,share_of_buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = heating_buildings
-- start_value_gql = present:V(buildings_space_heater_crude_oil,share_of_buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)
-
-EACH(
-            UPDATE(LINK(buildings_space_heater_crude_oil,buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery), share, DIVIDE(USER_INPUT(),100)),
-            UPDATE(LINK(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery,buildings_space_heater_network_gas), share,
-              ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery)),UPDATE_COLLECTION()), share))), 1)}
-            )
-          )

@@ -1,9 +1,8 @@
 # This is the compliment to the available production capacity
 # It is the production capacity that is volatile and hence does not contribute to security of supply
-#
 
+- query =
+    SUM(
+      V(G(electricity_production),"installed_production_capacity_in_mw_electricity*availability*variability")
+    )
 - unit = mw
-
-SUM(
-    V(G(electricity_production),"installed_production_capacity_in_mw_electricity*availability*variability")
-  )

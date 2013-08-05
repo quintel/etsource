@@ -1,13 +1,14 @@
-- factor = 100.0
 - id = 636
+- query =
+    UPDATE(
+      V(households_useful_demand_cooking_useable_heat), preset_demand, USER_INPUT()
+    )
+- priority = 0
 - max_value = 5.0
 - min_value = -5.0
 - start_value = 0.0
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
 - update_type = %y
-- step_value = 0.1
-
-UPDATE(
-  V(households_useful_demand_cooking_useable_heat), preset_demand, USER_INPUT()
-)

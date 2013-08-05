@@ -1,12 +1,11 @@
 # The total man-years spent in NL on preparation, production, placement, maintenance and removal.
 
+- query =
+    SUM(
+    	V(Q(total_man_years_preparation)),
+    	V(Q(total_man_years_production)),
+    	V(Q(total_man_years_placement)),
+    	V(Q(total_man_years_maintenance)),
+    	V(Q(total_man_years_removal))
+    )
 - unit = man_years
-
-
-SUM(
-	V(Q(total_man_years_preparation)),
-	V(Q(total_man_years_production)),
-	V(Q(total_man_years_placement)),
-	V(Q(total_man_years_maintenance)),
-	V(Q(total_man_years_removal))
-)

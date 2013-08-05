@@ -1,16 +1,16 @@
 # Sums up the costs. Only for the Netherlands the netwerk costs are included.
 
-- deprecated_key = cost_total
-- unit = euro
-
-SUM(
-    Q(costs_of_produced_heat_plus_insulation),
-    Q(costs_of_used_electricity),
-    Q(costs_of_transport_fuels),
-    Q(total_costs_of_energy_sector),
-    Q(costs_of_non_energetic_demand),
-    IF(EQUALS(AREA(area),nl),
-        -> { Q(network_total_costs) },
-        0
+- query =
+    SUM(
+        Q(costs_of_produced_heat_plus_insulation),
+        Q(costs_of_used_electricity),
+        Q(costs_of_transport_fuels),
+        Q(total_costs_of_energy_sector),
+        Q(costs_of_non_energetic_demand),
+        IF(EQUALS(AREA(area),nl),
+            -> { Q(network_total_costs) },
+            0
+        )
     )
-)
+- unit = euro
+- deprecated_key = cost_total

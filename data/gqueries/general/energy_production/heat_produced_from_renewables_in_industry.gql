@@ -1,9 +1,9 @@
 # Heat produced from biomass, including the heat from greengas in the gas burner.
 
+- query =
+    SUM(
+      V(industry_burner_wood_pellets,output_of_heat_carriers),
+      V(industry_burner_network_gas,"output_of_heat_carriers * sustainability_share")
+    )
 - unit = mj
 - deprecated_key = heat_from_biomass_industry
-
-SUM(
-  V(industry_burner_wood_pellets,output_of_heat_carriers),
-  V(industry_burner_network_gas,"output_of_heat_carriers * sustainability_share")
-)

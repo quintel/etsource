@@ -1,14 +1,14 @@
 # This determines the amount of heat from gas, minus which is produced with greengas
 
+- query =
+    SUM(
+      V(industry_burner_network_gas,output_of_heat_carriers),
+      NEG(
+        V(
+          industry_burner_network_gas,
+          "output_of_heat_carriers * sustainability_share"
+        )
+      )
+    )
 - unit = mj
 - deprecated_key = heat_from_gas_industry
-
-SUM(
-  V(industry_burner_network_gas,output_of_heat_carriers),
-  NEG(
-    V(
-      industry_burner_network_gas,
-      "output_of_heat_carriers * sustainability_share"
-    )
-  )
-)

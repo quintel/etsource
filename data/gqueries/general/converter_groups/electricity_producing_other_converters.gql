@@ -1,16 +1,14 @@
-# 
-
+- query =
+    EXCLUDE(
+      G(electricity_production),
+      V(
+        Q(electricity_producing_coal_converters),
+        Q(electricity_producing_oil_converters), 
+        Q(electricity_producing_gas_converters),
+        Q(electricity_producing_nuclear_converters),
+        Q(electricity_producing_wind_converters),
+        Q(electricity_producing_wood_pellets_converters)
+      )
+    )
 - unit = converters
 - deprecated_key = other_plants
-
-EXCLUDE(
-  G(electricity_production),
-  V(
-    Q(electricity_producing_coal_converters),
-    Q(electricity_producing_oil_converters), 
-    Q(electricity_producing_gas_converters),
-    Q(electricity_producing_nuclear_converters),
-    Q(electricity_producing_wind_converters),
-    Q(electricity_producing_wood_pellets_converters)
-  )
-)

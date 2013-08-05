@@ -1,12 +1,12 @@
-- deprecated_key = check_divide_primary_by_useful_demand
 # primary_demand_of_useful_demand
 # =
-# primary_demand_of_final_demand 
+# primary_demand_of_final_demand
 # =
 # primary_demand_of_primary_excl_elec_export
 
+- query =
+    DIVIDE(
+    Q(production_and_import_minus_primary_demand_of_export),
+    Q(primary_demand_of_useful_demand))
 - unit = factor
-
-DIVIDE(
-Q(production_and_import_minus_primary_demand_of_export),
-Q(primary_demand_of_useful_demand))
+- deprecated_key = check_divide_primary_by_useful_demand

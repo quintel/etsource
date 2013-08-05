@@ -1,12 +1,12 @@
 # The share of renewables in the supply of household heat demand, including the greengas in the natural gas.
 
-- deprecated_key = share_of_renewable_heat_in_heat_produced_in_households
+- query =
+    DIVIDE(
+      SUM(
+    	SUM(V(Q(heating_converters_in_households),"input_of_wood_pellets + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas + input_of_ambient_heat + input_of_solar_radiation + input_of_solar_thermal ")),
+        PRODUCT(SUM(V(Q(heating_converters_in_households),input_of_network_gas)),Q(share_of_greengas_in_gas_network))
+        ),
+      Q(energy_used_for_heating_in_households)
+    )
 - unit = factor
-
-DIVIDE(
-  SUM(
-	SUM(V(Q(heating_converters_in_households),"input_of_wood_pellets + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas + input_of_ambient_heat + input_of_solar_radiation + input_of_solar_thermal ")),
-    PRODUCT(SUM(V(Q(heating_converters_in_households),input_of_network_gas)),Q(share_of_greengas_in_gas_network))
-    ),
-  Q(energy_used_for_heating_in_households)
-)
+- deprecated_key = share_of_renewable_heat_in_heat_produced_in_households

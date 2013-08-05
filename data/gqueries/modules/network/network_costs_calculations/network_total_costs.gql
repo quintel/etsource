@@ -1,15 +1,15 @@
-- deprecated_key = pl_network_total_costs
 # Total annual network costs, used for annual infrastructure costs chart
 
-- unit = euro
-
-SUM(
-    PRODUCT(
-        SUM(
-            MAX(AREA(annual_infrastructure_cost_electricity),0),
-            MAX(AREA(annual_infrastructure_cost_gas),0)
+- query =
+    SUM(
+        PRODUCT(
+            SUM(
+                MAX(AREA(annual_infrastructure_cost_electricity),0),
+                MAX(AREA(annual_infrastructure_cost_gas),0)
+            ),
+            MILLIONS
         ),
-        MILLIONS
-    ),
-    Q(yearly_investment_costs_of_network)
-)
+        Q(yearly_investment_costs_of_network)
+    )
+- unit = euro
+- deprecated_key = pl_network_total_costs

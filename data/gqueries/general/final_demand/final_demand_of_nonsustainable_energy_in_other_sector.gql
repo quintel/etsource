@@ -1,13 +1,12 @@
-# sum of non_sustainable 
+# sum of non_sustainable
 
-
+- query =
+    DIVIDE(
+      SUM(
+        V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),input_of_biodiesel),
+        V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),input_of_algae_diesel),
+        V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),input_of_bio_ethanol)
+      ),
+      BILLIONS
+    )
 - unit = pj
-
-DIVIDE(
-  SUM(
-    V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),input_of_biodiesel),
-    V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),input_of_algae_diesel),
-    V(INTERSECTION(SECTOR(other),G(final_demand_cbs)),input_of_bio_ethanol)
-  ),
-  BILLIONS
-)

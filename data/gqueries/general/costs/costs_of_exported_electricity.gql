@@ -1,14 +1,13 @@
 # Cost of the exported electricity
 
+- query =
+    IF( V(G(electricity_production),output_of_electricity).sum == 0,
+      0,
+      PRODUCT(
+        Q(costs_of_produced_electricity),
+        INVERSE(V(G(electricity_production),output_of_electricity).sum),
+        V(energy_export_electricity,demand)
+      )
+    )
 - unit = euro
 - deprecated_key = cost_electricity_export
-
-IF( V(G(electricity_production),output_of_electricity).sum == 0,
-  0,
-  PRODUCT(
-    Q(costs_of_produced_electricity),
-    INVERSE(V(G(electricity_production),output_of_electricity).sum),
-    V(energy_export_electricity,demand)
-  )
-)
-

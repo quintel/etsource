@@ -1,13 +1,14 @@
-- factor = 100.0
 - id = 396
+- query =
+    EACH(
+      UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_heating_savings_from_recirculation_useable_heat),useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
+      UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_cooling_savings_from_recirculation_cooling),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
+    )
+- priority = 0
 - max_value = 50.0
 - min_value = 0.0
+- start_value_gql = present:AREA(recirculation)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- start_value_gql = present:AREA(recirculation)
-
-EACH(
-  UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_heating_savings_from_recirculation_useable_heat),useable_heat))), share, DIVIDE(USER_INPUT(),V(100.0))),
-  UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(buildings_cooling_savings_from_recirculation_cooling),cooling))), share, DIVIDE(USER_INPUT(),V(100.0)))
-)

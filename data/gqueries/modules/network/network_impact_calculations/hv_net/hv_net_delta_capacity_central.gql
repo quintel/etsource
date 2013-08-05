@@ -1,21 +1,20 @@
-- deprecated_key = pl_hv_net_delta_capacity_central
-# Calculates the total delta in capacity for the HV net. Consisting of two things: 
+# Calculates the total delta in capacity for the HV net. Consisting of two things:
 # 1) Additional capacity of new power plants (first MAX( statement) and 2) Additional import/export capacity
 # For import export, the network_capacity_available_in_mw attribute is the available import/export capacity. Only above this value is extra capacity required.
 
-- unit = MW
-
-SUM(
-    MAX(
-        QUERY_DELTA( -> { 
-            SUM(V(Q(high_voltage_electricity_production),"typical_electricity_production_capacity*number_of_units")) 
-        }),
-        0
-    ),
-    MAX(
-        V(energy_export_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
-        V(energy_import_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
-        0
+- query =
+    SUM(
+        MAX(
+            QUERY_DELTA( -> { 
+                SUM(V(Q(high_voltage_electricity_production),"typical_electricity_production_capacity*number_of_units")) 
+            }),
+            0
+        ),
+        MAX(
+            V(energy_export_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
+            V(energy_import_electricity,"mw_input_capacity-network_capacity_available_in_mw"),
+            0
+        )
     )
-)
-
+- unit = MW
+- deprecated_key = pl_hv_net_delta_capacity_central

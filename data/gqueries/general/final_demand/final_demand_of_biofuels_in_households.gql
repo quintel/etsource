@@ -1,13 +1,11 @@
-# 
-
+- query =
+    DIVIDE(
+      SUM(
+        V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),input_of_biodiesel),
+        V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),input_of_algae_diesel),
+        V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),input_of_bio_ethanol)
+      ),
+      BILLIONS
+    )
 - unit = pj
 - deprecated_key = all_biofuels_households_final
-
-DIVIDE(
-  SUM(
-    V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),input_of_biodiesel),
-    V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),input_of_algae_diesel),
-    V(INTERSECTION(SECTOR(households),G(final_demand_cbs)),input_of_bio_ethanol)
-  ),
-  BILLIONS
-)

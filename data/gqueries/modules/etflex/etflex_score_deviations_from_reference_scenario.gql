@@ -1,5 +1,5 @@
 # We have defined a scenario that should be the ideal candidate for this
-# for every slider that is away from its reference scenario counterpart, 
+# for every slider that is away from its reference scenario counterpart,
 # maximally ONE (extra) penalty point is given
 #
 # Reference values:
@@ -20,20 +20,19 @@
 # * solar:              41%
 # * green gas:           3%
 
+- query =
+    - [
+      0.111111 * (INPUT_VALUE(households_insulation_level_old_houses) - 2.8)**2,
+      1.0e-4 * (INPUT_VALUE(transport_car_using_electricity_share) - 75.0)**2,
+      1.0e-4 * (INPUT_VALUE(households_lighting_led_electricity_share) - 90.0)**2,
+      1.0e-4 * (INPUT_VALUE(households_space_heater_micro_chp_network_gas_share) - 5.0)**2,
+      1.0e-4 * (INPUT_VALUE(households_space_heater_heatpump_ground_water_electricity_share) - 50.0)**2,
+      1.0e-4 * (INPUT_VALUE(households_water_heater_solar_thermal_share) - 25.0)**2,
+      0.01 * (INPUT_VALUE(number_of_energy_power_ultra_supercritical_coal) - 0.0)**2,
+      0.027778 * (INPUT_VALUE(number_of_energy_power_combined_cycle_ccs_network_gas) - 6.0)**2,
+      0.25 * (INPUT_VALUE(number_of_energy_power_nuclear_gen3_uranium_oxide) - 0.0)**2,
+      3.90625e-7 * (INPUT_VALUE(number_of_energy_power_wind_turbine_offshore) - 1600.0)**2,
+      1.0e-4 * (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) - 41.0)**2,
+      1.0e-4 * (INPUT_VALUE(green_gas_total_share) - 3.0)**2
+    ].sum
 - unit = #
-
-- [
-  0.111111 * (INPUT_VALUE(households_insulation_level_old_houses) - 2.8)**2,
-  1.0e-4 * (INPUT_VALUE(transport_car_using_electricity_share) - 75.0)**2,
-  1.0e-4 * (INPUT_VALUE(households_lighting_led_electricity_share) - 90.0)**2,
-  1.0e-4 * (INPUT_VALUE(households_space_heater_micro_chp_network_gas_share) - 5.0)**2,
-  1.0e-4 * (INPUT_VALUE(households_space_heater_heatpump_ground_water_electricity_share) - 50.0)**2,
-  1.0e-4 * (INPUT_VALUE(households_water_heater_solar_thermal_share) - 25.0)**2,
-
-  0.01 * (INPUT_VALUE(number_of_energy_power_ultra_supercritical_coal) - 0.0)**2,
-  0.027778 * (INPUT_VALUE(number_of_energy_power_combined_cycle_ccs_network_gas) - 6.0)**2,
-  0.25 * (INPUT_VALUE(number_of_energy_power_nuclear_gen3_uranium_oxide) - 0.0)**2,
-  3.90625e-7 * (INPUT_VALUE(number_of_energy_power_wind_turbine_offshore) - 1600.0)**2,
-  1.0e-4 * (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) - 41.0)**2,
-  1.0e-4 * (INPUT_VALUE(green_gas_total_share) - 3.0)**2
-].sum

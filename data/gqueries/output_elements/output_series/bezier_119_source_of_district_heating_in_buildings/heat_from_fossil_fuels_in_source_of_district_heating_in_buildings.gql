@@ -1,12 +1,10 @@
-#
-
+- query =
+    DIVIDE(PRODUCT(
+     V(buildings_final_demand_steam_hot_water,demand),
+     SUM(
+      1,
+      NEG(V(buildings_final_demand_steam_hot_water,sustainability_share)
+      )
+     )
+    ),BILLIONS)
 - unit = mj
-
-DIVIDE(PRODUCT(
- V(buildings_final_demand_steam_hot_water,demand),
- SUM(
-  1,
-  NEG(V(buildings_final_demand_steam_hot_water,sustainability_share)
-  )
- )
-),BILLIONS)

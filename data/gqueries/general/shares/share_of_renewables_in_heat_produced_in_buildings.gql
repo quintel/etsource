@@ -1,10 +1,11 @@
 # The share of renewables in the supply of buildings heat demand, including the greengas in the natural gas.buildings
-- unit = factor
 
-DIVIDE(
-  SUM(
-	SUM(V(Q(heating_converters_in_buildings),"input_of_wood_pellets + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas + input_of_ambient_heat + input_of_solar_radiation + input_of_solar_thermal + input_of_geothermal")),
-    PRODUCT(SUM(V(Q(heating_converters_in_buildings),"input_of_network_gas + input_of_gas_power_fuelmix")),Q(share_of_greengas_in_gas_network))
-    ),
-  Q(energy_used_for_heating_in_buildings)
-)
+- query =
+    DIVIDE(
+      SUM(
+    	SUM(V(Q(heating_converters_in_buildings),"input_of_wood_pellets + input_of_greengas + input_of_biodiesel + input_of_bio_ethanol + input_of_algae_diesel + input_of_biogas + input_of_ambient_heat + input_of_solar_radiation + input_of_solar_thermal + input_of_geothermal")),
+        PRODUCT(SUM(V(Q(heating_converters_in_buildings),"input_of_network_gas + input_of_gas_power_fuelmix")),Q(share_of_greengas_in_gas_network))
+        ),
+      Q(energy_used_for_heating_in_buildings)
+    )
+- unit = factor

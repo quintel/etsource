@@ -1,13 +1,13 @@
 # Multiplies the imported electricity with the average electricity production cost of the domestic production.
 
+- query =
+    IF( V(G(electricity_production),output_of_electricity).sum == 0,
+      0,
+      PRODUCT(
+       Q(costs_of_produced_electricity),
+       V(energy_import_electricity,demand),
+       INVERSE(V(G(electricity_production),output_of_electricity).sum)
+      )
+    )
 - unit = euro
 - deprecated_key = cost_electricity_import
-
-IF( V(G(electricity_production),output_of_electricity).sum == 0,
-  0,
-  PRODUCT(
-   Q(costs_of_produced_electricity),
-   V(energy_import_electricity,demand),
-   INVERSE(V(G(electricity_production),output_of_electricity).sum)
-  )
-)

@@ -2,12 +2,12 @@
 # Query takes into account all technologies attached to the LV-network
 # Query sums the newly required capacities per technology (peak_laod_in_mw) and adds these to the currently used capacity on the network (network_capacity_used_in_mw)
 
-- unit = MW
-
-ABS(
-    SUM(
-        QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_wd*peak_load_in_mw")) })
-        ,
-        V(energy_power_lv_network_electricity, network_capacity_used_in_mw)
+- query =
+    ABS(
+        SUM(
+            QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_wd*peak_load_in_mw")) })
+            ,
+            V(energy_power_lv_network_electricity, network_capacity_used_in_mw)
+        )
     )
-)
+- unit = MW

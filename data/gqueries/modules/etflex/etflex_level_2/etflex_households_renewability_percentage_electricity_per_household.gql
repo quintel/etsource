@@ -1,8 +1,8 @@
 # Percentage of renewable electricity produced in a household (100 * production / final demand)
 
+- query =
+    DIVIDE(
+      V(households_solar_pv_solar_radiation, output_of_electricity),
+      V(households_final_demand_electricity, demand)
+    ) * 100
 - unit = %
-
-DIVIDE(
-  V(households_solar_pv_solar_radiation, output_of_electricity),
-  V(households_final_demand_electricity, demand)
-) * 100

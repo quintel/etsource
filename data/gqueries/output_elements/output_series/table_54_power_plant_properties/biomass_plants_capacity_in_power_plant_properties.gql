@@ -1,9 +1,5 @@
-#
-
-
-- unit = gj
-
-future:DIVIDE(
+- query =
+    future:DIVIDE(
     SUM(
       V(
          Q(electricity_producing_torrified_biomass_pellets_converters),"nominal_capacity_electricity_output_per_unit * number_of_units * torrified_biomass_pellets_input_conversion"),
@@ -12,3 +8,4 @@ future:DIVIDE(
       V(
          G(electricity_production),"nominal_capacity_electricity_output_per_unit * number_of_units * bio_oil_input_conversion")
     ),1000)
+- unit = gj

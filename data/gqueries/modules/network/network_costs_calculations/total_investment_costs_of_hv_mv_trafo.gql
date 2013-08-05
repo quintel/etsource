@@ -1,10 +1,9 @@
-- deprecated_key = pl_hv_mv_trafo_investment_costs_total
 # Total investment costs for the HV/MV transformers. Equal to the network expansion costs (EUR/MW) times the newly required capacity (MW)
 
+- query =
+    PRODUCT(
+        Q(network_hv_mv_trafo_delta_peak_load_max),
+        V(energy_power_transformer_mv_hv_electricity,network_expansion_costs_in_euro_per_mw)
+    )
 - unit = euro
-
-PRODUCT(
-    Q(network_hv_mv_trafo_delta_peak_load_max),
-    V(energy_power_transformer_mv_hv_electricity,network_expansion_costs_in_euro_per_mw)
-)
-
+- deprecated_key = pl_hv_mv_trafo_investment_costs_total

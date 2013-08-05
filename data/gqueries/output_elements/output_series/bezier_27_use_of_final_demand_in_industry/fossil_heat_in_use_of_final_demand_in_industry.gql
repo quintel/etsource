@@ -1,17 +1,15 @@
-#
-
+- query =
+    SUM(
+      PRODUCT(
+        V(
+          energy_heat_network_steam_hot_water,
+          share_of_industry_locally_available_steam_hot_water
+        ), 
+        V(
+          industry_locally_available_steam_hot_water,
+          input_of_steam_hot_water
+        )
+      ), 
+      Q(fossil_energy_used_for_heat_in_industry)
+    ) / BILLIONS
 - unit = pj
-
-SUM(
-  PRODUCT(
-    V(
-      energy_heat_network_steam_hot_water,
-      share_of_industry_locally_available_steam_hot_water
-    ), 
-    V(
-      industry_locally_available_steam_hot_water,
-      input_of_steam_hot_water
-    )
-  ), 
-  Q(fossil_energy_used_for_heat_in_industry)
-) / BILLIONS

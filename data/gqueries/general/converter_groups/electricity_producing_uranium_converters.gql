@@ -1,6 +1,5 @@
 # Returns the converters which produce electricity using uranium. It works by looking to converters directly fed by the "uranium_distribution" converter that have output of electricity.
 
+- query = FILTER(PARENTS(V(energy_distribution_uranium_oxide )), "electricity_output_conversion && electricity_output_conversion > 0")
 - unit = converters
 - deprecated_key = electricity_producing_converters_uranium
-
-FILTER(PARENTS(V(energy_distribution_uranium_oxide )), "electricity_output_conversion && electricity_output_conversion > 0")

@@ -1,12 +1,10 @@
-- deprecated_key = electricity_dependence
-# 
-
+- query =
+    DIVIDE(
+      V(energy_interconnector_imported_electricity,demand),
+      SUM(
+        Q(total_electricity_produced),
+        V(energy_interconnector_imported_electricity,demand)
+      )
+    )
 - unit = factor
-
-DIVIDE(
-  V(energy_interconnector_imported_electricity,demand),
-  SUM(
-    Q(total_electricity_produced),
-    V(energy_interconnector_imported_electricity,demand)
-  )
-)
+- deprecated_key = electricity_dependence

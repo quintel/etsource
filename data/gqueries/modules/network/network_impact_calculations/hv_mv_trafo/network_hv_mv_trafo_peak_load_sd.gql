@@ -2,22 +2,22 @@
 # Query takes into account all technologies below the HV/MV network and their simultaneousnesses
 # Query sums the newly required capacities per technology (peak_laod_in_mw) and adds these to the currently used capacity on the network (network_capacity_used_in_mw)
 
-- unit = MW
-
-ABS(
-    SUM(
-        QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_sd*peak_load_in_mw")) })
-                    *V(energy_power_lv_network_electricity,simult_sd)
-                    *V(energy_power_transformer_lv_mv_electricity,simult_sd)
+- query =
+    ABS(
+        SUM(
+            QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_sd*peak_load_in_mw")) })
+                        *V(energy_power_lv_network_electricity,simult_sd)
+                        *V(energy_power_transformer_lv_mv_electricity,simult_sd)
+                        *V(energy_power_mv_distribution_network_electricity, simult_sd)
+                        *V(energy_power_mv_transport_network_electricity,simult_sd)
+            ,
+            QUERY_DELTA( -> {SUM(V(Q(network_mv_d_net_converters),"simult_sd*peak_load_in_mw")) })
                     *V(energy_power_mv_distribution_network_electricity, simult_sd)
                     *V(energy_power_mv_transport_network_electricity,simult_sd)
-        ,
-        QUERY_DELTA( -> {SUM(V(Q(network_mv_d_net_converters),"simult_sd*peak_load_in_mw")) })
-                *V(energy_power_mv_distribution_network_electricity, simult_sd)
-                *V(energy_power_mv_transport_network_electricity,simult_sd)
-        ,
-        QUERY_DELTA( -> {SUM(V(Q(network_hv_mv_trafo_converters),"simult_sd*peak_load_in_mw")) })
-        ,
-        V(energy_power_transformer_mv_hv_electricity, network_capacity_used_in_mw)
+            ,
+            QUERY_DELTA( -> {SUM(V(Q(network_hv_mv_trafo_converters),"simult_sd*peak_load_in_mw")) })
+            ,
+            V(energy_power_transformer_mv_hv_electricity, network_capacity_used_in_mw)
+        )
     )
-)
+- unit = MW

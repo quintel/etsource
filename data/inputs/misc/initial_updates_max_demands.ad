@@ -1,15 +1,16 @@
-- factor = 1.0
 - id = 1006
-- max_value = 2050
-- min_value = 2008
-- start_value = 2040
+- query =
+    EACH(
+      UPDATE(
+        V(energy_distribution_bio_residues_for_firing), max_demand,
+        TIME_SERIE_VALUE(energy_distribution_bio_residues_for_firing,max_demand,USER_INPUT())
+      )
+    )
+- priority = 0
+- max_value = 2050.0
+- min_value = 2008.0
+- start_value = 2040.0
+- step_value = 0.1
+- factor = 1.0
 - unit = #
 - update_period = before
-- step_value = 0.1
-
-EACH(
-  UPDATE(
-    V(energy_distribution_bio_residues_for_firing), max_demand,
-    TIME_SERIE_VALUE(energy_distribution_bio_residues_for_firing,max_demand,USER_INPUT())
-  )
-)

@@ -1,9 +1,6 @@
 # Returns the produced electricity using solar.
-# 
+#
 # It works by looking to converters directly fed by the "sun" converter that have output of electricity.
 
+- query = V(Q(electricity_producing_solar_converters),output_of_electricity).sum
 - unit = mj
-
-V(Q(electricity_producing_solar_converters),output_of_electricity).sum
-
-

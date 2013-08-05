@@ -1,9 +1,7 @@
-# 
-
+- query =
+    FILTER(
+      G(electricity_production),
+      "gas_power_fuelmix_input_conversion > 0 || network_gas_input_conversion > 0"
+    )
 - unit = converters
 - deprecated_key = gas_plants
-
-FILTER(
-  G(electricity_production),
-  "gas_power_fuelmix_input_conversion > 0 || network_gas_input_conversion > 0"
-)

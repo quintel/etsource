@@ -1,11 +1,8 @@
-
-#
-
+- query =
+    present:DIVIDE(
+    SUM(
+    	V(G(energy_import),output_of_uranium_oxide),
+    	NEG(V(G(energy_export),input_of_uranium_oxide))
+    	)
+    ,BILLIONS)
 - unit = pj
-
-present:DIVIDE(
-SUM(
-	V(G(energy_import),output_of_uranium_oxide),
-	NEG(V(G(energy_export),input_of_uranium_oxide))
-	)
-,BILLIONS)

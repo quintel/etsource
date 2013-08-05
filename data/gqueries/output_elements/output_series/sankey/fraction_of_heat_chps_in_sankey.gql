@@ -1,9 +1,9 @@
 # Fraction of heat production from chps relative to nall h-producing converters in Sankey
 
-- unit = 
-
-IF(EQUALS(SUM(V(Q(heat_producing_converters_sankey), output_of_steam_hot_water)),0),
-1.0,
-SUM(V(Q(electricity_producing_chp_converters_sankey), output_of_steam_hot_water))/
-SUM(V(Q(heat_producing_converters_sankey), output_of_steam_hot_water),
-V(Q(electricity_producing_chp_converters_sankey), output_of_steam_hot_water)))
+- query =
+    IF(EQUALS(SUM(V(Q(heat_producing_converters_sankey), output_of_steam_hot_water)),0),
+    1.0,
+    SUM(V(Q(electricity_producing_chp_converters_sankey), output_of_steam_hot_water))/
+    SUM(V(Q(heat_producing_converters_sankey), output_of_steam_hot_water),
+    V(Q(electricity_producing_chp_converters_sankey), output_of_steam_hot_water)))
+- unit =

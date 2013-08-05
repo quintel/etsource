@@ -1,16 +1,16 @@
 # The total man-year spent in NL on placement.
 
+- query =
+    SUM(
+    	PRODUCT(
+    		DIVIDE(
+    			SUM(
+    				V(Q(employment_converters),"hours_place_nl*number_of_units/technical_lifetime")
+    			),
+    			AREA(man_hours_per_man_year)
+    		),
+    		AREA(economic_multiplier)
+    	),
+    	V(Q(total_man_years_insulation))
+    )
 - unit = man_years
-
-SUM(
-	PRODUCT(
-		DIVIDE(
-			SUM(
-				V(Q(employment_converters),"hours_place_nl*number_of_units/technical_lifetime")
-			),
-			AREA(man_hours_per_man_year)
-		),
-		AREA(economic_multiplier)
-	),
-	V(Q(total_man_years_insulation))
-)

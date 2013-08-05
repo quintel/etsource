@@ -1,14 +1,14 @@
 # As of may 4, the costs are now minimum 0, so the query cannot return a negative value.
 
+- query =
+    MAX(
+     SUM(
+      V(CARRIER(lpg), cost_per_mj) * V(energy_production_lpg, output_of_lpg),
+      V(CARRIER(diesel), cost_per_mj) * V(energy_production_diesel, output_of_diesel),
+      V(CARRIER(gasoline), cost_per_mj) * V(energy_production_gasoline, output_of_gasoline),
+      NEG(V(CARRIER(crude_oil), cost_per_mj) * Q(oil_demand_of_gasoline_diesel_and_lpg_production) )
+     ),
+     0
+    )
 - unit = euro
 - deprecated_key = cost_refinery
-
-MAX(
- SUM(
-  V(CARRIER(lpg), cost_per_mj) * V(energy_production_lpg, output_of_lpg),
-  V(CARRIER(diesel), cost_per_mj) * V(energy_production_diesel, output_of_diesel),
-  V(CARRIER(gasoline), cost_per_mj) * V(energy_production_gasoline, output_of_gasoline),
-  NEG(V(CARRIER(crude_oil), cost_per_mj) * Q(oil_demand_of_gasoline_diesel_and_lpg_production) )
- ),
- 0
-)

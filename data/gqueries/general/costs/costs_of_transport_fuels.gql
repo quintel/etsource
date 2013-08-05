@@ -1,14 +1,14 @@
 # still not perfect, as "weighted_carrier_cost_per_mj" costs are also calculated for electricity. This should be an exception so it does not have to be subtracted anymore.
 
+- query =
+    SUM( 
+      V( INTERSECTION( G(final_demand_cbs), SECTOR(transport) )," demand * weighted_carrier_cost_per_mj "),
+      NEG(V(
+        INTERSECTION( 
+          G(final_demand_cbs),
+          SECTOR(transport) ),
+          " input_of_electricity * weighted_carrier_cost_per_mj "
+        ).sum)
+    )
 - unit = euro
 - deprecated_key = cost_transport_fuels
-
-SUM( 
-  V( INTERSECTION( G(final_demand_cbs), SECTOR(transport) )," demand * weighted_carrier_cost_per_mj "),
-  NEG(V(
-    INTERSECTION( 
-      G(final_demand_cbs),
-      SECTOR(transport) ),
-      " input_of_electricity * weighted_carrier_cost_per_mj "
-    ).sum)
-)

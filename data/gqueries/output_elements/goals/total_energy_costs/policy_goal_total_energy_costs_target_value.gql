@@ -1,15 +1,14 @@
 # Makes use of the new QUERY_PRESENT function
+
+- query =
+    IF(
+      GOAL_IS_SET(total_energy_costs),
+      DIVIDE(
+        PRODUCT(
+          SUM(1,DIVIDE(GOAL_USER_VALUE(total_energy_costs),100)),
+          QUERY_PRESENT(total_costs)
+          ),
+        BILLIONS),
+      nil
+    )
 - unit = euro
-
-IF(
-  GOAL_IS_SET(total_energy_costs),
-
-  DIVIDE(
-    PRODUCT(
-      SUM(1,DIVIDE(GOAL_USER_VALUE(total_energy_costs),100)),
-      QUERY_PRESENT(total_costs)
-      ),
-    BILLIONS),
-
-  nil
-)

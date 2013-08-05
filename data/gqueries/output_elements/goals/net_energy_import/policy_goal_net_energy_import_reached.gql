@@ -1,15 +1,13 @@
-- unit = boolean
-
-IF(
-  GOAL_IS_SET(energy_import),
-
-  LESS_OR_EQUAL(
-    Q(net_import_of_energy),
-    DIVIDE(
-      GOAL_USER_VALUE(energy_import),
-      100
+- query =
+    IF(
+      GOAL_IS_SET(energy_import),
+      LESS_OR_EQUAL(
+        Q(net_import_of_energy),
+        DIVIDE(
+          GOAL_USER_VALUE(energy_import),
+          100
+        )
+      ),
+      nil
     )
-  ),
-
-  nil
-)
+- unit = boolean

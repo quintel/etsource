@@ -1,9 +1,9 @@
 # Total cost of domestic electricity production including all CHPs, plus cost of electricity import.
 
+- query =
+    SUM(
+      V(G(cost_electricity_production),G(cost_chps), total_costs_per(:converter)),
+      Q(costs_of_imported_electricity),
+    )
 - unit = euro
 - deprecated_key = cost_electricity_production_new
-
-SUM(
-  V(G(cost_electricity_production),G(cost_chps), total_costs_per(:converter)),
-  Q(costs_of_imported_electricity),
-)
