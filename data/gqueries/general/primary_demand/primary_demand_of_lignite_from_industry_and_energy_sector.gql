@@ -1,9 +1,7 @@
-- deprecated_key = industry_lignite_primary_demand
-# 
-
+- query =
+    DIVIDE(
+      V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),INTERSECTION(SECTOR(energy),G(final_demand_cbs)),primary_demand_of_lignite).sum,
+      BILLIONS
+    )
 - unit = pj
-
-DIVIDE(
-  V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),INTERSECTION(SECTOR(energy),G(final_demand_cbs)),primary_demand_of_lignite).sum,
-  BILLIONS
-)
+- deprecated_key = industry_lignite_primary_demand

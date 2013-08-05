@@ -1,10 +1,10 @@
-- deprecated_key = pl_lv_grid_investment_costs_per_year
 # Total costs calculated to yearly costs of the LV-grid (i.e. LV-network + MV/LV transformers)
 # Equal to the sum of the depreciation, cost of capital, and O&M costs
 
+- query =
+    SUM(
+        Q(yearly_investment_costs_of_mv_lv_trafo),
+        Q(yearly_investment_costs_of_lv_net)
+    )
 - unit = euro
-
-SUM(
-    Q(yearly_investment_costs_of_mv_lv_trafo),
-    Q(yearly_investment_costs_of_lv_net)
-)
+- deprecated_key = pl_lv_grid_investment_costs_per_year

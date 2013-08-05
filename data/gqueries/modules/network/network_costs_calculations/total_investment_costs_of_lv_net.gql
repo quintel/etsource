@@ -1,9 +1,9 @@
-- deprecated_key = pl_lv_net_investment_costs_total
 # Total investment costs for the LV-network. Equal to the network expansion costs (EUR/MW) times the newly required capacity (MW)
 
+- query =
+    PRODUCT(
+        Q(network_lv_net_delta_peak_load_max),
+        V(energy_power_lv_network_electricity,network_expansion_costs_in_euro_per_mw)
+    )
 - unit = euro
-
-PRODUCT(
-    Q(network_lv_net_delta_peak_load_max),
-    V(energy_power_lv_network_electricity,network_expansion_costs_in_euro_per_mw)
-)
+- deprecated_key = pl_lv_net_investment_costs_total

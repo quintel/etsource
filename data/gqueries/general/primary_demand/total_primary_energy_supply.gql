@@ -1,11 +1,11 @@
 # Primary demand = Mining and extraction + sustainable production + Import – Export
 
+- query =
+    SUM(
+        V(G(mining_and_extraction),demand),
+        V(G(sustainable_production),"useful_output*demand"),
+        V(G(energy_import),demand),
+        NEG(V(G(energy_export),demand).sum)
+    )
 - unit = mj
 - deprecated_key = primary_demand_definition_energy_balance
-
-SUM(
-     V(G(mining_and_extraction),demand),
-     V(G(sustainable_production),"useful_output*demand"),
-     V(G(energy_import),demand),
-     NEG(V(G(energy_export),demand).sum)
- )

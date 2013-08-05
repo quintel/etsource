@@ -1,12 +1,10 @@
 # Returns the produced electricity using lignite.
-# 
+#
 # It works by looking to converters directly fed by the "lignite distribution" converter that have output of electricity.
 
+- query =
+    V(
+      Q(electricity_producing_lignite_converters),
+      "output_of_electricity * lignite_input_conversion"
+    ).sum
 - unit = mj
-
-V(
-  Q(electricity_producing_lignite_converters),
-  "output_of_electricity * lignite_input_conversion"
-).sum
-
-

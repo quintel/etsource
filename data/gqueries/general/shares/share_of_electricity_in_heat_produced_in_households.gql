@@ -1,9 +1,9 @@
 # The share of electricity in the supply of household heat demand, including the greengas in the natural gas
 
-- deprecated_key = heating_households_electricity_share
+- query =
+    DIVIDE(
+    	V(Q(heating_converters_in_households),input_of_electricity).sum,
+     	Q(energy_used_for_heating_in_households)
+    )
 - unit = factor
-
-DIVIDE(
-	V(Q(heating_converters_in_households),input_of_electricity).sum,
- 	Q(energy_used_for_heating_in_households)
-)
+- deprecated_key = heating_households_electricity_share

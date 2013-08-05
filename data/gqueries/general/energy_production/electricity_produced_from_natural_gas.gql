@@ -1,11 +1,8 @@
-# 
-
+- query =
+    Q(share_of_natural_gas_in_gas_network) *
+    SUM(
+     V(G(electricity_production),"output_of_electricity * network_gas_input_conversion "),
+     V(G(electricity_production),"output_of_electricity * natural_gas_input_conversion "),
+     V(G(electricity_production),"output_of_electricity * gas_power_fuelmix_input_conversion ").sum * V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+    )
 - unit = mj
-
-Q(share_of_natural_gas_in_gas_network) *
-SUM(
- V(G(electricity_production),"output_of_electricity * network_gas_input_conversion "),
- V(G(electricity_production),"output_of_electricity * natural_gas_input_conversion "),
- V(G(electricity_production),"output_of_electricity * gas_power_fuelmix_input_conversion ").sum * V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
-)
- 

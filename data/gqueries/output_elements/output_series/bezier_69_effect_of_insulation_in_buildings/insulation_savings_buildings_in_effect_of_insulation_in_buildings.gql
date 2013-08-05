@@ -3,12 +3,12 @@
 # of recirculation and heat recovery AS IF they happened BEFORE the insulation.
 # Talk to @chaelkruip before changing this query (it's a bit tricky)
 
+- query =
+    PRODUCT(
+      V(buildings_heating_savings_from_insulation_useable_heat,demand),
+      DIVIDE(
+        V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,demand), 
+        V(buildings_useful_demand_after_insulation_cooling, demand)
+      )
+    ) / BILLIONS
 - unit = pj
-
-PRODUCT(
-  V(buildings_heating_savings_from_insulation_useable_heat,demand),
-  DIVIDE(
-    V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,demand), 
-    V(buildings_useful_demand_after_insulation_cooling, demand)
-  )
-) / BILLIONS

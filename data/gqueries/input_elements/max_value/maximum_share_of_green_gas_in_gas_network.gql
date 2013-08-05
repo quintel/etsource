@@ -1,11 +1,9 @@
-- deprecated_key = max_greengas_share
 # Maximum value of the greengas mixing in the national gas network.
-# 
+#
 # It is calculated by looking at the available manure. If it is more than in there is gas, the max is set to 100%.
 
-- unit = factor
-
-MIN(1,
+- query =
+    MIN(1,
     DIVIDE(
           DIVIDE(PRODUCT(V(AREA(manure_available_in_pj)),BILLIONS),
                  V(energy_production_biogas,manure_input_conversion))
@@ -13,3 +11,5 @@ MIN(1,
       V(energy_national_gas_network_natural_gas,demand)
       )
     )
+- unit = factor
+- deprecated_key = max_greengas_share

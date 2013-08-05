@@ -1,12 +1,10 @@
+- query =
+    IF(
+      GOAL_IS_SET(roofs_for_solar_panels),
+      LESS_OR_EQUAL(
+        SUM(V(buildings_solar_pv_solar_radiation,households_solar_pv_solar_radiation,total_land_use)),
+        GOAL_USER_VALUE(roofs_for_solar_panels)
+      ),
+      nil
+    )
 - unit = boolean
-
-IF(
-  GOAL_IS_SET(roofs_for_solar_panels),
-
-  LESS_OR_EQUAL(
-    SUM(V(buildings_solar_pv_solar_radiation,households_solar_pv_solar_radiation,total_land_use)),
-    GOAL_USER_VALUE(roofs_for_solar_panels)
-  ),
-
-  nil
-)

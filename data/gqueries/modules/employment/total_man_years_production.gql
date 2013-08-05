@@ -1,32 +1,32 @@
 # The total man-year spent in NL on production.
 # Originally this was (analogous to the other queries):
 # PRODUCT(
-#	  DIVIDE(
-#	  	PRODUCT(
-#	  		SUM(
-#	  			V(Q(employment_converters),"hours_prod_nl*number_of_units/technical_lifetime")),
-#	  			V(Q(scenario_duration)
-#	  		)
-#	  	),
-#	  	AREA(man_hours_per_man_year)
-#	  ),
-#	  AREA(economic_multiplier)
+#   DIVIDE(
+#   	PRODUCT(
+#   		SUM(
+#   			V(Q(employment_converters),"hours_prod_nl*number_of_units/technical_lifetime")),
+#   			V(Q(scenario_duration)
+#   		)
+#   	),
+#   	AREA(man_hours_per_man_year)
+#   ),
+#   AREA(economic_multiplier)
 # )
 # but now modeled as a fraction of the other categories:
 
+- query =
+    PRODUCT(
+    	PRODUCT(
+    		SUM(
+    			V(Q(total_man_years_preparation)),
+    			V(Q(total_man_years_placement)),
+    			V(Q(total_man_years_maintenance)),
+    			V(Q(total_man_years_removal))
+    		),
+    		DIVIDE(
+    			AREA(employment_fraction_production),
+    			SUM(1.0,NEG(AREA(employment_fraction_production)))
+    		)),
+    	AREA(employment_local_fraction)
+    )
 - unit = man_years
-
-PRODUCT(
-	PRODUCT(
-		SUM(
-			V(Q(total_man_years_preparation)),
-			V(Q(total_man_years_placement)),
-			V(Q(total_man_years_maintenance)),
-			V(Q(total_man_years_removal))
-		),
-		DIVIDE(
-			AREA(employment_fraction_production),
-			SUM(1.0,NEG(AREA(employment_fraction_production)))
-		)),
-	AREA(employment_local_fraction)
-)

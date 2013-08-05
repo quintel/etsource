@@ -1,8 +1,8 @@
 # These costs are corrected for the amount of electricity produced domestically. When electricity is imported or exported, the average costs are used to calculate the total costs to fill demand.
 
+- query =
+    DIVIDE(
+      DIVIDE(Q(costs_of_fuels_in_electricity_production),BILLIONS),
+      Q(share_of_electricity_generated_domestically)
+    )
 - unit = bln_euro
-
-DIVIDE(
-  DIVIDE(Q(costs_of_fuels_in_electricity_production),BILLIONS),
-  Q(share_of_electricity_generated_domestically)
-)

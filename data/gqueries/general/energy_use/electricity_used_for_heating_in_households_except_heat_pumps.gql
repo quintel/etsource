@@ -1,12 +1,10 @@
-# 
-
+- query =
+    DIVIDE(
+    	SUM(
+    		V(buildings_space_heater_electricity,input_of_electricity),
+    		V(households_water_heater_resistive_electricity,input_of_electricity),
+    	),
+    	BILLIONS
+    )
 - unit = pj
 - deprecated_key = electricity_for_heat_without_heatpumps
-
-DIVIDE(
-	SUM(
-		V(buildings_space_heater_electricity,input_of_electricity),
-		V(households_water_heater_resistive_electricity,input_of_electricity),
-	),
-	BILLIONS
-)

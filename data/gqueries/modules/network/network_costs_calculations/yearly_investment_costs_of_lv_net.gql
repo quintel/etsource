@@ -1,11 +1,11 @@
-- deprecated_key = pl_lv_net_investment_costs_per_year
 # Total costs calculated to yearly costs of the LV-network
 # Equal to the sum of the depreciation, cost of capital, and O&M costs
 
+- query =
+    SUM(
+        Q(total_investment_costs_of_lv_net) / V(energy_power_lv_network_electricity,technical_lifetime),
+        Q(total_investment_costs_of_lv_net) / 2 * V(energy_power_lv_network_electricity,wacc),
+        Q(operational_costs_of_lv_net)
+    )
 - unit = euro
-
-SUM(
-    Q(total_investment_costs_of_lv_net) / V(energy_power_lv_network_electricity,technical_lifetime),
-    Q(total_investment_costs_of_lv_net) / 2 * V(energy_power_lv_network_electricity,wacc),
-    Q(operational_costs_of_lv_net)
-)
+- deprecated_key = pl_lv_net_investment_costs_per_year

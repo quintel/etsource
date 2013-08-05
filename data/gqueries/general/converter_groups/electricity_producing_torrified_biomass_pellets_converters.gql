@@ -1,14 +1,14 @@
 # Returns the converters which produce electricity using torrified_biomass_pellets.
-# 
+#
 # It works by looking to converters directly fed by the "biocoal distribution" converter that have output of electricity.
 
+- query =
+    V(
+    FILTER(
+      V(
+        PARENTS(V(energy_distribution_torrified_biomass_pellets))
+        )
+     ,"electricity_output_conversion && electricity_output_conversion > 0")
+    )
 - unit = converters
 - deprecated_key = electricity_producing_converters_biocoal
-
-V(
-  FILTER(
-    V(
-      PARENTS(V(energy_distribution_torrified_biomass_pellets))
-      )
-   ,"electricity_output_conversion && electricity_output_conversion > 0")
-  )

@@ -1,11 +1,11 @@
 # The actual co2 emitted in the area. This therefore includes emission because of export, but excludes CO2 for imported electricity.
-# 
+#
 # TAKE NOTE: The "co2_emission_electricity_ex_import" only works correctly because imported electricity is not assigned CO2. When this changes, this query may have to be updated.
 
+- query =
+    SUM(
+     Q(co2_emissions_of_final_demand_excluding_imported_electricity),
+     Q(co2_emissions_of_exported_electricity)
+    )
 - unit = kg
 - deprecated_key = actual_co2_emission_total
-
-SUM(
- Q(co2_emissions_of_final_demand_excluding_imported_electricity),
- Q(co2_emissions_of_exported_electricity)
-)

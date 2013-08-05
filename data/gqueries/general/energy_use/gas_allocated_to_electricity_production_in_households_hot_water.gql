@@ -1,8 +1,8 @@
 # The amount of fossil gas that is allocated to the electricity production in the CHPs used in households for hot water.
 
+- query =
+    SUM(
+      V(LINK(households_water_heater_micro_chp_network_gas, energy_national_gas_network_natural_gas),value),
+      V(LINK(households_water_heater_fuel_cell_chp_network_gas, energy_national_gas_network_natural_gas),value)
+    )
 - unit = mj
-
-SUM(
-  V(LINK(households_water_heater_micro_chp_network_gas, energy_national_gas_network_natural_gas),value),
-  V(LINK(households_water_heater_fuel_cell_chp_network_gas, energy_national_gas_network_natural_gas),value)
-)

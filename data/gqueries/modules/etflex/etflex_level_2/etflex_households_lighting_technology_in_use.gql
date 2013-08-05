@@ -1,10 +1,11 @@
-IF(INPUT_VALUE(households_lighting_incandescent_electricity_share) > 45,
-  "incandescent_lighting",
-  IF(INPUT_VALUE(households_lighting_efficient_fluorescent_electricity_share) > 45,
-    "fluorescent_lighting",
-    IF(INPUT_VALUE(households_lighting_led_electricity_share) > 45,
-      "led_lighting",
-      "error"
+- query =
+    IF(INPUT_VALUE(households_lighting_incandescent_electricity_share) > 45,
+      "incandescent_lighting",
+      IF(INPUT_VALUE(households_lighting_efficient_fluorescent_electricity_share) > 45,
+        "fluorescent_lighting",
+        IF(INPUT_VALUE(households_lighting_led_electricity_share) > 45,
+          "led_lighting",
+          "error"
+        )
+      )
     )
-  )
-)

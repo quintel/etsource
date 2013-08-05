@@ -1,8 +1,8 @@
 # Share of renewable electricity in the total amount of electricity produced
 
+- query =
+    DIVIDE(
+      V( G(electricity_production)," output_of_electricity * sustainability_share").sum,
+      V( G(electricity_production), output_of_electricity).sum
+    )
 - unit = factor
-
-DIVIDE(
-  V( G(electricity_production)," output_of_electricity * sustainability_share").sum,
-  V( G(electricity_production), output_of_electricity).sum
-)

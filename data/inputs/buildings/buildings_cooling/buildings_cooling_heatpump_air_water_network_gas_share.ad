@@ -1,16 +1,17 @@
-- factor = 100.0
 - id = 391
+- query =
+    EACH(
+      UPDATE(LINK(buildings_cooling_heatpump_air_water_network_gas,buildings_useful_demand_after_insulation_recirculation_recovery_cooling), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning_electricity), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = cooling_buildings
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
+- start_value_gql = present:V(buildings_cooling_heatpump_air_water_network_gas,share_of_buildings_useful_demand_after_insulation_recirculation_recovery_cooling)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = cooling_buildings
-- start_value_gql = present:V(buildings_cooling_heatpump_air_water_network_gas,share_of_buildings_useful_demand_after_insulation_recirculation_recovery_cooling)
-
-EACH(
-  UPDATE(LINK(buildings_cooling_heatpump_air_water_network_gas,buildings_useful_demand_after_insulation_recirculation_recovery_cooling), share, DIVIDE(USER_INPUT(),100)),
-  UPDATE(LINK(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,buildings_cooling_airconditioning_electricity), share,
-    ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling)),UPDATE_COLLECTION()), share))), 1)}
-  )
-)

@@ -1,9 +1,9 @@
 # Returns the converters which produce electricity using biomoass. It works by looking to converters directly fed by the "energy_distribution_bio_residues_for_firing" converter that have output of electricity.
 
+- query =
+    FILTER(
+      PARENTS(V(energy_distribution_bio_residues_for_firing )),
+      "electricity_output_conversion && electricity_output_conversion > 0"
+    )
 - unit = converters
 - deprecated_key = electricity_producing_biomass_converters
-
-FILTER(
-  PARENTS(V(energy_distribution_bio_residues_for_firing )),
-  "electricity_output_conversion && electricity_output_conversion > 0"
-)

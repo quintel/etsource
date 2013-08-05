@@ -1,13 +1,14 @@
-- factor = 1.0
 - id = 432
+- query =
+    EACH(
+      UPDATE(V(energy_heater_for_heat_network_network_gas), number_of_units, USER_INPUT()),
+      UPDATE(OUTPUT_LINKS(V(energy_heater_for_heat_network_network_gas),constant), share, V(energy_heater_for_heat_network_network_gas, production_based_on_number_of_heat_units)),
+    )
+- priority = 0
 - max_value = 300.0
 - min_value = 0.0
+- start_value_gql = present:V(energy_heater_for_heat_network_network_gas,number_of_units)
+- step_value = 0.1
+- factor = 1.0
 - unit = #
 - update_period = future
-- step_value = 0.1
-- start_value_gql = present:V(energy_heater_for_heat_network_network_gas,number_of_units)
-
-EACH(
-            UPDATE(V(energy_heater_for_heat_network_network_gas), number_of_units, USER_INPUT()),
-            UPDATE(OUTPUT_LINKS(V(energy_heater_for_heat_network_network_gas),constant), share, V(energy_heater_for_heat_network_network_gas, production_based_on_number_of_heat_units)),
-          )

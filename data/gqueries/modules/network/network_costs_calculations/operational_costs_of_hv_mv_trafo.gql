@@ -1,9 +1,9 @@
-- deprecated_key = pl_hv_mv_trafo_operational_costs_total
 # Costs for O&M of the HV/MV transformers. Assumed to increase linearly with the newly required capacity
 
+- query =
+    PRODUCT(
+        V(energy_power_transformer_mv_hv_electricity, fixed_operation_and_maintenance_costs_per(:mw_input)),
+        Q(network_hv_mv_trafo_delta_peak_load_max)
+    )
 - unit = euro
-
-PRODUCT(
-    V(energy_power_transformer_mv_hv_electricity, fixed_operation_and_maintenance_costs_per(:mw_input)),
-    Q(network_hv_mv_trafo_delta_peak_load_max)
-)
+- deprecated_key = pl_hv_mv_trafo_operational_costs_total

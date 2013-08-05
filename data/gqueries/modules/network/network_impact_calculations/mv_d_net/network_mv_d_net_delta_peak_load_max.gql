@@ -3,15 +3,15 @@
 # If the total required capacity DOES NOT exceeds the available capacity (network_capacity_available_in_mw), return 0
 # If the total required capacity DOES exceed the available capacity return difference between required and available capacity
 
+- query =
+    SUM(
+        MAX(
+            Q(network_mv_d_net_peak_load_we),
+            Q(network_mv_d_net_peak_load_wd),
+            Q(network_mv_d_net_peak_load_se),
+            Q(network_mv_d_net_peak_load_sd),
+            V(energy_power_mv_distribution_network_electricity, network_capacity_available_in_mw)
+        ),
+        NEG(V(energy_power_mv_distribution_network_electricity, network_capacity_available_in_mw))
+    )
 - unit = MW
-
-SUM(
-    MAX(
-        Q(network_mv_d_net_peak_load_we),
-        Q(network_mv_d_net_peak_load_wd),
-        Q(network_mv_d_net_peak_load_se),
-        Q(network_mv_d_net_peak_load_sd),
-        V(energy_power_mv_distribution_network_electricity, network_capacity_available_in_mw)
-    ),
-    NEG(V(energy_power_mv_distribution_network_electricity, network_capacity_available_in_mw))
-)

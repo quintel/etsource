@@ -1,12 +1,12 @@
 # Used for the network investment needed popup
 
+- query =
+    future:
+    GREATER(
+        SUM(
+            Q(total_investment_costs_of_mv_d_net),
+            Q(total_investment_costs_of_mv_t_net)
+        ),
+        0
+    )
 - unit = boolean
-
-future:
-GREATER(
-    SUM(
-        Q(total_investment_costs_of_mv_d_net),
-        Q(total_investment_costs_of_mv_t_net)
-    ),
-    0
-)

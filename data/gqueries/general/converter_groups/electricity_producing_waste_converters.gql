@@ -1,9 +1,9 @@
 # Returns the converters which produce electricity using waste. It works by looking to converters directly fed by the "waste_distribution" converter that have output of electricity.
 
+- query =
+    FILTER(
+      PARENTS(V(energy_distribution_waste_mix )),
+      "electricity_output_conversion && electricity_output_conversion > 0"
+    )
 - unit = converters
 - deprecated_key = electricity_producing_converters_waste
-
-FILTER(
-  PARENTS(V(energy_distribution_waste_mix )),
-  "electricity_output_conversion && electricity_output_conversion > 0"
-)

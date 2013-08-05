@@ -1,10 +1,8 @@
-- deprecated_key = primary_demand_of_primary_excl_elec_export
-# 
-
+- query =
+    SUM(
+     V(G(primary_energy_demand),primary_demand)
+     ,
+     NEG(V(energy_export_electricity,primary_demand))
+    )
 - unit = mj
-
-SUM(
-       V(G(primary_energy_demand),primary_demand)
-       ,
-       NEG(V(energy_export_electricity,primary_demand))
-      )
+- deprecated_key = primary_demand_of_primary_excl_elec_export

@@ -1,18 +1,18 @@
 # Investment costs for all relevant technologies
 # NOTE: the factor 30 is the lifetime of the insulation (guestimated)
 
+- query =
+    SUM (
+      V(households_space_heater_combined_network_gas,"number_of_units * initial_investment"),
+      V(households_space_heater_micro_chp_network_gas,"number_of_units * initial_investment"),
+      V(households_space_heater_heatpump_ground_water_electricity,"number_of_units * initial_investment"),
+      V(households_water_heater_combined_network_gas,"number_of_units * initial_investment"),
+      V(households_water_heater_micro_chp_network_gas,"number_of_units * initial_investment"),
+      V(households_water_heater_heatpump_ground_water_electricity,"number_of_units * initial_investment"),
+      V(households_water_heater_micro_chp_network_gas,"number_of_units * initial_investment"),
+      V(households_cooling_airconditioning_electricity,"number_of_units * initial_investment"),
+      V(households_solar_pv_solar_radiation,"number_of_units * initial_investment"),
+      V(households_water_heater_solar_thermal,"initial_investment") * (INPUT_VALUE(households_water_heater_solar_thermal_share) / 50.0) * AREA(number_households),
+      (35000.0 * (INPUT_VALUE(households_insulation_level_old_houses) - 1.0) / 2.0) * AREA(number_households)
+    ) / AREA(number_households)
 - unit = euro
-
-SUM (
-  V(households_space_heater_combined_network_gas,"number_of_units * initial_investment"),
-  V(households_space_heater_micro_chp_network_gas,"number_of_units * initial_investment"),
-  V(households_space_heater_heatpump_ground_water_electricity,"number_of_units * initial_investment"),
-  V(households_water_heater_combined_network_gas,"number_of_units * initial_investment"),
-  V(households_water_heater_micro_chp_network_gas,"number_of_units * initial_investment"),
-  V(households_water_heater_heatpump_ground_water_electricity,"number_of_units * initial_investment"),
-  V(households_water_heater_micro_chp_network_gas,"number_of_units * initial_investment"),
-  V(households_cooling_airconditioning_electricity,"number_of_units * initial_investment"),
-  V(households_solar_pv_solar_radiation,"number_of_units * initial_investment"),
-  V(households_water_heater_solar_thermal,"initial_investment") * (INPUT_VALUE(households_water_heater_solar_thermal_share) / 50.0) * AREA(number_households),
-  (35000.0 * (INPUT_VALUE(households_insulation_level_old_houses) - 1.0) / 2.0) * AREA(number_households)
-) / AREA(number_households)

@@ -1,10 +1,10 @@
 # Returns the produced electricity using wood_pellets.
-# 
+#
 # It works by looking to converters directly fed by the "wood_pellets_distribution" converter that have output of electricity.
 
+- query =
+    V(
+      Q(electricity_producing_wood_pellets_converters),
+      "output_of_electricity * wood_pellets_input_conversion"
+    ).sum
 - unit = mj
-
-V(
-  Q(electricity_producing_wood_pellets_converters),
-  "output_of_electricity * wood_pellets_input_conversion"
-).sum

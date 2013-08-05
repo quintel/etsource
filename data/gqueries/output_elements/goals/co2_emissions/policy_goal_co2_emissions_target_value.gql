@@ -1,12 +1,10 @@
+- query =
+    IF(
+      GOAL_IS_SET(co2_emissions),
+      PRODUCT(
+        SUM(1, DIVIDE(GOAL_USER_VALUE(co2_emissions),100)),
+        AREA(co2_emission_1990)
+      ),
+      nil
+    )
 - unit = mt
-
-IF(
-  GOAL_IS_SET(co2_emissions),
-
-  PRODUCT(
-    SUM(1, DIVIDE(GOAL_USER_VALUE(co2_emissions),100)),
-    AREA(co2_emission_1990)
-  ),
-
-  nil
-)

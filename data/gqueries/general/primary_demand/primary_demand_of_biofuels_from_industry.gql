@@ -1,13 +1,11 @@
-# 
-
+- query =
+    DIVIDE(
+      SUM(
+        V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_biodiesel),
+        V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_algae_diesel),
+        V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_bio_ethanol)
+      ),
+      BILLIONS
+    )
 - unit = pj
 - deprecated_key = all_biofuels_industry_primary
-
-DIVIDE(
-  SUM(
-    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_biodiesel),
-    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_algae_diesel),
-    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_bio_ethanol)
-  ),
-  BILLIONS
-)

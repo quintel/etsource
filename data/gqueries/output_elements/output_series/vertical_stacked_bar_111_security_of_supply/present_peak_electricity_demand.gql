@@ -1,12 +1,11 @@
 # The peak electricity demand in present year
 
-
-- unit = MW
-
-present:SUM(
-    Q(peak_electricity_demand),
-    PRODUCT(
-      Q(total_supply_and_demand_variability),
-      3
+- query =
+    present:SUM(
+        Q(peak_electricity_demand),
+        PRODUCT(
+          Q(total_supply_and_demand_variability),
+          3
+        )
     )
-)
+- unit = MW

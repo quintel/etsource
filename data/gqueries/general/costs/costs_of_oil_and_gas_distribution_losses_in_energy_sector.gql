@@ -1,15 +1,13 @@
-# 
-
+- query =
+    SUM(
+      V(
+        energy_national_gas_network_natural_gas,
+        " output_of_loss * weighted_carrier_cost_per_mj "
+      ),
+      V(
+        energy_distribution_crude_oil,
+        " output_of_loss * weighted_carrier_cost_per_mj "
+      )
+    )
 - unit = euro
 - deprecated_key = cost_fuels_grid_losses
-
-SUM(
-  V(
-    energy_national_gas_network_natural_gas,
-    " output_of_loss * weighted_carrier_cost_per_mj "
-  ),
-  V(
-    energy_distribution_crude_oil,
-    " output_of_loss * weighted_carrier_cost_per_mj "
-  )
-)

@@ -1,22 +1,21 @@
 # The fossil fuels, minus the sustainable part of the fuels.
 
+- query =
+    SUM(
+      V(
+        agriculture_burner_crude_oil,
+        agriculture_burner_network_gas,
+        agriculture_final_demand_steam_hot_water,
+        output_of_heat_carriers
+      ),
+      NEG(
+        V(
+          agriculture_burner_crude_oil,
+          agriculture_burner_network_gas,
+          agriculture_final_demand_steam_hot_water,
+          "output_of_heat_carriers * sustainability_share"
+          ).sum
+      )
+    )
 - unit = mj
 - deprecated_key = fossil_heat_agriculture
-
-SUM(
-  V(
-    agriculture_burner_crude_oil,
-    agriculture_burner_network_gas,
-    agriculture_final_demand_steam_hot_water,
-    output_of_heat_carriers
-  ),
-
-  NEG(
-    V(
-      agriculture_burner_crude_oil,
-      agriculture_burner_network_gas,
-      agriculture_final_demand_steam_hot_water,
-      "output_of_heat_carriers * sustainability_share"
-      ).sum
-  )
-)

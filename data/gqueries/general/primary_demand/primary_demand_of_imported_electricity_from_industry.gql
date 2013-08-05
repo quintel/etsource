@@ -1,12 +1,10 @@
-- deprecated_key = industry_imported_e_primary_demand
-# 
-
+- query =
+    DIVIDE(
+      SUM(
+        V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_imported_electricity),
+        V(INTERSECTION(SECTOR(energy),G(final_demand_cbs)),primary_demand_of_imported_electricity)
+      ),
+      BILLIONS
+    )
 - unit = pj
-
-DIVIDE(
-  SUM(
-    V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),primary_demand_of_imported_electricity),
-    V(INTERSECTION(SECTOR(energy),G(final_demand_cbs)),primary_demand_of_imported_electricity)
-  ),
-  BILLIONS
-)
+- deprecated_key = industry_imported_e_primary_demand

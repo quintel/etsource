@@ -1,6 +1,4 @@
 # Query for Sankey diagram: connection between electricity and transport
 
+- query = DIVIDE(SUM(V(INTERSECTION(SECTOR(transport),G(final_demand_cbs)),"input_of_electricity")),BILLIONS)*(1.0-Q(fraction_of_electricity_chps_in_sankey))
 - unit = pj
-
-DIVIDE(SUM(V(INTERSECTION(SECTOR(transport),G(final_demand_cbs)),"input_of_electricity")),BILLIONS)*(1.0-Q(fraction_of_electricity_chps_in_sankey))
-			

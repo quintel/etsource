@@ -1,22 +1,23 @@
-- factor = 100.0
 - id = 627
+- query =
+    EACH(
+      UPDATE(V(agriculture_heatpump_water_water_ts_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(buildings_cooling_collective_heatpump_water_water_ts_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(buildings_space_heater_collective_heatpump_water_water_ts_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_cooling_heatpump_air_water_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_cooling_heatpump_ground_water_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_space_heater_heatpump_add_on_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_space_heater_heatpump_air_water_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_space_heater_heatpump_ground_water_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_water_heater_heatpump_air_water_electricity), initial_investment, USER_INPUT()),
+      UPDATE(V(households_water_heater_heatpump_ground_water_electricity), initial_investment, USER_INPUT())
+    )
+- priority = 0
 - max_value = 300.0
 - min_value = -100.0
 - start_value = 0.0
+- step_value = 1.0
+- factor = 100.0
 - unit = %
 - update_period = future
 - update_type = %
-- step_value = 1.0
-
-EACH(
-  UPDATE(V(agriculture_heatpump_water_water_ts_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(buildings_cooling_collective_heatpump_water_water_ts_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(buildings_space_heater_collective_heatpump_water_water_ts_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_cooling_heatpump_air_water_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_cooling_heatpump_ground_water_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_space_heater_heatpump_add_on_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_space_heater_heatpump_air_water_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_space_heater_heatpump_ground_water_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_water_heater_heatpump_air_water_electricity), initial_investment, USER_INPUT()),
-  UPDATE(V(households_water_heater_heatpump_ground_water_electricity), initial_investment, USER_INPUT())
-)

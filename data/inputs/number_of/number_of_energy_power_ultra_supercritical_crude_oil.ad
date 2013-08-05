@@ -1,14 +1,15 @@
-- factor = 1.0
 - id = 258
+- query =
+    EACH(
+      UPDATE(V(energy_power_ultra_supercritical_crude_oil), number_of_units, USER_INPUT()),
+      UPDATE(L(energy_power_ultra_supercritical_crude_oil), preset_demand_by_electricity_production, V(energy_power_ultra_supercritical_crude_oil, production_based_on_number_of_units))
+    )
+- priority = 0
 - max_value = 300.0
+- max_value_gql = present:PRODUCT(DIVIDE(Q(total_electricity_produced),V(energy_power_ultra_supercritical_crude_oil,typical_electricity_production_per_unit)),2)
 - min_value = 0.0
+- start_value_gql = present:V(energy_power_ultra_supercritical_crude_oil,number_of_units)
+- step_value = 0.1
+- factor = 1.0
 - unit = #
 - update_period = future
-- step_value = 0.1
-- start_value_gql = present:V(energy_power_ultra_supercritical_crude_oil,number_of_units)
-- max_value_gql = present:PRODUCT(DIVIDE(Q(total_electricity_produced),V(energy_power_ultra_supercritical_crude_oil,typical_electricity_production_per_unit)),2)
-
-EACH(
-  UPDATE(V(energy_power_ultra_supercritical_crude_oil), number_of_units, USER_INPUT()),
-  UPDATE(L(energy_power_ultra_supercritical_crude_oil), preset_demand_by_electricity_production, V(energy_power_ultra_supercritical_crude_oil, production_based_on_number_of_units))
-)

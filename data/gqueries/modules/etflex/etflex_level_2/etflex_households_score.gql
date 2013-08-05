@@ -6,16 +6,16 @@
 # * Monthly Bill (costs):         penalty
 # * Energy use:                   penalty
 # * renewable energy production:  bonus
-#
-- unit = #
 
-MAX(0,
-  SUM(
-    Q(etflex_households_score_base),
-    Q(etflex_households_score_co2),
-    Q(etflex_households_score_investment),
-    Q(etflex_households_score_costs),
-    Q(etflex_households_score_energy_use),
-    Q(etflex_score_renewable_energy_percentage)
-  )
-)
+- query =
+    MAX(0,
+      SUM(
+        Q(etflex_households_score_base),
+        Q(etflex_households_score_co2),
+        Q(etflex_households_score_investment),
+        Q(etflex_households_score_costs),
+        Q(etflex_households_score_energy_use),
+        Q(etflex_score_renewable_energy_percentage)
+      )
+    )
+- unit = #

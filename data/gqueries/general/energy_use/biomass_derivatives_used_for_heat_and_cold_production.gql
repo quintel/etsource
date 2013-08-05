@@ -1,19 +1,19 @@
 # the green gas share in the natual gas is added.
 
-- unit = pj
-
-DIVIDE(
-  PRODUCT(
+- query =
     DIVIDE(
-      SUM(
-        V(G(heat_production),"input_of_wood_pellets + input_of_greengas"),
-        PRODUCT(
-          V(G(heat_production),input_of_network_gas).sum,
-          Q(share_of_greengas_in_gas_network)
-        )
-      ),
-    V(G(heat_production),demand).sum
-    ),
-    V(G(heat_production),output_of_heat_and_cooling_carriers).sum
-  ),BILLIONS
-)
+      PRODUCT(
+        DIVIDE(
+          SUM(
+            V(G(heat_production),"input_of_wood_pellets + input_of_greengas"),
+            PRODUCT(
+              V(G(heat_production),input_of_network_gas).sum,
+              Q(share_of_greengas_in_gas_network)
+            )
+          ),
+        V(G(heat_production),demand).sum
+        ),
+        V(G(heat_production),output_of_heat_and_cooling_carriers).sum
+      ),BILLIONS
+    )
+- unit = pj

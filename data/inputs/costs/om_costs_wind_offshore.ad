@@ -1,14 +1,15 @@
-- factor = 100.0
 - id = 127
+- query =
+    EACH(
+      UPDATE(V(energy_power_wind_turbine_offshore), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
+      UPDATE(V(energy_power_wind_turbine_offshore), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
+    )
+- priority = 0
 - max_value = 300.0
 - min_value = -100.0
 - start_value = 0.0
+- step_value = 1.0
+- factor = 100.0
 - unit = %
 - update_period = future
 - update_type = %
-- step_value = 1.0
-
-EACH(
-        UPDATE(V(energy_power_wind_turbine_offshore), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-        UPDATE(V(energy_power_wind_turbine_offshore), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
-      )

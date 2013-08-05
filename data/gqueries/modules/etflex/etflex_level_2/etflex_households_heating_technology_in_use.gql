@@ -1,11 +1,11 @@
-IF(INPUT_VALUE(households_space_heater_micro_chp_network_gas_share) > 0,
-  "micro_chp",
-  IF(INPUT_VALUE(households_space_heater_combined_network_gas_share) > 50,
-    "combi_boiler",
-    IF(INPUT_VALUE(households_space_heater_heatpump_ground_water_electricity_share) > 50,
-      "heatpump_ground",
-      "error"
+- query =
+    IF(INPUT_VALUE(households_space_heater_micro_chp_network_gas_share) > 0,
+      "micro_chp",
+      IF(INPUT_VALUE(households_space_heater_combined_network_gas_share) > 50,
+        "combi_boiler",
+        IF(INPUT_VALUE(households_space_heater_heatpump_ground_water_electricity_share) > 50,
+          "heatpump_ground",
+          "error"
+        )
+      )
     )
-  )
-)
-

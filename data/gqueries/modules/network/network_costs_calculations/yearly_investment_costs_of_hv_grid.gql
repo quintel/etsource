@@ -1,11 +1,11 @@
-- deprecated_key = pl_hv_grid_investment_costs_per_year
 # Total costs calculated to yearly costs of the HV-network
 # Equal to the sum of the depreciation, cost of capital, and O&M costs
 
+- query =
+    SUM(
+         Q(total_investment_costs_of_hv_net) / V(energy_power_hv_network_electricity,technical_lifetime),
+         Q(total_investment_costs_of_hv_net) / 2 * V(energy_power_hv_network_electricity,wacc),
+         Q(operational_costs_of_hv_net)
+    )
 - unit = euro
-
-SUM(
-     Q(total_investment_costs_of_hv_net) / V(energy_power_hv_network_electricity,technical_lifetime),
-     Q(total_investment_costs_of_hv_net) / 2 * V(energy_power_hv_network_electricity,wacc),
-     Q(operational_costs_of_hv_net)
-)
+- deprecated_key = pl_hv_grid_investment_costs_per_year

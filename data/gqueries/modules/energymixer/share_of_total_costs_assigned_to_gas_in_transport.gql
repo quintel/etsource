@@ -1,18 +1,18 @@
 # The share of gas_transport in the primary demand (excluding imported_electricity)
 
+- query =
+    DIVIDE(
+    SUM(
+      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_natural_gas),
+      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_lng),
+      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_network_gas)
+       )
+    ,
+    SUM(
+      V(G(final_demand_cbs), primary_demand),
+      NEG(SUM(
+          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          ))
+       )
+    )
 - unit = factor
-
-DIVIDE(
-  SUM(
-    V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_natural_gas),
-    V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_lng),
-    V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_network_gas)
-     )
-  ,
-  SUM(
-    V(G(final_demand_cbs), primary_demand),
-    NEG(SUM(
-        V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-        ))
-     )
-  )

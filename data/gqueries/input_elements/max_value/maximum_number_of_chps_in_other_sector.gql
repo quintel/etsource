@@ -1,10 +1,10 @@
-- deprecated_key = max_value_chp_other
 # Max value is double of the number of plants or the demand divided by typical production
 
+- query =
+    MAX(
+    PRODUCT(V(other_chp_engine_network_gas,other_chp_engine_biogas,number_of_units).sum,2)
+    ,
+    DIVIDE(V(other_useful_demand_electricity,"demand*99"),V(other_chp_engine_network_gas,other_chp_engine_biogas," typical_electricity_production_per_unit*50").sum)
+    )
 - unit = #
-
-MAX(
-PRODUCT(V(other_chp_engine_network_gas,other_chp_engine_biogas,number_of_units).sum,2)
-,
-DIVIDE(V(other_useful_demand_electricity,"demand*99"),V(other_chp_engine_network_gas,other_chp_engine_biogas," typical_electricity_production_per_unit*50").sum)
-)
+- deprecated_key = max_value_chp_other

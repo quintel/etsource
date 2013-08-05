@@ -1,11 +1,11 @@
-- deprecated_key = pl_mv_grid_investment_costs_per_year
 # Total costs calculated to yearly costs of the MV-grid (i.e. MV-distribution network + MV-transport network + HV/MV transformers)
 # Equal to the sum of the depreciation, cost of capital, and O&M costs
 
+- query =
+    SUM(
+        Q(yearly_investment_costs_of_mv_t_net),
+        Q(yearly_investment_costs_of_mv_d_net),
+        Q(yearly_investment_costs_of_hv_mv_trafo)
+    )
 - unit = euro
-
-SUM(
-    Q(yearly_investment_costs_of_mv_t_net),
-    Q(yearly_investment_costs_of_mv_d_net),
-    Q(yearly_investment_costs_of_hv_mv_trafo)
-)
+- deprecated_key = pl_mv_grid_investment_costs_per_year

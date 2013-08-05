@@ -1,10 +1,8 @@
 # CO2 emitted per kWh electricity produced and imported.
 
+- query =
+    DIVIDE(
+        Q(co2_emissions_of_used_electricity),
+        Q(final_demand_of_electricity)
+    )
 - unit = kg
-
-DIVIDE(
-    Q(co2_emissions_of_used_electricity),
-    Q(final_demand_of_electricity)
-)
-
-

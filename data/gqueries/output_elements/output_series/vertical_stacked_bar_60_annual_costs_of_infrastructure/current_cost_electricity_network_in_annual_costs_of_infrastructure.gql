@@ -1,12 +1,11 @@
-
 # AREA(annual_infrastructure_cost_electricity) contains the costs in million euros. Here we want base units
 
+- query =
+    PRODUCT(
+        MAX(
+            AREA(annual_infrastructure_cost_electricity),
+            0
+        ),
+        MILLIONS
+    )
 - unit = euro
-
-PRODUCT(
-    MAX(
-        AREA(annual_infrastructure_cost_electricity),
-        0
-    ),
-    MILLIONS
-)

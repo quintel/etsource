@@ -1,11 +1,11 @@
-- deprecated_key = pl_hv_net_capacity_buffer_decentral_check
-# Check if the user decentral capacity is larger than a given buffer (30GW). 
+# Check if the user decentral capacity is larger than a given buffer (30GW).
 # If true, HV-network costs are slightly higher because of need to also expand the E-HV/HV transformers
 # See Q(total_investment_costs_of_hv_net)
 
+- query =
+    GREATER(
+        Q(hv_net_delta_capacity_decentral),
+        AREA(capacity_buffer_decentral_in_mj_s)
+    )
 - unit = boolean
-
-GREATER(
-    Q(hv_net_delta_capacity_decentral),
-    AREA(capacity_buffer_decentral_in_mj_s)
-)
+- deprecated_key = pl_hv_net_capacity_buffer_decentral_check

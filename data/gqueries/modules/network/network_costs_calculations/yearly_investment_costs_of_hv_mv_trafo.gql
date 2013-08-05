@@ -1,11 +1,11 @@
-- deprecated_key = pl_hv_mv_trafo_investment_costs_per_year
 # Total costs calculated to yearly costs of the HV/MV transformers
 # Equal to the sum of the depreciation, cost of capital, and O&M costs
 
+- query =
+    SUM(
+         Q(total_investment_costs_of_hv_mv_trafo) / V(energy_power_transformer_mv_hv_electricity,technical_lifetime),
+         Q(total_investment_costs_of_hv_mv_trafo) / 2 * V(energy_power_transformer_mv_hv_electricity,wacc),
+         Q(operational_costs_of_hv_mv_trafo)
+    )
 - unit = euro
-
-SUM(
-     Q(total_investment_costs_of_hv_mv_trafo) / V(energy_power_transformer_mv_hv_electricity,technical_lifetime),
-     Q(total_investment_costs_of_hv_mv_trafo) / 2 * V(energy_power_transformer_mv_hv_electricity,wacc),
-     Q(operational_costs_of_hv_mv_trafo)
-)
+- deprecated_key = pl_hv_mv_trafo_investment_costs_per_year

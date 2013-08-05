@@ -1,11 +1,11 @@
 # Used for the chart: Comparison of gas use from micro-chp versus conventional use. Attention: We use a fixed value for CCGT electricity conversion, which reflects the state of the art. Take care to change this to be more generic.
 
+- query =
+    SUM(
+      V( households_space_heater_micro_chp_network_gas, output_of_heat_carriers) /
+      V( other_burner_network_gas, useable_heat_output_conversion)
+      ,
+      V( households_space_heater_micro_chp_network_gas, output_of_electricity) / 0.53
+    )
 - unit = mj
 - deprecated_key = conventional_gas_use_for_micro_chp_output
-
-SUM(
-  V( households_space_heater_micro_chp_network_gas, output_of_heat_carriers) /
-  V( other_burner_network_gas, useable_heat_output_conversion)
-  ,
-  V( households_space_heater_micro_chp_network_gas, output_of_electricity) / 0.53
-)

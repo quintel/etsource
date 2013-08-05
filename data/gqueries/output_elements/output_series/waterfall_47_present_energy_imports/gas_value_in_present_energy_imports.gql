@@ -1,11 +1,8 @@
-#
-
-
+- query =
+    present:DIVIDE(
+      SUM(
+    	  V(G(energy_import),"output_of_natural_gas + output_of_network_gas + output_of_lng"),
+    	  NEG(V(G(energy_export),"input_of_natural_gas + input_of_network_gas + input_of_lng "))
+    	  )
+    ,BILLIONS)
 - unit = pj
-
-present:DIVIDE(
-  SUM(
-	  V(G(energy_import),"output_of_natural_gas + output_of_network_gas + output_of_lng"),
-	  NEG(V(G(energy_export),"input_of_natural_gas + input_of_network_gas + input_of_lng "))
-	  )
-,BILLIONS)
