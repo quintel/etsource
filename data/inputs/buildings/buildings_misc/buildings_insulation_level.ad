@@ -1,7 +1,6 @@
 - id = 381
 - priority = 0
 - factor = 1.0
-- id = 381
 - max_value = 3.0
 - min_value = 0.9
 - start_value = 0.9
@@ -17,5 +16,5 @@ saving_fraction = 1.0 - AREA(buildings_insulation_constant_1) / (USER_INPUT() - 
 EACH(
   UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, total_cost),
   UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))), share, saving_fraction),
-  UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_cooling),useable_heat))), share, saving_fraction)
+  UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_cooling),cooling))), share, saving_fraction)
 )
