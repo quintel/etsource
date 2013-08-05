@@ -1,11 +1,11 @@
 # Used to be stored:policy_offshore
 
-
+- query =
+    MIXED(
+     Q(share_of_designated_area_used_for_offshore_wind),
+     PRODUCT(DIVIDE(
+      V(GOAL(offshore),user_value),
+      AREA(offshore_suitable_for_wind)
+     ),100)
+    )
 - unit = km2
-MIXED(
- Q(share_of_designated_area_used_for_offshore_wind),
- PRODUCT(DIVIDE(
-  V(GOAL(offshore),user_value),
-  AREA(offshore_suitable_for_wind)
- ),100)
-)

@@ -1,8 +1,8 @@
 # peak electricity demand in MW
 # this peak demand is calculated assuming a 'full load hours' for the electricity demand of each sector
 
+- query =
+    SUM(
+    	V(G(final_demand_electricity),mw_input_capacity)
+    )
 - unit = mw
-
-SUM(
-	V(G(final_demand_electricity),mw_input_capacity)
-)

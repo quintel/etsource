@@ -1,11 +1,11 @@
-- deprecated_key = pl_network_investment_costs_per_year
 # Total required investment calculated to yearly costs of all network components
 # Equal to the sum of the depreciation, cost of capital, and O&M costs
 
+- query =
+    SUM(
+        Q(yearly_investment_costs_of_lv_grid),
+        Q(yearly_investment_costs_of_mv_grid),
+        Q(yearly_investment_costs_of_hv_grid)
+    )
 - unit = euro
-
-SUM(
-    Q(yearly_investment_costs_of_lv_grid),
-    Q(yearly_investment_costs_of_mv_grid),
-    Q(yearly_investment_costs_of_hv_grid)
-)
+- deprecated_key = pl_network_investment_costs_per_year

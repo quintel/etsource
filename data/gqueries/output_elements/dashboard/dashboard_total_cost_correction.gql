@@ -2,18 +2,18 @@
 # This query give the mean costs of combi technologies in those two categories.
 # (see https://github.com/quintel/etsource/issues/225)
 
+- query =
+    0.5 * V(
+      households_space_heater_combined_network_gas,
+      households_water_heater_combined_network_gas,
+      households_space_heater_district_heating_steam_hot_water,
+      households_water_heater_district_heating_steam_hot_water,
+      households_space_heater_heatpump_air_water_electricity,
+      households_water_heater_heatpump_air_water_electricity,
+      households_space_heater_heatpump_ground_water_electricity,
+      households_water_heater_heatpump_ground_water_electricity,
+      households_space_heater_micro_chp_network_gas,
+      households_water_heater_micro_chp_network_gas,
+      "initial_investment_per(:converter) / technical_lifetime"
+    ).sum
 - unit = euro
-
-0.5 * V(
-  households_space_heater_combined_network_gas,
-  households_water_heater_combined_network_gas,
-  households_space_heater_district_heating_steam_hot_water,
-  households_water_heater_district_heating_steam_hot_water,
-  households_space_heater_heatpump_air_water_electricity,
-  households_water_heater_heatpump_air_water_electricity,
-  households_space_heater_heatpump_ground_water_electricity,
-  households_water_heater_heatpump_ground_water_electricity,
-  households_space_heater_micro_chp_network_gas,
-  households_water_heater_micro_chp_network_gas,
-  "initial_investment_per(:converter) / technical_lifetime"
-).sum

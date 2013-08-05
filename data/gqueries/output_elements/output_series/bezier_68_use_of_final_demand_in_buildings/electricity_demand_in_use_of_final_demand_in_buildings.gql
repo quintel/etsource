@@ -1,12 +1,9 @@
-
-#
-
+- query =
+    DIVIDE(
+    	SUM(
+    		V(buildings_final_demand_for_lighting_electricity,demand),
+    		V(buildings_final_demand_for_appliances_electricity,demand)
+    	),
+    	BILLIONS
+    )
 - unit = pj
-
-DIVIDE(
-	SUM(
-		V(buildings_final_demand_for_lighting_electricity,demand),
-		V(buildings_final_demand_for_appliances_electricity,demand)
-	),
-	BILLIONS
-)

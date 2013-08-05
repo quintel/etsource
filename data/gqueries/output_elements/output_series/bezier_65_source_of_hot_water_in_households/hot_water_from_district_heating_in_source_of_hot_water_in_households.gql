@@ -1,14 +1,12 @@
-#
-
+- query =
+    DIVIDE(
+    	PRODUCT(
+    		DIVIDE(
+    			V(households_water_heater_district_heating_steam_hot_water,demand),
+    			Q(energy_used_for_hot_water_in_households)
+        ),
+        V(households_useful_demand_hot_water,input_of_useable_heat)
+    	),
+      BILLIONS
+    )
 - unit = pj
-
-DIVIDE(
-	PRODUCT(
-		DIVIDE(
-			V(households_water_heater_district_heating_steam_hot_water,demand),
-			Q(energy_used_for_hot_water_in_households)
-    ),
-    V(households_useful_demand_hot_water,input_of_useable_heat)
-	),
-  BILLIONS
-)

@@ -4,15 +4,15 @@
 # in hot water and heating of households
 # (see https://github.com/quintel/etsource/issues/225)
 
+- query =
+    SUM( 
+      V(
+        G(cost_traditional_heat),
+        G(cost_heat_pumps),
+        total_costs_per(:converter)
+      ), 
+      Q(costs_of_insulation),
+      - Q(dashboard_total_cost_correction)
+    )
 - unit = euro
 - deprecated_key = cost_heat_production_new
-
-SUM( 
-  V(
-    G(cost_traditional_heat),
-    G(cost_heat_pumps),
-    total_costs_per(:converter)
-  ), 
-  Q(costs_of_insulation),
-  - Q(dashboard_total_cost_correction)
-)

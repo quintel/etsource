@@ -1,30 +1,26 @@
-[
-  "DEMANDS",
-
-  TXT_TABLE(
-    L(
-      energy_power_hv_network_electricity,
-      energy_export_electricity,
-      energy_power_transformer_mv_hv_electricity,
-      energy_power_hv_network_loss
-    ),
-    key, demand),
-
-  "LINK_VALUES",
-
-  TXT_TABLE(
+- query =
     [
-      LINK(energy_power_hv_network_electricity, energy_export_electricity),
-      LINK(energy_power_hv_network_electricity, energy_power_transformer_mv_hv_electricity)
-    ],
-    key, value),
-
-  "energy_power_hv_network_electricity <--f/if--> energy_power_transformer_mv_hv_electricity",
-
-  TXT_TABLE(
-    [
-      INPUT_LINKS(L(energy_power_hv_network_electricity),  inversed_flexible?),
-      OUTPUT_LINKS(L(energy_power_hv_network_electricity), flexible?)
-    ],
-    key, value)
-].join("\n\n")
+      "DEMANDS",
+      TXT_TABLE(
+        L(
+          energy_power_hv_network_electricity,
+          energy_export_electricity,
+          energy_power_transformer_mv_hv_electricity,
+          energy_power_hv_network_loss
+        ),
+        key, demand),
+      "LINK_VALUES",
+      TXT_TABLE(
+        [
+          LINK(energy_power_hv_network_electricity, energy_export_electricity),
+          LINK(energy_power_hv_network_electricity, energy_power_transformer_mv_hv_electricity)
+        ],
+        key, value),
+      "energy_power_hv_network_electricity <--f/if--> energy_power_transformer_mv_hv_electricity",
+      TXT_TABLE(
+        [
+          INPUT_LINKS(L(energy_power_hv_network_electricity),  inversed_flexible?),
+          OUTPUT_LINKS(L(energy_power_hv_network_electricity), flexible?)
+        ],
+        key, value)
+    ].join("\n\n")

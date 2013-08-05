@@ -1,11 +1,7 @@
-
-#
-
+- query =
+    present:DIVIDE(SUM(
+    	V(G(energy_import),output_of_coal),
+    	NEG(V(G(energy_export),input_of_coal))
+    	)
+    ,BILLIONS)
 - unit = pj
-
-present:DIVIDE(SUM(
-	V(G(energy_import),output_of_coal),
-	NEG(V(G(energy_export),input_of_coal))
-	)
-
-,BILLIONS)

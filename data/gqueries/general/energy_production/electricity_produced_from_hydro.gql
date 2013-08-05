@@ -1,12 +1,10 @@
 # Returns the produced electricity using water.
-# 
+#
 # It works by looking to converters directly fed by the "water" converter that have output of electricity.
 
+- query =
+    V(
+      Q(electricity_producing_hydro_converters),
+      output_of_electricity
+    ).sum
 - unit = mj
-
-V(
-  Q(electricity_producing_hydro_converters),
-  output_of_electricity
-).sum
-
-

@@ -1,15 +1,15 @@
 # The total number op PV panels that can be installed in the scenario
 
+- query =
+    SUM(
+      DIVIDE(
+        AREA(roof_surface_available_pv_buildings),
+        V(buildings_solar_pv_solar_radiation, land_use_per_unit)
+      )
+    ,
+      DIVIDE(
+        AREA(roof_surface_available_pv),
+        V(households_solar_pv_solar_radiation, land_use_per_unit)
+      )
+    )
 - unit = #
-
-SUM(
-  DIVIDE(
-    AREA(roof_surface_available_pv_buildings),
-    V(buildings_solar_pv_solar_radiation, land_use_per_unit)
-  )
-,
-  DIVIDE(
-    AREA(roof_surface_available_pv),
-    V(households_solar_pv_solar_radiation, land_use_per_unit)
-  )
-)

@@ -4,13 +4,13 @@
 #
 # the green gas is deducted.
 
+- query =
+    DIVIDE(
+      SUM(
+        V(G(heat_production),input_of_fossil_carriers),
+        V(G(heat_production),input_of_network_gas).sum * Q(share_of_natural_gas_in_gas_network)
+      ),
+      BILLIONS
+    )
 - unit = pj
 - deprecated_key = heat_and_cold_production_fossil
-
-DIVIDE(
-  SUM(
-    V(G(heat_production),input_of_fossil_carriers),
-    V(G(heat_production),input_of_network_gas).sum * Q(share_of_natural_gas_in_gas_network)
-  ),
-  BILLIONS
-)

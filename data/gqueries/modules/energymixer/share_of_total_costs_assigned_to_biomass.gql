@@ -2,27 +2,27 @@
 # I added " + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste" to the waste part.
 # Either primary_demand_of_waste can be removed, or the new carrier group can be queried instead.
 
+- query =
+    DIVIDE(
+    SUM(
+      V(G(final_demand_cbs)," primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste"),
+      V(G(final_demand_cbs), primary_demand_of_ambient_heat),
+      V(G(final_demand_cbs), primary_demand_of_ambient_cold),
+      V(G(final_demand_cbs), primary_demand_of_wood_pellets),
+      V(G(final_demand_cbs), primary_demand_of_greengas),
+      V(G(final_demand_cbs), primary_demand_of_biodiesel),
+      V(G(final_demand_cbs), primary_demand_of_bio_ethanol),
+      V(G(final_demand_cbs), primary_demand_of_bio_oil),
+      V(G(final_demand_cbs), primary_demand_of_biogas),
+      V(G(final_demand_cbs), primary_demand_of_algae_diesel),
+      V(G(final_demand_cbs), primary_demand_of_electricity)
+       )
+    ,
+    SUM(
+      V(G(final_demand_cbs), primary_demand),
+      NEG(SUM(
+          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          ))
+       )
+    )
 - unit = factor
-
-DIVIDE(
-  SUM(
-    V(G(final_demand_cbs)," primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste"),
-    V(G(final_demand_cbs), primary_demand_of_ambient_heat),
-    V(G(final_demand_cbs), primary_demand_of_ambient_cold),
-    V(G(final_demand_cbs), primary_demand_of_wood_pellets),
-    V(G(final_demand_cbs), primary_demand_of_greengas),
-    V(G(final_demand_cbs), primary_demand_of_biodiesel),
-    V(G(final_demand_cbs), primary_demand_of_bio_ethanol),
-    V(G(final_demand_cbs), primary_demand_of_bio_oil),
-    V(G(final_demand_cbs), primary_demand_of_biogas),
-    V(G(final_demand_cbs), primary_demand_of_algae_diesel),
-    V(G(final_demand_cbs), primary_demand_of_electricity)
-     )
-  ,
-  SUM(
-    V(G(final_demand_cbs), primary_demand),
-    NEG(SUM(
-        V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-        ))
-     )
-  )

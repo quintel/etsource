@@ -1,9 +1,9 @@
 # Share of the final demand that is gerenerated domestically. This is > 1 if there is overproduction resulting in export,
 # and < 1 if the production is less then required, and electricity import is required.
 
+- query =
+    DIVIDE(
+      Q(total_electricity_produced),
+      Q(final_demand_of_electricity_plus_distribution_losses)
+    )
 - unit = factor
-
-DIVIDE(
-  Q(total_electricity_produced),
-  Q(final_demand_of_electricity_plus_distribution_losses)
-)

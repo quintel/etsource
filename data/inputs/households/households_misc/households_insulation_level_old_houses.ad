@@ -1,13 +1,14 @@
-- factor = 1.0
 - id = 336
+- query =
+    UPDATE(
+      FIRST(LINKS(OUTPUT_SLOTS(V(households_old_houses_heating_savings_from_insulation),useable_heat))),
+      share,
+      (1 - ((1 - 0.2) * AREA(insulation_level_existing_houses) / USER_INPUT() + 0.2))
+    )
+- priority = 0
 - max_value = 3.0
 - min_value = 1.0
 - start_value = 1.0
-- update_period = future
 - step_value = 0.1
-
-UPDATE(
-  FIRST(LINKS(OUTPUT_SLOTS(V(households_old_houses_heating_savings_from_insulation),useable_heat))),
-  share,
-  (1 - ((1 - 0.2) * AREA(insulation_level_existing_houses) / USER_INPUT() + 0.2))
-)
+- factor = 1.0
+- update_period = future

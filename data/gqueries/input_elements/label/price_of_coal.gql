@@ -1,10 +1,10 @@
-- deprecated_key = coal_in_dollar_per_tonne
 # Price of coal in USD per tonne
 
+- query =
+    PRODUCT(
+     V(CARRIER(coal),"cost_per_mj * mj_per_kg"),
+    KG_PER_TONNE,
+    Q(dollar_per_euro)
+    )
 - unit = $
-
-PRODUCT(
-              V(CARRIER(coal),"cost_per_mj * mj_per_kg"),
-             KG_PER_TONNE,
-             Q(dollar_per_euro)
-             )
+- deprecated_key = coal_in_dollar_per_tonne

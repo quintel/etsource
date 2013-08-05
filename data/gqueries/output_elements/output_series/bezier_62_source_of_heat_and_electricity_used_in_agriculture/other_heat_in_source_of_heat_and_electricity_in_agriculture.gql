@@ -1,17 +1,14 @@
-
-#
-
-- unit = pj
-
-DIVIDE(
-    MAX(
-        SUM(
-            V(agriculture_useful_demand_useable_heat,demand),
-            NEG(
-                V(agriculture_chp_engine_network_gas,output_of_heat_carriers)
-            )
+- query =
+    DIVIDE(
+        MAX(
+            SUM(
+                V(agriculture_useful_demand_useable_heat,demand),
+                NEG(
+                    V(agriculture_chp_engine_network_gas,output_of_heat_carriers)
+                )
+            ),
+            0
         ),
-        0
-    ),
-    BILLIONS
-)
+        BILLIONS
+    )
+- unit = pj

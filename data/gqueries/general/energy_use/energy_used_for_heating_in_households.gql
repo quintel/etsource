@@ -1,9 +1,7 @@
-# 
-
+- query =
+    SUM(
+      V(Q(heating_converters_in_households),demand),
+      NEG(Q(gas_allocated_to_electricity_production_in_households_heating))
+    )
 - unit = mj
 - deprecated_key = households_heating_final_demand_total
-
-SUM(
-  V(Q(heating_converters_in_households),demand),
-  NEG(Q(gas_allocated_to_electricity_production_in_households_heating))
-)

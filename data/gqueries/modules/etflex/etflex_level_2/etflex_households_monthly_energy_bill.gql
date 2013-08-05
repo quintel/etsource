@@ -2,9 +2,9 @@
 # Assumes 10 kWh per cubic meter of gas at a cost of 60 ct/m3
 # and 22 ct/kWh for electricity
 
+- query =
+    SUM (
+      V(households_final_demand_network_gas, "demand / MJ_PER_KWH / 10 * 0.6"),
+      (V(households_final_demand_electricity, demand) - V(households_solar_pv_solar_radiation, output_of_electricity) - V(households_space_heater_micro_chp_network_gas, output_of_electricity)) / MJ_PER_KWH * 0.22, 
+    ) / AREA(number_households) / MONTHS_PER_YEAR
 - unit = euro
-
-SUM (
-  V(households_final_demand_network_gas, "demand / MJ_PER_KWH / 10 * 0.6"),
-  (V(households_final_demand_electricity, demand) - V(households_solar_pv_solar_radiation, output_of_electricity) - V(households_space_heater_micro_chp_network_gas, output_of_electricity)) / MJ_PER_KWH * 0.22, 
-) / AREA(number_households) / MONTHS_PER_YEAR

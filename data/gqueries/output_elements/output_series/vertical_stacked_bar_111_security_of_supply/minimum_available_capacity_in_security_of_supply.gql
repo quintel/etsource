@@ -1,9 +1,8 @@
 # This is the available electricity production capacity minus three times the variability (i.e. 99%)
 
-
+- query =
+    MAX(
+        Q(available_electricity_production_capacity),
+        0
+    )
 - unit = MW
-
-MAX(
-    Q(available_electricity_production_capacity),
-    0
-)

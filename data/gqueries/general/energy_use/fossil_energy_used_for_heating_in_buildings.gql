@@ -1,14 +1,14 @@
 # adjusted for the greengas in the natural gas.
 
+- query =
+    SUM(
+      V(Q(heating_converters_in_buildings),input_of_coal),
+      V(Q(heating_converters_in_buildings),input_of_crude_oil),
+      PRODUCT(Q(share_of_natural_gas_in_gas_network),SUM(V(Q(heating_converters_in_buildings),"input_of_network_gas + input_of_gas_power_fuelmix"))),
+      V(Q(heating_converters_in_buildings),input_of_diesel),
+      V(Q(heating_converters_in_buildings),input_of_gasoline),
+      V(Q(heating_converters_in_buildings),input_of_lignite),
+      V(buildings_heat_network_connection_steam_hot_water,input_of_steam_hot_water)
+    )
 - unit = mj
 - deprecated_key = buildings_heating_final_demand_fossil
-
-SUM(
-  V(Q(heating_converters_in_buildings),input_of_coal),
-  V(Q(heating_converters_in_buildings),input_of_crude_oil),
-  PRODUCT(Q(share_of_natural_gas_in_gas_network),SUM(V(Q(heating_converters_in_buildings),"input_of_network_gas + input_of_gas_power_fuelmix"))),
-  V(Q(heating_converters_in_buildings),input_of_diesel),
-  V(Q(heating_converters_in_buildings),input_of_gasoline),
-  V(Q(heating_converters_in_buildings),input_of_lignite),
-  V(buildings_heat_network_connection_steam_hot_water,input_of_steam_hot_water)
-)

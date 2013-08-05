@@ -1,13 +1,13 @@
-- deprecated_key = pl_network_investment_needed_check
 # Used for the network investment needed popup
 
+- query =
+    GREATER(
+        SUM(
+            Q(yearly_investment_costs_of_lv_grid),
+            Q(yearly_investment_costs_of_mv_grid),
+            Q(yearly_investment_costs_of_hv_grid)
+        ),
+        0
+    )
 - unit = boolean
-
-GREATER(
-    SUM(
-        Q(yearly_investment_costs_of_lv_grid),
-        Q(yearly_investment_costs_of_mv_grid),
-        Q(yearly_investment_costs_of_hv_grid)
-    ),
-    0
-)
+- deprecated_key = pl_network_investment_needed_check

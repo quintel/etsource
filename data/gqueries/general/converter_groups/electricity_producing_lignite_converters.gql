@@ -1,13 +1,13 @@
 # Returns the converters which produce electricity using lignite.
-# 
+#
 # It works by looking to converters directly fed by the "Lignite distribution" converter that have output of electricity.
 
+- query =
+    V(
+    FILTER(
+      V(
+        PARENTS(V(energy_distribution_lignite))
+        ), "electricity_output_conversion && electricity_output_conversion > 0")
+    )
 - unit = converters
 - deprecated_key = electricity_producing_converters_lignite
-
-V(
-  FILTER(
-    V(
-      PARENTS(V(energy_distribution_lignite))
-      ), "electricity_output_conversion && electricity_output_conversion > 0")
-  )

@@ -13,25 +13,22 @@
 # * renewability:  bonus
 #
 # * deviations:    penalty
-#
+
+- query =
+    MAX(0,
+      SUM(
+        Q(etflex_score_base),
+        Q(etflex_score_cost),
+        Q(etflex_score_co2),
+        Q(etflex_score_electric_car),
+        Q(etflex_score_greengas),
+        Q(etflex_score_heatpump),
+        Q(etflex_score_imbalance),
+        Q(etflex_score_led),
+        Q(etflex_score_nuclear_waste),
+        Q(etflex_score_reliability),
+        Q(etflex_score_renewability),
+        50 * Q(etflex_score_deviations_from_reference_scenario)
+      )
+    )
 - unit = #
-
-MAX(0,
-  SUM(
-    Q(etflex_score_base),
-
-    Q(etflex_score_cost),
-    Q(etflex_score_co2),
-    Q(etflex_score_electric_car),
-    Q(etflex_score_greengas),
-    Q(etflex_score_heatpump),
-    Q(etflex_score_imbalance),
-    Q(etflex_score_led),
-    Q(etflex_score_nuclear_waste),
-    Q(etflex_score_reliability),
-
-    Q(etflex_score_renewability),
-
-    50 * Q(etflex_score_deviations_from_reference_scenario)
-  )
-)

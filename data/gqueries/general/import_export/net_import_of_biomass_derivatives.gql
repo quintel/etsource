@@ -1,10 +1,9 @@
 # bio ethanol and bio diesel are use energetic!
 
+- query =
+    SUM(
+      V(G(energy_import),output_of(Q(carrier_group_biomass_products))),
+      NEG(V(G(energy_export),input_of(Q(carrier_group_biomass_products))).sum)
+    )
 - unit = mj
 - deprecated_key = import_of_biomassa_group
-
-
-SUM(
-  V(G(energy_import),output_of(Q(carrier_group_biomass_products))),
-  NEG(V(G(energy_export),input_of(Q(carrier_group_biomass_products))).sum)
-)

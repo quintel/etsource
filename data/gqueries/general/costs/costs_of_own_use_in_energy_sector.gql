@@ -1,15 +1,13 @@
-# 
-
+- query =
+    SUM(
+      V(
+        energy_final_demand_network_gas,
+        "input_of_network_gas * weighted_carrier_cost_per_mj"
+      ),
+      V(
+        energy_final_demand_crude_oil,
+        "input_of_crude_oil * weighted_carrier_cost_per_mj"
+      )
+    )
 - unit = euro
 - deprecated_key = cost_fuels_energy_sector
-
-SUM(
-  V(
-    energy_final_demand_network_gas,
-    "input_of_network_gas * weighted_carrier_cost_per_mj"
-  ),
-  V(
-    energy_final_demand_crude_oil,
-    "input_of_crude_oil * weighted_carrier_cost_per_mj"
-  )
-)

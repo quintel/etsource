@@ -1,28 +1,28 @@
-- factor = 100.0
 - id = 1
+- query =
+    decrease_factor       = ((1.0 - USER_INPUT()/100) ** scope.scenario.years);
+    old_houses_demand     = V(households_old_houses_useful_demand_for_heating, preset_demand);
+    old_houses_update     = old_houses_demand * decrease_factor;
+    new_houses_demand     = V(households_new_houses_useful_demand_for_heating, preset_demand);
+    demand_per_old_house  =  old_houses_demand / ((1 - AREA(percentage_of_new_houses)/100.0) * AREA(number_households));
+    households_to_replace = (old_houses_demand - old_houses_update) / demand_per_old_house;
+    households_existing   = AREA(number_households) - households_to_replace;
+    update_value          = SUM(
+      new_houses_demand,
+      PRODUCT(
+        (new_houses_demand / (AREA(percentage_of_new_houses)/100.0 * AREA(number_households))),
+        households_to_replace)
+    );
+    EACH(
+      UPDATE(AREA(), number_of_existing_households, households_existing),
+      UPDATE(L(households_old_houses_useful_demand_for_heating), preset_demand, old_houses_update),
+      UPDATE(L(households_new_houses_useful_demand_for_heating), preset_demand, update_value)
+    )
+- priority = 0
 - max_value = 5.0
 - min_value = 0.0
 - start_value = 0.0
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-
-decrease_factor       = ((1.0 - USER_INPUT()/100) ** scope.scenario.years);
-old_houses_demand     = V(households_old_houses_useful_demand_for_heating, preset_demand);
-old_houses_update     = old_houses_demand * decrease_factor;
-new_houses_demand     = V(households_new_houses_useful_demand_for_heating, preset_demand);
-demand_per_old_house  =  old_houses_demand / ((1 - AREA(percentage_of_new_houses)/100.0) * AREA(number_households));
-households_to_replace = (old_houses_demand - old_houses_update) / demand_per_old_house;
-households_existing   = AREA(number_households) - households_to_replace;
-update_value          = SUM(
-  new_houses_demand,
-  PRODUCT(
-    (new_houses_demand / (AREA(percentage_of_new_houses)/100.0 * AREA(number_households))),
-    households_to_replace)
-);
-
-EACH(
-  UPDATE(AREA(), number_of_existing_households, households_existing),
-  UPDATE(L(households_old_houses_useful_demand_for_heating), preset_demand, old_houses_update),
-  UPDATE(L(households_new_houses_useful_demand_for_heating), preset_demand, update_value)
-)

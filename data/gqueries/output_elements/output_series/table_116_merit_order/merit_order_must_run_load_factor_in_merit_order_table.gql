@@ -1,6 +1,8 @@
 # Hmmmm....
+
+- query =
+    DIVIDE(
+      SUM(V(G(must_run_electricity_production)," installed_production_capacity_in_mw_electricity * full_load_hours / HOURS_PER_YEAR")),
+      SUM(V(G(must_run_electricity_production)," installed_production_capacity_in_mw_electricity"))
+    )
 - unit = factor
-DIVIDE(
-  SUM(V(G(must_run_electricity_production)," installed_production_capacity_in_mw_electricity * full_load_hours / HOURS_PER_YEAR")),
-  SUM(V(G(must_run_electricity_production)," installed_production_capacity_in_mw_electricity"))
-)

@@ -1,9 +1,7 @@
-# 
-
+- query =
+    DIVIDE(
+      V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),INTERSECTION(SECTOR(energy),G(final_demand_cbs)),primary_demand_of_greengas).sum,
+      BILLIONS
+    )
 - unit = pj
 - deprecated_key = industry_greengas_primary_demand
-
-DIVIDE(
-  V(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),INTERSECTION(SECTOR(energy),G(final_demand_cbs)),primary_demand_of_greengas).sum,
-  BILLIONS
-)

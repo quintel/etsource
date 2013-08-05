@@ -1,13 +1,11 @@
-# 
-
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(SECTOR(households),G(final_demand_cbs)),"
+          primary_demand_of_corn + primary_demand_of_manure + primary_demand_of_bio_oil + primary_demand_of_wood + primary_demand_of_wood_pellets + primary_demand_of_bio_residues_for_firing")
+        ),
+      BILLIONS
+    )
 - unit = pj
 - deprecated_key = households_biomass_primary_demand
-
-DIVIDE(
-  SUM(
-    V(
-      INTERSECTION(SECTOR(households),G(final_demand_cbs)),"
-      primary_demand_of_corn + primary_demand_of_manure + primary_demand_of_bio_oil + primary_demand_of_wood + primary_demand_of_wood_pellets + primary_demand_of_bio_residues_for_firing")
-    ),
-  BILLIONS
-)

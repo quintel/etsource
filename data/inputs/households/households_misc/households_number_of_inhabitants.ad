@@ -1,26 +1,27 @@
-- factor = 0.000001
 - id = 335
+- query =
+    EACH(
+    UPDATE(AREA(), number_inhabitants, USER_INPUT()*1_000_000),
+    UPDATE_WITH_FACTOR(
+      V(households_useful_demand_light,
+        households_useful_demand_cooking_useable_heat,
+        households_appliances_dishwasher_electricity,
+        households_appliances_fridge_freezer_electricity,
+        households_appliances_vacuum_cleaner_electricity,
+        households_appliances_washing_machine_electricity,
+        households_appliances_clothes_dryer_electricity,
+        households_appliances_television_electricity,
+        households_appliances_computer_media_electricity,
+        households_useful_demand_hot_water
+        ), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_inhabitants) })
+      )
+    )
+- priority = 0
 - max_value_gql = present:AREA(number_inhabitants) * 0.000001 * 2
 - min_value_gql = present:AREA(number_inhabitants) * 0.000001 * 0.5
 - start_value_gql = present:AREA(number_inhabitants)
+- step_value = 0.1
+- factor = 1.0e-06
 - unit = #
 - update_period = future
 - update_type = mixed
-- step_value = 0.1
-
-EACH(
-  UPDATE(AREA(), number_inhabitants, USER_INPUT()*1_000_000),
-  UPDATE_WITH_FACTOR(
-    V(households_useful_demand_light,
-      households_useful_demand_cooking_useable_heat,
-      households_appliances_dishwasher_electricity,
-      households_appliances_fridge_freezer_electricity,
-      households_appliances_vacuum_cleaner_electricity,
-      households_appliances_washing_machine_electricity,
-      households_appliances_clothes_dryer_electricity,
-      households_appliances_television_electricity,
-      households_appliances_computer_media_electricity,
-      households_useful_demand_hot_water
-      ), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_inhabitants) })
-    )
-  )

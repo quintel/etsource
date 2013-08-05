@@ -1,13 +1,14 @@
-- factor = 100.0
 - id = 613
-- max_value = 100.0
-- min_value = 0.0
-- unit = %
-- update_period = future
-- step_value = 0.1
-- start_value_gql = present:V(energy_steel_hisarna_transformation_coal,torrified_biomass_pellets_input_conversion)
-
-EACH(
+- query =
+    EACH(
     UPDATE( INPUT_SLOTS(V(energy_steel_hisarna_transformation_coal),torrified_biomass_pellets), conversion, DIVIDE(USER_INPUT(),100)),
     UPDATE( INPUT_SLOTS(V(energy_steel_hisarna_transformation_coal),coal), conversion, 1-(DIVIDE(USER_INPUT(),100)))
     )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_steel_hisarna_transformation_coal,torrified_biomass_pellets_input_conversion)
+- step_value = 0.1
+- factor = 100.0
+- unit = %
+- update_period = future

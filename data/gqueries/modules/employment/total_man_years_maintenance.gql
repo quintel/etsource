@@ -1,13 +1,13 @@
 # The total man-year spent in NL on maintenance.
 
+- query =
+    PRODUCT(
+    	DIVIDE(
+    		SUM(
+    			V(Q(employment_converters),"hours_maint_nl*number_of_units")
+    		),
+    		AREA(man_hours_per_man_year)
+    	),
+    	AREA(economic_multiplier)
+    )
 - unit = man_years
-
-PRODUCT(
-	DIVIDE(
-		SUM(
-			V(Q(employment_converters),"hours_maint_nl*number_of_units")
-		),
-		AREA(man_hours_per_man_year)
-	),
-	AREA(economic_multiplier)
-)

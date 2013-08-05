@@ -1,9 +1,9 @@
 # The final demand of electricity, plus distribution losses, but excluding distribution losses for export.
 
+- query =
+    SUM(
+      V(GROUP(final_demand_cbs),input_of_electricity),
+      V(energy_power_hv_network_loss,demand),
+      NEG(Q(distribution_losses_for_exported_electricity))
+    )
 - unit = mj
-
-SUM(
-  V(GROUP(final_demand_cbs),input_of_electricity),
-  V(energy_power_hv_network_loss,demand),
-  NEG(Q(distribution_losses_for_exported_electricity))
-)

@@ -1,14 +1,14 @@
 # The gas used in the agriculture sector, minus the sustainable part of the gas.
 
+- query =
+    SUM(
+     V(agriculture_burner_network_gas,output_of_heat_carriers),
+     NEG(
+       V(
+         agriculture_burner_network_gas,
+         "output_of_heat_carriers * sustainability_share"
+        )
+      )
+    )
 - unit = mj
 - deprecated_key = natural_gas_heat_agri
-
-SUM(
- V(agriculture_burner_network_gas,output_of_heat_carriers),
- NEG(
-   V(
-     agriculture_burner_network_gas,
-     "output_of_heat_carriers * sustainability_share"
-    )
-  )
-)

@@ -1,14 +1,14 @@
-- deprecated_key = pl_hv_net_operational_costs_total
-# Costs for O&M of the HV-net. 
+# Costs for O&M of the HV-net.
 # Note: Since the HV-net uses a different calculation than other voltage levels this query is slightly different.
 # Here it is assumed that all electricity in the HV network passes through the HV/MV network, therefore the costs scale with HV/MV newly required capacity
 
+- query =
+    PRODUCT(
+        DIVIDE(
+                V(energy_power_hv_network_electricity,"fixed_operation_and_maintenance_costs_per(:mw_input)*network_capacity_available_in_mw"),
+                V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
+            ),
+        Q(network_hv_mv_trafo_delta_peak_load_max)
+    )
 - unit = euro
-
-PRODUCT(
-    DIVIDE(
-            V(energy_power_hv_network_electricity,"fixed_operation_and_maintenance_costs_per(:mw_input)*network_capacity_available_in_mw"),
-            V(energy_power_transformer_mv_hv_electricity, network_capacity_available_in_mw)
-        ),
-    Q(network_hv_mv_trafo_delta_peak_load_max)
-)
+- deprecated_key = pl_hv_net_operational_costs_total

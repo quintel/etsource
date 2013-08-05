@@ -1,12 +1,12 @@
-- factor = 1.0
 - id = 193
+- query = UPDATE(GOAL(roofs_for_solar_panels),user_value,USER_INPUT())
+- priority = 0
 - max_value = 400.0
+- max_value_gql = present:SUM(AREA(roof_surface_available_pv),AREA(roof_surface_available_pv_buildings))
 - min_value = 0.0
 - start_value = 0.0
+- start_value_gql = present:V(households_solar_pv_solar_radiation,total_land_use)
+- step_value = 0.1
+- factor = 1.0
 - unit = km2
 - update_period = future
-- step_value = 0.1
-- start_value_gql = present:V(households_solar_pv_solar_radiation,total_land_use)
-- max_value_gql = present:SUM(AREA(roof_surface_available_pv),AREA(roof_surface_available_pv_buildings))
-
-UPDATE(GOAL(roofs_for_solar_panels),user_value,USER_INPUT())

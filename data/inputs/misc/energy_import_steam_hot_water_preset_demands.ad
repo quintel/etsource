@@ -1,14 +1,15 @@
-- factor = 100.0
 - id = 562
+- query =
+    EACH(
+      UPDATE(V(energy_import_steam_hot_water), preset_demand, USER_INPUT() / 1.0e-09),
+      UPDATE(OUTPUT_LINKS(V(energy_import_steam_hot_water), "constant?"), share, USER_INPUT() / 1.0e-09)
+    )
+- priority = 0
 - max_value = 6.0
 - min_value = 0.0
+- start_value_gql = present:V(energy_import_steam_hot_water,demand)
+- step_value = 0.1
+- factor = 100.0
 - unit = PJ
 - update_period = future
-- step_value = 0.1
-- start_value_gql = present:V(energy_import_steam_hot_water,demand)
 - dependent_on = has_heat_import
-
-EACH(
-  UPDATE(V(energy_import_steam_hot_water), preset_demand, USER_INPUT() / 1.0e-09),
-  UPDATE(OUTPUT_LINKS(V(energy_import_steam_hot_water), "constant?"), share, USER_INPUT() / 1.0e-09)
-)

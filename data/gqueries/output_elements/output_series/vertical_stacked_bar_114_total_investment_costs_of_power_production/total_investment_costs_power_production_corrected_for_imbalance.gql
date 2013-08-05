@@ -2,9 +2,9 @@
 # These costs are corrected for the amount of electricity produced domestically.
 # When electricity is imported or exported, the average costs are used to calculate the total investment costs to fill demand.
 
+- query =
+    DIVIDE(
+      SUM(V(G(electricity_production),total_investment_over_lifetime_per(:converter))),
+      Q(share_of_electricity_generated_domestically)
+    )
 - unit = bln_euro
-
-DIVIDE(
-  SUM(V(G(electricity_production),total_investment_over_lifetime_per(:converter))),
-  Q(share_of_electricity_generated_domestically)
-)

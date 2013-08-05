@@ -1,16 +1,16 @@
-- deprecated_key = primary_electricity_from_wind
 # primary_electricity_from_wind
 
-- unit = mj
-
-PRODUCT(
-   SUM(
-    V(G(final_demand_cbs), primary_demand_of_electricity)
-     )
-,
-   DIVIDE
-    (
-    Q(electricity_produced_from_wind),
-    Q(electricity_produced_from_wind_and_solar)
+- query =
+    PRODUCT(
+       SUM(
+        V(G(final_demand_cbs), primary_demand_of_electricity)
+         )
+    ,
+       DIVIDE
+        (
+        Q(electricity_produced_from_wind),
+        Q(electricity_produced_from_wind_and_solar)
+        )
     )
-)
+- unit = mj
+- deprecated_key = primary_electricity_from_wind

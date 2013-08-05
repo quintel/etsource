@@ -1,18 +1,19 @@
 # The max value is dynamically determined by how many CHPs would be build if all of the electricity demand would be supplied by this specific CHP.
-# 
+#
 # The max value field is taken from the Excel model, but is overrided by the dynamic field, so not used.
 
-- factor = 1.0
 - id = 325
+- query =
+    EACH(
+      UPDATE(V(agriculture_chp_engine_network_gas), number_of_units, USER_INPUT()),
+      UPDATE(OUTPUT_LINKS(V(agriculture_chp_engine_network_gas),constant), share, V(agriculture_chp_engine_network_gas, production_based_on_number_of_units)),
+    )
+- priority = 0
 - max_value = 1214.0
+- max_value_gql = present:Q(maximum_number_of_chps_in_agriculture)
 - min_value = 0.0
+- start_value_gql = present:V(agriculture_chp_engine_network_gas,number_of_units)
+- step_value = 0.1
+- factor = 1.0
 - unit = #
 - update_period = future
-- step_value = 0.1
-- start_value_gql = present:V(agriculture_chp_engine_network_gas,number_of_units)
-- max_value_gql = present:Q(maximum_number_of_chps_in_agriculture)
-
-EACH(
-            UPDATE(V(agriculture_chp_engine_network_gas), number_of_units, USER_INPUT()),
-            UPDATE(OUTPUT_LINKS(V(agriculture_chp_engine_network_gas),constant), share, V(agriculture_chp_engine_network_gas, production_based_on_number_of_units)),
-          )

@@ -1,8 +1,8 @@
 # fraction of electricity in heating for agriculture.
 
+- query =
+    DIVIDE(
+      SUM(V(CHILDREN(V(agriculture_useful_demand_useable_heat)),input_of_electricity)),
+      SUM(V(CHILDREN(V(agriculture_useful_demand_useable_heat)),demand))
+    )
 - unit = #
-
-DIVIDE(
-  SUM(V(CHILDREN(V(agriculture_useful_demand_useable_heat)),input_of_electricity)),
-  SUM(V(CHILDREN(V(agriculture_useful_demand_useable_heat)),demand))
-)

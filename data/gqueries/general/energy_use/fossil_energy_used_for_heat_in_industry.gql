@@ -1,15 +1,15 @@
-- deprecated_key = fossil_heat_industry
 # The total of fossil fuels use energetic in the final demand of industry, corrected for the share of greengas of the gas.
 
+- query =
+    SUM(
+      V(
+        INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),
+        "output_of_crude_oil + output_of_coal + output_of_coal_gas"
+      ),
+      PRODUCT(
+        SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),output_of_network_gas)),
+        Q(share_of_natural_gas_in_gas_network)
+      )
+    )
 - unit = mj
-
-SUM(
-  V(
-    INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),
-    "output_of_crude_oil + output_of_coal + output_of_coal_gas"
-  ),
-  PRODUCT(
-    SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),output_of_network_gas)),
-    Q(share_of_natural_gas_in_gas_network)
-  )
-)
+- deprecated_key = fossil_heat_industry

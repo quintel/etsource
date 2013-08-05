@@ -1,8 +1,9 @@
-- deprecated_key = pl_lv_net_operational_costs_total
 # Costs for O&M of the LV-network. Assumed to increase linearly with the newly required capacity
-- unit = euro
 
-PRODUCT(
-    V(energy_power_lv_network_electricity, fixed_operation_and_maintenance_costs_per(:mw_input)),
-    Q(network_lv_net_delta_peak_load_max)
-)
+- query =
+    PRODUCT(
+        V(energy_power_lv_network_electricity, fixed_operation_and_maintenance_costs_per(:mw_input)),
+        Q(network_lv_net_delta_peak_load_max)
+    )
+- unit = euro
+- deprecated_key = pl_lv_net_operational_costs_total

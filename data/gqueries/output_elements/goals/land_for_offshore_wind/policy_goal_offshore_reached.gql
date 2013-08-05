@@ -1,12 +1,10 @@
+- query =
+    IF(
+      GOAL_IS_SET(offshore),
+      LESS_OR_EQUAL(
+        V(energy_power_wind_turbine_offshore,total_land_use),
+        GOAL_USER_VALUE(offshore)
+      ),
+      nil
+    )
 - unit = boolean
-
-IF(
-  GOAL_IS_SET(offshore),
-
-  LESS_OR_EQUAL(
-    V(energy_power_wind_turbine_offshore,total_land_use),
-    GOAL_USER_VALUE(offshore)
-  ),
-
-  nil
-)

@@ -1,8 +1,7 @@
 # How much kg CO2 the average MJ electricity produces domestically
 
+- query =
+    V(G(electricity_production),primary_co2_emission).sum /
+    V(G(electricity_production),output_of_electricity).sum
 - unit = kg
 - deprecated_key = co2_per_mj_domestic_electricity_production
-
-V(G(electricity_production),primary_co2_emission).sum /
-V(G(electricity_production),output_of_electricity).sum
-

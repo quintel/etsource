@@ -1,13 +1,13 @@
 # The total man-year spent in NL on preparation.
 
+- query =
+    PRODUCT(
+    	DIVIDE(
+    		SUM(
+    			V(Q(employment_converters),"(hours_prep_nl*number_of_units).to_f/technical_lifetime")
+    		),
+    		AREA(man_hours_per_man_year)
+    	),
+    	AREA(economic_multiplier)
+    )
 - unit = man_years
-
-PRODUCT(
-	DIVIDE(
-		SUM(
-			V(Q(employment_converters),"(hours_prep_nl*number_of_units).to_f/technical_lifetime")
-		),
-		AREA(man_hours_per_man_year)
-	),
-	AREA(economic_multiplier)
-)

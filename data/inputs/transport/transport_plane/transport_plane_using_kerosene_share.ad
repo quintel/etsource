@@ -1,11 +1,11 @@
-- factor = 100.0
 - id = 423
+- query = UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(transport_plane_using_kerosene),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))
+- share_group = transport_aviation
+- priority = 0
 - max_value = 100.0
 - min_value = 0.0
+- start_value_gql = present:V(transport_plane_using_kerosene,share_of_transport_useful_demand_planes)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = transport_aviation
-- start_value_gql = present:V(transport_plane_using_kerosene,share_of_transport_useful_demand_planes)
-
-UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(transport_plane_using_kerosene),not_defined))), share, DIVIDE(USER_INPUT(),V(100.0)))

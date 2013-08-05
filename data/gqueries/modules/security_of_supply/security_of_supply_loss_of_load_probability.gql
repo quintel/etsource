@@ -2,17 +2,17 @@
 # The NORMCDF calculation works iteratively and returns an incorrect value if available capacity is significantly greater than demand.
 # And if statement has therefore been included to set the loss of load to 0 in this case.
 
-- deprecated_key = security_of_supply_blackout_risk
-- unit = factor
-
-IF(
-  GREATER(
-    Q(available_electricity_production_capacity),
-    PRODUCT(
-      Q(peak_electricity_demand),
-      2
+- query =
+    IF(
+      GREATER(
+        Q(available_electricity_production_capacity),
+        PRODUCT(
+          Q(peak_electricity_demand),
+          2
+        )
+      ),
+      0,
+      NORMCDF(Q(peak_electricity_demand),Q(available_electricity_production_capacity),Q(total_supply_and_demand_variability))
     )
-  ),
-  0,
-  NORMCDF(Q(peak_electricity_demand),Q(available_electricity_production_capacity),Q(total_supply_and_demand_variability))
-)
+- unit = factor
+- deprecated_key = security_of_supply_blackout_risk

@@ -1,14 +1,14 @@
 # Percentage of renewable heat produced in a household (100 * production / useful_demand)
 
+- query =
+    DIVIDE(
+      SUM(
+        V(households_water_heater_solar_thermal, output_of_useable_heat),
+        V(households_space_heater_heatpump_ground_water_electricity, "output_of_useable_heat * sustainability_share")
+      ),
+      V(households_useful_demand_hot_water,
+        households_useful_demand_for_space_heating_after_insulation,
+        demand
+      ).sum
+    ) * 100
 - unit = %
-
-DIVIDE(
-  SUM(
-    V(households_water_heater_solar_thermal, output_of_useable_heat),
-    V(households_space_heater_heatpump_ground_water_electricity, "output_of_useable_heat * sustainability_share")
-  ),
-  V(households_useful_demand_hot_water,
-    households_useful_demand_for_space_heating_after_insulation,
-    demand
-  ).sum
-) * 100

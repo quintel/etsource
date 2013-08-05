@@ -1,10 +1,8 @@
-# 
-
+- query =
+    DIVIDE(
+      AREA(insulation_level_existing_houses),
+      (
+        (0.8 - V(households_old_houses_heating_savings_from_insulation, share_of_households_old_houses_useful_demand_for_heating) ) / 0.8
+      ) 
+    )
 - unit = #
-
-DIVIDE(
-  AREA(insulation_level_existing_houses),
-  (
-    (0.8 - V(households_old_houses_heating_savings_from_insulation, share_of_households_old_houses_useful_demand_for_heating) ) / 0.8
-  ) 
-)

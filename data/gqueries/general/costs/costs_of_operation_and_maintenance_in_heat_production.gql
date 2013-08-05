@@ -1,9 +1,9 @@
-- deprecated_key = heating_operation_and_maintenance_cost
 # The total operation_and_maintenance_cost for heat production.
 
+- query =
+    SUM(
+      V(G(heat_production), fixed_operation_and_maintenance_costs_per(:converter)),
+      V(G(heat_production), variable_operation_and_maintenance_costs_per(:converter))
+    )
 - unit = euro
-
-SUM(
-  V(G(heat_production), fixed_operation_and_maintenance_costs_per(:converter)),
-  V(G(heat_production), variable_operation_and_maintenance_costs_per(:converter))
-)
+- deprecated_key = heating_operation_and_maintenance_cost

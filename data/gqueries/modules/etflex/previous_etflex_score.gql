@@ -1,37 +1,36 @@
 # Score calculated for etflex.
 # The basis of the score is 1000, minus 5.0 times the costs in billions, minus the CO2 emissions in Mton,
 # plus 2x the percentage renewability of the scenario, minus 5x the number of nuclear power plants (because of nuclear waste).
-# plus 2x the percentage of maximum attainable renewability (free points!). This reduces the (negative) infuence of the renewability fraction. 
+# plus 2x the percentage of maximum attainable renewability (free points!). This reduces the (negative) infuence of the renewability fraction.
 # - (0.02 points for each percentage of LEDs or solar heater)^2
 # - (0.03 points for each percentage of electric car or heatpump)^2
 # - (0.4 points for each percentage point of green gas)^2
 # - ((absolute difference between production and demand of electricity)^2)/500.
-
 # The result is multiplied by a factor:
 # - the reliability of the electricity production squared,
 
-- unit = #
-
-MAX(0,
-  PRODUCT(
-      SUM (
-        1000,
-        PRODUCT(5.0,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
-        NEG( DIVIDE( Q(total_co2_emissions), BILLIONS )),
-        PRODUCT(200,Q(renewability)),
-        PRODUCT(200,0.291),
-        PRODUCT(5,NEG(V(energy_power_nuclear_gen3_uranium_oxide,number_of_units))),
-        NEG(SUM(
-            PRODUCT(3, 3, V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms),V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms)),
-            PRODUCT(3, 3, V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on),V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_ontion_and_solar_heater_and_add_on)),
-            PRODUCT(2, 2, Q(market_penetration_of_solar_heater_for_hot_water_in_households),Q(market_penetration_of_solar_heater_for_hot_water_in_households)),
-            PRODUCT(2, 2, V(households_lighting_led_electricity,share_of_households_useful_demand_light),V(households_lighting_led_electricity,share_of_households_useful_demand_light)),
-            PRODUCT(40,40,Q(share_of_greengas_in_gas_network),Q(share_of_greengas_in_gas_network)),
-            PRODUCT(0.002,  PRODUCT(DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS),DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS)))
+- query =
+    MAX(0,
+      PRODUCT(
+          SUM (
+            1000,
+            PRODUCT(5.0,NEG( DIVIDE( Q(total_costs), BILLIONS ))),
+            NEG( DIVIDE( Q(total_co2_emissions), BILLIONS )),
+            PRODUCT(200,Q(renewability)),
+            PRODUCT(200,0.291),
+            PRODUCT(5,NEG(V(energy_power_nuclear_gen3_uranium_oxide,number_of_units))),
+            NEG(SUM(
+                PRODUCT(3, 3, V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms),V(transport_car_using_electricity,share_of_transport_useful_demand_car_kms)),
+                PRODUCT(3, 3, V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_on),V(households_space_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater_and_add_ontion_and_solar_heater_and_add_on)),
+                PRODUCT(2, 2, Q(market_penetration_of_solar_heater_for_hot_water_in_households),Q(market_penetration_of_solar_heater_for_hot_water_in_households)),
+                PRODUCT(2, 2, V(households_lighting_led_electricity,share_of_households_useful_demand_light),V(households_lighting_led_electricity,share_of_households_useful_demand_light)),
+                PRODUCT(40,40,Q(share_of_greengas_in_gas_network),Q(share_of_greengas_in_gas_network)),
+                PRODUCT(0.002,  PRODUCT(DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS),DIVIDE(ABS(SUM(Q(total_electricity_produced),NEG(Q(final_demand_of_electricity)))),BILLIONS)))
+                )
+              )
             )
-          )
-        )
-  ,
-  PRODUCT(Q(security_of_supply_reliability),Q(security_of_supply_reliability))
-  )
-)
+      ,
+      PRODUCT(Q(security_of_supply_reliability),Q(security_of_supply_reliability))
+      )
+    )
+- unit = #

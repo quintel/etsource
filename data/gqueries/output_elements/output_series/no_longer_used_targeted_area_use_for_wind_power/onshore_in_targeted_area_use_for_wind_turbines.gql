@@ -2,12 +2,12 @@
 #
 # stored:policy_onshore_land
 
-
+- query =
+    MIXED(
+     Q(share_of_designated_area_used_for_inland_wind),
+     PRODUCT(DIVIDE(
+      V(GOAL(onshore_land),user_value),
+      AREA(onshore_suitable_for_wind)
+     ),100)
+    )
 - unit = km2
-MIXED(
- Q(share_of_designated_area_used_for_inland_wind),
- PRODUCT(DIVIDE(
-  V(GOAL(onshore_land),user_value),
-  AREA(onshore_suitable_for_wind)
- ),100)
-)

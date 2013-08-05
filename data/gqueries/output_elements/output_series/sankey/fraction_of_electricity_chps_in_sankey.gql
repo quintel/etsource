@@ -1,9 +1,9 @@
 # Fraction of electricity production from chps relative to all e-producing converters in Sankey
 
-- unit = 
-
-IF(EQUALS(SUM(V(Q(electricity_producing_converters_sankey), output_of_electricity)),0),
-1.0,
-SUM(V(Q(electricity_producing_chp_converters_sankey), output_of_electricity))/
-SUM(V(Q(electricity_producing_converters_sankey), output_of_electricity),
-V(Q(electricity_producing_chp_converters_sankey), output_of_electricity)))
+- query =
+    IF(EQUALS(SUM(V(Q(electricity_producing_converters_sankey), output_of_electricity)),0),
+    1.0,
+    SUM(V(Q(electricity_producing_chp_converters_sankey), output_of_electricity))/
+    SUM(V(Q(electricity_producing_converters_sankey), output_of_electricity),
+    V(Q(electricity_producing_chp_converters_sankey), output_of_electricity)))
+- unit =

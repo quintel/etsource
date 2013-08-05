@@ -1,13 +1,12 @@
-- factor = 100.0
 - id = 581
+- query = UPDATE(INPUT_SLOTS(V(energy_mixer_for_gas_power_fuel),crude_oil), conversion, DIVIDE(USER_INPUT(),100))
+- share_group = energy_sector_gas
+- priority = 100
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 0.0
+- start_value_gql = present:V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+- step_value = 0.1
+- factor = 100.0
 - unit = %
 - update_period = future
-- step_value = 0.1
-- share_group = energy_sector_gas
-- priority = 100
-- start_value_gql = present:V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
-
-UPDATE(INPUT_SLOTS(V(energy_mixer_for_gas_power_fuel),crude_oil), conversion, DIVIDE(USER_INPUT(),100))
