@@ -15,6 +15,6 @@ saving_fraction = 1.0 - AREA(buildings_insulation_constant_1) / (USER_INPUT() - 
 
 EACH(
   UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, total_cost),
-  UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_for_space_heating),useable_heat))), share, saving_fraction),
-  UPDATE(FIRST(LINKS(INPUT_SLOTS(V(buildings_useful_demand_cooling),cooling))), share, saving_fraction)
+  UPDATE(LINK(buildings_useful_demand_for_space_heating,buildings_heating_savings_from_insulation_useable_heat), share, saving_fraction),
+  UPDATE(LINK(buildings_useful_demand_cooling,buildings_cooling_savings_insulation_cooling), share, saving_fraction)
 )
