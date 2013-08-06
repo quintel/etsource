@@ -24,9 +24,8 @@ and are used by ETEngine to set up the graph structure. These files typically
 contain global data which applies to all regions.
 
 If you prefer, ActiveDocument files can be editted in your favourite text
-editor. Each document is split into three sections: a comments section where
-each line begins with a hash ("#"), a section containing attributes values,
-and a final section which contains an optional query.
+editor. Each document is split into two sections: a comments section where
+each line begins with a hash ("#"), a section containing attributes values.
 
 ```
 # This is the comment section. You can wrap across as many lines as you want,
@@ -37,7 +36,7 @@ and a final section which contains an optional query.
 - use = energetic
 - renewability = 1.0
 
-EB(residential, gas)
+~ demand = EB(something, something)
 ```
 
 #### Comments Section
@@ -76,8 +75,10 @@ document.range  # => [1, 2.0, 3, 4.5, 9]
 document.strs   # => ['a', 'b', 'c']
 ```
 
-Finally, you can specify "namespaced" attributes which are converted to
-hashes in the Ruby model:
+##### Hashes and Namespaces
+
+You can specify "namespaced" attributes which are converted to hashes in the
+Ruby model:
 
 ```ruby
 # - efficiency.gas = 0.5
@@ -91,27 +92,36 @@ document.efficiency  # => { gas: 0.5, electricity: 0.6 }
 document.one # => { two: 2, three: { four: 4 } }
 ```
 
-#### Query Section
+##### Dynamic Attributes
 
-After the attributes section may come an optional query, used by Tome to
-dynamically set an attribute on the document. The query may be split over as
-many lines as you wish, and each line does not need any special prefix.
+All of the attributes described so far are "static" -- they are the same for
+every region and do not require any extra processing. However some
+attributes, such as the demand of a node, or the share of an edge, may vary
+from region-to-region, or depend on external (CSV) sources.
+
+These values are assigned by writing a query which outputs the desired value.
+
+Queries are prefixed with a `~` instead of the usual `-`, and are followed by
+the query to be executed:
 
 ```ruby
-EB(residential, gas) +
-  EB(residential, electricity) +
-  EB(residential, infinite_improbability_drive)
+~ demand =
+    EB(residential, gas) +
+      EB(residential, electricity) +
+      EB(residential, infinite_improbability_drive)
 ```
 
-For nodes, the query will set the value of the "demand" attribute, while slots
-will have their "share" set (called "conversion" in ETEngine). By default,
-edges will use the query to set the "child_share" attribute, but you can
-override this by providing a value for the the "sets" attribute. This value
-may be "child_share", "parent_share", or "demand":
+The values output by queries are used during for Refinery calculations. You
+may set the following attributes using a query:
+
+* Node: `demand`.
+* Edge: `parent_share`, `child_share`, or `demand`.
+* Slot: `share` ("conversion").
+
+Set a slot share by adding an appropriate query in the node document:
 
 ```
-- sets = parent_share
-MY( SPECIAL( QUERY( 1.0 ) ) )
+~ output.coal = CONVERSION(my_node_outputs, coal)
 ```
 
 ##### EB(use, carrier)
