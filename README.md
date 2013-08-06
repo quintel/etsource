@@ -75,6 +75,36 @@ document.range  # => [1, 2.0, 3, 4.5, 9]
 document.strs   # => ['a', 'b', 'c']
 ```
 
+##### Multi-line Attributes
+
+An attribute value may span multiple lines so long as each line is intended
+with spaces:
+
+```
+- description =
+    Felis catus is your taxonomic nomenclature,
+    An endothermic quadruped, carnivorous by nature;
+    Your visual, olfactory, and auditory senses
+    Contribute to your hunting skills and natural defenses.
+```
+
+The leading spaces will be trimmed:
+
+```ruby
+# - query =
+#     SUM(
+#       MAX(1, 2),
+#       MAX(3, 4)
+#     )
+
+puts document.query
+
+# SUM(
+#   MAX(1, 2),
+#   MAX(3, 4)
+# )
+```
+
 ##### Hashes and Namespaces
 
 You can specify "namespaced" attributes which are converted to hashes in the
@@ -120,7 +150,7 @@ may set the following attributes using a query:
 
 Set a slot share by adding an appropriate query in the node document:
 
-```
+```ruby
 ~ output.coal = CONVERSION(my_node_outputs, coal)
 ```
 
