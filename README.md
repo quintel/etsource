@@ -9,17 +9,17 @@ original readme, can be found [at the end][original]**
 
 ETSource contains the data used by Quintel applications for modelling energy
 transition. The files contained herein are a mixture of human-editable
-"documents", source files used to do offline calculations with [Tome][tome]
+"documents", source files used to do offline calculations with [Atlas][atlas]
 and [Refinery][refinery], and files containing the results of these
 calculations for use in [ETEngine][etengine].
 
-You may also wish to view the [Tome readme][tome-readme] for information on
+You may also wish to view the [Atlas readme][atlas-readme] for information on
 loading the ETSource data in a console, importing data from the old InputExcel
 output files, or for instructions on exporting data for ETEngine.
 
 ## "Active" Documents
 
-Files with an ".ad" extension are editable through the [Tome console][console]
+Files with an ".ad" extension are editable through the [Atlas console][console]
 and are used by ETEngine to set up the graph structure. These files typically
 contain global data which applies to all regions.
 
@@ -42,7 +42,7 @@ each line begins with a hash ("#"), a section containing attributes values.
 #### Comments Section
 
 The comment section is optional, and should be placed at the top of the
-document. When the file is loaded by Tome, the comment is available as the
+document. When the file is loaded by Atlas, the comment is available as the
 `description` attribute.
 
 ```ruby
@@ -210,11 +210,11 @@ CENTRAL_PRODUCTION(energy_power_solar_csp_solar_radiation) # => 5678.0
 
 #### Before Committing...
 
-After editing documents by hand, you should run the Tome validation to ensure
+After editing documents by hand, you should run the Atlas validation to ensure
 that you did not introduce any illegal changes:
 
 ```
-$ cd ~/code/tome
+$ cd ~/code/atlas
 $ rake validate[../etsource/data]
 OK
 ```
@@ -258,7 +258,7 @@ each input.
 - output.electricity.biomass = 0.5
 ```
 
-This tells ETSource/Tome that the "electricity" output slot has a share of 0.4
+This tells ETSource/Atlas that the "electricity" output slot has a share of 0.4
 when only coal is given to the node, and a share of 0.5 when only biomass is
 given. In reality, your node will likely have a split of inputs; you **must**
 provide a share for each input:
@@ -274,7 +274,7 @@ provide a share for each input:
 ## CSV Documents
 
 Throughout the ETSource repo are ".csv" files which contain raw data used by
-Tome for creating the processed files for ETEngine. Many are sourced from
+Atlas for creating the processed files for ETEngine. Many are sourced from
 third-parties (such as energy-balance data from the IEA), while others are
 created by Quintel staff.
 
@@ -295,7 +295,7 @@ the energy is infinite in supply.
 Inside the datasets directory is a subdirectory for each region. Inside each
 of those folders is *regional* data: an ActiveDocument whose name matches the
 folder. Each also has a "shares" subdirectory containing CSVs whose values
-are used by Tome to set edige shares.
+are used by Atlas to set edige shares.
 
 #### ./edges (global)
 
@@ -323,7 +323,7 @@ significance except to keep things organised.
 
 #### ./import
 
-Files used by Tome [when importing][import] older "legacy" InputExcel output
+Files used by Atlas [when importing][import] older "legacy" InputExcel output
 files into the new ActiveDocument format.
 
 #### ./inputs (global)
@@ -344,14 +344,14 @@ slots on a node. These are often not necessary unless you want to specify a
 custom "share", or want to tell ETEngine to use a special class (such as for
 carrier-efficient nodes). The naming format is similar to edges:
 `node+@carrier` for input slots, and `node-@carrier` for output slots. See
-the Tome [Slot class description][slot] for the rationale behind this naming
+the Atlas [Slot class description][slot] for the rationale behind this naming
 convention.
 
 ## Safe To Edit?
 
 Some documents in the repository should not be hand-edited **yet** as they are
-frequently overwritten when a new [Tome import][import] is performed. See
-Tome's list of [safe-to-edit files][safe] for a list of what you can and
+frequently overwritten when a new [Atlas import][import] is performed. See
+Atlas's list of [safe-to-edit files][safe] for a list of what you can and
 cannot edit.
 
 # Original README
@@ -429,12 +429,12 @@ human-friendly name and is easy on the lips.
     # => {:area_data: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
 
 [build-status]: https://semaphoreapp.com/api/v1/projects/63d00abb0b002bb34bdbe9602aee85a2a0d42f56/25174/badge.png
-[tome]:         https://github.com/quintel/tome
-[tome-readme]:  https://github.com/quintel/tome#readme
+[atlas]:        https://github.com/quintel/atlas
+[atlas-readme]: https://github.com/quintel/atlas#readme
 [refinery]:     https://github.com/quintel/refinery
 [etengine]:     https://github.com/quintel/etengine
-[console]:      https://github.com/quintel/tome#using-the-tome-console
-[import]:       https://github.com/quintel/tome#importing-legacy-etsource-files
-[slot]:         https://github.com/quintel/tome/blob/master/lib/tome/slot.rb
-[safe]:         https://github.com/quintel/tome#safe-to-edit
+[console]:      https://github.com/quintel/atlas#using-the-atlas-console
+[import]:       https://github.com/quintel/atlas#importing-legacy-etsource-files
+[slot]:         https://github.com/quintel/atlas/blob/master/lib/atlas/slot.rb
+[safe]:         https://github.com/quintel/atlas#safe-to-edit
 [original]:     #original-readme
