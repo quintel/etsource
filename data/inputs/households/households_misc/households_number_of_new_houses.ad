@@ -4,9 +4,10 @@
 - id = 640
 - query =
     EACH(
-      UPDATE_WITH_FACTOR(L(households_new_houses_useful_demand_for_heating), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { Q(number_of_new_residences) })),
-      UPDATE_WITH_FACTOR(L(households_new_houses_useful_demand_for_cooling), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { Q(number_of_new_residences) })),
-      UPDATE(AREA(), number_households, USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_old_houses) * 1_000_000 + 1)
+      UPDATE_WITH_FACTOR(L(households_new_houses_useful_demand_for_heating), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_new_residences) })),
+      UPDATE_WITH_FACTOR(L(households_new_houses_useful_demand_for_cooling), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_new_residences) })),
+      UPDATE(AREA(), number_households, USER_INPUT() * 1_000_000 + QUERY_FUTURE(-> { AREA(number_of_old_residences) }) + 1),
+      UPDATE(AREA(), number_of_new_residences, USER_INPUT() * 1_000_000)
     )
 - priority = 0
 - max_value_gql = present:Q(number_of_new_residences) * 0.000001 * 10
