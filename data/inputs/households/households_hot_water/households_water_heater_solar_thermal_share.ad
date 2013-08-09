@@ -2,7 +2,11 @@
 - query =
     EACH(
       UPDATE(LINK(households_useful_demand_for_space_heating_after_insulation,households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater), share, DIVIDE(USER_INPUT(),100)),
-      UPDATE(LINK(households_useful_demand_hot_water,households_useful_demand_for_hot_water_for_houses_with_solar_heater), share, DIVIDE(USER_INPUT(),100))
+      UPDATE(LINK(
+      households_useful_demand_for_space_heating_after_insulation,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share, 1.0 - USER_INPUT() / 100.0
+      ),
+      UPDATE(LINK(households_useful_demand_hot_water,households_useful_demand_for_hot_water_for_houses_with_solar_heater), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(households_useful_demand_hot_water,households_useful_demand_for_hot_water_after_solar_heater), share, 1.0 - DIVIDE(USER_INPUT(),100))
     )
 - priority = 0
 - max_value = 100.0
