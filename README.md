@@ -188,14 +188,17 @@ be consistent across every region, i.e. if you add a "cng.csv" file to
 "datasets/nl/shares", then a similar file should be added for the other
 regions also.
 
-##### CHP(node_key)
+##### TIME_CURVE(file_name, attribute)
 
-Research data containing demands of CHP nodes is at
-"data/datasets/:area/chp.csv" and can be accessed by calling `CHP()` with name
-of the node whose demand you want:
+Files containing time curve data (demands and max. demands which vary over
+time) are found at "data/datasets/:area/time_curves". Provide the name of the
+curve file and the column name to retrieve the desired value.
+
+The `TIME_CURVE` function is presently hard-coded to use values from the
+"2011" row.
 
 ```ruby
-CHP(households_collective_chp_network_gas) # => 0.0
+TIME_CURVE(bio_residues, max_demand) # => 34.0
 ```
 
 ##### CENTRAL_PRODUCTION(node_key)
@@ -207,6 +210,11 @@ Provide the node key to retrieve the demand:
 ```ruby
 CENTRAL_PRODUCTION(energy_power_solar_csp_solar_radiation) # => 5678.0
 ```
+
+##### PRIMARY_PRODUCTION(node_key)
+
+The same as `CENTRAL_PRODUCTION` except that it reads from the CSV file at
+"data/dataset/:area/primary_production.csv"
 
 #### Before Committing...
 
