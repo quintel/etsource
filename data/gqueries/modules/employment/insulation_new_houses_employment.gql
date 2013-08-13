@@ -1,8 +1,5 @@
 # The total man-years spent in NL on insulation of new houses.
 
 - unit = man_years
-
-employment_per_new_house = AREA(new_houses_insulation_employment_constant_1) + 
-                          AREA(new_houses_insulation_employment_constant_2) * INPUT_VALUE(households_insulation_level_new_houses);
-
-employment_per_new_house * Q(number_of_new_residences)
+- query = 
+    AREA(new_houses_insulation_employment_constant_1) + AREA(new_houses_insulation_employment_constant_2) * INPUT_VALUE(households_insulation_level_new_houses) * Q(number_of_new_residences)
