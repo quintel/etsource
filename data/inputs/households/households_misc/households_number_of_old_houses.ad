@@ -9,7 +9,7 @@
     UPDATE(AREA(), number_of_old_residences, USER_INPUT() * 1_000_000),
     UPDATE(AREA(), number_households, USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_new_houses) * 1_000_000 + 1),
     UPDATE_WITH_FACTOR(AREA(), roof_surface_available_pv, (USER_INPUT() + INPUT_VALUE(households_number_of_new_houses)) / 
-    QUERY_PRESENT(-> { Q(households_number_of_residences) })),
+    (QUERY_PRESENT(-> { AREA(number_households) }) / 1_000_000)),
     UPDATE(
     V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "links.detect{|l| !l.flexible? }"),
       share,
