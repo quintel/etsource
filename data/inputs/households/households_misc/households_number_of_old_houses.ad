@@ -6,6 +6,7 @@
   EACH(
     UPDATE_WITH_FACTOR(L(households_old_houses_useful_demand_for_heating), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_old_residences) })),
     UPDATE_WITH_FACTOR(L(households_old_houses_useful_demand_for_cooling), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_old_residences) })),
+    UPDATE(AREA(), number_of_new_residences, USER_INPUT() * 1_000_000),
     UPDATE(AREA(), number_households, USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_new_houses) * 1_000_000 + 1),
     UPDATE_WITH_FACTOR(AREA(), roof_surface_available_pv, (USER_INPUT() + INPUT_VALUE(households_number_of_new_houses)) / 
     QUERY_PRESENT(-> { Q(households_number_of_residences) })),
@@ -13,6 +14,7 @@
     V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "links.detect{|l| !l.flexible? }"),
       share,
       (
+        (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) / 100.0) * 
         (QUERY_FUTURE(-> { AREA(roof_surface_available_pv) }) / V(households_solar_pv_solar_radiation, land_use_per_unit)) *
         V(households_solar_pv_solar_radiation, typical_electricity_production_per_unit)
       )
