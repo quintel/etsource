@@ -318,6 +318,7 @@ energy_distribution_kerosene-(kerosene) -- f --> (kerosene)-energy_import_kerose
 energy_distribution_lignite-(lignite): {conversion: 1.0}
 (lignite)-energy_distribution_lignite: {conversion: 1.0}
 energy_distribution_lignite-(lignite) -- s --> (lignite)-energy_extraction_lignite: {share: 1.0}
+energy_distribution_lignite-(lignite) -- f --> (lignite)-energy_import_lignite: {}
 
 :energy_distribution_lpg:
   :co2_free: 0.0
@@ -470,6 +471,12 @@ energy_export_greengas-(greengas) -- i --> (greengas)-energy_distribution_greeng
 energy_export_kerosene-(kerosene): {conversion: 1.0}
 (kerosene)-energy_export_kerosene: {conversion: 1.0}
 energy_export_kerosene-(kerosene) -- i --> (kerosene)-energy_distribution_kerosene: {}
+
+:energy_export_lignite:
+  :co2_free: 0.0
+energy_export_lignite-(lignite): {conversion: 1.0}
+(lignite)-energy_export_lignite: {conversion: 1.0}
+energy_export_lignite-(lignite) -- i --> (lignite)-energy_distribution_lignite: {}
 
 :energy_export_lpg:
   :co2_free: 0.0
@@ -857,6 +864,11 @@ energy_import_greengas-(greengas): {conversion: 1.0}
   :co2_free: 0.0
 energy_import_kerosene-(kerosene): {conversion: 1.0}
 (kerosene)-energy_import_kerosene: {conversion: 1.0}
+
+:energy_import_lignite:
+  :co2_free: 0.0
+energy_import_lignite-(lignite): {conversion: 1.0}
+(lignite)-energy_import_lignite: {conversion: 1.0}
 
 :energy_import_lng:
   :co2_free: 0.0
