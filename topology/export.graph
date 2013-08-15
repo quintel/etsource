@@ -1243,6 +1243,7 @@ energy_distribution_lignite:
   energy_balance_group: distribution primary carriers
   links:
   - energy_distribution_lignite-(lignite) -- s --> (lignite)-energy_extraction_lignite
+  - energy_distribution_lignite-(lignite) -- f --> (lignite)-energy_import_lignite
   slots:
   - energy_distribution_lignite-(lignite)
   - (lignite)-energy_distribution_lignite
@@ -1453,6 +1454,15 @@ energy_export_kerosene:
   slots:
   - energy_export_kerosene-(kerosene)
   - (kerosene)-energy_export_kerosene
+energy_export_lignite:
+  sector: energy
+  use: energetic
+  energy_balance_group: export
+  links:
+  - energy_export_lignite-(lignite) -- i --> (lignite)-energy_distribution_lignite
+  slots:
+  - energy_export_lignite-(lignite)
+  - (lignite)-energy_export_lignite
 energy_export_lpg:
   sector: energy
   use: undefined
@@ -1471,6 +1481,15 @@ energy_export_network_gas:
   slots:
   - energy_export_network_gas-(network_gas)
   - (network_gas)-energy_export_network_gas
+energy_export_torrified_biomass_pellets:
+  sector: energy
+  use: energetic
+  energy_balance_group: export
+  links:
+  - energy_export_torrified_biomass_pellets-(torrified_biomass_pellets) -- i --> (torrified_biomass_pellets)-energy_distribution_torrified_biomass_pellets
+  slots:
+  - energy_export_torrified_biomass_pellets-(torrified_biomass_pellets)
+  - (torrified_biomass_pellets)-energy_export_torrified_biomass_pellets
 energy_export_uranium_oxide:
   sector: energy
   use: undefined
@@ -1489,6 +1508,15 @@ energy_export_waste_mix:
   slots:
   - energy_export_waste_mix-(waste_mix)
   - (waste_mix)-energy_export_waste_mix
+energy_export_wood_pellets:
+  sector: energy
+  use: energetic
+  energy_balance_group: export
+  links:
+  - energy_export_wood_pellets-(wood_pellets) -- i --> (wood_pellets)-energy_distribution_wood_pellets
+  slots:
+  - energy_export_wood_pellets-(wood_pellets)
+  - (wood_pellets)-energy_export_wood_pellets
 energy_extraction_coal:
   sector: energy
   use: undefined
@@ -1836,6 +1864,14 @@ energy_import_kerosene:
   slots:
   - energy_import_kerosene-(kerosene)
   - (kerosene)-energy_import_kerosene
+energy_import_lignite:
+  sector: energy
+  use: energetic
+  energy_balance_group: import
+  links: 
+  slots:
+  - energy_import_lignite-(lignite)
+  - (lignite)-energy_import_lignite
 energy_import_lng:
   sector: energy
   use: undefined
