@@ -1,11 +1,11 @@
 - id = 336
 - priority = 0
 - step_value = 0.1
+- max_value_gql = present:AREA(insulation_level_old_houses_max)
+- min_value_gql = present:AREA(insulation_level_old_houses_min)
+- start_value_gql = present:AREA(insulation_level_old_houses_min)
 - factor = 1.0
 - update_period = future
-- max_value = 3.0
-- min_value = 0.8
-- start_value = 0.8
 - query =
     cost_per_old_house = AREA(old_houses_insulation_cost_constant_1) + AREA(old_houses_insulation_cost_constant_2) * USER_INPUT();
     total_cost = cost_per_old_house * Q(number_of_old_residences);
