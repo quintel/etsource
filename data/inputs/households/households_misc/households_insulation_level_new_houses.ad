@@ -9,7 +9,7 @@
 - query =
     cost_per_new_house = AREA(new_houses_insulation_cost_constant_1) + AREA(new_houses_insulation_cost_constant_2) * USER_INPUT();
     total_cost = cost_per_new_house * Q(number_of_new_residences);
-    saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (USER_INPUT() - AREA(new_houses_insulation_constant_2));
+    saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (USER_INPUT() + AREA(new_houses_insulation_constant_2));
 
     EACH(
       UPDATE(V(households_new_houses_heating_savings_from_insulation), initial_investment, total_cost),
