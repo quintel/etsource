@@ -7,7 +7,7 @@
 - factor = 1.0
 - update_period = future
 - query =
-    cost_per_old_house = AREA(old_houses_insulation_cost_constant_1) + AREA(old_houses_insulation_cost_constant_2) * USER_INPUT();
+    cost_per_old_house = AREA(old_houses_insulation_cost_constant_1) * (USER_INPUT() - AREA(insulation_level_old_houses_min));
     total_cost = cost_per_old_house * Q(number_of_old_residences);
     saving_fraction = 1.0 - AREA(old_houses_insulation_constant_1) / (USER_INPUT() + AREA(old_houses_insulation_constant_2));
 
