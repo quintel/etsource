@@ -1,13 +1,10 @@
 # Costs of the insulation in old houses, new houses and builings.
 
 - query =
-    V(
-      V(
-        households_old_houses_heating_savings_from_insulation,
-        households_new_houses_heating_savings_from_insulation,
-        buildings_heating_savings_from_insulation_useable_heat
-      ),
-      "demand * costs_per_mj"
-    ).sum
+    SUM(
+      Q(costs_of_insulation_buildings),
+      Q(costs_of_insulation_new_residences),
+      Q(costs_of_insulation_old_residences)
+    )
 - unit = euro
 - deprecated_key = insulation_costs
