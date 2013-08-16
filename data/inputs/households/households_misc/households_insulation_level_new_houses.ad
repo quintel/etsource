@@ -1,14 +1,19 @@
 - id = 337
-- query =
-    UPDATE(
-      FIRST(LINKS(OUTPUT_SLOTS(V(households_new_houses_heating_savings_from_insulation),useable_heat))),
-      share,
-      (1 - ((1 - 0.2) * AREA(insulation_level_new_houses) / USER_INPUT() + 0.2))
-    )
 - priority = 0
-- max_value = 6.0
-- min_value = 2.5
-- start_value = 2.5
 - step_value = 0.1
+- max_value_gql = present:AREA(insulation_level_new_houses_max)
+- min_value_gql = present:AREA(insulation_level_new_houses_min)
+- start_value_gql = present:AREA(insulation_level_new_houses_min)
 - factor = 1.0
 - update_period = future
+- query =
+    cost_per_new_house = AREA(new_houses_insulation_cost_constant) * (USER_INPUT() - AREA(insulation_level_new_houses_min));
+    total_cost = cost_per_new_house * Q(number_of_new_residences);
+    saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (USER_INPUT() + AREA(new_houses_insulation_constant_2));
+
+    EACH(
+      UPDATE(V(households_new_houses_heating_savings_from_insulation), initial_investment, total_cost),
+      UPDATE(LINK(households_new_houses_useful_demand_for_heating,households_new_houses_heating_savings_from_insulation), share, saving_fraction),
+      UPDATE(LINK(households_new_houses_useful_demand_for_cooling,households_new_houses_cooling_savings_from_insulation), share, saving_fraction)
+    )
+
