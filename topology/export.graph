@@ -363,22 +363,6 @@ buildings_cooling_heatpump_air_water_network_gas:
   - buildings_cooling_heatpump_air_water_network_gas-(ambient_cold)
   - (cooling)-buildings_cooling_heatpump_air_water_network_gas
   - ! '(loss)-buildings_cooling_heatpump_air_water_network_gas: {type: :loss}'
-buildings_cooling_savings_from_recirculation_cooling:
-  sector: buildings
-  use: energetic
-  energy_balance_group: savings
-  links: 
-  slots:
-  - buildings_cooling_savings_from_recirculation_cooling-(cooling)
-  - (cooling)-buildings_cooling_savings_from_recirculation_cooling
-buildings_cooling_savings_from_recovery_cooling:
-  sector: buildings
-  use: energetic
-  energy_balance_group: savings
-  links: 
-  slots:
-  - buildings_cooling_savings_from_recovery_cooling-(cooling)
-  - (cooling)-buildings_cooling_savings_from_recovery_cooling
 buildings_cooling_savings_insulation_cooling:
   sector: buildings
   use: energetic
@@ -609,22 +593,6 @@ buildings_heating_savings_from_insulation_useable_heat:
   slots:
   - buildings_heating_savings_from_insulation_useable_heat-(useable_heat)
   - (useable_heat)-buildings_heating_savings_from_insulation_useable_heat
-buildings_heating_savings_from_recirculation_useable_heat:
-  sector: buildings
-  use: energetic
-  energy_balance_group: savings
-  links: 
-  slots:
-  - buildings_heating_savings_from_recirculation_useable_heat-(useable_heat)
-  - (useable_heat)-buildings_heating_savings_from_recirculation_useable_heat
-buildings_heating_savings_from_recovery_useable_heat:
-  sector: buildings
-  use: energetic
-  energy_balance_group: savings
-  links: 
-  slots:
-  - buildings_heating_savings_from_recovery_useable_heat-(useable_heat)
-  - (useable_heat)-buildings_heating_savings_from_recovery_useable_heat
 buildings_lighting_efficient_fluorescent_electricity:
   sector: buildings
   use: energetic
@@ -797,39 +765,13 @@ buildings_useful_demand_after_insulation_cooling:
   use: energetic
   energy_balance_group: before savings
   links:
-  - buildings_useful_demand_after_insulation_cooling-(cooling) -- f --> (cooling)-buildings_useful_demand_after_insulation_recirculation_cooling
-  - buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_savings_from_recirculation_cooling
+  - buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity
+  - buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas
+  - buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
+  - buildings_useful_demand_after_insulation_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning_electricity
   slots:
   - buildings_useful_demand_after_insulation_cooling-(cooling)
   - (cooling)-buildings_useful_demand_after_insulation_cooling
-buildings_useful_demand_after_insulation_recirculation_cooling:
-  sector: buildings
-  use: energetic
-  energy_balance_group: before savings
-  links:
-  - buildings_useful_demand_after_insulation_recirculation_cooling-(cooling) -- f
-    --> (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling
-  - buildings_useful_demand_after_insulation_recirculation_cooling-(cooling) -- s
-    --> (cooling)-buildings_cooling_savings_from_recovery_cooling
-  slots:
-  - buildings_useful_demand_after_insulation_recirculation_cooling-(cooling)
-  - (cooling)-buildings_useful_demand_after_insulation_recirculation_cooling
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling:
-  sector: buildings
-  use: energetic
-  energy_balance_group: useful consumption
-  links:
-  - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
-    -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity
-  - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
-    -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas
-  - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
-    -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity
-  - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
-    -- f --> (cooling)-buildings_cooling_airconditioning_electricity
-  slots:
-  - buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling)
-  - (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling
 buildings_useful_demand_after_motion_detection_daylight_control_light:
   sector: buildings
   use: energetic
@@ -893,50 +835,26 @@ buildings_useful_demand_for_space_heating_after_insulation:
   energy_balance_group: before savings
   links:
   - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f
-    --> (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation
+    --> (useable_heat)-buildings_space_heater_network_gas
   - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
-    --> (useable_heat)-buildings_heating_savings_from_recirculation_useable_heat
+    --> (useable_heat)-buildings_space_heater_electricity
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_solar_thermal
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_wood_pellets
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_crude_oil
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_coal
+  - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s
+    --> (useable_heat)-buildings_space_heater_district_heating_steam_hot_water
   slots:
   - buildings_useful_demand_for_space_heating_after_insulation-(useable_heat)
   - (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation
-buildings_useful_demand_for_space_heating_after_insulation_recirculation:
-  sector: buildings
-  use: energetic
-  energy_balance_group: before savings
-  links:
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useable_heat)
-    -- f --> (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useable_heat)
-    -- s --> (useable_heat)-buildings_heating_savings_from_recovery_useable_heat
-  slots:
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useable_heat)
-  - (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery:
-  sector: buildings
-  use: energetic
-  energy_balance_group: useful consumption
-  links:
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- f --> (useable_heat)-buildings_space_heater_network_gas
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_electricity
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_solar_thermal
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_wood_pellets
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_crude_oil
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_coal
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-    -- s --> (useable_heat)-buildings_space_heater_district_heating_steam_hot_water
-  slots:
-  - buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat)
-  - (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery
 buildings_useful_demand_light:
   sector: buildings
   use: energetic

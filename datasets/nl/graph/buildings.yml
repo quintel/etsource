@@ -219,18 +219,6 @@ buildings_cooling_heatpump_air_water_network_gas-(ambient_cold): {conversion: 0.
 buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
 buildings_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_cooling_gas: {share: 1.0}
 
-:buildings_cooling_savings_from_recirculation_cooling:
-  :co2_free: 0.0
-  :demand_expected_value: 6204710856.84415
-buildings_cooling_savings_from_recirculation_cooling-(cooling): {conversion: 1.0}
-(cooling)-buildings_cooling_savings_from_recirculation_cooling: {conversion: 1.0}
-
-:buildings_cooling_savings_from_recovery_cooling:
-  :co2_free: 0.0
-  :demand_expected_value: 11168479542.3195
-buildings_cooling_savings_from_recovery_cooling-(cooling): {conversion: 1.0}
-(cooling)-buildings_cooling_savings_from_recovery_cooling: {conversion: 1.0}
-
 :buildings_cooling_savings_insulation_cooling:
   :co2_free: 0.0
 buildings_cooling_savings_insulation_cooling-(cooling): {conversion: 1.0}
@@ -440,18 +428,6 @@ buildings_heat_network_connection_steam_hot_water-(steam_hot_water) -- s --> (st
   :variability: 0.0
 buildings_heating_savings_from_insulation_useable_heat-(useable_heat): {conversion: 1.0}
 (useable_heat)-buildings_heating_savings_from_insulation_useable_heat: {conversion: 1.0}
-
-:buildings_heating_savings_from_recirculation_useable_heat:
-  :co2_free: 0.0
-  :demand_expected_value: 21073906649.7953
-buildings_heating_savings_from_recirculation_useable_heat-(useable_heat): {conversion: 1.0}
-(useable_heat)-buildings_heating_savings_from_recirculation_useable_heat: {conversion: 1.0}
-
-:buildings_heating_savings_from_recovery_useable_heat:
-  :co2_free: 0.0
-  :demand_expected_value: 37933031969.6315
-buildings_heating_savings_from_recovery_useable_heat-(useable_heat): {conversion: 1.0}
-(useable_heat)-buildings_heating_savings_from_recovery_useable_heat: {conversion: 1.0}
 
 :buildings_lighting_efficient_fluorescent_electricity:
   :co2_free: 0.0
@@ -747,26 +723,10 @@ buildings_space_heater_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-build
   :demand_expected_value: 62047108568.4415
 buildings_useful_demand_after_insulation_cooling-(cooling): {conversion: 1.0}
 (cooling)-buildings_useful_demand_after_insulation_cooling: {conversion: 1.0}
-buildings_useful_demand_after_insulation_cooling-(cooling) -- f --> (cooling)-buildings_useful_demand_after_insulation_recirculation_cooling: {}
-buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_savings_from_recirculation_cooling: {share: 0.1}
-
-:buildings_useful_demand_after_insulation_recirculation_cooling:
-  :co2_free: 0.0
-  :demand_expected_value: 55842397711.5974
-buildings_useful_demand_after_insulation_recirculation_cooling-(cooling): {conversion: 1.0}
-(cooling)-buildings_useful_demand_after_insulation_recirculation_cooling: {conversion: 1.0}
-buildings_useful_demand_after_insulation_recirculation_cooling-(cooling) -- f --> (cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling: {}
-buildings_useful_demand_after_insulation_recirculation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_savings_from_recovery_cooling: {share: 0.2}
-
-:buildings_useful_demand_after_insulation_recirculation_recovery_cooling:
-  :co2_free: 0.0
-  :demand_expected_value: 44673918169.2779
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling): {conversion: 1.0}
-(cooling)-buildings_useful_demand_after_insulation_recirculation_recovery_cooling: {conversion: 1.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity: {share: 0.0}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.00639413357291865}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0443311301826165}
-buildings_useful_demand_after_insulation_recirculation_recovery_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning_electricity: {share: 0.949274736244465}
+buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_cooling_network_electricity: {share: 0.0}
+buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_heatpump_air_water_network_gas: {share: 0.00639413357291865}
+buildings_useful_demand_after_insulation_cooling-(cooling) -- s --> (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {share: 0.0443311301826165}
+buildings_useful_demand_after_insulation_cooling-(cooling) -- f --> (cooling)-buildings_cooling_airconditioning_electricity: {share: 0.949274736244465}
 
 :buildings_useful_demand_after_motion_detection_daylight_control_light:
   :co2_free: 0.0
@@ -817,31 +777,15 @@ buildings_useful_demand_for_space_heating-(useable_heat) -- f --> (useable_heat)
   :demand_expected_value: 210739066497.953
 buildings_useful_demand_for_space_heating_after_insulation-(useable_heat): {conversion: 1.0}
 (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation: {conversion: 1.0}
-buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation: {}
-buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_heating_savings_from_recirculation_useable_heat: {share: 0.1}
-
-:buildings_useful_demand_for_space_heating_after_insulation_recirculation:
-  :co2_free: 0.0
-  :demand_expected_value: 189665159848.158
-buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useable_heat): {conversion: 1.0}
-(useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation: {conversion: 1.0}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useable_heat) -- f --> (useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery: {}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation-(useable_heat) -- s --> (useable_heat)-buildings_heating_savings_from_recovery_useable_heat: {share: 0.2}
-
-:buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery:
-  :co2_free: 0.0
-  :demand_expected_value: 151732127878.526
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat): {conversion: 1.0}
-(useable_heat)-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery: {conversion: 1.0}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- f --> (useable_heat)-buildings_space_heater_network_gas: {share: 0.826680111963096}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_electricity: {share: 0.0186305015101812}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_solar_thermal: {share: 0.000876544749352472}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas: {share: 0.0150262211968964}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_wood_pellets: {share: 0.0}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {share: 0.0458596960250615}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_crude_oil: {share: 0.0336118663285535}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_coal: {share: 0.0}
-buildings_useful_demand_for_space_heating_after_insulation_recirculation_recovery-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_district_heating_steam_hot_water: {share: 0.059315058226859}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- f --> (useable_heat)-buildings_space_heater_network_gas: {share: 0.826680111963096}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_electricity: {share: 0.0186305015101812}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_solar_thermal: {share: 0.000876544749352472}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas: {share: 0.0150262211968964}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_wood_pellets: {share: 0.0}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {share: 0.0458596960250615}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_crude_oil: {share: 0.0336118663285535}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_coal: {share: 0.0}
+buildings_useful_demand_for_space_heating_after_insulation-(useable_heat) -- s --> (useable_heat)-buildings_space_heater_district_heating_steam_hot_water: {share: 0.059315058226859}
 
 :buildings_useful_demand_light:
   :co2_free: 0.0
