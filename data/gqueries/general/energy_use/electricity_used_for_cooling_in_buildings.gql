@@ -1,10 +1,10 @@
 - query =
     PRODUCT(
      DIVIDE(
-       V(Q(cooling_converters_in_buildings),input_of_electricity).sum,
-       V(Q(cooling_converters_in_buildings),demand).sum
+        V(Q(cooling_converters_in_buildings),input_of_electricity).sum,
+        V(Q(cooling_converters_in_buildings),demand).sum
      ),
-     V(buildings_useful_demand_after_insulation_recirculation_recovery_cooling,input_of_cooling)
+     V(buildings_useful_demand_after_insulation_cooling,input_of_cooling)
     )
-- unit = converters
+- unit = mj
 - deprecated_key = buildings_cooling_electricity
