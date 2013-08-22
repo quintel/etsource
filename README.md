@@ -211,10 +211,11 @@ Provide the node key to retrieve the demand:
 CENTRAL_PRODUCTION(energy_power_solar_csp_solar_radiation) # => 5678.0
 ```
 
-##### PRIMARY_PRODUCTION(node_key)
+##### PRIMARY_PRODUCTION(node_key, attribute)
 
 The same as `CENTRAL_PRODUCTION` except that it reads from the CSV file at
-"data/dataset/:area/primary_production.csv"
+"data/dataset/:area/primary_production.csv". It also takes an `attribute`
+parameter to identify which column you wish to read.
 
 #### Before Committing...
 
