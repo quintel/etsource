@@ -4,7 +4,7 @@
     DIVIDE(
     	SUM(
     		V(Q(heating_converters_in_households),"input_of_coal+ input_of_diesel+ input_of_crude_oil+ input_of_gasoline+ input_of_lignite"),
-        NEG(Q(gas_allocated_to_electricity_production_in_households_heating)),
+        NEG(Q(gas_allocated_to_electricity_production_in_households_heating)) * Q(share_of_natural_gas_in_gas_network),
     		PRODUCT(SUM(V(Q(heating_converters_in_households),input_of_network_gas)),Q(share_of_natural_gas_in_gas_network))),
      	Q(energy_used_for_heating_in_households)
     )
