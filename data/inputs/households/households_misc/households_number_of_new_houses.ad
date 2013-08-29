@@ -3,10 +3,15 @@
 
 - id = 640
 - query = 
+  cost_per_new_house = AREA(new_houses_insulation_cost_constant) * (INPUT_VALUE(households_insulation_level_new_houses) - AREA(insulation_level_new_houses_min));
+  total_cost = cost_per_new_house * USER_INPUT() * 1_000_000;
+  saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (INPUT_VALUE(households_insulation_level_new_houses) + AREA(new_houses_insulation_constant_2));
+
   EACH(
     UPDATE_WITH_FACTOR(L(households_new_houses_useful_demand_for_heating), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_new_residences) })),
     UPDATE_WITH_FACTOR(L(households_new_houses_useful_demand_for_cooling), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_new_residences) })),
     UPDATE(AREA(), number_of_new_residences, USER_INPUT() * 1_000_000),
+    UPDATE(V(households_new_houses_heating_savings_from_insulation), initial_investment, total_cost),
     UPDATE(AREA(), number_households, USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_old_houses) * 1_000_000 + 1),
     UPDATE(AREA(), roof_surface_available_pv, QUERY_PRESENT(-> { AREA(roof_surface_available_pv) }) * (USER_INPUT() + INPUT_VALUE(households_number_of_old_houses)) / 
     (QUERY_PRESENT(-> { AREA(number_households) }) / 1_000_000)),
