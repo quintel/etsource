@@ -139,7 +139,7 @@ buildings_collective_chp_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-ene
   :heat_output_capacity: 3.706
 buildings_collective_geothermal-(geothermal): {conversion: 1.0}
 (steam_hot_water)-buildings_collective_geothermal: {conversion: 1.0}
-buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
+buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal: {share: 1.0}
 
 :buildings_cooling_airconditioning_electricity:
   :availability: 0.0
@@ -165,7 +165,7 @@ buildings_cooling_airconditioning_electricity-(electricity): {conversion: 0.25}
 buildings_cooling_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
 (cooling)-buildings_cooling_airconditioning_electricity: {conversion: 1.0}
 (loss)-buildings_cooling_airconditioning_electricity: {}
-buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold: {share: 1.0}
 buildings_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :buildings_cooling_collective_cooling_network_electricity:
@@ -173,7 +173,7 @@ buildings_cooling_airconditioning_electricity-(electricity) -- s --> (electricit
 buildings_cooling_collective_cooling_network_electricity-(electricity): {conversion: 0.1}
 buildings_cooling_collective_cooling_network_electricity-(ambient_cold): {conversion: 0.9}
 (cooling)-buildings_cooling_collective_cooling_network_electricity: {conversion: 1.0}
-buildings_cooling_collective_cooling_network_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_water: {share: 1.0}
+buildings_cooling_collective_cooling_network_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_water_ambient_cold: {share: 1.0}
 buildings_cooling_collective_cooling_network_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :buildings_cooling_collective_heatpump_water_water_ts_electricity:
@@ -200,7 +200,7 @@ buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity): 
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold): {conversion: 0.9}
 (cooling)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
 (loss)-buildings_cooling_collective_heatpump_water_water_ts_electricity: {}
-buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
+buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_water_ambient_cold: {share: 1.0}
 buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity: {share: 1.0}
 
 :buildings_cooling_heatpump_air_water_network_gas:
@@ -221,7 +221,7 @@ buildings_cooling_heatpump_air_water_network_gas-(network_gas): {conversion: 0.5
 buildings_cooling_heatpump_air_water_network_gas-(ambient_cold): {conversion: 0.411764705882353}
 (cooling)-buildings_cooling_heatpump_air_water_network_gas: {conversion: 1.0}
 (loss)-buildings_cooling_heatpump_air_water_network_gas: {}
-buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
+buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold: {share: 1.0}
 buildings_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_cooling_gas: {share: 1.0}
 
 :buildings_cooling_savings_insulation_cooling:
@@ -526,7 +526,7 @@ buildings_local_production_electricity-(electricity) -- d --> (electricity)-buil
 buildings_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-buildings_solar_pv_solar_radiation: {}
 (electricity)-buildings_solar_pv_solar_radiation: {conversion: 0.16}
-buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
+buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation: {share: 1.0}
 
 :buildings_space_heater_coal:
   :availability: 0.0
@@ -573,7 +573,7 @@ buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electrici
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat): {conversion: 0.888888888888889}
 (useable_heat)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {conversion: 1.0}
 (loss)-buildings_space_heater_collective_heatpump_water_water_ts_electricity: {}
-buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
+buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth_ambient_heat: {share: 1.0}
 buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity: {share: 1.0}
 
 :buildings_space_heater_crude_oil:
@@ -660,7 +660,7 @@ buildings_space_heater_heatpump_air_water_network_gas-(network_gas): {conversion
 buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat): {conversion: 0.5}
 (useable_heat)-buildings_space_heater_heatpump_air_water_network_gas: {conversion: 1.0}
 (loss)-buildings_space_heater_heatpump_air_water_network_gas: {}
-buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
+buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat) -- s --> (ambient_heat)-environment_earth_ambient_heat: {share: 1.0}
 buildings_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_space_heating_gas: {share: 1.0}
 
 :buildings_space_heater_network_gas:
