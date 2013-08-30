@@ -174,7 +174,7 @@ households_collective_chp_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-en
   :heat_output_capacity: 3.706
 (steam_hot_water)-households_collective_geothermal: {conversion: 1.0}
 households_collective_geothermal-(geothermal): {conversion: 1.0}
-households_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
+households_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal: {share: 1.0}
 
 :households_cooker_halogen_electricity:
   :co2_free: 0.0
@@ -241,7 +241,7 @@ households_cooling_airconditioning_electricity-(electricity): {conversion: 0.25}
 households_cooling_airconditioning_electricity-(ambient_cold): {conversion: 0.75}
 (loss)-households_cooling_airconditioning_electricity: {}
 (cooling)-households_cooling_airconditioning_electricity: {conversion: 1.0}
-households_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+households_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold: {share: 1.0}
 households_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
 
 :households_cooling_heatpump_air_water_electricity:
@@ -269,7 +269,7 @@ households_cooling_heatpump_air_water_electricity-(electricity): {conversion: 0.
 households_cooling_heatpump_air_water_electricity-(ambient_cold): {conversion: 0.777777777777778}
 (loss)-households_cooling_heatpump_air_water_electricity: {}
 (cooling)-households_cooling_heatpump_air_water_electricity: {conversion: 1.0}
-households_cooling_heatpump_air_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air: {share: 1.0}
+households_cooling_heatpump_air_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold: {share: 1.0}
 households_cooling_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
 
 :households_cooling_heatpump_ground_water_electricity:
@@ -297,7 +297,7 @@ households_cooling_heatpump_ground_water_electricity-(electricity): {conversion:
 households_cooling_heatpump_ground_water_electricity-(ambient_cold): {conversion: 0.782608695652174}
 (loss)-households_cooling_heatpump_ground_water_electricity: {}
 (cooling)-households_cooling_heatpump_ground_water_electricity: {conversion: 1.0}
-households_cooling_heatpump_ground_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth: {share: 1.0}
+households_cooling_heatpump_ground_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth_ambient_cold: {share: 1.0}
 households_cooling_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity: {share: 1.0}
 
 :households_final_demand_coal:
@@ -660,7 +660,7 @@ households_old_houses_useful_demand_for_heating-(useable_heat) -- s --> (useable
 households_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-households_solar_pv_solar_radiation: {}
 (electricity)-households_solar_pv_solar_radiation: {conversion: 0.16}
-households_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
+households_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation: {share: 1.0}
 
 :households_space_heater_coal:
   :availability: 0.0
@@ -792,7 +792,7 @@ households_space_heater_heatpump_add_on_electricity-(electricity): {conversion: 
 households_space_heater_heatpump_add_on_electricity-(ambient_heat): {conversion: 0.714285714285714}
 (loss)-households_space_heater_heatpump_add_on_electricity: {}
 (useable_heat)-households_space_heater_heatpump_add_on_electricity: {conversion: 1.0}
-households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air_ambient_heat: {share: 1.0}
 households_space_heater_heatpump_add_on_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
 :households_space_heater_heatpump_air_water_electricity:
@@ -821,7 +821,7 @@ households_space_heater_heatpump_air_water_electricity-(ambient_heat): {conversi
 (loss)-households_space_heater_heatpump_air_water_electricity: {}
 (useable_heat)-households_space_heater_heatpump_air_water_electricity: {conversion: 1.0}
 (cooling)-households_space_heater_heatpump_air_water_electricity: {conversion: 0.0}
-households_space_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_space_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air_ambient_heat: {share: 1.0}
 households_space_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
 :households_space_heater_heatpump_ground_water_electricity:
@@ -849,7 +849,7 @@ households_space_heater_heatpump_ground_water_electricity-(electricity): {conver
 households_space_heater_heatpump_ground_water_electricity-(ambient_heat): {conversion: 0.791666666666667}
 (loss)-households_space_heater_heatpump_ground_water_electricity: {}
 (useable_heat)-households_space_heater_heatpump_ground_water_electricity: {conversion: 1.0}
-households_space_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth: {share: 1.0}
+households_space_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth_ambient_heat: {share: 1.0}
 households_space_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity: {share: 1.0}
 
 :households_space_heater_micro_chp_network_gas:
@@ -1179,7 +1179,7 @@ households_water_heater_heatpump_air_water_electricity-(electricity): {conversio
 households_water_heater_heatpump_air_water_electricity-(ambient_heat): {conversion: 0.666666666666667}
 (useable_heat)-households_water_heater_heatpump_air_water_electricity: {conversion: 1.0}
 (loss)-households_water_heater_heatpump_air_water_electricity: {}
-households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air_ambient_heat: {share: 1.0}
 households_water_heater_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
 :households_water_heater_heatpump_ground_water_electricity:
@@ -1207,7 +1207,7 @@ households_water_heater_heatpump_ground_water_electricity-(electricity): {conver
 households_water_heater_heatpump_ground_water_electricity-(ambient_heat): {conversion: 0.666666666666667}
 (loss)-households_water_heater_heatpump_ground_water_electricity: {}
 (useable_heat)-households_water_heater_heatpump_ground_water_electricity: {conversion: 1.0}
-households_water_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air: {share: 1.0}
+households_water_heater_heatpump_ground_water_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air_ambient_heat: {share: 1.0}
 households_water_heater_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_hot_water_electricity: {share: 1.0}
 
 :households_water_heater_micro_chp_network_gas:
