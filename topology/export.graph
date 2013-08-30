@@ -141,7 +141,7 @@ agriculture_geothermal:
   energy_balance_group: technologies
   links:
   - agriculture_geothermal-(electricity) -- s --> (electricity)-agriculture_final_demand_electricity
-  - agriculture_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+  - agriculture_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal
   slots:
   - agriculture_geothermal-(electricity)
   - agriculture_geothermal-(geothermal)
@@ -152,7 +152,7 @@ agriculture_heatpump_water_water_ts_electricity:
   energy_balance_group: technologies
   links:
   - agriculture_heatpump_water_water_ts_electricity-(electricity) -- s --> (electricity)-agriculture_final_demand_electricity
-  - agriculture_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth
+  - agriculture_heatpump_water_water_ts_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_earth_ambient_heat
   slots:
   - agriculture_heatpump_water_water_ts_electricity-(electricity)
   - agriculture_heatpump_water_water_ts_electricity-(ambient_heat)
@@ -307,7 +307,7 @@ buildings_collective_geothermal:
   use: energetic
   energy_balance_group: local heat generation
   links:
-  - buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+  - buildings_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal
   slots:
   - buildings_collective_geothermal-(geothermal)
   - (steam_hot_water)-buildings_collective_geothermal
@@ -316,7 +316,7 @@ buildings_cooling_airconditioning_electricity:
   use: energetic
   energy_balance_group: technologies
   links:
-  - buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
+  - buildings_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold
   - buildings_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
   slots:
   - buildings_cooling_airconditioning_electricity-(electricity)
@@ -329,7 +329,7 @@ buildings_cooling_collective_cooling_network_electricity:
   energy_balance_group: technologies
   links:
   - buildings_cooling_collective_cooling_network_electricity-(ambient_cold) -- s -->
-    (ambient_cold)-environment_water
+    (ambient_cold)-environment_water_ambient_cold
   - buildings_cooling_collective_cooling_network_electricity-(electricity) -- s -->
     (electricity)-buildings_final_demand_for_cooling_electricity
   slots:
@@ -342,7 +342,7 @@ buildings_cooling_collective_heatpump_water_water_ts_electricity:
   energy_balance_group: technologies
   links:
   - buildings_cooling_collective_heatpump_water_water_ts_electricity-(ambient_cold)
-    -- s --> (ambient_cold)-environment_earth
+    -- s --> (ambient_cold)-environment_water_ambient_cold
   - buildings_cooling_collective_heatpump_water_water_ts_electricity-(electricity)
     -- s --> (electricity)-buildings_final_demand_for_cooling_electricity
   slots:
@@ -356,7 +356,7 @@ buildings_cooling_heatpump_air_water_network_gas:
   use: energetic
   energy_balance_group: technologies
   links:
-  - buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_earth
+  - buildings_cooling_heatpump_air_water_network_gas-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold
   - buildings_cooling_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_cooling_gas
   slots:
   - buildings_cooling_heatpump_air_water_network_gas-(network_gas)
@@ -657,7 +657,7 @@ buildings_solar_pv_solar_radiation:
   use: energetic
   energy_balance_group: local power generation
   links:
-  - buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
+  - buildings_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation
   slots:
   - buildings_solar_pv_solar_radiation-(solar_radiation)
   - ! '(loss)-buildings_solar_pv_solar_radiation: {type: :loss}'
@@ -678,7 +678,7 @@ buildings_space_heater_collective_heatpump_water_water_ts_electricity:
   energy_balance_group: technologies
   links:
   - buildings_space_heater_collective_heatpump_water_water_ts_electricity-(ambient_heat)
-    -- s --> (ambient_heat)-environment_earth
+    -- s --> (ambient_heat)-environment_earth_ambient_heat
   - buildings_space_heater_collective_heatpump_water_water_ts_electricity-(electricity)
     -- s --> (electricity)-buildings_final_demand_for_space_heating_electricity
   slots:
@@ -723,7 +723,7 @@ buildings_space_heater_heatpump_air_water_network_gas:
   energy_balance_group: technologies
   links:
   - buildings_space_heater_heatpump_air_water_network_gas-(ambient_heat) -- s -->
-    (ambient_heat)-environment_earth
+    (ambient_heat)-environment_earth_ambient_heat
   - buildings_space_heater_heatpump_air_water_network_gas-(network_gas) -- s --> (network_gas)-buildings_final_demand_for_space_heating_gas
   slots:
   - buildings_space_heater_heatpump_air_water_network_gas-(network_gas)
@@ -1395,7 +1395,7 @@ energy_export_network_gas:
   use: undefined
   energy_balance_group: export
   links:
-  - energy_export_network_gas-(network_gas) -- i --> (network_gas)-energy_national_gas_network_natural_gas
+  - energy_export_network_gas-(natural_gas) -- i --> (natural_gas)-energy_treatment_natural_gas
   slots:
   - energy_export_network_gas-(network_gas)
   - (network_gas)-energy_export_network_gas
@@ -1626,7 +1626,7 @@ energy_heater_for_heat_network_geothermal:
   use: undefined
   energy_balance_group: central heat generation
   links:
-  - energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+  - energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal
   slots:
   - energy_heater_for_heat_network_geothermal-(geothermal)
   - (steam_hot_water)-energy_heater_for_heat_network_geothermal
@@ -1950,7 +1950,7 @@ energy_power_geothermal:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+  - energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal
   slots:
   - energy_power_geothermal-(geothermal)
   - ! '(loss)-energy_power_geothermal: {type: :loss}'
@@ -2012,7 +2012,7 @@ energy_power_hydro_mountain:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_hydro_mountain-(water) -- s --> (water)-environment_water
+  - energy_power_hydro_mountain-(water) -- s --> (water)-environment_water_water
   slots:
   - energy_power_hydro_mountain-(water)
   - ! '(loss)-energy_power_hydro_mountain: {type: :loss}'
@@ -2031,7 +2031,7 @@ energy_power_hydro_river:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_hydro_river-(water) -- s --> (water)-environment_water
+  - energy_power_hydro_river-(water) -- s --> (water)-environment_water_water
   slots:
   - energy_power_hydro_river-(water)
   - ! '(loss)-energy_power_hydro_river: {type: :loss}'
@@ -2104,7 +2104,7 @@ energy_power_solar_csp_solar_radiation:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
+  - energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation
   slots:
   - energy_power_solar_csp_solar_radiation-(solar_radiation)
   - ! '(loss)-energy_power_solar_csp_solar_radiation: {type: :loss}'
@@ -2114,7 +2114,7 @@ energy_power_solar_pv_solar_radiation:
   use: energetic
   energy_balance_group: central power generation
   links:
-  - energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
+  - energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation
   slots:
   - energy_power_solar_pv_solar_radiation-(solar_radiation)
   - ! '(loss)-energy_power_solar_pv_solar_radiation: {type: :loss}'
@@ -2279,7 +2279,7 @@ energy_power_wind_turbine_coastal:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air
+  - energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air_wind
   slots:
   - energy_power_wind_turbine_coastal-(wind)
   - ! '(loss)-energy_power_wind_turbine_coastal: {type: :loss}'
@@ -2289,7 +2289,7 @@ energy_power_wind_turbine_inland:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air
+  - energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air_wind
   slots:
   - energy_power_wind_turbine_inland-(wind)
   - ! '(loss)-energy_power_wind_turbine_inland: {type: :loss}'
@@ -2299,7 +2299,7 @@ energy_power_wind_turbine_offshore:
   use: undefined
   energy_balance_group: central power generation
   links:
-  - energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air
+  - energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air_wind
   slots:
   - energy_power_wind_turbine_offshore-(wind)
   - ! '(loss)-energy_power_wind_turbine_offshore: {type: :loss}'
@@ -2442,7 +2442,7 @@ energy_production_solar_thermal:
   use: energetic
   energy_balance_group: growth and production
   links:
-  - energy_production_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-environment_sun
+  - energy_production_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-environment_sun_solar_thermal
   slots:
   - energy_production_solar_thermal-(solar_thermal)
   - (solar_thermal)-energy_production_solar_thermal
@@ -2548,38 +2548,86 @@ energy_upgrade_biogas:
   - energy_upgrade_biogas-(biogas)
   - ! '(loss)-energy_upgrade_biogas: {type: :loss}'
   - (greengas)-energy_upgrade_biogas
-environment_air:
+environment_air_ambient_cold:
   sector: environment
   use: energetic
   energy_balance_group: environment
   links: 
   slots:
-  - environment_air-(loss)
-  - ! '(loss)-environment_air: {type: :loss}'
-environment_earth:
+  - environment_air_ambient_cold-(ambient_cold)
+  - (ambient_cold)-environment_air_ambient_cold
+environment_air_ambient_heat:
   sector: environment
   use: energetic
   energy_balance_group: environment
   links: 
   slots:
-  - environment_earth-(loss)
-  - ! '(loss)-environment_earth: {type: :loss}'
-environment_sun:
+  - environment_air_ambient_heat-(ambient_heat)
+  - (ambient_heat)-environment_air_ambient_heat
+environment_air_wind:
   sector: environment
   use: energetic
   energy_balance_group: environment
   links: 
   slots:
-  - environment_sun-(loss)
-  - ! '(loss)-environment_sun: {type: :loss}'
-environment_water:
+  - environment_air_wind-(wind)
+  - (wind)-environment_air_wind
+environment_earth_ambient_cold:
   sector: environment
   use: energetic
   energy_balance_group: environment
   links: 
   slots:
-  - environment_water-(loss)
-  - ! '(loss)-environment_water: {type: :loss}'
+  - environment_earth_ambient_cold-(ambient_cold)
+  - (ambient_cold)-environment_earth_ambient_cold
+environment_earth_ambient_heat:
+  sector: environment
+  use: energetic
+  energy_balance_group: environment
+  links: 
+  slots:
+  - environment_earth_ambient_heat-(ambient_heat)
+  - (ambient_heat)-environment_earth_ambient_heat
+environment_earth_geothermal:
+  sector: environment
+  use: energetic
+  energy_balance_group: environment
+  links: 
+  slots:
+  - environment_earth_geothermal-(geothermal)
+  - (geothermal)-environment_earth_geothermal
+environment_sun_solar_radiation:
+  sector: environment
+  use: energetic
+  energy_balance_group: environment
+  links: 
+  slots:
+  - environment_sun_solar_radiation-(solar_radiation)
+  - (solar_radiation)-environment_sun_solar_radiation
+environment_sun_solar_thermal:
+  sector: environment
+  use: energetic
+  energy_balance_group: environment
+  links: 
+  slots:
+  - environment_sun_solar_thermal-(solar_thermal)
+  - (solar_thermal)-environment_sun_solar_thermal
+environment_water_ambient_cold:
+  sector: environment
+  use: energetic
+  energy_balance_group: environment
+  links: 
+  slots:
+  - environment_water_ambient_cold-(ambient_cold)
+  - (ambient_cold)-environment_water_ambient_cold
+environment_water_water:
+  sector: environment
+  use: energetic
+  energy_balance_group: environment
+  links: 
+  slots:
+  - environment_water_water-(water)
+  - (water)-environment_water_water
 households_appliances_clothes_dryer_electricity:
   sector: households
   use: energetic
@@ -2708,7 +2756,7 @@ households_collective_geothermal:
   use: energetic
   energy_balance_group: local heat generation
   links:
-  - households_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth
+  - households_collective_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal
   slots:
   - (steam_hot_water)-households_collective_geothermal
   - households_collective_geothermal-(geothermal)
@@ -2767,7 +2815,7 @@ households_cooling_airconditioning_electricity:
   use: energetic
   energy_balance_group: technologies
   links:
-  - households_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
+  - households_cooling_airconditioning_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold
   - households_cooling_airconditioning_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
   slots:
   - households_cooling_airconditioning_electricity-(electricity)
@@ -2779,7 +2827,7 @@ households_cooling_heatpump_air_water_electricity:
   use: energetic
   energy_balance_group: technologies
   links:
-  - households_cooling_heatpump_air_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air
+  - households_cooling_heatpump_air_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_air_ambient_cold
   - households_cooling_heatpump_air_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
   slots:
   - households_cooling_heatpump_air_water_electricity-(electricity)
@@ -2791,7 +2839,7 @@ households_cooling_heatpump_ground_water_electricity:
   use: energetic
   energy_balance_group: technologies
   links:
-  - households_cooling_heatpump_ground_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth
+  - households_cooling_heatpump_ground_water_electricity-(ambient_cold) -- s --> (ambient_cold)-environment_earth_ambient_cold
   - households_cooling_heatpump_ground_water_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_cooling_electricity
   slots:
   - households_cooling_heatpump_ground_water_electricity-(electricity)
@@ -3182,7 +3230,7 @@ households_solar_pv_solar_radiation:
   use: energetic
   energy_balance_group: local power generation
   links:
-  - households_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun
+  - households_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation
   slots:
   - households_solar_pv_solar_radiation-(solar_radiation)
   - ! '(loss)-households_solar_pv_solar_radiation: {type: :loss}'
@@ -3242,7 +3290,7 @@ households_space_heater_heatpump_add_on_electricity:
   use: energetic
   energy_balance_group: preferred technologies
   links:
-  - households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air
+  - households_space_heater_heatpump_add_on_electricity-(ambient_heat) -- s --> (ambient_heat)-environment_air_ambient_heat
   - households_space_heater_heatpump_add_on_electricity-(electricity) -- s --> (electricity)-households_final_demand_for_space_heating_electricity
   slots:
   - households_space_heater_heatpump_add_on_electricity-(electricity)
@@ -3255,7 +3303,7 @@ households_space_heater_heatpump_air_water_electricity:
   energy_balance_group: technologies
   links:
   - households_space_heater_heatpump_air_water_electricity-(ambient_heat) -- s -->
-    (ambient_heat)-environment_air
+    (ambient_heat)-environment_air_ambient_heat
   - households_space_heater_heatpump_air_water_electricity-(electricity) -- s -->
     (electricity)-households_final_demand_for_space_heating_electricity
   slots:
@@ -3270,7 +3318,7 @@ households_space_heater_heatpump_ground_water_electricity:
   energy_balance_group: technologies
   links:
   - households_space_heater_heatpump_ground_water_electricity-(ambient_heat) -- s
-    --> (ambient_heat)-environment_earth
+    --> (ambient_heat)-environment_earth_ambient_heat
   - households_space_heater_heatpump_ground_water_electricity-(electricity) -- s -->
     (electricity)-households_final_demand_for_space_heating_electricity
   slots:
@@ -3556,7 +3604,7 @@ households_water_heater_heatpump_air_water_electricity:
   energy_balance_group: technologies
   links:
   - households_water_heater_heatpump_air_water_electricity-(ambient_heat) -- s -->
-    (ambient_heat)-environment_air
+    (ambient_heat)-environment_air_ambient_heat
   - households_water_heater_heatpump_air_water_electricity-(electricity) -- s -->
     (electricity)-households_final_demand_for_hot_water_electricity
   slots:
@@ -3570,7 +3618,7 @@ households_water_heater_heatpump_ground_water_electricity:
   energy_balance_group: technologies
   links:
   - households_water_heater_heatpump_ground_water_electricity-(ambient_heat) -- s
-    --> (ambient_heat)-environment_air
+    --> (ambient_heat)-environment_air_ambient_heat
   - households_water_heater_heatpump_ground_water_electricity-(electricity) -- s -->
     (electricity)-households_final_demand_for_hot_water_electricity
   slots:

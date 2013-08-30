@@ -95,11 +95,17 @@ energy_chp_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-energ
   :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
+  :peak_load_units_present: 0.0
   :preset_demand: 0.0
+  :simult_sd: 1.0
+  :simult_se: 1.0
+  :simult_wd: 1.0
+  :simult_we: 1.0
   :variability: 0.0
   :electricity_output_capacity: 696.358705362893
   :heat_output_capacity: 69.5652173913044
   :carrier_efficiency: {electricity: {coal: 0.400406255583663, torrified_biomass_pellets: 0.400406255583663, lignite: 0.400406255583663, wood_pellets: 0.0}}
+  :peak_load_units: 0.0
 energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_coal_rdr-(coal): {conversion: 1.0}
 (loss)-energy_chp_ultra_supercritical_coal_rdr: {}
@@ -119,11 +125,17 @@ energy_chp_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s --> (to
   :part_ets: 1.0
   :part_load_efficiency_penalty: 0.1
   :part_load_operating_point: 0.7
+  :peak_load_units_present: 0.0
   :preset_demand: 0.0
+  :simult_sd: 1.0
+  :simult_se: 1.0
+  :simult_wd: 1.0
+  :simult_we: 1.0
   :variability: 0.0
   :electricity_output_capacity: 643.478260869565
   :heat_output_capacity: 69.5652173913044
-  :carrier_efficiency: {electricity: {coal: 0.37, torrified_biomass_pellets: 0.37, lignite: 0.37, wood_pellets: 0.34}}
+  :carrier_efficiency: {electricity: {coal: 0.37, torrified_biomass_pellets: 0.37, lignite: 0.37, wood_pellets: 0.37}}
+  :peak_load_units: 0.0
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(wood_pellets): {conversion: 0.5}
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
 energy_chp_ultra_supercritical_cofiring_coal_rdr-(coal): {conversion: 0.5}
@@ -488,7 +500,7 @@ energy_export_lpg-(lpg) -- i --> (lpg)-energy_distribution_lpg: {}
   :co2_free: 0.0
 energy_export_network_gas-(network_gas): {conversion: 1.0}
 (network_gas)-energy_export_network_gas: {conversion: 1.0}
-energy_export_network_gas-(network_gas) -- i --> (network_gas)-energy_national_gas_network_natural_gas: {}
+energy_export_network_gas-(natural_gas) -- i --> (natural_gas)-energy_treatment_natural_gas: {}
 
 :energy_export_torrified_biomass_pellets:
   :co2_free: 0.0
@@ -718,7 +730,7 @@ energy_heater_for_heat_network_crude_oil-(crude_oil) -- s --> (crude_oil)-energy
   :heat_output_capacity: 8.5
 energy_heater_for_heat_network_geothermal-(geothermal): {conversion: 1.0}
 (steam_hot_water)-energy_heater_for_heat_network_geothermal: {conversion: 1.0}
-energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
+energy_heater_for_heat_network_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal: {share: 1.0}
 
 :energy_heater_for_heat_network_lignite:
   :availability: 0.0
@@ -1119,7 +1131,7 @@ energy_power_engine_diesel-(diesel) -- s --> (diesel)-energy_distribution_diesel
 energy_power_geothermal-(geothermal): {conversion: 1.0}
 (loss)-energy_power_geothermal: {}
 (electricity)-energy_power_geothermal: {conversion: 0.25}
-energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth: {share: 1.0}
+energy_power_geothermal-(geothermal) -- s --> (geothermal)-environment_earth_geothermal: {share: 1.0}
 
 :energy_power_hv_network_electricity:
   :availability: 0.0
@@ -1207,7 +1219,7 @@ energy_power_hv_network_loss-(loss) -- d --> (loss)-energy_power_hv_network_elec
 energy_power_hydro_mountain-(water): {conversion: 1.0}
 (loss)-energy_power_hydro_mountain: {}
 (electricity)-energy_power_hydro_mountain: {conversion: 0.98}
-energy_power_hydro_mountain-(water) -- s --> (water)-environment_water: {share: 1.0}
+energy_power_hydro_mountain-(water) -- s --> (water)-environment_water_water: {share: 1.0}
 
 :energy_power_hydro_mountain_pumped:
   :co2_free: 0.0
@@ -1240,7 +1252,7 @@ energy_power_hydro_mountain_pumped-(electricity) -- s --> (electricity)-energy_p
 energy_power_hydro_river-(water): {conversion: 1.0}
 (loss)-energy_power_hydro_river: {}
 (electricity)-energy_power_hydro_river: {conversion: 0.98}
-energy_power_hydro_river-(water) -- s --> (water)-environment_water: {share: 1.0}
+energy_power_hydro_river-(water) -- s --> (water)-environment_water_water: {share: 1.0}
 
 :energy_power_lv_network_electricity:
   :availability: 0.0
@@ -1410,7 +1422,7 @@ energy_power_sector_own_use_electricity-(electricity) -- s --> (electricity)-ene
 energy_power_solar_csp_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-energy_power_solar_csp_solar_radiation: {}
 (electricity)-energy_power_solar_csp_solar_radiation: {conversion: 0.35}
-energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
+energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation: {share: 1.0}
 
 :energy_power_solar_pv_solar_radiation:
   :availability: 0.98
@@ -1436,7 +1448,7 @@ energy_power_solar_csp_solar_radiation-(solar_radiation) -- s --> (solar_radiati
 energy_power_solar_pv_solar_radiation-(solar_radiation): {conversion: 1.0}
 (loss)-energy_power_solar_pv_solar_radiation: {}
 (electricity)-energy_power_solar_pv_solar_radiation: {conversion: 0.16}
-energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun: {share: 1.0}
+energy_power_solar_pv_solar_radiation-(solar_radiation) -- s --> (solar_radiation)-environment_sun_solar_radiation: {share: 1.0}
 
 :energy_power_supercritical_coal:
   :availability: 0.89
@@ -1640,11 +1652,17 @@ energy_power_ultra_supercritical_coal-(wood_pellets) -- s --> (wood_pellets)-ene
   :part_ets: 1.0
   :part_load_efficiency_penalty: 0.046
   :part_load_operating_point: 0.7
+  :peak_load_units_present: 0.0
   :preset_demand: 0.0
+  :simult_sd: 1.0
+  :simult_se: 1.0
+  :simult_wd: 1.0
+  :simult_we: 1.0
   :variability: 0.0
   :electricity_output_capacity: 800.0
   :heat_output_capacity: 0.0
   :carrier_efficiency: {electricity: {coal: 0.46, torrified_biomass_pellets: 0.46, lignite: 0.46, wood_pellets: 0.0}}
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_coal_rdr-(coal): {conversion: 1.0}
 (loss)-energy_power_ultra_supercritical_coal_rdr: {}
@@ -1663,11 +1681,17 @@ energy_power_ultra_supercritical_coal_rdr-(torrified_biomass_pellets) -- s --> (
   :part_ets: 1.0
   :part_load_efficiency_penalty: 0.046
   :part_load_operating_point: 0.7
+  :peak_load_units_present: 0.0
   :preset_demand: 0.0
+  :simult_sd: 1.0
+  :simult_se: 1.0
+  :simult_wd: 1.0
+  :simult_we: 1.0
   :variability: 0.0
   :electricity_output_capacity: 730.434782608696
   :heat_output_capacity: 0.0
   :carrier_efficiency: {electricity: {coal: 0.46, torrified_biomass_pellets: 0.46, lignite: 0.46, wood_pellets: 0.29}}
+  :peak_load_units: 0.0
 energy_power_ultra_supercritical_cofiring_coal_rdr-(wood_pellets): {conversion: 0.5}
 energy_power_ultra_supercritical_cofiring_coal_rdr-(torrified_biomass_pellets): {conversion: 0.0}
 energy_power_ultra_supercritical_cofiring_coal_rdr-(coal): {conversion: 0.5}
@@ -1812,7 +1836,7 @@ energy_power_ultra_supercritical_oxyfuel_ccs_lignite-(torrified_biomass_pellets)
 energy_power_wind_turbine_coastal-(wind): {conversion: 1.0}
 (loss)-energy_power_wind_turbine_coastal: {}
 (electricity)-energy_power_wind_turbine_coastal: {conversion: 0.97}
-energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air: {share: 1.0}
+energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air_wind: {share: 1.0}
 
 :energy_power_wind_turbine_inland:
   :availability: 0.95
@@ -1838,7 +1862,7 @@ energy_power_wind_turbine_coastal-(wind) -- s --> (wind)-environment_air: {share
 energy_power_wind_turbine_inland-(wind): {conversion: 1.0}
 (loss)-energy_power_wind_turbine_inland: {}
 (electricity)-energy_power_wind_turbine_inland: {conversion: 0.97}
-energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air: {share: 1.0}
+energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air_wind: {share: 1.0}
 
 :energy_power_wind_turbine_offshore:
   :availability: 0.92
@@ -1864,7 +1888,7 @@ energy_power_wind_turbine_inland-(wind) -- s --> (wind)-environment_air: {share:
 energy_power_wind_turbine_offshore-(wind): {conversion: 1.0}
 (loss)-energy_power_wind_turbine_offshore: {}
 (electricity)-energy_power_wind_turbine_offshore: {conversion: 0.97}
-energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air: {share: 1.0}
+energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air_wind: {share: 1.0}
 
 :energy_production_algae_diesel:
   :co2_free: 0.0
@@ -1969,7 +1993,7 @@ energy_production_non_biogenic_waste-(non_biogenic_waste): {conversion: 1.0}
   :co2_free: 0.0
 energy_production_solar_thermal-(solar_thermal): {conversion: 1.0}
 (solar_thermal)-energy_production_solar_thermal: {conversion: 1.0}
-energy_production_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-environment_sun: {share: 1.0}
+energy_production_solar_thermal-(solar_thermal) -- s --> (solar_thermal)-environment_sun_solar_thermal: {share: 1.0}
 
 :energy_production_wood:
   :co2_free: 0.0
