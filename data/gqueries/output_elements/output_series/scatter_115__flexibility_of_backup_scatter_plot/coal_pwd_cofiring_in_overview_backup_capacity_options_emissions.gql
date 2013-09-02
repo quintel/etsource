@@ -1,0 +1,17 @@
+- query =
+    future:
+    DIVIDE(
+      SUM(
+        PRODUCT(
+          Q(full_load_hours_of_backup_capacity),
+          Q(additional_backup_capacity_required_in_mw),
+          V(energy_power_ultra_supercritical_cofiring_coal ," weighted_carrier_co2_per_mj / electricity_output_conversion * (1-co2_free) * MJ_PER_MWH / availability")
+        ),
+        PRODUCT(
+          Q(additional_spinning_reserve_required_in_mw),
+          V(energy_power_ultra_supercritical_cofiring_coal ," part_load_operating_point * HOURS_PER_YEAR / (1 - part_load_operating_point) * weighted_carrier_co2_per_mj / electricity_output_conversion * (1-co2_free) * MJ_PER_MWH / availability * (FLOAT_HACK/(electricity_output_conversion - part_load_efficiency_penalty)-FLOAT_HACK/electricity_output_conversion)")
+        )
+      ),
+      Q(volatile_electricity_production)
+    )
+- unit = kg
