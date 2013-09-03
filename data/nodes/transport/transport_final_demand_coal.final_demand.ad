@@ -3,4 +3,21 @@
 - groups = [final_demand_cbs]
 - co2_free = 0.0
 
-~ demand = EB("transport", "hard_coal_(if_no_detail)")
+~ demand =
+    EB("transport", "hard_coal_(if_no_detail)") +
+    EB("transport", "brown_coal_(if_no_detail)") +
+    EB("transport", anthracite) +
+    EB("transport", coking_coal) +
+    EB("transport", other_bituminous_coal) +
+    EB("transport", subbituminous_coal) +
+    EB("transport", lignite) +
+    EB("transport", patent_fuel) +
+    EB("transport", coke_oven_coke) +
+    EB("transport", gas_coke) +
+    EB("transport", coal_tar) +
+    EB("transport", "bkb/peat_briquettes") +
+    EB("transport", peat) +
+    EB("transport", gas_works_gas) +
+    EB("transport", coke_oven_gas) +
+    EB("transport", blast_furnace_gas) +
+    EB("transport", other_recovered_gases)
