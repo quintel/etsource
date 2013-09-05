@@ -1,7 +1,6 @@
 - query =
-    future:DIVIDE(SUM(
-    	V(G(energy_import),output_of_coal),
-    	NEG(V(G(energy_export),input_of_coal))
-    	)
+    future:DIVIDE(
+    	V(G(energy_import),output_of_coal).sum -
+    	V(G(energy_export),input_of_coal).sum
     ,BILLIONS)
 - unit = pj
