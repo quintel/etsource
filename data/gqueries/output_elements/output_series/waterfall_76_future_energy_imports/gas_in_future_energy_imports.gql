@@ -1,9 +1,7 @@
 - query =
     future:
     DIVIDE(
-      SUM(
-        V(G(energy_import),"output_of_natural_gas + output_of_lng"),
-        NEG(V(G(energy_export),"input_of_network_gas + input_of_lng "))
-      )
+        V(G(energy_import),"output_of_natural_gas + output_of_lng").sum - 
+        V(G(energy_export),"input_of_network_gas + input_of_lng ").sum
     ,BILLIONS)
 - unit = pj
