@@ -4,8 +4,8 @@
 - groups = [preset_demand, final_demand_cbs]
 - co2_free = 0.0
 
-~ input.coupling_carrier = 10.4898787160183
+~ input.coupling_carrier = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coupling_carrier)
 
-~ input.electricity = 0.0378760822897335
+~ input.electricity = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, electricity)
 
-~ input.coal_gas = 1 - 0.0378760822897335
+~ input.coal_gas = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coal_gas)
