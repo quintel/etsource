@@ -188,13 +188,6 @@ energy_cokesoven_transformation_coal-(coal): {conversion: 1.0}
 (coupling_carrier)-energy_cokesoven_transformation_coal: {conversion: 1.0}
 energy_cokesoven_transformation_coal-(coal) -- s --> (coal)-energy_distribution_coal: {share: 1.0}
 
-:energy_distribution_algae_diesel:
-  :co2_free: 0.0
-energy_distribution_algae_diesel-(algae_diesel): {conversion: 1.0}
-(algae_diesel)-energy_distribution_algae_diesel: {conversion: 1.0}
-energy_distribution_algae_diesel-(algae_diesel) -- c --> (algae_diesel)-energy_production_algae_diesel: {}
-energy_distribution_algae_diesel-(algae_diesel) -- f --> (algae_diesel)-energy_import_algae_diesel: {}
-
 :energy_distribution_bio_ethanol:
   :co2_free: 0.0
 energy_distribution_bio_ethanol-(bio_ethanol): {conversion: 1.0}
@@ -371,7 +364,8 @@ energy_distribution_torrified_biomass_pellets-(torrified_biomass_pellets) -- f -
 energy_distribution_uranium_oxide-(uranium_oxide): {conversion: 1.0}
 (uranium_oxide)-energy_distribution_uranium_oxide: {conversion: 1.0}
 (loss)-energy_distribution_uranium_oxide: {}
-energy_distribution_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_treatment_uranium_oxide: {share: 1.0}
+energy_distribution_uranium_oxide-(uranium_oxide) -- c --> (uranium_oxide)-energy_extraction_uranium_oxide: {}
+energy_distribution_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_import_uranium_oxide: {}
 
 :energy_distribution_waste_mix:
   :co2_free: 0.0
@@ -394,12 +388,6 @@ energy_distribution_wood_pellets-(wood_pellets): {conversion: 1.0}
 energy_distribution_wood_pellets-(wood_pellets) -- f --> (wood_pellets)-energy_distribution_bio_residues_for_firing: {priority: 1}
 energy_distribution_wood_pellets-(wood_pellets) -- c --> (wood_pellets)-energy_production_wood_pellets: {share: 0.0}
 energy_distribution_wood_pellets-(wood_pellets) -- f --> (wood_pellets)-energy_import_wood_pellets: {}
-
-:energy_export_algae_diesel:
-  :co2_free: 0.0
-energy_export_algae_diesel-(algae_diesel): {conversion: 1.0}
-(algae_diesel)-energy_export_algae_diesel: {conversion: 1.0}
-energy_export_algae_diesel-(algae_diesel) -- i --> (algae_diesel)-energy_distribution_algae_diesel: {}
 
 :energy_export_bio_ethanol:
   :co2_free: 0.0
@@ -807,11 +795,6 @@ energy_heater_for_heat_network_wood_pellets-(wood_pellets): {conversion: 1.0}
 (steam_hot_water)-energy_heater_for_heat_network_wood_pellets: {conversion: 0.812}
 (loss)-energy_heater_for_heat_network_wood_pellets: {}
 energy_heater_for_heat_network_wood_pellets-(wood_pellets) -- s --> (wood_pellets)-energy_distribution_wood_pellets: {share: 1.0}
-
-:energy_import_algae_diesel:
-  :co2_free: 0.0
-energy_import_algae_diesel-(algae_diesel): {conversion: 1.0}
-(algae_diesel)-energy_import_algae_diesel: {conversion: 1.0}
 
 :energy_import_bio_ethanol:
   :co2_free: 0.0
@@ -1889,12 +1872,6 @@ energy_power_wind_turbine_offshore-(wind): {conversion: 1.0}
 (electricity)-energy_power_wind_turbine_offshore: {conversion: 0.97}
 energy_power_wind_turbine_offshore-(wind) -- s --> (wind)-environment_air_wind: {share: 1.0}
 
-:energy_production_algae_diesel:
-  :co2_free: 0.0
-  :preset_demand: 0.0
-energy_production_algae_diesel-(algae_diesel): {conversion: 1.0}
-(algae_diesel)-energy_production_algae_diesel: {conversion: 1.0}
-
 :energy_production_bio_ethanol:
   :co2_free: 0.0
   :preset_demand: 0.0
@@ -2055,14 +2032,6 @@ energy_treatment_natural_gas-(natural_gas): {conversion: 1.0}
 energy_treatment_natural_gas-(natural_gas) -- c --> (natural_gas)-energy_extraction_natural_gas: {}
 energy_treatment_natural_gas-(natural_gas) -- s --> (natural_gas)-energy_import_lng: {share: 0.0}
 energy_treatment_natural_gas-(natural_gas) -- f --> (natural_gas)-energy_import_natural_gas: {}
-
-:energy_treatment_uranium_oxide:
-  :co2_free: 0.0
-energy_treatment_uranium_oxide-(uranium_oxide): {conversion: 1.0}
-(uranium_oxide)-energy_treatment_uranium_oxide: {conversion: 1.0}
-(loss)-energy_treatment_uranium_oxide: {}
-energy_treatment_uranium_oxide-(uranium_oxide) -- f --> (uranium_oxide)-energy_import_uranium_oxide: {}
-energy_treatment_uranium_oxide-(uranium_oxide) -- c --> (uranium_oxide)-energy_extraction_uranium_oxide: {}
 
 :energy_upgrade_biogas:
   :co2_free: 0.0

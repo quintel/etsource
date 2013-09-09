@@ -967,16 +967,6 @@ energy_cokesoven_transformation_coal:
   - (coal_gas)-energy_cokesoven_transformation_coal
   - ! '(loss)-energy_cokesoven_transformation_coal: {type: :loss}'
   - (coupling_carrier)-energy_cokesoven_transformation_coal
-energy_distribution_algae_diesel:
-  sector: energy
-  use: energetic
-  energy_balance_group: distribution
-  links:
-  - energy_distribution_algae_diesel-(algae_diesel) -- c --> (algae_diesel)-energy_production_algae_diesel
-  - energy_distribution_algae_diesel-(algae_diesel) -- f --> (algae_diesel)-energy_import_algae_diesel
-  slots:
-  - energy_distribution_algae_diesel-(algae_diesel)
-  - (algae_diesel)-energy_distribution_algae_diesel
 energy_distribution_bio_ethanol:
   sector: energy
   use: undefined
@@ -1220,7 +1210,8 @@ energy_distribution_uranium_oxide:
   use: undefined
   energy_balance_group: distribution primary carriers
   links:
-  - energy_distribution_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_treatment_uranium_oxide
+  - energy_distribution_uranium_oxide-(uranium_oxide) -- c --> (uranium_oxide)-energy_extraction_uranium_oxide
+  - energy_distribution_uranium_oxide-(uranium_oxide) -- s --> (uranium_oxide)-energy_import_uranium_oxide
   slots:
   - energy_distribution_uranium_oxide-(uranium_oxide)
   - (uranium_oxide)-energy_distribution_uranium_oxide
@@ -1255,15 +1246,6 @@ energy_distribution_wood_pellets:
   slots:
   - energy_distribution_wood_pellets-(wood_pellets)
   - (wood_pellets)-energy_distribution_wood_pellets
-energy_export_algae_diesel:
-  sector: energy
-  use: undefined
-  energy_balance_group: export
-  links:
-  - energy_export_algae_diesel-(algae_diesel) -- i --> (algae_diesel)-energy_distribution_algae_diesel
-  slots:
-  - energy_export_algae_diesel-(algae_diesel)
-  - (algae_diesel)-energy_export_algae_diesel
 energy_export_bio_ethanol:
   sector: energy
   use: undefined
@@ -1670,14 +1652,6 @@ energy_heater_for_heat_network_wood_pellets:
   - energy_heater_for_heat_network_wood_pellets-(wood_pellets)
   - (steam_hot_water)-energy_heater_for_heat_network_wood_pellets
   - ! '(loss)-energy_heater_for_heat_network_wood_pellets: {type: :loss}'
-energy_import_algae_diesel:
-  sector: energy
-  use: energetic
-  energy_balance_group: import
-  links: 
-  slots:
-  - energy_import_algae_diesel-(algae_diesel)
-  - (algae_diesel)-energy_import_algae_diesel
 energy_import_bio_ethanol:
   sector: energy
   use: energetic
@@ -2304,14 +2278,6 @@ energy_power_wind_turbine_offshore:
   - energy_power_wind_turbine_offshore-(wind)
   - ! '(loss)-energy_power_wind_turbine_offshore: {type: :loss}'
   - (electricity)-energy_power_wind_turbine_offshore
-energy_production_algae_diesel:
-  sector: energy
-  use: energetic
-  energy_balance_group: growth and production
-  links: 
-  slots:
-  - energy_production_algae_diesel-(algae_diesel)
-  - (algae_diesel)-energy_production_algae_diesel
 energy_production_bio_ethanol:
   sector: energy
   use: energetic
@@ -2527,17 +2493,6 @@ energy_treatment_natural_gas:
   - energy_treatment_natural_gas-(natural_gas)
   - (natural_gas)-energy_treatment_natural_gas
   - ! '(loss)-energy_treatment_natural_gas: {type: :loss}'
-energy_treatment_uranium_oxide:
-  sector: energy
-  use: undefined
-  energy_balance_group: treatment
-  links:
-  - energy_treatment_uranium_oxide-(uranium_oxide) -- f --> (uranium_oxide)-energy_import_uranium_oxide
-  - energy_treatment_uranium_oxide-(uranium_oxide) -- c --> (uranium_oxide)-energy_extraction_uranium_oxide
-  slots:
-  - energy_treatment_uranium_oxide-(uranium_oxide)
-  - (uranium_oxide)-energy_treatment_uranium_oxide
-  - ! '(loss)-energy_treatment_uranium_oxide: {type: :loss}'
 energy_upgrade_biogas:
   sector: energy
   use: undefined
