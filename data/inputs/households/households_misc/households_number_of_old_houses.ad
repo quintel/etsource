@@ -2,10 +2,9 @@
 # DEBT: remove the ugly + 1 to prevent division by zero in other queries
 
 - id = 639
-- query = 
+- query =
   cost_per_old_house = AREA(old_houses_insulation_cost_constant) * (INPUT_VALUE(households_insulation_level_old_houses) - AREA(insulation_level_old_houses_min));
   total_cost = cost_per_old_house * USER_INPUT() * 1_000_000;
-  saving_fraction = 1.0 - AREA(old_houses_insulation_constant_1) / (INPUT_VALUE(households_insulation_level_old_houses) + AREA(old_houses_insulation_constant_2));
 
   EACH(
     UPDATE_WITH_FACTOR(L(households_old_houses_useful_demand_for_heating), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_old_residences) })),
@@ -19,7 +18,7 @@
     V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "links.detect{|l| !l.flexible? }"),
       share,
       (
-        (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) / 100.0) * 
+        (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) / 100.0) *
         (QUERY_FUTURE(-> { AREA(roof_surface_available_pv) }) / V(households_solar_pv_solar_radiation, land_use_per_unit)) *
         V(households_solar_pv_solar_radiation, typical_electricity_production_per_unit)
       )
