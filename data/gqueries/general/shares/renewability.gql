@@ -7,16 +7,21 @@
 
 - query =
     DIVIDE(
-      SUM(
-        V(INTERSECTION(G(final_demand_cbs),USE(energetic))," demand * sustainability_share"),
-        Q(ambient_heat_pumped_by_heat_pumps),
-        Q(geothermal_own_use_in_sectors),
-      ),
-     SUM(
-      V(INTERSECTION(G(final_demand_cbs),USE(energetic)), demand),
-      Q(ambient_heat_pumped_by_heat_pumps),
-      Q(geothermal_own_use_in_sectors)
-     )
+       SUM(
+          V(G(electricity_production), '(output_of_electricity + output_of_steam_hot_water) * sustainability_share'),
+          V(G(cost_traditional_heat), '(output_of_steam_hot_water + output_of_useable_heat) * sustainability_share'),
+          V(G(cost_heat_pumps), 'input_of_ambient_heat + input_of_geothermal'),
+          V(INTERSECTION(G(final_demand_cbs),INTERSECTION(USE(energetic),SECTOR(transport))), 'demand*sustainability_share')
+         ) 
+        - SUM(
+          V(energy_export_electricity, 'demand * sustainability_share'),
+          V(G(cost_traditional_heat), 'input_of_electricity * sustainability_share')
+        ),
+        SUM(
+             V(INTERSECTION(G(final_demand_cbs),USE(energetic)), demand),
+             Q(ambient_heat_pumped_by_heat_pumps),
+             Q(geothermal_own_use_in_sectors)
+       )
     )
 - unit = factor
 - deprecated_key = share_of_renewable_energy
