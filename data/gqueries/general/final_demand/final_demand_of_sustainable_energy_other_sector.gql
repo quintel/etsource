@@ -1,14 +1,5 @@
-# The biomass used in the other sector, plus the sustainable part of the fossil fuels.
+# sustaiable part of final demand in other sector
 
 - query =
-    SUM(
-      V(other_final_demand_for_heat_wood_pellets,demand),
-    	V(
-    	  other_final_demand_for_heat_coal
-    	  other_final_demand_for_heat_crude_oil,
-    	  other_final_demand_for_heat_gas,
-    	  other_final_demand_for_heat_steam_hot_water,
-    	  "demand * sustainability_share"
-    	).sum
-    )
+    V(INTERSECTION(G(final_demand_cbs),SECTOR(other)), "demand * sustainability_share").sum
 - unit = mj

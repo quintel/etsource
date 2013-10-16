@@ -1,10 +1,5 @@
 # sum of non_sustainable energy final demand
 
 - query =
-    SUM(
-      V(other_final_demand_for_heat_coal,demand),
-      V(other_final_demand_for_heat_crude_oil,demand),
-      V(other_final_demand_for_heat_gas,demand),
-      V(other_final_demand_for_heat_steam_hot_water,demand)
-    )
+    V(INTERSECTION(G(final_demand_cbs),SECTOR(other)), "demand * (1.0 - sustainability_share)").sum
 - unit = mj
