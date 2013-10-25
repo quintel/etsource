@@ -22,7 +22,7 @@ task :import do
   if ENV['DATASET']
     datasets = [Pathname.new("../etdataset/data/#{ ENV['DATASET'].downcase }")]
   else
-    datasets = Pathname.new('../etdataset/data').children
+    datasets = Pathname.new('../etdataset/data').children.select(&:directory?)
   end
 
   datasets.each do |source|
