@@ -28,16 +28,15 @@ task :import do
   datasets.each do |source|
     dest = Pathname.new("data/datasets/#{ source.basename }")
     name = dest.basename.to_s.upcase
-    old  = Pathname.glob(dest.join('{efficiencies,shares,time_curves}/*.csv'))
     csvs = Pathname.glob(source.join('*/*/output/*.csv'))
 
-    # Remove the old files, some of which may no longer exist in ETDataset.
-    old.each(&FileUtils.method(:rm))
+    %w( demands efficiencies shares time_curves ).each do |dir|
+      # Remove the old files, some of which may no longer exist in ETDataset.
+      Pathname.glob(dest.join("#{ dir }/*.csv")).each(&FileUtils.method(:rm))
 
-    # Just in case the user deleted them...
-    FileUtils.mkdir_p(dest.join('efficiencies'))
-    FileUtils.mkdir_p(dest.join('shares'))
-    FileUtils.mkdir_p(dest.join('time_curves'))
+      # Just in case the user deleted them...
+      FileUtils.mkdir_p(dest.join(dir))
+    end
 
     csvs.each_with_index do |csv, index|
       case csv.basename('.csv').to_s
@@ -47,6 +46,8 @@ task :import do
         cp_csv(csv, dest.join('shares'))
       when /time_curve$/
         cp_csv(csv, dest.join('time_curves'))
+      when /^metal_demands/
+        cp_csv(csv, dest.join('demands/metal_demands.csv'))
       when /^primary_production/
         cp_csv(csv, dest.join('primary_production.csv'))
       when /^corrected_energy_balance_step_2/
