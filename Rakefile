@@ -38,7 +38,7 @@ task :import do
       FileUtils.mkdir_p(dest.join(dir))
     end
 
-    csvs.each_with_index do |csv, index|
+    count = csvs.select.with_index do |csv, index|
       case csv.basename('.csv').to_s
       when /efficiency$/
         cp_csv(csv, dest.join('efficiencies'))
@@ -57,6 +57,6 @@ task :import do
       end
     end # each csv
 
-    puts "Imported #{ csvs.length } CSVs for #{ name }"
+    puts "Imported #{ count.length } CSVs for #{ name }"
   end # each dataset
 end # import
