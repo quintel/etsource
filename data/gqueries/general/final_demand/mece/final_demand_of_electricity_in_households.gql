@@ -1,0 +1,15 @@
+# Final demand of the 'electricity' carrier group 
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :households"
+          ),
+          electricity?
+        ),
+        value
+      )      
+    ) / BILLIONS
