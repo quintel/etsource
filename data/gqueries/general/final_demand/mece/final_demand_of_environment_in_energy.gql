@@ -1,0 +1,42 @@
+# Final demand of the 'environment' carrier group 
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :energy"
+          ),
+          ambient_heat?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :energy"
+          ),
+          ambiend_cold?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :energy"
+          ),
+          solar_radiation?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :energy"
+          ),
+          solar_thermal?
+        ),
+        value
+      )      
+    ) / BILLIONS
