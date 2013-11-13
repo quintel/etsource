@@ -2,11 +2,6 @@
 
 ![Master branch build status][build-status]
 
-**This document is written from the perspective of the "new" ETSource
-repository which will come into being once the "Kill InputExcel" project is
-finished. This new repo can be found in the `./data` directory. Parts of the
-original readme, can be found [at the end][original]**
-
 ETSource contains the data used by Quintel applications for modelling energy
 transition. The files contained herein are a mixture of human-editable
 "documents", source files used to do offline calculations with [Atlas][atlas]
@@ -304,7 +299,7 @@ the energy is infinite in supply.
 Inside the datasets directory is a subdirectory for each region. Inside each
 of those folders is *regional* data: an ActiveDocument whose name matches the
 folder. Each also has a "shares" subdirectory containing CSVs whose values
-are used by Atlas to set edige shares.
+are used by Atlas to set edge shares.
 
 #### ./edges (global)
 
@@ -317,23 +312,11 @@ Edges are typically organised into subdirectories whose names match the sector
 of the supplier node. This may change in the future, and presently nothing
 will break if you put an edge in the wrong subdirectory.
 
-#### ./energy_balances (regional)
-
-Raw energy balance data from the IEA; can be read by Excel. Normally you won't
-edit these by hand but will simply overwrite the old file with a new one
-when the IEA releases new data. Each file is *regional* and the name matches
-the region to which it applies.
-
 #### ./gqueries (global)
 
 ActiveDocuments detailing the queries which may be performed on ETEngine by
 application such as ETModel and ETFlex. The subdirectories have no
 significance except to keep things organised.
-
-#### ./import
-
-Files used by Atlas [when importing][import] older "legacy" InputExcel output
-files into the new ActiveDocument format.
 
 #### ./inputs (global)
 
@@ -346,96 +329,10 @@ and have no significance.
 Contains documents for nodes. One document per node, organised into
 subdirectories whose names indicate the sector to which the node belongs.
 
-#### ./slots (global)
+#### ./presets (global)
 
-Optional documents which can be used to set additional attributes for the
-slots on a node. These are often not necessary unless you want to specify a
-custom "share", or want to tell ETEngine to use a special class (such as for
-carrier-efficient nodes). The naming format is similar to edges:
-`node+@carrier` for input slots, and `node-@carrier` for output slots. See
-the Atlas [Slot class description][slot] for the rationale behind this naming
-convention.
-
-## Safe To Edit?
-
-Some documents in the repository should not be hand-edited **yet** as they are
-frequently overwritten when a new [Atlas import][import] is performed. See
-Atlas's list of [safe-to-edit files][safe] for a list of what you can and
-cannot edit.
-
-# Original README
-
-### Folder structure
-
-#### data
-
-The `data` folder is the previsioned new folder where all the data is stored.
-Currently, it contains the `gueries` and `inputs`, that are used by the
-Object Mapper.
-
-#### models
-
-The model folders contains other models. Mostly for illustration,
-documentation and testing purposes. These models can be run and tested using
-the etengine command line interface. For instance, models/minimal contains
-the minimal set of files and content for a simple two-converter graph. To
-illustrate the behaviour of flex-max links see the `models/flex_max folder`.
-
-#### scripts
-
-The folder 'scripts' contains the scripts used to alter the names and content
-of the queries.  The folder `change_reports` within 'scripts' contains the
-changes made in the queries, one for each of the query groups.
-
-### Rules and best practices
-
-Try to make one commit for each batch of changes you make to the files,
-related to one issue. For example, if a query is changed, try to alter all
-queries and inputs related to the query in a single commit.
-
-### Updating from the InputExcel guide
-
-You have to copy the zip file to the etsource directory and enter the
-following command in your terminal:
-
-    $ cd your-etsource-directory $ ruby scripts/xls2yml/xls2yml.rb
-
-If you changed anything converter keys, naming, structure, in general to the
-topology, you have to export all countries. If you only update a country
-dataset with new numbers, you don't have to update all countries.
-
-After this you can commit your changes.
-
-Adding or updating carriers, you have to do in
-etsource/datasets/.../carriers.yml.
-
-### Datasets
-
-A dataset is the collection of all _data buckets_ within a _section_. Look at
-it as one big _data bucket_. A dataset is virtual, and not commited to Github.
-The merging of all buckets happens during runtime. There are three independent
-levels: default, country and wizard datasets. Each can overwrite values of the
-former.
-
-#### Default Dataset (datasets/_defaults)
-
-Contains all the values that are a) the same for every country or b) should be
-treated as default/start values. Values here are overwritten in the country
-dataset. That means we can put the data that sometimes changes in a _default
-dataset_ and overwrite it in the _country dataset_ when it does actually
-change.
-
-#### Country Dataset (datasets/:area_code)
-
-The precise name would be area(-specific) dataset (area can be a country 'nl',
-or a region 'nl-drenthe'). But country dataset is a clear enough and
-human-friendly name and is easy on the lips.
-
-#### Overwriting Rules
-
-    # _defaults/area.yml ...  :area_data: :co2_price: 0.002 :has_fce: false
-    # nl/area.yml ...  :area_data: :number_of_households: 100_000 :has_fce: true
-    # => {:area_data: {:co2_price: 0.002, :number_of_households: 100_000, :has_fce: true }}
+Contains scenarios completed by QI'ers and notable public figures which can be
+viewed on ETModel.
 
 [build-status]: https://semaphoreapp.com/api/v1/projects/63d00abb0b002bb34bdbe9602aee85a2a0d42f56/25174/badge.png
 [atlas]:        https://github.com/quintel/atlas
@@ -443,7 +340,3 @@ human-friendly name and is easy on the lips.
 [refinery]:     https://github.com/quintel/refinery
 [etengine]:     https://github.com/quintel/etengine
 [console]:      https://github.com/quintel/atlas#using-the-atlas-console
-[import]:       https://github.com/quintel/atlas#importing-legacy-etsource-files
-[slot]:         https://github.com/quintel/atlas/blob/master/lib/atlas/slot.rb
-[safe]:         https://github.com/quintel/atlas#safe-to-edit
-[original]:     #original-readme
