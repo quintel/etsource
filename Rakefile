@@ -26,7 +26,7 @@ task :import do
   end
 
   datasets.each do |source|
-    dest = Pathname.new("data/datasets/#{ source.basename }")
+    dest = Pathname.new("datasets/#{ source.basename }")
     name = dest.basename.to_s.upcase
     csvs = Pathname.glob(source.join('*/*/output/*.csv'))
 
