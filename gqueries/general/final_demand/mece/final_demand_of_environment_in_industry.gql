@@ -38,5 +38,14 @@
           solar_thermal?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :industry"
+          ),
+          geothermal?
+        ),
+        value
       )      
     ) / BILLIONS
