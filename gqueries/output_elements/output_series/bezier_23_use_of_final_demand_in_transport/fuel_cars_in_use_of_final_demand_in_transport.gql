@@ -1,2 +1,14 @@
-- query = DIVIDE(SUM(V(V(transport_car_using_compressed_natural_gas),V(transport_car_using_diesel_mix),V(transport_car_using_gasoline_mix),V(transport_car_using_lpg),final_demand)),BILLIONS)
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          transport_car_using_compressed_natural_gas,
+          transport_car_using_diesel_mix,
+          transport_car_using_gasoline_mix,
+          transport_car_using_lpg,
+          final_demand
+        )
+      ),
+      BILLIONS
+    )
 - unit = pj
