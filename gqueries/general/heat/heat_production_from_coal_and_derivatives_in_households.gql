@@ -1,0 +1,18 @@
+# Use of 'coal_and_derivatives' carrier group in 'heat_production' in the households sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(households)
+        ),
+        input_of_coal
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(households)
+        ),
+        input_of_coal_gas
+      )      
+    ) / BILLIONS
