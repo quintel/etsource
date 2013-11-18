@@ -1,0 +1,36 @@
+# Use of 'environment' carrier group in 'heat_production' in the buildings sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(buildings)
+        ),
+        input_of_ambient_heat
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(buildings)
+        ),
+        input_of_ambient_cold
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(buildings)
+        ),
+        input_of_solar_radiation
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(buildings)
+        ),
+        input_of_solar_thermal
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(buildings)
+        ),
+        input_of_geothermal
+      )      
+    ) / BILLIONS
