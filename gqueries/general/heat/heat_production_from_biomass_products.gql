@@ -1,0 +1,9 @@
+# Use of carrier group 'biomass_products' in 'heat_production' converter group
+
+- unit = pj
+- query =
+    SUM(
+      V(G(heat_production),input_of_biodiesel),
+      V(G(heat_production),input_of_bio_ethanol),
+      V(G(heat_production),input_of_wood_pellets)      
+    ) / BILLIONS

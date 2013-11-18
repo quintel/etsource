@@ -1,0 +1,12 @@
+# Use of 'electricity' carrier group in 'heat_production' in the energy sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(energy)
+        ),
+        input_of_electricity
+      )      
+    ) / BILLIONS
