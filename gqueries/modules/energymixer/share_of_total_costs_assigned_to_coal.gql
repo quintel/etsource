@@ -2,16 +2,15 @@
 
 - query =
     DIVIDE(
-    SUM(
-      V(G(final_demand_cbs), primary_demand_of_coal),
-      V(G(final_demand_cbs), primary_demand_of_lignite)
-       )
-    ,
-    SUM(
-      V(G(final_demand_cbs), primary_demand),
-      NEG(SUM(
+      SUM(
+        V(G(final_demand_cbs), primary_demand_of_carriers(coal, lignite))
+      ),
+      SUM(
+        V(G(final_demand_cbs), primary_demand),
+        NEG(SUM(
           V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-          ))
-       )
+        ))
+      )
     )
+
 - unit = factor

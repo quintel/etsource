@@ -2,17 +2,16 @@
 
 - query =
     DIVIDE(
-    SUM(
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_natural_gas),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_lng),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_network_gas)
-       )
-    ,
-    SUM(
-      V(G(final_demand_cbs), primary_demand),
-      NEG(SUM(
+      SUM(V(
+        INTERSECTION(V(SECTOR(agriculture),SECTOR(other)), G(final_demand_cbs)),
+        primary_demand_of_carriers(natural_gas, lng, network_gas)
+      )),
+      SUM(
+        V(G(final_demand_cbs), primary_demand),
+        NEG(SUM(
           V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-          ))
-       )
+        ))
+      )
     )
+
 - unit = factor
