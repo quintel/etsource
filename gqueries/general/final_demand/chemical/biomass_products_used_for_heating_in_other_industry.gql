@@ -1,0 +1,9 @@
+# Use of carrier group 'biomass_products' in other industry heat
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(industry_useful_demand_useable_heat)),input_of_biodiesel),
+      V(CHILDREN(V(industry_useful_demand_useable_heat)),input_of_bio_ethanol),
+      V(CHILDREN(V(industry_useful_demand_useable_heat)),input_of_wood_pellets)
+    ) / BILLIONS
