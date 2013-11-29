@@ -4,24 +4,28 @@
 
 - query =
     DIVIDE(
-    SUM(
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs))," primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste"),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_ambient_heat),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_ambient_cold),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_wood_pellets),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_greengas),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_biodiesel),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_bio_ethanol),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_bio_oil),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_biogas),
-      V(INTERSECTION(V(SECTOR(households),SECTOR(buildings)),G(final_demand_cbs)), primary_demand_of_electricity)
-       )
-    ,
-    SUM(
-      V(G(final_demand_cbs), primary_demand),
-      NEG(SUM(
+      SUM(V(
+        INTERSECTION(V(SECTOR(households), SECTOR(buildings)), G(final_demand_cbs)),
+        primary_demand_of_carriers(
+          waste_mix,
+          biogenic_waste,
+          non_biogenic_waste,
+          ambient_heat,
+          ambient_cold,
+          wood_pellets,
+          greengas,
+          biodiesel,
+          bio_ethanol,
+          bio_oil,
+          biogas
+        )
+      )),
+      SUM(
+        V(G(final_demand_cbs), primary_demand),
+        NEG(SUM(
           V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-          ))
-       )
+        ))
+      )
     )
+
 - unit = factor

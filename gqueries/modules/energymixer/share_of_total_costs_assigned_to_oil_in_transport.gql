@@ -2,19 +2,18 @@
 
 - query =
     DIVIDE(
-    SUM(
-      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_crude_oil),
-      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_gasoline),
-      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_diesel),
-      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_lpg),
-      V(INTERSECTION(V(SECTOR(transport)),G(final_demand_cbs)), primary_demand_of_kerosene)
-       )
-    ,
-    SUM(
-      V(G(final_demand_cbs), primary_demand),
-      NEG(SUM(
+      SUM(
+        V(
+          INTERSECTION(V(SECTOR(transport)), G(final_demand_cbs)),
+          primary_demand_of_carriers(crude_oil, gasoline, diesel, lpg, kerosene)
+        ),
+      ),
+      SUM(
+        V(G(final_demand_cbs), primary_demand),
+        NEG(SUM(
           V(G(final_demand_cbs), primary_demand_of_imported_electricity)
-          ))
-       )
+        ))
+      )
     )
+
 - unit = factor
