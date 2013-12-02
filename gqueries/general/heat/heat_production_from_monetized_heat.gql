@@ -1,8 +1,9 @@
-# Use of carrier group 'monetized_heat' in 'heat_production' converter group
+# Use of 'monetized_heat' carrier group in 'heat_production'
 
 - unit = pj
 - query =
     SUM(
       V(G(heat_production),input_of_steam_hot_water),
-      V(G(heat_production),input_of_useable_heat)      
+      V(G(heat_production),input_of_imported_steam_hot_water),
+      V(G(heat_production),input_of_useable_heat)
     ) / BILLIONS

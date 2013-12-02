@@ -1,8 +1,10 @@
-# Use of carrier group 'coal_and_derivatives' in 'heat_production' converter group
+# Use of 'coal_and_derivatives' carrier group in 'heat_production'
 
 - unit = pj
 - query =
     SUM(
       V(G(heat_production),input_of_coal),
-      V(G(heat_production),input_of_coal_gas)      
+      V(G(heat_production),input_of_lignite),
+      V(G(heat_production),input_of_coal_gas),
+      V(G(heat_production),input_of_cokes)
     ) / BILLIONS
