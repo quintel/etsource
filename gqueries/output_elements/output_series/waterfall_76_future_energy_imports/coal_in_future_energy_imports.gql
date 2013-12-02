@@ -1,6 +1,6 @@
 - query =
     future:DIVIDE(
-    	V(G(energy_import),output_of_coal).sum -
-    	V(G(energy_export),input_of_coal).sum
+    	V(G(energy_import),"output_of_coal + output_of_lignite").sum -
+    	V(G(energy_export),"input_of_coal + input_of_lignite").sum
     ,BILLIONS)
 - unit = pj
