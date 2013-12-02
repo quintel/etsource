@@ -1,0 +1,9 @@
+# Use of 'waste' carrier group in 'heat_production'
+
+- unit = pj
+- query =
+    SUM(
+      V(G(heat_production),input_of_waste_mix),
+      V(G(heat_production),input_of_non_renewable_waste),
+      V(G(heat_production),input_of_biogenic_waste)
+    ) / BILLIONS
