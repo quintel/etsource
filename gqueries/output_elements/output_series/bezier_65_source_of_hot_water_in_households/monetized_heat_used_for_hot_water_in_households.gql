@@ -1,0 +1,8 @@
+# Use of carrier group 'monetized_heat' in housholds hot water
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_add_on)),input_of_steam_hot_water),
+      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_add_on)),input_of_useable_heat)      
+    ) / BILLIONS
