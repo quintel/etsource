@@ -1,7 +1,10 @@
-# Use of carrier group 'natural_gas_and_derivatives' in 'heat_production' converter group
+# Use of 'natural_gas_and_derivatives' carrier group in 'heat_production'
 
 - unit = pj
 - query =
     SUM(
-      V(G(heat_production),input_of_network_gas)      
+      V(G(heat_production),input_of_natural_gas),
+      V(G(heat_production),input_of_low_caloric_gas),
+      V(G(heat_production),input_of_high_caloric_gas),
+      V(G(heat_production),input_of_lng)
     ) / BILLIONS
