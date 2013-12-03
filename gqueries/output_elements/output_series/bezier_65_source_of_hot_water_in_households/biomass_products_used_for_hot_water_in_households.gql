@@ -1,0 +1,9 @@
+# Use of carrier group 'biomass_products' in housholds hot water
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_add_on)),input_of_biodiesel),
+      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_add_on)),input_of_bio_ethanol),
+      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_add_on)),input_of_wood_pellets)      
+    ) / BILLIONS
