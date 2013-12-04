@@ -1,0 +1,9 @@
+# Use of carrier group 'biomass_products' in chemical industry heat
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(industry_useful_demand_for_chemical_useable_heat)),input_of_biodiesel),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_useable_heat)),input_of_bio_ethanol),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_useable_heat)),input_of_wood_pellets)
+    ) / BILLIONS
