@@ -1,0 +1,12 @@
+# Use of carrier group 'oil_and_derivatives' in residential district heat
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(households_final_demand_steam_hot_water)),input_of_crude_oil),
+      V(CHILDREN(V(households_final_demand_steam_hot_water)),input_of_gasoline),
+      V(CHILDREN(V(households_final_demand_steam_hot_water)),input_of_diesel),
+      V(CHILDREN(V(households_final_demand_steam_hot_water)),input_of_lpg),
+      V(CHILDREN(V(households_final_demand_steam_hot_water)),input_of_kerosene),
+      V(CHILDREN(V(households_final_demand_steam_hot_water)),input_of_heavy_fuel_oil)      
+    ) / BILLIONS
