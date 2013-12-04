@@ -1,0 +1,78 @@
+# Non-energetic final demand of the 'oil_and_derivatives' carrier group
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(chemical)
+            ),
+            "not energetic?"
+          ),
+          crude_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(chemical)
+            ),
+            "not energetic?"
+          ),
+          gasoline?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(chemical)
+            ),
+            "not energetic?"
+          ),
+          diesel?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(chemical)
+            ),
+            "not energetic?"
+          ),
+          lpg?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(chemical)
+            ),
+            "not energetic?"
+          ),
+          kerosene?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(chemical)
+            ),
+            "not energetic?"
+          ),
+          heavy_fuel_oil?
+        ),
+        value
+      )
+    ) / BILLIONS
