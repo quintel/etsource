@@ -1,0 +1,12 @@
+# Use of 'natural_gas_and_derivatives' carrier group in 'heat_production' in the agriculture sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(agriculture)
+        ),
+        input_of_network_gas
+      )      
+    ) / BILLIONS

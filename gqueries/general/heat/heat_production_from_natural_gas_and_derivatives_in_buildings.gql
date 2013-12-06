@@ -1,0 +1,12 @@
+# Use of 'natural_gas_and_derivatives' carrier group in 'heat_production' in the buildings sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(buildings)
+        ),
+        input_of_network_gas
+      )      
+    ) / BILLIONS
