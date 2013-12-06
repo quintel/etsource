@@ -1,0 +1,8 @@
+# Use of carrier group 'coal_and_derivatives' in buildings heating
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(buildings_useful_demand_for_space_heating_after_insulation)),input_of_coal),
+      V(CHILDREN(V(buildings_useful_demand_for_space_heating_after_insulation)),input_of_coal_gas)      
+    ) / BILLIONS
