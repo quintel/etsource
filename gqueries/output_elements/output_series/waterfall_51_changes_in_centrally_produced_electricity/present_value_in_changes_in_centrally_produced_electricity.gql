@@ -1,2 +1,11 @@
-- query = present:DIVIDE(SUM(V(GROUP(final_demand_cbs),input_of_electricity)),BILLIONS)
+- query = 
+  present:DIVIDE(
+    SUM(
+      V(GROUP(final_demand_cbs),input_of_electricity),
+      V(energy_power_hv_network_loss,demand),
+      V(energy_final_demand_electricity,demand),
+      V(energy_power_sector_own_use_electricity,demand)
+    )
+    ,BILLIONS
+  )
 - unit = pj
