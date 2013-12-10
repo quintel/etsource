@@ -1,2 +1,9 @@
-- query = future:DIVIDE(Q(net_import_of_biomass_derivatives),BILLIONS)
+- query = 
+  future:DIVIDE(
+    SUM(
+      Q(net_import_of_biomass_derivatives),
+      (V(G(energy_import), "output_of_non_biogenic_waste").sum - V(G(energy_export), "input_of_non_biogenic_waste").sum)
+    ),
+    BILLIONS
+  )
 - unit = pj
