@@ -351,5 +351,5 @@ viewed on ETModel.
 [refinery]:     https://github.com/quintel/refinery
 [etengine]:     https://github.com/quintel/etengine
 [console]:      https://github.com/quintel/atlas#using-the-atlas-console
-[IEA]:          https://iea.org
+[IEA]:          http://www.iea.org
 [contact]:      http://quintel.com/contact
