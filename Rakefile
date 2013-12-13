@@ -77,3 +77,28 @@ task :console do
   cd '../atlas'
   exec "bundle exec rake 'console[#{ directory }]'"
 end
+
+desc <<-DESC
+  Decrypts the energy balance for every area.
+DESC
+
+task :decrypt do
+  if File.exists?('.password')
+    password = File.read('.password').strip
+  else
+    puts "File .password not found in root."
+    puts "Please Enter Passphrase to decrypt files:"
+    password = $stdin.gets.strip
+  end
+
+  puts "Start Decrypting..."
+  Dir.glob('datasets/*').each do |area|
+    if File.exists?("#{ area }/energy_balance.gpg")
+      puts "* #{ area }"
+      cmd = "gpg -d --passphrase #{ password } #{ area }/energy_balance.gpg > #{ area }/energy_balance.csv"
+      puts `#{ cmd }`
+     end
+  end
+
+  puts "Done!"
+end
