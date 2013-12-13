@@ -19,7 +19,10 @@ ETSource is released under the [MIT License](LICENSE.txt).
 The sole exception to this is the **energy balance** in [datasets](datasets).
 These Energy Balances come from the [IEA][IEA], that does not allow
 redistribution of their data. You may want to purchase this data [with the
-IEA](http://data.iea.org/IEASTORE/DEFAULT.ASP) and replace it.
+IEA](http://data.iea.org/IEASTORE/DEFAULT.ASP) and put it in the appropiate
+dataset directory to have a fully functioning ETSource for that region. You
+will have to adjust and extend the energy balance with the use of
+[ETDataset][etdataset].
 
 Please [contact us][contact] when you have questions.
 
@@ -350,6 +353,7 @@ viewed on ETModel.
 [atlas-readme]: https://github.com/quintel/atlas#readme
 [refinery]:     https://github.com/quintel/refinery
 [etengine]:     https://github.com/quintel/etengine
+[etdataset]:    https://github.com/quintel/etdataset
 [console]:      https://github.com/quintel/atlas#using-the-atlas-console
 [IEA]:          http://www.iea.org
 [contact]:      http://quintel.com/contact
