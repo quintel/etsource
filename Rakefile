@@ -84,6 +84,7 @@ DESC
 
 task :decrypt do
   if File.exists?('.password')
+    puts "Using password that is stored in .password..."
     password = File.read('.password').strip
   else
     puts "File .password not found in root."
