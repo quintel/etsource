@@ -12,6 +12,17 @@ You may also wish to view the [Atlas readme][atlas-readme] for information on
 loading the ETSource data in a console, importing data from the old InputExcel
 output files, or for instructions on exporting data for ETEngine.
 
+## Open Source
+
+ETSource is released under the [MIT License](LICENSE.txt).
+
+The sole exception to this is the **energy balance** in [datasets](datasets).
+These Energy Balances come from the [IEA][IEA], that does not allow
+redistribution of their data. You may want to purchase this data [with the
+IEA](http://data.iea.org/IEASTORE/DEFAULT.ASP) and replace it.
+
+Please [contact us][contact] when you have questions.
+
 ## "Active" Documents
 
 Files with an ".ad" extension are editable through the [Atlas console][console]
@@ -340,3 +351,5 @@ viewed on ETModel.
 [refinery]:     https://github.com/quintel/refinery
 [etengine]:     https://github.com/quintel/etengine
 [console]:      https://github.com/quintel/atlas#using-the-atlas-console
+[IEA]:          https://iea.org
+[contact]:      http://quintel.com/contact
