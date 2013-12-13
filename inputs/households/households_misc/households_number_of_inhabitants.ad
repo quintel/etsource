@@ -1,7 +1,7 @@
 - id = 335
 - query =
     EACH(
-    UPDATE(AREA(), number_inhabitants, USER_INPUT()*1_000_000),
+    UPDATE(AREA(), number_of_inhabitants, USER_INPUT()*1_000_000),
     UPDATE_WITH_FACTOR(
       V(households_useful_demand_light,
         households_useful_demand_cooking_useable_heat,
@@ -13,13 +13,13 @@
         households_appliances_television_electricity,
         households_appliances_computer_media_electricity,
         households_useful_demand_hot_water
-        ), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_inhabitants) })
+        ), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_inhabitants) })
       )
     )
 - priority = 0
-- max_value_gql = present:AREA(number_inhabitants) * 0.000001 * 2
-- min_value_gql = present:AREA(number_inhabitants) * 0.000001 * 0.5
-- start_value_gql = present:AREA(number_inhabitants)
+- max_value_gql = present:AREA(number_of_inhabitants) * 0.000001 * 2
+- min_value_gql = present:AREA(number_of_inhabitants) * 0.000001 * 0.5
+- start_value_gql = present:AREA(number_of_inhabitants)
 - step_value = 0.1
 - factor = 1.0e-06
 - unit = #
