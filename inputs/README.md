@@ -70,6 +70,12 @@ An example:
 
 ## Folder structure
 
-Inputs have been subdivided into 
- 
-## Input Syntax
+Inputs have been subdivided into the following main folders:
+* costs
+* demand
+* misc
+* modules
+* supply
+* targets
+
+which roughly correspond to the sidebar items.
