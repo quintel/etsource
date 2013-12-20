@@ -1,7 +1,6 @@
 # Update statement for number of new households
 # DEBT: remove the ugly + 1 to prevent division by zero in other queries- factor = 0.000001
 
-- id = 640
 - query =
   cost_per_new_house = AREA(new_houses_insulation_cost_constant) * (INPUT_VALUE(households_insulation_level_new_houses) - AREA(insulation_level_new_houses_min));
   total_cost = cost_per_new_house * USER_INPUT() * 1_000_000;
