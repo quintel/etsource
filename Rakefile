@@ -15,7 +15,10 @@ task :import do
   # Copies the source CSV file to the given +to+ path, converting Windows CRLF
   # line endings to Unix LF.
   def cp_csv(from, to)
-    to = to.join(from.basename) if to.directory? || ! to.to_s.match(/\.csv$/)
+    if to.directory? || ! to.to_s.match(/\.(csv|ad)$/)
+      to = to.join(from.basename)
+    end
+
     File.write(to, File.read(from).gsub(/\r\n/, "\n"))
   end
 
@@ -54,6 +57,10 @@ task :import do
         cp_csv(csv, dest.join('energy_balance.csv'))
       when /^central_electricity_production_step_2/
         cp_csv(csv, dest.join('central_producers.csv'))
+      when /^#{ Regexp.escape(name.downcase) }$/
+        if csv.to_s.include?('11_area/output')
+          cp_csv(csv, dest.join("#{ name.downcase }.ad"))
+        end
       end
     end # each csv
 
