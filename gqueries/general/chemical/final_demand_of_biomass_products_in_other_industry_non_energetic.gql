@@ -1,4 +1,4 @@
-# Energetic final demand of the 'biomass_products' carrier group
+# Non-energetic final demand of the 'biomass_products' carrier group
 
 - unit = pj
 - query =
@@ -7,9 +7,9 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(other_industry)
             ),
-            energetic?
+            "! energetic?"
           ),
           biodiesel?
         ),
@@ -19,9 +19,9 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(other_industry)
             ),
-            energetic?
+            "! energetic?"
           ),
           bio_ethanol?
         ),
@@ -31,9 +31,9 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(other_industry)
             ),
-            energetic?
+            "! energetic?"
           ),
           wood_pellets?
         ),

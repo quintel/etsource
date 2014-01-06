@@ -1,4 +1,4 @@
-# Non-energetic final demand of the 'oil_and_derivatives' carrier group
+# Non-energetic final demand of the 'environment' carrier group
 
 - unit = pj
 - query =
@@ -7,11 +7,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(metal_industry)
             ),
             "! energetic?"
           ),
-          crude_oil?
+          ambient_heat?
         ),
         value
       ),
@@ -19,11 +19,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(metal_industry)
             ),
             "! energetic?"
           ),
-          gasoline?
+          ambient_cold?
         ),
         value
       ),
@@ -31,11 +31,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(metal_industry)
             ),
             "! energetic?"
           ),
-          diesel?
+          solar_radiation?
         ),
         value
       ),
@@ -43,11 +43,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(metal_industry)
             ),
             "! energetic?"
           ),
-          lpg?
+          solar_thermal?
         ),
         value
       ),
@@ -55,23 +55,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(metal_industry)
             ),
             "! energetic?"
           ),
-          kerosene?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
-            ),
-            "! energetic?"
-          ),
-          heavy_fuel_oil?
+          geothermal?
         ),
         value
       )

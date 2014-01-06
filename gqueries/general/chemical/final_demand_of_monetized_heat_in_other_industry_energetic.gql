@@ -1,4 +1,4 @@
-# Non-energetic final demand of the 'coal_and_derivatives' carrier group
+# Energetic final demand of the 'monetized_heat' carrier group
 
 - unit = pj
 - query =
@@ -7,11 +7,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(other_industry)
             ),
-            "! energetic?"
+            energetic?
           ),
-          coal?
+          steam_hot_water?
         ),
         value
       ),
@@ -19,11 +19,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(other_industry)
             ),
-            "! energetic?"
+            energetic?
           ),
-          coal_gas?
+          useable_heat?
         ),
         value
       )

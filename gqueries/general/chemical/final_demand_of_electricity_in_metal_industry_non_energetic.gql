@@ -1,4 +1,4 @@
-# Energetic final demand of the 'natural_gas_and_derivatives' carrier group
+# Non-energetic final demand of the 'electricity' carrier group
 
 - unit = pj
 - query =
@@ -7,11 +7,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              LG(final_demand),LG(chemical_industry)
+              LG(final_demand),LG(metal_industry)
             ),
-            energetic?
+            "! energetic?"
           ),
-          network_gas?
+          electricity?
         ),
         value
       )
