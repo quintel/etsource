@@ -1,0 +1,33 @@
+# Final demand of the 'biomass_products' carrier group
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          biodiesel?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          bio_ethanol?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          wood_pellets?
+        ),
+        value
+      )
+    ) / BILLIONS

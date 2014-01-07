@@ -1,0 +1,30 @@
+# Energetic final demand of the 'monetized_heat' carrier group
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(other_industry)
+            ),
+            energetic?
+          ),
+          steam_hot_water?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(other_industry)
+            ),
+            energetic?
+          ),
+          useable_heat?
+        ),
+        value
+      )
+    ) / BILLIONS

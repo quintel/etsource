@@ -1,0 +1,51 @@
+# Final demand of the 'environment' carrier group
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          ambient_heat?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          ambient_cold?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          solar_radiation?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          solar_thermal?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(metal_industry)
+          ),
+          geothermal?
+        ),
+        value
+      )
+    ) / BILLIONS
