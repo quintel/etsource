@@ -1,2 +1,9 @@
-- query = DIVIDE(Q(electricity_demand_in_industry_supplied_by_central_production),BILLIONS)
+- query =
+    MAX(
+      (
+        Q(total_produced_electricity_in_source_of_heat_and_electricity_in_industry) -
+        Q(chp_electricity_in_source_of_heat_and_electricity_in_industry)
+      ),
+      0
+    )
 - unit = pj
