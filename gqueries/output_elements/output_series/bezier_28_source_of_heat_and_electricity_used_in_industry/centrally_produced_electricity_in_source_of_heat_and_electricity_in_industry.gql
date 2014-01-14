@@ -1,8 +1,8 @@
 - query =
     MAX(
-      (
-        Q(total_produced_electricity_in_source_of_heat_and_electricity_in_industry) -
-        Q(chp_electricity_in_source_of_heat_and_electricity_in_industry)
+      SUM(
+        Q(total_produced_electricity_in_source_of_heat_and_electricity_in_industry),
+        - Q(chp_electricity_in_source_of_heat_and_electricity_in_industry)
       ),
       0
     )
