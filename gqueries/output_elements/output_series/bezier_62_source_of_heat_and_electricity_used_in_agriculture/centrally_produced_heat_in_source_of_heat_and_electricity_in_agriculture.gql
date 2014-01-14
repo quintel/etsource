@@ -1,0 +1,9 @@
+- query =
+    MAX(
+      SUM(
+        V(agriculture_locally_available_steam_hot_water,demand) / BILLIONS,
+        - Q(chp_heat_in_source_of_heat_and_electricity_in_agriculture)
+      ),
+      0
+    )
+- unit = pj
