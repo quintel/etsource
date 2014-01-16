@@ -1,12 +1,12 @@
-# Final demand of the 'monetized_heat' carrier group
+# Final demand of the 'heat' carrier group 
 
 - unit = pj
 - query =
     SUM(
       V(
         FILTER(
-          INTERSECTION(
-            LG(final_demand),LG(chemical_industry)
+          FILTER(
+            LG(final_demand),"sector == :industry"
           ),
           steam_hot_water?
         ),
@@ -14,11 +14,11 @@
       ),
       V(
         FILTER(
-          INTERSECTION(
-            LG(final_demand),LG(chemical_industry)
+          FILTER(
+            LG(final_demand),"sector == :industry"
           ),
           useable_heat?
         ),
         value
-      )
+      )      
     ) / BILLIONS

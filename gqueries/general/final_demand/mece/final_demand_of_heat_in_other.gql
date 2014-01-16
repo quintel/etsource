@@ -1,4 +1,4 @@
-# Final demand of the 'monetized_heat' carrier group 
+# Final demand of the 'heat' carrier group 
 
 - unit = pj
 - query =
@@ -6,7 +6,7 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :agriculture"
+            LG(final_demand),"sector == :other"
           ),
           steam_hot_water?
         ),
@@ -15,7 +15,7 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :agriculture"
+            LG(final_demand),"sector == :other"
           ),
           useable_heat?
         ),
