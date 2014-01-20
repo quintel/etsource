@@ -1,5 +1,5 @@
-# ashboard item for the number of expected blackout hours per year.
+# Dashboard item for the number of expected blackout hours per year.
 
-- query = Q(security_of_supply_loss_of_load_probability)
-- unit = percentage
+- query = V(GRAPH(), loss_of_load_probability(Q(available_electricity_production_capacity)))
+- unit = hours
 - deprecated_key = security_of_supply_blackout_risk

@@ -1,0 +1,14 @@
+# Returns the capacity credit of wind depending on the installed wind capacity
+# (1115 * number_of_wind_units + 41870) / (number_of_wind_units + 3358) / number_of_wind_units  
+
+
+- query =
+    number_of_wind_units = SUM(
+                              INPUT_VALUE(number_of_energy_power_wind_turbine_coastal),
+                              INPUT_VALUE(number_of_energy_power_wind_turbine_inland),
+                              INPUT_VALUE(number_of_energy_power_wind_turbine_offshore)
+                            ); 
+
+    ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * number_of_wind_units + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( number_of_wind_units + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) }) ) / number_of_wind_units
+
+- unit = #
