@@ -1,14 +1,14 @@
-# Returns the capacity credit of wind depending on the installed wind capacity
-# (1115 * number_of_wind_units + 41870) / (number_of_wind_units + 3358) / number_of_wind_units  
-
+# Returns the capacity credit of wind as a function of the installed wind capacity
+# (p1 * installed_wind_capacity + p2) / (installed_wind_capacity + q1) / installed_wind_capacity
+# The parameters p1, p2 and q1 are country specific and defined in ETDatset 
 
 - query =
-    number_of_wind_units = SUM(
-                              INPUT_VALUE(number_of_energy_power_wind_turbine_coastal),
-                              INPUT_VALUE(number_of_energy_power_wind_turbine_inland),
-                              INPUT_VALUE(number_of_energy_power_wind_turbine_offshore)
-                            ); 
+    installed_wind_capacity = SUM(
+                              INPUT_VALUE(number_of_energy_power_wind_turbine_coastal) * V(energy_power_wind_turbine_coastal, electricity_output_capacity),
+                              INPUT_VALUE(number_of_energy_power_wind_turbine_inland) * V(energy_power_wind_turbine_inland, electricity_output_capacity),
+                              INPUT_VALUE(number_of_energy_power_wind_turbine_offshore) * V(energy_power_wind_turbine_offshore, electricity_output_capacity)
+                              ); 
 
-    ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * number_of_wind_units + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( number_of_wind_units + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) }) ) / number_of_wind_units
+    ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / installed_wind_capacity
 
 - unit = #
