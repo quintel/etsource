@@ -1,11 +1,4 @@
-# The peak electricity demand in future year
+# Returns the peak electricity demand in the future year
 
-- query =
-    future:SUM(
-        Q(peak_electricity_demand),
-        PRODUCT(
-          Q(total_supply_and_demand_variability),
-          3
-        )
-    )
-- unit = MW
+- query = future:Q(peak_electricity_demand)
+- unit = mw

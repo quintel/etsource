@@ -1,8 +1,8 @@
-# This is the compliment to the available production capacity
-# It is the production capacity that is volatile and hence does not contribute to security of supply
+# Returns the unreliable part of the available production capacity, i.e. the volatile production that cannot be counted on in
+# the loss of load calculation
 
 - query =
     SUM(
-      V(G(electricity_production),"installed_production_capacity_in_mw_electricity*availability*variability")
+      V(G(electricity_production),"installed_production_capacity_in_mw_electricity * availability * (1-capacity_credit)")
     )
 - unit = mw
