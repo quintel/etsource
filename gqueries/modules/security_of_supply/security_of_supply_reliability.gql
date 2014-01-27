@@ -1,8 +1,4 @@
-# The reliability of the energy supply, defined as 100% - the probability of loss of load.
+# The reliability of the energy supply, defined as 1 - the loss of load expectation / 8760.
 
-- query =
-    SUM(
-    1,
-    NEG(Q(security_of_supply_loss_of_load_probability))
-    )
+- query = 1 - DIVIDE(Q(loss_of_load_expectation), 8760)
 - unit = factor
