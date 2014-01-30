@@ -1,0 +1,18 @@
+# Use of 'ambient' carrier group in 'heat_production' in the transport sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(transport)
+        ),
+        input_of_ambient_heat
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(transport)
+        ),
+        input_of_ambient_cold
+      )      
+    ) / BILLIONS

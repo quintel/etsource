@@ -1,0 +1,18 @@
+# Use of 'solar' carrier group in 'heat_production' in the agriculture sector
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(agriculture)
+        ),
+        input_of_solar_radiation
+      ),
+      V(
+        INTERSECTION(
+          G(heat_production),SECTOR(agriculture)
+        ),
+        input_of_solar_thermal
+      )      
+    ) / BILLIONS

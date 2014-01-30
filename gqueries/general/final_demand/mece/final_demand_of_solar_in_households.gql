@@ -1,0 +1,24 @@
+# Final demand of the 'solar' carrier group 
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :households"
+          ),
+          solar_radiation?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :households"
+          ),
+          solar_thermal?
+        ),
+        value
+      )      
+    ) / BILLIONS

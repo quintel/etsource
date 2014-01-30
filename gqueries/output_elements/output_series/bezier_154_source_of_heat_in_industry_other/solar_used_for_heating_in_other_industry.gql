@@ -1,0 +1,8 @@
+# Use of carrier group 'solar' in other industry heat
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(industry_useful_demand_useable_heat)),input_of_solar_radiation),
+      V(CHILDREN(V(industry_useful_demand_useable_heat)),input_of_solar_thermal)
+    ) / BILLIONS
