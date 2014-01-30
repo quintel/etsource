@@ -1,0 +1,10 @@
+# Use of 'ambient' carrier group in 'heat_production'
+
+- unit = pj
+- query =
+    SUM(
+      V(G(heat_production),input_of_ambient_heat),
+      V(G(heat_production),input_of_ambient_cold),
+      V(G(heat_production),input_of_wind),
+      V(G(heat_production),input_of_water)
+    ) / BILLIONS

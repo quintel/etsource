@@ -1,0 +1,8 @@
+# Use of carrier group 'solar' in residential district heat
+
+- unit = pj
+- query =
+    SUM(
+      V(CHILDREN(V(buildings_final_demand_steam_hot_water)),input_of_solar_radiation),
+      V(CHILDREN(V(buildings_final_demand_steam_hot_water)),input_of_solar_thermal)      
+    ) / BILLIONS

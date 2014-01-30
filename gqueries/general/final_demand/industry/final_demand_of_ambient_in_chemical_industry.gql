@@ -1,0 +1,24 @@
+# Final demand of the 'ambient' carrier group
+
+- unit = pj
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(chemical_industry)
+          ),
+          ambient_heat?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(chemical_industry)
+          ),
+          ambient_cold?
+        ),
+        value
+      )
+    ) / BILLIONS
