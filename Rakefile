@@ -106,28 +106,6 @@ task :console do
 end
 
 desc <<-DESC
-  Encrypts the .csv energy balances to .gpg files
-DESC
-task :encrypt do
-  require 'pathname'
-  require 'fileutils'
-
-  if File.exists?('.password')
-    password = File.read('.password').strip
-  else
-    puts "File .password not found in root."
-    puts "Please enter passphrase to encrypt files:"
-    password = $stdin.gets.strip
-  end
-
-  Pathname.glob('datasets/*/energy_balance.csv').each do |csv|
-    dest = csv.dirname.join('energy_balance.gpg')
-    system("gpg --batch --yes --passphrase '#{ password }' -c --output '#{ dest }' '#{ csv }'")
-    puts "Encrypted #{ csv.dirname.basename.to_s.upcase } energy balance"
-  end
-end
-
-desc <<-DESC
   Decrypts the energy balance for every area.
 DESC
 task :decrypt do
