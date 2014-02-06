@@ -1,4 +1,20 @@
-desc 'Import ETDataset CSVs from ../etdataset'
+def encrypt_balance(directory)
+  if File.exists?('.password')
+    password = File.read('.password').strip
+  else
+    puts "File .password not found in root. Cannot encrypt energy balance CSV"
+    exit(1)
+  end
+
+  csv  = directory.join('energy_balance.csv')
+  dest = directory.join('energy_balance.gpg')
+
+  if csv.file?
+    dest = csv.dirname.join('energy_balance.gpg')
+    system("gpg --batch --yes --passphrase '#{ password }' -c --output '#{ dest }' '#{ csv }'")
+    puts "  - Encrypted energy balance"
+  end
+end
 
 desc <<-DESC
   Import ETDataset CSVs from ../etdataset
@@ -33,6 +49,8 @@ task :import do
     name = dest.basename.to_s.upcase
     csvs = Pathname.glob(source.join('*/*/output/*.csv'))
 
+    puts "Importing #{ name } dataset:"
+
     %w( demands efficiencies shares time_curves ).each do |dir|
       # Remove the old files, some of which may no longer exist in ETDataset.
       Pathname.glob(dest.join("#{ dir }/*.csv")).each(&FileUtils.method(:rm))
@@ -64,7 +82,9 @@ task :import do
       end
     end # each csv
 
-    puts "Imported #{ count.length } CSVs for #{ name }"
+    puts "  - Imported #{ count.length } CSVs"
+
+    encrypt_balance(dest)
   end # each dataset
 end # import
 
@@ -86,9 +106,30 @@ task :console do
 end
 
 desc <<-DESC
+  Encrypts the .csv energy balances to .gpg files
+DESC
+task :encrypt do
+  require 'pathname'
+  require 'fileutils'
+
+  if File.exists?('.password')
+    password = File.read('.password').strip
+  else
+    puts "File .password not found in root."
+    puts "Please enter passphrase to encrypt files:"
+    password = $stdin.gets.strip
+  end
+
+  Pathname.glob('datasets/*/energy_balance.csv').each do |csv|
+    dest = csv.dirname.join('energy_balance.gpg')
+    system("gpg --batch --yes --passphrase '#{ password }' -c --output '#{ dest }' '#{ csv }'")
+    puts "Encrypted #{ csv.dirname.basename.to_s.upcase } energy balance"
+  end
+end
+
+desc <<-DESC
   Decrypts the energy balance for every area.
 DESC
-
 task :decrypt do
   if File.exists?('.password')
     puts "Using password that is stored in .password..."
