@@ -1,11 +1,12 @@
 - use = energetic
 - energy_balance_group = energy sector own use
 - output.loss = elastic
-- groups = [preset_demand, final_demand_cbs, metal]
+- output.coupling_carrier = 1.0
+- groups = [final_demand_cbs, metal]
 - free_co2_factor = 0.0
-
-~ input.coupling_carrier = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coupling_carrier)
 
 ~ input.electricity = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, electricity)
 
 ~ input.coal_gas = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coal_gas)
+
+~ demand = DEMAND(metal_demands, energy_cokesoven_consumption_coal_gas)
