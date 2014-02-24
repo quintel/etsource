@@ -3,14 +3,14 @@
 - query =
     DIVIDE(
     SUM(
-      V(G(final_demand_cbs), primary_demand_of_coal),
-      V(G(final_demand_cbs), primary_demand_of_lignite)
+      V(G(final_demand_group), primary_demand_of_coal),
+      V(G(final_demand_group), primary_demand_of_lignite)
        )
     ,
     SUM(
-      V(G(final_demand_cbs), primary_demand),
+      V(G(final_demand_group), primary_demand),
       NEG(SUM(
-          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          V(G(final_demand_group), primary_demand_of_imported_electricity)
           ))
        )
     )

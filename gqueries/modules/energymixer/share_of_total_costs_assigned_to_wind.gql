@@ -5,9 +5,9 @@
     Q(primary_demand_of_electricity_assigned_to_wind)
     ,
     SUM(
-      V(G(final_demand_cbs), primary_demand),
+      V(G(final_demand_group), primary_demand),
       NEG(SUM(
-          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          V(G(final_demand_group), primary_demand_of_imported_electricity)
           ))
        )
     )

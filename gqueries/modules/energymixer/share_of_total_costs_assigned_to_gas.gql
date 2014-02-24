@@ -3,15 +3,15 @@
 - query =
     DIVIDE(
     SUM(
-      V(G(final_demand_cbs), primary_demand_of_natural_gas),
-      V(G(final_demand_cbs), primary_demand_of_lng),
-      V(G(final_demand_cbs), primary_demand_of_network_gas)
+      V(G(final_demand_group), primary_demand_of_natural_gas),
+      V(G(final_demand_group), primary_demand_of_lng),
+      V(G(final_demand_group), primary_demand_of_network_gas)
        )
     ,
     SUM(
-      V(G(final_demand_cbs), primary_demand),
+      V(G(final_demand_group), primary_demand),
       NEG(SUM(
-          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          V(G(final_demand_group), primary_demand_of_imported_electricity)
           ))
        )
     )
