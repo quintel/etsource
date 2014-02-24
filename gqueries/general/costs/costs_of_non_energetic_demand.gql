@@ -1,10 +1,10 @@
 - query =
     SUM( 
-      V( INTERSECTION( G(final_demand_cbs), USE(non_energetic) )," demand * weighted_carrier_cost_per_mj "),
+      V( INTERSECTION( G(final_demand_group), USE(non_energetic) )," demand * weighted_carrier_cost_per_mj "),
      NEG(
       SUM( 
-        V( INTERSECTION( G(final_demand_cbs), USE(non_energetic) )," input_of_electricity * weighted_carrier_cost_per_mj "),
-        V( INTERSECTION( G(final_demand_cbs), USE(non_energetic) )," input_of_steam_hot_water * weighted_carrier_cost_per_mj "))
+        V( INTERSECTION( G(final_demand_group), USE(non_energetic) )," input_of_electricity * weighted_carrier_cost_per_mj "),
+        V( INTERSECTION( G(final_demand_group), USE(non_energetic) )," input_of_steam_hot_water * weighted_carrier_cost_per_mj "))
      )
     )
 - unit = euro

@@ -8,12 +8,12 @@
 - query =
     DIVIDE(
       SUM(
-        V(INTERSECTION(G(final_demand_cbs),USE(energetic))," demand * sustainability_share"),
+        V(INTERSECTION(G(final_demand_group),USE(energetic))," demand * sustainability_share"),
         Q(ambient_heat_pumped_by_heat_pumps),
         Q(geothermal_own_use_in_sectors),
       ),
      SUM(
-      V(INTERSECTION(G(final_demand_cbs),USE(energetic)), demand),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), demand),
       Q(ambient_heat_pumped_by_heat_pumps),
       Q(geothermal_own_use_in_sectors)
      )

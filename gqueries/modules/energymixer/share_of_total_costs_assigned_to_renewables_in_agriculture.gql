@@ -5,22 +5,22 @@
 - query =
     DIVIDE(
     SUM(
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs))," primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste"),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_ambient_heat),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_ambient_cold),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_wood_pellets),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_greengas),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_biodiesel),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_bio_ethanol),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_bio_oil),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_biogas),
-      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_cbs)), primary_demand_of_electricity)
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group))," primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste"),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_ambient_heat),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_ambient_cold),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_wood_pellets),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_greengas),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_biodiesel),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_bio_ethanol),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_bio_oil),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_biogas),
+      V(INTERSECTION(V(SECTOR(agriculture),SECTOR(other)),G(final_demand_group)), primary_demand_of_electricity)
        )
     ,
     SUM(
-      V(G(final_demand_cbs), primary_demand),
+      V(G(final_demand_group), primary_demand),
       NEG(SUM(
-          V(G(final_demand_cbs), primary_demand_of_imported_electricity)
+          V(G(final_demand_group), primary_demand_of_imported_electricity)
           ))
        )
     )

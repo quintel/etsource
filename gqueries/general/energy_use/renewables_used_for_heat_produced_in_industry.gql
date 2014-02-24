@@ -2,9 +2,9 @@
 
 - query =
     SUM(
-      V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),output_of_wood_pellets), 
+      V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_group)),USE(energetic)),output_of_wood_pellets), 
       PRODUCT(V(energy_national_gas_network_natural_gas,sustainability_share),
-      SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_cbs)),USE(energetic)),output_of_network_gas)))
+      SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_group)),USE(energetic)),output_of_network_gas)))
     )
 - unit = mj
 - deprecated_key = biomass_heat_industry
