@@ -1,6 +1,6 @@
 # Calculates the network costs for offshore wind turbines
 # For the first 3000 turbines there is room on the network and no additional costs are made
-# Above this value the costs are estimated at 400 EUR/kW which is 1.2 MEur/turbine.
+# Above this value the costs are estimated at 400 EUR/kW which is 1.2 MEur/turbine (network_cost_per_turbine).
 # This is slightly lower than the range of the values used by CE Delft and D-Cision in the NET-document (466,7  and 800 EUR/kW respectively).
 # The reason for is because network costs of offshore wind turbines are already partially counted with the other central production technologies on the HV-network
 # See Q(hv_net_delta_capacity_central)
@@ -12,7 +12,7 @@
             MAX(
                 PRODUCT(
                     V(energy_power_wind_turbine_offshore, "number_of_units - peak_load_units_present"),
-                    1.2
+                    AREA(investment_hv_net_per_turbine)
                 ),
                 0
             ),

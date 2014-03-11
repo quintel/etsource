@@ -1,7 +1,8 @@
 # Total investment costs for the HV-network. Here a few rules of thumb are used given to us by TenneT:
 # There is 1600MW room on the HV-network before expansion is required (see Q(hv_net_capacity_buffer_total_check))
-# Above this amount the investment costs are, in MEur, 20% of the installed capacity, in MW. (for example: 2000MW = 400MEur)
-# However if the newly installed decentral capacity is above 30GW (see Q(hv_net_capacity_buffer_decentral_check)) the 20% increases to 25% for the decentral capacity
+# Above this amount the investment costs are, in MEur, 20% (investment_hv_net_low) of the installed capacity, in MW. (for example: 2000MW = 400MEur)
+# However if the newly installed decentral capacity is above 30GW (see Q(hv_net_capacity_buffer_decentral_check)) the 20% increases to 
+# 25% (investment_hv_net_high) for the decentral capacity
 # Finally, also the costs of the 'stopcontact op zee' of offshore wind turbines is added
 
 - query =
@@ -14,16 +15,16 @@
                     SUM(
                         PRODUCT(
                             Q(hv_net_delta_capacity_central),
-                            0.20
+                            AREA(investment_hv_net_low)
                         ),
                         PRODUCT(
                             Q(hv_net_delta_capacity_decentral),
-                            0.25 
+                            AREA(investment_hv_net_high) 
                         )
                     ),
                     PRODUCT(
                         Q(hv_net_delta_capacity_total),
-                        0.20
+                        AREA(investment_hv_net_low)
                     )
                 ),
                 0
