@@ -4,7 +4,7 @@ Pathname.glob(Atlas.data_dir.join('datasets/*/shares/*.csv')).each do |csv_path|
   region_name = csv_path.to_s.match(%r{datasets/([^/]+)/})[1]
   filename    = csv_path.basename
 
-  describe "#{ region_name }/#{ filename }" do
+  describe "#{ region_name }/shares/#{ filename }" do
     before(:all) do
       @document = Atlas::CSVDocument.new(csv_path)
     end
