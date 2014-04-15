@@ -11,7 +11,6 @@ TO_VALIDATE = {
 }
 
 PERMITTED_VALIDATION_ERRORS = {
-  Atlas::Preset => [:user_values],
   Atlas::Input  => [:query]
 }
 
