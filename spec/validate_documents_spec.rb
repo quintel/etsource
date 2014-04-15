@@ -10,7 +10,14 @@ TO_VALIDATE = {
   presets:  Atlas::Preset
 }
 
+PERMITTED_VALIDATION_ERRORS = {
+  Atlas::Preset => [:user_values],
+  Atlas::Input  => [:query]
+}
+
 TO_VALIDATE.each do |name, klass|
+  permitted_errors = PERMITTED_VALIDATION_ERRORS[klass]
+
   describe "Validating #{ name }:" do
     klass.all.each do |document|
       # xit(document.key.to_s) { expect(document).to be_valid }
@@ -20,8 +27,14 @@ TO_VALIDATE.each do |name, klass|
         # pending, until such a time as we actually care about validation.
         if document.valid?
           expect(document).to be_valid
+        elsif ! permitted_errors
+          expect(document).to be_valid
+        elsif (document.errors.messages.keys - permitted_errors).empty?
+          # All the errors are on attributes we want to cause a "pending"
+          # message, rather than an outright failure.
+          pending "Document not yet valid: #{ document.errors.messages }"
         else
-          pending 'Document not yet valid.'
+          expect(document).to be_valid
         end
       end
     end # klass.all.each
