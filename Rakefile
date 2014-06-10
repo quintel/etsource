@@ -44,12 +44,20 @@ task :import do
     datasets = Pathname.new('../etdataset/data').children.select(&:directory?)
   end
 
+  # Optional argument to select the base year for which to import the dataset.
+  # The default is 2012.
+  if ENV['BASE_YEAR']
+    year = ENV['BASE_YEAR']
+  else
+    year = 2012
+  end
+
   datasets.each do |source|
     dest = Pathname.new("datasets/#{ source.basename }")
     name = dest.basename.to_s.upcase
-    csvs = Pathname.glob(source.join('*/*/output/*.csv'))
+    csvs = Pathname.glob(source.join("#{ year }*/*/output/*.csv"))
 
-    puts "Importing #{ name } dataset:"
+    puts "Importing #{ name }/#{ year } dataset:"
 
     %w( demands efficiencies shares time_curves ).each do |dir|
       # Remove the old files, some of which may no longer exist in ETDataset.
