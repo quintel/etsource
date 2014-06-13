@@ -19,14 +19,17 @@ end
 desc <<-DESC
   Import ETDataset CSVs from ../etdataset
 
-  Defaults to importing all datasets. Provide an optional DATASET environment
-  variable to only import one:
+  Defaults to importing all datasets listed in datasets.yml. Providing an optional DATASET environment
+  parameter results in importing only one dataset. If an optional YEAR environment parameter is provided,
+  imports the dataset for that country and year; if no YEAR is provided, import the year that is listed in
+  datasets.yml for that country.
 
-  DATASET=de rake import
+  DATASET=de YEAR=2011 rake import
 DESC
 task :import do
   require 'pathname'
   require 'fileutils'
+  require 'yaml'
 
   # Copies the source CSV file to the given +to+ path, converting Windows CRLF
   # line endings to Unix LF.
@@ -39,17 +42,22 @@ task :import do
   end
 
   if ENV['DATASET']
-    datasets = [Pathname.new("../etdataset/data/#{ ENV['DATASET'].downcase }")]
+    if ENV['YEAR']
+      # if a YEAR is specified, import the dataset for that year
+      datasets = { ENV['DATASET'] => ENV['YEAR'] }
+    else
+      # if no YEAR is specified, import the dataset for the year listed in datasets.yml
+      datasets = { ENV['DATASET'] => YAML.load_file('datasets.yml')["#{ ENV['DATASET'] }"] }
+    end
   else
-    datasets = Pathname.new('../etdataset/data').children.select(&:directory?)
+    datasets = YAML.load_file('datasets.yml')
   end
 
-  datasets.each do |source|
-    dest = Pathname.new("datasets/#{ source.basename }")
-    name = dest.basename.to_s.upcase
-    csvs = Pathname.glob(source.join('*/*/output/*.csv'))
+  datasets.each do |country, year|
+    dest = Pathname.new("datasets/#{ country }")
+    csvs = Pathname.glob("../etdataset/data/#{ country }/#{ year }/*/output/*.csv")
 
-    puts "Importing #{ name } dataset:"
+    puts "Importing #{ country }/#{ year } dataset:"
 
     %w( demands efficiencies shares time_curves ).each do |dir|
       # Remove the old files, some of which may no longer exist in ETDataset.
@@ -75,9 +83,9 @@ task :import do
         cp_csv(csv, dest.join('energy_balance.csv'))
       when /^central_electricity_production_step_2/
         cp_csv(csv, dest.join('central_producers.csv'))
-      when /^#{ Regexp.escape(name.downcase) }$/
+      when /^#{ Regexp.escape(country.downcase) }$/
         if csv.to_s.include?('11_area/output')
-          cp_csv(csv, dest.join("#{ name.downcase }.ad"))
+          cp_csv(csv, dest.join("#{ country.downcase }.ad"))
         end
       end
     end # each csv
