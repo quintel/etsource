@@ -19,8 +19,10 @@ end
 desc <<-DESC
   Import ETDataset CSVs from ../etdataset
 
-  Defaults to importing all datasets listed in datasets.yml. Provide an optional DATASET and YEAR
-  environment variable to only import one:
+  Defaults to importing all datasets listed in datasets.yml. Providing an optional DATASET environment
+  parameter results in importing only one dataset. If an optional YEAR environment parameter is provided,
+  imports the dataset for that country and year; if no YEAR is provided, import the year that is listed in
+  datasets.yml for that country.
 
   DATASET=de YEAR=2011 rake import
 DESC
@@ -39,8 +41,14 @@ task :import do
     File.write(to, File.read(from).gsub(/\r\n/, "\n"))
   end
 
-  if ENV['DATASET'] and ENV['YEAR']
-    datasets = { ENV['DATASET'] => ENV['YEAR'] }
+  if ENV['DATASET']
+    if ENV['YEAR']
+      # if a YEAR is specified, import the dataset for that year
+      datasets = { ENV['DATASET'] => ENV['YEAR'] }
+    else
+      # if no YEAR is specified, import the dataset for the year listed in datasets.yml
+      datasets = { ENV['DATASET'] => YAML.load_file('datasets.yml')["#{ ENV['DATASET'] }"] }
+    end
   else
     datasets = YAML.load_file('datasets.yml')
   end
