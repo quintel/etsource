@@ -53,7 +53,7 @@ task :import do
     datasets = YAML.load_file('datasets.yml')
   end
 
-  datasets.each { | country,year |
+  datasets.each do |country, year|
     dest = Pathname.new("datasets/#{ country }")
     csvs = Pathname.glob("../etdataset/data/#{ country }/#{ year }/*/output/*.csv")
 
@@ -93,7 +93,7 @@ task :import do
     puts "  - Imported #{ count.length } CSVs"
 
     encrypt_balance(dest)
-  } # each dataset
+  end # each dataset
 end # import
 
 desc <<-DESC
