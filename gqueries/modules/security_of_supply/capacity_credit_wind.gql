@@ -1,23 +1,26 @@
 # Returns the capacity credit of wind as a function of the installed wind capacity
-# (p1 * installed_wind_capacity + p2) / (installed_wind_capacity + q1) / installed_wind_capacity
-# The parameters p1, p2 and q1 are country specific and defined in ETDatset
-# This capacity credit function is only valid from an installed wind capacity of 378 MW onwards;
-# For lower installed capacities, we assume the capacity credit to have the same value as at 379 MW
+# (p1 * installed_wind_capacity + p2) / (installed_wind_capacity + q1) / installed_wind_capacity.
+# The parameters p1, p2 and q1 are country specific and defined in the area analysis in ETDatset.
+# This capacity credit function is only valid for installed wind capacities higher than the present value;
+# For lower installed capacities, we assume the capacity credit is equal to its present value.
 
 - query =
-    installed_wind_capacity = SUM(
-                                    INPUT_VALUE(number_of_energy_power_wind_turbine_coastal) * V(energy_power_wind_turbine_coastal, electricity_output_capacity),
-                                    INPUT_VALUE(number_of_energy_power_wind_turbine_inland) * V(energy_power_wind_turbine_inland, electricity_output_capacity),
-                                    INPUT_VALUE(number_of_energy_power_wind_turbine_offshore) * V(energy_power_wind_turbine_offshore, electricity_output_capacity)
-                              ); 
+    future_installed_wind_capacity = SUM(
+        INPUT_VALUE(number_of_energy_power_wind_turbine_coastal) * V(energy_power_wind_turbine_coastal, electricity_output_capacity),
+        INPUT_VALUE(number_of_energy_power_wind_turbine_inland) * V(energy_power_wind_turbine_inland, electricity_output_capacity),
+        INPUT_VALUE(number_of_energy_power_wind_turbine_offshore) * V(energy_power_wind_turbine_offshore, electricity_output_capacity)
+    ); 
 
-    base_value = 0.328;
-    fit_value = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / installed_wind_capacity;
+    present_installed_wind_capacity = QUERY_PRESENT(-> { SUM(
+        V(energy_power_wind_turbine_coastal, "number_of_units * electricity_output_capacity"),
+        V(energy_power_wind_turbine_inland, "number_of_units * electricity_output_capacity"),
+        V(energy_power_wind_turbine_offshore, "number_of_units * electricity_output_capacity")  
+    )});
 
-    IF(
-        GREATER(installed_wind_capacity, 379),
-        fit_value,
-        base_value
-    )
+    present_capacity_credit = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * present_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( present_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / present_installed_wind_capacity;
+
+    future_capacity_credit = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * future_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( future_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / future_installed_wind_capacity;
+
+    MIN(present_capacity_credit, future_capacity_credit)
 
 - unit = factor
