@@ -21,6 +21,6 @@
 
     future_capacity_credit = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * future_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( future_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / future_installed_wind_capacity;
 
-    MIN(present_capacity_credit, future_capacity_credit)
+    MIN(present_capacity_credit, MAX(future_capacity_credit, 0.05))
 
 - unit = factor
