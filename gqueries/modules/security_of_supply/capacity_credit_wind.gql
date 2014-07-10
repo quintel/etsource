@@ -5,22 +5,14 @@
 # For lower installed capacities, we assume the capacity credit is equal to its present value.
 
 - query =
-    future_installed_wind_capacity = SUM(
+    installed_wind_capacity = SUM(
         INPUT_VALUE(number_of_energy_power_wind_turbine_coastal) * V(energy_power_wind_turbine_coastal, electricity_output_capacity),
         INPUT_VALUE(number_of_energy_power_wind_turbine_inland) * V(energy_power_wind_turbine_inland, electricity_output_capacity),
         INPUT_VALUE(number_of_energy_power_wind_turbine_offshore) * V(energy_power_wind_turbine_offshore, electricity_output_capacity)
     ); 
 
-    present_installed_wind_capacity = QUERY_PRESENT(-> { SUM(
-        V(energy_power_wind_turbine_coastal, "number_of_units * electricity_output_capacity"),
-        V(energy_power_wind_turbine_inland, "number_of_units * electricity_output_capacity"),
-        V(energy_power_wind_turbine_offshore, "number_of_units * electricity_output_capacity")  
-    )});
+    capacity_credit = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / installed_wind_capacity;
 
-    present_capacity_credit = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * present_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( present_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / present_installed_wind_capacity;
-
-    future_capacity_credit = ( QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p1) }) * future_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_p2) }) ) / ( future_installed_wind_capacity + QUERY_FUTURE(-> { AREA(capacity_credit_wind_constant_q1) })) / future_installed_wind_capacity;
-
-    MIN(present_capacity_credit, MAX(future_capacity_credit, 0.05))
+    MIN(AREA(capacity_credit_wind_maximum), MAX(capacity_credit, AREA(capacity_credit_wind_minimum)))
 
 - unit = factor
