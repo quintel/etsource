@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require(:test)
 
 Atlas.data_dir = File.expand_path(File.dirname(__FILE__) + '/..')
+I18n.enforce_available_locales = true
 
 # A matcher which asserts the validity of a document, providing a summary of
 # the validation failures if it isn't.
