@@ -11,7 +11,7 @@ describe 'Load profiles' do
           expect(file.read).to_not match(/\r[^\n]/), message
         end
 
-        it "#{ file.basename } should something" do
+        it "#{ file.basename } should have values summing to 1/3600" do
           values    = File.foreach(file).map(&:to_f)
           in_joules = values.reduce(:+) * 3600
 
@@ -19,7 +19,7 @@ describe 'Load profiles' do
           # since the load profile will implicitly convert values from ETEngine,
           # which are in Joules, into watthours.
           expect(in_joules).to be_within(1e-3).of(1.0)
-        end # something
+        end # have values summing to 1/3600
       end # each profile
     end # for dataset
   end # each dataset
