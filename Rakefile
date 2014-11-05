@@ -115,7 +115,9 @@ namespace :import do
         energy_balance_group='electricity network'
   DESC
   task :node do
-    require_relative '../atlas/lib/atlas'
+    require 'bundler'
+    Bundler.require(:test)
+
     Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     node = Atlas::Node.find(ENV['NODE'])
