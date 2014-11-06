@@ -18,7 +18,7 @@ describe 'Load profiles' do
           # The sum of the values in the load profile ought to equal 1.0 / 3600
           # since the load profile will implicitly convert values from ETEngine,
           # which are in Joules, into watthours.
-          expect(in_joules).to be_within(1e-3).of(1.0)
+          expect(in_joules).to be_within(1e-7).of(1.0)
         end # have values summing to 1/3600
       end # each profile
     end # for dataset
