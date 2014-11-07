@@ -122,9 +122,21 @@ namespace :import do
 
     node = Atlas::Node.find(ENV['NODE'])
 
-    Atlas::Node.attribute_set.map(&:name).each do |attribute|
-      if ENV[attribute.to_s]
-        node.public_send(:"#{ attribute }=", ENV[attribute.to_s])
+    Atlas::Node.attribute_set.each do |attribute|
+      attr_name = attribute.name.to_s
+
+      if attribute.options[:primitive] == Hash
+        subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
+
+        subkeys.each do |key, value|
+          if node.public_send(attr_name).nil?
+            node.public_send("#{ attr_name }=", {})
+          end
+
+          node.public_send(attr_name)[key.split('__', 2)[1]] = value
+        end
+      elsif ENV[attribute.name.to_s]
+        node.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
       end
     end
 
