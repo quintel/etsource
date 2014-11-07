@@ -133,7 +133,7 @@ namespace :import do
             node.public_send("#{ attr_name }=", {})
           end
 
-          node.public_send(attr_name)[key.split('__', 2)[1]] = value
+          node.public_send(attr_name)[key.split('__', 2)[1].to_sym] = value
         end
       elsif ENV[attribute.name.to_s]
         node.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
