@@ -9,7 +9,7 @@
     )
 - priority = 0
 - max_value = 20.0
-- max_value_gql = future:DIVIDE(V(industry_final_demand_electricity,demand),V(industry_chp_engine_gas_power_fuelmix,typical_electricity_production_per_unit))
+- max_value_gql = future:DIVIDE(V(industry_final_demand_electricity,demand),V(industry_chp_engine_gas_power_fuelmix,"electricity_output_capacity * 8760 * 3600"))
 - min_value = 0.0
 - start_value_gql = present:V(industry_chp_engine_gas_power_fuelmix,number_of_units)
 - step_value = 0.1

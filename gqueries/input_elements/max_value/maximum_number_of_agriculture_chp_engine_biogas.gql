@@ -3,6 +3,6 @@
 - query =
     MAX(
     PRODUCT(V(agriculture_chp_engine_biogas,number_of_units),2),
-    PRODUCT(DIVIDE(V(agriculture_useful_demand_electricity,demand),V(agriculture_chp_engine_biogas, typical_electricity_production_per_unit)),2)
+    PRODUCT(DIVIDE(V(agriculture_useful_demand_electricity,demand),V(agriculture_chp_engine_biogas, "electricity_output_capacity * 8760 * 3600")),2)
     )
 - unit = #
