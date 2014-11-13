@@ -1,0 +1,11 @@
+# If there is a value for imported electricity, this should be used.
+#
+#
+# V(CARRIER(imported_electricity),co2_per_mj)
+
+- query =
+    PRODUCT(
+      Q(average_co2_emissions_of_produced_electricity),
+      V(energy_import_electricity,demand)
+    ) / BILLIONS
+- unit = pj
