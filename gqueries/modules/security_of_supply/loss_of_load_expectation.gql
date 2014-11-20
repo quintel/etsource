@@ -1,4 +1,11 @@
 # Returns the number of hours per year where the production capacity cannot meet the demand
 
-- query = V(GRAPH(), loss_of_load_expectation(Q(lole_demand), Q(reliable_electricity_production_capacity)))
+- query =
+  V(GRAPH(), loss_of_load_expectation(
+    Q(lole_demand), Q(reliable_electricity_production_capacity), [
+      energy_power_wind_turbine_coastal,
+      energy_power_wind_turbine_inland,
+      energy_power_wind_turbine_offshore
+    ]
+  ))
 - unit = hours
