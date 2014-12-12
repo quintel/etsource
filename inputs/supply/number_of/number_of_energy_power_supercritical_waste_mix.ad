@@ -5,7 +5,7 @@
     )
 - priority = 0
 - max_value = 300.0
-- max_value_gql = present:DIVIDE( DIVIDE( Q(total_electricity_produced), V(energy_power_supercritical_waste_mix,maximum_yearly_electricity_production_per_unit)), 20 )
+- max_value_gql = present:MAX(1.0,DIVIDE( DIVIDE( Q(total_electricity_produced), V(energy_power_supercritical_waste_mix,maximum_yearly_electricity_production_per_unit)), 20 ))
 - min_value = 0.0
 - start_value_gql = present:V(energy_power_supercritical_waste_mix,number_of_units)
 - step_value = 0.1
