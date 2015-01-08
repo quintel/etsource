@@ -1,0 +1,7 @@
+# Returns the total volatile electricity production capacity in MW, taking into account the availability of these electricity producers.
+
+- query =
+    SUM(
+      V(G(volatile_production), "installed_production_capacity_in_mw_electricity * availability")
+    )
+- unit = mw

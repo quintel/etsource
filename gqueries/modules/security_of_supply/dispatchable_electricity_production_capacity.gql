@@ -1,0 +1,7 @@
+# Returns the total dispatchable electricity production capacity in MW, taking into account the availability of these plants.
+
+- query =
+    SUM(
+      V(G(dispatchable_production), "installed_production_capacity_in_mw_electricity * availability")
+    )
+- unit = mw
