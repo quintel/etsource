@@ -1,9 +1,7 @@
-# Returns the reliable part if the electricity production capacity in MW.
-# The reliable capacity production is the sum of the installed production capacity multiplied by the availability and the
-# capacity credit for all electricity producers
+# Returns the total dispatchable electricity production capacity in MW, taking into account the availability of these plants.
 
 - query =
     SUM(
-      V(G(electricity_production),"installed_production_capacity_in_mw_electricity * availability * capacity_credit")
+      V(G(dispatchable_production), "installed_production_capacity_in_mw_electricity * availability")
     )
 - unit = mw

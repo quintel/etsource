@@ -1,8 +1,7 @@
-# Returns the unreliable part of the available production capacity, i.e. the volatile production that cannot be counted on in
-# the loss of load calculation
+# Returns the total volatile electricity production capacity in MW, taking into account the availability of these electricity producers.
 
 - query =
     SUM(
-      V(G(electricity_production),"installed_production_capacity_in_mw_electricity * availability * (1-capacity_credit)")
+      V(G(volatile_production), "installed_production_capacity_in_mw_electricity * availability")
     )
 - unit = mw
