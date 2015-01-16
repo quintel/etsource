@@ -1,5 +1,6 @@
 # adjusted for the green gas in the gas
 
+- unit = MJ
 - query =
     SUM(
       V(Q(hot_water_converters_in_households),
@@ -11,5 +12,4 @@
       input_of_lignite "),
       NEG(Q(gas_allocated_to_electricity_production_in_households_hot_water) * V(energy_national_gas_network_natural_gas, "1.0 - sustainability_share"))
     )
-- unit = mj
 - deprecated_key = households_hot_water_fossil

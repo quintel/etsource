@@ -1,10 +1,10 @@
 # I added " + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste" to the waste part.
 # Either primary_demand_of_waste can be removed, or the new carrier group can be queried instead.
 
+- unit = PJ
 - query =
     DIVIDE(
       V(INTERSECTION(SECTOR(transport),G(final_demand_group)),"primary_demand_of_waste_mix + primary_demand_of_biogenic_waste + primary_demand_of_non_biogenic_waste").sum,
       BILLIONS
     )
-- unit = pj
 - deprecated_key = transport_waste_primary_demand

@@ -3,11 +3,11 @@
 # The PRESENT value for the losses of the HV net are used as a worst-case
 # value.
 # Taking the future value would result in incorrect behavior as, specifically,
-# solar panels can lower the losses (lowering the LOLE) although in actuality 
+# solar panels can lower the losses (lowering the LOLE) although in actuality
 # they do not add any reliability to the system.
 # The reason behind this behavior is that the solar panels in reality only
 # deliver electricity during the day, whereas in the ETM, the reduction of the
 # network losses due to their electricity is averaged over the year.
 
+- unit = PJ
 - query = V(GRAPH(), final_demand_for_electricity) + QUERY_PRESENT(-> { V(energy_power_hv_network_loss, demand) })
-- unit = pj

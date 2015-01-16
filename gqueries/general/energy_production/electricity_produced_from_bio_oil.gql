@@ -1,8 +1,8 @@
 # The amount of electricity produced by bio_oil
 
+- unit = MJ
 - query =
     SUM(
       V(G(electricity_production),  "output_of_electricity * bio_oil_input_conversion").sum,
       V(G(electricity_production),  "output_of_electricity * gas_power_fuelmix_input_conversion").sum * V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion)
     )
-- unit = mj

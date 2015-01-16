@@ -1,9 +1,9 @@
 # The natural gas used in for cooking, including the greengas in the mix.
 
+- unit = MJ
 - query =
     SUM(
       V(households_cooker_network_gas,input_of_network_gas),
       NEG(V(households_cooker_network_gas,"input_of_network_gas*sustainability_share"))
     )
-- unit = mj
 - deprecated_key = cooking_gas_households
