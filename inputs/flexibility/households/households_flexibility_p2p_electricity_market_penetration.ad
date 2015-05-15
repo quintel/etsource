@@ -1,0 +1,12 @@
+- query =
+  UPDATE(
+  	V(households_flexibility_p2p_electricity), number_of_units, (USER_INPUT() / 100.0) * QUERY_PRESENT(-> { AREA(number_of_residences) })
+  )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 0.1
+- factor = 1.0
+- unit = %
+- update_period = future
