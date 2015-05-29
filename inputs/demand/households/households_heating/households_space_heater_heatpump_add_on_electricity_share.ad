@@ -6,7 +6,10 @@
       
       UPDATE(LINK(households_useful_demand_for_hot_water_for_houses_with_add_on,households_useful_demand_for_hot_water_after_solar_heater), share, DIVIDE(USER_INPUT(),100)),
 
-      UPDATE(LINK(households_useful_demand_for_hot_water_after_solar_heater,households_useful_demand_for_hot_water_after_solar_heater_and_add_on), share, 1.0 - DIVIDE(USER_INPUT(),100))
+      UPDATE(LINK(households_useful_demand_for_hot_water_after_solar_heater,households_useful_demand_for_hot_water_after_solar_heater_and_add_on), share, 1.0 - DIVIDE(USER_INPUT(),100)),
+
+      UPDATE(V(households_space_heater_heatpump_add_on_electricity), number_of_units, (USER_INPUT() / 100.0) * QUERY_PRESENT(-> { AREA(number_of_residences) }))
+
     )
 - priority = 0
 - max_value = 100.0
