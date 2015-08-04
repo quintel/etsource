@@ -142,6 +142,61 @@ namespace :import do
 
     node.save
   end # :node
+
+  desc <<-DESC
+    Import data from an ETDataset carrier analysis file.
+
+    Provide the task with a CARRIER variable specifying the key of the carrier to be
+    updated, and then one or more additional variables specifying the attributes
+    to be changed.
+
+    For example:
+
+      rake import:carrier CARRIER=bio_oil co2_conversion_per_mj=0
+
+    You may specify multple attributes to update:
+
+      rake import:carrier \
+        CARRIER=bio_oil \
+        co2_conversion_per_mj=0 \
+        cost_per_mj=0.013885126 \
+        typical_production_per_km2=15506658
+
+    Be sure to surround values in quotes if the value contains any spaces, or
+    non-alphanumeric characters:
+
+      rake import:carrier \
+        CARRIER=bio_oil \
+        sustainable='1'
+  DESC
+  task :carrier do
+    require 'bundler'
+    Bundler.require(:test)
+
+    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
+
+    carrier = Atlas::Carrier.find(ENV['CARRIER'])
+
+    Atlas::Carrier.attribute_set.each do |attribute|
+      attr_name = attribute.name.to_s
+
+      if attribute.options[:primitive] == Hash
+        subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
+
+        subkeys.each do |key, value|
+          if carrier.public_send(attr_name).nil?
+            carrier.public_send("#{ attr_name }=", {})
+          end
+
+          carrier.public_send(attr_name)[key.split('__', 2)[1].to_sym] = value
+        end
+      elsif ENV[attribute.name.to_s]
+        carrier.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
+      end
+    end
+
+    carrier.save
+  end # :carrier
 end # :import
 
 desc <<-DESC
