@@ -1,0 +1,8 @@
+# CO2 of carrier group 'coal_and_derivatives' in agriculture
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(agriculture)).select {|node| node.slots.detect { |slot| slot.carrier.coal? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(agriculture)).select {|node| node.slots.detect { |slot| slot.carrier.coal_gas? }}, primary_co2_emission)      
+    ) / THOUSANDS

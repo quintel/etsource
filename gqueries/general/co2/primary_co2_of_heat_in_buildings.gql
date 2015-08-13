@@ -1,0 +1,8 @@
+# CO2 of carrier group 'heat' in buildings
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(buildings)).select {|node| node.slots.detect { |slot| slot.carrier.steam_hot_water? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(buildings)).select {|node| node.slots.detect { |slot| slot.carrier.useable_heat? }}, primary_co2_emission)      
+    ) / THOUSANDS

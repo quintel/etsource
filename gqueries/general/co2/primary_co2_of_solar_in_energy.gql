@@ -1,0 +1,8 @@
+# CO2 of carrier group 'solar' in energy
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(energy)).select {|node| node.slots.detect { |slot| slot.carrier.solar_radiation? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(energy)).select {|node| node.slots.detect { |slot| slot.carrier.solar_thermal? }}, primary_co2_emission)      
+    ) / THOUSANDS

@@ -1,0 +1,12 @@
+# CO2 of carrier group 'oil_and_derivatives' in other
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.slots.detect { |slot| slot.carrier.crude_oil? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.slots.detect { |slot| slot.carrier.gasoline? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.slots.detect { |slot| slot.carrier.diesel? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.slots.detect { |slot| slot.carrier.lpg? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.slots.detect { |slot| slot.carrier.kerosene? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.slots.detect { |slot| slot.carrier.heavy_fuel_oil? }}, primary_co2_emission)      
+    ) / THOUSANDS

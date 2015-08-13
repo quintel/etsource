@@ -1,0 +1,8 @@
+# CO2 of carrier group 'ambient' in households
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.slots.detect { |slot| slot.carrier.ambient_heat? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.slots.detect { |slot| slot.carrier.ambient_cold? }}, primary_co2_emission)      
+    ) / THOUSANDS
