@@ -3,7 +3,7 @@
 - unit = tonne
 - query =
     SUM(
-      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.slots.detect { |slot| slot.carrier.biodiesel? }}, primary_co2_emission),
-      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.slots.detect { |slot| slot.carrier.bio_ethanol? }}, primary_co2_emission),
-      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.slots.detect { |slot| slot.carrier.wood_pellets? }}, primary_co2_emission)      
+      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.output_slots.detect { |slot| slot.carrier.biodiesel? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.output_slots.detect { |slot| slot.carrier.bio_ethanol? }}, primary_co2_emission),
+      V(INTERSECTION(G(final_demand_group),SECTOR(households)).select {|node| node.output_slots.detect { |slot| slot.carrier.wood_pellets? }}, primary_co2_emission)      
     ) / THOUSANDS

@@ -3,5 +3,5 @@
 - unit = tonne
 - query =
     SUM(
-      V(INTERSECTION(G(final_demand_group),SECTOR(buildings)).select {|node| node.slots.detect { |slot| slot.carrier.geothermal? }}, primary_co2_emission)      
+      V(INTERSECTION(G(final_demand_group),SECTOR(buildings)).select {|node| node.output_slots.detect { |slot| slot.carrier.geothermal? }}, primary_co2_emission)      
     ) / THOUSANDS
