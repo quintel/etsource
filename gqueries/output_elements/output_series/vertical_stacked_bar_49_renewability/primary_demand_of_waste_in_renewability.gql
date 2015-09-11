@@ -1,0 +1,14 @@
+# Percentage of primary demand of waste in renewability
+
+- unit = factor
+- query =
+    100 * SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_waste_mix),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_non_biogenic_waste),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_biogenic_waste)
+    ) / 
+    SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand),
+        Q(ambient_heat_pumped_by_heat_pumps),
+        Q(geothermal_own_use_in_sectors)
+    )

@@ -1,0 +1,12 @@
+# Percentage of primary demand of nuclear in renewability
+
+- unit = factor
+- query =
+    100 * SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_uranium_oxide)
+    ) / 
+    SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand),
+        Q(ambient_heat_pumped_by_heat_pumps),
+        Q(geothermal_own_use_in_sectors)
+    )

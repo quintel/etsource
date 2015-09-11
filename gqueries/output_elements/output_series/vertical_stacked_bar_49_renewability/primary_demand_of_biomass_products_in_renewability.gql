@@ -1,0 +1,21 @@
+# Percentage of primary demand of biomass_products in renewability
+
+- unit = factor
+- query =
+    100 * SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_greengas),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_biodiesel),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_bio_ethanol),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_bio_oil),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_torrified_biomass_pellets),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_wood_pellets),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_woody_biomass),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_corn),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_manure),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_wood)
+    ) / 
+    SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand),
+        Q(ambient_heat_pumped_by_heat_pumps),
+        Q(geothermal_own_use_in_sectors)
+    )
