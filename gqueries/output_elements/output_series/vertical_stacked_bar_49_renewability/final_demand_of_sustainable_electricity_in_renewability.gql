@@ -1,0 +1,12 @@
+# Percentage of final demand of electricity in renewability
+
+- unit = factor
+- query =
+    100 * SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * demand_of_electricity")
+    ) / 
+    SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand),
+        Q(ambient_heat_pumped_by_heat_pumps),
+        Q(geothermal_own_use_in_sectors)
+    )
