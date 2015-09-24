@@ -3,8 +3,8 @@
 - unit = factor
 - query =
     100 * SUM(
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * demand_of_ambient_heat"),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * demand_of_ambient_cold"),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_ambient_heat"),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_ambient_cold"),
         Q(ambient_heat_pumped_by_heat_pumps)
     ) / 
     SUM(

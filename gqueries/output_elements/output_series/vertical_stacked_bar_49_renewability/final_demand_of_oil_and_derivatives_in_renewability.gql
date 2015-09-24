@@ -3,12 +3,12 @@
 - unit = factor
 - query =
     100 * SUM(
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand_of_crude_oil),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand_of_gasoline),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand_of_diesel),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand_of_lpg),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand_of_kerosene),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand_of_heavy_fuel_oil)
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_crude_oil),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_gasoline),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_diesel),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_lpg),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_kerosene),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_heavy_fuel_oil)
     ) / 
     SUM(
         V(INTERSECTION(G(final_demand_group),USE(energetic)), demand),
