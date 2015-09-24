@@ -1,0 +1,13 @@
+# Percentage of final demand of heat in renewability
+
+- unit = factor
+- query =
+    100 * SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), "(1.0 - sustainability_share) * supply_of_steam_hot_water"),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), "(1.0 - sustainability_share) * supply_of_useable_heat")
+    ) / 
+    SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand),
+        Q(ambient_heat_pumped_by_heat_pumps),
+        Q(geothermal_own_use_in_sectors)
+    )

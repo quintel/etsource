@@ -1,0 +1,17 @@
+# Percentage of final demand of oil_and_derivatives in renewability
+
+- unit = factor
+- query =
+    100 * SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_crude_oil),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_gasoline),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_diesel),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_lpg),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_kerosene),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_heavy_fuel_oil)
+    ) / 
+    SUM(
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), demand),
+        Q(ambient_heat_pumped_by_heat_pumps),
+        Q(geothermal_own_use_in_sectors)
+    )
