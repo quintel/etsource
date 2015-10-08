@@ -1,0 +1,7 @@
+# Bio-footprint of corn in buildings sector
+
+- unit = km2
+- query =
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(buildings)), primary_demand_of_corn
+    ).sum / V(CARRIER(corn), typical_production_per_km2)

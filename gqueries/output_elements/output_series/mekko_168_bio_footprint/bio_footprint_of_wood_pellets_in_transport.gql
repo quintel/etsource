@@ -1,0 +1,7 @@
+# Bio-footprint of wood_pellets in transport sector
+
+- unit = km2
+- query =
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(transport)), primary_demand_of_wood_pellets
+    ).sum / V(CARRIER(wood_pellets), typical_production_per_km2)
