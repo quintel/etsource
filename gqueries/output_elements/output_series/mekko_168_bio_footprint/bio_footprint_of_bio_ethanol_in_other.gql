@@ -1,0 +1,7 @@
+# Bio-footprint of bio_ethanol in other sector
+
+- unit = km2
+- query =
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(other)), primary_demand_of_bio_ethanol
+    ).sum / V(CARRIER(bio_ethanol), typical_production_per_km2)
