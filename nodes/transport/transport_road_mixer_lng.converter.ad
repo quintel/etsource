@@ -2,3 +2,9 @@
 - energy_balance_group = local mixer
 - groups = []
 - free_co2_factor = 0.0
+
+#~ input.lng = EB(road,natural_gas) * SHARE(transport_final_demand_for_road_network_gas_parent_share, transport_final_demand_for_road_lng) / (EB(road,natural_gas) * SHARE(transport_final_demand_for_road_network_gas_parent_share, transport_final_demand_for_road_lng) + EB(road,biogases))
+#~ input.biolng = EB(road,biogases) / (EB(road,natural_gas) * SHARE(transport_final_demand_for_road_network_gas_parent_share, transport_final_demand_for_road_lng) + EB(road,biogases))
+
+~ input.lng = SHARE(transport_road_mixer_lng, transport_final_demand_for_road_lng)
+~ input.bio_lng = SHARE(transport_road_mixer_lng, transport_final_demand_for_road_bio_lng)
