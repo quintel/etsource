@@ -4,4 +4,12 @@
 - groups = []
 - free_co2_factor = 0.0
 
-~ demand = 19515.38787
+#~ demand = 19515.38787
+
+~ demand = EB(total_primary_energy_supply, natural_gas) * SHARE(energy_national_gas_network_natural_gas_child_share, energy_regasification_lng)
+
+#~ output.natural_gas = EB(total_primary_energy_supply, natural_gas) * SHARE(energy_national_gas_network_natural_gas_child_share, energy_regasification_lng) * SHARE(energy_regasification_lng_child_share, energy_distribution_lng)
+
+
+#~ output.green_gas = EB(total_primary_energy_supply, natural_gas) * SHARE(energy_national_gas_network_natural_gas_child_share, energy_regasification_lng) * SHARE(energy_regasification_lng_child_share, energy_distribution_bio_lng)
+
