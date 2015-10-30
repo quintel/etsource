@@ -1,0 +1,7 @@
+# Bio-footprint of bio_oil in buildings sector
+
+- unit = km2
+- query =
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(buildings)), primary_demand_of_bio_oil
+    ).sum / V(CARRIER(bio_oil), typical_production_per_km2)

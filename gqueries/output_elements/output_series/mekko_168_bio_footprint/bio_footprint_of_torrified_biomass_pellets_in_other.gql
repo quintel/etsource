@@ -1,0 +1,7 @@
+# Bio-footprint of torrified_biomass_pellets in other sector
+
+- unit = km2
+- query =
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(other)), primary_demand_of_torrified_biomass_pellets
+    ).sum / V(CARRIER(torrified_biomass_pellets), typical_production_per_km2)
