@@ -29,5 +29,14 @@
           wood_pellets?
         ),
         value
-      )      
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :industry"
+          ),
+          bio_lng?
+        ),
+        value
+      )        
     ) / BILLIONS
