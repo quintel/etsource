@@ -11,5 +11,14 @@
           network_gas?
         ),
         value
-      )      
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :buildings"
+          ),
+          lng?
+        ),
+        value
+      )       
     ) / BILLIONS
