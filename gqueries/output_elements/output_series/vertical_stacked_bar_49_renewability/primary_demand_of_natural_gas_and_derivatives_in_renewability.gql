@@ -4,7 +4,8 @@
 - query =
     100 * SUM(
         V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_natural_gas),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_compressed_network_gas)
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_compressed_network_gas),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand_of_lng)
     ) / 
     SUM(
         V(INTERSECTION(G(final_demand_group),USE(energetic)), primary_demand),
