@@ -1,0 +1,7 @@
+# Bio-footprint of biogenic_waste in other sector
+
+- unit = km2
+- query =
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(other)), primary_demand_of_biogenic_waste
+    ).sum / V(CARRIER(biogenic_waste), typical_production_per_km2)
