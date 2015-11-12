@@ -5,5 +5,6 @@
     SUM(
       V(INTERSECTION(G(final_demand_group),SECTOR(transport)).select {|node| node.input_slots.detect { |slot| slot.carrier.biodiesel? }}, "biodiesel_input_conversion * primary_co2_emission"),
       V(INTERSECTION(G(final_demand_group),SECTOR(transport)).select {|node| node.input_slots.detect { |slot| slot.carrier.bio_ethanol? }}, "bio_ethanol_input_conversion * primary_co2_emission"),
-      V(INTERSECTION(G(final_demand_group),SECTOR(transport)).select {|node| node.input_slots.detect { |slot| slot.carrier.wood_pellets? }}, "wood_pellets_input_conversion * primary_co2_emission")      
+      V(INTERSECTION(G(final_demand_group),SECTOR(transport)).select {|node| node.input_slots.detect { |slot| slot.carrier.wood_pellets? }}, "wood_pellets_input_conversion * primary_co2_emission"),
+      V(INTERSECTION(G(final_demand_group),SECTOR(transport)).select {|node| node.input_slots.detect { |slot| slot.carrier.bio_lng? }}, "bio_lng_input_conversion * primary_co2_emission")          
     ) / THOUSANDS

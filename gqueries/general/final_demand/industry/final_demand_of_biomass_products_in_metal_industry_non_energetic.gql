@@ -38,5 +38,17 @@
           wood_pellets?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(metal_industry)
+            ),
+            "! energetic?"
+          ),
+          bio_lng?
+        ),
+        value
       )
     ) / BILLIONS

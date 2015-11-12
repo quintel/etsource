@@ -14,5 +14,17 @@
           network_gas?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(metal_industry)
+            ),
+            energetic?
+          ),
+          lng?
+        ),
+        value
       )
     ) / BILLIONS
