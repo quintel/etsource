@@ -1,4 +1,13 @@
-- query = UPDATE(LINK(households_space_heater_hybrid_heatpump_collector_useable_heat,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share, DIVIDE(USER_INPUT(),100))
+- query =
+    EACH(
+      UPDATE(LINK(households_space_heater_hybrid_heatpump_collector_useable_heat,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share, DIVIDE(USER_INPUT(),100)),
+
+      UPDATE(V(households_space_heater_hybrid_heatpump_collector_useable_heat), number_of_units, (USER_INPUT() / 100.0) * QUERY_PRESENT(-> { AREA(number_of_residences) })),
+
+      UPDATE(V(households_space_heater_hybrid_heatpump_air_water_electricity), number_of_units, (USER_INPUT() / 100.0) * QUERY_PRESENT(-> { AREA(number_of_residences) })),
+
+      UPDATE(V(households_space_heater_hybrid_heatpump_combined_network_gas), number_of_units, (USER_INPUT() / 100.0) * QUERY_PRESENT(-> { AREA(number_of_residences) }))    
+    )
 - share_group = heating_households
 - priority = 0
 - max_value = 100.0
