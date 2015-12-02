@@ -12,11 +12,20 @@
 
 
     COP = 4.5;
+    
+    #will be exported from ETDataset later
+    
+    gas_efficiency = 1.07
+
+    #will be exported from ETDataset later
+    
     initial_fraction_gas_to_heatpump = 0.3;
+
+    #will be exported from ETDataset as well
 
     insulation_fraction = (USER_INPUT() - QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) })) / (QUERY_PRESENT(-> {AREA(insulation_level_new_houses_max) }) - QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) }));
 
-    fraction_gas_to_heatpump = initial_fraction_gas_to_heatpump - 0.1 * insulation_fraction;
+    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - 0.1 * insulation_fraction)/gas_efficiency;
 
     input_conversion_network_gas = fraction_gas_to_heatpump;
     input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;
@@ -31,4 +40,3 @@
       UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electrcity), ambient_heat), conversion, input_conversion_ambient_heat)
 
     )
-
