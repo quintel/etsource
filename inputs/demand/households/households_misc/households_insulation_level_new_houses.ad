@@ -9,23 +9,20 @@
     cost_per_new_house = AREA(new_houses_insulation_cost_constant) * (USER_INPUT() - AREA(insulation_level_new_houses_min));
     total_cost = cost_per_new_house * QUERY_FUTURE(-> { AREA(number_of_new_residences) });
     saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (USER_INPUT() + AREA(new_houses_insulation_constant_2));
-
-
+    
     COP = 4.5;
     
-    #will be exported from ETDataset later
-    
-    gas_efficiency = 1.07
+    gas_efficiency = 1.07;
 
-    #will be exported from ETDataset later
-    
     initial_fraction_gas_to_heatpump = 0.3;
 
-    #will be exported from ETDataset as well
+    insulation_fraction_new_houses = (USER_INPUT() - QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) })) / (QUERY_PRESENT(-> {AREA(insulation_level_new_houses_max) }) - QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) }));
+    
+    insulation_fraction_old_houses = (INPUT_VALUE(households_insulation_level_old_houses) - QUERY_PRESENT(-> {AREA(insulation_level_old_houses_min) })) / (QUERY_PRESENT(-> {AREA(insulation_level_old_houses_max) }) - QUERY_PRESENT(-> {AREA(insulation_level_old_houses_min) }));
 
-    insulation_fraction = (USER_INPUT() - QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) })) / (QUERY_PRESENT(-> {AREA(insulation_level_new_houses_max) }) - QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) }));
+    insulation_fraction_weighted_average = (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses));
 
-    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - 0.1 * insulation_fraction)/gas_efficiency;
+    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - 0.1 * insulation_fraction_weighted_average) / gas_efficiency;
 
     input_conversion_network_gas = fraction_gas_to_heatpump;
     input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;
@@ -38,5 +35,4 @@
       UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, input_conversion_electricity),
       UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, input_conversion_network_gas),
       UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, input_conversion_ambient_heat)
-
     )
