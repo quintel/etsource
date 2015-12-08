@@ -1,5 +1,6 @@
 # Update statement for number of old households
 # DEBT: remove the ugly + 1 to prevent division by zero in other queries
+# See HHP_README for explanations
 
 - query =
   cost_per_old_house = AREA(old_houses_insulation_cost_constant) * (INPUT_VALUE(households_insulation_level_old_houses) - AREA(insulation_level_old_houses_min));
@@ -7,7 +8,7 @@
 
   COP = 4.5;
     
-  gas_efficiency = 1.0;
+  gas_efficiency = 1.067;
 
   initial_fraction_gas_to_heatpump = 0.3;
 
