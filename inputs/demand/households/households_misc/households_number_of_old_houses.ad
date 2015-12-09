@@ -10,7 +10,7 @@
     
   gas_efficiency = 1.067;
 
-  initial_fraction_gas_to_heatpump = 0.3;
+  initial_fraction_gas_to_heatpump = 0.2;
 
   min_insulation_ratio_old_houses = QUERY_PRESENT(-> {AREA(insulation_level_old_houses_min) }) / QUERY_PRESENT(-> {AREA(insulation_level_old_houses_max) });
 
@@ -26,7 +26,7 @@
 
   insulation_fraction_weighted_average = (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * USER_INPUT()) / (INPUT_VALUE(households_number_of_new_houses) + USER_INPUT() + 0.0000000000000000001);
 
-  fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - 0.3 * (1 - insulation_fraction_weighted_average)) / gas_efficiency;
+  fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average)) / gas_efficiency;
 
   input_conversion_network_gas = fraction_gas_to_heatpump;
   input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;

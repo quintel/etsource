@@ -10,7 +10,7 @@ This is the efficiency of the gas part of the HHP
 
 This is the initial input.network_gas attribute of the HHP
     
-    initial_fraction_gas_to_heatpump = 0.3;
+    initial_fraction_gas_to_heatpump = 0.2;
 
 We assume the above fraction goes does to 0.0 in a reciprocal manner (w.r.t. the insulation level (R), as R(initial)/R(final)) for old and new houses separately. We would like this fraction to be in [0,1], hence we map it onto this interval.
 The minimum value this insulation fraction can have is
