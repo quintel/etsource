@@ -1,0 +1,14 @@
+- query =
+    UPDATE(
+      V(OUTPUT_SLOTS(LOOKUP(households_water_heater_hybrid_heatpump_air_water_electricity),useable_heat), "links.detect{|l| !l.flexible? }"),
+      share, USER_INPUT() / 100.0
+    )
+
+- share_group = hot_water_households
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(households_water_heater_hybrid_heatpump_air_water_electricity,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
