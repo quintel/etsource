@@ -1,14 +1,12 @@
-# Required new MV/LV transformer capacity during a summer evening.
-# Query takes into account all technologies attached below MV/LV tranformer level (i.e. at the LV-network level)
-# Query sums the newly required capacities per technology (peak_laod_in_mw) and adds these to the currently used capacity on the network (network_capacity_used_in_mw)
+# This Gquery calculates the additional peak load as a result of the electrical technologies that are installed in a scenario for a summer evening
+# This Gquery takes into account all technologies attached below MV/LV tranformer level (i.e. at the LV-network level)
+# If the additional peak load in the future scenario is lower than in the present scenario, this Gquery returns 0.0
 
 - query =
-    ABS(
-        SUM(
-            QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_se*peak_load_in_mw")) })
+    MAX(
+        QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_se*peak_load_in_mw")) })
                     *V(energy_power_lv_network_electricity,simult_se)
-            ,
-            V(energy_power_transformer_lv_mv_electricity, network_capacity_used_in_mw)
-        )
+        ,
+        0.0
     )
 - unit = MW
