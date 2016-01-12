@@ -1,0 +1,7 @@
+# CO2 of carrier group 'hydrogen' in buildings
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(buildings)).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission")
+    ) / THOUSANDS
