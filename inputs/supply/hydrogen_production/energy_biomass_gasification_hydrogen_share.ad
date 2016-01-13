@@ -1,0 +1,20 @@
+#This query updates both the share of centrally produced (vs locally produced) hydrogen and that of the specific production technology
+#This query has been made but will be hidden for now, since this production pathway is not fully commercial (that is, sufficiently scalable) yet.
+- share_group = hydrogen_production
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:(V(energy_biomass_gasification_hydrogen,share_of_energy_distribution_hydrogen) * 100 * V(energy_distribution_hydrogen, share_of_energy_compressor_hydrogen))
+- step_value = 0.1
+- unit = %
+- update_period = future
+- query = 
+    central_fraction = 
+     SUM(
+      USER_INPUT(), INPUT_VALUE(energy_biomass_gasification_ccs_hydrogen_share), INPUT_VALUE(energy_steam_methane_reformer_hydrogen_share), INPUT_VALUE(energy_steam_methane_reformer_ccs_hydrogen_share)
+     )
+    ;
+    EACH(
+     UPDATE(LINK(energy_distribution_hydrogen,energy_biomass_gasification_hydrogen), share, DIVIDE(USER_INPUT(), central_fraction)),
+     UPDATE(LINK(energy_compressor_hydrogen,energy_distribution_hydrogen), share, DIVIDE(central_fraction,100))
+    )

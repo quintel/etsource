@@ -1,19 +1,19 @@
 - query =
     x = USER_INPUT();
-    heat_factor = - 8.93386 * x;
-    cool_factor = 56.69449 * x + 1598.105 * x**2 + 25375.5 * x**3 + 163210.71413778 * x**4;
+    heat_factor = 1.0 - 0.0893386 * x;
+    cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
     EACH(
-    UPDATE(V(households_new_houses_useful_demand_for_heating), preset_demand, heat_factor),
-    UPDATE(V(households_old_houses_useful_demand_for_heating), preset_demand, heat_factor),
-    UPDATE(V(households_new_houses_useful_demand_for_cooling), preset_demand, cool_factor),
-    UPDATE(V(households_old_houses_useful_demand_for_cooling), preset_demand, cool_factor),
-    UPDATE(V(buildings_useful_demand_for_space_heating), preset_demand, heat_factor),
-    UPDATE(V(buildings_useful_demand_cooling), preset_demand, cool_factor))
+    UPDATE_WITH_FACTOR(V(households_new_houses_useful_demand_for_heating), preset_demand, heat_factor),
+    UPDATE_WITH_FACTOR(V(households_old_houses_useful_demand_for_heating), preset_demand, heat_factor),
+    UPDATE_WITH_FACTOR(V(households_new_houses_useful_demand_for_cooling), preset_demand, cool_factor),
+    UPDATE_WITH_FACTOR(V(households_old_houses_useful_demand_for_cooling), preset_demand, cool_factor),
+    UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating), preset_demand, heat_factor),
+    UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor))
 - priority = 0
 - max_value = 5.0
 - min_value = -5.0
 - start_value = 0.0
 - step_value = 0.1
-- unit = %
+- unit = factor
 - update_period = future
-- update_type = %
+- update_type = factor
