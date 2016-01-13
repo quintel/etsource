@@ -1,0 +1,14 @@
+- query =
+    UPDATE(
+      V(OUTPUT_SLOTS(LOOKUP(households_water_heater_fuel_cell_chp_network_gas),useable_heat), "links.detect{|l| !l.flexible? }"),
+      share, USER_INPUT() / 100.0
+    )
+- share_group = hot_water_households_present
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 50.0
+- start_value_gql = present:Q(share_of_fuel_cell_in_hot_water_production_in_households) * 100
+- step_value = 0.1
+- unit = %
+- update_period = present
