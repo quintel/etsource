@@ -1,0 +1,15 @@
+# Final demand of the 'hydrogen' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :agriculture"
+          ),
+          hydrogen?
+        ),
+        value
+      )
+    ) / BILLIONS

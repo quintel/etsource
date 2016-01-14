@@ -1,0 +1,7 @@
+# CO2 of carrier group 'hydrogen' in agriculture
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(agriculture)).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission")
+    ) / THOUSANDS
