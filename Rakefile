@@ -127,13 +127,28 @@ namespace :import do
 
       if attribute.options[:primitive] == Hash
         subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
-
         subkeys.each do |key, value|
           if node.public_send(attr_name).nil?
             node.public_send("#{ attr_name }=", {})
           end
 
-          node.public_send(attr_name)[key.split('__', 2)[1].to_sym] = value
+          subkey  = key.split('__', 2)[1]
+          subhash = node.public_send(attr_name)
+          right   = subkey
+
+          while subkey.include?('__')
+            left, right = subkey.split('__', 2)
+            left = left.to_sym
+
+            unless subhash[left].is_a?(Hash)
+              subhash[left] = {}
+            end
+
+            subkey = right
+            subhash = subhash[left]
+          end
+
+          subhash[subkey.to_sym] = value
         end
       elsif ENV[attribute.name.to_s]
         node.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
