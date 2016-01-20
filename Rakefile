@@ -140,7 +140,15 @@ namespace :import do
       end
     end
 
-    node.save
+    unless node.save
+      puts 'Validation errors:'
+
+      node.errors.each do |attribute, message|
+        puts "  * #{ attribute } #{ message }"
+      end
+
+      exit(1)
+    end
   end # :node
 
   desc <<-DESC
