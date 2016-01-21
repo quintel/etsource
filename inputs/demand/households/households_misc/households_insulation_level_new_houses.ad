@@ -4,13 +4,9 @@
 #  
 #  COP = 4.5;
 #
-# This is the efficiency of the gas part of the HHP   
-#    
-#   gas_efficiency = 1.067;
-#
 # This is the initial input.network_gas attribute of the HHP
 #    
-#    initial_fraction_gas_to_heatpump = 0.2;
+#    initial_fraction_gas_to_heatpump = 0.187441424554827;
 #
 # We assume the above fraction goes does to 0.0 in a reciprocal manner (w.r.t. the insulation level (R), as R(initial)/R(final)) for old and new houses separately. We would like this fraction to be in [0,1], hence we map it onto this interval.
 #The minimum value this insulation fraction can have is
@@ -35,13 +31,13 @@
 #
 # Note that we have mapped the insulation fraction for new houses onto [0,1] as well, with the latter number (the minimum isolation level) in fact of old houses [R_new(max), R_old(min_)]. In all fairness, it should be mapped onto [R_new(max), R_new(min)]. To do so we would multiply the insulation_fraction_new_houses with a scaling factor of R_old(R_new(min)). However, this causes a discontinuity and has therefore not been done (but will be improved soon).
 #
-# Here we take a weighted average of the insulation fractions for old and new houses (and add a very small number to make sure that we are not dividing by 0 if all houses are destroyed)
+# Here we take a weighted average of the insulation fractions for old and new houses (and make sure we don't divide by zero when all houses are demolished)
 #    
-#    insulation_fraction_weighted_average = (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses) + 0.0000000000000000001);
+#    insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses))==0), 1.0, (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_old_houses) + INPUT_VALUE(households_number_of_new_houses))); 
 #
 # In this linear formula we let the input.network_gas attribute go from its maximum value (initial_fraction, for `R_old_fin = R_old_min` and `R_new_fin = R_new_min`) to 0 (for `R_old_fin = R_old_max` and `R_new_fin = R_new_max`)) and compensate for the efficiency of the gas part of the HHP since we set the input of the converter
 #    
-#    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average)) / gas_efficiency;
+#    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average));
 #
 # Then we obtain for the new input shares
 #
@@ -58,8 +54,7 @@
 #      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, input_conversion_ambient_heat)
 #    ) 
 #
-# This is the end of the explanation of the HHP related queries. TO DO: remove ugly +0.0000000000000000001 and have the query pick up the initial values automatically.
-
+# This is the end of the explanation of the HHP related queries. TO DO:have the query pick up the initial values automatically.
 - priority = 0
 - step_value = 0.1
 - max_value_gql = present:AREA(insulation_level_new_houses_max)
@@ -73,10 +68,8 @@
     saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (USER_INPUT() + AREA(new_houses_insulation_constant_2));
 
     COP = 4.5;
-    
-    gas_efficiency = 1.067;
 
-    initial_fraction_gas_to_heatpump = 0.2;
+    initial_fraction_gas_to_heatpump = 0.187441424554827;
 
     min_insulation_ratio_old_houses = QUERY_PRESENT(-> {AREA(insulation_level_old_houses_min) }) / QUERY_PRESENT(-> {AREA(insulation_level_old_houses_max) });
 
@@ -90,9 +83,9 @@
 
     insulation_fraction_new_houses = (((QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) }) / USER_INPUT()) - min_insulation_ratio_new_houses) / scaling_factor_new_houses); 
 
-    insulation_fraction_weighted_average = (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses) + 0.0000000000000000001);
+    insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses))==0), 1.0, (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_old_houses) + INPUT_VALUE(households_number_of_new_houses))); 
 
-    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average)) / gas_efficiency;
+    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average));
 
     input_conversion_network_gas = fraction_gas_to_heatpump;
     input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;
