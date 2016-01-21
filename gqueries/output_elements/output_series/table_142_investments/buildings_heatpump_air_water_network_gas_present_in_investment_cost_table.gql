@@ -1,0 +1,13 @@
+# investment costs of buildings_cooling_heatpump_air_water_network_gas 
+# and buildings_space_heater_heatpump_air_water_network_gas
+# IF newly built (green field approach)
+# Corrected for double counting
+
+- query =
+    present:IF(
+        QUERY_FUTURE(buildings_cooling_heatpump_air_water_network_gas_future_in_investment_cost_table) > 
+        QUERY_FUTURE(buildings_space_heater_heatpump_air_water_network_gas_future_in_investment_cost_table),
+        Q(buildings_cooling_heatpump_air_water_network_gas_present_in_investment_cost_table),
+        Q(buildings_space_heater_heatpump_air_water_network_gas_present_in_investment_cost_table)
+    )
+- unit = euro
