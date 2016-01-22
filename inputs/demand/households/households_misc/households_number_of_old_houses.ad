@@ -6,9 +6,8 @@
   cost_per_old_house = AREA(old_houses_insulation_cost_constant) * (INPUT_VALUE(households_insulation_level_old_houses) - AREA(insulation_level_old_houses_min));
   total_cost = cost_per_old_house * USER_INPUT() * 1_000_000;
 
-  COP = 4.5;
-
-  initial_fraction_gas_to_heatpump = 0.187441424554827;
+  initial_gas_share = QUERY_PRESENT(-> { V(households_space_heater_hybrid_heatpump_air_water_electricity, network_gas_input_conversion) });
+  initial_electricity_share = QUERY_PRESENT(-> { V(households_space_heater_hybrid_heatpump_air_water_electricity, electricity_input_conversion) });
 
   min_insulation_ratio_old_houses = QUERY_PRESENT(-> {AREA(insulation_level_old_houses_min) }) / QUERY_PRESENT(-> {AREA(insulation_level_old_houses_max) });
 
@@ -24,18 +23,16 @@
 
   insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + USER_INPUT())==0), 1.0, (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * USER_INPUT()) / (INPUT_VALUE(households_number_of_new_houses) + USER_INPUT()));
 
-  fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average));
-
-  input_conversion_network_gas = fraction_gas_to_heatpump;
-  input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;
-  input_conversion_ambient_heat = (1.0 - fraction_gas_to_heatpump) * (1.0 - 1.0 / COP);
+  new_gas_share = insulation_fraction_weighted_average * initial_gas_share;
+  new_electricity_share = (1.0 - new_gas_share) / (1.0 - initial_gas_share) * initial_electricity_share;
+  new_ambient_heat_share = (1.0 - new_gas_share - new_electricity_share);
 
   EACH(
     UPDATE_WITH_FACTOR(L(households_old_houses_useful_demand_for_heating), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_old_residences) })),
     UPDATE_WITH_FACTOR(L(households_old_houses_useful_demand_for_cooling), preset_demand, USER_INPUT() * 1_000_000 / QUERY_PRESENT(-> { AREA(number_of_old_residences) })),
-    UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, input_conversion_electricity),
-    UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, input_conversion_network_gas),
-    UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, input_conversion_ambient_heat),
+    UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, new_electricity_share),
+    UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, new_gas_share),
+    UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, new_ambient_heat_share),
     UPDATE(AREA(), number_of_old_residences, USER_INPUT() * 1_000_000),
     UPDATE(V(households_old_houses_heating_savings_from_insulation), initial_investment, total_cost),
     UPDATE(AREA(), number_of_residences, USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_new_houses) * 1_000_000 + 1),
