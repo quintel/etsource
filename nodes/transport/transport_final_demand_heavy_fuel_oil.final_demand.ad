@@ -3,4 +3,7 @@
 - groups = [final_demand_group]
 - free_co2_factor = 0.0
 
-~ demand = EB("transport", fuel_oil)
+~ demand = 
+    EB("transport", fuel_oil) -
+    EB("non-specified (transport)", fuel_oil) - 
+    EB("pipeline transport", fuel_oil) 

@@ -4,5 +4,9 @@
 - free_co2_factor = 0.0
 
 ~ demand =
-    EB("transport", kerosene_type_jet_fuel) +
-    EB("transport", other_kerosene)
+    EB("transport", kerosene_type_jet_fuel) -
+    EB("non-specified (transport)", kerosene_type_jet_fuel) - 
+    EB("pipeline transport", kerosene_type_jet_fuel) +
+    EB("transport", other_kerosene) -
+    EB("non-specified (transport)", other_kerosene) - 
+    EB("pipeline transport", other_kerosene)

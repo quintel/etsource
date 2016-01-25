@@ -4,6 +4,12 @@
 - free_co2_factor = 0.0
 
 ~ demand = 
-    EB("transport", biodiesels) + 
-    EB("transport", other_liquid_biofuels) + 
-    EB("transport", "non-specified primary biofuels and waste")
+    EB("transport", biodiesels) - 
+    EB("non-specified (transport)", biodiesels) - 
+    EB("pipeline transport", biodiesels) + 
+    EB("transport", other_liquid_biofuels) -
+    EB("non-specified (transport)", biodiesels) - 
+    EB("pipeline transport", biodiesels) + 
+    EB("transport", "non-specified primary biofuels and waste") -
+    EB("non-specified (transport)", biodiesels) - 
+    EB("pipeline transport", biodiesels)

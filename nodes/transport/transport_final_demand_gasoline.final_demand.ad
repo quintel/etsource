@@ -4,6 +4,12 @@
 - free_co2_factor = 0.0
 
 ~ demand =
-    EB("transport", motor_gasoline) +
-    EB("transport", aviation_gasoline) +
-    EB("transport", gasoline_type_jet_fuel)
+    EB("transport", motor_gasoline) -
+    EB("non-specified (transport)", motor_gasoline) - 
+    EB("pipeline transport", motor_gasoline) +
+    EB("transport", aviation_gasoline) -
+    EB("non-specified (transport)", aviation_gasoline) - 
+    EB("pipeline transport", motor_gasoline) +
+    EB("transport", gasoline_type_jet_fuel) -
+    EB("non-specified (transport)", motor_gasoline) - 
+    EB("pipeline transport", motor_gasoline) 
