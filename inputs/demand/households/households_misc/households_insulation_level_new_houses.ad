@@ -1,12 +1,9 @@
-# The following is an explanation of the formula that relates the insulation level to the subtechnology use (and hence, carrier input) of the hybrid heatpump (HHP) in space heating. The actually calculation are done at the bottom of this file.
+# The following is an explanation of the formula that relates the insulation level to the subtechnology use (and hence, carrier input) of the hybrid heatpump (HHP) in space heating. The actual calculations are done at the bottom of this file.
 #
-# COP is defined as (heat_from_ambient_heat + heat_from_electricity) / heat_from_electricity (and often the input is taken to have the same ratio)
-#  
-#  COP = 4.5;
+# Here we get the minimum of initial shares necessary for this input statement to work from the node:
 #
-# This is the initial input.network_gas attribute of the HHP
-#    
-#    initial_fraction_gas_to_heatpump = 0.187441424554827;
+# initial_gas_share = QUERY_PRESENT(-> { V(households_space_heater_hybrid_heatpump_air_water_electricity, network_gas_input_conversion) });
+#    initial_electricity_share = QUERY_PRESENT(-> { V(households_space_heater_hybrid_heatpump_air_water_electricity, electricity_input_conversion) });
 #
 # We assume the above fraction goes does to 0.0 in a reciprocal manner (w.r.t. the insulation level (R), as R(initial)/R(final)) for old and new houses separately. We would like this fraction to be in [0,1], hence we map it onto this interval.
 #The minimum value this insulation fraction can have is
@@ -35,26 +32,26 @@
 #    
 #    insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses))==0), 1.0, (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_old_houses) + INPUT_VALUE(households_number_of_new_houses))); 
 #
-# In this linear formula we let the input.network_gas attribute go from its maximum value (initial_fraction, for `R_old_fin = R_old_min` and `R_new_fin = R_new_min`) to 0 (for `R_old_fin = R_old_max` and `R_new_fin = R_new_max`)) and compensate for the efficiency of the gas part of the HHP since we set the input of the converter
-#    
-#    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average));
+# In this linear formula we let the input.network_gas attribute go from its maximum value (initial_fraction, for `R_old_fin = R_old_min` and `R_new_fin = R_new_min`) to 0 (for `R_old_fin = R_old_max` and `R_new_fin = R_new_max`)).
 #
-# Then we obtain for the new input shares
+# Then we obtain for the new input shares 
 #
-#    input_conversion_network_gas = fraction_gas_to_heatpump;
-#    input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;
-#    input_conversion_ambient_heat = (1.0 - fraction_gas_to_heatpump) * (1.0 - 1.0 / COP);
+#    new_gas_share = insulation_fraction_weighted_average * initial_gas_share;
+#    new_electricity_share = (1.0 - new_gas_share) / (1.0 - initial_gas_share) * initial_electricity_share;
+#    new_ambient_heat_share = 1.0 - new_gas_share - new_electricity_share;
 #
-# And get the following updates
+# For new_electricity_share, we divide the new share of the heatpump part of the HHP (1.0 - new_gas_share) by the old one (1.0 - old_gas_share) to obtain the scaling factor, by which we multiply the initial share. The new_ambient_heat_share follows from the other two.
+#
+# Finally, we get the following updates
 #
 # EACH(
 #      
-#      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, input_conversion_electricity),
-#      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, input_conversion_network_gas),
-#      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, input_conversion_ambient_heat)
+#      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, new_electricity_share),
+#      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, new_gas_share),
+#      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, new_ambient_heat_share)
 #    ) 
 #
-# This is the end of the explanation of the HHP related queries. TO DO:have the query pick up the initial values automatically.
+# This is the end of the explanation of the HHP related queries. 
 - priority = 0
 - step_value = 0.1
 - max_value_gql = present:AREA(insulation_level_new_houses_max)
@@ -67,9 +64,8 @@
     total_cost = cost_per_new_house * QUERY_FUTURE(-> { AREA(number_of_new_residences) });
     saving_fraction = 1.0 - AREA(new_houses_insulation_constant_1) / (USER_INPUT() + AREA(new_houses_insulation_constant_2));
 
-    COP = 4.5;
-
-    initial_fraction_gas_to_heatpump = 0.187441424554827;
+    initial_gas_share = QUERY_PRESENT(-> { V(households_space_heater_hybrid_heatpump_air_water_electricity, network_gas_input_conversion) });
+    initial_electricity_share = QUERY_PRESENT(-> { V(households_space_heater_hybrid_heatpump_air_water_electricity, electricity_input_conversion) });
 
     min_insulation_ratio_old_houses = QUERY_PRESENT(-> {AREA(insulation_level_old_houses_min) }) / QUERY_PRESENT(-> {AREA(insulation_level_old_houses_max) });
 
@@ -85,17 +81,15 @@
 
     insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + INPUT_VALUE(households_number_of_old_houses))==0), 1.0, (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * INPUT_VALUE(households_number_of_old_houses)) / (INPUT_VALUE(households_number_of_old_houses) + INPUT_VALUE(households_number_of_new_houses))); 
 
-    fraction_gas_to_heatpump = (initial_fraction_gas_to_heatpump - initial_fraction_gas_to_heatpump * (1 - insulation_fraction_weighted_average));
-
-    input_conversion_network_gas = fraction_gas_to_heatpump;
-    input_conversion_electricity = (1.0 - fraction_gas_to_heatpump) * 1.0 / COP;
-    input_conversion_ambient_heat = (1.0 - fraction_gas_to_heatpump) * (1.0 - 1.0 / COP);
+    new_gas_share = insulation_fraction_weighted_average * initial_gas_share;
+    new_electricity_share = (1.0 - new_gas_share) / (1.0 - initial_gas_share) * initial_electricity_share;
+    new_ambient_heat_share = 1.0 - new_gas_share - new_electricity_share;
 
     EACH(
       UPDATE(V(households_new_houses_heating_savings_from_insulation), initial_investment, total_cost),
       UPDATE(LINK(households_new_houses_useful_demand_for_heating,households_new_houses_heating_savings_from_insulation), share, saving_fraction),
       UPDATE(LINK(households_new_houses_useful_demand_for_cooling,households_new_houses_cooling_savings_from_insulation), share, saving_fraction),
-      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, input_conversion_electricity),
-      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, input_conversion_network_gas),
-      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, input_conversion_ambient_heat)
+      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), network_gas), conversion, new_gas_share),
+      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), electricity), conversion, new_electricity_share),
+      UPDATE(INPUT_SLOTS(V(households_space_heater_hybrid_heatpump_air_water_electricity), ambient_heat), conversion, new_ambient_heat_share)
     ) 
