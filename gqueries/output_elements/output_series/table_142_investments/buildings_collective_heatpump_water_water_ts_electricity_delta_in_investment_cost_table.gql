@@ -1,0 +1,13 @@
+# investment costs of buildings_space_heater_collective_heatpump_water_water_ts_electricity 
+# and buildings_cooling_collective_heatpump_water_water_ts_electricity_delta_in_investment_cost_table
+# IF newly built (green field approach)
+# Corrected for double counting
+
+- query =
+    IF(
+        QUERY_FUTURE(buildings_cooling_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table) > 
+        QUERY_FUTURE(buildings_space_heater_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table),
+        Q(buildings_cooling_collective_heatpump_water_water_ts_electricity_delta_in_investment_cost_table),
+        Q(buildings_space_heater_collective_heatpump_water_water_ts_electricity_delta_in_investment_cost_table)
+    )
+- unit = euro
