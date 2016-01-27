@@ -1,21 +1,55 @@
-# Correction for the fact that heating and hot water combi technologies are counted double.
-# This query give the mean costs of combi technologies in those two categories.
-# (see https://github.com/quintel/etsource/issues/225)
+# Correction for the fact that heating and hot water combi technologies are counted double or triple.
+# First all double or triple technologies are subtracted to remove them from the 
+# 'costs_of_produced_heat_plus_insulation' query which looks like this:
+#
+#- query =
+#    SUM( 
+#      V(
+#        G(cost_traditional_heat),
+#        G(cost_heat_pumps),
+#        total_costs_per(:converter)
+#      ), 
+#      Q(costs_of_insulation),
+#      Q(dashboard_total_cost_correction)
+#    )
+#
+# Next, for households, the MAXIMUM value is taken for combi technologies.
+# For heat-pumps that also provide cooling, the cooling is considered complimentary 
+# EXCEPT if cooling is the only use of the technology.
+# For buildings, the MAXIMUM of space heating and cooling is taken for heat pumps.
+# 
 
-- query =
-    0.5 * V(
-      households_space_heater_combined_network_gas,
-      households_water_heater_combined_network_gas,
-      households_space_heater_district_heating_steam_hot_water,
-      households_water_heater_district_heating_steam_hot_water,
-      households_space_heater_heatpump_air_water_electricity,
-      households_water_heater_heatpump_air_water_electricity,
-      households_space_heater_heatpump_ground_water_electricity,
-      households_space_heater_hybrid_heatpump_air_water_electricity,
-      households_water_heater_hybrid_heatpump_air_water_electricity,
-      households_water_heater_heatpump_ground_water_electricity,
-      households_space_heater_micro_chp_network_gas,
-      households_water_heater_micro_chp_network_gas,
-      "initial_investment_per(:converter) / technical_lifetime"
-    ).sum
+
+- query = 
+    SUM(
+      - V(
+        buildings_space_heater_collective_heatpump_water_water_ts_electricity,
+        buildings_cooling_collective_heatpump_water_water_ts_electricity,
+        buildings_space_heater_heatpump_air_water_network_gas,
+        buildings_cooling_heatpump_air_water_network_gas,
+        households_space_heater_combined_network_gas,
+        households_water_heater_combined_network_gas,
+        households_space_heater_district_heating_steam_hot_water,
+        households_water_heater_district_heating_steam_hot_water,
+        households_cooling_heatpump_air_water_electricity_share,
+        households_space_heater_heatpump_air_water_electricity,
+        households_water_heater_heatpump_air_water_electricity,
+        households_cooling_heatpump_ground_water_electricity,
+        households_water_heater_heatpump_ground_water_electricity,
+        households_space_heater_heatpump_ground_water_electricity,
+        households_space_heater_hybrid_heatpump_air_water_electricity,
+        households_water_heater_hybrid_heatpump_air_water_electricity,
+        households_space_heater_micro_chp_network_gas,
+        households_water_heater_micro_chp_network_gas,
+        "initial_investment_per(:converter) / technical_lifetime"
+      ).sum,
+      Q(buildings_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table),
+      Q(buildings_heatpump_air_water_network_gas_future_in_investment_cost_table),
+      Q(households_heater_combined_network_gas_future_in_investment_cost_table),
+      Q(households_heatpump_ground_water_electricity_future_in_investment_cost_table),
+      Q(households_heater_micro_chp_network_gas_future_in_investment_cost_table),
+      Q(households_heater_district_heating_steam_hot_water_future_in_investment_cost_table),
+      Q(households_heater_heatpump_air_water_electricity_future_in_investment_cost_table),
+      Q(households_heater_hybrid_heatpump_air_water_electricity_future_in_investment_cost_table)
+    )
 - unit = euro
