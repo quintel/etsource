@@ -169,7 +169,7 @@ namespace :import do
 
       rake import:carrier CARRIER=bio_oil co2_conversion_per_mj=0
 
-    You may specify multple attributes to update:
+    You may specify multiple attributes to update:
 
       rake import:carrier \
         CARRIER=bio_oil \
@@ -212,6 +212,67 @@ namespace :import do
 
     carrier.save
   end # :carrier
+
+  desc <<-DESC
+    Import FCE datasets
+
+    Arguments mandatory:
+
+    - DATASET = <region>
+    - CARRIER = <carrier>
+    - ORIGIN  = <origin>
+
+    Optional arguments:
+
+    - <attributes> that are available for the ORIGIN of the CARRIER in that
+      DATASET.
+
+    Example:
+
+    rake import:fce DATASET=nl
+                    CARRIER=bio_ethanol
+                    ORIGIN=sugar_beets
+                    co2_exploration_per_mj=5.0
+
+    You may specify multiple attributes to update:
+
+    rake import:fce DATASET=nl
+                    CARRIER=bio_ethanol
+                    ORIGIN=sugar_beets
+                    co2_exploration_per_mj=5.0
+                    co2_extraction_per_mj=5.0
+  DESC
+  task :fce do
+    require 'bundler'
+    Bundler.require(:test)
+
+    # Raise the obvious errors if mandatory arguments are missing
+    raise ArgumentError, 'missing CARRIER argument' unless ENV['CARRIER']
+    raise ArgumentError, 'missing DATASET argument' unless ENV['DATASET']
+    raise ArgumentError, 'missing ORIGIN argument' unless ENV['ORIGIN']
+
+    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
+
+    carrier     = ENV['CARRIER']
+    dataset     = ENV['DATASET']
+    origin      = ENV['ORIGIN'].to_sym
+    attributes  = ENV.select{ |key, _| key =~ /^[a-z]/ }.symbolize_keys
+    current_fce = Atlas::Carrier.new(key: carrier).fce(dataset)
+    yaml_file   = Atlas.data_dir.join("datasets/#{ dataset }/fce/#{ carrier }.yml")
+
+    raise ArgumentError, "CARRIER '#{carrier}' does not exist in '#{dataset}'" unless current_fce
+    raise ArgumentError, "ORIGIN '#{origin}' does not exist in '#{carrier}'"   unless current_fce[origin]
+
+    attributes.each do |key, value|
+      if current_fce[origin][key]
+        current_fce[origin][key] = value.to_f
+      else
+        raise ArgumentError, "variable '#{ key }' does not exist in ORIGIN '#{ origin }'"
+      end
+    end
+
+    File.open(yaml_file, 'w'){|f| f.write(current_fce.to_yaml) }
+  end
 end # :import
 
 desc <<-DESC
