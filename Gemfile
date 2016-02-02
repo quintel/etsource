@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 
 group :development, :test do
-  gem 'atlas',    ref: '5e5e1bb', github: 'quintel/atlas'
+  gem 'atlas',    ref: '8111964', github: 'quintel/atlas'
 end
 
 group :test do
