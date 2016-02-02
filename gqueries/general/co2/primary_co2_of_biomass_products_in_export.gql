@@ -1,0 +1,18 @@
+# CO2 of carrier group 'biomass_products' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.greengas? }}, "greengas_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biodiesel? }}, "biodiesel_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.bio_ethanol? }}, "bio_ethanol_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.bio_lng? }}, "bio_lng_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.bio_oil? }}, "bio_oil_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biogas? }}, "biogas_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.torrified_biomass_pellets? }}, "torrified_biomass_pellets_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.wood_pellets? }}, "wood_pellets_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.woody_biomass? }}, "woody_biomass_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.corn? }}, "corn_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.manure? }}, "manure_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.wood? }}, "wood_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

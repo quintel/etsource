@@ -1,0 +1,10 @@
+# CO2 of carrier group 'coal_and_derivatives' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.coal? }}, "coal_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lignite? }}, "lignite_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.coal_gas? }}, "coal_gas_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.cokes? }}, "cokes_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

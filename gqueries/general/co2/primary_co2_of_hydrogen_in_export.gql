@@ -1,0 +1,7 @@
+# CO2 of carrier group 'hydrogen' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

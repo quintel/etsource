@@ -1,0 +1,8 @@
+# CO2 of carrier group 'solar' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, "solar_radiation_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, "solar_thermal_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

@@ -1,0 +1,10 @@
+# CO2 of carrier group 'ambient' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, "ambient_heat_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, "ambient_cold_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, "wind_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.water? }}, "water_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

@@ -1,0 +1,9 @@
+# CO2 of carrier group 'waste' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.waste_mix? }}, "waste_mix_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.non_biogenic_waste? }}, "non_biogenic_waste_input_conversion * primary_co2_emission"),
+      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biogenic_waste? }}, "biogenic_waste_input_conversion * primary_co2_emission")
+    ) / THOUSANDS
