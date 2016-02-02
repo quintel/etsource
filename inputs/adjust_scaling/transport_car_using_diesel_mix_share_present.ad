@@ -5,12 +5,12 @@
         ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
       )
     )
-- share_group = transport_car_tech
-- priority = 10
+- share_group = transport_car_tech_present
+- priority = 1
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 46.0
 - start_value_gql = present:V(transport_car_using_diesel_mix,share_of_transport_useful_demand_car_kms) * 100
 - step_value = 0.1
 - unit = %
-- update_period = both
+- update_period = present
