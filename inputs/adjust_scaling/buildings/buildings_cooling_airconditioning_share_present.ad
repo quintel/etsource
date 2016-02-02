@@ -5,11 +5,11 @@
         ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_cooling)),UPDATE_COLLECTION()), share))), 1)}
       )
     )
-- share_group = cooling_buildings
-- priority = 10
+- share_group = cooling_buildings_present
+- priority = 1
 - max_value = 100.0
 - min_value = 0.0
 - start_value_gql = present:V(buildings_cooling_airconditioning_electricity,share_of_buildings_useful_demand_after_insulation_cooling) * 100
 - step_value = 0.1
 - unit = %
-- update_period = both
+- update_period = present
