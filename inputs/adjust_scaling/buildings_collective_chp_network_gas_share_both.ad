@@ -1,0 +1,20 @@
+- query =
+    UPDATE(
+      FIRST(
+        LINKS(
+          OUTPUT_SLOTS(
+            LOOKUP(buildings_collective_chp_network_gas),
+            steam_hot_water
+          )
+        )
+      ),
+      share, USER_INPUT() / 100.0
+    )
+- share_group = district_heating_buildings
+- priority = 10
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(buildings_collective_chp_network_gas,steam_hot_water_output_link_share) * 100
+- step_value = 0.1
+- unit = %
+- update_period = both
