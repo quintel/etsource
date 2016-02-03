@@ -1,0 +1,10 @@
+- query = UPDATE(LINK(households_space_heater_micro_chp_network_gas,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share, DIVIDE(USER_INPUT(),100))
+- share_group = heating_households_present
+- priority = 0
+- max_value = 100.0
+- max_value_gql = present:PRODUCT(100,SUM(0.9,NEG(DIVIDE(GRAPH(number_of_years),100))))
+- min_value = 0.0
+- start_value_gql = present:V(households_space_heater_micro_chp_network_gas,share_of_households_useful_demand_for_space_heating_after_insulation_and_solar_heater) * 100
+- step_value = 0.1
+- unit = %
+- update_period = present

@@ -1,0 +1,16 @@
+- query =
+    EACH(
+      UPDATE(LINK(agriculture_heatpump_water_water_ts_electricity,agriculture_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(agriculture_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = agri_heat_present
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 0.0
+- start_value_gql = present:V(agriculture_heatpump_water_water_ts_electricity,share_of_agriculture_useful_demand_useable_heat) * 100
+- step_value = 0.1
+- unit = %
+- update_period = present

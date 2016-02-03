@@ -1,0 +1,15 @@
+- query =
+    EACH(
+      UPDATE(LINK(buildings_cooling_collective_heatpump_water_water_ts_electricity,buildings_useful_demand_after_insulation_cooling), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(buildings_useful_demand_after_insulation_cooling,buildings_cooling_airconditioning_electricity), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_insulation_cooling)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = cooling_buildings_present
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(buildings_cooling_collective_heatpump_water_water_ts_electricity,share_of_buildings_useful_demand_after_insulation_cooling) * 100
+- step_value = 0.1
+- unit = %
+- update_period = present
