@@ -1,0 +1,10 @@
+# Primary demand of carrier group 'coal_and_derivatives' for the export converter group
+
+- unit = PJ
+- query =
+    SUM(
+       V(G(energy_export), primary_demand_of_coal),
+       V(G(energy_export), primary_demand_of_lignite),
+       V(G(energy_export), primary_demand_of_coal_gas),
+       V(G(energy_export), primary_demand_of_cokes)
+    ) / BILLIONS

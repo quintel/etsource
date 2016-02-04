@@ -1,0 +1,8 @@
+# Primary demand of carrier group 'solar' for the export converter group
+
+- unit = PJ
+- query =
+    SUM(
+       V(G(energy_export), primary_demand_of_solar_radiation),
+       V(G(energy_export), primary_demand_of_solar_thermal)
+    ) / BILLIONS
