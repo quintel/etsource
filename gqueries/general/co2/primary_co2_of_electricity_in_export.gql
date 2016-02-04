@@ -3,5 +3,7 @@
 - unit = tonne
 - query =
     SUM(
-      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.electricity? }}, "electricity_input_conversion * primary_co2_emission")
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.electricity? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.electricity? }}, "electricity_input_conversion * primary_co2_emission"),
+            0.0)
     ) / THOUSANDS

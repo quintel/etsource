@@ -3,6 +3,10 @@
 - unit = tonne
 - query =
     SUM(
-      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, "solar_radiation_input_conversion * primary_co2_emission"),
-      V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, "solar_thermal_input_conversion * primary_co2_emission")
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, "solar_radiation_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            0.0),
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, "solar_thermal_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            0.0)
     ) / THOUSANDS
