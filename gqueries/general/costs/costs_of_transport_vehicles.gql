@@ -1,0 +1,8 @@
+# Return total cost of all electric cars
+
+- query =
+    SUM( 
+      V((transport_car_using_electricity), " total_costs_per(:plant) * number_of_units "),
+      V((transport_car_using_hydrogen), " total_costs_per(:plant) * number_of_units ")
+    )
+- unit = euro
