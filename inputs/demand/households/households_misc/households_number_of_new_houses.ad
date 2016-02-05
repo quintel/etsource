@@ -46,7 +46,9 @@
         (QUERY_FUTURE(-> { AREA(residences_roof_surface_available_for_pv) }) / V(households_solar_pv_solar_radiation, land_use_per_unit)) *
         V(households_solar_pv_solar_radiation, typical_electricity_production_per_unit)
       )
-    )
+    ),
+    UPDATE(V(households_flexibility_p2p_electricity), number_of_units, (USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_old_houses) * 1_000_000) * INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration) / 100.0),
+    UPDATE(V(households_flexibility_p2p_electricity), number_of_units, (USER_INPUT() * 1_000_000 + INPUT_VALUE(households_number_of_old_houses) * 1_000_000) * INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration) / 100.0)
   )
 
 - priority = 0
