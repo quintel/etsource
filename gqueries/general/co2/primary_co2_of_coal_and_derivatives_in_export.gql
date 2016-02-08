@@ -1,0 +1,18 @@
+# CO2 of carrier group 'coal_and_derivatives' for the export converter group
+
+- unit = tonne
+- query =
+    SUM(
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.coal? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.coal? }}, "coal_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            0.0),
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lignite? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lignite? }}, "lignite_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            0.0),
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.coal_gas? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.coal_gas? }}, "coal_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            0.0),
+        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.cokes? }}, primary_demand) > 0.0,
+            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.cokes? }}, "cokes_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            0.0)
+    ) / THOUSANDS
