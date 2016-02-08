@@ -1,7 +1,11 @@
 - query =
-  UPDATE(
-  	V(households_flexibility_p2h_electricity), number_of_units, (USER_INPUT() / 100.0) * QUERY_FUTURE(-> { AREA(number_of_residences) })
-  )
+    EACH(
+        UPDATE(
+  	         V(households_flexibility_p2h_electricity), number_of_units, (USER_INPUT() / 100.0) * QUERY_FUTURE(-> { AREA(number_of_residences) })
+        ),
+        UPDATE(LINK(households_useful_demand_for_hot_water_after_solar_heater,households_useful_demand_for_hot_water_for_houses_with_p2h), share, DIVIDE(USER_INPUT(),100)),
+        UPDATE(LINK(households_useful_demand_for_hot_water_after_solar_heater,households_useful_demand_for_hot_water_after_solar_heater_and_p2h), share, 1.0 - DIVIDE(USER_INPUT(),100))
+    )
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
