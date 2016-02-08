@@ -1,0 +1,10 @@
+# Primary demand of carrier group 'ambient' for the export converter group
+
+- unit = PJ
+- query =
+    SUM(
+       V(G(energy_export), primary_demand_of_ambient_heat),
+       V(G(energy_export), primary_demand_of_ambient_cold),
+       V(G(energy_export), primary_demand_of_wind),
+       V(G(energy_export), primary_demand_of_water)
+    ) / BILLIONS

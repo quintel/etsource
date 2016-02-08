@@ -1,0 +1,9 @@
+# Primary demand of carrier group 'biomass_products' for the export converter group
+
+- unit = PJ
+- query =
+    SUM(
+       V(G(energy_export), primary_demand_of_biodiesel),
+       V(G(energy_export), primary_demand_of_bio_ethanol),
+       V(G(energy_export), primary_demand_of_bio_lng)
+    ) / BILLIONS
