@@ -2,9 +2,9 @@
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(energy_local_electrolysis_hydrogen,share_of_energy_compressor_hydrogen) * 100
+- start_value_gql = present:V(energy_local_electrolysis_hydrogen,share_of_energy_locally_available_hydrogen_before_p2g) * 100
 - step_value = 0.1
 - unit = %
 - update_period = future
 - query = 
-    UPDATE(LINK(energy_compressor_hydrogen,energy_local_electrolysis_hydrogen), share, DIVIDE(USER_INPUT(),100))
+    UPDATE(LINK(energy_locally_available_hydrogen_before_p2g,energy_local_electrolysis_hydrogen), share, DIVIDE(USER_INPUT(),100))

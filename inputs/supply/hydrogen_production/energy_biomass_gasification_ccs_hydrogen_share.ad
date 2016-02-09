@@ -4,7 +4,7 @@
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:(V(energy_biomass_gasification_ccs_hydrogen,share_of_energy_distribution_hydrogen) * 100 * V(energy_distribution_hydrogen, share_of_energy_compressor_hydrogen))
+- start_value_gql = present:(V(energy_biomass_gasification_ccs_hydrogen,share_of_energy_distribution_hydrogen) * 100 * V(energy_distribution_hydrogen, share_of_energy_locally_available_hydrogen_before_p2g))
 - step_value = 0.1
 - unit = %
 - update_period = future
@@ -16,5 +16,5 @@
     ;
     EACH(
      UPDATE(LINK(energy_distribution_hydrogen,energy_biomass_gasification_ccs_hydrogen), share, DIVIDE(USER_INPUT(), central_fraction)),
-     UPDATE(LINK(energy_compressor_hydrogen,energy_distribution_hydrogen), share, DIVIDE(central_fraction,100))
+     UPDATE(LINK(energy_locally_available_hydrogen_before_p2g,energy_distribution_hydrogen), share, DIVIDE(central_fraction,100))
     )
