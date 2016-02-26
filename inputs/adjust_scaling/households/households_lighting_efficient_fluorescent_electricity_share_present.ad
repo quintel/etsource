@@ -1,0 +1,16 @@
+- query =
+    EACH(
+      UPDATE(LINK(households_lighting_efficient_fluorescent_electricity,households_useful_demand_light), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(households_useful_demand_light,households_lighting_incandescent_electricity), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(households_useful_demand_light)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = household_light_present
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 5.0
+- start_value_gql = present:V(households_lighting_efficient_fluorescent_electricity,share_of_households_useful_demand_light) * 100
+- step_value = 0.1
+- unit = %
+- update_period = present
