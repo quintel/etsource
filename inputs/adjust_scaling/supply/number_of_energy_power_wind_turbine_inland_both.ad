@@ -3,11 +3,11 @@
       UPDATE(V(energy_power_wind_turbine_inland), number_of_units, USER_INPUT()),
       UPDATE(L(energy_power_wind_turbine_inland), preset_demand_by_electricity_production, V(energy_power_wind_turbine_inland, production_based_on_number_of_units))
     )
-- priority = 0
+- priority = 10
 - max_value = 300.0
 - max_value_gql = present:MAX(1.0,DIVIDE(AREA(onshore_suitable_for_wind),V(energy_power_wind_turbine_inland,land_use_per_unit)))
 - min_value = 0.0
 - start_value_gql = present:V(energy_power_wind_turbine_inland,number_of_units)
 - step_value = 0.1
 - unit = #
-- update_period = future
+- update_period = both
