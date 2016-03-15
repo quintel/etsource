@@ -1,6 +1,13 @@
 - unit = PJ
 - query =
     DIVIDE(
-      V(transport_useful_demand_planes,final_demand),
+      SUM(
+        V(
+          transport_plane_using_bio_ethanol,
+          transport_plane_using_gasoline,
+          transport_plane_using_kerosene,
+          final_demand
+        )
+      ),
       BILLIONS
     )

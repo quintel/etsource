@@ -1,10 +1,12 @@
 - unit = PJ
 - query =
-    SUM(
-      DIVIDE(
-        V(transport_useful_demand_trains,final_demand),
-        BILLIONS
+    DIVIDE(
+      SUM(
+        V(
+          transport_train_using_coal,
+          transport_train_using_diesel,
+          final_demand
+        )
       ),
-        NEG(Q(electricity_trains_in_use_of_final_demand_in_transport)
-      )
+      BILLIONS
     )
