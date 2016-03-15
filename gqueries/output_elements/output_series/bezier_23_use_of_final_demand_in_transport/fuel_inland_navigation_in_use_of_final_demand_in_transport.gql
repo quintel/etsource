@@ -1,6 +1,12 @@
 - unit = PJ
 - query =
     DIVIDE(
-      V(transport_useful_demand_ship_kms,final_demand),
+      SUM(
+        V(
+          transport_ship_using_diesel_mix,
+          transport_ship_using_lng_mix,
+          final_demand
+        )
+      ),
       BILLIONS
     )
