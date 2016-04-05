@@ -1,5 +1,9 @@
 # Returns total demand for hot water to be assigned to buffers when importing a
 # scenario into ETMoses.
+# This query sums the demand of all hot water technologies which are explcitly modelled in ETMoses
 
-- query = V(households_useful_demand_hot_water, demand) / BILLIONS
+- query = 
+    (V(households_useful_demand_for_hot_water_for_houses_with_p2h, demand) +
+    V(INTERSECTION(G(etmoses),CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h))), output_of_useable_heat).sum) / BILLIONS
+
 - unit = PJ

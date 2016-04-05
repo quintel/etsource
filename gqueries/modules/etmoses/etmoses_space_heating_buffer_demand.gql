@@ -3,7 +3,8 @@
 
 - query =
     V(
-      households_useful_demand_for_space_heating_after_insulation,
-      demand
-    ) / BILLIONS
+      INTERSECTION(G(etmoses),CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater))), 
+      output_of_useable_heat
+    ).sum / BILLIONS
+
 - unit = PJ
