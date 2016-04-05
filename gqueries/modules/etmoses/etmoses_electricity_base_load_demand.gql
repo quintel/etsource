@@ -1,0 +1,12 @@
+# Returns total demand for electric appliances, lighting and cooking to be assigned to baseload when
+# importing a scenario into ETMoses.
+
+- query =
+    V(
+      households_final_demand_for_cooking_electricity,
+      households_final_demand_for_lighting_electricity,
+      households_final_demand_for_appliances_electricity,
+      demand
+    ).sum / BILLIONS
+
+- unit = PJ
