@@ -17,6 +17,15 @@
           FILTER(
             LG(final_demand),"sector == :transport"
           ),
+          compressed_network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :transport"
+          ),
           lng?
         ),
         value
