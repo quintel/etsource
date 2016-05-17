@@ -43,13 +43,21 @@
         households_water_heater_micro_chp_network_gas,
         "initial_investment_per(:converter) / technical_lifetime"
       ).sum,
-      Q(buildings_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table),
-      Q(buildings_heatpump_air_water_network_gas_future_in_investment_cost_table),
-      Q(households_heater_combined_network_gas_future_in_investment_cost_table),
-      Q(households_heatpump_ground_water_electricity_future_in_investment_cost_table),
-      Q(households_heater_micro_chp_network_gas_future_in_investment_cost_table),
-      Q(households_heater_district_heating_steam_hot_water_future_in_investment_cost_table),
-      Q(households_heater_heatpump_air_water_electricity_future_in_investment_cost_table),
-      Q(households_heater_hybrid_heatpump_air_water_electricity_future_in_investment_cost_table)
+      Q(buildings_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table) / 
+      V(buildings_space_heater_collective_heatpump_water_water_ts_electricity, technical_lifetime),
+      Q(buildings_heatpump_air_water_network_gas_future_in_investment_cost_table) / 
+      V(buildings_space_heater_heatpump_air_water_network_gas, technical_lifetime),
+      Q(households_heater_combined_network_gas_future_in_investment_cost_table) / 
+      V(households_space_heater_combined_network_gas, technical_lifetime),
+      Q(households_heatpump_ground_water_electricity_future_in_investment_cost_table) / 
+      V(households_space_heater_heatpump_ground_water_electricity, technical_lifetime),
+      Q(households_heater_micro_chp_network_gas_future_in_investment_cost_table) / 
+      V(households_space_heater_micro_chp_network_gas, technical_lifetime),
+      Q(households_heater_district_heating_steam_hot_water_future_in_investment_cost_table) / 
+      V(households_space_heater_district_heating_steam_hot_water, technical_lifetime),
+      Q(households_heater_heatpump_air_water_electricity_future_in_investment_cost_table) / 
+      V(households_space_heater_heatpump_air_water_electricity, technical_lifetime),
+      Q(households_heater_hybrid_heatpump_air_water_electricity_future_in_investment_cost_table) / 
+      V(households_space_heater_hybrid_heatpump_air_water_electricity, technical_lifetime)
     )
 - unit = euro
