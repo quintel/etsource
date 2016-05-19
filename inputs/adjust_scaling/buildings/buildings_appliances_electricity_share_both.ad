@@ -1,0 +1,15 @@
+- query =
+    EACH(
+      UPDATE(LINK(buildings_appliances_electricity,buildings_useful_demand_for_appliances), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(buildings_useful_demand_for_appliances,buildings_appliances_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_for_appliances)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = buildings_appliances_both
+- priority = 10
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(buildings_appliances_electricity,share_of_buildings_useful_demand_for_appliances) * 100
+- step_value = 0.1
+- unit = %
+- update_period = both
