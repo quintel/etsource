@@ -1,0 +1,13 @@
+# total costs of buildings_space_heater_collective_heatpump_water_water_ts_electricity 
+# and buildings_cooling_collective_heatpump_water_water_ts_electricity
+# IF newly built (green field approach)
+# Corrected for double counting
+
+- query =
+    IF(
+        QUERY_FUTURE(buildings_cooling_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table) > 
+        QUERY_FUTURE(buildings_space_heater_collective_heatpump_water_water_ts_electricity_future_in_investment_cost_table),
+        V(buildings_cooling_collective_heatpump_water_water_ts_electricity,total_costs_per(:converter)),
+        V(buildings_space_heater_collective_heatpump_water_water_ts_electricity,total_costs_per(:converter))
+    )
+- unit = euro

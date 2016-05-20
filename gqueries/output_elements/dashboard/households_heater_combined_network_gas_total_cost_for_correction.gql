@@ -1,0 +1,13 @@
+# investment costs of households_space_heater_combined_network_gas 
+# and households_water_heater_combined_network_gas
+# IF newly built (green field approach)
+# Corrected for double counting
+
+- query =
+    IF(
+        QUERY_FUTURE(households_space_heater_combined_network_gas_future_in_investment_cost_table) > 
+        QUERY_FUTURE(households_water_heater_combined_network_gas_future_in_investment_cost_table),
+        V(households_space_heater_combined_network_gas,total_costs_per(:converter)),
+        V(households_water_heater_combined_network_gas,total_costs_per(:converter))
+    )
+- unit = euro
