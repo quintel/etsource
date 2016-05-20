@@ -1,0 +1,22 @@
+# investment costs of households_cooling_heatpump_ground_water_electricity,
+# households_space_heater_heatpump_ground_water_electricity
+# and households_water_heater_heatpump_ground_water_electricity
+# IF newly built (green field approach)
+# Corrected for double counting:
+# IFF both the space heating and water heating pumps are zero, the cost of the cooling pump is used
+# ELSE the maximum of space heating and water heating is used
+
+- query =
+    IF(
+        QUERY_FUTURE(households_space_heater_heatpump_ground_water_electricity_future_in_investment_cost_table) +
+        QUERY_FUTURE(households_water_heater_heatpump_ground_water_electricity_future_in_investment_cost_table) > 0.0,
+
+        IF(
+            QUERY_FUTURE(households_space_heater_heatpump_ground_water_electricity_future_in_investment_cost_table) > 
+            QUERY_FUTURE(households_water_heater_heatpump_ground_water_electricity_future_in_investment_cost_table),
+            V(households_space_heater_heatpump_ground_water_electricity,total_costs_per(:converter)),
+            V(households_water_heater_heatpump_ground_water_electricity,total_costs_per(:converter))
+        ),
+        V(households_cooling_heatpump_ground_water_electricity,total_costs_per(:converter))
+    )
+- unit = euro

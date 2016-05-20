@@ -1,0 +1,13 @@
+# investment costs of households_space_heater_district_heating_steam_hot_water 
+# and households_water_heater_district_heating_steam_hot_water
+# IF newly built (green field approach)
+# Corrected for double counting
+
+- query =
+    IF(
+        QUERY_FUTURE(households_space_heater_district_heating_steam_hot_water_future_in_investment_cost_table) > 
+        QUERY_FUTURE(households_water_heater_district_heating_steam_hot_water_future_in_investment_cost_table),
+        V(households_space_heater_district_heating_steam_hot_water,total_costs_per(:converter)),
+        V(households_water_heater_district_heating_steam_hot_water,total_costs_per(:converter))
+    )
+- unit = euro
