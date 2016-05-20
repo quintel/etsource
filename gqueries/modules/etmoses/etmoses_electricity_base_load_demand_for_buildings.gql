@@ -1,0 +1,12 @@
+# Returns total demand for electric appliances, cooling, lighting to be assigned to buildings baseload when
+# importing a scenario into ETMoses.
+
+- query =
+    V(
+      buildings_final_demand_for_cooling_electricity,
+      buildings_final_demand_for_lighting_electricity,
+      buildings_final_demand_for_appliances_electricity,
+      demand
+    ).sum / BILLIONS
+
+- unit = PJ
