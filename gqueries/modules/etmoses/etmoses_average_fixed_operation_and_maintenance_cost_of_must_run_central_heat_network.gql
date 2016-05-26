@@ -1,0 +1,9 @@
+# Returns average O&M cost [EUR/year] of must_run sources in the central heat network
+# Weighted by installed capacity of the sources
+
+- query =
+    V(
+        Q(etmoses_must_run_sources_central_heat_network), "fixed_operation_and_maintenance_costs * number_of_units * heat_output_capacity"
+    ).sum / Q(etmoses_installed_capacity_of_must_run_central_heat_network)
+
+- unit = EUR

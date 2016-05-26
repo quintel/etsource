@@ -1,0 +1,9 @@
+# Returns average O&M cost [EUR/year] of dispatchable sources in the central heat network
+# Weighted by installed capacity of the sources
+
+- query =
+    V(
+        Q(etmoses_dispatchable_sources_central_heat_network), "fixed_operation_and_maintenance_costs * number_of_units * heat_output_capacity"
+    ).sum / Q(etmoses_installed_capacity_of_dispatchable_central_heat_network)
+
+- unit = EUR
