@@ -1,0 +1,11 @@
+# Returns average marginal cost [EUR/Mwh] of dispatchable sources in the central heat network
+# Weighted by installed capacity of the sources
+# marginal cost for heat = variable_costs_per_typical_input * SECS_PER_HOUR / heat_output_conversion 
+# installed capacity = number_of_units * heat_output_capacity
+
+- query =
+    V(
+        Q(etmoses_dispatchable_sources_central_heat_network), "variable_costs_per_typical_input * SECS_PER_HOUR / heat_output_conversion * number_of_units * heat_output_capacity"
+    ).sum / Q(etmoses_installed_capacity_of_dispatchable_central_heat_network)
+
+- unit = EUR

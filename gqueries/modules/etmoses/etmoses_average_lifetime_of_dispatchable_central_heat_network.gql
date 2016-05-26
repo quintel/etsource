@@ -1,0 +1,9 @@
+# Returns average lifetime [year] of dispatchable sources in the central heat network
+# Weighted by installed capacity of the sources
+
+- query =
+    V(
+        Q(etmoses_dispatchable_sources_central_heat_network), "technical_lifetime * number_of_units * heat_output_capacity"
+    ).sum / Q(etmoses_installed_capacity_of_dispatchable_central_heat_network)
+
+- unit = year

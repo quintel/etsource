@@ -1,0 +1,9 @@
+# Returns average lifetime [year] of must-run sources in the central heat network
+# Weighted by installed capacity of the sources
+
+- query =
+    V(
+        Q(etmoses_must_run_sources_central_heat_network), "technical_lifetime * number_of_units * heat_output_capacity"
+    ).sum / Q(etmoses_installed_capacity_of_must_run_central_heat_network)
+
+- unit = year
