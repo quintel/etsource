@@ -1,8 +1,8 @@
-# Returns total investment cost [EUR] of must-run sources in the central heat network
+# Returns total investment cost [EUR/MWh] of must-run sources in the central heat network
 
 - query =
     V(
         Q(etmoses_must_run_sources_central_heat_network), "initial_investment"
-    ).sum / Q(etmoses_installed_capacity_of_must_run_central_heat_network)
+    ).sum / Q(etmoses_heat_produced_by_must_run_central_heat_network)
 
 - unit = EUR
