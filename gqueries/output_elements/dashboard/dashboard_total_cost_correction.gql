@@ -13,10 +13,11 @@
 #      Q(dashboard_total_cost_correction)
 #    )
 #
-# Next, for households, the MAXIMUM value is taken for combi technologies.
+# Next, for households, the MAXIMUM value for the FIXED costs is taken for combi technologies.
 # For heat-pumps that also provide cooling, the cooling is considered complimentary 
 # EXCEPT if cooling is the only use of the technology.
 # For buildings, the MAXIMUM of space heating and cooling is taken for heat pumps.
+# Variable costs need to be taken into account for all technologies and should not be corrected.
 # 
 
 
@@ -41,7 +42,7 @@
         households_water_heater_hybrid_heatpump_air_water_electricity,
         households_space_heater_micro_chp_network_gas,
         households_water_heater_micro_chp_network_gas,
-        "total_costs_per(:converter)"
+        "fixed_costs_per(:converter)"
       ).sum,
       Q(buildings_collective_heatpump_water_water_ts_electricity_total_cost_for_correction),
       Q(buildings_heatpump_air_water_network_gas_total_cost_for_correction),
