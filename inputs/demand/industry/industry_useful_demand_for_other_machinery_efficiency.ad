@@ -1,0 +1,16 @@
+- query =
+    EACH(
+    UPDATE(V(industry_useful_demand_for_other_machinery_electricity), preset_demand, NEG(USER_INPUT())),
+    UPDATE(V(industry_useful_demand_for_other_machinery_useable_heat), preset_demand, NEG(USER_INPUT())),
+    UPDATE(V(industry_useful_demand_for_other_machinery_coal), preset_demand, NEG(USER_INPUT())),
+    UPDATE(V(industry_useful_demand_for_other_machinery_crude_oil), preset_demand, NEG(USER_INPUT())),
+    UPDATE(V(industry_useful_demand_for_other_machinery_network_gas), preset_demand, NEG(USER_INPUT())),
+    UPDATE(V(industry_useful_demand_for_other_machinery_wood_pellets), preset_demand, NEG(USER_INPUT())))
+- priority = 0
+- max_value = 5.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = %
+- update_period = future
+- update_type = %y
