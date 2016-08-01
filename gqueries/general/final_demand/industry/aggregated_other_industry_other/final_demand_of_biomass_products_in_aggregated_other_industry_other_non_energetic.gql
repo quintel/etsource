@@ -1,0 +1,54 @@
+# Non-energetic final demand of the 'biomass_products' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_other_industry_other)
+            ),
+            "! energetic?"
+          ),
+          biodiesel?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_other_industry_other)
+            ),
+            "! energetic?"
+          ),
+          bio_ethanol?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_other_industry_other)
+            ),
+            "! energetic?"
+          ),
+          wood_pellets?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_other_industry_other)
+            ),
+            "! energetic?"
+          ),
+          bio_lng?
+        ),
+        value
+      )
+    ) / BILLIONS

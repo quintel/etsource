@@ -1,0 +1,30 @@
+# Non-energetic final demand of the 'solar' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_other_industry_nl)
+            ),
+            "! energetic?"
+          ),
+          solar_radiation?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_other_industry_nl)
+            ),
+            "! energetic?"
+          ),
+          solar_thermal?
+        ),
+        value
+      )
+    ) / BILLIONS

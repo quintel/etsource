@@ -1,0 +1,18 @@
+# Energetic final demand of the 'hydrogen' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(food_industry)
+            ),
+            energetic?
+          ),
+          hydrogen?
+        ),
+        value
+      )
+    ) / BILLIONS

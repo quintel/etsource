@@ -1,0 +1,24 @@
+# Final demand of the 'natural_gas_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(aggregated_other_industry_nl)
+          ),
+          network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(aggregated_other_industry_nl)
+          ),
+          lng?
+        ),
+        value
+      )
+    ) / BILLIONS

@@ -1,0 +1,24 @@
+# Final demand of the 'heat' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          steam_hot_water?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          useable_heat?
+        ),
+        value
+      )
+    ) / BILLIONS

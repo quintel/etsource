@@ -1,0 +1,15 @@
+# Final demand of the 'electricity' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(food_industry)
+          ),
+          electricity?
+        ),
+        value
+      )
+    ) / BILLIONS
