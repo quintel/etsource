@@ -1,0 +1,18 @@
+# Energetic final demand of the 'electricity' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(other_chemical_industry)
+            ),
+            energetic?
+          ),
+          electricity?
+        ),
+        value
+      )
+    ) / BILLIONS

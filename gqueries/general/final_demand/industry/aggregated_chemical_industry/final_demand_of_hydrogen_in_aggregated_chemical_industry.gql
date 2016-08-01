@@ -1,0 +1,15 @@
+# Final demand of the 'hydrogen' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(aggregated_chemical_industry)
+          ),
+          hydrogen?
+        ),
+        value
+      )
+    ) / BILLIONS

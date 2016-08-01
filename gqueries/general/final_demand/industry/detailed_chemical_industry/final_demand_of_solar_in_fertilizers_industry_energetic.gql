@@ -1,0 +1,30 @@
+# Energetic final demand of the 'solar' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(fertilizers_industry)
+            ),
+            energetic?
+          ),
+          solar_radiation?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(fertilizers_industry)
+            ),
+            energetic?
+          ),
+          solar_thermal?
+        ),
+        value
+      )
+    ) / BILLIONS
