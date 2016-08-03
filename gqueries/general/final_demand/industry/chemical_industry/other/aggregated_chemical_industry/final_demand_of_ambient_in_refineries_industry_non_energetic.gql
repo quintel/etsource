@@ -1,0 +1,30 @@
+# Non-energetic final demand of the 'ambient' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(refineries_industry)
+            ),
+            "! energetic?"
+          ),
+          ambient_heat?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(refineries_industry)
+            ),
+            "! energetic?"
+          ),
+          ambient_cold?
+        ),
+        value
+      )
+    ) / BILLIONS
