@@ -1,0 +1,18 @@
+# Non-energetic final demand of the 'geothermal' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(aggregated_chemical_industry)
+            ),
+            "! energetic?"
+          ),
+          geothermal?
+        ),
+        value
+      )
+    ) / BILLIONS

@@ -1,0 +1,12 @@
+# Use of carrier group 'oil_and_derivatives' in chemical industry heat
+
+- unit = PJ
+- query =
+    SUM(
+      V(CHILDREN(V(industry_useful_demand_for_chemical_refineries_useable_heat)),input_of_crude_oil),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_refineries_useable_heat)),input_of_gasoline),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_refineries_useable_heat)),input_of_diesel),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_refineries_useable_heat)),input_of_lpg),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_refineries_useable_heat)),input_of_kerosene),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_refineries_useable_heat)),input_of_heavy_fuel_oil)
+    ) / BILLIONS

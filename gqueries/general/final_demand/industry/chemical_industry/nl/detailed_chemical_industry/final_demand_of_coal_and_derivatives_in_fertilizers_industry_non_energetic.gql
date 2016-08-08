@@ -1,0 +1,30 @@
+# Non-energetic final demand of the 'coal_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(fertilizers_industry)
+            ),
+            "! energetic?"
+          ),
+          coal?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(fertilizers_industry)
+            ),
+            "! energetic?"
+          ),
+          coal_gas?
+        ),
+        value
+      )
+    ) / BILLIONS

@@ -1,0 +1,8 @@
+# Use of carrier group 'solar' in chemical industry heat
+
+- unit = PJ
+- query =
+    SUM(
+      V(CHILDREN(V(industry_useful_demand_for_chemical_fertilizers_useable_heat)),input_of_solar_radiation),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_fertilizers_useable_heat)),input_of_solar_thermal)
+    ) / BILLIONS

@@ -1,0 +1,60 @@
+# Final demand of the 'oil_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          crude_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          gasoline?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          diesel?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          lpg?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          kerosene?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            LG(final_demand),LG(paper_industry)
+          ),
+          heavy_fuel_oil?
+        ),
+        value
+      )
+    ) / BILLIONS

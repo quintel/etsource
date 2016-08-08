@@ -1,0 +1,30 @@
+# Energetic final demand of the 'ambient' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(paper_industry)
+            ),
+            energetic?
+          ),
+          ambient_heat?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(paper_industry)
+            ),
+            energetic?
+          ),
+          ambient_cold?
+        ),
+        value
+      )
+    ) / BILLIONS

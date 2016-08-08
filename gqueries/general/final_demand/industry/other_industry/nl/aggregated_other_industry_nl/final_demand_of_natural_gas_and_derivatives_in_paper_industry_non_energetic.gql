@@ -1,0 +1,30 @@
+# Non-energetic final demand of the 'natural_gas_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(paper_industry)
+            ),
+            "! energetic?"
+          ),
+          network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              LG(final_demand),LG(paper_industry)
+            ),
+            "! energetic?"
+          ),
+          lng?
+        ),
+        value
+      )
+    ) / BILLIONS

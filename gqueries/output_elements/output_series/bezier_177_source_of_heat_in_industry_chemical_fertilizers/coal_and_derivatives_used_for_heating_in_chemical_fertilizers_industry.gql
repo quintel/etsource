@@ -1,0 +1,8 @@
+# Use of carrier group 'coal_and_derivatives' in chemical industry heat
+
+- unit = PJ
+- query =
+    SUM(
+      V(CHILDREN(V(industry_useful_demand_for_chemical_fertilizers_useable_heat)),input_of_coal),
+      V(CHILDREN(V(industry_useful_demand_for_chemical_fertilizers_useable_heat)),input_of_coal_gas)
+    ) / BILLIONS
