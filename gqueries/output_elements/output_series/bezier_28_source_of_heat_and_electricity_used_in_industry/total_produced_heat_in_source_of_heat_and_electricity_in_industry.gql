@@ -1,9 +1,10 @@
 - unit = PJ
 - query =
     SUM(
-      V(industry_useful_demand_useable_heat, demand),
       V(CHILDREN(V(industry_aluminium_production)), input_of_useable_heat),
       V(CHILDREN(V(industry_other_metals_production)), input_of_useable_heat),
       V(CHILDREN(V(industry_steel_production)), input_of_useable_heat),
-      V(industry_useful_demand_for_chemical_useable_heat, demand)
+      V(industry_useful_demand_for_chemical_fertilizers_useable_heat, demand),
+      V(industry_useful_demand_for_chemical_other_useable_heat, demand),
+      V(industry_useful_demand_for_chemical_refineries_useable_heat, demand)
     ) / BILLIONS
