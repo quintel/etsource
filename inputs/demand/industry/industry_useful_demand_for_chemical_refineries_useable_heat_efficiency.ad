@@ -1,28 +1,8 @@
 - query =
-    current_oil_products_output_share = 1 - QUERY_PRESENT(-> { V(industry_refinery_transformation_crude_oil,loss_output_conversion) });
-    current_oil_products_output = QUERY_PRESENT(-> { V(industry_refinery_transformation_crude_oil,demand) }) * current_oil_products_output_share;
-    current_oil_input = QUERY_PRESENT(-> { V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic,demand) });
-
-    carbon_efficiency = current_oil_products_output / current_oil_input;
-
-    future_oil_input = QUERY_FUTURE(-> { V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic,demand) });
-    future_own_use = QUERY_FUTURE(-> { V(industry_useful_demand_for_chemical_refineries_useable_heat,demand) });
-
-    future_oil_input_share = future_oil_input / (future_oil_input + future_own_use);
-    future_own_use_share = future_own_use / (future_oil_input + future_own_use);
-
-    future_total_efficiency = (carbon_efficiency * future_oil_input) / (future_oil_input + future_own_use);
-
-    current_total_efficiency = (carbon_efficiency * current_oil_input) / (future_oil_input + future_own_use);
-
-    efficiency_improvement_ratio = future_total_efficiency / current_total_efficiency;
-
     EACH(
-    UPDATE(V(industry_useful_demand_for_chemical_refineries_useable_heat), preset_demand, NEG(USER_INPUT())),
-    UPDATE(INPUT_SLOTS(V(industry_refinery_transformation_crude_oil), crude_oil), conversion, future_oil_input_share),
-    UPDATE(INPUT_SLOTS(V(industry_refinery_transformation_crude_oil), useable_heat), conversion, future_own_use_share),
-    UPDATE_WITH_FACTOR(UPDATE(OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil), diesel), conversion, efficiency_improvement_ratio)),
-    UPDATE_WITH_FACTOR(UPDATE(OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil), gasoline), conversion, efficiency_improvement_ratio)))
+        UPDATE(V(industry_useful_demand_for_chemical_refineries_useable_heat), preset_demand, NEG(USER_INPUT())),
+        UPDATE(INPUT_SLOTS(V(industry_refinery_transformation_crude_oil), useable_heat), conversion, NEG(USER_INPUT()))
+    )
 - priority = 0
 - max_value = 5.0
 - min_value = 0.0
