@@ -1,7 +1,10 @@
 - query =
     EACH(
-        UPDATE(V(industry_useful_demand_for_chemical_refineries_useable_heat), preset_demand, NEG(USER_INPUT())),
-        UPDATE(INPUT_SLOTS(V(industry_refinery_transformation_crude_oil), useable_heat), conversion, NEG(USER_INPUT()))
+        UPDATE(OUTPUT_SLOTS(V(industry_chemicals_refineries_burner_coal), useable_heat), conversion, USER_INPUT()),
+        UPDATE(OUTPUT_SLOTS(V(industry_chemicals_refineries_burner_crude_oil), useable_heat), conversion, USER_INPUT()),
+        UPDATE(OUTPUT_SLOTS(V(industry_chemicals_refineries_burner_network_gas), useable_heat), conversion, USER_INPUT()),
+        UPDATE(OUTPUT_SLOTS(V(industry_chemicals_refineries_burner_wood_pellets), useable_heat), conversion, USER_INPUT()),
+        UPDATE(OUTPUT_SLOTS(V(industry_final_demand_for_chemical_refineries_steam_hot_water), useable_heat), conversion, USER_INPUT())
     )
 - priority = 0
 - max_value = 5.0
