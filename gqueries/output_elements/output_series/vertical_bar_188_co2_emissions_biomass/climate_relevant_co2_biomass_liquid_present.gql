@@ -1,0 +1,17 @@
+# This query returns the climate relevant CO2-emissions of biomass which is the product
+# of the primary demand for biomass times the potential CO2-emissions of this biomass times
+# the percentage of this CO2-emissions that is deemed relevant for climate change as set by
+# the user through a slider. We distinguish three types of biomass: solid, gas and liquid,
+# which can be seperately changed by the user. The user can set different values of this slider
+# for present and future.
+
+- unit = PJ
+- query =
+    present:SUM(
+      V(G(final_demand_group), key, primary_demand_of_bio_ethanol).sum *
+        V(CARRIER(bio_ethanol), potential_co2_conversion_per_mj),
+      V(G(final_demand_group), key, primary_demand_of_bio_oil).sum *
+        V(CARRIER(bio_oil), potential_co2_conversion_per_mj),
+      V(G(final_demand_group), key, primary_demand_of_biodiesel).sum *
+        V(CARRIER(biodiesel), potential_co2_conversion_per_mj)
+    ) * INPUT_VALUE(climate_relevant_co2_biomass_liquid_present) / 100 / BILLIONS  
