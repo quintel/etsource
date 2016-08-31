@@ -1,0 +1,6 @@
+# Query for refinery sankey: connection between import of crude oil and refinery
+
+- unit = PJ
+- query =
+    DIVIDE(V(industry_refinery_transformation_crude_oil, input_of_crude_oil),BILLIONS) * 
+      V(energy_import_crude_oil, share_of_energy_distribution_crude_oil)
