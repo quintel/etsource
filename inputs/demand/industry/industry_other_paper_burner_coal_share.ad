@@ -1,0 +1,15 @@
+- query =
+    EACH(
+      UPDATE(LINK(industry_other_paper_burner_coal,industry_useful_demand_for_other_paper_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(industry_useful_demand_for_other_paper_useable_heat,industry_other_paper_burner_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(industry_useful_demand_for_other_paper_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = other_paper_heat
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_other_paper_burner_coal,share_of_industry_useful_demand_for_other_paper_useable_heat) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
