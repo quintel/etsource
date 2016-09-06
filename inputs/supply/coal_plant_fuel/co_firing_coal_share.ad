@@ -1,5 +1,6 @@
 - query =
     EACH(
+      UPDATE( INPUT_SLOTS(V(energy_heater_for_heat_network_coal), coal), conversion, USER_INPUT() / 100.0 ),
       UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_coal), coal), conversion, USER_INPUT() / 100.0 ),
       UPDATE( INPUT_SLOTS(V(energy_chp_ultra_supercritical_coal), coal),   conversion, USER_INPUT() / 100.0 ),
       UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_oxyfuel_ccs_lignite), lignite), conversion, USER_INPUT() / 100.0 ),      
