@@ -3,13 +3,13 @@
 - unit = tonne
 - query =
     SUM(
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.waste_mix? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.waste_mix? }}, "waste_mix_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.waste_mix? }}, primary_demand)) > 0.0,
+            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.waste_mix? }}, "waste_mix_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
             0.0),
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.non_biogenic_waste? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.non_biogenic_waste? }}, "non_biogenic_waste_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.non_biogenic_waste? }}, primary_demand)) > 0.0,
+            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.non_biogenic_waste? }}, "non_biogenic_waste_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
             0.0),
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biogenic_waste? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biogenic_waste? }}, "biogenic_waste_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biogenic_waste? }}, primary_demand)) > 0.0,
+            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.biogenic_waste? }}, "biogenic_waste_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
             0.0)
     ) / THOUSANDS
