@@ -2,26 +2,21 @@
 
 - unit = tonne
 - query =
-    SUM(
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.useable_heat? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.useable_heat? }}, "useable_heat_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.cooling? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.cooling? }}, "cooling_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.car_kms? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.car_kms? }}, "car_kms_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.truck_kms? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.truck_kms? }}, "truck_kms_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.light? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.light? }}, "light_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.not_defined? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.not_defined? }}, "not_defined_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.savings? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.savings? }}, "savings_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0)
-    ) / THOUSANDS
+        useable_heat = G(energy_export).select { |node| node.query.input_of_useable_heat > 0 };
+        cooling = G(energy_export).select { |node| node.query.input_of_cooling > 0 };
+        car_kms = G(energy_export).select { |node| node.query.input_of_car_kms > 0 };
+        truck_kms = G(energy_export).select { |node| node.query.input_of_truck_kms > 0 };
+        light = G(energy_export).select { |node| node.query.input_of_light > 0 };
+        not_defined = G(energy_export).select { |node| node.query.input_of_not_defined > 0 };
+        savings = G(energy_export).select { |node| node.query.input_of_savings > 0 };
+
+        SUM(
+            V(useable_heat, "useable_heat_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(cooling, "cooling_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(car_kms, "car_kms_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(truck_kms, "truck_kms_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(light, "light_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(not_defined, "not_defined_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(savings, "savings_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+        ) / THOUSANDS
+    

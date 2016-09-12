@@ -1,0 +1,10 @@
+# CO2 of carrier group 'ambient' in curtailment converter
+
+- unit = tonne
+- query =
+    SUM(
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, "ambient_heat_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, "ambient_cold_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, "wind_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.water? }}, "water_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

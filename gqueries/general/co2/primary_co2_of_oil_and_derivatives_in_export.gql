@@ -2,23 +2,19 @@
 
 - unit = tonne
 - query =
-    SUM(
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.crude_oil? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.crude_oil? }}, "crude_oil_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.gasoline? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.gasoline? }}, "gasoline_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.diesel? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.diesel? }}, "diesel_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lpg? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lpg? }}, "lpg_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.kerosene? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.kerosene? }}, "kerosene_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.heavy_fuel_oil? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.heavy_fuel_oil? }}, "heavy_fuel_oil_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0)
-    ) / THOUSANDS
+        crude_oil = G(energy_export).select { |node| node.query.input_of_crude_oil > 0 };
+        gasoline = G(energy_export).select { |node| node.query.input_of_gasoline > 0 };
+        diesel = G(energy_export).select { |node| node.query.input_of_diesel > 0 };
+        lpg = G(energy_export).select { |node| node.query.input_of_lpg > 0 };
+        kerosene = G(energy_export).select { |node| node.query.input_of_kerosene > 0 };
+        heavy_fuel_oil = G(energy_export).select { |node| node.query.input_of_heavy_fuel_oil > 0 };
+
+        SUM(
+            V(crude_oil, "crude_oil_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(gasoline, "gasoline_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(diesel, "diesel_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(lpg, "lpg_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(kerosene, "kerosene_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(heavy_fuel_oil, "heavy_fuel_oil_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+        ) / THOUSANDS
+    

@@ -2,11 +2,11 @@
 
 - unit = tonne
 - query =
-    SUM(
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.steam_hot_water? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.steam_hot_water? }}, "steam_hot_water_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.useable_heat? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.useable_heat? }}, "useable_heat_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0)
-    ) / THOUSANDS
+        steam_hot_water = G(energy_export).select { |node| node.query.input_of_steam_hot_water > 0 };
+        useable_heat = G(energy_export).select { |node| node.query.input_of_useable_heat > 0 };
+
+        SUM(
+            V(steam_hot_water, "steam_hot_water_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(useable_heat, "useable_heat_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+        ) / THOUSANDS
+    

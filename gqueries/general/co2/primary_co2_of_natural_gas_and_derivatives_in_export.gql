@@ -2,20 +2,17 @@
 
 - unit = tonne
 - query =
-    SUM(
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.natural_gas? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.natural_gas? }}, "natural_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lng? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.lng? }}, "lng_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "network_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.gas_power_fuelmix? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.gas_power_fuelmix? }}, "gas_power_fuelmix_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0),
-        IF(SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.compressed_network_gas? }}, primary_demand)) > 0.0,
-            SUM(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.compressed_network_gas? }}, "compressed_network_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")),
-            0.0)
-    ) / THOUSANDS
+        natural_gas = G(energy_export).select { |node| node.query.input_of_natural_gas > 0 };
+        lng = G(energy_export).select { |node| node.query.input_of_lng > 0 };
+        network_gas = G(energy_export).select { |node| node.query.input_of_network_gas > 0 };
+        gas_power_fuelmix = G(energy_export).select { |node| node.query.input_of_gas_power_fuelmix > 0 };
+        compressed_network_gas = G(energy_export).select { |node| node.query.input_of_compressed_network_gas > 0 };
+
+        SUM(
+            V(natural_gas, "natural_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(lng, "lng_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(network_gas, "network_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(gas_power_fuelmix, "gas_power_fuelmix_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(compressed_network_gas, "compressed_network_gas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+        ) / THOUSANDS
+    

@@ -1,0 +1,12 @@
+# CO2 of carrier group 'oil_and_derivatives' in curtailment converter
+
+- unit = tonne
+- query =
+    SUM(
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.crude_oil? }}, "crude_oil_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.gasoline? }}, "gasoline_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.diesel? }}, "diesel_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.lpg? }}, "lpg_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.kerosene? }}, "kerosene_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.heavy_fuel_oil? }}, "heavy_fuel_oil_input_conversion * primary_co2_emission")
+    ) / THOUSANDS
