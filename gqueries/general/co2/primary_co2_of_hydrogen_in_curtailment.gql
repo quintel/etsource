@@ -1,0 +1,7 @@
+# CO2 of carrier group 'hydrogen' in curtailment converter
+
+- unit = tonne
+- query =
+    SUM(
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

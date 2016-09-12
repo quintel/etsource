@@ -1,0 +1,11 @@
+# CO2 of carrier group 'natural_gas_and_derivatives' in curtailment converter
+
+- unit = tonne
+- query =
+    SUM(
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.natural_gas? }}, "natural_gas_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.lng? }}, "lng_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "network_gas_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.gas_power_fuelmix? }}, "gas_power_fuelmix_input_conversion * primary_co2_emission"),
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.compressed_network_gas? }}, "compressed_network_gas_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

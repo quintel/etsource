@@ -1,0 +1,7 @@
+# CO2 of carrier group 'imported_electricity' in curtailment converter
+
+- unit = tonne
+- query =
+    SUM(
+      V(V(energy_flexibility_curtailment_electricity).select {|node| node.input_slots.detect { |slot| slot.carrier.imported_electricity? }}, "imported_electricity_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

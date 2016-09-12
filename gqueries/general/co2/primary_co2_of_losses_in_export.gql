@@ -2,8 +2,9 @@
 
 - unit = tonne
 - query =
-    SUM(
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.loss? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.loss? }}, "loss_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            0.0)
-    ) / THOUSANDS
+        loss = G(energy_export).select { |node| node.query.input_of_loss > 0 };
+
+        SUM(
+            V(loss, "loss_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+        ) / THOUSANDS
+    

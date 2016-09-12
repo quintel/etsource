@@ -2,17 +2,15 @@
 
 - unit = tonne
 - query =
-    SUM(
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, "ambient_heat_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            0.0),
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, "ambient_cold_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            0.0),
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, "wind_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            0.0),
-        IF(V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.water? }}, primary_demand) > 0.0,
-            V(G(energy_export).select {|node| node.input_slots.detect { |slot| slot.carrier.water? }}, "water_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            0.0)
-    ) / THOUSANDS
+        ambient_heat = G(energy_export).select { |node| node.query.input_of_ambient_heat > 0 };
+        ambient_cold = G(energy_export).select { |node| node.query.input_of_ambient_cold > 0 };
+        wind = G(energy_export).select { |node| node.query.input_of_wind > 0 };
+        water = G(energy_export).select { |node| node.query.input_of_water > 0 };
+
+        SUM(
+            V(ambient_heat, "ambient_heat_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(ambient_cold, "ambient_cold_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(wind, "wind_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(water, "water_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+        ) / THOUSANDS
+    

@@ -1,0 +1,9 @@
+# Primary demand of carrier group 'coal_and_derivatives' for the curtailment converter
+
+- unit = PJ
+- query =
+    SUM(
+       V(energy_flexibility_curtailment_electricity, primary_demand_of_coal),
+       V(energy_flexibility_curtailment_electricity, primary_demand_of_coal_gas),
+       V(energy_flexibility_curtailment_electricity, primary_demand_of_cokes)
+    ) / BILLIONS
