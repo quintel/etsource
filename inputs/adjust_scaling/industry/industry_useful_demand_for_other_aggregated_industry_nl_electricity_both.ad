@@ -1,0 +1,18 @@
+- query =
+    EACH(
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_construction_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_machinery_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_minerals_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_mining_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_non_specified_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_textile_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_transport_equipment_electricity), preset_demand, USER_INPUT()),
+    UPDATE_WITH_FACTOR(V(industry_useful_demand_for_other_wood_products_electricity), preset_demand, USER_INPUT()))
+- priority = 10
+- max_value = 250.0
+- min_value = 0.0
+- start_value = 100.0
+- step_value = 0.1
+- unit = %
+- update_period = both
+- update_type = %
