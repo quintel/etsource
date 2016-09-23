@@ -1,0 +1,9 @@
+# CO2 of gas in agriculture
+
+- unit = tonne
+- query =
+    V(
+        agriculture_final_demand_network_gas,
+        agriculture_chp_engine_network_gas,
+        "weighted_carrier_co2_per_mj * demand"
+    ).sum / THOUSANDS

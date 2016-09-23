@@ -1,0 +1,12 @@
+# CO2 of gas in industry
+
+- unit = tonne
+- query = 
+    V(
+        inindustry_final_demand_network_gas,
+        industry_chp_combined_cycle_gas_power_fuelmix,
+        industry_chp_turbine_gas_power_fuelmix,
+        industry_chp_engine_gas_power_fuelmix,
+        "weighted_carrier_co2_per_mj * demand"
+    ).sum / THOUSANDS
+
