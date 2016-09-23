@@ -1,0 +1,11 @@
+# CO2 of gas in energy
+
+- unit = tonne
+- query = 
+    SUM(
+        V(CHILDREN(V(energy_power_hv_network_electricity)).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "weighted_carrier_co2_per_mj * demand * (1.0 - free_co2_factor)"),
+        V(
+            energy_heater_for_heat_network_network_gas,
+            "weighted_carrier_co2_per_mj * demand * (1.0 - free_co2_factor)"
+        )
+    ) / THOUSANDS
