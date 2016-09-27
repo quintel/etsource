@@ -2,8 +2,11 @@
 
 - unit = tonne
 - query = 
-    V(
-        industry_final_demand_crude_oil,
-        "weighted_carrier_co2_per_mj * demand"
+    SUM(
+        V(
+            industry_final_demand_crude_oil,
+            "weighted_carrier_co2_per_mj * demand"
+        ),
+        Q(industry_fuelmix_total_in_co2_sankey) * Q(oil_fraction_of_fuelmix)
     ) / THOUSANDS
 
