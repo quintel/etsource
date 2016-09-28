@@ -1,0 +1,13 @@
+# CO2 of coal in energy
+
+- unit = tonne
+- query = 
+    SUM(
+        V(CHILDREN(V(energy_power_hv_network_electricity)).select {|node| node.input_slots.detect { |slot| slot.carrier.coal? }}, "weighted_carrier_co2_per_mj * demand * free_co2_factor"),
+        V(CHILDREN(V(energy_power_hv_network_electricity)).select {|node| node.input_slots.detect { |slot| slot.carrier.lignite? }}, "weighted_carrier_co2_per_mj * demand * free_co2_factor"),
+        V(
+            energy_heater_for_heat_network_coal, 
+            energy_heater_for_heat_network_lignite,
+            "weighted_carrier_co2_per_mj * demand * free_co2_factor"
+        )
+    ) / THOUSANDS

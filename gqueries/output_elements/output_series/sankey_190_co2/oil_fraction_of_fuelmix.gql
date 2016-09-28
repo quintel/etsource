@@ -1,0 +1,9 @@
+# Ratio of oil (crude and bio) to network gas in gas power fuel mix
+
+- unit = factor
+- query =
+    IF(
+        V(energy_mixer_for_gas_power_fuel, "(input_of_network_gas + input_of_crude_oil + input_of_bio_oil)") > 0.0,
+        V(energy_mixer_for_gas_power_fuel, "(input_of_crude_oil + input_of_bio_oil) / (input_of_network_gas + input_of_crude_oil + input_of_bio_oil)"),
+        1.0
+    )

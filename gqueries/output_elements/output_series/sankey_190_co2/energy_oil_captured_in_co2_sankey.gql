@@ -1,0 +1,12 @@
+# CO2 of oil in energy
+
+- unit = tonne
+- query = 
+    SUM(
+        V(
+            energy_heater_for_heat_network_crude_oil,
+            energy_power_ultra_supercritical_crude_oil,
+            energy_power_engine_diesel,
+            "weighted_carrier_co2_per_mj * demand * (1.0 - free_co2_factor)"
+        )
+    ) / THOUSANDS

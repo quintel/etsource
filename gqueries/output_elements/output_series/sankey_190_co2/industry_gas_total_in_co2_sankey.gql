@@ -1,0 +1,11 @@
+# CO2 of gas in industry
+
+- unit = tonne
+- query = 
+    SUM(
+        V(
+            industry_final_demand_network_gas,
+            "weighted_carrier_co2_per_mj * demand"
+        ),
+        Q(industry_fuelmix_total_in_co2_sankey) * (1.0 - Q(oil_fraction_of_fuelmix))
+    ) / THOUSANDS
