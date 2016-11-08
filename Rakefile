@@ -324,7 +324,7 @@ task :decrypt do
   Dir.glob('datasets/*').each do |area|
     if File.exists?("#{ area }/energy_balance.gpg")
       puts "* #{ area }"
-      cmd = "gpg -d --passphrase #{ password } #{ area }/energy_balance.gpg > #{ area }/energy_balance.csv"
+      cmd = "echo '#{ password }' | gpg --passphrase-fd 0 -d #{ area }/energy_balance.gpg > #{ area }/energy_balance.csv"
       puts `#{ cmd }`
      end
   end
