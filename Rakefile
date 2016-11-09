@@ -324,8 +324,12 @@ task :decrypt do
   Dir.glob('datasets/*').each do |area|
     if File.exists?("#{ area }/energy_balance.gpg")
       puts "* #{ area }"
-      cmd = "echo '#{ password }' | gpg --passphrase-fd 0 -d #{ area }/energy_balance.gpg > #{ area }/energy_balance.csv"
-      puts `#{ cmd }`
+      cmd = "gpg --passphrase-fd 0 -d #{ area }/energy_balance.gpg > #{ area }/energy_balance.csv"
+      pipe = IO.popen(cmd, 'r+')
+      pipe.print(password)
+      pipe.close_write
+      puts pipe.read
+      pipe.close
      end
   end
 
