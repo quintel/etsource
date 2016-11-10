@@ -1,0 +1,12 @@
+# CO2 of carrier group 'crude_oil'
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(final_demand_group),primary_demand_of_crude_oil).sum * V(CARRIER(crude_oil), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_gasoline).sum * V(CARRIER(gasoline), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_diesel).sum * V(CARRIER(diesel), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_kerosene).sum * V(CARRIER(kerosene), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_lpg).sum * V(CARRIER(lpg), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_heavy_fuel_oil).sum * V(CARRIER(heavy_fuel_oil), co2_per_mj)
+    ) / THOUSANDS
