@@ -1,0 +1,15 @@
+# The final demand in households that is filled by sustainable sources is
+# divided over the total final energy demand in households.
+
+- query =
+    DIVIDE(
+      V(
+        INTERSECTION(G(final_demand_group), SECTOR(households)),
+        "demand*sustainability_share"
+      ).sum,
+      V(
+        INTERSECTION(G(final_demand_group), SECTOR(households)),
+        "demand"
+      ).sum
+    )
+- unit = factor
