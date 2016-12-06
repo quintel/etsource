@@ -335,3 +335,25 @@ task :fix_line_endings do
     end
   end
 end
+
+desc <<-DESC
+  Scale a dataset to amount_of_residences
+
+  Arguments:
+
+  - DATASET = dataset
+  - NUMBER_OF_RESIDENCES = number of residences
+  - LOCAL_DATASET = new local dataset name
+
+DESC
+
+task :scale do
+  require 'bundler'
+  Bundler.require(:development)
+
+  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
+
+  Atlas::Scaler.new(
+    ENV['DATASET'], ENV['LOCAL_DATASET'], ENV['NUMBER_OF_RESIDENCES']
+  ).create_scaled_dataset
+end
