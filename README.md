@@ -19,7 +19,7 @@ ETSource is released under the [MIT License](LICENSE.txt).
 The sole exception to this is the **energy balance** in [datasets](datasets).
 These Energy Balances come from the [IEA][IEA], that does not allow
 redistribution of their data. You may want to purchase this data [with the
-IEA](http://data.iea.org/IEASTORE/DEFAULT.ASP) and put it in the appropiate
+IEA](http://wds.iea.org/WDS/Common/Login/login.aspx) and put it in the appropiate
 dataset directory to have a fully functioning ETSource for that region. You
 will have to adjust and extend the energy balance with the use of
 [ETDataset][etdataset].
