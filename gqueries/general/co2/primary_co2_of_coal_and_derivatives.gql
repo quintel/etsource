@@ -1,0 +1,10 @@
+# CO2 of carrier group 'coal'
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(final_demand_group),primary_demand_of_coal).sum * V(CARRIER(coal), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_coal_gas).sum * V(CARRIER(coal_gas), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_cokes).sum * V(CARRIER(cokes), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_lignite).sum * V(CARRIER(lignite), co2_per_mj)
+    ) / THOUSANDS
