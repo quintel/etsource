@@ -354,6 +354,6 @@ task :scale do
   Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
   Atlas::Scaler.new(
-    ENV['DATASET'], ENV['LOCAL_DATASET'], ENV['NUMBER_OF_RESIDENCES']
+    ENV['FULL_DATASET'], ENV['DERIVED_DATASET'], ENV['NUMBER_OF_RESIDENCES']
   ).create_scaled_dataset
 end
