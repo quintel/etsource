@@ -4,5 +4,6 @@
 - query =
     SUM(
       V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_solar_radiation),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_solar_thermal)      
+      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_solar_thermal),
+      V(LINK(households_water_heater_solar_thermal,households_useful_demand_for_hot_water_for_houses_with_solar_heater),demand)      
     ) / BILLIONS
