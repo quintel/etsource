@@ -23,12 +23,9 @@ The syntax is similar to GQL but has some unique keywords such as
 * **priority**: This number should be larger than or equal to 0.
 Larger values tell the engine to execute the input **prior** to inputs with 
 lower values (required)
-* **max_value**: hard-coded maximum for the slider (required in absence of 
-`max_value_gql`)
 * **min_value**: hard-coded minimum for the slider (required in absence of 
 `min_value_gql`)
 * **max_value_gql**: gquery that dynamically determines the maximum of a slider
-(required in absence of `max_value`)
 * **min_value_gql**: gquery that dynamically determines the minimum of a slider
 (required in absence of `min_value`)
 * **start_value**: hard-coded initial position of a slider (

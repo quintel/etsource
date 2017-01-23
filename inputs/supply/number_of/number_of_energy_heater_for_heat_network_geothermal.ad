@@ -4,7 +4,6 @@
       UPDATE(OUTPUT_LINKS(V(energy_heater_for_heat_network_geothermal),constant), share, V(energy_heater_for_heat_network_geothermal, production_based_on_number_of_heat_units)),
     )
 - priority = 0
-- max_value = 100.0
 - max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(SUM(V(G(final_demand_group),input_of_steam_hot_water)),V(energy_heater_for_heat_network_geothermal,typical_heat_production_per_unit)),2.0))
 - min_value = 0.0
 - start_value_gql = present:V(energy_heater_for_heat_network_geothermal,number_of_units)
