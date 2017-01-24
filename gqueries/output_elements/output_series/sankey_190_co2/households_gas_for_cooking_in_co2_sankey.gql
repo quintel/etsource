@@ -1,0 +1,7 @@
+# CO2 of gas for cooking in households
+
+- unit = tonne
+- query = 
+    SUM(
+        V(CHILDREN(V(households_useful_demand_cooking_useable_heat)), "weighted_carrier_co2_per_mj * demand")
+    ) / THOUSANDS

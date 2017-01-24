@@ -1,0 +1,13 @@
+# CO2 of oil in transport
+
+- unit = tonne
+- query = 
+    V(
+        transport_final_demand_lpg,
+        transport_final_demand_gasoline,
+        transport_final_demand_kerosene,
+        transport_final_demand_diesel,
+        transport_final_demand_heavy_fuel_oil,
+        "weighted_carrier_co2_per_mj * demand"
+    ).sum / THOUSANDS
+

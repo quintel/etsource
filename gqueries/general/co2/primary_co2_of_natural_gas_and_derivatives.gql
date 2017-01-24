@@ -1,0 +1,8 @@
+# CO2 of carrier group 'natural_gas'
+
+- unit = tonne
+- query =
+    SUM(
+      V(G(final_demand_group),primary_demand_of_natural_gas).sum * V(CARRIER(natural_gas), co2_per_mj),
+      V(G(final_demand_group),primary_demand_of_lng).sum * V(CARRIER(lng), co2_per_mj)
+    ) / THOUSANDS

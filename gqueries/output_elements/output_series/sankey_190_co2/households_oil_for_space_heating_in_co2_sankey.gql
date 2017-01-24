@@ -1,0 +1,7 @@
+# CO2 of oil for space heating in households
+
+- unit = tonne
+- query = 
+    SUM(
+        V(CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater)).select {|node| node.input_slots.detect { |slot| slot.carrier.crude_oil? }}, "weighted_carrier_co2_per_mj * demand")
+    ) / THOUSANDS

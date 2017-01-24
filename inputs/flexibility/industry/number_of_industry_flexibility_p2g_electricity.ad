@@ -3,7 +3,7 @@
   	  V(industry_flexibility_p2g_electricity), number_of_units, USER_INPUT()
     )
 - priority = 0
-- max_value = 100000.0
+- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(Q(total_electricity_produced),V(industry_flexibility_p2g_electricity,"typical_input_capacity * 8760 * 3600")),16))
 - min_value = 0.0
 - start_value = 0.0
 - step_value = 1

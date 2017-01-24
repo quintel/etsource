@@ -1,0 +1,7 @@
+# CO2 of gas for hot water in households
+
+- unit = tonne
+- query = 
+    SUM(
+        V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "weighted_carrier_co2_per_mj * demand")
+    ) / THOUSANDS

@@ -1,0 +1,15 @@
+# CO2 of coal in industry
+
+- unit = tonne
+- query = 
+    V(
+        industry_final_demand_coal,
+        industry_final_demand_coal_gas,
+        energy_cokesoven_consumption_coal_gas,
+        energy_steel_hisarna_transformation_coal,
+        energy_export_coal_gas,
+        industry_own_use_coal,
+        industry_chp_ultra_supercritical_coal,
+        "weighted_carrier_co2_per_mj * demand"
+    ).sum / THOUSANDS
+

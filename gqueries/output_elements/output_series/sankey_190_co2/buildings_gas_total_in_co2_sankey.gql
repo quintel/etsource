@@ -1,0 +1,9 @@
+# CO2 of gas in buildings
+
+- unit = tonne
+- query =
+    V(
+        buildings_final_demand_network_gas,
+        buildings_collective_chp_network_gas,
+        "weighted_carrier_co2_per_mj * demand"
+    ).sum / THOUSANDS

@@ -308,28 +308,21 @@ desc <<-DESC
   Decrypts the energy balance for every area.
 DESC
 task :decrypt do
-  if ENV['ETS_PASSWORD']
-    puts 'Using password from ETS_PASSWORD environment variable'
-    password = ENV['ETS_PASSWORD'].strip
-  elsif File.exists?('.password')
+  if File.exists?('.password')
     puts "Using password that is stored in .password..."
-    password = File.read('.password').strip
+    puts "Start Decrypting..."
+    Dir.glob('datasets/*').each do |area|
+      if File.exists?("#{ area }/energy_balance.gpg")
+        puts "* #{ area }"
+        cmd = "gpg --batch --yes --no-use-agent --passphrase-file .password" +
+              " --output #{ area }/energy_balance.csv --decrypt #{ area }/energy_balance.gpg"
+        puts `#{ cmd }`
+      end
+    end
+    puts "Done!"
   else
-    puts "File .password not found in root."
-    puts "Please Enter Passphrase to decrypt files:"
-    password = $stdin.gets.strip
+    puts "ERROR: File .password not found in current directory!"
   end
-
-  puts "Start Decrypting..."
-  Dir.glob('datasets/*').each do |area|
-    if File.exists?("#{ area }/energy_balance.gpg")
-      puts "* #{ area }"
-      cmd = "gpg -d --passphrase #{ password } #{ area }/energy_balance.gpg > #{ area }/energy_balance.csv"
-      puts `#{ cmd }`
-     end
-  end
-
-  puts "Done!"
 end
 
 desc <<-DESC

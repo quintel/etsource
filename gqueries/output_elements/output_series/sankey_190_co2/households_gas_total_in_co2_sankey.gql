@@ -1,0 +1,10 @@
+# CO2 of gas in households
+
+- unit = tonne
+- query = 
+    SUM(
+        Q(households_gas_for_cooking_in_co2_sankey),
+        Q(households_gas_for_hot_water_in_co2_sankey),
+        Q(households_gas_for_space_heating_in_co2_sankey),
+        Q(households_gas_for_chps_in_co2_sankey)
+    )

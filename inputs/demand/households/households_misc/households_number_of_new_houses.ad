@@ -52,7 +52,7 @@
   )
 
 - priority = 0
-- max_value_gql = present:Q(number_of_new_residences) * 0.000001 * 10
+- max_value_gql = present:SUM(Q(number_of_old_residences),Q(number_of_new_residences))* 2 * 0.000001
 - min_value = 0.0
 - start_value_gql = present:Q(number_of_new_residences) * 0.000001
 - step_value = 0.1

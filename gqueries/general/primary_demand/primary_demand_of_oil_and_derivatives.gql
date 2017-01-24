@@ -1,0 +1,10 @@
+- unit = PJ
+- query =
+    SUM(
+      V(G(final_demand_group),primary_demand_of_crude_oil).sum,
+      V(G(final_demand_group),primary_demand_of_gasoline).sum,
+      V(G(final_demand_group),primary_demand_of_diesel).sum,
+      V(G(final_demand_group),primary_demand_of_kerosene).sum,
+      V(G(final_demand_group),primary_demand_of_lpg).sum,
+      V(G(final_demand_group),primary_demand_of_heavy_fuel_oil).sum
+    ) / BILLIONS
