@@ -13,17 +13,19 @@ This key is simply the name of the file (minus the .ad extention).
 An input can contain the following items:
 
 * **comments**: preceded by '#' (optional)
-* **query**: This is the most complex part of the input. It contains the 
+* **query**: This is the most complex part of the input. It contains the
 instructions to the engine about **what** to update and by **how much**.
 The syntax is similar to GQL but has some unique keywords such as
   * UPDATE
   * EACH
   * USER_INPUT(): refers to the slider position
-  * ... 
+  * ...
 * **priority**: This number should be larger than or equal to 0.
-Larger values tell the engine to execute the input **prior** to inputs with 
+Larger values tell the engine to execute the input **prior** to inputs with
 lower values (required)
-* **min_value**: hard-coded minimum for the slider (required in absence of 
+* **max_value**: hard-coded maximum for the slider (required in absence of
+`max_value_gql`)
+* **min_value**: hard-coded minimum for the slider (required in absence of
 `min_value_gql`)
 * **max_value_gql**: gquery that dynamically determines the maximum of a slider
 * **min_value_gql**: gquery that dynamically determines the minimum of a slider
@@ -42,7 +44,7 @@ one of of the following
  * growth percentage: y = y * (1 + x)
  * yearly growth: y = y * (1 + x)^(duration of scenario in years)
 
-We will not give an exhaustive description of the syntax here and advice the 
+We will not give an exhaustive description of the syntax here and advice the
 user to learn from existing input statements rather than from this text.
 
 An example:
