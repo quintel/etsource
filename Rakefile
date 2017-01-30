@@ -337,18 +337,23 @@ task :fix_line_endings do
 end
 
 desc <<-DESC
-  Scale a dataset to amount_of_residences
+  Scale a dataset to number_of_residences
 
-  Arguments:
+  Mandatory arguments:
 
-  - DATASET = dataset
+  - FULL_DATASET         = a full dataset
   - NUMBER_OF_RESIDENCES = number of residences
-  - LOCAL_DATASET = new local dataset name
+  - DERIVED_DATASET      = new derived dataset name
 
 DESC
 
 task :scale do
   require 'bundler'
+
+  raise ArgumentError, 'missing FULL_DATASET argument'         unless ENV['FULL_DATASET']
+  raise ArgumentError, 'missing DERIVED_DATASET argument'      unless ENV['DERIVED_DATASET']
+  raise ArgumentError, 'missing NUMBER_OF_RESIDENCES argument' unless ENV['NUMBER_OF_RESIDENCES']
+
   Bundler.require(:development)
 
   Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
