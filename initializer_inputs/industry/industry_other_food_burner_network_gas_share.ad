@@ -1,0 +1,10 @@
+- query =
+    EACH(
+      UPDATE(LINK(industry_other_food_burner_network_gas,industry_useful_demand_for_other_food_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(industry_useful_demand_for_other_food_useable_heat,industry_other_food_burner_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(industry_useful_demand_for_other_food_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = other_food_heat_present
+- priority = 1
+

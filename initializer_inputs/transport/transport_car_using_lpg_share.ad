@@ -1,0 +1,16 @@
+- query =
+    EACH(
+      UPDATE(LINK(transport_car_using_lpg,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)}
+      ),
+      UPDATE(V(transport_car_using_lpg), number_of_units, DIVIDE(USER_INPUT(),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
+      UPDATE(V(transport_car_using_compressed_natural_gas), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_compressed_natural_gas_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
+      UPDATE(V(transport_car_using_diesel_mix), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_diesel_mix_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
+      UPDATE(V(transport_car_using_electricity), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_electricity_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
+      UPDATE(V(transport_car_using_gasoline_mix), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_gasoline_mix_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
+      UPDATE(V(transport_car_using_hydrogen), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_hydrogen_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) }))
+    )
+- share_group = transport_car_tech_present
+- priority = 1
+

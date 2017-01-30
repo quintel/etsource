@@ -1,0 +1,10 @@
+- query =
+    EACH(
+      UPDATE(LINK(agriculture_geothermal,agriculture_useful_demand_useable_heat), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(agriculture_useful_demand_useable_heat,agriculture_burner_network_gas), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(agriculture_useful_demand_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = agri_heat_present
+- priority = 1
+
