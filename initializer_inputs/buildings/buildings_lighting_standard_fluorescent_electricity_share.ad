@@ -1,0 +1,10 @@
+- query =
+    EACH(
+      UPDATE(LINK(buildings_lighting_standard_fluorescent_electricity,buildings_useful_demand_after_motion_detection_daylight_control_light), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(buildings_useful_demand_after_motion_detection_daylight_control_light,buildings_lighting_standard_fluorescent_electricity), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_after_motion_detection_daylight_control_light)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = lighting_buildings_present
+- priority = 1
+

@@ -1,0 +1,10 @@
+- query =
+    EACH(
+      UPDATE(LINK(households_lighting_efficient_fluorescent_electricity,households_useful_demand_light), share, DIVIDE(USER_INPUT(),100)),
+      UPDATE(LINK(households_useful_demand_light,households_lighting_incandescent_electricity), share,
+        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(households_useful_demand_light)),UPDATE_COLLECTION()), share))), 1)}
+      )
+    )
+- share_group = household_light_present
+- priority = 1
+
