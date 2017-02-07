@@ -1,9 +1,8 @@
 - query =
-    EACH(
-      UPDATE(LINK(industry_chemicals_refineries_burner_wood_pellets,industry_useful_demand_for_chemical_refineries_useable_heat), share, DIVIDE(USER_INPUT(),100)),
-      UPDATE(LINK(industry_useful_demand_for_chemical_refineries_useable_heat,industry_chemicals_refineries_burner_network_gas), share,
-        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(industry_useful_demand_for_chemical_refineries_useable_heat)),UPDATE_COLLECTION()), share))), 1)}
-      )
+    UPDATE(
+      LINK(industry_chemicals_refineries_burner_wood_pellets, industry_useful_demand_for_chemical_refineries_useable_heat),
+      share,
+      DIVIDE(USER_INPUT(), 100)
     )
 - share_group = chemical_refineries_heat
 - priority = 0
