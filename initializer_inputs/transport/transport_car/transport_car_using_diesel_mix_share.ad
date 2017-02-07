@@ -1,8 +1,8 @@
 - query =
-    EACH(
-      UPDATE(LINK(transport_car_using_diesel_mix,transport_useful_demand_car_kms), share, DIVIDE(USER_INPUT(),100)),
-      UPDATE(LINK(transport_useful_demand_car_kms,transport_car_using_gasoline_mix), share,
-        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(transport_useful_demand_car_kms)),UPDATE_COLLECTION()), share))), 1)})
+    UPDATE(
+      LINK(transport_car_using_diesel_mix, transport_useful_demand_car_kms),
+      share,
+      DIVIDE(USER_INPUT(), 100)
     )
 - share_group = transport_car_tech
 - priority = 1
