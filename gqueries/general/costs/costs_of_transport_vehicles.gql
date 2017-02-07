@@ -2,7 +2,7 @@
 
 - query =
     SUM( 
-      V((transport_car_using_electricity), total_costs_per(:plant)) * DIVIDE(INPUT_VALUE(transport_car_using_electricity_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) }),
-      V((transport_car_using_hydrogen), total_costs_per(:plant)) * DIVIDE(INPUT_VALUE(transport_car_using_hydrogen_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })
+      V((transport_car_using_electricity), total_costs_per(:plant)) * V(LINK(transport_car_using_electricity, transport_useful_demand_car_kms), share) * QUERY_FUTURE(-> { AREA(number_of_cars) }),
+      V((transport_car_using_hydrogen), total_costs_per(:plant)) * V(LINK(transport_car_using_hydrogen, transport_useful_demand_car_kms), share) * QUERY_FUTURE(-> { AREA(number_of_cars) })
     )
 - unit = euro
