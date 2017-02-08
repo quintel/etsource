@@ -1,0 +1,14 @@
+- query =
+    UPDATE(
+      LINK(buildings_cooling_airconditioning_electricity, buildings_useful_demand_after_insulation_cooling),
+      share,
+      DIVIDE(USER_INPUT(), 100)
+    )
+- share_group = cooling_buildings_present
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(buildings_cooling_airconditioning_electricity,share_of_buildings_useful_demand_after_insulation_cooling) * 100
+- step_value = 0.1
+- unit = %
+- update_period = present

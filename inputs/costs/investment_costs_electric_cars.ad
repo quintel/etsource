@@ -1,13 +1,6 @@
 - query = 
-    EACH(
-      UPDATE(V(transport_car_using_diesel_mix), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_diesel_mix_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
-      UPDATE(V(transport_car_using_compressed_natural_gas), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_compressed_natural_gas_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
-      UPDATE(V(transport_car_using_electricity), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_electricity_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
-      UPDATE(V(transport_car_using_gasoline_mix), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_gasoline_mix_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
-      UPDATE(V(transport_car_using_hydrogen), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_hydrogen_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
-      UPDATE(V(transport_car_using_lpg), number_of_units, DIVIDE(INPUT_VALUE(transport_car_using_lpg_share),100) * QUERY_PRESENT(-> { AREA(number_of_cars) })),
-      UPDATE(V(transport_car_using_hydrogen, transport_car_using_electricity), initial_investment, USER_INPUT())
-    )
+    UPDATE(V(transport_car_using_hydrogen, transport_car_using_electricity), initial_investment, USER_INPUT())
+
 - priority = 0
 - max_value_gql = present:25000.0
 - min_value = 0.0
