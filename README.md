@@ -1,6 +1,6 @@
 # ETSource
 
-![Master branch build status][build-status]
+[![Build Status](https://semaphoreci.com/api/v1/projects/872e360c-0855-4172-87d4-0759824f9ba0/25174/badge.svg)](https://semaphoreci.com/dennisschoenmakers/etsource)
 
 ETSource contains the data used by Quintel applications for modelling energy
 transition. The files contained herein are a mixture of human-editable
@@ -348,7 +348,6 @@ subdirectories whose names indicate the sector to which the node belongs.
 Contains scenarios completed by QI'ers and notable public figures which can be
 viewed on ETModel.
 
-[build-status]: https://semaphoreapp.com/api/v1/projects/63d00abb0b002bb34bdbe9602aee85a2a0d42f56/25174/badge.png
 [atlas]:        https://github.com/quintel/atlas
 [atlas-readme]: https://github.com/quintel/atlas#readme
 [refinery]:     https://github.com/quintel/refinery
