@@ -1,0 +1,15 @@
+- query =
+    {
+    :coal_heater => V(households_water_heater_coal,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :gas_combined_heater => V(households_water_heater_combined_network_gas,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :oil_heater => V(households_water_heater_crude_oil,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :district_heater => V(households_water_heater_district_heating_steam_hot_water,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :electric_heater => V(households_water_heater_electricity,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :air_heat_pump => V(households_water_heater_heatpump_air_water_electricity,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :ground_heat_pump => V(households_water_heater_heatpump_ground_water_electricity,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :hybrid_heat_pump => V(households_water_heater_hybrid_heatpump_air_water_electricity,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),
+    :micro_chp => V(households_water_heater_micro_chp_network_gas,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),    
+    :gas_heater => V(households_water_heater_network_gas,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),    
+    :fuel_cell => V(households_water_heater_fuel_cell_chp_network_gas,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h),    
+    :wood_pellet_heater => V(households_water_heater_wood_pellets,share_of_households_useful_demand_for_hot_water_after_solar_heater_and_p2h)   
+    }.sort_by { |name, share| share }.to_a.last[0]
