@@ -1,5 +1,5 @@
 - query = 
     DIVIDE(
-        QUERY_FUTURE(-> {V(energy_power_wind_turbine_inland, number_of_units)}) - QUERY_PRESENT(-> {V(energy_power_wind_turbine_inland, number_of_units)}),
+        QUERY_DELTA(-> {V(energy_power_wind_turbine_inland, number_of_units)}),
         Q(scenario_duration) 
     )
