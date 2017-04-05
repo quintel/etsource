@@ -1,0 +1,11 @@
+- query =
+    mo_converters = GROUP(merit_order_converters_for_dashboard);
+    profitable = FILTER(mo_converters, "profitability == :profitable");
+
+    PRODUCT(
+      DIVIDE(
+        SUM(V(profitable, "installed_production_capacity_in_mw_electricity")),
+        SUM(V(mo_converters, "installed_production_capacity_in_mw_electricity"))
+      ),
+      100
+    )
