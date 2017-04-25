@@ -1,0 +1,8 @@
+- query =
+  V(
+    GRAPH(),
+    group_of_excess_events((1..24).to_a, [
+      :energy_flexibility_curtailment_electricity,
+      :energy_export_electricity
+    ])
+  )[0][1]

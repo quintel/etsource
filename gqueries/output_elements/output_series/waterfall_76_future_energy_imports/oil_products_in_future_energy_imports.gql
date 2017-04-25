@@ -1,0 +1,11 @@
+- unit = PJ
+- query =
+    future:DIVIDE(
+        SUM(
+    	   V(G(energy_import),output_of_diesel).sum - V(G(energy_export),input_of_diesel).sum,
+           V(G(energy_import),output_of_gasoline).sum - V(G(energy_export),input_of_gasoline).sum,
+           V(G(energy_import),output_of_lpg).sum - V(G(energy_export),input_of_lpg).sum,
+           V(G(energy_import),output_of_kerosene).sum - V(G(energy_export),input_of_kerosene).sum,
+           V(G(energy_import),output_of_heavy_fuel_oil).sum - V(G(energy_export),input_of_heavy_fuel_oil).sum           
+           )
+    ,BILLIONS)

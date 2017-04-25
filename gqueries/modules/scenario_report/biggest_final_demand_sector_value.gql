@@ -1,0 +1,9 @@
+- query =
+    {
+    :households => V(INTERSECTION(G(final_demand_group),SECTOR(households)),demand).sum,
+    :buildings => V(INTERSECTION(G(final_demand_group),SECTOR(buildings)),demand).sum,
+    :transport => V(INTERSECTION(G(final_demand_group),SECTOR(transport)),demand).sum,
+    :other => V(INTERSECTION(G(final_demand_group),SECTOR(industry)),demand).sum,
+    :agriculture => V(INTERSECTION(G(final_demand_group),SECTOR(agriculture)),demand).sum,
+    :industry => V(INTERSECTION(G(final_demand_group),SECTOR(industry)),demand).sum
+    }.sort_by { |name, demand| demand }.to_a.last[1]
