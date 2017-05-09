@@ -77,7 +77,7 @@ namespace :import do
           cp_csv(csv, dest.join('central_producers.csv'))
         when /^#{ Regexp.escape(country.downcase) }$/
           if csv.to_s.include?('11_area/output')
-            cp_csv(csv, dest.join("#{ country.downcase }.ad"))
+            cp_csv(csv, dest.join("#{ country.downcase }.full.ad"))
           end
         end
       end # each csv
