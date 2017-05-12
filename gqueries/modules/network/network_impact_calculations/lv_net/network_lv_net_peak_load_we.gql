@@ -4,7 +4,10 @@
 
 - query =
     MAX(
-        QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_we*peak_load_in_mw")) }),
+        SUM(
+            QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_we*peak_load_in_mw")) }),
+            GRAPH(peak_load_of_explicitly_modelled_lv_technologies_we)
+        ),
         0.0
     )
 - unit = MW
