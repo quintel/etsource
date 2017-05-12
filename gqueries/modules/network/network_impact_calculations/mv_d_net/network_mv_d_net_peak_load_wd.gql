@@ -5,9 +5,11 @@
 - query =
     MAX(
         SUM(
-            QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_wd*peak_load_in_mw")) })
-                    *V(energy_power_lv_network_electricity,simult_wd)
-                    *V(energy_power_transformer_lv_mv_electricity,simult_we)
+            SUM(
+                QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_wd*peak_load_in_mw")) }),
+                GRAPH(peak_load_of_explicitly_modelled_lv_technologies_wd)
+            ) * V(energy_power_lv_network_electricity,simult_wd)
+                *V(energy_power_transformer_lv_mv_electricity,simult_wd)
             ,
             QUERY_DELTA( -> {SUM(V(Q(network_mv_d_net_converters),"simult_wd*peak_load_in_mw")) })
         ),
