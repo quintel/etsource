@@ -2,15 +2,16 @@
 # This Gquery takes into account all technologies below the HV/MV network and their simultaneousnesses
 # If the additional peak load in the future scenario is lower than in the present scenario, this Gquery returns 0.0
 
-
 - query =
     MAX(
         SUM(
-            QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_se*peak_load_in_mw")) })
-                        *V(energy_power_lv_network_electricity,simult_se)
-                        *V(energy_power_transformer_lv_mv_electricity,simult_se)
-                        *V(energy_power_mv_distribution_network_electricity, simult_se)
-                        *V(energy_power_mv_transport_network_electricity,simult_se)
+            SUM(
+                QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_se*peak_load_in_mw")) }),
+                GRAPH(peak_load_of_explicitly_modelled_lv_technologies_se)
+            ) * V(energy_power_lv_network_electricity,simult_se)
+                * V(energy_power_transformer_lv_mv_electricity,simult_se)
+                * V(energy_power_mv_distribution_network_electricity, simult_se)
+                * V(energy_power_mv_transport_network_electricity,simult_se)
             ,
             QUERY_DELTA( -> {SUM(V(Q(network_mv_d_net_converters),"simult_se*peak_load_in_mw")) })
                     *V(energy_power_mv_distribution_network_electricity, simult_se)
