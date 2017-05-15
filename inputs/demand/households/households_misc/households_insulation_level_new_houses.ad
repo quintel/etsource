@@ -86,6 +86,7 @@
     new_ambient_heat_share = 1.0 - new_gas_share - new_electricity_share;
 
     EACH(
+      UPDATE(AREA(), insulation_level_new_houses, USER_INPUT()),
       UPDATE(V(households_new_houses_heating_savings_from_insulation), initial_investment, total_cost),
       UPDATE(LINK(households_new_houses_useful_demand_for_heating,households_new_houses_heating_savings_from_insulation), share, saving_fraction),
       UPDATE(LINK(households_new_houses_useful_demand_for_cooling,households_new_houses_cooling_savings_from_insulation), share, saving_fraction),
