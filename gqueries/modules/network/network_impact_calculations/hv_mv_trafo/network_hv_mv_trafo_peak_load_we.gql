@@ -7,7 +7,7 @@
         SUM(
             SUM(
                 QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_we*peak_load_in_mw")) }),
-                GRAPH(peak_load_of_explicitly_modelled_lv_technologies_we)
+                V(GRAPH(), peak_load_of_explicitly_modelled_lv_technologies(we))
             ) * V(energy_power_lv_network_electricity,simult_we)
                 * V(energy_power_transformer_lv_mv_electricity,simult_we)
                 * V(energy_power_mv_distribution_network_electricity, simult_we)

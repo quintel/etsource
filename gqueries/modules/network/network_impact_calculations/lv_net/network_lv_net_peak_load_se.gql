@@ -6,7 +6,7 @@
     MAX(
         SUM(
             QUERY_DELTA( -> {SUM(V(Q(network_lv_net_converters),"simult_se*peak_load_in_mw")) }),
-            GRAPH(peak_load_of_explicitly_modelled_lv_technologies_se)
+            V(GRAPH(), peak_load_of_explicitly_modelled_lv_technologies(se))
         ),
         0.0
     )
