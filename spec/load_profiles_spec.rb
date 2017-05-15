@@ -1,8 +1,24 @@
 require 'spec_helper'
 
 describe 'Load profiles' do
+  def self.nl_profiles
+    profiles_dir = Atlas::Dataset.find(:nl).dataset_dir.join('load_profiles')
+
+    Pathname.glob(profiles_dir.join('*.csv')).map do |path|
+      path.relative_path_from(profiles_dir).basename('.csv')
+    end
+  end
+
   Atlas::Dataset.all.each do |dataset|
     describe "for #{ dataset.key.upcase }" do
+      if dataset.key != :example
+        nl_profiles.each do |prof_name|
+          it "should have a #{ prof_name } load profile" do
+            expect(dataset.load_profile_path(prof_name)).to be_file
+          end
+        end
+      end
+
       Pathname.glob(dataset.dataset_dir.join('load_profiles/*.csv')) do |file|
         it "#{ file.basename } does not permit CR (\\r) line endings" do
           message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \
