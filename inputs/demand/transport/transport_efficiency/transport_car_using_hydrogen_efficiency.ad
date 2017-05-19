@@ -1,4 +1,8 @@
-- query = UPDATE( OUTPUT_SLOTS(V(transport_car_using_hydrogen),car_kms), conversion, USER_INPUT())
+- query =
+    EACH(
+     UPDATE( OUTPUT_SLOTS(V(transport_car_using_hydrogen),car_kms), conversion, USER_INPUT()),
+     UPDATE( OUTPUT_SLOTS(V(transport_truck_using_hydrogen),truck_kms), conversion, USER_INPUT())
+    )
 - priority = 0
 - max_value = 3.0
 - min_value = 0.0
