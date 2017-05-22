@@ -362,3 +362,33 @@ task :scale do
     ENV['FULL_DATASET'], ENV['DERIVED_DATASET'], ENV['NUMBER_OF_RESIDENCES']
   ).create_scaled_dataset
 end
+
+desc <<-DESC
+  Refreshes a graph.yml of a derived dataset
+
+  Mandatory arguments:
+
+  - DERIVED_DATASET      = derived dataset name
+
+DESC
+
+task :refresh_graph do
+  require 'bundler'
+
+  raise ArgumentError, 'missing DERIVED_DATASET argument' unless ENV['DERIVED_DATASET']
+
+  Bundler.require(:development)
+
+  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
+
+  derived_dataset = Atlas::Dataset::Derived.find(ENV['DERIVED_DATASET'])
+  dataset         = Atlas::Dataset::Full.find(derived_dataset.base_dataset)
+
+  Atlas::GraphPersistor.call(
+    dataset,
+    derived_dataset.graph_path,
+    export_modifier: Atlas::Scaler::GraphScaler.new(derived_dataset.scaling.factor)
+  )
+
+  puts "Succesfully refreshed the graph.yml for #{ derived_dataset.area }"
+end
