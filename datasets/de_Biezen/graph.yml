@@ -855,17 +855,17 @@
     :in:
       :hydrogen:
         :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 925127099060237
+          denominator: 4000000
+          numerator: 3671241
       :electricity:
         :share: !ruby/object:Rational
-          denominator: 2500000000000000
-          numerator: 187182252349407
+          denominator: 10000000
+          numerator: 748729
     :out:
       :hydrogen:
         :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 925127099060237
+          denominator: 4000000
+          numerator: 3671241
       :loss:
         :type: :elastic
   :energy_compressor_network_gas:
@@ -5021,6 +5021,9 @@
       :loss:
         :type: :elastic
   :transport_car_using_hydrogen:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :in:
       :hydrogen: {}
     :out:
@@ -5451,6 +5454,19 @@
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 965228526398739
+      :loss:
+        :type: :elastic
+  :transport_truck_using_hydrogen:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :hydrogen: {}
+    :out:
+      :truck_kms:
+        :share: !ruby/object:Rational
+          denominator: 125000000
+          numerator: 18382353
       :loss:
         :type: :elastic
   :transport_truck_using_lng_mix:
@@ -11661,6 +11677,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :transport_final_demand_for_road_hydrogen-transport_truck_using_hydrogen@hydrogen:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :transport_final_demand_for_road_lng-transport_road_mixer_lng@lng:
     :parent_share: 
     :child_share: 
@@ -11900,6 +11922,12 @@
     :reversed: false
     :priority: 
   :transport_truck_using_gasoline_mix-transport_useful_demand_truck_kms@truck_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_truck_using_hydrogen-transport_useful_demand_truck_kms@truck_kms:
     :parent_share: 
     :child_share: 
     :demand: 
