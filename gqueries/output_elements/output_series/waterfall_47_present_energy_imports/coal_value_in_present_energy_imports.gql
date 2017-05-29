@@ -1,6 +1,6 @@
 - unit = PJ
 - query =
     present:DIVIDE(
-    	V(G(energy_import),output_of_coal).sum - 
-      V(G(energy_export),input_of_coal).sum
+        V(G(energy_import),"output_of_coal + output_of_lignite + output_of_cokes + output_of_coal_gas").sum -
+        V(G(energy_export),"input_of_coal + input_of_lignite + input_of_cokes + input_of_coal_gas").sum
     ,BILLIONS)
