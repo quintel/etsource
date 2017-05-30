@@ -296,6 +296,19 @@ Atlas for creating the processed files for ETEngine. Many are sourced from
 third-parties (such as energy-balance data from the IEA), while others are
 created by Quintel staff.
 
+#### Dealing with encrypted energy_balance.gpg
+
+When trying to run etengine locally, you need to access the `energy_balance` 
+file (in `etsource/datasets/COUNTRY/`). The default `energy_balance` file is 
+encrypted as a gpg file. The easiest way to get your local etenging running, 
+is to do the following:
+
+* Go to your `etsource` directory
+* Run the command `rake decrypt`
+* If you are asked for a password, [contact](http://quintel.com/contact "Quintel Contact") Quintel
+* In `etsource/datasets/COUNTRY`you should now see that `energy_balance.csv` is added
+* Start up the local rails server (or POW) as explained [here](https://github.com/quintel/etengine#installation-1 "ET-Engine Intall Process")
+
 ## Directory Structure
 
 The ETSource repository is split into many directories, each containing files
