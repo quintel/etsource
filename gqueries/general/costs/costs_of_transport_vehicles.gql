@@ -1,8 +1,8 @@
 # Return total cost of all electric cars
 
 - query =
-    SUM( 
-      V((transport_car_using_electricity), total_costs_per(:plant)) * V(LINK(transport_car_using_electricity, transport_useful_demand_car_kms), share) * QUERY_FUTURE(-> { AREA(number_of_cars) }),
-      V((transport_car_using_hydrogen), total_costs_per(:plant)) * V(LINK(transport_car_using_hydrogen, transport_useful_demand_car_kms), share) * QUERY_FUTURE(-> { AREA(number_of_cars) })
+    SUM(
+      V(transport_car_using_electricity, total_costs_per(:converter)),
+      V(transport_car_using_hydrogen, total_costs_per(:converter))
     )
 - unit = euro
