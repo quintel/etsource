@@ -375,20 +375,34 @@ DESC
 task :refresh_graph do
   require 'bundler'
 
-  raise ArgumentError, 'missing DERIVED_DATASET argument' unless ENV['DERIVED_DATASET']
+  unless ENV['DERIVED_DATASET']
+    raise(
+      ArgumentError,
+      'missing DERIVED_DATASET argument; if you want to refresh all graphs, ' \
+      'use: rake refresh_graph DERIVED_DATASET=*'
+    )
+  end
 
   Bundler.require(:development)
 
   Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
-  derived_dataset = Atlas::Dataset::Derived.find(ENV['DERIVED_DATASET'])
-  dataset         = Atlas::Dataset::Full.find(derived_dataset.base_dataset)
+  derived_datasets =
+    if ENV['DERIVED_DATASET'] == '*'
+      Atlas::Dataset::Derived.all
+    else
+      [Atlas::Dataset::Derived.find(ENV['DERIVED_DATASET'])]
+    end
 
-  Atlas::GraphPersistor.call(
-    dataset,
-    derived_dataset.graph_path,
-    export_modifier: Atlas::Scaler::GraphScaler.new(derived_dataset.scaling.factor)
-  )
+  derived_datasets.each do |derived_dataset|
+    dataset = Atlas::Dataset::Full.find(derived_dataset.base_dataset)
 
-  puts "Succesfully refreshed the graph.yml for #{ derived_dataset.area }"
+    Atlas::GraphPersistor.call(
+      dataset,
+      derived_dataset.graph_path,
+      export_modifier: Atlas::Scaler::GraphScaler.new(derived_dataset.scaling.factor)
+    )
+
+    puts "Succesfully refreshed the graph.yml for #{ derived_dataset.area }"
+  end
 end
