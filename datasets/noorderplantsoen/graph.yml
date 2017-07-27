@@ -4,32 +4,32 @@
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 788659793814433
-      :loss:
-        :type: :elastic
   :agriculture_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :agriculture_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 760824742268041
-      :loss:
-        :type: :elastic
   :agriculture_chp_engine_biogas:
     :demand: !ruby/object:Rational
       denominator: 87638800
@@ -46,12 +46,12 @@
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 7
-      :loss:
-        :type: :elastic
   :agriculture_chp_engine_biogas_dumped_heat:
     :in:
       :dumped_heat: {}
@@ -68,12 +68,12 @@
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 43
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 47
-      :loss:
-        :type: :elastic
   :agriculture_chp_supercritical_wood_pellets:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -86,12 +86,12 @@
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 1
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :agriculture_final_demand_crude_oil:
     :demand: !ruby/object:Rational
       denominator: 744929800
@@ -146,14 +146,14 @@
       :useable_heat: {}
   :agriculture_heatpump_water_water_ts_electricity:
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 2500000000000000
-          numerator: 108695652173913
       :ambient_heat:
         :share: !ruby/object:Rational
           denominator: 200000000000000
           numerator: 191304347826087
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 108695652173913
     :out:
       :useable_heat: {}
   :agriculture_locally_available_electricity:
@@ -216,16 +216,16 @@
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 116666666666667
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 20
-          numerator: 7
       :electricity:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 20
+          numerator: 7
   :buildings_chp_engine_biogas_dumped_heat:
     :in:
       :dumped_heat: {}
@@ -238,16 +238,16 @@
     :in:
       :network_gas: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 100
-          numerator: 47
       :electricity:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 43
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 100
+          numerator: 47
   :buildings_collective_chp_wood_pellets:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -256,16 +256,16 @@
     :in:
       :wood_pellets: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 4
-          numerator: 3
       :electricity:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 1
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 4
+          numerator: 3
   :buildings_collective_geothermal:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -276,14 +276,14 @@
       :steam_hot_water: {}
   :buildings_cooling_airconditioning_electricity:
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 4
-          numerator: 1
       :ambient_cold:
         :share: !ruby/object:Rational
           denominator: 4
           numerator: 3
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 4
+          numerator: 1
     :out:
       :cooling:
         :share: !ruby/object:Rational
@@ -293,14 +293,14 @@
         :type: :elastic
   :buildings_cooling_collective_heatpump_water_water_ts_electricity:
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 100000000000
-          numerator: 5239602663
       :ambient_cold:
         :share: !ruby/object:Rational
           denominator: 5000000000
           numerator: 4738019867
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 100000000000
+          numerator: 5239602663
     :out:
       :cooling:
         :share: !ruby/object:Rational
@@ -310,14 +310,14 @@
         :type: :elastic
   :buildings_cooling_heatpump_air_water_network_gas:
     :in:
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 588235294117647
       :ambient_cold:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 411764705882353
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 588235294117647
     :out:
       :cooling:
         :share: !ruby/object:Rational
@@ -461,12 +461,12 @@
     :in:
       :steam_hot_water: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :buildings_heating_savings_from_insulation_useable_heat:
     :in: {}
     :out:
@@ -535,39 +535,39 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :buildings_space_heater_collective_heatpump_water_water_ts_electricity:
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 111111111111111
       :ambient_heat:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 888888888888889
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 111111111111111
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :buildings_space_heater_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :buildings_space_heater_district_heating_steam_hot_water:
     :in:
       :steam_hot_water: {}
@@ -580,59 +580,59 @@
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :buildings_space_heater_heatpump_air_water_network_gas:
     :in:
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 2
-          numerator: 1
       :ambient_heat:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 2
+          numerator: 1
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :buildings_space_heater_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000
           numerator: 1067
-      :loss:
-        :type: :elastic
   :buildings_space_heater_solar_thermal:
     :in:
       :solar_thermal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 19
-      :loss:
-        :type: :elastic
   :buildings_space_heater_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 41
-      :loss:
-        :type: :elastic
   :buildings_useful_demand_after_insulation_cooling:
     :in:
       :cooling: {}
@@ -671,18 +671,18 @@
     :out: {}
   :energy_biomass_gasification_ccs_hydrogen:
     :in:
-      :torrified_biomass_pellets:
-        :share: !ruby/object:Rational
-          denominator: 125000000000000
-          numerator: 118430381659433
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 2500000000000000
-          numerator: 58732827526721
       :electricity:
         :share: !ruby/object:Rational
           denominator: 5000000000000000
           numerator: 145319078569237
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 58732827526721
+      :torrified_biomass_pellets:
+        :share: !ruby/object:Rational
+          denominator: 125000000000000
+          numerator: 118430381659433
     :out:
       :hydrogen:
         :share: !ruby/object:Rational
@@ -692,18 +692,18 @@
         :type: :elastic
   :energy_biomass_gasification_hydrogen:
     :in:
-      :torrified_biomass_pellets:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 241085033580607
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 22759974848299
       :electricity:
         :share: !ruby/object:Rational
           denominator: 2500000000000000
           numerator: 32249727073183
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 22759974848299
+      :torrified_biomass_pellets:
+        :share: !ruby/object:Rational
+          denominator: 250000000000000
+          numerator: 241085033580607
     :out:
       :hydrogen:
         :share: !ruby/object:Rational
@@ -719,16 +719,16 @@
     :in:
       :network_gas: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 100
-          numerator: 43
       :electricity:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 100
+          numerator: 43
   :energy_chp_supercritical_waste_mix:
     :demand: !ruby/object:Rational
       denominator: 219097
@@ -737,16 +737,16 @@
     :in:
       :waste_mix: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 20
-          numerator: 3
       :electricity:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 27
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 20
+          numerator: 3
   :energy_chp_ultra_supercritical_coal:
     :demand: !ruby/object:Rational
       denominator: 7449298
@@ -762,16 +762,16 @@
           denominator: 1
           numerator: 0
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 20
-          numerator: 3
       :electricity:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 2
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 20
+          numerator: 3
   :energy_chp_ultra_supercritical_cofiring_coal:
     :demand: !ruby/object:Rational
       denominator: 74492980000000000
@@ -782,25 +782,25 @@
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
-      :torrified_biomass_pellets:
-        :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 0
       :wood_pellets:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
-    :out:
-      :steam_hot_water:
+      :torrified_biomass_pellets:
         :share: !ruby/object:Rational
-          denominator: 20
-          numerator: 3
+          denominator: 1
+          numerator: 0
+    :out:
       :electricity:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 37
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 20
+          numerator: 3
   :energy_chp_ultra_supercritical_lignite:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -809,30 +809,30 @@
     :in:
       :lignite: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 20
-          numerator: 3
       :electricity:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 7
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 20
+          numerator: 3
   :energy_cokesoven_consumption_coal_gas:
     :demand: !ruby/object:Rational
       denominator: 21909700000000000
       numerator: 47036516324255427
     :cc_out: 1.0
     :in:
-      :coal_gas:
-        :share: !ruby/object:Rational
-          denominator: 20000000000000
-          numerator: 19197760716243
       :electricity:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 401119641878499
+      :coal_gas:
+        :share: !ruby/object:Rational
+          denominator: 20000000000000
+          numerator: 19197760716243
     :out:
       :loss:
         :type: :elastic
@@ -841,6 +841,8 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :coal_gas:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
@@ -849,18 +851,16 @@
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 736166549247847
-      :loss:
-        :type: :elastic
   :energy_compressor_hydrogen:
     :in:
-      :hydrogen:
-        :share: !ruby/object:Rational
-          denominator: 4000000
-          numerator: 3671241
       :electricity:
         :share: !ruby/object:Rational
           denominator: 10000000
           numerator: 748729
+      :hydrogen:
+        :share: !ruby/object:Rational
+          denominator: 4000000
+          numerator: 3671241
     :out:
       :hydrogen:
         :share: !ruby/object:Rational
@@ -870,14 +870,14 @@
         :type: :elastic
   :energy_compressor_network_gas:
     :in:
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 1000
-          numerator: 931
       :electricity:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 690000000000001
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 1000
+          numerator: 931
     :out:
       :compressed_network_gas:
         :share: !ruby/object:Rational
@@ -955,9 +955,9 @@
     :in:
       :crude_oil: {}
     :out:
-      :crude_oil: {}
       :loss:
         :type: :elastic
+      :crude_oil: {}
   :energy_distribution_crude_oil_loss:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1061,12 +1061,12 @@
     :in:
       :uranium_oxide: {}
     :out:
+      :loss:
+        :type: :elastic
       :uranium_oxide:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :energy_distribution_waste_mix:
     :in:
       :waste_mix: {}
@@ -1251,12 +1251,12 @@
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :energy_heat_network_loss:
     :demand: !ruby/object:Rational
       denominator: 93116225
@@ -1270,9 +1270,9 @@
     :in:
       :steam_hot_water: {}
     :out:
-      :steam_hot_water: {}
       :loss:
         :type: :elastic
+      :steam_hot_water: {}
   :energy_heat_network_unused_steam_hot_water:
     :in:
       :steam_hot_water: {}
@@ -1292,12 +1292,12 @@
           denominator: 1
           numerator: 0
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 25
           numerator: 18
-      :loss:
-        :type: :elastic
   :energy_heater_for_heat_network_crude_oil:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1306,12 +1306,12 @@
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 25
           numerator: 18
-      :loss:
-        :type: :elastic
   :energy_heater_for_heat_network_geothermal:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1320,12 +1320,12 @@
     :in:
       :geothermal: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :energy_heater_for_heat_network_lignite:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1334,12 +1334,12 @@
     :in:
       :lignite: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 25
           numerator: 18
-      :loss:
-        :type: :elastic
   :energy_heater_for_heat_network_network_gas:
     :demand: !ruby/object:Rational
       denominator: 1095485000000000
@@ -1348,12 +1348,12 @@
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 37
-      :loss:
-        :type: :elastic
   :energy_heater_for_heat_network_waste_mix:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1362,12 +1362,12 @@
     :in:
       :waste_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 37
-      :loss:
-        :type: :elastic
   :energy_heater_for_heat_network_wood_pellets:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1376,12 +1376,12 @@
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 250
           numerator: 203
-      :loss:
-        :type: :elastic
   :energy_import_bio_ethanol:
     :in: {}
     :out:
@@ -1469,12 +1469,12 @@
   :energy_import_uranium_oxide:
     :in: {}
     :out:
+      :loss:
+        :type: :elastic
       :uranium_oxide:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :energy_import_wood_pellets:
     :in: {}
     :out:
@@ -1530,9 +1530,9 @@
       :greengas: {}
       :natural_gas: {}
     :out:
-      :network_gas: {}
       :loss:
         :type: :elastic
+      :network_gas: {}
   :energy_power_combined_cycle_ccs_coal:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -1649,9 +1649,9 @@
     :in:
       :electricity: {}
     :out:
-      :electricity: {}
       :loss:
         :type: :elastic
+      :electricity: {}
   :energy_power_hv_network_loss:
     :demand: !ruby/object:Rational
       denominator: 744929800
@@ -1892,14 +1892,14 @@
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
-      :torrified_biomass_pellets:
-        :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 0
       :wood_pellets:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
+      :torrified_biomass_pellets:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 0
     :out:
       :electricity:
         :share: !ruby/object:Rational
@@ -2045,11 +2045,11 @@
       denominator: 18623245000000000
       numerator: 53495773040619059
     :in:
-      :corn:
+      :manure:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
-      :manure:
+      :corn:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
@@ -2098,32 +2098,32 @@
     :in:
       :bio_lng: {}
     :out:
+      :loss:
+        :type: :elastic
       :greengas:
         :share: !ruby/object:Rational
           denominator: 200
           numerator: 197
-      :loss:
-        :type: :elastic
   :energy_regasification_lng:
     :in:
       :lng: {}
     :out:
+      :loss:
+        :type: :elastic
       :natural_gas:
         :share: !ruby/object:Rational
           denominator: 200
           numerator: 197
-      :loss:
-        :type: :elastic
   :energy_steam_methane_reformer_ccs_hydrogen:
     :in:
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 500000000000000
-          numerator: 485402930014629
       :electricity:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 291941399707423
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 500000000000000
+          numerator: 485402930014629
     :out:
       :hydrogen:
         :share: !ruby/object:Rational
@@ -2133,14 +2133,14 @@
         :type: :elastic
   :energy_steam_methane_reformer_hydrogen:
     :in:
-      :network_gas:
-        :share: !ruby/object:Rational
-          denominator: 500000000000000
-          numerator: 493861889349651
       :electricity:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 122762213006979
+      :network_gas:
+        :share: !ruby/object:Rational
+          denominator: 500000000000000
+          numerator: 493861889349651
     :out:
       :hydrogen:
         :share: !ruby/object:Rational
@@ -2163,12 +2163,12 @@
           denominator: 1000000000000000
           numerator: 601892359413333
     :out:
+      :loss:
+        :type: :elastic
       :coal_gas:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 400039678177867
-      :loss:
-        :type: :elastic
   :energy_steel_blastfurnace_current_transformation_cokes:
     :demand: !ruby/object:Rational
       denominator: 744929800
@@ -2184,12 +2184,12 @@
           denominator: 1000000000000000
           numerator: 601892359413333
     :out:
+      :loss:
+        :type: :elastic
       :coal_gas:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 400039678177867
-      :loss:
-        :type: :elastic
   :energy_steel_hisarna_transformation_coal:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -2205,39 +2205,39 @@
           denominator: 1
           numerator: 0
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 19
-      :loss:
-        :type: :elastic
   :energy_torrefaction_wood:
     :in:
-      :wood:
-        :share: !ruby/object:Rational
-          denominator: 1000
-          numerator: 947
       :network_gas:
         :share: !ruby/object:Rational
           denominator: 1000
           numerator: 53
+      :wood:
+        :share: !ruby/object:Rational
+          denominator: 1000
+          numerator: 947
     :out:
+      :loss:
+        :type: :elastic
       :torrified_biomass_pellets:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 91
-      :loss:
-        :type: :elastic
   :energy_treatment_natural_gas:
     :in:
       :natural_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :natural_gas:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 986016667985657
-      :loss:
-        :type: :elastic
   :energy_upgrade_biogas:
     :in:
       :biogas: {}
@@ -2288,6 +2288,7 @@
     :in: {}
     :out:
       :water: {}
+      :ambient_heat: {}
   :households_appliances_clothes_dryer_electricity:
     :in:
       :electricity: {}
@@ -2380,16 +2381,16 @@
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 116666666666667
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 20
-          numerator: 7
       :electricity:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 20
+          numerator: 7
   :households_collective_chp_biogas_dumped_heat:
     :in:
       :dumped_heat: {}
@@ -2402,16 +2403,16 @@
     :in:
       :network_gas: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 100
-          numerator: 47
       :electricity:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 43
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 100
+          numerator: 47
   :households_collective_chp_wood_pellets:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -2420,16 +2421,16 @@
     :in:
       :wood_pellets: {}
     :out:
-      :steam_hot_water:
-        :share: !ruby/object:Rational
-          denominator: 4
-          numerator: 3
       :electricity:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 1
       :loss:
         :type: :elastic
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 4
+          numerator: 3
   :households_collective_geothermal:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -2442,52 +2443,52 @@
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 3
-      :loss:
-        :type: :elastic
   :households_cooker_induction_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :households_cooker_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 2
-      :loss:
-        :type: :elastic
   :households_cooker_resistive_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 11
-      :loss:
-        :type: :elastic
   :households_cooker_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 3
-      :loss:
-        :type: :elastic
   :households_cooling_airconditioning_electricity:
     :in:
       :ambient_cold:
@@ -2700,12 +2701,12 @@
       numerator: 0
     :in: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_flexibility_p2p_electricity:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -2716,22 +2717,22 @@
           denominator: 156250000000000
           numerator: 175561797752809
     :out:
+      :loss:
+        :type: :elastic
       :electricity:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :households_heat_network_connection_steam_hot_water:
     :in:
       :steam_hot_water: {}
     :out:
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_lighting_efficient_fluorescent_electricity:
     :in:
       :electricity: {}
@@ -2817,32 +2818,32 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :households_space_heater_combined_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000
           numerator: 1067
-      :loss:
-        :type: :elastic
   :households_space_heater_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :households_space_heater_district_heating_steam_hot_water:
     :in:
       :steam_hot_water: {}
@@ -2855,12 +2856,12 @@
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_space_heater_heatpump_air_water_electricity:
     :in:
       :ambient_heat:
@@ -2872,16 +2873,16 @@
           denominator: 500000000000000
           numerator: 111111111111111
     :out:
-      :useable_heat:
-        :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 1
       :cooling:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :households_space_heater_heatpump_ground_water_electricity:
     :in:
       :ambient_heat:
@@ -2893,12 +2894,12 @@
           denominator: 1000000000000000
           numerator: 208333333333333
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_space_heater_hybrid_heatpump_air_water_electricity:
     :in:
       :ambient_heat:
@@ -2914,16 +2915,16 @@
           denominator: 1000000000000000
           numerator: 187441424554827
     :out:
-      :useable_heat:
-        :share: !ruby/object:Rational
-          denominator: 2000000000000000
-          numerator: 2025117150890349
       :cooling:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 2000000000000000
+          numerator: 2025117150890349
   :households_space_heater_micro_chp_network_gas:
     :in:
       :network_gas: {}
@@ -2932,32 +2933,32 @@
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 17
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 25
           numerator: 22
-      :loss:
-        :type: :elastic
   :households_space_heater_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :households_space_heater_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 41
-      :loss:
-        :type: :elastic
   :households_useful_demand_cooking_useable_heat:
     :in:
       :useable_heat: {}
@@ -3018,42 +3019,42 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :households_water_heater_combined_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :households_water_heater_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :households_water_heater_district_heating_steam_hot_water:
     :in:
       :steam_hot_water: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_water_heater_fuel_cell_chp_network_gas:
     :in:
       :network_gas: {}
@@ -3062,12 +3063,12 @@
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 3
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_water_heater_heatpump_air_water_electricity:
     :in:
       :ambient_heat:
@@ -3079,12 +3080,12 @@
           denominator: 1000000000000000
           numerator: 333333333333333
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_water_heater_heatpump_ground_water_electricity:
     :in:
       :ambient_heat:
@@ -3096,12 +3097,12 @@
           denominator: 1000000000000000
           numerator: 333333333333333
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_water_heater_hybrid_heatpump_air_water_electricity:
     :in:
       :ambient_heat:
@@ -3117,16 +3118,16 @@
           denominator: 1000000000000000
           numerator: 333333333333333
     :out:
-      :useable_heat:
-        :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 9666666666666667
       :cooling:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 9666666666666667
   :households_water_heater_micro_chp_network_gas:
     :in:
       :network_gas: {}
@@ -3135,62 +3136,62 @@
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 17
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 25
           numerator: 22
-      :loss:
-        :type: :elastic
   :households_water_heater_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 67
-      :loss:
-        :type: :elastic
   :households_water_heater_resistive_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 19
-      :loss:
-        :type: :elastic
   :households_water_heater_solar_thermal:
     :in:
       :solar_thermal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :loss:
-        :type: :elastic
   :households_water_heater_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 41
-      :loss:
-        :type: :elastic
   :industry_aluminium_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_aluminium_carbothermalreduction_electricity:
     :in:
       :useable_heat:
@@ -3202,12 +3203,12 @@
           denominator: 500000000000000
           numerator: 449251247920133
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 2000000000000000
           numerator: 55463117027177
-      :loss:
-        :type: :elastic
   :industry_aluminium_electrolysis_bat_electricity:
     :in:
       :useable_heat:
@@ -3219,12 +3220,12 @@
           denominator: 1000000000000000
           numerator: 949708204600069
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 17164435290079
-      :loss:
-        :type: :elastic
   :industry_aluminium_electrolysis_current_electricity:
     :in:
       :useable_heat:
@@ -3236,12 +3237,12 @@
           denominator: 200000000000000
           numerator: 188070404172099
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 162972620599739
-      :loss:
-        :type: :elastic
   :industry_aluminium_production:
     :in:
       :not_defined: {}
@@ -3257,52 +3258,52 @@
           denominator: 1000000000000000
           numerator: 543640897755611
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 500000000000000
           numerator: 62344139650873
-      :loss:
-        :type: :elastic
   :industry_chemicals_fertilizers_burner_coal:
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :industry_chemicals_fertilizers_burner_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 83
-      :loss:
-        :type: :elastic
   :industry_chemicals_fertilizers_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_chemicals_fertilizers_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :industry_chemicals_fertilizers_haber_bosch_process_hydrogen:
     :in:
       :hydrogen: {}
@@ -3328,82 +3329,139 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :industry_chemicals_other_burner_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 83
-      :loss:
-        :type: :elastic
   :industry_chemicals_other_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_chemicals_other_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_chemicals_other_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
+  :industry_chemicals_other_heatpump_water_water_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :ambient_heat:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 666666666666667
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 333333333333333
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
+  :industry_chemicals_other_steam_recompression_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :electricity: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 200
+          numerator: 199
   :industry_chemicals_refineries_burner_coal:
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :industry_chemicals_refineries_burner_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 83
-      :loss:
-        :type: :elastic
   :industry_chemicals_refineries_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_chemicals_refineries_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_chemicals_refineries_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :industry_chp_combined_cycle_gas_power_fuelmix:
     :demand: !ruby/object:Rational
       denominator: 37246490000000000
@@ -3416,12 +3474,12 @@
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 2
-      :loss:
-        :type: :elastic
   :industry_chp_engine_gas_power_fuelmix:
     :demand: !ruby/object:Rational
       denominator: 3724649000000000000
@@ -3434,12 +3492,12 @@
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 25
           numerator: 12
-      :loss:
-        :type: :elastic
   :industry_chp_turbine_gas_power_fuelmix:
     :demand: !ruby/object:Rational
       denominator: 4655811250000000
@@ -3452,12 +3510,12 @@
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 19
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 50
           numerator: 21
-      :loss:
-        :type: :elastic
   :industry_chp_ultra_supercritical_coal:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -3477,12 +3535,12 @@
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 3
+      :loss:
+        :type: :elastic
       :steam_hot_water:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 7
-      :loss:
-        :type: :elastic
   :industry_final_demand_coal:
     :demand: !ruby/object:Rational
       denominator: 93116225
@@ -4226,84 +4284,96 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :industry_other_food_burner_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 83
-      :loss:
-        :type: :elastic
   :industry_other_food_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_other_food_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_other_food_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :industry_other_food_heater_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 200
           numerator: 199
-      :loss:
-        :type: :elastic
   :industry_other_metals_burner_network_gas:
     :in:
       :coal: {}
       :crude_oil: {}
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_other_metals_process_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
-      :loss:
-        :type: :elastic
   :industry_other_metals_process_heat_useable_heat:
     :in:
       :useable_heat: {}
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 2
           numerator: 1
-      :loss:
-        :type: :elastic
   :industry_other_metals_production:
     :in:
       :not_defined: {}
@@ -4312,52 +4382,64 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :industry_other_paper_burner_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100
           numerator: 83
-      :loss:
-        :type: :elastic
   :industry_other_paper_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_other_paper_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_other_paper_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :industry_other_paper_heater_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 200
           numerator: 199
-      :loss:
-        :type: :elastic
   :industry_own_use_coal:
     :in:
       :coal: {}
@@ -4366,103 +4448,103 @@
         :type: :elastic
   :industry_refinery_transformation_crude_oil:
     :in:
-      :crude_oil:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 948976599089549
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 2000000000000000
           numerator: 102046801820901
-    :out:
-      :diesel:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 85774156817637
-      :gasoline:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 112315315655789
-      :heavy_fuel_oil:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 136487919196267
-      :kerosene:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 117949571172323
-      :lpg:
-        :share: !ruby/object:Rational
-          denominator: 5000000000000000
-          numerator: 139223332951569
       :crude_oil:
         :share: !ruby/object:Rational
-          denominator: 500000000000000
-          numerator: 88579294687299
+          denominator: 1000000000000000
+          numerator: 948976599089549
+    :out:
+      :loss:
+        :type: :elastic
       :refinery_gas:
         :share: !ruby/object:Rational
           denominator: 1250000000000000
           numerator: 43617738605407
-      :loss:
-        :type: :elastic
+      :lpg:
+        :share: !ruby/object:Rational
+          denominator: 5000000000000000
+          numerator: 139223332951569
+      :gasoline:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 112315315655789
+      :kerosene:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 117949571172323
+      :diesel:
+        :share: !ruby/object:Rational
+          denominator: 250000000000000
+          numerator: 85774156817637
+      :heavy_fuel_oil:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 136487919196267
+      :crude_oil:
+        :share: !ruby/object:Rational
+          denominator: 500000000000000
+          numerator: 88579294687299
   :industry_steel_blastfurnace_bat_consumption_useable_heat:
     :cc_in: 2.95190414861366
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 100000000000000
-          numerator: 22021688790469
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100000000000000
           numerator: 77978311209531
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000
+          numerator: 22021688790469
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 241794153238447
-      :loss:
-        :type: :elastic
   :industry_steel_blastfurnace_burner_coal_gas:
     :in:
       :coal: {}
       :coal_gas: {}
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_steel_blastfurnace_current_consumption_useable_heat:
     :cc_in: 2.95190414861366
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 100000000000000
-          numerator: 22021688790469
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 100000000000000
           numerator: 77978311209531
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000
+          numerator: 22021688790469
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 500000000000000
           numerator: 108807368957301
-      :loss:
-        :type: :elastic
   :industry_steel_electricfurnace_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :industry_steel_electricfurnace_electricity:
     :in:
       :electricity:
@@ -4474,30 +4556,30 @@
           denominator: 1000
           numerator: 359
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 1000
           numerator: 411
-      :loss:
-        :type: :elastic
   :industry_steel_hisarna_consumption_useable_heat:
     :cc_in: 1.5256023862533
     :in:
-      :electricity:
-        :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 846385682480091
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 915361431751991
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 846385682480091
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 984095719727931
-      :loss:
-        :type: :elastic
   :industry_steel_production:
     :in:
       :not_defined: {}
@@ -4506,12 +4588,12 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :coal:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 647151559040271
-      :loss:
-        :type: :elastic
   :industry_unused_local_production_steam_hot_water:
     :in:
       :steam_hot_water: {}
@@ -4563,6 +4645,11 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :industry_useful_demand_for_chemical_other_useable_heat_after_p2h:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_useful_demand_for_chemical_other_wood_pellets_non_energetic:
     :in:
       :wood_pellets: {}
@@ -4585,6 +4672,11 @@
       :network_gas: {}
     :out: {}
   :industry_useful_demand_for_chemical_refineries_useable_heat:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
+  :industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h:
     :in:
       :useable_heat: {}
     :out:
@@ -4625,6 +4717,11 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :industry_useful_demand_for_other_food_useable_heat_after_p2h:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_useful_demand_for_other_ict_electricity:
     :in:
       :electricity: {}
@@ -4749,6 +4846,11 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :industry_useful_demand_for_other_paper_useable_heat_after_p2h:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_useful_demand_for_other_textile_coal:
     :in:
       :coal: {}
@@ -4825,42 +4927,42 @@
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
-      :loss:
-        :type: :elastic
   :other_burner_crude_oil:
     :in:
       :crude_oil: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 788659793814433
-      :loss:
-        :type: :elastic
   :other_burner_network_gas:
     :in:
       :network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :other_burner_wood_pellets:
     :in:
       :wood_pellets: {}
     :out:
+      :loss:
+        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 760824742268041
-      :loss:
-        :type: :elastic
   :other_electricity_for_electricity:
     :in:
       :electricity: {}
@@ -5320,43 +5422,43 @@
       :gasoline_mix: {}
   :transport_road_mixer_lng:
     :in:
-      :bio_lng:
-        :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 0
       :lng:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
+      :bio_lng:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 0
     :out:
       :lng_mix: {}
   :transport_ship_using_diesel_mix:
     :in:
       :diesel_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :shipping_kms:
         :share: !ruby/object:Rational
           denominator: 100000000000000000
           numerator: 166389351081531
-      :loss:
-        :type: :elastic
   :transport_ship_using_lng_mix:
     :in:
       :lng_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :shipping_kms:
         :share: !ruby/object:Rational
           denominator: 200000000000000
           numerator: 332778702163
-      :loss:
-        :type: :elastic
   :transport_shipping_mixer_diesel:
     :in:
-      :bio_lng:
+      :lng:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
-      :biodiesel:
+      :bio_lng:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
@@ -5364,11 +5466,11 @@
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
-      :heavy_fuel_oil:
+      :biodiesel:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
-      :lng:
+      :heavy_fuel_oil:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 0
@@ -5376,86 +5478,86 @@
       :diesel_mix: {}
   :transport_shipping_mixer_lng:
     :in:
-      :bio_lng:
-        :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 0
       :lng:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
+      :bio_lng:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 0
     :out:
       :lng_mix: {}
   :transport_train_using_coal:
     :in:
       :coal: {}
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 3
-      :loss:
-        :type: :elastic
   :transport_train_using_diesel:
     :in:
       :diesel_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 3
-      :loss:
-        :type: :elastic
   :transport_train_using_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :not_defined:
         :share: !ruby/object:Rational
           denominator: 10
           numerator: 9
-      :loss:
-        :type: :elastic
   :transport_truck_using_compressed_natural_gas:
     :in:
       :compressed_network_gas: {}
     :out:
+      :loss:
+        :type: :elastic
       :truck_kms:
         :share: !ruby/object:Rational
           denominator: 250000000000000
           numerator: 26595744680851
-      :loss:
-        :type: :elastic
   :transport_truck_using_diesel_mix:
     :in:
       :diesel_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :truck_kms:
         :share: !ruby/object:Rational
           denominator: 250000000000000
           numerator: 26595744680851
-      :loss:
-        :type: :elastic
   :transport_truck_using_electricity:
     :in:
       :electricity: {}
     :out:
+      :loss:
+        :type: :elastic
       :truck_kms:
         :share: !ruby/object:Rational
           denominator: 500000000000000
           numerator: 95785440613027
-      :loss:
-        :type: :elastic
   :transport_truck_using_gasoline_mix:
     :in:
       :gasoline_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :truck_kms:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 965228526398739
-      :loss:
-        :type: :elastic
   :transport_truck_using_hydrogen:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -5473,12 +5575,12 @@
     :in:
       :lng_mix: {}
     :out:
+      :loss:
+        :type: :elastic
       :truck_kms:
         :share: !ruby/object:Rational
           denominator: 1000000000000000
           numerator: 118203309692671
-      :loss:
-        :type: :elastic
   :transport_useful_demand_car_kms:
     :number_of_units: 2296.2753930638833
     :in:
@@ -8240,6 +8342,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :environment_water_water-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :households_collective_chp_biogas-households_collective_chp_biogas_dumped_heat@dumped_heat:
     :parent_share: 
     :child_share: 
@@ -9282,50 +9390,74 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_crude_oil-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_crude_oil-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_network_gas-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_network_gas-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_wood_pellets-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_wood_pellets-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_coal-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
+  :industry_chemicals_other_flexibility_p2h_electricity-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_crude_oil-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
+  ? :industry_chemicals_other_heatpump_water_water_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_other_steam_recompression_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_chemicals_refineries_burner_coal-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_network_gas-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_chemicals_refineries_burner_crude_oil-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_wood_pellets-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_chemicals_refineries_burner_network_gas-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_refineries_burner_wood_pellets-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_refineries_flexibility_p2h_electricity-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
@@ -9727,6 +9859,18 @@
     :demand: 
     :reversed: false
     :priority: 
+  :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_heatpump_water_water_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_steam_recompression_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :industry_final_demand_for_chemical_other_electricity-industry_useful_demand_for_chemical_other_electricity@electricity:
     :parent_share: 
     :child_share: 
@@ -9745,8 +9889,8 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_final_demand_for_chemical_other_steam_hot_water-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_final_demand_for_chemical_other_steam_hot_water-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
@@ -9799,7 +9943,7 @@
     :demand: 
     :reversed: false
     :priority: 
-  ? :industry_final_demand_for_chemical_refineries_steam_hot_water-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat
+  ? :industry_final_demand_for_chemical_refineries_steam_hot_water-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
   : :parent_share: 
     :child_share: 
     :demand: 
@@ -10353,7 +10497,7 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_final_demand_for_other_food_steam_hot_water-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_final_demand_for_other_food_steam_hot_water-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -10659,8 +10803,8 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_final_demand_for_other_paper_steam_hot_water-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_final_demand_for_other_paper_steam_hot_water-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
@@ -11110,31 +11254,37 @@
     :reversed: false
     :priority: 
     :type: :overflow
-  :industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_burner_crude_oil-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_crude_oil-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_burner_network_gas-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_network_gas-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_burner_wood_pellets-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_wood_pellets-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_heater_electricity-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_flexibility_p2h_electricity-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_other_food_heater_electricity-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -11159,31 +11309,37 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_coal-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_coal-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_crude_oil-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_crude_oil-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_network_gas-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_network_gas-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_wood_pellets-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_wood_pellets-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_heater_electricity-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_flexibility_p2h_electricity-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_other_paper_heater_electricity-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -11318,6 +11474,13 @@
     :demand: 
     :reversed: false
     :priority: 
+  ? :industry_useful_demand_for_chemical_other_useable_heat_after_p2h-industry_useful_demand_for_chemical_other_useable_heat@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
   :industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic-industry_refinery_transformation_crude_oil@crude_oil:
     :parent_share: 
     :child_share: 
@@ -11330,6 +11493,27 @@
     :child_share: 
     :demand: 
     :reversed: true
+    :priority: 
+    :type: :flexible
+  ? :industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :industry_useful_demand_for_other_food_useable_heat_after_p2h-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :industry_useful_demand_for_other_paper_useable_heat_after_p2h-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
     :priority: 
     :type: :flexible
   :other_burner_coal-other_useful_demand_useable_heat@useable_heat:
