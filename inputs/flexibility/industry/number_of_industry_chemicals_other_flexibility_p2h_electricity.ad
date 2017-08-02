@@ -3,7 +3,7 @@
   	  V(industry_chemicals_other_flexibility_p2h_electricity), number_of_units, USER_INPUT()
     )
 - priority = 0
-- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(V(industry_useful_demand_for_chemical_other_useable_heat,demand),V(industry_chemicals_other_flexibility_p2h_electricity,"heat_output_capacity * 8760 * 3600")),DIVIDE(V(industry_chemicals_other_flexibility_p2h_electricity,"storage.volume"),V(industry_chemicals_other_flexibility_p2h_electricity,"heat_output_capacity"))))
+- max_value_gql = present:MAX(1.0,DIVIDE(V(industry_useful_demand_for_chemical_other_useable_heat,demand),(V(industry_chemicals_other_flexibility_p2h_electricity,"storage.volume") * 8760 * MJ_PER_MWH)))
 - min_value = 0.0
 - start_value = 0.0
 - step_value = 1
