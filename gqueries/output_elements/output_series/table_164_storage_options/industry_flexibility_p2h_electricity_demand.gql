@@ -1,3 +1,9 @@
-- query = SUM(V(industry_chemicals_other_flexibility_p2h_electricity, "useable_heat_output_conversion * demand")) / BILLIONS
+- query = 
+    SUM(
+        V(industry_chemicals_refineries_flexibility_p2h_electricity, "useable_heat_output_conversion * demand"),
+        V(industry_chemicals_other_flexibility_p2h_electricity, "useable_heat_output_conversion * demand"),
+        V(industry_other_food_flexibility_p2h_electricity, "useable_heat_output_conversion * demand"),
+        V(industry_other_paper_flexibility_p2h_electricity, "useable_heat_output_conversion * demand")
+    ) / BILLIONS
 - unit = PJ
 
