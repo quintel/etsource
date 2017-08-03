@@ -3375,8 +3375,8 @@
         :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 1
+          denominator: 200
+          numerator: 199
   :industry_chemicals_other_heatpump_water_water_electricity:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -3384,15 +3384,13 @@
     :in:
       :ambient_heat:
         :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 666666666666667
+          denominator: 1250
+          numerator: 921
       :electricity:
         :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 333333333333333
+          denominator: 25000
+          numerator: 6579
     :out:
-      :loss:
-        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
           denominator: 1
@@ -3402,14 +3400,19 @@
       denominator: 1
       numerator: 0
     :in:
-      :electricity: {}
+      :ambient_heat:
+        :share: !ruby/object:Rational
+          denominator: 1000000000
+          numerator: 907407407
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 1000000000
+          numerator: 92592593
     :out:
-      :loss:
-        :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
-          denominator: 200
-          numerator: 199
+          denominator: 1
+          numerator: 1
   :industry_chemicals_refineries_burner_coal:
     :in:
       :coal: {}
@@ -3460,8 +3463,8 @@
         :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 1
+          denominator: 200
+          numerator: 199
   :industry_chp_combined_cycle_gas_power_fuelmix:
     :demand: !ruby/object:Rational
       denominator: 3724649000000000
@@ -4330,8 +4333,8 @@
         :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 1
+          denominator: 200
+          numerator: 199
   :industry_other_food_heater_electricity:
     :in:
       :electricity: {}
@@ -4428,8 +4431,8 @@
         :type: :elastic
       :useable_heat:
         :share: !ruby/object:Rational
-          denominator: 1
-          numerator: 1
+          denominator: 200
+          numerator: 199
   :industry_other_paper_heater_electricity:
     :in:
       :electricity: {}
@@ -8343,6 +8346,12 @@
     :reversed: false
     :priority: 
   :environment_water_water-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :environment_water_water-industry_chemicals_other_steam_recompression_electricity@ambient_heat:
     :parent_share: 
     :child_share: 
     :demand: 
