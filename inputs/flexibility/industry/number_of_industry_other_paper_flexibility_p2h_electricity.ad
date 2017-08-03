@@ -1,0 +1,11 @@
+- query =
+    UPDATE(
+  	  V(industry_other_paper_flexibility_p2h_electricity), number_of_units, USER_INPUT()
+    )
+- priority = 0
+- max_value_gql = present:MAX(1.0,DIVIDE(V(industry_useful_demand_for_other_paper_useable_heat,demand),(V(industry_other_paper_flexibility_p2h_electricity,"storage.volume") * 8760 * MJ_PER_MWH)))
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1
+- unit = #
+- update_period = future
