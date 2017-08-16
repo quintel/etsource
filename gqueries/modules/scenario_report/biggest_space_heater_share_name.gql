@@ -1,14 +1,14 @@
 - query =
     {
-    :coal_heater => V(LINK(households_space_heater_coal,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :gas_combined_heater => V(LINK(households_space_heater_combined_network_gas,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :oil_heater => V(LINK(households_space_heater_crude_oil,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :district_heater => V(LINK(households_space_heater_district_heating_steam_hot_water,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :electric_heater => V(LINK(households_space_heater_electricity,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :air_heat_pump => V(LINK(households_space_heater_heatpump_air_water_electricity,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :ground_heat_pump => V(LINK(households_space_heater_heatpump_ground_water_electricity,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :hybrid_heat_pump => V(LINK(households_space_heater_hybrid_heatpump_air_water_electricity,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
-    :micro_chp => V(LINK(households_space_heater_micro_chp_network_gas,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),    
-    :gas_heater => V(LINK(households_space_heater_network_gas,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),    
-    :wood_pellet_heater => V(LINK(households_space_heater_wood_pellets,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share)   
+    :coal_heater => V(LINK(households_space_heater_coal_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :gas_combined_heater => V(LINK(households_space_heater_combined_network_gas_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :oil_heater => V(LINK(households_space_heater_crude_oil_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :district_heater => V(LINK(households_space_heater_district_heating_steam_hot_water_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :electric_heater => V(LINK(households_space_heater_electricity_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :air_heat_pump => V(LINK(households_space_heater_heatpump_air_water_electricity_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :ground_heat_pump => V(LINK(households_space_heater_heatpump_ground_water_electricity_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :hybrid_heat_pump => V(LINK(households_space_heater_hybrid_heatpump_air_water_electricity_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),
+    :micro_chp => V(LINK(households_space_heater_micro_chp_network_gas_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),    
+    :gas_heater => V(LINK(households_space_heater_network_gas_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share),    
+    :wood_pellet_heater => V(LINK(households_space_heater_wood_pellets_aggregator,households_useful_demand_for_space_heating_after_insulation_and_solar_heater), share)   
     }.sort_by { |name, demand| demand }.to_a.last[0]
