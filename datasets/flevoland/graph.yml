@@ -2288,6 +2288,7 @@
     :in: {}
     :out:
       :water: {}
+      :ambient_heat: {}
   :households_appliances_clothes_dryer_electricity:
     :in:
       :electricity: {}
@@ -3364,6 +3365,67 @@
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_chemicals_other_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 200
+          numerator: 199
+  :industry_chemicals_other_heater_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :electricity: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 200
+          numerator: 199
+  :industry_chemicals_other_heatpump_water_water_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :ambient_heat:
+        :share: !ruby/object:Rational
+          denominator: 1250
+          numerator: 921
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 25000
+          numerator: 6579
+    :out:
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
+  :industry_chemicals_other_steam_recompression_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :ambient_heat:
+        :share: !ruby/object:Rational
+          denominator: 1000000000
+          numerator: 907407407
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 1000000000
+          numerator: 92592593
+    :out:
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :industry_chemicals_refineries_burner_coal:
     :in:
       :coal: {}
@@ -3404,6 +3466,18 @@
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_chemicals_refineries_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 200
+          numerator: 199
   :industry_chp_combined_cycle_gas_power_fuelmix:
     :demand: !ruby/object:Rational
       denominator: 9311622500000000
@@ -4262,6 +4336,18 @@
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_other_food_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 200
+          numerator: 199
   :industry_other_food_heater_electricity:
     :in:
       :electricity: {}
@@ -4348,6 +4434,18 @@
         :share: !ruby/object:Rational
           denominator: 5
           numerator: 4
+  :industry_other_paper_flexibility_p2h_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 200
+          numerator: 199
   :industry_other_paper_heater_electricity:
     :in:
       :electricity: {}
@@ -4563,6 +4661,11 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :industry_useful_demand_for_chemical_other_useable_heat_after_p2h:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_useful_demand_for_chemical_other_wood_pellets_non_energetic:
     :in:
       :wood_pellets: {}
@@ -4585,6 +4688,11 @@
       :network_gas: {}
     :out: {}
   :industry_useful_demand_for_chemical_refineries_useable_heat:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
+  :industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h:
     :in:
       :useable_heat: {}
     :out:
@@ -4625,6 +4733,11 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :industry_useful_demand_for_other_food_useable_heat_after_p2h:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_useful_demand_for_other_ict_electricity:
     :in:
       :electricity: {}
@@ -4749,6 +4862,11 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :industry_useful_demand_for_other_paper_useable_heat_after_p2h:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_useful_demand_for_other_textile_coal:
     :in:
       :coal: {}
@@ -8240,6 +8358,18 @@
     :demand: 
     :reversed: false
     :priority: 
+  :environment_water_water-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :environment_water_water-industry_chemicals_other_steam_recompression_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :households_collective_chp_biogas-households_collective_chp_biogas_dumped_heat@dumped_heat:
     :parent_share: 
     :child_share: 
@@ -9282,50 +9412,80 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_crude_oil-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_crude_oil-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_network_gas-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_network_gas-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_other_burner_wood_pellets-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
+  :industry_chemicals_other_burner_wood_pellets-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_coal-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
+  :industry_chemicals_other_flexibility_p2h_electricity-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_crude_oil-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
+  :industry_chemicals_other_heater_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_network_gas-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
+  ? :industry_chemicals_other_heatpump_water_water_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_other_steam_recompression_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_chemicals_refineries_burner_coal-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_chemicals_refineries_burner_wood_pellets-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_chemicals_refineries_burner_crude_oil-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_refineries_burner_network_gas-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_refineries_burner_wood_pellets-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  ? :industry_chemicals_refineries_flexibility_p2h_electricity-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
@@ -9727,6 +9887,24 @@
     :demand: 
     :reversed: false
     :priority: 
+  :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_heater_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_heatpump_water_water_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_steam_recompression_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :industry_final_demand_for_chemical_other_electricity-industry_useful_demand_for_chemical_other_electricity@electricity:
     :parent_share: 
     :child_share: 
@@ -9745,8 +9923,8 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_final_demand_for_chemical_other_steam_hot_water-industry_useful_demand_for_chemical_other_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_final_demand_for_chemical_other_steam_hot_water-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
@@ -9799,7 +9977,7 @@
     :demand: 
     :reversed: false
     :priority: 
-  ? :industry_final_demand_for_chemical_refineries_steam_hot_water-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat
+  ? :industry_final_demand_for_chemical_refineries_steam_hot_water-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat
   : :parent_share: 
     :child_share: 
     :demand: 
@@ -10353,7 +10531,7 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_final_demand_for_other_food_steam_hot_water-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_final_demand_for_other_food_steam_hot_water-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -10659,8 +10837,8 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_final_demand_for_other_paper_steam_hot_water-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
-    :parent_share: 
+  ? :industry_final_demand_for_other_paper_steam_hot_water-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat
+  : :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
@@ -11110,31 +11288,37 @@
     :reversed: false
     :priority: 
     :type: :overflow
-  :industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_burner_crude_oil-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_crude_oil-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_burner_network_gas-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_network_gas-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_burner_wood_pellets-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_burner_wood_pellets-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_food_heater_electricity-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+  :industry_other_food_flexibility_p2h_electricity-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_other_food_heater_electricity-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -11159,31 +11343,37 @@
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_coal-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_coal-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_crude_oil-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_crude_oil-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_network_gas-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_network_gas-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_burner_wood_pellets-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_burner_wood_pellets-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :industry_other_paper_heater_electricity-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+  :industry_other_paper_flexibility_p2h_electricity-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :industry_other_paper_heater_electricity-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -11318,6 +11508,13 @@
     :demand: 
     :reversed: false
     :priority: 
+  ? :industry_useful_demand_for_chemical_other_useable_heat_after_p2h-industry_useful_demand_for_chemical_other_useable_heat@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
   :industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic-industry_refinery_transformation_crude_oil@crude_oil:
     :parent_share: 
     :child_share: 
@@ -11330,6 +11527,27 @@
     :child_share: 
     :demand: 
     :reversed: true
+    :priority: 
+    :type: :flexible
+  ? :industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h-industry_useful_demand_for_chemical_refineries_useable_heat@useable_heat
+  : :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :industry_useful_demand_for_other_food_useable_heat_after_p2h-industry_useful_demand_for_other_food_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :industry_useful_demand_for_other_paper_useable_heat_after_p2h-industry_useful_demand_for_other_paper_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
     :priority: 
     :type: :flexible
   :other_burner_coal-other_useful_demand_useable_heat@useable_heat:
