@@ -1,13 +1,15 @@
 - query =
     UPDATE(
       V(households_water_heater_heatpump_ground_water_electricity, storage),
+      V(households_water_heater_heatpump_air_water_electricity, storage),
+      V(households_water_heater_hybrid_heatpump_air_water_electricity, storage),
       volume,
       DIVIDE(USER_INPUT(), 1000.0)
     )
 - priority = 0
-- max_value = 50.0
+- max_value = 500.0
 - min_value = 0.0
-- start_value = 24.0
+- start_value_gql = present:V(households_water_heater_heatpump_ground_water_electricity,"storage.volume")*1000
 - step_value = 1.0
 - factor = 1.0
 - unit = kWh
