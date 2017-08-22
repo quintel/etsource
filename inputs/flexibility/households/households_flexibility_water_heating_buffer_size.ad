@@ -1,8 +1,11 @@
 - query =
     UPDATE(
-      V(households_water_heater_heatpump_ground_water_electricity, storage),
-      V(households_water_heater_heatpump_air_water_electricity, storage),
-      V(households_water_heater_hybrid_heatpump_air_water_electricity, storage),
+      V(
+        households_water_heater_heatpump_air_water_electricity,
+        households_water_heater_heatpump_ground_water_electricity,
+        households_water_heater_hybrid_heatpump_air_water_electricity,
+        storage
+      ),
       volume,
       DIVIDE(USER_INPUT(), 1000.0)
     )
