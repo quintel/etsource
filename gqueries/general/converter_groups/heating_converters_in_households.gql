@@ -1,7 +1,7 @@
 - query =
-    V(
-      CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater)),
-      V(households_water_heater_solar_thermal)
+    EXCLUDE(
+      CHILDREN(CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater))),
+      V(households_space_heater_deficit)
     )
 - unit = converters
 - deprecated_key = households_heating_converters

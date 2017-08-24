@@ -3,6 +3,7 @@
 - unit = PJ
 - query =
     SUM(
-      V(CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater)),input_of_network_gas),
-      V(CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater)),input_of_lng)      
+      V(Q(heating_converters_in_households), input_of_network_gas),
+      V(Q(heating_converters_in_households), input_of_lng)
     ) / BILLIONS
+
