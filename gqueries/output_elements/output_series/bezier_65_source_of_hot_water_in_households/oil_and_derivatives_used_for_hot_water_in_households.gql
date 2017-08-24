@@ -3,10 +3,10 @@
 - unit = PJ
 - query =
     SUM(
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_crude_oil),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_gasoline),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_diesel),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_lpg),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_kerosene),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_heavy_fuel_oil)      
+      V(Q(hot_water_converters_in_households), input_of_crude_oil),
+      V(Q(hot_water_converters_in_households), input_of_gasoline),
+      V(Q(hot_water_converters_in_households), input_of_diesel),
+      V(Q(hot_water_converters_in_households), input_of_lpg),
+      V(Q(hot_water_converters_in_households), input_of_kerosene),
+      V(Q(hot_water_converters_in_households), input_of_heavy_fuel_oil)
     ) / BILLIONS
