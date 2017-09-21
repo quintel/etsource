@@ -1,6 +1,8 @@
 - query = 
-    DIVIDE(Q(total_electricity_produced), BILLIONS) + 
-    DIVIDE(Q(energy_import_electricity), BILLIONS) + 
-    DIVIDE(Q(energy_power_hv_network_shortage), BILLIONS) +     
-    - Q(demand_in_source_of_electricity_production)
+
+    DIVIDE(
+        Q(total_electricity_produced) + 
+        V(energy_import_electricity, demand) + 
+        V(energy_power_hv_network_shortage, demand), 
+    BILLIONS) - Q(demand_in_source_of_electricity_production)
 - unit = PJ
