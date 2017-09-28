@@ -120,38 +120,33 @@ namespace :import do
 
     Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
-    node = Atlas::Node.find(ENV['NODE'])
+    node      = Atlas::Node.find(ENV['NODE'])
+    node_path = "#{ node.sector }/#{ node.key }.#{ node.class.subclass_suffix }"
+    xlsx      = Roo::Spreadsheet.open("../etdataset/nodes_source_analyses/#{ node_path }.xlsx")
 
-    Atlas::Node.attribute_set.each do |attribute|
-      attr_name = attribute.name.to_s
+    xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
+      next unless key_val[:value].is_a?(Numeric)
 
-      if attribute.options[:primitive] == Hash
-        subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
-        subkeys.each do |key, value|
-          if node.public_send(attr_name).nil?
-            node.public_send("#{ attr_name }=", {})
+      if key_val[:attribute] =~ /\./
+        attribute, subkey = key_val[:attribute].split('.', 2)
+        subhash           = node.public_send(attribute)
+        right             = subkey
+
+        while subkey.include?('.')
+          left, right = subkey.split('.', 2)
+          left = left.to_sym
+
+          unless subhash[left].is_a?(Hash)
+            subhash[left] = {}
           end
 
-          subkey  = key.split('__', 2)[1]
-          subhash = node.public_send(attr_name)
-          right   = subkey
-
-          while subkey.include?('__')
-            left, right = subkey.split('__', 2)
-            left = left.to_sym
-
-            unless subhash[left].is_a?(Hash)
-              subhash[left] = {}
-            end
-
-            subkey = right
-            subhash = subhash[left]
-          end
-
-          subhash[subkey.to_sym] = value
+          subkey = right
+          subhash = subhash[left]
         end
-      elsif ENV[attribute.name.to_s]
-        node.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
+
+        subhash[subkey.to_sym] = key_val[:value]
+      else
+        node.public_send("#{ key_val[:attribute] }=", key_val[:value])
       end
     end
 
