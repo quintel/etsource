@@ -1,0 +1,7 @@
+- query =
+    EACH(
+      UPDATE(V(energy_heater_for_heat_network_waste_mix), number_of_units, USER_INPUT()),
+      UPDATE(OUTPUT_LINKS(V(energy_heater_for_heat_network_waste_mix),constant), share, V(energy_heater_for_heat_network_waste_mix, production_based_on_number_of_heat_units)),
+    )
+- priority = 1
+
