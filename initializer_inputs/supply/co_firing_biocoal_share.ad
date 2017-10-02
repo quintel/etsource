@@ -1,0 +1,15 @@
+- query =
+    EACH(
+      UPDATE( INPUT_SLOTS(V(energy_heater_for_heat_network_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_chp_ultra_supercritical_coal), torrified_biomass_pellets),   conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_oxyfuel_ccs_lignite), torrified_biomass_pellets),   conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_supercritical_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_ccs_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_lignite), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_combined_cycle_ccs_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_combined_cycle_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 100.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_power_ultra_supercritical_cofiring_coal), torrified_biomass_pellets), conversion, USER_INPUT() / 200.0 ),
+      UPDATE( INPUT_SLOTS(V(energy_chp_ultra_supercritical_cofiring_coal), torrified_biomass_pellets),   conversion, USER_INPUT() / 200.0 )
+      )
+- priority = 10
