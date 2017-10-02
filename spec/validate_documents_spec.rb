@@ -1,17 +1,19 @@
 require 'spec_helper'
 
 TO_VALIDATE = {
-  carriers: Atlas::Carrier,
-  datasets: Atlas::Dataset,
-  edges:    Atlas::Edge,
-  gqueries: Atlas::Gquery,
-  inputs:   Atlas::Input,
-  nodes:    Atlas::Node,
-  presets:  Atlas::Preset
+  carriers:           Atlas::Carrier,
+  datasets:           Atlas::Dataset,
+  edges:              Atlas::Edge,
+  gqueries:           Atlas::Gquery,
+  inputs:             Atlas::Input,
+  nodes:              Atlas::Node,
+  presets:            Atlas::Preset,
+  initializer_inputs: Atlas::InitializerInput
 }
 
 PERMITTED_VALIDATION_ERRORS = {
-  Atlas::Input => [:query]
+  Atlas::Input            => [:query],
+  Atlas::InitializerInput => [:query]
 }
 
 TO_VALIDATE.each do |name, klass|
