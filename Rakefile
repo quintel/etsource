@@ -132,6 +132,11 @@ namespace :import do
         subhash           = node.public_send(attribute)
         right             = subkey
 
+        # For FeverDetails and TransformerDetails
+        if subhash.is_a?(Atlas::ValueObject)
+          subhash = subhash.to_h
+        end
+
         while subkey.include?('.')
           left, right = subkey.split('.', 2)
           left = left.to_sym
