@@ -1,6 +1,6 @@
 - query =
     UPDATE(
-      V(OUTPUT_SLOTS(LOOKUP(households_water_heater_district_heating_steam_hot_water),useable_heat), "links.detect{|l| !l.flexible? }"),
+      V(OUTPUT_SLOTS(LOOKUP(households_water_heater_district_heating_steam_hot_water_aggregator),useable_heat), "links.detect{|l| !l.flexible? }"),
       share, USER_INPUT() / 100.0
     )
 - share_group = hot_water_households_present
