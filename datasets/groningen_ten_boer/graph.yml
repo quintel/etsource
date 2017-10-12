@@ -2288,7 +2288,6 @@
     :in: {}
     :out:
       :water: {}
-      :ambient_heat: {}
   :households_appliances_clothes_dryer_electricity:
     :in:
       :electricity: {}
@@ -2717,12 +2716,12 @@
           denominator: 156250000000000
           numerator: 175561797752809
     :out:
+      :loss:
+        :type: :elastic
       :electricity:
         :share: !ruby/object:Rational
           denominator: 20
           numerator: 17
-      :loss:
-        :type: :elastic
   :households_heat_network_connection_steam_hot_water:
     :in:
       :steam_hot_water: {}
@@ -8400,6 +8399,18 @@
     :demand: 
     :reversed: false
     :priority: 
+  :environment_earth_ambient_heat-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :environment_earth_ambient_heat-industry_chemicals_other_steam_recompression_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :environment_earth_geothermal-agriculture_geothermal@geothermal:
     :parent_share: 
     :child_share: 
@@ -8473,18 +8484,6 @@
     :reversed: false
     :priority: 
   :environment_water_water-energy_power_hydro_river@water:
-    :parent_share: 
-    :child_share: 
-    :demand: 
-    :reversed: false
-    :priority: 
-  :environment_water_water-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
-    :parent_share: 
-    :child_share: 
-    :demand: 
-    :reversed: false
-    :priority: 
-  :environment_water_water-industry_chemicals_other_steam_recompression_electricity@ambient_heat:
     :parent_share: 
     :child_share: 
     :demand: 
