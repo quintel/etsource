@@ -3,16 +3,16 @@
 - unit = PJ
 - query =
     SUM(
-      V(G(heat_production),input_of_greengas),
-      V(G(heat_production),input_of_biodiesel),
-      V(G(heat_production),input_of_bio_ethanol),
-      V(G(heat_production),input_of_bio_lng),
-      V(G(heat_production),input_of_bio_oil),
-      V(G(heat_production),input_of_biogas),
-      V(G(heat_production),input_of_torrified_biomass_pellets),
-      V(G(heat_production),input_of_wood_pellets),
-      V(G(heat_production),input_of_corn),
-      V(G(heat_production),input_of_manure),
-      V(G(heat_production),input_of_wood),
-      V(G(heat_production),input_of_woody_biomass)
+      V(G(heat_production),"input_of_greengas * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_biodiesel * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_bio_ethanol * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_bio_lng * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_bio_oil * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_biogas * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_torrified_biomass_pellets * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_wood_pellets * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_woody_biomass * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_corn * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_manure * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_wood * heat_and_cold_output_conversion")
     ) / BILLIONS
