@@ -3,11 +3,11 @@
 - unit = PJ
 - query =
     SUM(
-      V(G(heat_production),input_of_useable_heat),
-      V(G(heat_production),input_of_cooling),
-      V(G(heat_production),input_of_car_kms),
-      V(G(heat_production),input_of_truck_kms),
-      V(G(heat_production),input_of_light),
-      V(G(heat_production),input_of_not_defined),
-      V(G(heat_production),input_of_savings)
+      V(G(heat_production),"input_of_useable_heat * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_cooling * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_car_kms * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_truck_kms * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_light * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_not_defined * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_savings * heat_and_cold_output_conversion")
     ) / BILLIONS

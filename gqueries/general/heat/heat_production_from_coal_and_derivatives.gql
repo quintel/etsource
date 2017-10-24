@@ -3,8 +3,8 @@
 - unit = PJ
 - query =
     SUM(
-      V(G(heat_production),input_of_coal),
-      V(G(heat_production),input_of_lignite),
-      V(G(heat_production),input_of_coal_gas),
-      V(G(heat_production),input_of_cokes)
+      V(G(heat_production),"input_of_coal * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_lignite * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_coal_gas * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_cokes * heat_and_cold_output_conversion")
     ) / BILLIONS

@@ -3,6 +3,6 @@
 - unit = PJ
 - query =
     SUM(
-      V(G(heat_production),input_of_solar_radiation),
-      V(G(heat_production),input_of_solar_thermal)
+      V(G(heat_production),"input_of_solar_radiation * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_solar_thermal * heat_and_cold_output_conversion")
     ) / BILLIONS
