@@ -2288,7 +2288,6 @@
     :in: {}
     :out:
       :water: {}
-      :ambient_heat: {}
   :households_appliances_clothes_dryer_electricity:
     :in:
       :electricity: {}
@@ -3507,9 +3506,6 @@
           denominator: 200
           numerator: 199
   :industry_chemicals_other_heater_electricity:
-    :demand: !ruby/object:Rational
-      denominator: 1
-      numerator: 0
     :in:
       :electricity: {}
     :out:
@@ -3520,9 +3516,6 @@
           denominator: 200
           numerator: 199
   :industry_chemicals_other_heatpump_water_water_electricity:
-    :demand: !ruby/object:Rational
-      denominator: 1
-      numerator: 0
     :in:
       :ambient_heat:
         :share: !ruby/object:Rational
@@ -3538,9 +3531,6 @@
           denominator: 1
           numerator: 1
   :industry_chemicals_other_steam_recompression_electricity:
-    :demand: !ruby/object:Rational
-      denominator: 1
-      numerator: 0
     :in:
       :ambient_heat:
         :share: !ruby/object:Rational
@@ -8409,6 +8399,18 @@
     :demand: 
     :reversed: false
     :priority: 
+  :environment_earth_ambient_heat-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :environment_earth_ambient_heat-industry_chemicals_other_steam_recompression_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :environment_earth_geothermal-agriculture_geothermal@geothermal:
     :parent_share: 
     :child_share: 
@@ -8482,18 +8484,6 @@
     :reversed: false
     :priority: 
   :environment_water_water-energy_power_hydro_river@water:
-    :parent_share: 
-    :child_share: 
-    :demand: 
-    :reversed: false
-    :priority: 
-  :environment_water_water-industry_chemicals_other_heatpump_water_water_electricity@ambient_heat:
-    :parent_share: 
-    :child_share: 
-    :demand: 
-    :reversed: false
-    :priority: 
-  :environment_water_water-industry_chemicals_other_steam_recompression_electricity@ambient_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -10362,25 +10352,33 @@
     :reversed: false
     :priority: 
   :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_heater_electricity@electricity:
-    :parent_share: 
+    :parent_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
   :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_heatpump_water_water_electricity@electricity:
-    :parent_share: 
+    :parent_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
   :industry_final_demand_for_chemical_other_electricity-industry_chemicals_other_steam_recompression_electricity@electricity:
-    :parent_share: 
+    :parent_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
   :industry_final_demand_for_chemical_other_electricity-industry_useful_demand_for_chemical_other_electricity@electricity:
-    :parent_share: 
+    :parent_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 1
     :child_share: 
     :demand: 
     :reversed: false
