@@ -89,30 +89,15 @@ namespace :import do
   end # :dataset
 
   desc <<-DESC
-    Import data from an ETDataset node analysis file.
-
-    Provide the task with a NODE variable specifying the key of the node to be
-    updated, and then one or more additional variables specifying the attributes
-    to be changed.
+    Import data from an ETDataset node analysis file. Imports all the attributes
+    which live in cells with the headers 'Attribute' and 'Value'
+    on an Excel tab called 'Dashboard'. If these names are not met, this
+    script will not function as intended.
 
     For example:
 
-      rake import:node NODE=industry_burner_coal technical_lifetime=14.0
+      rake import:node NODE=industry_burner_coal
 
-    You may specify multple attributes to update:
-
-      rake import:node \
-        NODE=energy_power_lv_network_electricity \
-        free_co2_factor=0.2 \
-        availability=1.0 \
-        network_capacity_available_in_mw=74803.6
-
-    Be sure to surround values in quotes if the value contains any spaces, or
-    non-alphanumeric characters:
-
-      rake import:node \
-        NODE=energy_power_lv_network_electricity \
-        energy_balance_group='electricity network'
   DESC
   task :node do
     require 'bundler'
@@ -121,8 +106,8 @@ namespace :import do
     Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     node      = Atlas::Node.find(ENV['NODE'])
-    node_path = "#{ node.sector }/#{ node.key }.#{ node.class.subclass_suffix }"
-    xlsx      = Roo::Spreadsheet.open("../etdataset/nodes_source_analyses/#{ node_path }.xlsx")
+    node_path = "#{node.sector}/#{node.key}.#{node.class.subclass_suffix}"
+    xlsx      = Roo::Spreadsheet.open("../etdataset/nodes_source_analyses/#{node_path}.xlsx")
 
     xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
       next unless key_val[:value].is_a?(Numeric)
@@ -151,7 +136,7 @@ namespace :import do
 
         subhash[subkey.to_sym] = key_val[:value]
       else
-        node.public_send("#{ key_val[:attribute] }=", key_val[:value])
+        node.public_send("#{key_val[:attribute]}=", key_val[:value])
       end
     end
 
@@ -162,27 +147,12 @@ namespace :import do
     Import data from an ETDataset carrier analysis file.
 
     Provide the task with a CARRIER variable specifying the key of the carrier to be
-    updated, and then one or more additional variables specifying the attributes
-    to be changed.
+    updated.
 
     For example:
 
-      rake import:carrier CARRIER=bio_oil co2_conversion_per_mj=0
+      rake import:carrier CARRIER=bio_oil
 
-    You may specify multiple attributes to update:
-
-      rake import:carrier \
-        CARRIER=bio_oil \
-        co2_conversion_per_mj=0 \
-        cost_per_mj=0.013885126 \
-        typical_production_per_km2=15506658
-
-    Be sure to surround values in quotes if the value contains any spaces, or
-    non-alphanumeric characters:
-
-      rake import:carrier \
-        CARRIER=bio_oil \
-        sustainable='1'
   DESC
   task :carrier do
     require 'bundler'
@@ -191,24 +161,19 @@ namespace :import do
     Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     carrier = Atlas::Carrier.find(ENV['CARRIER'])
+    xlsx    = Roo::Spreadsheet.open("../etdataset/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
 
-    Atlas::Carrier.attribute_set.each do |attribute|
-      attr_name = attribute.name.to_s
-
-      if attribute.options[:primitive] == Hash
-        subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
-
-        subkeys.each do |key, value|
-          if carrier.public_send(attr_name).nil?
-            carrier.public_send("#{ attr_name }=", {})
-          end
-
-          carrier.public_send(attr_name)[key.split('__', 2)[1].to_sym] = value
-        end
-      elsif ENV[attribute.name.to_s]
-        carrier.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
-      end
+    unless carrier
+      raise ArgumentError, "carrier #{ENV['CARRIER']} does not exist!"
     end
+
+    carrier.attributes = xlsx.sheet('Dashboard')
+      .each(attribute: 'Attribute', value: 'Value')
+      .each_with_object({}) do |row, result|
+        next unless row[:value].is_a?(Numeric)
+
+        result[row[:attribute]] = row[:value]
+      end
 
     carrier.save
   end # :carrier
@@ -216,31 +181,17 @@ namespace :import do
   desc <<-DESC
     Import FCE datasets
 
+    It imports these values directly from the carrier analysis fce tab.
+    The tab name needs to be "<dataset>_fce" or else this script will
+    break.
+
     Arguments mandatory:
 
     - DATASET = <region>
     - CARRIER = <carrier>
-    - ORIGIN  = <origin>
-
-    Optional arguments:
-
-    - <attributes> that are available for the ORIGIN of the CARRIER in that
-      DATASET.
-
-    Example:
 
     rake import:fce DATASET=nl
                     CARRIER=bio_ethanol
-                    ORIGIN=sugar_beets
-                    co2_exploration_per_mj=5.0
-
-    You may specify multiple attributes to update:
-
-    rake import:fce DATASET=nl
-                    CARRIER=bio_ethanol
-                    ORIGIN=sugar_beets
-                    co2_exploration_per_mj=5.0
-                    co2_extraction_per_mj=5.0
   DESC
   task :fce do
     require 'bundler'
@@ -249,29 +200,33 @@ namespace :import do
     # Raise the obvious errors if mandatory arguments are missing
     raise ArgumentError, 'missing CARRIER argument' unless ENV['CARRIER']
     raise ArgumentError, 'missing DATASET argument' unless ENV['DATASET']
-    raise ArgumentError, 'missing ORIGIN argument' unless ENV['ORIGIN']
 
     Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     carrier     = ENV['CARRIER']
     dataset     = ENV['DATASET']
-    origin      = ENV['ORIGIN'].to_sym
-    attributes  = ENV.select{ |key, _| key =~ /^[a-z]/ }.symbolize_keys
     current_fce = Atlas::Carrier.new(key: carrier).fce(dataset)
-    yaml_file   = Atlas.data_dir.join("datasets/#{ dataset }/fce/#{ carrier }.yml")
 
     raise ArgumentError, "CARRIER '#{carrier}' does not exist in '#{dataset}'" unless current_fce
-    raise ArgumentError, "ORIGIN '#{origin}' does not exist in '#{carrier}'"   unless current_fce[origin]
 
-    attributes.each do |key, value|
-      if current_fce[origin][key]
-        current_fce[origin][key] = value.to_f
-      else
-        raise ArgumentError, "variable '#{ key }' does not exist in ORIGIN '#{ origin }'"
+    xlsx        = Roo::Spreadsheet.open("../etdataset/carriers_source_analyses/#{carrier}.carrier.xlsx")
+    yaml_file   = Atlas.data_dir.join("datasets/#{dataset}/fce/#{carrier}.yml")
+
+    current_fce = xlsx.sheet("#{ dataset }_fce")
+      .each(attribute: 'Attribute', value: 'Value')
+      .each_with_object({}) do |row, result|
+        if row[:attribute] =~ /from/
+          @current_row = row[:attribute].gsub(/from\s/, '').to_sym
+
+          result[@current_row] ||= {}
+        end
+
+        if row[:value].is_a?(Numeric)
+          result[@current_row][row[:attribute].to_sym] = row[:value]
+        end
       end
-    end
 
-    File.open(yaml_file, 'w'){|f| f.write(current_fce.to_yaml) }
+    File.open(yaml_file, 'w') { |f| f.write(current_fce.to_yaml) }
   end
 end # :import
 
