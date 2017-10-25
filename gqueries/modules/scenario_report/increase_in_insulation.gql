@@ -1,2 +1,6 @@
-- query = 
-    QUERY_DELTA(-> {INPUT_VALUE(households_insulation_level_old_houses)}) + QUERY_DELTA(-> {INPUT_VALUE(households_insulation_level_old_houses)}) 
+- query =
+    SUM(
+      INPUT_VALUE(households_insulation_level_old_houses) - AREA(insulation_level_old_houses_min),
+      INPUT_VALUE(households_insulation_level_new_houses) - AREA(insulation_level_new_houses_min)
+    )
+- unit = m^2K/W
