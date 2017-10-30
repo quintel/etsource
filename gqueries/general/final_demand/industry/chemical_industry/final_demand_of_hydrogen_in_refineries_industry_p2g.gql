@@ -1,0 +1,11 @@
+# This query calculates the amount of excess electricity used to produce hydrogen used as feedstock in the fertiliser industry. This amount is capped at the maximum amount of hydrogen needed in this industry.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      IF(V(industry_chemicals_fertilizers_haber_bosch_process_hydrogen, input_of_hydrogen) > V(industry_flexibility_p2g_electricity, output_of_hydrogen),
+      V(industry_flexibility_p2g_electricity, output_of_hydrogen),
+      V(industry_chemicals_fertilizers_haber_bosch_process_hydrogen, input_of_hydrogen)
+      ),
+      V(industry_flexibility_p2g_electricity, hydrogen_output_conversion)
+    ) / BILLIONS
