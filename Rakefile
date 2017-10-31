@@ -1,3 +1,5 @@
+require 'dotenv/load'
+
 def encrypt_balance(directory)
   if File.exists?('.password')
     password = File.read('.password').strip
@@ -47,7 +49,7 @@ namespace :import do
 
     datasets.each do |country, year|
       dest = Pathname.new("datasets/#{ country }")
-      csvs = Pathname.glob("../etdataset/data/#{ country }/#{ year }/*/output/*.csv")
+      csvs = Pathname.glob("#{ ENV['ETDATASET_PATH'] }/data/#{ country }/#{ year }/*/output/*.csv")
 
       puts "Importing #{ country }/#{ year } dataset:"
 
@@ -107,7 +109,7 @@ namespace :import do
 
     node      = Atlas::Node.find(ENV['NODE'])
     node_path = "#{node.sector}/#{node.key}.#{node.class.subclass_suffix}"
-    xlsx      = Roo::Spreadsheet.open("../etdataset/nodes_source_analyses/#{node_path}.xlsx")
+    xlsx      = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/nodes_source_analyses/#{node_path}.xlsx")
 
     xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
       next unless key_val[:value].is_a?(Numeric)
@@ -161,7 +163,7 @@ namespace :import do
     Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     carrier = Atlas::Carrier.find(ENV['CARRIER'])
-    xlsx    = Roo::Spreadsheet.open("../etdataset/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
+    xlsx    = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
 
     unless carrier
       raise ArgumentError, "carrier #{ENV['CARRIER']} does not exist!"
@@ -209,7 +211,7 @@ namespace :import do
 
     raise ArgumentError, "CARRIER '#{carrier}' does not exist in '#{dataset}'" unless current_fce
 
-    xlsx        = Roo::Spreadsheet.open("../etdataset/carriers_source_analyses/#{carrier}.carrier.xlsx")
+    xlsx        = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{carrier}.carrier.xlsx")
     yaml_file   = Atlas.data_dir.join("datasets/#{dataset}/fce/#{carrier}.yml")
 
     current_fce = xlsx.sheet("#{ dataset }_fce")
@@ -231,7 +233,7 @@ namespace :import do
 end # :import
 
 desc <<-DESC
-  Import ETDataset CSVs from ../etdataset
+  Import ETDataset CSVs from #{ ENV['ETDATASET_PATH'] }
 
   Defaults to importing all datasets listed in datasets.yml. Providing an optional DATASET environment
   parameter results in importing only one dataset. If an optional YEAR environment parameter is provided,
