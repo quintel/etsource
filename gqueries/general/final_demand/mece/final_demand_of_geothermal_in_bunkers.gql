@@ -1,0 +1,15 @@
+# Final demand of the 'geothermal' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :bunkers"
+          ),
+          geothermal?
+        ),
+        value
+      )
+    ) / BILLIONS
