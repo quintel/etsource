@@ -1,30 +1,21 @@
-require 'dotenv/load'
+task :environment do
+  require 'bundler'
+  require 'dotenv/load'
+  require 'pathname'
 
-def encrypt_balance(directory)
-  if File.exists?('.password')
-    password = File.read('.password').strip
-  else
-    puts "File .password not found in root. Cannot encrypt energy balance CSV"
-    exit(1)
-  end
+  require 'fileutils'
+  require 'yaml'
+  require_relative './helpers/encrypt_balance'
 
-  csv  = directory.join('energy_balance.csv')
-  dest = directory.join('energy_balance.gpg')
+  Bundler.require(:development)
+  Dotenv.load('.env', '.env.default')
 
-  if csv.file?
-    dest = csv.dirname.join('energy_balance.gpg')
-    system("gpg --batch --yes --passphrase '#{ password }' -c --output '#{ dest }' '#{ csv }'")
-    puts "  - Encrypted energy balance"
-  end
+  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 end
 
 namespace :import do
   # See documentation for "task :import".
-  task :dataset do
-    require 'pathname'
-    require 'fileutils'
-    require 'yaml'
-
+  task dataset: :environment do
     # Copies the source CSV file to the given +to+ path, converting Windows CRLF
     # line endings to Unix LF.
     def cp_csv(from, to)
@@ -101,12 +92,7 @@ namespace :import do
       rake import:node NODE=industry_burner_coal
 
   DESC
-  task :node do
-    require 'bundler'
-    Bundler.require(:test)
-
-    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
-
+  task node: :environment do
     node      = Atlas::Node.find(ENV['NODE'])
     node_path = "#{node.sector}/#{node.key}.#{node.class.subclass_suffix}"
     xlsx      = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/nodes_source_analyses/#{node_path}.xlsx")
@@ -156,12 +142,7 @@ namespace :import do
       rake import:carrier CARRIER=bio_oil
 
   DESC
-  task :carrier do
-    require 'bundler'
-    Bundler.require(:test)
-
-    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
-
+  task carrier: :environment do
     carrier = Atlas::Carrier.find(ENV['CARRIER'])
     xlsx    = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
 
@@ -195,15 +176,10 @@ namespace :import do
     rake import:fce DATASET=nl
                     CARRIER=bio_ethanol
   DESC
-  task :fce do
-    require 'bundler'
-    Bundler.require(:test)
-
+  task fce: :environment do
     # Raise the obvious errors if mandatory arguments are missing
     raise ArgumentError, 'missing CARRIER argument' unless ENV['CARRIER']
     raise ArgumentError, 'missing DATASET argument' unless ENV['DATASET']
-
-    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     carrier     = ENV['CARRIER']
     dataset     = ENV['DATASET']
@@ -304,16 +280,10 @@ desc <<-DESC
 
 DESC
 
-task :scale do
-  require 'bundler'
-
+task scale: :environment do
   raise ArgumentError, 'missing FULL_DATASET argument'         unless ENV['FULL_DATASET']
   raise ArgumentError, 'missing DERIVED_DATASET argument'      unless ENV['DERIVED_DATASET']
   raise ArgumentError, 'missing NUMBER_OF_RESIDENCES argument' unless ENV['NUMBER_OF_RESIDENCES']
-
-  Bundler.require(:development)
-
-  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
   Atlas::Scaler.new(
     ENV['FULL_DATASET'], ENV['DERIVED_DATASET'], ENV['NUMBER_OF_RESIDENCES']
@@ -329,7 +299,7 @@ desc <<-DESC
 
 DESC
 
-task :init_methods_to_input do
+task init_methods_to_input: :environment do
   unless ENV['DERIVED_DATASET']
     raise(
       ArgumentError,
@@ -337,10 +307,6 @@ task :init_methods_to_input do
       'use: rake refresh_graph DERIVED_DATASET=*'
     )
   end
-
-  require 'bundler'
-  Bundler.require(:development)
-  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
   dataset = Atlas::Dataset::Derived.find(ENV['DERIVED_DATASET'])
   input_name = "initializer_methods_#{ dataset.key }"
@@ -393,9 +359,7 @@ task :init_methods_to_input do
   end
 end
 
-task :refresh_graph do
-  require 'bundler'
-
+task refresh_graph: :environment do
   unless ENV['DERIVED_DATASET']
     raise(
       ArgumentError,
@@ -403,10 +367,6 @@ task :refresh_graph do
       'use: rake refresh_graph DERIVED_DATASET=*'
     )
   end
-
-  Bundler.require(:development)
-
-  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
   derived_datasets =
     if ENV['DERIVED_DATASET'] == '*'
