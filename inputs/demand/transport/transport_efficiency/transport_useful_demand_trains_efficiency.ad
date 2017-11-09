@@ -1,4 +1,8 @@
-- query = UPDATE( OUTPUT_SLOTS(V(transport_train_using_diesel,transport_train_using_electricity,transport_train_using_coal)), conversion, USER_INPUT())
+- query =
+    EACH(
+    UPDATE(OUTPUT_SLOTS(V(transport_passenger_train_using_diesel,transport_passenger_train_using_electricity,transport_passenger_train_using_coal),passenger_kms), conversion, USER_INPUT()),
+    UPDATE(OUTPUT_SLOTS(V(transport_freight_train_using_diesel,transport_freight_train_using_electricity,transport_freight_train_using_coal),freight_tonne_kms), conversion, USER_INPUT())
+    )
 - priority = 0
 - max_value = 3.0
 - min_value = 0.0
