@@ -1,4 +1,9 @@
-- query = UPDATE_WITH_FACTOR(V(bunkers_useful_demand_ships), preset_demand, USER_INPUT())
+- query =
+      UPDATE(
+        V(bunkers_useful_demand_ships),
+        preset_demand,
+        V(bunkers_total_useful_demand_ships, preset_demand) * USER_INPUT()
+      )
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
