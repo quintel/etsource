@@ -14,4 +14,6 @@
         V(CARRIER(bio_oil), potential_co2_conversion_per_mj),
       V(G(final_demand_group), key, primary_demand_of_biodiesel).sum *
         V(CARRIER(biodiesel), potential_co2_conversion_per_mj)
-    ) * INPUT_VALUE(climate_relevant_co2_biomass_liquid_present) / 100 / BILLIONS  
+      V(G(final_demand_group), key, primary_demand_of_bio_kerosene).sum *
+        V(CARRIER(bio_kerosene), potential_co2_conversion_per_mj)
+    ) * INPUT_VALUE(climate_relevant_co2_biomass_liquid_present) / 100 / BILLIONS

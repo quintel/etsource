@@ -669,6 +669,92 @@
     :in:
       :light: {}
     :out: {}
+  :bunkers_final_demand_bio_kerosene:
+    :in:
+      :bio_kerosene: {}
+    :out:
+      :bio_kerosene: {}
+  :bunkers_final_demand_for_aviation_bio_kerosene:
+    :in:
+      :bio_kerosene: {}
+    :out:
+      :bio_kerosene: {}
+  :bunkers_final_demand_for_aviation_kerosene:
+    :in:
+      :kerosene: {}
+    :out:
+      :kerosene: {}
+  :bunkers_final_demand_for_shipping_heavy_fuel_oil:
+    :in:
+      :heavy_fuel_oil: {}
+    :out:
+      :heavy_fuel_oil: {}
+  :bunkers_final_demand_for_shipping_lng:
+    :in:
+      :lng: {}
+    :out:
+      :lng: {}
+  :bunkers_final_demand_heavy_fuel_oil:
+    :in:
+      :heavy_fuel_oil: {}
+    :out:
+      :heavy_fuel_oil: {}
+  :bunkers_final_demand_kerosene:
+    :in:
+      :kerosene: {}
+    :out:
+      :kerosene: {}
+  :bunkers_final_demand_lng:
+    :in:
+      :lng: {}
+    :out:
+      :lng: {}
+  :bunkers_plane_using_bio_kerosene:
+    :in:
+      :bio_kerosene: {}
+    :out:
+      :not_defined: {}
+  :bunkers_plane_using_kerosene:
+    :in:
+      :kerosene: {}
+    :out:
+      :not_defined: {}
+  :bunkers_ship_using_heavy_fuel_oil:
+    :in:
+      :heavy_fuel_oil: {}
+    :out:
+      :shipping_kms: {}
+  :bunkers_ship_using_lng:
+    :in:
+      :lng: {}
+    :out:
+      :shipping_kms: {}
+  :bunkers_total_useful_demand_planes:
+    :demand: !ruby/object:Rational
+      denominator: 189699100
+      numerator: 1021480179
+    :in: {}
+    :out: {}
+  :bunkers_total_useful_demand_ships:
+    :demand: !ruby/object:Rational
+      denominator: 94849550000000000
+      numerator: 1651646920499999871
+    :in: {}
+    :out: {}
+  :bunkers_useful_demand_planes:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :not_defined: {}
+    :out: {}
+  :bunkers_useful_demand_ships:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :shipping_kms: {}
+    :out: {}
   :energy_biomass_gasification_ccs_hydrogen:
     :in:
       :electricity:
@@ -890,6 +976,16 @@
       :bio_ethanol: {}
     :out:
       :bio_ethanol:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
+      :loss:
+        :type: :elastic
+  :energy_distribution_bio_kerosene:
+    :in:
+      :bio_kerosene: {}
+    :out:
+      :bio_kerosene:
         :share: !ruby/object:Rational
           denominator: 1
           numerator: 1
@@ -1386,6 +1482,10 @@
     :in: {}
     :out:
       :bio_ethanol: {}
+  :energy_import_bio_kerosene:
+    :in: {}
+    :out:
+      :bio_kerosene: {}
   :energy_import_bio_lng:
     :in: {}
     :out:
@@ -6422,6 +6522,78 @@
     :reversed: false
     :priority: 
     :type: :flexible
+  :bunkers_final_demand_bio_kerosene-bunkers_final_demand_for_aviation_bio_kerosene@bio_kerosene:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_for_aviation_bio_kerosene-bunkers_plane_using_bio_kerosene@bio_kerosene:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_for_aviation_kerosene-bunkers_plane_using_kerosene@kerosene:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_for_shipping_heavy_fuel_oil-bunkers_ship_using_heavy_fuel_oil@heavy_fuel_oil:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_for_shipping_lng-bunkers_ship_using_lng@lng:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_heavy_fuel_oil-bunkers_final_demand_for_shipping_heavy_fuel_oil@heavy_fuel_oil:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_kerosene-bunkers_final_demand_for_aviation_kerosene@kerosene:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_lng-bunkers_final_demand_for_shipping_lng@lng:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_plane_using_bio_kerosene-bunkers_useful_demand_planes@not_defined:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_plane_using_kerosene-bunkers_useful_demand_planes@not_defined:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_ship_using_heavy_fuel_oil-bunkers_useful_demand_ships@shipping_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_ship_using_lng-bunkers_useful_demand_ships@shipping_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :energy_biomass_gasification_ccs_hydrogen-energy_distribution_hydrogen@hydrogen:
     :parent_share: 
     :child_share: !ruby/object:Rational
@@ -6535,6 +6707,12 @@
     :priority: 
     :type: :overflow
   :energy_distribution_bio_ethanol-transport_final_demand_bio_ethanol@bio_ethanol:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :energy_distribution_bio_kerosene-bunkers_final_demand_bio_kerosene@bio_kerosene:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -6911,6 +7089,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :energy_distribution_heavy_fuel_oil-bunkers_final_demand_heavy_fuel_oil@heavy_fuel_oil:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :energy_distribution_heavy_fuel_oil-energy_export_heavy_fuel_oil@heavy_fuel_oil:
     :parent_share: 
     :child_share: 
@@ -6929,6 +7113,12 @@
     :child_share: !ruby/object:Rational
       denominator: 5
       numerator: 3
+    :demand: 
+    :reversed: false
+    :priority: 
+  :energy_distribution_kerosene-bunkers_final_demand_kerosene@kerosene:
+    :parent_share: 
+    :child_share: 
     :demand: 
     :reversed: false
     :priority: 
@@ -6971,6 +7161,12 @@
     :reversed: false
     :priority: 
   :energy_distribution_lignite-energy_power_ultra_supercritical_oxyfuel_ccs_lignite@lignite:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :energy_distribution_lng-bunkers_final_demand_lng@lng:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -7389,6 +7585,13 @@
     :reversed: false
     :priority: 
   :energy_import_bio_ethanol-energy_distribution_bio_ethanol@bio_ethanol:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :energy_import_bio_kerosene-energy_distribution_bio_kerosene@bio_kerosene:
     :parent_share: 
     :child_share: 
     :demand: 
