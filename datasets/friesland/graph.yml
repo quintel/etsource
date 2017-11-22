@@ -5318,6 +5318,82 @@
     :in:
       :useable_heat: {}
     :out: {}
+  :transport_bicycle_using_electricity:
+    :in:
+      :electricity: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000
+          numerator: 2857142857142857
+  :transport_bicycle_using_human_energy:
+    :in: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms: {}
+  :transport_bus_using_compressed_natural_gas:
+    :in:
+      :compressed_network_gas: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 3455296728091391
+  :transport_bus_using_diesel_mix:
+    :in:
+      :diesel_mix: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 5000000000000000
+          numerator: 6219534110564503
+  :transport_bus_using_electricity:
+    :in:
+      :electricity: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2000000000000000
+          numerator: 5672215108834827
+  :transport_bus_using_gasoline_mix:
+    :in:
+      :gasoline_mix: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 200000000000000
+          numerator: 225723017579603
+  :transport_bus_using_hydrogen:
+    :in:
+      :hydrogen: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 1890738369611609
+  :transport_bus_using_lng_mix:
+    :in:
+      :lng_mix: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 3455296728091391
   :transport_car_flexibility_p2p_electricity:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -5338,42 +5414,46 @@
     :in:
       :compressed_network_gas: {}
     :out:
-      :car_kms:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 119047619047619
       :loss:
         :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 6321178680961683
   :transport_car_using_diesel_mix:
     :in:
       :diesel_mix: {}
     :out:
       :car_kms:
         :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 131578947368421
+          denominator: 10000000000000000
+          numerator: 6986565910536597
       :loss:
         :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 250000000000000
+          numerator: 131578947368421
   :transport_car_using_electricity:
     :in:
       :electricity: {}
     :out:
-      :car_kms:
-        :share: !ruby/object:Rational
-          denominator: 50000000000000
-          numerator: 76923076923077
       :loss:
         :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 5105567396161359
   :transport_car_using_gasoline_mix:
     :in:
       :gasoline_mix: {}
     :out:
-      :car_kms:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 119047619047619
       :loss:
         :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 6321178680961683
   :transport_car_using_hydrogen:
     :demand: !ruby/object:Rational
       denominator: 1
@@ -5381,22 +5461,22 @@
     :in:
       :hydrogen: {}
     :out:
-      :car_kms:
-        :share: !ruby/object:Rational
-          denominator: 100000000000000
-          numerator: 102040816326531
       :loss:
         :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 13545382887775037
   :transport_car_using_lpg:
     :in:
       :lpg: {}
     :out:
-      :car_kms:
-        :share: !ruby/object:Rational
-          denominator: 2
-          numerator: 1
       :loss:
         :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 1250000000000000
+          numerator: 829654701876221
   :transport_final_demand_bio_ethanol:
     :demand: !ruby/object:Rational
       denominator: 37246490
@@ -5634,21 +5714,106 @@
       :lpg: {}
     :out:
       :lpg: {}
+  :transport_freight_train_using_diesel_mix:
+    :in:
+      :diesel_mix: {}
+    :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 5000000000000000
+          numerator: 13513513513513513
+      :loss:
+        :type: :elastic
+  :transport_freight_train_using_electricity:
+    :in:
+      :electricity: {}
+    :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 500000000000000
+          numerator: 3571428571428571
+      :loss:
+        :type: :elastic
+  :transport_motorcycle_using_electricity:
+    :in:
+      :electricity: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 200000000000000
+          numerator: 1820958484963699
+  :transport_motorcycle_using_gasoline_mix:
+    :in:
+      :gasoline_mix: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 2226722440443693
+  :transport_passenger_train_using_coal:
+    :in:
+      :coal: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 1000000000
+          numerator: 500500901
+  :transport_passenger_train_using_diesel_mix:
+    :in:
+      :diesel_mix: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 3753756756756757
+  :transport_passenger_train_using_electricity:
+    :in:
+      :electricity: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 3703706666666667
   :transport_plane_using_bio_ethanol:
     :in:
       :bio_ethanol: {}
     :out:
-      :not_defined: {}
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 50000000000000000
+          numerator: 8984599438537999
   :transport_plane_using_gasoline:
     :in:
       :gasoline: {}
     :out:
-      :not_defined: {}
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2000000000000000
+          numerator: 610201810225721
   :transport_plane_using_kerosene:
     :in:
       :kerosene: {}
     :out:
-      :not_defined: {}
+      :loss:
+        :type: :elastic
+      :passenger_kms:
+        :share: !ruby/object:Rational
+          denominator: 2500000000000000
+          numerator: 714252607184241
   :transport_rail_mixer_diesel:
     :in:
       :biodiesel: {}
@@ -5688,22 +5853,22 @@
     :in:
       :diesel_mix: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 9779009172861619
       :loss:
         :type: :elastic
-      :shipping_kms:
-        :share: !ruby/object:Rational
-          denominator: 100000000000000000
-          numerator: 166389351081531
   :transport_ship_using_lng_mix:
     :in:
       :lng_mix: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 9779009172859809
       :loss:
         :type: :elastic
-      :shipping_kms:
-        :share: !ruby/object:Rational
-          denominator: 200000000000000
-          numerator: 332778702163
   :transport_shipping_mixer_diesel:
     :in:
       :lng:
@@ -5740,128 +5905,160 @@
           numerator: 0
     :out:
       :lng_mix: {}
-  :transport_train_using_coal:
-    :in:
-      :coal: {}
-    :out:
-      :loss:
-        :type: :elastic
-      :not_defined:
-        :share: !ruby/object:Rational
-          denominator: 10
-          numerator: 3
-  :transport_train_using_diesel:
-    :in:
-      :diesel_mix: {}
-    :out:
-      :loss:
-        :type: :elastic
-      :not_defined:
-        :share: !ruby/object:Rational
-          denominator: 10
-          numerator: 3
-  :transport_train_using_electricity:
+  :transport_tram_using_electricity:
     :in:
       :electricity: {}
     :out:
       :loss:
         :type: :elastic
-      :not_defined:
+      :passenger_kms:
         :share: !ruby/object:Rational
-          denominator: 10
-          numerator: 9
+          denominator: 10000000000000000
+          numerator: 16339869281045751
   :transport_truck_using_compressed_natural_gas:
     :in:
       :compressed_network_gas: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 9713473673525779
       :loss:
         :type: :elastic
-      :truck_kms:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 26595744680851
   :transport_truck_using_diesel_mix:
     :in:
       :diesel_mix: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 9713473673525779
       :loss:
         :type: :elastic
-      :truck_kms:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 26595744680851
   :transport_truck_using_electricity:
     :in:
       :electricity: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 625000000000000
+          numerator: 1093230992949501
       :loss:
         :type: :elastic
-      :truck_kms:
-        :share: !ruby/object:Rational
-          denominator: 500000000000000
-          numerator: 95785440613027
   :transport_truck_using_gasoline_mix:
     :in:
       :gasoline_mix: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 500000000000000
+          numerator: 440658928365181
       :loss:
         :type: :elastic
-      :truck_kms:
-        :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 965228526398739
   :transport_truck_using_hydrogen:
-    :demand: !ruby/object:Rational
-      denominator: 1
-      numerator: 0
     :in:
       :hydrogen: {}
     :out:
-      :truck_kms:
+      :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 125000000
-          numerator: 18382353
+          denominator: 10000000000000000
+          numerator: 13427448901638577
       :loss:
         :type: :elastic
   :transport_truck_using_lng_mix:
     :in:
       :lng_mix: {}
     :out:
+      :freight_tonne_kms:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 10792748526139753
       :loss:
         :type: :elastic
-      :truck_kms:
-        :share: !ruby/object:Rational
-          denominator: 1000000000000000
-          numerator: 118203309692671
-  :transport_useful_demand_car_kms:
-    :number_of_units: 305300.98641375336
+  :transport_useful_demand_bicycles:
+    :demand: !ruby/object:Rational
+      denominator: 3724649
+      numerator: 2137725000
     :in:
-      :car_kms: {}
+      :passenger_kms: {}
     :out:
       :loss:
         :type: :elastic
+      :passenger_kms: {}
+  :transport_useful_demand_busses:
+    :in:
+      :passenger_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms: {}
+  :transport_useful_demand_cars:
+    :number_of_units: 305300.98641375336
+    :in:
+      :passenger_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms: {}
   :transport_useful_demand_crude_oil_non_energetic:
     :in:
       :crude_oil: {}
     :out: {}
-  :transport_useful_demand_planes:
+  :transport_useful_demand_freight_tonne_kms:
     :in:
-      :not_defined: {}
-    :out: {}
-  :transport_useful_demand_ship_kms:
-    :in:
-      :shipping_kms: {}
-    :out: {}
-  :transport_useful_demand_trains:
-    :in:
-      :not_defined: {}
-    :out: {}
-  :transport_useful_demand_truck_kms:
-    :in:
-      :truck_kms: {}
+      :freight_tonne_kms: {}
     :out:
       :loss:
         :type: :elastic
+  :transport_useful_demand_freight_trains:
+    :in:
+      :freight_tonne_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :freight_tonne_kms: {}
+  :transport_useful_demand_motorcycles:
+    :in:
+      :passenger_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms: {}
+  :transport_useful_demand_passenger_kms:
+    :in:
+      :passenger_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+  :transport_useful_demand_passenger_trains:
+    :in:
+      :passenger_kms: {}
+    :out:
+      :passenger_kms: {}
+  :transport_useful_demand_planes:
+    :in:
+      :passenger_kms: {}
+    :out:
+      :passenger_kms: {}
+  :transport_useful_demand_ships:
+    :in:
+      :freight_tonne_kms: {}
+    :out:
+      :freight_tonne_kms: {}
+  :transport_useful_demand_trams:
+    :in:
+      :passenger_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :passenger_kms: {}
+  :transport_useful_demand_trucks:
+    :in:
+      :freight_tonne_kms: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :freight_tonne_kms: {}
 :edges:
   :agriculture_burner_crude_oil-agriculture_useful_demand_useable_heat@useable_heat:
     :parent_share: 
@@ -12372,37 +12569,85 @@
     :demand: 
     :reversed: false
     :priority: 
-  :transport_car_using_compressed_natural_gas-transport_useful_demand_car_kms@car_kms:
+  :transport_bicycle_using_electricity-transport_useful_demand_bicycles@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_car_using_diesel_mix-transport_useful_demand_car_kms@car_kms:
+  :transport_bicycle_using_human_energy-transport_useful_demand_bicycles@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_car_using_electricity-transport_useful_demand_car_kms@car_kms:
+  :transport_bus_using_compressed_natural_gas-transport_useful_demand_busses@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_car_using_gasoline_mix-transport_useful_demand_car_kms@car_kms:
+  :transport_bus_using_diesel_mix-transport_useful_demand_busses@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_car_using_hydrogen-transport_useful_demand_car_kms@car_kms:
+  :transport_bus_using_electricity-transport_useful_demand_busses@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_car_using_lpg-transport_useful_demand_car_kms@car_kms:
+  :transport_bus_using_gasoline_mix-transport_useful_demand_busses@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_bus_using_hydrogen-transport_useful_demand_busses@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_bus_using_lng_mix-transport_useful_demand_busses@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_car_using_compressed_natural_gas-transport_useful_demand_cars@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_car_using_diesel_mix-transport_useful_demand_cars@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_car_using_electricity-transport_useful_demand_cars@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_car_using_gasoline_mix-transport_useful_demand_cars@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_car_using_hydrogen-transport_useful_demand_cars@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_car_using_lpg-transport_useful_demand_cars@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -12536,7 +12781,7 @@
     :demand: 
     :reversed: false
     :priority: 
-  :transport_final_demand_for_rail_coal-transport_train_using_coal@coal:
+  :transport_final_demand_for_rail_coal-transport_passenger_train_using_coal@coal:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -12548,8 +12793,24 @@
     :demand: 
     :reversed: false
     :priority: 
-  :transport_final_demand_for_rail_electricity-transport_train_using_electricity@electricity:
+  :transport_final_demand_for_rail_electricity-transport_freight_train_using_electricity@electricity:
+    :parent_share: !ruby/object:Rational
+      denominator: 1000000000000000
+      numerator: 137103914951699
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_final_demand_for_rail_electricity-transport_passenger_train_using_electricity@electricity:
     :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
+    :parent_share: !ruby/object:Rational
+      denominator: 500000000000000
+      numerator: 52450585623927
     :child_share: 
     :demand: 
     :reversed: false
@@ -12584,10 +12845,34 @@
     :demand: 
     :reversed: false
     :priority: 
+  :transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@electricity:
+    :parent_share: !ruby/object:Rational
+      denominator: 10000000000000000
+      numerator: 216482065825861
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_final_demand_for_road_electricity-transport_bus_using_electricity@electricity:
+    :parent_share: !ruby/object:Rational
+      denominator: 10000000000000000
+      numerator: 242759543602303
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :transport_final_demand_for_road_electricity-transport_car_using_electricity@electricity:
     :parent_share: !ruby/object:Rational
-      denominator: 200000000000000
-      numerator: 191070978358463
+      denominator: 500000000000000
+      numerator: 466485690428557
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
+    :parent_share: !ruby/object:Rational
+      denominator: 100000000000000000
+      numerator: 178130659462489
     :child_share: 
     :demand: 
     :reversed: false
@@ -12600,6 +12885,14 @@
     :priority: 
   :transport_final_demand_for_road_gasoline-transport_road_mixer_gasoline@gasoline:
     :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_final_demand_for_road_hydrogen-transport_bus_using_hydrogen@hydrogen:
+    :parent_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :child_share: 
     :demand: 
     :reversed: false
@@ -12720,34 +13013,92 @@
     :demand: 
     :reversed: false
     :priority: 
-  :transport_plane_using_bio_ethanol-transport_useful_demand_planes@not_defined:
+  :transport_freight_train_using_diesel_mix-transport_useful_demand_freight_trains@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_plane_using_gasoline-transport_useful_demand_planes@not_defined:
+  :transport_freight_train_using_electricity-transport_useful_demand_freight_trains@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_plane_using_kerosene-transport_useful_demand_planes@not_defined:
+  :transport_motorcycle_using_electricity-transport_useful_demand_motorcycles@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_rail_mixer_diesel-transport_train_using_diesel@diesel_mix:
+  :transport_motorcycle_using_gasoline_mix-transport_useful_demand_motorcycles@passenger_kms:
     :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_passenger_train_using_coal-transport_useful_demand_passenger_trains@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_passenger_train_using_diesel_mix-transport_useful_demand_passenger_trains@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_passenger_train_using_electricity-transport_useful_demand_passenger_trains@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_plane_using_bio_ethanol-transport_useful_demand_planes@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_plane_using_gasoline-transport_useful_demand_planes@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_plane_using_kerosene-transport_useful_demand_planes@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_rail_mixer_diesel-transport_freight_train_using_diesel_mix@diesel_mix:
+    :parent_share: !ruby/object:Rational
+      denominator: 1000000000000000
+      numerator: 479311807127307
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_rail_mixer_diesel-transport_passenger_train_using_diesel_mix@diesel_mix:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_road_mixer_compressed_network_gas-transport_bus_using_compressed_natural_gas@compressed_network_gas:
+    :parent_share: !ruby/object:Rational
+      denominator: 250000000000000
+      numerator: 134650419283191
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
   :transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natural_gas@compressed_network_gas:
     :parent_share: !ruby/object:Rational
-      denominator: 1000000000000000
-      numerator: 284906429950879
+      denominator: 200000000000000
+      numerator: 42841280142227
     :child_share: 
     :demand: 
     :reversed: false
@@ -12755,15 +13106,23 @@
   :transport_road_mixer_compressed_network_gas-transport_truck_using_compressed_natural_gas@compressed_network_gas:
     :parent_share: !ruby/object:Rational
       denominator: 1000000000000000
-      numerator: 715093570049121
+      numerator: 247191922156101
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_road_mixer_diesel-transport_bus_using_diesel_mix@diesel_mix:
+    :parent_share: !ruby/object:Rational
+      denominator: 500000000000000
+      numerator: 21225431743749
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
   :transport_road_mixer_diesel-transport_car_using_diesel_mix@diesel_mix:
     :parent_share: !ruby/object:Rational
-      denominator: 500000000000000
-      numerator: 110164536477201
+      denominator: 125000000000000
+      numerator: 26372122506361
     :child_share: 
     :demand: 
     :reversed: false
@@ -12774,16 +13133,42 @@
     :demand: 
     :reversed: false
     :priority: 
+  :transport_road_mixer_gasoline-transport_bus_using_gasoline_mix@gasoline_mix:
+    :parent_share: !ruby/object:Rational
+      denominator: 100000000000000000
+      numerator: 10424867056087
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :transport_road_mixer_gasoline-transport_car_using_gasoline_mix@gasoline_mix:
     :parent_share: !ruby/object:Rational
       denominator: 1000000000000000
-      numerator: 989894652457231
+      numerator: 956893423783711
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_road_mixer_gasoline-transport_motorcycle_using_gasoline_mix@gasoline_mix:
+    :parent_share: !ruby/object:Rational
+      denominator: 10000000000000000
+      numerator: 333381219825773
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
   :transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
-    :parent_share: 
+    :parent_share: !ruby/object:Rational
+      denominator: 12500000000000000
+      numerator: 120802569539389
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_road_mixer_lng-transport_bus_using_lng_mix@lng_mix:
+    :parent_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :child_share: 
     :demand: 
     :reversed: false
@@ -12794,13 +13179,13 @@
     :demand: 
     :reversed: false
     :priority: 
-  :transport_ship_using_diesel_mix-transport_useful_demand_ship_kms@shipping_kms:
+  :transport_ship_using_diesel_mix-transport_useful_demand_ships@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_ship_using_lng_mix-transport_useful_demand_ship_kms@shipping_kms:
+  :transport_ship_using_lng_mix-transport_useful_demand_ships@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -12818,55 +13203,103 @@
     :demand: 
     :reversed: false
     :priority: 
-  :transport_train_using_coal-transport_useful_demand_trains@not_defined:
+  :transport_tram_using_electricity-transport_useful_demand_trams@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_train_using_diesel-transport_useful_demand_trains@not_defined:
+  :transport_truck_using_compressed_natural_gas-transport_useful_demand_trucks@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_train_using_electricity-transport_useful_demand_trains@not_defined:
+  :transport_truck_using_diesel_mix-transport_useful_demand_trucks@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_truck_using_compressed_natural_gas-transport_useful_demand_truck_kms@truck_kms:
+  :transport_truck_using_electricity-transport_useful_demand_trucks@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_truck_using_diesel_mix-transport_useful_demand_truck_kms@truck_kms:
+  :transport_truck_using_gasoline_mix-transport_useful_demand_trucks@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_truck_using_electricity-transport_useful_demand_truck_kms@truck_kms:
+  :transport_truck_using_hydrogen-transport_useful_demand_trucks@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_truck_using_gasoline_mix-transport_useful_demand_truck_kms@truck_kms:
+  :transport_truck_using_lng_mix-transport_useful_demand_trucks@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_truck_using_hydrogen-transport_useful_demand_truck_kms@truck_kms:
+  :transport_useful_demand_bicycles-transport_useful_demand_passenger_kms@passenger_kms:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
-  :transport_truck_using_lng_mix-transport_useful_demand_truck_kms@truck_kms:
+  :transport_useful_demand_busses-transport_useful_demand_passenger_kms@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_cars-transport_useful_demand_passenger_kms@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_freight_trains-transport_useful_demand_freight_tonne_kms@freight_tonne_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_motorcycles-transport_useful_demand_passenger_kms@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_passenger_trains-transport_useful_demand_passenger_kms@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_planes-transport_useful_demand_passenger_kms@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_ships-transport_useful_demand_freight_tonne_kms@freight_tonne_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_trams-transport_useful_demand_passenger_kms@passenger_kms:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :transport_useful_demand_trucks-transport_useful_demand_freight_tonne_kms@freight_tonne_kms:
     :parent_share: 
     :child_share: 
     :demand: 
