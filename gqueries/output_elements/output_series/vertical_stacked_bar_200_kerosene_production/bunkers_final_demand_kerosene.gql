@@ -1,5 +1,11 @@
 - unit = PJ
 - query =
     DIVIDE(
-        V(bunkers_plane_using_kerosene,demand),
-    BILLIONS)
+        SUM(
+           V(
+               CHILDREN(
+                   V(bunkers_useful_demand_planes)
+               ),demand
+           )
+        ), BILLIONS
+    )
