@@ -6,6 +6,7 @@
 - groups = [cost_chps, electricity_production, heat_production, must_run_electricity_production, dispatchable_production]
 - merit_order.group = buildings_chp
 - merit_order.type = must_run
+- graph_methods = [output, demand]
 - availability = 0.95
 - free_co2_factor = 0.0
 - forecasting_error = 0.0
@@ -36,3 +37,6 @@
 - hours_maint_nl = 1620.0
 - hours_remov_nl = 720.0
 
+~ demand = CENTRAL_PRODUCTION(households_collective_chp_network_gas, demand)
+
+~ full_load_hours = CENTRAL_PRODUCTION(households_collective_chp_network_gas, full_load_hours)
