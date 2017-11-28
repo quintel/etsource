@@ -714,18 +714,6 @@
       :lng: {}
     :out:
       :lng: {}
-  :bunkers_flexibility_p2l_electricity:
-    :demand: !ruby/object:Rational
-      denominator: 1
-      numerator: 0
-    :in: {}
-    :out:
-      :kerosene:
-        :share: !ruby/object:Rational
-          denominator: 40
-          numerator: 27
-      :loss:
-        :type: :elastic
   :bunkers_locally_available_kerosene_after_p2l:
     :in:
       :kerosene: {}
@@ -1358,6 +1346,18 @@
         :share: !ruby/object:Rational
           denominator: 625
           numerator: 417
+      :loss:
+        :type: :elastic
+  :energy_flexibility_p2l_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
+      :kerosene:
+        :share: !ruby/object:Rational
+          denominator: 40
+          numerator: 27
       :loss:
         :type: :elastic
   :energy_heat_network_backup_heater_network_gas:
@@ -5855,8 +5855,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 9779009172861619
+          denominator: 1250000000000000
+          numerator: 1264454499330859
       :loss:
         :type: :elastic
   :transport_ship_using_lng_mix:
@@ -5921,8 +5921,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 9713473673525779
+          denominator: 2500000000000000
+          numerator: 1586640095813229
       :loss:
         :type: :elastic
   :transport_truck_using_diesel_mix:
@@ -5932,7 +5932,7 @@
       :freight_tonne_kms:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
-          numerator: 9713473673525779
+          numerator: 6561455613923947
       :loss:
         :type: :elastic
   :transport_truck_using_electricity:
@@ -5941,8 +5941,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 625000000000000
-          numerator: 1093230992949501
+          denominator: 10000000000000000
+          numerator: 11075069559277897
       :loss:
         :type: :elastic
   :transport_truck_using_gasoline_mix:
@@ -5951,8 +5951,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 500000000000000
-          numerator: 440658928365181
+          denominator: 2000000000000000
+          numerator: 1190661177052607
       :loss:
         :type: :elastic
   :transport_truck_using_hydrogen:
@@ -5961,8 +5961,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 13427448901638577
+          denominator: 250000000000000
+          numerator: 232942426751029
       :loss:
         :type: :elastic
   :transport_truck_using_lng_mix:
@@ -5971,8 +5971,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 10792748526139753
+          denominator: 312500000000000
+          numerator: 215657981736137
       :loss:
         :type: :elastic
   :transport_useful_demand_bicycles:
@@ -6787,12 +6787,6 @@
     :reversed: false
     :priority: 
   :bunkers_final_demand_lng-bunkers_final_demand_for_shipping_lng@lng:
-    :parent_share: 
-    :child_share: 
-    :demand: 
-    :reversed: false
-    :priority: 
-  :bunkers_flexibility_p2l_electricity-bunkers_locally_available_kerosene_after_p2l@kerosene:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -7721,6 +7715,12 @@
     :reversed: true
     :priority: 
   :energy_flexibility_p2g_electricity-energy_locally_available_hydrogen_after_p2g@hydrogen:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :energy_flexibility_p2l_electricity-bunkers_locally_available_kerosene_after_p2l@kerosene:
     :parent_share: 
     :child_share: 
     :demand: 

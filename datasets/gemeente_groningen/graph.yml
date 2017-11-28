@@ -714,18 +714,6 @@
       :lng: {}
     :out:
       :lng: {}
-  :bunkers_flexibility_p2l_electricity:
-    :demand: !ruby/object:Rational
-      denominator: 1
-      numerator: 0
-    :in: {}
-    :out:
-      :kerosene:
-        :share: !ruby/object:Rational
-          denominator: 40
-          numerator: 27
-      :loss:
-        :type: :elastic
   :bunkers_locally_available_kerosene_after_p2l:
     :in:
       :kerosene: {}
@@ -1358,6 +1346,18 @@
         :share: !ruby/object:Rational
           denominator: 625
           numerator: 417
+      :loss:
+        :type: :elastic
+  :energy_flexibility_p2l_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in: {}
+    :out:
+      :kerosene:
+        :share: !ruby/object:Rational
+          denominator: 40
+          numerator: 27
       :loss:
         :type: :elastic
   :energy_heat_network_backup_heater_network_gas:
@@ -5855,8 +5855,8 @@
     :out:
       :freight_tonne_kms:
         :share: !ruby/object:Rational
-          denominator: 10000000000000000
-          numerator: 9779009172861619
+          denominator: 1250000000000000
+          numerator: 1264454499330859
       :loss:
         :type: :elastic
   :transport_ship_using_lng_mix:
@@ -6792,12 +6792,6 @@
     :demand: 
     :reversed: false
     :priority: 
-  :bunkers_flexibility_p2l_electricity-bunkers_locally_available_kerosene_after_p2l@kerosene:
-    :parent_share: 
-    :child_share: 
-    :demand: 
-    :reversed: false
-    :priority: 
   :bunkers_locally_available_kerosene_after_p2l-bunkers_plane_using_kerosene@kerosene:
     :parent_share: 
     :child_share: 
@@ -7721,6 +7715,12 @@
     :reversed: true
     :priority: 
   :energy_flexibility_p2g_electricity-energy_locally_available_hydrogen_after_p2g@hydrogen:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :energy_flexibility_p2l_electricity-bunkers_locally_available_kerosene_after_p2l@kerosene:
     :parent_share: 
     :child_share: 
     :demand: 
