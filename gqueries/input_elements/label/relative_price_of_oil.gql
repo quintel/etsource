@@ -1,0 +1,8 @@
+# Relative price of oil 
+
+- query =
+    100.0 * SUM(-1, DIVIDE(
+    QUERY_FUTURE(-> {Q(price_of_oil)}),
+    QUERY_PRESENT(-> {Q(price_of_oil)}))
+    )
+- unit = %
