@@ -1,4 +1,9 @@
-- query = UPDATE(CARRIER(natural_gas,lng), cost_per_mj, USER_INPUT()/MJ_PER_MWH)
+- query =
+    present_value = QUERY_PRESENT(-> {Q(price_of_gas)});
+    relative_value = USER_INPUT() / present_value;
+      UPDATE_WITH_FACTOR(
+        CARRIER(
+          natural_gas,lng), cost_per_mj, relative_value)
 - label = %
 - label_query = Q(relative_price_of_gas)
 - priority = 0
