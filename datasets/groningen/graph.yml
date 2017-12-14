@@ -3661,6 +3661,7 @@
   :industry_chemicals_fertilizers_haber_bosch_process_hydrogen:
     :in:
       :hydrogen: {}
+      :useable_heat: {}
     :out: {}
   :industry_chemicals_fertilizers_steam_methane_reformer_hydrogen:
     :in:
@@ -3679,6 +3680,10 @@
           numerator: 18
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 20000000000000000
+          numerator: 2457142857142857
   :industry_chemicals_other_burner_coal:
     :in:
       :coal: {}
@@ -4641,6 +4646,11 @@
       :steam_hot_water: {}
     :out:
       :steam_hot_water: {}
+  :industry_locally_available_useable_heat:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_other_food_burner_coal:
     :in:
       :coal: {}
@@ -10523,6 +10533,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :industry_chemicals_fertilizers_steam_methane_reformer_hydrogen-industry_locally_available_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
@@ -12407,6 +12423,12 @@
     :reversed: false
     :priority: 
     :type: :overflow
+  :industry_locally_available_useable_heat-industry_chemicals_fertilizers_haber_bosch_process_hydrogen@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
@@ -12627,6 +12649,13 @@
     :demand: 
     :reversed: false
     :priority: 
+  :industry_useful_demand_for_chemical_fertilizers_useable_heat-industry_locally_available_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
   ? :industry_useful_demand_for_chemical_other_useable_heat_after_p2h-industry_useful_demand_for_chemical_other_useable_heat@useable_heat
   : :parent_share: 
     :child_share: 
