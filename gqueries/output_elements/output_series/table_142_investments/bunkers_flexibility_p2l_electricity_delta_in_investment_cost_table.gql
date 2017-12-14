@@ -1,0 +1,11 @@
+# investment costs of bunkers_flexibility_p2l_electricity IF newly built (green field approach)
+
+- query =
+    QUERY_DELTA( -> { SUM(
+       V(bunkers_flexibility_p2g_electricity,total_investment_over_lifetime_per(:converter)),
+       V(bunkers_kerosene_production_p2l,total_investment_over_lifetime_per(:converter)),
+       V(bunkers_p2l_direct_air_capture,total_investment_over_lifetime_per(:converter)),
+       V(bunkers_p2l_point_source_CO,total_investment_over_lifetime_per(:converter)),
+       V(bunkers_p2l_point_source_CO2,total_investment_over_lifetime_per(:converter))
+    )}) / BILLIONS
+- unit = euro
