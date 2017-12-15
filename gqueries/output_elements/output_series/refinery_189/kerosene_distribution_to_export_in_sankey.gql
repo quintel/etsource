@@ -1,4 +1,4 @@
 # Query for refinery sankey: connection between distribution and export of kerosene
 
 - unit = PJ
-- query = DIVIDE(V(energy_export_kerosene, demand), BILLIONS)
+- query = DIVIDE(V(LINK(energy_export_kerosene,energy_distribution_kerosene),demand), BILLIONS)
