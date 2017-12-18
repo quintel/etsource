@@ -3,7 +3,10 @@
 - unit = MT
     DIVIDE(
         DIVIDE(
-            (V(LINK(energy_steel_blastfurnace_current_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881),
+            SUM(
+                (V(LINK(energy_steel_blastfurnace_current_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881),
+                (V(LINK(energy_steel_blastfurnace_bat_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881)
+            ),
             V(CARRIER(co), "mj_per_kg")
         ),
     BILLIONS)
