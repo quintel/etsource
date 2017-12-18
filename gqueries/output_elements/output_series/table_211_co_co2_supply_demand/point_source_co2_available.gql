@@ -2,19 +2,16 @@
 
 - unit = MT
 - query =
-    SUM(
+    DIVIDE(
+      DIVIDE(
         DIVIDE(
-            DIVIDE(
-                DIVIDE(
-                    (V(LINK(energy_cokesoven_transformation_coal,energy_distribution_coal_gas),demand) * 0.035),
-                0.28324),
-            3.41) * 0.044,
-        BILLIONS),
-        DIVIDE(
-            DIVIDE(
-                DIVIDE(
-                    (V(LINK(energy_steel_blastfurnace_current_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881),
-                0.28324),
-            1.09) * 0.044,
-        BILLIONS)
+          SUM(
+            V(LINK(energy_steel_blastfurnace_current_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881,
+            V(LINK(energy_steel_blastfurnace_bat_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881
+          ),
+          0.28324
+        ),
+        1.09
+      ) * 0.044,
+      BILLIONS
     )
