@@ -1,18 +1,9 @@
 # CO2 from point sources needed for synthetic kerosene production
 
 - unit = MT
-- query =
-    SUM(
+    DIVIDE(
         DIVIDE(
-            DIVIDE(
-                (V(LINK(energy_cokesoven_transformation_coal,energy_distribution_coal_gas),demand) * 0.035),
-                V(CARRIER(co), "mj_per_kg")
-            ),
-        BILLIONS),
-        DIVIDE(
-            DIVIDE(
-                (V(LINK(energy_steel_blastfurnace_current_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881),
-                V(CARRIER(co), "mj_per_kg")
-            ),
-        BILLIONS)
-    )
+            (V(LINK(energy_steel_blastfurnace_current_transformation_cokes,energy_distribution_coal_gas),demand) * 0.881),
+            V(CARRIER(co), "mj_per_kg")
+        ),
+    BILLIONS)
