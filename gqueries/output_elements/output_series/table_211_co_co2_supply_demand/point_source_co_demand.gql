@@ -2,4 +2,10 @@
 
 - unit = MT
 - query =
-    (((V(bunkers_p2l_point_source_CO, output_of_co)) / 10.01) / BILLIONS)
+    DIVIDE(
+        DIVIDE(
+            V(bunkers_p2l_point_source_CO, demand),
+            V(CARRIER(co), "mj_per_kg")
+        ),
+        BILLIONS
+    )
