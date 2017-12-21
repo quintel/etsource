@@ -3660,8 +3660,14 @@
           numerator: 4
   :industry_chemicals_fertilizers_haber_bosch_process_hydrogen:
     :in:
-      :hydrogen: {}
-      :useable_heat: {}
+      :hydrogen:
+        :share: !ruby/object:Rational
+          denominator: 25
+          numerator: 18
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 20000000000000000
+          numerator: 2457142857142857
     :out: {}
   :industry_chemicals_fertilizers_steam_methane_reformer_hydrogen:
     :in:
@@ -5543,16 +5549,12 @@
     :in:
       :diesel_mix: {}
     :out:
-      :car_kms:
+      :passenger_kms:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 6986565910536597
       :loss:
         :type: :elastic
-      :passenger_kms:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 131578947368421
   :transport_car_using_electricity:
     :in:
       :electricity: {}
@@ -6994,7 +6996,9 @@
     :priority: 
   :bunkers_p2l_direct_air_capture-bunkers_p2l_mixer_co@co:
     :parent_share: 
-    :child_share: 
+    :child_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 1
     :demand: 
     :reversed: false
     :priority: 
@@ -7007,13 +7011,17 @@
     :type: :flexible
   :bunkers_p2l_point_source_CO-bunkers_p2l_mixer_co@co:
     :parent_share: 
-    :child_share: 
+    :child_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :demand: 
     :reversed: false
     :priority: 
   :bunkers_p2l_point_source_CO2-bunkers_p2l_mixer_co@co:
     :parent_share: 
-    :child_share: 
+    :child_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
     :demand: 
     :reversed: false
     :priority: 
