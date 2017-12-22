@@ -7,7 +7,13 @@
 
 - unit = PJ
 - query =
-    present:SUM(
+    input_query = IF(
+      scope.graph.future?,
+      climate_relevant_co2_biomass_solid_future,
+      climate_relevant_co2_biomass_solid_present
+    );
+
+    SUM(
       V(G(final_demand_group), key, primary_demand_of_biogenic_waste).sum *
         V(CARRIER(biogenic_waste), potential_co2_conversion_per_mj),
       V(G(final_demand_group), key, primary_demand_of_torrified_biomass_pellets).sum *
@@ -18,4 +24,4 @@
         V(CARRIER(wood_pellets), potential_co2_conversion_per_mj),
       V(G(final_demand_group), key, primary_demand_of_woody_biomass).sum *
         V(CARRIER(woody_biomass), potential_co2_conversion_per_mj)
-    ) * INPUT_VALUE(climate_relevant_co2_biomass_solid_present) / 100 / BILLIONS  
+    ) * INPUT_VALUE(input_query) / 100 / BILLIONS
