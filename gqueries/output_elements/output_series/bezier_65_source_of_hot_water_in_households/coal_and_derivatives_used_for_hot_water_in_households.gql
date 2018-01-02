@@ -3,6 +3,7 @@
 - unit = PJ
 - query =
     SUM(
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_coal),
-      V(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),input_of_coal_gas)      
+      V(Q(hot_water_converters_in_households), input_of_coal),
+      V(Q(hot_water_converters_in_households), input_of_coal_gas)
     ) / BILLIONS
+

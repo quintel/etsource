@@ -1,0 +1,8 @@
+# CO2 of carrier group 'solar' in bunkers
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(bunkers)).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, "solar_radiation_input_conversion * primary_co2_emission"),
+      V(INTERSECTION(G(final_demand_group),SECTOR(bunkers)).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, "solar_thermal_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

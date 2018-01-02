@@ -1,6 +1,6 @@
 - query =
     UPDATE(
-      LINK(transport_car_using_lpg, transport_useful_demand_car_kms),
+      LINK(transport_car_using_lpg, transport_useful_demand_cars),
       share,
       DIVIDE(USER_INPUT(), 100)
     )
@@ -8,7 +8,7 @@
 - priority = 1
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(transport_car_using_lpg,share_of_transport_useful_demand_car_kms) * 100
+- start_value_gql = present:V(transport_car_using_lpg,share_of_transport_useful_demand_cars) * 100
 - step_value = 0.1
 - unit = %
 - update_period = present

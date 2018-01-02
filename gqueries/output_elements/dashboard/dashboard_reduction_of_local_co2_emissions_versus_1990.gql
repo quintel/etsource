@@ -1,3 +1,15 @@
-- query = SUM(-1,DIVIDE(Q(total_local_co2_emissions),AREA(co2_emission_1990_billions)))
+# The CO2 emissions of bunkering are added to the emissions of 1990 with the percentage 
+# that is set by the international transport sliders.
+
+- query =
+    SUM(-1,
+      DIVIDE(Q(total_local_co2_emissions),
+        SUM(
+        AREA(co2_emission_1990_billions),
+        (INPUT_VALUE(bunkers_allocated_percentage_shipping) / 100) * (AREA(co2_emission_1990_marine_bunkers) * BILLIONS),
+        (INPUT_VALUE(bunkers_allocated_percentage_aviation) / 100) * (AREA(co2_emission_1990_aviation_bunkers) * BILLIONS)
+        )
+      )
+    )
 - unit = factor
 - deprecated_key = policy_co2_reduction

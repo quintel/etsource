@@ -1,0 +1,8 @@
+# CO2 of carrier group 'coal_and_derivatives' in bunkers
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),SECTOR(bunkers)).select {|node| node.input_slots.detect { |slot| slot.carrier.coal? }}, "coal_input_conversion * primary_co2_emission"),
+      V(INTERSECTION(G(final_demand_group),SECTOR(bunkers)).select {|node| node.input_slots.detect { |slot| slot.carrier.coal_gas? }}, "coal_gas_input_conversion * primary_co2_emission")
+    ) / THOUSANDS

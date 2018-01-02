@@ -3,9 +3,9 @@
 - unit = PJ
 - query =
     SUM(
-      V(G(heat_production),input_of_natural_gas),
-      V(G(heat_production),input_of_lng),
-      V(G(heat_production),input_of_network_gas),
-      V(G(heat_production),input_of_gas_power_fuelmix),
-      V(G(heat_production),input_of_compressed_network_gas)
+      V(G(heat_production),"input_of_natural_gas * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_lng * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_network_gas * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_gas_power_fuelmix * heat_and_cold_output_conversion"),
+      V(G(heat_production),"input_of_compressed_network_gas * heat_and_cold_output_conversion")
     ) / BILLIONS

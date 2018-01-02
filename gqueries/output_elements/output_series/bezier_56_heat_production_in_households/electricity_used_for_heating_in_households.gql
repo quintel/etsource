@@ -1,7 +1,7 @@
-# Use of carrier group 'electricity' in housholds heat
+# Use of carrier group 'electricity' in households heat
 
 - unit = PJ
 - query =
     SUM(
-      V(CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater)),input_of_electricity)
+      V(Q(heating_converters_in_households), input_of_electricity)
     ) / BILLIONS

@@ -1,6 +1,6 @@
 - query =
-    V(
-    	CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h)),
-    	V(households_water_heater_solar_thermal)
+    EXCLUDE(
+      CHILDREN(CHILDREN(V(households_useful_demand_for_hot_water_after_solar_heater_and_p2h))),
+      V(households_water_heater_deficit)
     )
 - unit = converters

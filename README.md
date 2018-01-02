@@ -26,6 +26,18 @@ will have to adjust and extend the energy balance with the use of
 
 Please [contact us][contact] when you have questions.
 
+## Setup
+
+Prerequisites:
+- rbenv
+- ruby
+- bundler
+- rspec
+
+There's no additional setup required for ETSource. There are however optional
+arguments you can set in a `.env` file in the root directory of your local
+ETSource project. See the `.env.default` which options are available.
+
 ## "Active" Documents
 
 Files with an ".ad" extension are editable through the [Atlas console][console]

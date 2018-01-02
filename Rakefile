@@ -1,28 +1,21 @@
-def encrypt_balance(directory)
-  if File.exists?('.password')
-    password = File.read('.password').strip
-  else
-    puts "File .password not found in root. Cannot encrypt energy balance CSV"
-    exit(1)
-  end
+task :environment do
+  require 'bundler'
+  require 'dotenv/load'
+  require 'pathname'
 
-  csv  = directory.join('energy_balance.csv')
-  dest = directory.join('energy_balance.gpg')
+  require 'fileutils'
+  require 'yaml'
+  require_relative './helpers/encrypt_balance'
 
-  if csv.file?
-    dest = csv.dirname.join('energy_balance.gpg')
-    system("gpg --batch --yes --passphrase '#{ password }' -c --output '#{ dest }' '#{ csv }'")
-    puts "  - Encrypted energy balance"
-  end
+  Bundler.require(:development)
+  Dotenv.load('.env', '.env.default')
+
+  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 end
 
 namespace :import do
   # See documentation for "task :import".
-  task :dataset do
-    require 'pathname'
-    require 'fileutils'
-    require 'yaml'
-
+  task dataset: :environment do
     # Copies the source CSV file to the given +to+ path, converting Windows CRLF
     # line endings to Unix LF.
     def cp_csv(from, to)
@@ -47,7 +40,7 @@ namespace :import do
 
     datasets.each do |country, year|
       dest = Pathname.new("datasets/#{ country }")
-      csvs = Pathname.glob("../etdataset/data/#{ country }/#{ year }/*/output/*.csv")
+      csvs = Pathname.glob("#{ ENV['ETDATASET_PATH'] }/data/#{ country }/#{ year }/*/output/*.csv")
 
       puts "Importing #{ country }/#{ year } dataset:"
 
@@ -89,69 +82,49 @@ namespace :import do
   end # :dataset
 
   desc <<-DESC
-    Import data from an ETDataset node analysis file.
-
-    Provide the task with a NODE variable specifying the key of the node to be
-    updated, and then one or more additional variables specifying the attributes
-    to be changed.
+    Import data from an ETDataset node analysis file. Imports all the attributes
+    which live in cells with the headers 'Attribute' and 'Value'
+    on an Excel tab called 'Dashboard'. If these names are not met, this
+    script will not function as intended.
 
     For example:
 
-      rake import:node NODE=industry_burner_coal technical_lifetime=14.0
+      rake import:node NODE=industry_burner_coal
 
-    You may specify multple attributes to update:
-
-      rake import:node \
-        NODE=energy_power_lv_network_electricity \
-        free_co2_factor=0.2 \
-        availability=1.0 \
-        network_capacity_available_in_mw=74803.6
-
-    Be sure to surround values in quotes if the value contains any spaces, or
-    non-alphanumeric characters:
-
-      rake import:node \
-        NODE=energy_power_lv_network_electricity \
-        energy_balance_group='electricity network'
   DESC
-  task :node do
-    require 'bundler'
-    Bundler.require(:test)
+  task node: :environment do
+    node      = Atlas::Node.find(ENV['NODE'])
+    node_path = "#{node.sector}/#{node.key}.#{node.class.subclass_suffix}"
+    xlsx      = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/nodes_source_analyses/#{node_path}.xlsx")
 
-    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
+    xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
+      next unless key_val[:value].is_a?(Numeric)
 
-    node = Atlas::Node.find(ENV['NODE'])
+      if key_val[:attribute] =~ /\./
+        attribute, subkey = key_val[:attribute].split('.', 2)
+        subhash           = node.public_send(attribute)
+        right             = subkey
 
-    Atlas::Node.attribute_set.each do |attribute|
-      attr_name = attribute.name.to_s
-
-      if attribute.options[:primitive] == Hash
-        subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
-        subkeys.each do |key, value|
-          if node.public_send(attr_name).nil?
-            node.public_send("#{ attr_name }=", {})
-          end
-
-          subkey  = key.split('__', 2)[1]
-          subhash = node.public_send(attr_name)
-          right   = subkey
-
-          while subkey.include?('__')
-            left, right = subkey.split('__', 2)
-            left = left.to_sym
-
-            unless subhash[left].is_a?(Hash)
-              subhash[left] = {}
-            end
-
-            subkey = right
-            subhash = subhash[left]
-          end
-
-          subhash[subkey.to_sym] = value
+        # For FeverDetails and TransformerDetails
+        if subhash.is_a?(Atlas::ValueObject)
+          subhash = subhash.to_h
         end
-      elsif ENV[attribute.name.to_s]
-        node.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
+
+        while subkey.include?('.')
+          left, right = subkey.split('.', 2)
+          left = left.to_sym
+
+          unless subhash[left].is_a?(Hash)
+            subhash[left] = {}
+          end
+
+          subkey = right
+          subhash = subhash[left]
+        end
+
+        subhash[subkey.to_sym] = key_val[:value]
+      else
+        node.public_send("#{key_val[:attribute]}=", key_val[:value])
       end
     end
 
@@ -162,53 +135,28 @@ namespace :import do
     Import data from an ETDataset carrier analysis file.
 
     Provide the task with a CARRIER variable specifying the key of the carrier to be
-    updated, and then one or more additional variables specifying the attributes
-    to be changed.
+    updated.
 
     For example:
 
-      rake import:carrier CARRIER=bio_oil co2_conversion_per_mj=0
+      rake import:carrier CARRIER=bio_oil
 
-    You may specify multiple attributes to update:
-
-      rake import:carrier \
-        CARRIER=bio_oil \
-        co2_conversion_per_mj=0 \
-        cost_per_mj=0.013885126 \
-        typical_production_per_km2=15506658
-
-    Be sure to surround values in quotes if the value contains any spaces, or
-    non-alphanumeric characters:
-
-      rake import:carrier \
-        CARRIER=bio_oil \
-        sustainable='1'
   DESC
-  task :carrier do
-    require 'bundler'
-    Bundler.require(:test)
-
-    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
-
+  task carrier: :environment do
     carrier = Atlas::Carrier.find(ENV['CARRIER'])
+    xlsx    = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
 
-    Atlas::Carrier.attribute_set.each do |attribute|
-      attr_name = attribute.name.to_s
-
-      if attribute.options[:primitive] == Hash
-        subkeys = ENV.select { |key, _| key.start_with?("#{ attr_name }__") }
-
-        subkeys.each do |key, value|
-          if carrier.public_send(attr_name).nil?
-            carrier.public_send("#{ attr_name }=", {})
-          end
-
-          carrier.public_send(attr_name)[key.split('__', 2)[1].to_sym] = value
-        end
-      elsif ENV[attribute.name.to_s]
-        carrier.public_send(:"#{ attribute.name }=", ENV[attribute.name.to_s])
-      end
+    unless carrier
+      raise ArgumentError, "carrier #{ENV['CARRIER']} does not exist!"
     end
+
+    carrier.attributes = xlsx.sheet('Dashboard')
+      .each(attribute: 'Attribute', value: 'Value')
+      .each_with_object({}) do |row, result|
+        next unless row[:value].is_a?(Numeric)
+
+        result[row[:attribute]] = row[:value]
+      end
 
     carrier.save
   end # :carrier
@@ -216,67 +164,52 @@ namespace :import do
   desc <<-DESC
     Import FCE datasets
 
+    It imports these values directly from the carrier analysis fce tab.
+    The tab name needs to be "<dataset>_fce" or else this script will
+    break.
+
     Arguments mandatory:
 
     - DATASET = <region>
     - CARRIER = <carrier>
-    - ORIGIN  = <origin>
-
-    Optional arguments:
-
-    - <attributes> that are available for the ORIGIN of the CARRIER in that
-      DATASET.
-
-    Example:
 
     rake import:fce DATASET=nl
                     CARRIER=bio_ethanol
-                    ORIGIN=sugar_beets
-                    co2_exploration_per_mj=5.0
-
-    You may specify multiple attributes to update:
-
-    rake import:fce DATASET=nl
-                    CARRIER=bio_ethanol
-                    ORIGIN=sugar_beets
-                    co2_exploration_per_mj=5.0
-                    co2_extraction_per_mj=5.0
   DESC
-  task :fce do
-    require 'bundler'
-    Bundler.require(:test)
-
+  task fce: :environment do
     # Raise the obvious errors if mandatory arguments are missing
     raise ArgumentError, 'missing CARRIER argument' unless ENV['CARRIER']
     raise ArgumentError, 'missing DATASET argument' unless ENV['DATASET']
-    raise ArgumentError, 'missing ORIGIN argument' unless ENV['ORIGIN']
-
-    Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
     carrier     = ENV['CARRIER']
     dataset     = ENV['DATASET']
-    origin      = ENV['ORIGIN'].to_sym
-    attributes  = ENV.select{ |key, _| key =~ /^[a-z]/ }.symbolize_keys
     current_fce = Atlas::Carrier.new(key: carrier).fce(dataset)
-    yaml_file   = Atlas.data_dir.join("datasets/#{ dataset }/fce/#{ carrier }.yml")
 
     raise ArgumentError, "CARRIER '#{carrier}' does not exist in '#{dataset}'" unless current_fce
-    raise ArgumentError, "ORIGIN '#{origin}' does not exist in '#{carrier}'"   unless current_fce[origin]
 
-    attributes.each do |key, value|
-      if current_fce[origin][key]
-        current_fce[origin][key] = value.to_f
-      else
-        raise ArgumentError, "variable '#{ key }' does not exist in ORIGIN '#{ origin }'"
+    xlsx        = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{carrier}.carrier.xlsx")
+    yaml_file   = Atlas.data_dir.join("datasets/#{dataset}/fce/#{carrier}.yml")
+
+    current_fce = xlsx.sheet("#{ dataset }_fce")
+      .each(attribute: 'Attribute', value: 'Value')
+      .each_with_object({}) do |row, result|
+        if row[:attribute] =~ /from/
+          @current_row = row[:attribute].gsub(/from\s/, '').to_sym
+
+          result[@current_row] ||= {}
+        end
+
+        if row[:value].is_a?(Numeric)
+          result[@current_row][row[:attribute].to_sym] = row[:value]
+        end
       end
-    end
 
-    File.open(yaml_file, 'w'){|f| f.write(current_fce.to_yaml) }
+    File.open(yaml_file, 'w') { |f| f.write(current_fce.to_yaml) }
   end
 end # :import
 
 desc <<-DESC
-  Import ETDataset CSVs from ../etdataset
+  Import ETDataset CSVs from #{ ENV['ETDATASET_PATH'] }
 
   Defaults to importing all datasets listed in datasets.yml. Providing an optional DATASET environment
   parameter results in importing only one dataset. If an optional YEAR environment parameter is provided,
@@ -347,16 +280,10 @@ desc <<-DESC
 
 DESC
 
-task :scale do
-  require 'bundler'
-
+task scale: :environment do
   raise ArgumentError, 'missing FULL_DATASET argument'         unless ENV['FULL_DATASET']
   raise ArgumentError, 'missing DERIVED_DATASET argument'      unless ENV['DERIVED_DATASET']
   raise ArgumentError, 'missing NUMBER_OF_RESIDENCES argument' unless ENV['NUMBER_OF_RESIDENCES']
-
-  Bundler.require(:development)
-
-  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
 
   Atlas::Scaler.new(
     ENV['FULL_DATASET'], ENV['DERIVED_DATASET'], ENV['NUMBER_OF_RESIDENCES']
@@ -372,9 +299,7 @@ desc <<-DESC
 
 DESC
 
-task :refresh_graph do
-  require 'bundler'
-
+task init_methods_to_input: :environment do
   unless ENV['DERIVED_DATASET']
     raise(
       ArgumentError,
@@ -383,9 +308,65 @@ task :refresh_graph do
     )
   end
 
-  Bundler.require(:development)
+  dataset = Atlas::Dataset::Derived.find(ENV['DERIVED_DATASET'])
+  input_name = "initializer_methods_#{ dataset.key }"
 
-  Atlas.data_dir = File.expand_path(File.dirname(__FILE__))
+  changes = YAML.load_file(dataset.dataset_dir.join('graph_values.yml'))
+  input   = nil
+
+  begin
+    input = Atlas::InitializerInput.find(input_name)
+  rescue
+    input = Atlas::InitializerInput.new(
+      key: input_name,
+      ns:  'converted_initializer_methods'
+    )
+  end
+
+  statements = []
+
+  changes['demand_setter'].each do |key, value|
+    statements.push("UPDATE(V(#{ key }), demand, #{ value.to_f })")
+  end
+
+  changes['preset_demand_setter'].each do |key, value|
+    statements.push("UPDATE(V(#{ key }), preset_demand, #{ value.to_f })")
+  end
+
+  changes['number_of_units_setter'].each do |key, value|
+    statements.push("UPDATE(V(#{ key }), number_of_units, #{ value.to_f })")
+  end
+
+  changes['share_setter'].each do |key, value|
+    from, to, _ = key.to_s.split(/[-@]/)
+    statements.push("UPDATE(LINK(#{ to }, #{ from }), share, #{ value.to_f })")
+  end
+
+  changes['conversion_setter'].each do |key, value|
+    node_key, carrier = key.to_s.split('@').map(&:to_sym)
+
+    statements.push("UPDATE(OUTPUT_SLOTS(V(#{ node_key }), #{ carrier }), conversion, #{ value.to_f })")
+    statements.push("UPDATE(INPUT_SLOTS(V(#{ node_key }), #{ carrier }), conversion, #{ value.to_f })")
+  end
+
+  statements = statements.map { |s| "  #{ s }" }
+  input.query = "EACH(\n#{ statements.join(",\n") }\n)"
+  input.save!
+
+  unless dataset.init.key?(input_name.to_sym)
+    dataset.init[input_name] = 1
+    dataset.save!
+  end
+end
+
+task refresh_graph: :environment do
+  unless ENV['DERIVED_DATASET']
+    raise(
+      ArgumentError,
+      'missing DERIVED_DATASET argument; if you want to refresh all graphs, ' \
+      'use: rake refresh_graph DERIVED_DATASET=*'
+    )
+  end
 
   derived_datasets =
     if ENV['DERIVED_DATASET'] == '*'
