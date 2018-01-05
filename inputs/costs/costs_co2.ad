@@ -1,11 +1,19 @@
-- query = UPDATE(AREA(), co2_price, USER_INPUT())
-- label = &euro;/tonne
-- label_query = Q(price_of_co2)
+
+# - label = &euro;/tonne
+# - label_query = Q(price_of_co2)
+
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_co2)});
+  relative_value = USER_INPUT() / present_value;
+  UPDATE_WITH_FACTOR(
+      AREA(), co2_price, relative_value)
+
 - priority = 0
 - max_value = 3500.0
-- min_value = -100.0
-- start_value = 0.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_co2)
 - step_value = 1.0
-- unit = %
+- unit = euro
 - update_period = future
-- update_type = %
+- update_type = mixed

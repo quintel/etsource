@@ -1,13 +1,23 @@
 # This now updates ALL biomass products, even woody_biomass (but not bio-fuels). This is required as fix to prevent negative costs from the export of wood_pellets. When a flex_max link type is made possible, we should rethink the workings of this slider
 
-- query = UPDATE(CARRIER(greengas,biogas,wood_pellets,woody_biomass,wood,torrified_biomass_pellets), cost_per_mj, USER_INPUT())
-- label = &euro;/tonne
-- label_query = Q(price_of_wood_pellets)
+# Due to limitations in the model changes to the left hand side labels are not displayed
+# because the unit is preset as %, and changing it needs several other changes to be made
+# For now the LHS is simply hidden
+# - label = &euro;/tonne
+# - label_query = Q(price_of_wood_pellets)
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_wood_pellets)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+      CARRIER(
+        greengas,biogas,wood_pellets,woody_biomass,wood,torrified_biomass_pellets), cost_per_mj, relative_value)
+
 - priority = 0
-- max_value = 1000.0
-- min_value = -100.0
-- start_value = 0.0
-- step_value = 5.0
-- unit = %
+- max_value = 1550.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_wood_pellets)
+- step_value = 0.01
+- unit = euro
 - update_period = future
-- update_type = %
+- update_type = mixed

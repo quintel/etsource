@@ -1,11 +1,23 @@
-- query = UPDATE(CARRIER(coal,lignite), cost_per_mj, USER_INPUT())
-- label = &#36;/tonne
-- label_query = Q(price_of_coal)
+# Due to limitations in the model changes to the left hand side labels are not displayed
+# because the unit is preset as %, and changing it needs several other changes to be made
+# For now the LHS is simply hidden
+# - label = %
+# - label_query = Q(price_of_coal)
+
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_coal)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+      CARRIER(
+        coal,lignite), cost_per_mj, relative_value)
+
+
 - priority = 0
-- max_value = 1000.0
-- min_value = -100.0
-- start_value = 0.0
-- step_value = 5.0
-- unit = %
+- max_value = 500.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_coal)
+- step_value = 0.01
+- unit = euro
 - update_period = future
-- update_type = %
+- update_type = mixed
