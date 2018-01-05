@@ -3,9 +3,12 @@
 #
 # V(CARRIER(imported_electricity),co2_per_mj)
 
-- unit = PJ
 - query =
-    PRODUCT(
-      Q(average_co2_emissions_of_produced_electricity),
-      V(energy_import_electricity,demand)
-    ) / BILLIONS
+      PRODUCT(
+        V(
+           CARRIER(
+            imported_electricity), co2_conversion_per_mj), V(
+            energy_import_electricity, demand) / BILLIONS
+   )
+- unit = MT
+- deprecated_key = co2_emission_electricity_import
