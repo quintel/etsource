@@ -1,0 +1,8 @@
+# Relative price of coal
+
+- query =
+    100.0 * DIVIDE(
+      SUM(QUERY_FUTURE(-> {Q(price_of_coal)}), PRODUCT(-1,QUERY_PRESENT(-> {Q(price_of_coal)}))),
+      QUERY_PRESENT(-> {Q(price_of_coal)}))
+
+- unit = %
