@@ -1,15 +1,8 @@
-# Due to limitations in the model changes to the left hand side labels are not displayed
-# because the unit is preset as %, and changing it needs several other changes to be made
-# - label = %
-# - label_query = Q(relative_price_of_gas)
-
 - query =
     present_value = QUERY_PRESENT(-> {Q(price_of_gas)});
     relative_value = USER_INPUT() / present_value;
       UPDATE_WITH_FACTOR(
-        CARRIER(
-          natural_gas,lng), cost_per_mj, relative_value)
-
+        CARRIER(natural_gas,lng), cost_per_mj, relative_value)
 - priority = 0
 - max_value = 200.0
 - min_value = 0.0
@@ -17,4 +10,3 @@
 - step_value = 0.1
 - unit = euro
 - update_period = future
-- update_type = mixed
