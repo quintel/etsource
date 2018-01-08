@@ -1,0 +1,10 @@
+#The user insert g/KWH and the ETM processes kg/MJ. FOr this reason we divide it by 1000 and with MJ_PER_KWH
+
+- query = UPDATE(CARRIER(imported_electricity), co2_conversion_per_mj, USER_INPUT() / 1000 / MJ_PER_KWH)
+- priority = 0
+- max_value = 1000
+- min_value = 0
+- start_value_gql = present:AREA(co2_emissions_of_imported_electricity_g_per_kwh)
+- step_value = 0.1
+- unit = gCO2/KWh
+- update_period = present
