@@ -1,8 +1,0 @@
-# Relative price of natural gas in euro per MWh
-
-- query =
-    100.0 * SUM(-1, DIVIDE(
-    QUERY_FUTURE(-> {Q(price_of_gas)}),
-    QUERY_PRESENT(-> {Q(price_of_gas)}))
-    )
-- unit = %

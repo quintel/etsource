@@ -1,8 +1,0 @@
-# Relative price of Uranium
-
-- query =
-    100.0 * DIVIDE(
-      SUM(QUERY_FUTURE(-> {Q(price_of_uranium)}), PRODUCT(-1,QUERY_PRESENT(-> {Q(price_of_uranium)}))),
-      QUERY_PRESENT(-> {Q(price_of_uranium)}))
-
-- unit = %
