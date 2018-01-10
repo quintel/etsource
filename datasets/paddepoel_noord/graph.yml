@@ -679,6 +679,11 @@
       :bio_kerosene: {}
     :out:
       :bio_kerosene: {}
+  :bunkers_final_demand_electricity:
+    :in:
+      :electricity: {}
+    :out:
+      :electricity: {}
   :bunkers_final_demand_for_aviation_bio_kerosene:
     :in:
       :bio_kerosene: {}
@@ -714,23 +719,127 @@
       :lng: {}
     :out:
       :lng: {}
-  :bunkers_flexibility_p2l_electricity:
+  :bunkers_final_demand_network_gas:
+    :in:
+      :network_gas: {}
+    :out:
+      :network_gas: {}
+  :bunkers_flexibility_p2g_electricity:
     :demand: !ruby/object:Rational
       denominator: 1
       numerator: 0
     :in: {}
     :out:
-      :kerosene:
+      :hydrogen:
         :share: !ruby/object:Rational
           denominator: 40
           numerator: 27
       :loss:
         :type: :elastic
+  :bunkers_kerosene_production_p2l:
+    :in:
+      :co:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000000
+          numerator: 35033447203974477
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000000
+          numerator: 1687575707379753
+      :hydrogen:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 6327897708864577
+    :out:
+      :kerosene:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 7658393282439291
+      :loss:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000000
+          numerator: 23416067175607091
+      :hydrogen:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 0
   :bunkers_locally_available_kerosene_after_p2l:
     :in:
       :kerosene: {}
     :out:
       :kerosene: {}
+  :bunkers_p2l_burner_network_gas:
+    :in:
+      :network_gas: {}
+    :out:
+      :loss:
+        :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 10
+          numerator: 9
+  :bunkers_p2l_direct_air_capture:
+    :in:
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 795147370937963
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 20000000000000000
+          numerator: 4097052581240741
+    :out:
+      :co:
+        :share: !ruby/object:Rational
+          denominator: 2000000000000000
+          numerator: 507610734648501
+      :loss:
+        :share: !ruby/object:Rational
+          denominator: 2000000000000000
+          numerator: 1492389265351499
+  :bunkers_p2l_mixer_co:
+    :in:
+      :co: {}
+    :out:
+      :co: {}
+  :bunkers_p2l_point_source_CO:
+    :in:
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 6108888854301233
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000000
+          numerator: 38911111456987657
+    :out:
+      :co:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 8160366958817349
+      :loss:
+        :share: !ruby/object:Rational
+          denominator: 100000000000000000
+          numerator: 18396330411826511
+  :bunkers_p2l_point_source_CO2:
+    :in:
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 3200000000000
+          numerator: 2778562223421
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 312500000000000
+          numerator: 41156032869043
+    :out:
+      :co:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 4509236890765517
+      :loss:
+        :share: !ruby/object:Rational
+          denominator: 5000000000000000
+          numerator: 2745381554617241
   :bunkers_plane_using_kerosene:
     :in:
       :kerosene: {}
@@ -3551,7 +3660,14 @@
           numerator: 4
   :industry_chemicals_fertilizers_haber_bosch_process_hydrogen:
     :in:
-      :hydrogen: {}
+      :hydrogen:
+        :share: !ruby/object:Rational
+          denominator: 25
+          numerator: 18
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 20000000000000000
+          numerator: 2457142857142857
     :out: {}
   :industry_chemicals_fertilizers_steam_methane_reformer_hydrogen:
     :in:
@@ -3570,6 +3686,10 @@
           numerator: 18
       :loss:
         :type: :elastic
+      :useable_heat:
+        :share: !ruby/object:Rational
+          denominator: 20000000000000000
+          numerator: 2457142857142857
   :industry_chemicals_other_burner_coal:
     :in:
       :coal: {}
@@ -4532,6 +4652,11 @@
       :steam_hot_water: {}
     :out:
       :steam_hot_water: {}
+  :industry_locally_available_useable_heat:
+    :in:
+      :useable_heat: {}
+    :out:
+      :useable_heat: {}
   :industry_other_food_burner_coal:
     :in:
       :coal: {}
@@ -5424,16 +5549,12 @@
     :in:
       :diesel_mix: {}
     :out:
-      :car_kms:
+      :passenger_kms:
         :share: !ruby/object:Rational
           denominator: 10000000000000000
           numerator: 6986565910536597
       :loss:
         :type: :elastic
-      :passenger_kms:
-        :share: !ruby/object:Rational
-          denominator: 250000000000000
-          numerator: 131578947368421
   :transport_car_using_electricity:
     :in:
       :electricity: {}
@@ -6749,6 +6870,31 @@
     :demand: 
     :reversed: false
     :priority: 
+  :bunkers_final_demand_electricity-bunkers_kerosene_production_p2l@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :bunkers_final_demand_electricity-bunkers_p2l_direct_air_capture@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_electricity-bunkers_p2l_point_source_CO2@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_final_demand_electricity-bunkers_p2l_point_source_CO@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :bunkers_final_demand_for_aviation_bio_kerosene-bunkers_aviation_mixer_kerosene@kerosene:
     :parent_share: 
     :child_share: 
@@ -6792,12 +6938,31 @@
     :demand: 
     :reversed: false
     :priority: 
-  :bunkers_flexibility_p2l_electricity-bunkers_locally_available_kerosene_after_p2l@kerosene:
+  :bunkers_final_demand_network_gas-bunkers_p2l_burner_network_gas@network_gas:
     :parent_share: 
     :child_share: 
     :demand: 
     :reversed: false
     :priority: 
+  :bunkers_flexibility_p2g_electricity-bunkers_kerosene_production_p2l@hydrogen:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_kerosene_production_p2l-bunkers_locally_available_kerosene_after_p2l@kerosene:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_kerosene_production_p2l-energy_export_hydrogen@hydrogen:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :overflow
   :bunkers_locally_available_kerosene_after_p2l-bunkers_plane_using_kerosene@kerosene:
     :parent_share: 
     :child_share: 
@@ -6811,6 +6976,55 @@
     :reversed: false
     :priority: 
     :type: :overflow
+  :bunkers_p2l_burner_network_gas-bunkers_p2l_direct_air_capture@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_p2l_burner_network_gas-bunkers_p2l_point_source_CO2@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_p2l_burner_network_gas-bunkers_p2l_point_source_CO@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_p2l_direct_air_capture-bunkers_p2l_mixer_co@co:
+    :parent_share: 
+    :child_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 1
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_p2l_mixer_co-bunkers_kerosene_production_p2l@co:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :bunkers_p2l_point_source_CO-bunkers_p2l_mixer_co@co:
+    :parent_share: 
+    :child_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :demand: 
+    :reversed: false
+    :priority: 
+  :bunkers_p2l_point_source_CO2-bunkers_p2l_mixer_co@co:
+    :parent_share: 
+    :child_share: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :demand: 
+    :reversed: false
+    :priority: 
   :bunkers_plane_using_kerosene-bunkers_useful_demand_planes@not_defined:
     :parent_share: 
     :child_share: 
@@ -8057,6 +8271,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :energy_national_gas_network_natural_gas-bunkers_final_demand_network_gas@network_gas:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :energy_national_gas_network_natural_gas-energy_biomass_gasification_ccs_hydrogen@network_gas:
     :parent_share: 
     :child_share: 
@@ -8344,6 +8564,12 @@
     :reversed: false
     :priority: 
     :type: :flexible
+  :energy_power_mv_distribution_network_electricity-bunkers_final_demand_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :energy_power_mv_distribution_network_electricity-energy_biomass_gasification_ccs_hydrogen@electricity:
     :parent_share: 
     :child_share: 
@@ -10315,6 +10541,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :industry_chemicals_fertilizers_steam_methane_reformer_hydrogen-industry_locally_available_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
@@ -12199,6 +12431,12 @@
     :reversed: false
     :priority: 
     :type: :overflow
+  :industry_locally_available_useable_heat-industry_chemicals_fertilizers_haber_bosch_process_hydrogen@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat:
     :parent_share: 
     :child_share: 
@@ -12419,6 +12657,13 @@
     :demand: 
     :reversed: false
     :priority: 
+  :industry_useful_demand_for_chemical_fertilizers_useable_heat-industry_locally_available_useable_heat@useable_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
   ? :industry_useful_demand_for_chemical_other_useable_heat_after_p2h-industry_useful_demand_for_chemical_other_useable_heat@useable_heat
   : :parent_share: 
     :child_share: 
