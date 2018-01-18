@@ -1,0 +1,11 @@
+# CO2 from point sources needed for synthetic kerosene production
+
+- unit = MT
+- query =
+    DIVIDE(
+        DIVIDE(
+            V(energy_synthetic_methane_direct_air_capture, input_of_electricity),
+            V(energy_synthetic_methane_direct_air_capture, "(typical_input_capacity * full_load_hours) / (3.6 * 1000)")
+        ),
+        BILLIONS
+    )
