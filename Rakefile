@@ -310,7 +310,7 @@ task init_methods_to_input: :environment do
   end
 
   dataset = Atlas::Dataset::Derived.find(ENV['DERIVED_DATASET'])
-  input_name = "initializer_methods_#{ dataset.key }"
+  input_name = :"initializer_methods_#{ dataset.key }"
 
   changes = YAML.load_file(dataset.dataset_dir.join('graph_values.yml'))
   input   = nil
@@ -354,7 +354,7 @@ task init_methods_to_input: :environment do
   input.query = "EACH(\n#{ statements.join(",\n") }\n)"
   input.save!
 
-  unless dataset.init.key?(input_name.to_sym)
+  unless dataset.init.key?(input_name)
     dataset.init[input_name] = 1
     dataset.save!
   end
