@@ -12,7 +12,7 @@ namespace :import do
   DESC
   task carrier: :environment do
     carrier = Atlas::Carrier.find(ENV['CARRIER'])
-    xlsx    = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
+    xlsx    = Roo::Spreadsheet.open("#{ETDATASET_PATH}/carriers_source_analyses/#{ENV['CARRIER']}.carrier.xlsx")
 
     unless carrier
       raise ArgumentError, "carrier #{ENV['CARRIER']} does not exist!"
