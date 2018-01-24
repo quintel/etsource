@@ -1,11 +1,12 @@
-- query = UPDATE(CARRIER(crude_oil,lpg,diesel,gasoline), cost_per_mj, USER_INPUT())
-- label = &#36;/barrel
-- label_query = Q(price_of_oil)
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_oil)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+        CARRIER(crude_oil, lpg, diesel, gasoline), cost_per_mj, relative_value)
 - priority = 0
-- max_value = 1000.0
-- min_value = -100.0
-- start_value = 0.0
-- step_value = 5.0
-- unit = %
+- max_value = 500
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_oil)
+- step_value = 1.0
+- unit = dollar
 - update_period = future
-- update_type = %
