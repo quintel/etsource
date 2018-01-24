@@ -94,7 +94,8 @@ namespace :import do
   DESC
   task node: :environment do
     node      = Atlas::Node.find(ENV['NODE'])
-    node_path = "#{node.sector}/#{node.key}.#{node.class.subclass_suffix}"
+    basename  = [node.key, node.class.subclass_suffix].compact.join('.')
+    node_path = "#{node.sector}/#{basename}"
     xlsx      = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/nodes_source_analyses/#{node_path}.xlsx")
 
     xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
