@@ -25,7 +25,7 @@ namespace :import do
 
     raise ArgumentError, "CARRIER '#{carrier}' does not exist in '#{dataset}'" unless current_fce
 
-    xlsx        = Roo::Spreadsheet.open("#{ ENV['ETDATASET_PATH'] }/carriers_source_analyses/#{carrier}.carrier.xlsx")
+    xlsx        = Roo::Spreadsheet.open("#{ETDATASET_PATH}/carriers_source_analyses/#{carrier}.carrier.xlsx")
     yaml_file   = Atlas.data_dir.join("datasets/#{dataset}/fce/#{carrier}.yml")
 
     current_fce = xlsx.sheet("#{ dataset }_fce")

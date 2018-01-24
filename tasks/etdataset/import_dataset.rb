@@ -25,7 +25,7 @@ namespace :import do
 
     datasets.each do |country, year|
       dest = Pathname.new("datasets/#{ country }")
-      csvs = Pathname.glob("#{ ENV['ETDATASET_PATH'] }/data/#{ country }/#{ year }/*/output/*.csv")
+      csvs = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/*.csv")
 
       puts "Importing #{ country }/#{ year } dataset:"
 
@@ -68,7 +68,7 @@ namespace :import do
 end
 
 desc <<-DESC
-  Import ETDataset CSVs from #{ ENV['ETDATASET_PATH'] }
+  Import ETDataset CSVs from #{ETDATASET_PATH}
 
   Defaults to importing all datasets listed in datasets.yml. Providing an optional DATASET environment
   parameter results in importing only one dataset. If an optional YEAR environment parameter is provided,

@@ -8,10 +8,11 @@ task :environment do
   require_relative './../helpers/encrypt_balance'
 
   Bundler.require(:development)
-  Dotenv.load('../.env', '../.env.default')
 
-  Atlas.data_dir = File.expand_path(File.dirname(__FILE__).parent)
+  root = File.expand_path(`pwd`.strip).freeze
 
-  puts Atlas.data_dir
+  ETDATASET_PATH = root.sub('etsource', 'etdataset')
+
+  Atlas.data_dir = root
 end
 
