@@ -2,9 +2,9 @@
 # importing a scenario into ETMoses.
 
 - query =
-    V(
-      INTERSECTION(G(etmoses),CHILDREN(V(households_useful_demand_for_space_heating_after_insulation_and_solar_heater))), 
+    SUM(V(
+      INTERSECTION(G(etmoses),G(merit_household_space_heating_producers)),
       output_of_useable_heat
-    ).sum / BILLIONS
+    )) / BILLIONS
 
 - unit = PJ
