@@ -1,11 +1,8 @@
 - query =
-      SUM(V(
-            industry_final_demand_network_gas,
-            transport_final_demand_hydrogen,
-            agriculture_final_demand_network_gas,
-            demand
-          )
+      SUM(
+        Q(factsheet_demand_of_natural_gas),
+        Q(factsheet_demand_of_green_gas),
+        Q(factsheet_demand_of_hydrogen)
       )
-
 
 - unit = MJ
