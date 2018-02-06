@@ -1,0 +1,33 @@
+- query =
+    DIVIDE(SUM(
+        V(energy_heater_for_heat_network_geothermal,
+          energy_heater_for_heat_network_wood_pellets,
+          energy_heater_for_heat_network_network_gas,
+          energy_heater_for_heat_network_waste_mix,
+          energy_chp_combined_cycle_network_gas,
+          energy_chp_supercritical_waste_mix,
+          agriculture_unused_local_production_steam_hot_water,
+          industry_unused_local_production_steam_hot_water,
+          output_of_steam_hot_water)),
+        SUM(
+          V(
+            buildings_collective_geothermal,
+            households_collective_geothermal,
+            energy_heater_for_heat_network_geothermal,
+            energy_heater_for_heat_network_wood_pellets,
+            energy_heater_for_heat_network_network_gas,
+            energy_heater_for_heat_network_waste_mix,
+            energy_chp_combined_cycle_network_gas,
+            energy_chp_supercritical_waste_mix,
+            agriculture_unused_local_production_steam_hot_water,
+            industry_unused_local_production_steam_hot_water,
+            buildings_collective_chp_wood_pellets,
+            buildings_chp_engine_biogas,
+            buildings_collective_chp_network_gas,
+            households_collective_chp_network_gas,
+            households_collective_chp_wood_pellets,
+            households_collective_chp_biogas,
+            output_of_steam_hot_water
+        ))) * 100
+
+- unit = %
