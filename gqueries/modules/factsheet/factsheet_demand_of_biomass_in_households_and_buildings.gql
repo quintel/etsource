@@ -1,7 +1,6 @@
 - query =
     SUM(
-      Q(biomass_products_used_for_heating_in_households),
-      Q(biomass_products_used_for_heat_in_buildings)
-    ) * BILLIONS
-
+      V(households_final_demand_wood_pellets,
+      buildings_final_demand_for_space_heating_wood_pellets, demand)
+    )
 - unit = MJ

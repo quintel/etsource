@@ -1,0 +1,13 @@
+# Query gives number of weq ('woningequivalent'), assuming 32 GJ heat demand per residence
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          buildings_final_demand_steam_hot_water,
+          households_final_demand_steam_hot_water,
+          demand
+          )),
+          32000
+    )
+
+- unit = MJ
