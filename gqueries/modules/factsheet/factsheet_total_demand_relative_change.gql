@@ -1,7 +1,7 @@
 - query =
-      DIVIDE(
-        Q(factsheet_total_demand_absolute_change),
-        Q(factsheet_total_demand_present))
-        * 100
+    100 * (
+      QUERY_FUTURE(factsheet_total_demand) /
+      QUERY_PRESENT(factsheet_total_demand) - 1
+    )
 
 - unit = %
