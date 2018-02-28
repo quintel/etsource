@@ -1,0 +1,16 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(buildings_collective_chp_wood_pellets,
+          buildings_chp_engine_biogas,
+          buildings_collective_chp_network_gas,
+          households_collective_chp_network_gas,
+          households_collective_chp_wood_pellets,
+          households_collective_chp_biogas,
+          output_of_steam_hot_water
+        )
+      ),
+      Q(factsheet_supply_heat_collective)
+    ) * 100
+
+- unit = %
