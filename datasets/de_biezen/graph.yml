@@ -271,9 +271,34 @@
       denominator: 1
       numerator: 0
     :in:
-      :geothermal: {}
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 416666666666667
+      :geothermal:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 958333333333333
     :out:
       :steam_hot_water: {}
+  :buildings_collective_heatpump_water_water_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :ambient_heat:
+        :share: !ruby/object:Rational
+          denominator: 1250
+          numerator: 921
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 25000
+          numerator: 6579
+    :out:
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :buildings_cooling_airconditioning_electricity:
     :in:
       :ambient_cold:
@@ -2661,9 +2686,34 @@
       denominator: 1
       numerator: 0
     :in:
-      :geothermal: {}
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 10000000000000000
+          numerator: 416666666666667
+      :geothermal:
+        :share: !ruby/object:Rational
+          denominator: 1000000000000000
+          numerator: 958333333333333
     :out:
       :steam_hot_water: {}
+  :households_collective_heatpump_water_water_electricity:
+    :demand: !ruby/object:Rational
+      denominator: 1
+      numerator: 0
+    :in:
+      :ambient_heat:
+        :share: !ruby/object:Rational
+          denominator: 1250
+          numerator: 921
+      :electricity:
+        :share: !ruby/object:Rational
+          denominator: 25000
+          numerator: 6579
+    :out:
+      :steam_hot_water:
+        :share: !ruby/object:Rational
+          denominator: 1
+          numerator: 1
   :households_cooker_halogen_electricity:
     :in:
       :electricity: {}
@@ -6410,6 +6460,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :buildings_collective_heatpump_water_water_electricity-buildings_final_demand_steam_hot_water@steam_hot_water:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :buildings_cooling_airconditioning_electricity-buildings_useful_demand_after_insulation_cooling@cooling:
     :parent_share: 
     :child_share: 
@@ -8564,6 +8620,20 @@
     :reversed: false
     :priority: 
     :type: :flexible
+  :energy_power_mv_distribution_network_electricity-buildings_collective_geothermal@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :energy_power_mv_distribution_network_electricity-buildings_collective_heatpump_water_water_electricity@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
   :energy_power_mv_distribution_network_electricity-bunkers_final_demand_electricity@electricity:
     :parent_share: 
     :child_share: 
@@ -8627,6 +8697,20 @@
     :priority: 
     :type: :flexible
   :energy_power_mv_distribution_network_electricity-energy_steam_methane_reformer_hydrogen@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :energy_power_mv_distribution_network_electricity-households_collective_geothermal@electricity:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+    :type: :flexible
+  :energy_power_mv_distribution_network_electricity-households_collective_heatpump_water_water_electricity@electricity:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -9040,6 +9124,12 @@
     :demand: 
     :reversed: false
     :priority: 
+  :environment_earth_ambient_heat-buildings_collective_heatpump_water_water_electricity@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
   :environment_earth_ambient_heat-buildings_space_heater_collective_heatpump_water_water_ts_electricity@ambient_heat:
     :parent_share: 
     :child_share: 
@@ -9047,6 +9137,12 @@
     :reversed: false
     :priority: 
   :environment_earth_ambient_heat-buildings_space_heater_heatpump_air_water_network_gas@ambient_heat:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :environment_earth_ambient_heat-households_collective_heatpump_water_water_electricity@ambient_heat:
     :parent_share: 
     :child_share: 
     :demand: 
@@ -9197,6 +9293,12 @@
     :reversed: false
     :priority: 
   :households_collective_geothermal-households_final_demand_steam_hot_water@steam_hot_water:
+    :parent_share: 
+    :child_share: 
+    :demand: 
+    :reversed: false
+    :priority: 
+  :households_collective_heatpump_water_water_electricity-households_final_demand_steam_hot_water@steam_hot_water:
     :parent_share: 
     :child_share: 
     :demand: 
