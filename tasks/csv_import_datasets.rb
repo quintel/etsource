@@ -9,12 +9,11 @@ namespace :import do
 
     full_dataset = (ENV['FULL_DATASET'] || 'nl').freeze
 
-    csv = CSV.read(ENV['CSV'],
-                   headers: true,
-                   skip_blanks: true,
-                   internal_encoding: 'utf-8')
 
-    csv.each do |row|
+    # Needs this magic in order to remove starting \uFEFF character
+    csv_string = File.read(ENV['CSV']).sub("\xEF\xBB\xBF", "").gsub("\r", "")
+
+    CSV.parse(csv_string, headers: true, skip_blanks: true).each do |row|
       keys            = Atlas::Dataset.attribute_set.map(&:name).map(&:to_s)
       region          = row.fetch('area').downcase.gsub(/\s/, '_')
       area_attributes = row.to_h.slice(*keys).merge(area: region)
