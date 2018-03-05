@@ -1,13 +1,16 @@
 #This query updates both the share of centrally produced (vs locally produced) hydrogen and that of the specific production technology
+
+# - query = 
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:(V(energy_steam_methane_reformer_hydrogen,share_of_energy_distribution_hydrogen) * 100 * V(energy_distribution_hydrogen, share_of_energy_locally_available_hydrogen_before_p2g))
+- start_value = 0.0
 - step_value = 0.1
 - unit = #
 - update_period = future
 
-# old query
+# old
+# - start_value_gql = present:(V(energy_steam_methane_reformer_hydrogen,share_of_energy_distribution_hydrogen) * 100 * V(energy_distribution_hydrogen, share_of_energy_locally_available_hydrogen_before_p2g))
 # - query =
     central_fraction =
      SUM(
