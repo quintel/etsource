@@ -9,49 +9,54 @@ namespace :import do
 
     full_dataset = (ENV['FULL_DATASET'] || 'nl').freeze
 
-    csv = CSV.read(ENV['CSV'],
-                   headers: true,
-                   skip_blanks: true,
-                   internal_encoding: 'utf-8')
+    # Needs this magic in order to remove starting \uFEFF character
+    csv_string = File.read(ENV['CSV']).sub("\xEF\xBB\xBF", "").gsub("\r", "")
 
-    csv.each do |row|
-      keys            = Atlas::Dataset.attribute_set.map(&:name).map(&:to_s)
-      region          = row.fetch('area').downcase.gsub(/\s/, '_')
-      area_attributes = row.to_h.slice(*keys).merge(area: region)
-      graph_values    = row.to_h.except(*keys)
+    CSV.parse(csv_string, headers: true, skip_blanks: true).each do |row|
+      keys   = Atlas::Dataset.attribute_set.map(&:name).map(&:to_s)
+      region = row.fetch('area').downcase.gsub(/\s/, '_')
 
-      dataset = begin
-        Atlas::Dataset::Derived.find(region)
-      rescue Atlas::DocumentNotFoundError => e
-        nil
-      end
-
-      unless dataset
-        puts "Scaling new region #{ region }"
-        Atlas::Scaler.new(
-          full_dataset, region, row.fetch('number_of_residences')
-        ).create_scaled_dataset
-
-        dataset = Atlas::Dataset::Derived.find(region)
-      end
-
-      dataset.attributes = area_attributes
+      dataset = find_or_scale_by(region, full_dataset, row)
+      dataset.attributes = row.to_h.slice(*keys).merge(area: region)
       dataset.save
 
-      # Note: this method only works for graph methods which are related
-      # to nodes and edges, NOT for slots.
       dataset.graph_values.create!
 
-      graph_values.each_pair do |key, val|
-        next unless key
-
-        element_key, _, method = key.rpartition('-')
-
-        dataset.graph_values.set(element_key, method, val.to_f)
-        dataset.graph_values.save
-      end
+      set_graph_values(dataset, row.to_h.except(*keys))
 
       puts "Saved area attributes and graph values to #{ region }"
     end
   end # :dataset
+
+  def find_or_scale_by(region, full_dataset, row)
+    begin
+      Atlas::Dataset::Derived.find(region)
+    rescue Atlas::DocumentNotFoundError => e
+      puts "Scaling new region #{ region }"
+      Atlas::Scaler.new(
+        full_dataset, region, row.fetch('number_of_residences')
+      ).create_scaled_dataset
+
+      Atlas::Dataset::Derived.find(region)
+    end
+  end
+
+  def set_graph_values(dataset, graph_values)
+    graph_values.each_pair do |key, val|
+      next unless key
+
+      element_key, _, method = key.rpartition('-')
+
+      value = if method =~ /input|output/
+        method, carrier = method.split('@')
+
+        Hash[carrier, val.to_f]
+      else
+        val.to_f
+      end
+
+      dataset.graph_values.set(element_key, method, value)
+      dataset.graph_values.save
+    end
+  end
 end
