@@ -19,8 +19,10 @@ namespace :import do
     xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
       next unless key_val[:value].is_a?(Numeric)
 
-      if key_val[:attribute] =~ /\./
-        attribute, subkey = key_val[:attribute].split('.', 2)
+      attribute = key_val[:attribute].strip
+
+      if attribute =~ /\./
+        attribute, subkey = attribute.split('.', 2)
         subhash           = node.public_send(attribute)
         right             = subkey
 
@@ -43,7 +45,7 @@ namespace :import do
 
         subhash[subkey.to_sym] = key_val[:value]
       else
-        node.public_send("#{key_val[:attribute]}=", key_val[:value])
+        node.public_send("#{attribute}=", key_val[:value])
       end
     end
 
