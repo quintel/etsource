@@ -1,4 +1,4 @@
-ETSOURCE_PATH  = File.expand_path(`pwd`.strip).freeze
+ETSOURCE_PATH  = File.expand_path('../../', __FILE__).freeze
 ETDATASET_PATH = ETSOURCE_PATH.sub('etsource', 'etdataset').freeze
 
 task :environment do
