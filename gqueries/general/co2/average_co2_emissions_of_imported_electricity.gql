@@ -1,0 +1,14 @@
+# The total related CO2 of all the imported electricity is calculated here.
+# kg_to_g = * 1000
+# MJ_to_KWh = * 3.6
+
+- query =
+          PRODUCT(
+            V(
+               CARRIER(
+                imported_electricity), co2_conversion_per_mj),
+                1000 * 3.6
+          )
+    
+- unit = gCO2/KWh
+- deprecated_key = co2_emission_electricity_import
