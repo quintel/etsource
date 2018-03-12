@@ -1,15 +1,5 @@
 - query =
-      Q(factsheet_total_demand_present) -
-      Q(factsheet_total_demand_future) +
-      SUM(
-          V(
-              households_final_demand_for_cooling_electricity,
-              households_final_demand_for_space_heating_electricity,
-              households_final_demand_for_hot_water_electricity,
-              households_final_demand_for_cooking_electricity,
-              buildings_final_demand_for_space_heating_electricity,
-              buildings_final_demand_for_cooling_electricity,
-              demand
-          ))
+   QUERY_PRESENT(factsheet_total_demand) -
+   QUERY_FUTURE(factsheet_total_demand)
 
 - unit = MJ
