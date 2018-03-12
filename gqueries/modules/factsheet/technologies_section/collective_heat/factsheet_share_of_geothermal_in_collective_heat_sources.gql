@@ -1,0 +1,14 @@
+- query =
+    DIVIDE(
+        SUM(
+            V(
+            buildings_collective_geothermal,
+            households_collective_geothermal,
+            energy_heater_for_heat_network_geothermal,
+            output_of_steam_hot_water
+            )
+        ),
+        Q(factsheet_supply_heat_collective)
+    ) * 100.0
+
+- unit = %

@@ -1,0 +1,16 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_chp_supercritical_waste_mix,
+          energy_chp_ultra_supercritical_cofiring_coal,
+          energy_chp_combined_cycle_network_gas,
+          energy_chp_ultra_supercritical_coal,
+          energy_heater_for_heat_network_waste_mix,
+          output_of_steam_hot_water
+          )
+      ),
+      Q(factsheet_supply_heat_collective)
+    ) * 100
+
+- unit = %
