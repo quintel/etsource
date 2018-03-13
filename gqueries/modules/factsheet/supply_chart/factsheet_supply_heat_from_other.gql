@@ -1,4 +1,7 @@
 - query =
-    V(G(heat_production),"output_of_useable_heat").sum - Q(factsheet_supply_heat_from_biomass) - Q(factsheet_supply_heat_from_solar_thermal) - Q(factsheet_supply_heat_from_heat_pumps)
+    SUM(V(FILTER(G(heat_production),"output_of_useable_heat > 0"), input_of_network_gas).sum,
+        V(FILTER(G(heat_production),"output_of_useable_heat > 0"), input_of_crude_oil).sum,
+        V(FILTER(G(heat_production),"output_of_useable_heat > 0"), input_of_coal).sum
+        )
 
 - unit = MJ
