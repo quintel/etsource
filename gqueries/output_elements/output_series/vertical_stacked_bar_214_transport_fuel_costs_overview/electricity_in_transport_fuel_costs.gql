@@ -1,4 +1,16 @@
 # Cost of electricity in transport
 
 - unit = bln_euro
-- query = future:AVG(MERIT_PRICE_CURVE())/SECS_PER_HOUR * V(transport_final_demand_electricity,demand)/ BILLIONS 
+- query =
+    IF(
+      GRAPH(use_merit_order_demands?),
+      -> {
+        AVG(MERIT_PRICE_CURVE())
+      },
+      -> {
+        DIVIDE(
+          V(G(electricity_production), "marginal_costs * output_of_electricity").sum,
+          V(G(electricity_production), output_of_electricity).sum
+          )
+        }
+      )/ SECS_PER_HOUR * (V(transport_final_demand_electricity,demand))/BILLIONS
