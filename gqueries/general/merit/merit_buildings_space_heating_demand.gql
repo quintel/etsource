@@ -1,0 +1,7 @@
+- query =
+    [
+      MERIT_LOAD_CURVES(:buildings_space_heater_collective_heatpump_water_water_ts_electricity),
+      MERIT_LOAD_CURVES(:buildings_collective_heatpump_water_water_electricity),
+      MERIT_LOAD_CURVES(:buildings_collective_geothermal),
+      MERIT_LOAD_CURVES(:buildings_space_heater_electricity)
+    ].transpose.map {|x| x.reduce(:+)}

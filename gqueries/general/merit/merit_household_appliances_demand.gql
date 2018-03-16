@@ -1,0 +1,11 @@
+- query =
+    [
+      MERIT_LOAD_CURVES(households_appliances_clothes_dryer_electricity),
+      MERIT_LOAD_CURVES(households_appliances_dishwasher_electricity),
+      MERIT_LOAD_CURVES(households_appliances_washing_machine_electricity),
+      MERIT_LOAD_CURVES(households_appliances_television_electricity),
+      MERIT_LOAD_CURVES(households_appliances_vacuum_cleaner_electricity),
+      MERIT_LOAD_CURVES(households_appliances_fridge_freezer_electricity),
+      MERIT_LOAD_CURVES(households_appliances_computer_media_electricity),
+      MERIT_LOAD_CURVES(households_appliances_other_electricity)
+    ].transpose.map {|x| x.reduce(:+)}

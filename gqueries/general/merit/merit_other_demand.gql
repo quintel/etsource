@@ -1,0 +1,7 @@
+- query =
+    [
+      MERIT_LOAD_CURVES(:other_final_demand_electricity),
+      MERIT_LOAD_CURVES(:energy_compressor_network_gas),
+      MERIT_LOAD_CURVES(:energy_compressor_hydrogen),
+      MERIT_LOAD_CURVES(:bunkers_final_demand_electricity)
+    ].transpose.map {|x| x.reduce(:+)}

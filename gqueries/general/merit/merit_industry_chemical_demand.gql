@@ -1,0 +1,6 @@
+- query =
+    [
+      MERIT_LOAD_CURVES(:industry_final_demand_for_chemical_refineries_electricity),
+      MERIT_LOAD_CURVES(:industry_final_demand_for_chemical_fertilizers_electricity),
+      MERIT_LOAD_CURVES(:industry_final_demand_for_chemical_other_electricity)
+    ].transpose.map {|x| x.reduce(:+)}

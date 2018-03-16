@@ -1,0 +1,6 @@
+- query =
+    [
+      MERIT_LOAD_CURVES(:buildings_lighting_standard_fluorescent_electricity),
+      MERIT_LOAD_CURVES(:buildings_lighting_efficient_fluorescent_electricity),
+      MERIT_LOAD_CURVES(:buildings_lighting_led_electricity)
+    ].transpose.map {|x| x.reduce(:+)}
