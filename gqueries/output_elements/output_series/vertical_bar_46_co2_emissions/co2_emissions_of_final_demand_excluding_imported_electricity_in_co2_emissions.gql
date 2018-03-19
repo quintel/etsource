@@ -8,5 +8,5 @@
 - query =
     SUM(
         V(G(final_demand_group),primary_co2_emission).sum,
-        NEG(V(INTERSECTION(G(final_demand_group),SECTOR(bunkers)), primary_co2_emission).sum)
+        NEG(Q(primary_co2_of_bunkers))
     ) / BILLIONS
