@@ -1,8 +1,9 @@
 - query =
         SUM(
-            V(CHILDREN(V(transport_useful_demand_passenger_trains)), primary_co2_emission).sum,
-            V(CHILDREN(V(transport_useful_demand_trams)), primary_co2_emission).sum,
-            V(CHILDREN(V(transport_useful_demand_freight_trains)), primary_co2_emission).sum
+            V(transport_useful_demand_passenger_trains,
+              transport_useful_demand_trams,
+              transport_useful_demand_freight_trains,
+              primary_co2_emission)
           )
 
 - unit = T
