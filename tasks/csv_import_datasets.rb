@@ -43,7 +43,7 @@ namespace :import do
 
   def set_graph_values(dataset, graph_values)
     graph_values.each_pair do |key, val|
-      next unless key
+      next if key.blank? || val.blank?
 
       element_key, _, method = key.rpartition('-')
 
