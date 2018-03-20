@@ -1,8 +1,10 @@
 - query =
         SUM(
-            V(CHILDREN(V(industry_aluminium_production)), primary_co2_emission).sum,
-            V(CHILDREN(V(industry_steel_production)), primary_co2_emission).sum,
-            V(CHILDREN(V(industry_other_metals_production)), primary_co2_emission).sum
-            ) / 1000 
+            V(industry_aluminium_production,
+              industry_steel_production,
+              industry_other_metals_production,
+              primary_co2_emission)
+            ) / THOUSANDS
+
 
 - unit = T
