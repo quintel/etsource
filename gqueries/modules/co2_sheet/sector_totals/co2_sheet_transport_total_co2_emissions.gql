@@ -1,3 +1,10 @@
-- query = Q(primary_co2_of_transport)
+- query =
+          SUM(
+              Q(co2_sheet_transport_car_co2_emissions),
+              Q(co2_sheet_transport_busses_co2_emissions),
+              Q(co2_sheet_transport_trains_co2_emissions),
+              Q(co2_sheet_transport_trucks_co2_emissions),
+              Q(co2_sheet_transport_ships_co2_emissions)
+              )
 
-- unit = MT
+- unit = T
