@@ -1,4 +1,6 @@
 - query =
-    V(G(heat_production),"electricity_input_conversion * output_of_useable_heat").sum
+    SUM(V(G(heat_production), "output_of_useable_heat*electricity_input_conversion").sum,
+        V(G(heat_production), "output_of_useable_heat*ambient_heat_input_conversion").sum)
+        - V(agriculture_geothermal, "output_of_useable_heat*electricity_input_conversion")
 
 - unit = MJ
