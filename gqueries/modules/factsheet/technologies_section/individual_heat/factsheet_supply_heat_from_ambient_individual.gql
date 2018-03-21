@@ -1,0 +1,8 @@
+- query =
+    SUM(
+        V(FILTER(G(heat_production), "ambient_heat_input_conversion > 0"), "output_of_useable_heat").sum,
+        - V(FILTER(G(heat_production), "ambient_heat_input_conversion > 0"), "output_of_useable_heat*network_gas_input_conversion").sum
+    )
+
+- unit = MJ
+

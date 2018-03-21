@@ -1,0 +1,16 @@
+- query =
+    SUM(
+        V(CHILDREN(V(households_final_demand_steam_hot_water)), output_of_steam_hot_water).sum - V(households_collective_heatpump_water_water_electricity, output_of_steam_hot_water),
+        V(CHILDREN(V(buildings_final_demand_steam_hot_water)), output_of_steam_hot_water).sum - V(buildings_collective_heatpump_water_water_electricity, output_of_steam_hot_water),
+        MIN(V(agriculture_locally_available_steam_hot_water, output_of_steam_hot_water), V(agriculture_final_demand_steam_hot_water, output_of_steam_hot_water)),
+        MIN(V(industry_locally_available_steam_hot_water, output_of_steam_hot_water), V(industry_final_demand_steam_hot_water, output_of_steam_hot_water)),
+        V(energy_heat_network_unused_steam_hot_water, input_of_steam_hot_water),
+        - V(energy_heater_for_heat_network_coal, output_of_steam_hot_water),
+        - V(energy_heater_for_heat_network_lignite, output_of_steam_hot_water),
+        - V(energy_heater_for_heat_network_crude_oil, output_of_steam_hot_water),
+        - V(energy_heater_for_heat_network_network_gas, output_of_steam_hot_water),
+        - V(energy_heater_for_heat_network_waste_mix, output_of_steam_hot_water),
+        - V(energy_heat_network_backup_heater_network_gas, output_of_steam_hot_water)
+    )
+
+- unit = MJ
