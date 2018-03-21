@@ -1,0 +1,10 @@
+- query =
+    SUM(V(G(heat_production), "output_of_steam_hot_water*network_gas_input_conversion").sum,
+        V(G(heat_production), "output_of_steam_hot_water*coal_input_conversion").sum,
+        V(G(heat_production), "output_of_steam_hot_water*crude_oil_input_conversion").sum,
+        V(energy_heater_for_heat_network_lignite, output_of_steam_hot_water),
+        V(energy_heater_for_heat_network_waste_mix, output_of_steam_hot_water)
+    ) / Q(factsheet_supply_heat_collective) * 100.0
+
+
+- unit = %
