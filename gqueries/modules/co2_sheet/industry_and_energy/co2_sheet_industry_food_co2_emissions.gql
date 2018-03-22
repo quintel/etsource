@@ -1,9 +1,15 @@
 - query =
-      SUM(
-          V(
-            industry_useful_demand_for_other_food_electricity,
-            industry_useful_demand_for_other_food_useable_heat,
-            primary_co2_emission)
-            ) / THOUSANDS
+        SUM(
+            V(
+                industry_final_demand_for_other_food_electricity,
+                industry_final_demand_for_other_food_coal,
+                industry_final_demand_for_other_food_network_gas,
+                industry_final_demand_for_other_food_wood_pellets,
+                industry_final_demand_for_other_food_crude_oil,
+                industry_final_demand_for_other_food_steam_hot_water,
+                primary_co2_emission
+              )
+        ) / THOUSANDS
+
 
 - unit = T
