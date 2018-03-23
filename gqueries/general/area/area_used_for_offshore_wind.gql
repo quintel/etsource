@@ -1,3 +1,7 @@
-- query = V(energy_power_wind_turbine_offshore,total_land_use)
+- query =
+    SUM(
+        V(energy_power_wind_turbine_offshore,total_land_use),
+        V(energy_hydrogen_wind_turbine_offshore,total_land_use)
+    )
 - unit = km2
 - deprecated_key = offshore
