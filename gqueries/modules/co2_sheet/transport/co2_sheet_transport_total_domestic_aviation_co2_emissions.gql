@@ -1,3 +1,11 @@
-- query = V(transport_useful_demand_planes, primary_co2_emission) / THOUSANDS
+- query =
+          SUM(
+              V(
+                transport_plane_using_bio_ethanol,
+                transport_plane_using_kerosene,
+                transport_plane_using_gasoline,
+                primary_co2_emission
+                )
+              ) / THOUSANDS
 
 - unit = T

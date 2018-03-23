@@ -1,15 +1,17 @@
 - query =
-          SUM(V(
+          SUM(
+              V(
                 households_final_demand_for_lighting_electricity,
                 households_final_demand_for_appliances_electricity,
                 buildings_final_demand_for_lighting_electricity,
-                buildings_final_demand_for_appliances_coal,
-                buildings_final_demand_for_appliances_crude_oil,
-                buildings_final_demand_for_appliances_network_gas,
-                buildings_final_demand_for_appliances_wood_pellets,
                 buildings_final_demand_for_appliances_electricity,
+                buildings_final_demand_for_appliances_wood_pellets,
+                buildings_final_demand_for_appliances_network_gas,
+                buildings_final_demand_for_appliances_crude_oil,
+                buildings_final_demand_for_appliances_coal,
                 primary_co2_emission
-                )) / THOUSANDS
+                )
+              ) / THOUSANDS
 
 
 - unit = T
