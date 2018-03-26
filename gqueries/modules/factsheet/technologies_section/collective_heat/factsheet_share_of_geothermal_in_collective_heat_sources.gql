@@ -1,14 +1,6 @@
 - query =
     DIVIDE(
-        SUM(
-            V(
-            buildings_collective_geothermal,
-            households_collective_geothermal,
-            energy_heater_for_heat_network_geothermal,
-            output_of_steam_hot_water
-            ),
-            V(agriculture_geothermal, output_of_useable_heat)
-        ),
+        Q(factsheet_supply_heat_from_geothermal_collective),
         Q(factsheet_supply_heat_collective)
     ) * 100.0
 
