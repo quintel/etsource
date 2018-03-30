@@ -1,0 +1,12 @@
+- query =
+    SUM(
+        V(energy_heater_for_heat_network_coal,output_of_steam_hot_water),
+        V(energy_heater_for_heat_network_lignite,output_of_steam_hot_water),
+        V(energy_heater_for_heat_network_crude_oil,output_of_steam_hot_water),
+        V(energy_heater_for_heat_network_network_gas,output_of_steam_hot_water),
+        V(energy_heater_for_heat_network_waste_mix,output_of_steam_hot_water),
+        V(energy_heat_network_backup_heater_network_gas,output_of_steam_hot_water)
+    ) / Q(factsheet_supply_heat_collective) * 100.0
+
+
+- unit = %
