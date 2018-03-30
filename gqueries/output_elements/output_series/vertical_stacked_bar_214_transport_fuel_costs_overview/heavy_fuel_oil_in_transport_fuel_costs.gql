@@ -3,7 +3,6 @@
 - unit = bln_euro
 - query =
     DIVIDE(
-        V(energy_distribution_heavy_fuel_oil, weighted_carrier_cost_per_mj)*
-        V(transport_final_demand_heavy_fuel_oil,demand),
+        V(transport_final_demand_heavy_fuel_oil,"demand * weighted_carrier_cost_per_mj"), 
         BILLIONS
     )
