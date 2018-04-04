@@ -1,0 +1,10 @@
+# The amount of capacity steps needed to built the future lv net. A capacity step is the extra capacity which will be built, when the net needs to be increased. The step size and costs is defined in the area files.
+
+- query =
+          IF(
+              Q(lv_net_extra_capacity_needed) > 0,
+              CEIL(Q(lv_net_extra_capacity_needed) / AREA(lv_net_capacity_per_step)),
+              0
+            )
+
+- unit = #
