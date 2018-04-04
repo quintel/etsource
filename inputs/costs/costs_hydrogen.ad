@@ -2,7 +2,7 @@
     present_value = QUERY_PRESENT(-> {Q(price_of_hydrogen)});
     relative_value = USER_INPUT() / present_value;
       UPDATE_WITH_FACTOR(
-        CARRIER(hydrogen), cost_per_mj, relative_value)
+        CARRIER(hydrogen, imported_hydrogen), cost_per_mj, relative_value)
 - priority = 0
 - max_value = 20.0
 - min_value = 0.0
