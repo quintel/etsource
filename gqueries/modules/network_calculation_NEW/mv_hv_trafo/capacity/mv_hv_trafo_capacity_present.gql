@@ -1,0 +1,10 @@
+# The capacity of the the low voltage net in the present. The 0.000001 is to prevent it from breaking, when spare capacity is 100%.
+
+- query =
+          IF(
+              AREA(mv_hv_trafo_spare_capacity) >= 1,
+              0,
+              Q(mv_hv_trafo_peak_load_present) / (1 - AREA(mv_hv_trafo_spare_capacity))
+            )
+
+- unit = MW
