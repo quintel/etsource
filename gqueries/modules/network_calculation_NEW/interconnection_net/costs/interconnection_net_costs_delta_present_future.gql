@@ -2,8 +2,8 @@
 
 - query =
           IF(
-              Q(interconnection_net_capacity_delta_present_future) >= 0,
-              Q(interconnection_net_capacity_delta_present_future) * INPUT_VALUE(number_of_energy_power_ultra_supercritical_coal),
+              QUERY_FUTURE(interconnection_net_capacity_delta_present_future) >= 0,
+              QUERY_FUTURE(interconnection_net_capacity_delta_present_future) * INPUT_VALUE(costs_infrastructure_electricity_interconnector_net),
               0
             )
 

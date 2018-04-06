@@ -4,7 +4,7 @@
           IF(
               AREA(lv_mv_trafo_spare_capacity) >= 1,
               0,
-              Q(lv_mv_trafo_peak_load_present) / (1 - AREA(lv_mv_trafo_spare_capacity))
+              QUERY_PRESENT(lv_mv_trafo_peak_load_present) / (1 - AREA(lv_mv_trafo_spare_capacity))
             )
 
 - unit = MW

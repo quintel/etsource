@@ -4,7 +4,7 @@
           IF(
               AREA(lv_net_spare_capacity) >= 1,
               0,
-              Q(lv_net_peak_load_present) / (1 - AREA(lv_net_spare_capacity))
+              QUERY_PRESENT(lv_net_peak_load_present) / (1 - AREA(lv_net_spare_capacity))
             )
 
 - unit = MW

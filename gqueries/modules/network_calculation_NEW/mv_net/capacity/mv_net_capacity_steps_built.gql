@@ -2,8 +2,8 @@
 
 - query =
           IF(
-              Q(mv_net_extra_capacity_needed) > 0,
-              CEIL(Q(mv_net_extra_capacity_needed) / AREA(mv_net_capacity_per_step)),
+              QUERY_FUTURE(mv_net_extra_capacity_needed) > 0,
+              CEIL(QUERY_FUTURE(mv_net_extra_capacity_needed) / AREA(mv_net_capacity_per_step)),
               0
             )
 
