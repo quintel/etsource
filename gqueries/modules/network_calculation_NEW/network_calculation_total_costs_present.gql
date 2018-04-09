@@ -1,0 +1,14 @@
+# The total costs of the network calculation
+
+- query =
+          SUM(
+              QUERY_PRESENT(lv_net_total_costs_present),
+              QUERY_PRESENT(lv_mv_trafo_total_costs_present),
+              QUERY_PRESENT(mv_net_total_costs_present),
+              QUERY_PRESENT(mv_hv_trafo_total_costs_present),
+              QUERY_PRESENT(hv_net_total_costs_present),
+              QUERY_PRESENT(interconnection_net_costs_present),
+              QUERY_PRESENT(offshore_net_costs_present)
+          )
+
+- unit = euro
