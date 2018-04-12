@@ -1,10 +1,10 @@
-# The capacity of the the low voltage net in the present. The 0.000001 is to prevent it from breaking, when spare capacity is 100%.
+# The capacity of the the low voltage net in the present.
 
 - query =
           IF(
-              AREA(hv_net_spare_capacity) >= 1,
-              0,
-              QUERY_PRESENT(hv_net_peak_load_present) / (1 - AREA(hv_net_spare_capacity))
+              AREA(hv_net_spare_capacity) >= 1.0,
+              0.0,
+              QUERY_PRESENT(hv_net_peak_load_present) / (1.0 - AREA(hv_net_spare_capacity))
             )
 
 - unit = MW
