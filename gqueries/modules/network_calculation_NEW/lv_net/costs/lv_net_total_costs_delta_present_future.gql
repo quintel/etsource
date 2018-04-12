@@ -1,5 +1,9 @@
 # The delta (difference) between the present and the future costs of the low voltage net.
 
-- query = QUERY_FUTURE(lv_net_capacity_delta_present_future) * INPUT_VALUE(costs_infrastructure_electricity_lv_net)
+- query =
+          SUM(
+              QUERY_FUTURE(lv_net_additional_capital_costs),
+              QUERY_FUTURE(lv_net_additional_operation_and_maintenance_costs)
+          )
 
 - unit = euro

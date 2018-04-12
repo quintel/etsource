@@ -1,11 +1,8 @@
 # The total costs of the network calculation
 
 - query =
-          IF(
-              QUERY_FUTURE(interconnection_net_capacity_delta_present_future) >= 0,
-              QUERY_FUTURE(interconnection_net_capacity_delta_present_future) * INPUT_VALUE(costs_infrastructure_electricity_interconnector_net),
-              0
-            )
-
-
+          SUM(
+              QUERY_FUTURE(interconnection_net_additional_capital_costs),
+              QUERY_FUTURE(interconnection_net_additional_operation_and_maintenance_costs)
+          )
 - unit = euro
