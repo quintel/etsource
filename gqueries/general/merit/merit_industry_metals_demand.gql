@@ -1,12 +1,5 @@
 - query =
-    [
-      MERIT_LOAD_CURVES(:industry_steel_blastfurnace_current_consumption_useable_heat),
-      MERIT_LOAD_CURVES(:industry_steel_blastfurnace_bat_consumption_useable_heat),
-      MERIT_LOAD_CURVES(:industry_steel_hisarna_consumption_useable_heat),
-      MERIT_LOAD_CURVES(:industry_steel_electricfurnace_electricity),
-      MERIT_LOAD_CURVES(:industry_aluminium_electrolysis_current_electricity),
-      MERIT_LOAD_CURVES(:industry_aluminium_electrolysis_bat_electricity),
-      MERIT_LOAD_CURVES(:industry_aluminium_carbothermalreduction_electricity),
-      MERIT_LOAD_CURVES(:industry_aluminium_smeltoven_electricity),
-      MERIT_LOAD_CURVES(:industry_other_metals_process_electricity)
-    ].transpose.map {|x| x.reduce(:+)}
+    SUM_CURVES(
+      Q(hv_industry_metal_load_curve),
+      Q(mv_industry_metal_load_curve),
+    )

@@ -1,6 +1,1 @@
-# - query = MERIT_LOAD_CURVES(industry_final_demand_for_other_electricity)
-- query =
-    [
-      MERIT_LOAD_CURVES(industry_final_demand_for_other_electricity),
-      MERIT_LOAD_CURVES(industry_final_demand_for_other_ict_electricity)
-    ].transpose.map {|x| x.reduce(:+)}
+- query = Q(hv_industry_other_load_curve)
