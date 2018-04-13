@@ -1,11 +1,6 @@
 - query =
-      SUM(V(
-            agriculture_final_demand_wood_pellets,
-            other_final_demand_wood_pellets,
-            industry_final_demand_wood_pellets,
-            bunkers_final_demand_bio_kerosene,
-            demand
-          )
-      )
+      SUM(Q(factsheet_supply_woody_biomass),
+          - Q(factsheet_demand_of_biomass_in_individual_heat_production)
+        )
 
 - unit = MJ
