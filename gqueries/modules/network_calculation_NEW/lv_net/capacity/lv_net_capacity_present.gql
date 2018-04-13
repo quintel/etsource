@@ -2,9 +2,9 @@
 
 - query =
           IF(
-              AREA(lv_net_spare_capacity) >= 1,
-              0,
-              QUERY_PRESENT(lv_net_peak_load_present) / (1 - AREA(lv_net_spare_capacity))
+              AREA(lv_net_spare_capacity) >= 1.0,
+              0.0,
+              QUERY_PRESENT(lv_net_peak_load_present) / (1.0 - AREA(lv_net_spare_capacity))
             )
 
 - unit = MW

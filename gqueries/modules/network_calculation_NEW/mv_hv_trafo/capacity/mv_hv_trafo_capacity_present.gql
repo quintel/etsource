@@ -2,9 +2,9 @@
 
 - query =
           IF(
-              AREA(mv_hv_trafo_spare_capacity) >= 1,
-              0,
-              QUERY_PRESENT(mv_hv_trafo_peak_load_present) / (1 - AREA(mv_hv_trafo_spare_capacity))
+              AREA(mv_hv_trafo_spare_capacity) >= 1.0,
+              0.0,
+              QUERY_PRESENT(mv_hv_trafo_peak_load_present) / (1.0 - AREA(mv_hv_trafo_spare_capacity))
             )
 
 - unit = MW
