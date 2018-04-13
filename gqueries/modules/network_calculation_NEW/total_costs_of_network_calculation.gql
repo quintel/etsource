@@ -1,10 +1,9 @@
 # The total costs of the network calculation
 
 - query =
-          IF(
-              GRAPH().present?,
-              QUERY_FUTURE(network_calculation_total_costs_present),
-              QUERY_PRESENT(network_calculation_total_costs_future)
+          SUM(
+              Q(total_costs_of_electricity_network_calculation),
+              Q(gas_network_total_costs)
           )
 
 - unit = euro
