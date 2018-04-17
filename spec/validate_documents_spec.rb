@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 TO_VALIDATE = {
-  carriers:           Atlas::Carrier,
-  datasets:           Atlas::Dataset,
-  edges:              Atlas::Edge,
-  gqueries:           Atlas::Gquery,
-  inputs:             Atlas::Input,
-  nodes:              Atlas::Node,
-  presets:            Atlas::Preset,
-  initializer_inputs: Atlas::InitializerInput
+  carriers:             Atlas::Carrier,
+  datasets:             Atlas::Dataset,
+  edges:                Atlas::Edge,
+  gqueries:             Atlas::Gquery,
+  inputs:               Atlas::Input,
+  nodes:                Atlas::Node,
+  presets:              Atlas::Preset,
+  initializer_inputs:   Atlas::InitializerInput,
+  sparse_graph_queries: Atlas::SparseGraphQuery
 }
 
 PERMITTED_VALIDATION_ERRORS = {
