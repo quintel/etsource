@@ -1,5 +1,5 @@
-# Because offshore is not counted as local wind, the electricity from offshore wind is subtracted
+# Because dedicated offshore wind for hydrogen production is not automatically included in the electricity from wind query we need to add it here explicitly
 - query =
-    Q(electricity_produced_from_wind)
+    Q(electricity_produced_from_wind) + V(energy_hydrogen_wind_turbine_offshore, output_of_electricity)
 
 - unit = MJ
