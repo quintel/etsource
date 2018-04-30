@@ -1,4 +1,5 @@
 # node demand equals % of total delivered heat (user input) divided by heat efficiency
 
-- query = (DATASET_INPUT(input_households_district_heating_heater_network_gas_share) * DATASET_INPUT(households_final_demand_steam_hot_water+demand))
-          / EFFICIENCY(households_collective_geothermal, output, steam_hot_water)
+- query =
+      (DATASET_INPUT(input_households_district_heating_heater_network_gas_share) * DATASET_INPUT(households_final_demand_steam_hot_water_demand))
+      / NODE_EFFICIENCY(households_collective_geothermal, output, steam_hot_water)
