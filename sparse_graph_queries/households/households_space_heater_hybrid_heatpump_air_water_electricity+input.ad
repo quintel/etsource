@@ -1,0 +1,12 @@
+# node demand equals % of total delivered heat (user input) divided by heat efficiency
+
+- query =
+    elec_tj = SPARSE_GRAPH_QUERY(households_final_demand_electricity, demand) * DATASET_INPUT(households_final_demand_electricity_households_final_demand_for_space_heating_electricity_parent_share) * DATASET_INPUT(households_final_demand_for_space_heating_electricity_households_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    ambient_relative_to_elec = NODE_EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, electricity) / (NODE_EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, electricity) + NODE_EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat));
+    ambient_tj = elec_tj / ambient_relative_to_elec;
+    gas_tj = SPARSE_GRAPH_QUERY(households_final_demand_network_gas, demand) * DATASET_INPUT(households_final_demand_network_gas_households_final_demand_for_space_heating_network_gas_parent_share) * DATASET_INPUT(households_final_demand_for_space_heating_network_gas_households_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    total_heat = elec_tj + ambient_tj + gas_tj;
+
+      { electricity: elec_tj / total_heat,
+        network_gas: gas_tj / total_heat,
+        ambient_heat: ambient_tj / total_heat}
