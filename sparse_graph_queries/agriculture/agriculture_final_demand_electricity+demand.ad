@@ -1,0 +1,6 @@
+
+- query =
+      DATASET_INPUT(input_agriculture_electricity_demand)
+      + (DATASET_INPUT(agriculture_chp_engine_network_gas_demand) * NODE_EFFICIENCY(agriculture_chp_engine_network_gas, output, electricity))
+      + (DATASET_INPUT(agriculture_chp_engine_biogas_demand) * NODE_EFFICIENCY(agriculture_chp_engine_biogas, output, electricity))
+      + (DATASET_INPUT(agriculture_chp_supercritical_wood_pellets_demand) * NODE_EFFICIENCY(agriculture_chp_supercritical_wood_pellets, output, electricity))
