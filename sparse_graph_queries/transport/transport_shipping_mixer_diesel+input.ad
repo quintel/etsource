@@ -1,9 +1,19 @@
+# set carrier input shares equal to energy coming into the node as specified by the user
+# if demand is 0, set carrier input shares equal to default values
 
 - query =
     total_shipping_mixer_diesel_demand = DATASET_INPUT(input_transport_ship_diesel_demand) + DATASET_INPUT(input_transport_ship_biodiesel_demand) + DATASET_INPUT(transport_final_demand_heavy_fuel_oil_demand);
     total_shipping_mixer_diesel_demand = IF(total_shipping_mixer_diesel_demand > 0.0, total_shipping_mixer_diesel_demand, 1.0);
-      { lng: 0.0,
+
+    IF(total_shipping_mixer_diesel_demand > 0.0, {
+        lng: 0.0,
         bio_lng: 0.0,
         diesel: DATASET_INPUT(input_transport_ship_diesel_demand) / total_shipping_mixer_diesel_demand,
         biodiesel: DATASET_INPUT(input_transport_ship_biodiesel_demand) / total_shipping_mixer_diesel_demand,
-        heavy_fuel_oil: DATASET_INPUT(transport_final_demand_heavy_fuel_oil_demand) / total_shipping_mixer_diesel_demand }
+        heavy_fuel_oil: DATASET_INPUT(transport_final_demand_heavy_fuel_oil_demand) / total_shipping_mixer_diesel_demand }, {
+        lng: NODE_EFFICIENCY(transport_shipping_mixer_diesel, input, lng),
+        bio_lng: NODE_EFFICIENCY(transport_shipping_mixer_diesel, input, bio_lng),
+        diesel: NODE_EFFICIENCY(transport_shipping_mixer_diesel, input, diesel),
+        biodiesel: NODE_EFFICIENCY(transport_shipping_mixer_diesel, input, biodiesel),
+        heavy_fuel_oil: NODE_EFFICIENCY(transport_shipping_mixer_diesel, input, heavy_fuel_oil)}
+        )
