@@ -1,0 +1,7 @@
+
+- query =
+    other_steam_hot_water_demand = DATASET_INPUT(input_industry_food_steam_hot_water_demand) + DATASET_INPUT(input_industry_paper_steam_hot_water_demand) + DATASET_INPUT(input_industry_other_steam_hot_water_demand);
+    other_steam_hot_water_demand = IF(other_steam_hot_water_demand > 0.0, other_steam_hot_water_demand, 1.0);
+
+    DATASET_INPUT(input_industry_food_steam_hot_water_demand) /
+    other_steam_hot_water_demand
