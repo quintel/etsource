@@ -1,0 +1,10 @@
+# scales with refineries sector scaling factor (user input) 
+# for parent values, divide by 1 million because values in the CSV are in MJ and we need TJ
+# the amount of oil products that get exported depends on the use of the chemical other sector
+# adding MAX operator to ensure query cannot be negative
+
+- query =
+    MAX(0, (DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * 
+    PARENT_VALUE(industry_locally_available_crude_oil_non_energetic_for_chemical, demand) / 1_000_000)
+    - SPARSE_GRAPH_QUERY(industry_final_demand_for_chemical_other_crude_oil_non_energetic, demand))
+
