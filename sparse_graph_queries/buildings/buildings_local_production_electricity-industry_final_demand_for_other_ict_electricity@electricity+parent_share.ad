@@ -1,2 +1,3 @@
 
-- query = (DATASET_INPUT(input_buildings_electricity_demand) + (DATASET_INPUT(input_buildings_solar_pv_demand) * DATASET_INPUT(input_buildings_solar_pv_own_use_share))) / SPARSE_GRAPH_QUERY(buildings_local_production_electricity, demand)
+- query =
+    1 - SPARSE_GRAPH_QUERY(buildings_local_production_electricity-buildings_final_demand_electricity@electricity, parent_share)
