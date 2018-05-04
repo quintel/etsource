@@ -1,0 +1,17 @@
+# set carrier input shares equal to energy coming into the node as specified by the user
+# if demand is 0, set carrier input shares equal to dummy numbers
+
+- query =
+    other_metals_burner_network_gas_coal = DATASET_INPUT(input_industry_metal_other_coal_demand);
+    other_metals_burner_network_gas_crude_oil = DATASET_INPUT(input_industry_metal_other_crude_oil_demand);
+    other_metals_burner_network_gas_network_gas = DATASET_INPUT(input_industry_metal_other_network_gas_demand);
+    other_metals_burner_network_gas_total = other_metals_burner_network_gas_coal + other_metals_burner_network_gas_crude_oil + other_metals_burner_network_gas_network_gas;
+
+    IF(other_metals_burner_network_gas_total > 0.0, {
+        coal: other_metals_burner_network_gas_coal / other_metals_burner_network_gas_total,
+        crude_oil: other_metals_burner_network_gas_crude_oil / other_metals_burner_network_gas_total,
+        network_gas: other_metals_burner_network_gas_network_gas / other_metals_burner_network_gas_total }, {
+        coal: 1.0,
+        crude_oil: 0.0,
+        network_gas: 0.0}
+        )
