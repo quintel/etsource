@@ -4,11 +4,9 @@
 
 - query =
     steel_steam_hot_water_demand = DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_hisarna_consumption_useable_heat, input_of_useable_heat) / 1_000_000;
-    aluminium_steam_hot_water_demand = ;
-    metal_steam_hot_water_demand =  steel_steam_hot_water_demand + aluminium_steam_hot_water_demand + DATASET_INPUT(input_industry_metal_other_steam_hot_water_demand);
+    metal_steam_hot_water_demand =  steel_steam_hot_water_demand + DATASET_INPUT(input_industry_metal_other_steam_hot_water_demand);
     metal_steam_hot_water_demand = IF(metal_steam_hot_water_demand > 0.0, metal_steam_hot_water_demand, 1.0)
 
     (DATASET_INPUT(input_industry_metal_steel_scaling_factor) *
     PARENT_VALUE(industry_steel_hisarna_consumption_useable_heat, input_of_useable_heat) / 1_000_000) /
     metal_steam_hot_water_demand
-    
