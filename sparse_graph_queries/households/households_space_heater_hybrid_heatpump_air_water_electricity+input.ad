@@ -16,7 +16,7 @@
     IF(total_heat > 0.0, {
         electricity: elec_tj / total_heat,
         network_gas: gas_tj / total_heat,
-        ambient_heat: ambient_tj / total_heat}, { 
+        ambient_heat: ambient_tj / total_heat}, {
         electricity: NODE_EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, electricity),
         network_gas: NODE_EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, network_gas),
         ambient_heat: NODE_EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)}
