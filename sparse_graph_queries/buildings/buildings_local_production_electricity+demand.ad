@@ -1,0 +1,6 @@
+# local production electricity equals electricity from the grid (user input) plus own use of solar pv plus central ICT electricity
+
+- query = 
+    DATASET_INPUT(input_buildings_electricity_demand) + 
+    (DATASET_INPUT(input_buildings_solar_pv_demand) * DATASET_INPUT(input_buildings_solar_pv_own_use_share)) + 
+    DATASET_INPUT(input_industry_ict_electricity_demand)

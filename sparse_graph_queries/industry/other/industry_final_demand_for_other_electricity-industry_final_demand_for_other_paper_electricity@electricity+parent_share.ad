@@ -1,0 +1,7 @@
+
+- query =
+    other_electricity_demand = DATASET_INPUT(input_industry_food_electricity_demand) + DATASET_INPUT(input_industry_paper_electricity_demand) + DATASET_INPUT(input_industry_other_electricity_demand);
+    other_electricity_demand = IF(other_electricity_demand > 0.0, other_electricity_demand, 1.0);
+
+    DATASET_INPUT(input_industry_paper_electricity_demand) /
+    other_electricity_demand

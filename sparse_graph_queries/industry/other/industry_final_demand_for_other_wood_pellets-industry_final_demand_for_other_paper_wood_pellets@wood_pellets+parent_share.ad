@@ -1,0 +1,7 @@
+
+- query =
+    other_wood_pellets_demand = DATASET_INPUT(input_industry_food_wood_pellets_demand) + DATASET_INPUT(input_industry_paper_wood_pellets_demand) + DATASET_INPUT(input_industry_other_wood_pellets_demand);
+    other_wood_pellets_demand = IF(other_wood_pellets_demand > 0.0, other_wood_pellets_demand, 1.0);
+
+    DATASET_INPUT(input_industry_paper_wood_pellets_demand) /
+    other_wood_pellets_demand

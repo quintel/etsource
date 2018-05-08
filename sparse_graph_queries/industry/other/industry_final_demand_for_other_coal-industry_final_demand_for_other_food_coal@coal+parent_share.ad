@@ -1,0 +1,7 @@
+
+- query =
+    other_coal_demand = DATASET_INPUT(input_industry_food_coal_demand) + DATASET_INPUT(input_industry_paper_coal_demand) + DATASET_INPUT(input_industry_other_coal_demand);
+    other_coal_demand = IF(other_coal_demand > 0.0, other_coal_demand, 1.0);
+
+    DATASET_INPUT(input_industry_food_coal_demand) /
+    other_coal_demand

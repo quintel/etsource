@@ -1,0 +1,8 @@
+
+- query =
+    transport_biodiesel = SPARSE_GRAPH_QUERY(transport_final_demand_biodiesel, demand);
+    transport_biodiesel = IF(transport_biodiesel > 0.0, transport_biodiesel, 1.0);
+
+    DATASET_INPUT(input_transport_rail_biodiesel_demand) /
+    transport_biodiesel
+
