@@ -1,0 +1,11 @@
+
+- query =
+    metal_crude_oil_demand = DATASET_INPUT(input_industry_metal_other_crude_oil_demand);
+    fertilizers_crude_oil_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_crude_oil, input_of_crude_oil) / 1_000_000.0;
+    refineries_crude_oil_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_crude_oil, input_of_crude_oil) / 1_000_000.0;
+    chemical_crude_oil_demand = fertilizers_crude_oil_demand + refineries_crude_oil_demand + DATASET_INPUT(input_industry_chemical_other_crude_oil_demand);
+    other_crude_oil_demand = DATASET_INPUT(input_industry_food_crude_oil_demand) + DATASET_INPUT(input_industry_paper_crude_oil_demand) + DATASET_INPUT(input_industry_other_crude_oil_demand);
+    industry_total_crude_oil_demand = metal_crude_oil_demand + chemical_crude_oil_demand + other_crude_oil_demand;
+    industry_total_crude_oil_demand = IF(industry_total_crude_oil_demand > 0.0, industry_total_crude_oil_demand, 1.0);
+
+    metal_crude_oil_demand / industry_total_crude_oil_demand
