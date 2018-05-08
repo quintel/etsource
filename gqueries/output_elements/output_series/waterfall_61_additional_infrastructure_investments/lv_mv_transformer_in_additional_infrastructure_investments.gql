@@ -1,2 +1,8 @@
-- query = QUERY_DELTA(total_investment_costs_of_mv_lv_trafo)
+- query =
+      IF(
+          GRAPH().present?,
+          0,
+          QUERY_FUTURE(lv_mv_trafo_total_investment_costs)
+      )
+
 - unit = euro

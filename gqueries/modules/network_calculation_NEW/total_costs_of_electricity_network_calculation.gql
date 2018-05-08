@@ -1,0 +1,10 @@
+# The total costs of the network calculation
+
+- query =
+          IF(
+              GRAPH().present?,
+              QUERY_PRESENT(network_calculation_total_costs_present),
+              QUERY_FUTURE(network_calculation_total_costs_future)
+          )
+
+- unit = euro

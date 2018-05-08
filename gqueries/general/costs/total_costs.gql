@@ -4,13 +4,14 @@
     SUM(
         Q(costs_of_produced_heat_plus_insulation),
         Q(costs_of_used_electricity),
+        Q(costs_of_used_hydrogen),
         Q(costs_of_transport_fuels),
         Q(costs_of_transport_vehicles),
         Q(total_costs_of_energy_sector),
         Q(costs_of_non_energetic_demand),
         Q(costs_of_flexibility),
         IF(AREA(use_network_calculations),
-            -> { Q(network_total_costs) },
+            -> { Q(total_costs_of_network_calculation) },
             0
         )
     )

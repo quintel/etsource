@@ -1,0 +1,6 @@
+- query =
+    DIVIDE(
+      V(FILTER(G(heat_production), "output_of_useable_heat>0"), "output_of_useable_heat*wood_pellets_input_conversion").sum,
+      Q(factsheet_supply_of_individual_heat_total)
+      ) * 100
+- unit = %

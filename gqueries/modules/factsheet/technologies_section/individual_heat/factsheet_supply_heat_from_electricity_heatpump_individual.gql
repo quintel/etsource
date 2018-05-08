@@ -1,0 +1,7 @@
+- query =
+    SUM(
+        V(FILTER(G(heat_production), "ambient_heat_input_conversion > 0"), "output_of_useable_heat*electricity_input_conversion").sum,
+        V(FILTER(G(heat_production), "ambient_cold_input_conversion > 0"), "output_of_cooling*electricity_input_conversion").sum
+    )
+    
+- unit = MJ

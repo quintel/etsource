@@ -1,0 +1,10 @@
+- query =
+    DIVIDE(
+      SUM(
+        Q(factsheet_supply_heat_from_rest_and_geothermal),
+        - Q(factsheet_supply_heat_from_geothermal_collective)
+      ),
+      Q(factsheet_supply_heat_collective)
+    ) * 100
+
+- unit = %

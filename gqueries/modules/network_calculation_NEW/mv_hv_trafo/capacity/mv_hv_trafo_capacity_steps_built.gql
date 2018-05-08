@@ -1,0 +1,10 @@
+# The amount of capacity steps needed to built the future hv net. A capacity step is the extra capacity which will be built, when the net needs to be increased. The step size and costs is defined in the area files.
+
+- query =
+          IF(
+              QUERY_FUTURE(mv_hv_trafo_extra_capacity_needed) > 0.0,
+              CEIL(QUERY_FUTURE(mv_hv_trafo_extra_capacity_needed) / AREA(mv_hv_trafo_capacity_per_step)),
+              0.0
+            )
+
+- unit = #

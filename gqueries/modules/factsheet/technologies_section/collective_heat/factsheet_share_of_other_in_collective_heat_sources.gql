@@ -1,0 +1,17 @@
+- query =
+    SUM(
+        V(households_collective_burner_hydrogen,
+          households_collective_burner_network_gas,
+          buildings_collective_burner_hydrogen,
+          buildings_collective_burner_network_gas,
+          energy_heater_for_heat_network_coal,
+          energy_heater_for_heat_network_lignite,
+          energy_heater_for_heat_network_crude_oil,
+          energy_heater_for_heat_network_network_gas,
+          energy_heater_for_heat_network_waste_mix,
+          energy_heat_network_backup_heater_network_gas,
+          output_of_steam_hot_water)
+    ) / Q(factsheet_supply_heat_collective) * 100.0
+
+
+- unit = %
