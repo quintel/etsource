@@ -15,5 +15,5 @@ end
 group :test do
   gem 'rspec'
   gem 'rubel',    ref: 'e36554a', github: 'quintel/rubel'
-  gem 'refinery', ref: '9272d50', github: 'quintel/refinery'
+  gem 'refinery', ref: '90cc27e', github: 'quintel/refinery'
 end
