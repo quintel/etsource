@@ -1,0 +1,7 @@
+
+- query =
+    other_hydrogen_demand = DATASET_INPUT(input_industry_food_hydrogen_demand) + DATASET_INPUT(input_industry_paper_hydrogen_demand);
+    other_hydrogen_demand = IF(other_hydrogen_demand > 0.0, other_hydrogen_demand, 1.0);
+
+    DATASET_INPUT(input_industry_food_hydrogen_demand) /
+    other_hydrogen_demand
