@@ -1,4 +1,11 @@
-# user input is in km, ETM/ETLocal processes millions of KM
+# the total useful demand for bicycles (i.e. the number of passenger kilometres) is the sum of kilometres by human powered and electric bikes
+# user provides number of passenger kilometres by human powered bicycles
+# user input is in km, ETM/ETLocal processes millions of KM -> divide by million
+# the number of passenger kilometres from electric bicycles follows from demand for road electricity (user input)
+# and the share of road electricity going to bikes (user input)
 
 - query =
-    DATASET_INPUT(input_transport_road_bicycle_demand) / 1_000_000.0
+    (DATASET_INPUT(input_transport_road_human_powered_bicycle_demand) / 1_000_000.0) +
+    (DATASET_INPUT(input_transport_road_electricity_demand) *
+    DATASET_INPUT(transport_final_demand_for_road_electricity_transport_bicycle_using_electricity_parent_share) *
+    NODE_EFFICIENCY(transport_bicycle_using_electricity, output, passenger_kms) )
