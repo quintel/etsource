@@ -1,371 +1,537 @@
 ---
-demand_setter:
-  energy_extraction_crude_oil: 0
-  energy_extraction_natural_gas: 0
-  energy_production_bio_ethanol: 0
-  energy_production_bio_oil: 0
-  energy_production_biodiesel: 0
-  energy_production_wood: 0
-  energy_production_woody_biomass: 0
-
-share_setter:
-  :"agriculture_burner_crude_oil-agriculture_useful_demand_useable_heat@useable_heat": 0
-  :"agriculture_burner_network_gas-agriculture_useful_demand_useable_heat@useable_heat": 0.994621779531287
-  :"agriculture_burner_wood_pellets-agriculture_useful_demand_useable_heat@useable_heat": 0
-  :"agriculture_final_demand_steam_hot_water-agriculture_useful_demand_useable_heat@useable_heat": 0.00441872996392259
-  :"agriculture_geothermal-agriculture_useful_demand_useable_heat@useable_heat": 0
-  :"agriculture_heatpump_water_water_ts_electricity-agriculture_useful_demand_useable_heat@useable_heat": 0.000959490504790535
-  :"agriculture_chp_engine_biogas-agriculture_locally_available_electricity@electricity": 0
-  :"agriculture_chp_engine_network_gas-agriculture_locally_available_electricity@electricity": 8406402.2040345
-  :"agriculture_chp_supercritical_wood_pellets-agriculture_locally_available_electricity@electricity": 0
-
-  :"households_cooker_halogen_electricity-households_useful_demand_cooking_useable_heat@useable_heat": 0.249474183830241
-  :"households_cooker_induction_electricity-households_useful_demand_cooking_useable_heat@useable_heat": 0.0935107222726524
-  :"households_cooker_network_gas-households_useful_demand_cooking_useable_heat@useable_heat": 0.625807433882944
-  :"households_cooker_resistive_electricity-households_useful_demand_cooking_useable_heat@useable_heat": 0.0312076600141625
-  :"households_cooker_wood_pellets-households_useful_demand_cooking_useable_heat@useable_heat": 0
-  :"households_cooling_airconditioning_electricity-households_useful_demand_for_cooling_after_insulation@cooling": 0.9042
-  :"households_cooling_heatpump_air_water_electricity-households_useful_demand_for_cooling_after_insulation@cooling": 0
-  :"households_cooling_heatpump_ground_water_electricity-households_useful_demand_for_cooling_after_insulation@cooling": 0.0958
-  :"households_collective_chp_biogas-households_final_demand_steam_hot_water@steam_hot_water": 0
-  :"households_collective_chp_network_gas-households_final_demand_steam_hot_water@steam_hot_water": 0
-  :"households_collective_chp_wood_pellets-households_final_demand_steam_hot_water@steam_hot_water": 0
-  :"households_collective_geothermal-households_final_demand_steam_hot_water@steam_hot_water": 0
-#  :"households_heat_network_connection_steam_hot_water-households_final_demand_steam_hot_water@steam_hot_water": 1
-  :"households_space_heater_coal_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0
-  :"households_space_heater_combined_network_gas_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.789407683993924
-  :"households_space_heater_crude_oil_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0
-  :"households_space_heater_district_heating_steam_hot_water_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.133846057347397
-  :"households_space_heater_electricity_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.0210939804861998
-  :"households_space_heater_heatpump_air_water_electricity_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.0176666503234504
-  :"households_space_heater_heatpump_ground_water_electricity_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.00540599499897582
-  :"households_space_heater_hybrid_heatpump_air_water_electricity_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.00160307229121171
-  :"households_space_heater_micro_chp_network_gas_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0
-  :"households_space_heater_network_gas_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.026123108467224
-  :"households_space_heater_wood_pellets_aggregator-households_useful_demand_for_space_heating_after_insulation_and_solar_heater@useable_heat": 0.00485345209161739
-  :"households_water_heater_coal_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0
-  :"households_water_heater_combined_network_gas_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.729590009205127
-  :"households_water_heater_crude_oil_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0
-  :"households_water_heater_district_heating_steam_hot_water_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.146624845995476
-  :"households_water_heater_fuel_cell_chp_network_gas_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0
-  :"households_water_heater_heatpump_air_water_electricity_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.0167270392767141
-  :"households_water_heater_heatpump_ground_water_electricity_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.00342412333429206
-  :"households_water_heater_hybrid_heatpump_air_water_electricity_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.0012721181225915
-  :"households_water_heater_micro_chp_network_gas_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat":  0
-  :"households_water_heater_network_gas_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.0241186779902521
-  :"households_water_heater_resistive_electricity_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0.0782431860755473
-  :"households_useful_demand_for_hot_water_after_solar_heater-households_useful_demand_hot_water@useable_heat": 0.9901
-  :"households_useful_demand_for_hot_water_for_houses_with_solar_heater-households_useful_demand_hot_water@useable_heat": 0.0099
-  :"households_water_heater_solar_thermal-households_useful_demand_for_hot_water_for_houses_with_solar_heater@useable_heat": 0.5
-  :"households_useful_demand_for_hot_water_after_solar_heater-households_useful_demand_for_hot_water_for_houses_with_solar_heater@useable_heat": 0.5
-  :"households_useful_demand_for_space_heating_after_insulation_and_solar_heater-households_useful_demand_for_space_heating_after_insulation@useable_heat": 0.9901
-  :"households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater-households_useful_demand_for_space_heating_after_insulation@useable_heat": 0.0099
-  :"households_useful_demand_for_space_heating_after_insulation_and_solar_heater-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater@useable_heat": 0.85
-  :"households_water_heater_solar_thermal-households_useful_demand_for_space_heating_after_insulation_for_houses_with_solar_heater@useable_heat": 0.15
-  :"households_water_heater_wood_pellets_aggregator-households_useful_demand_for_hot_water_after_solar_heater_and_p2h@useable_heat": 0
-  :"households_lighting_efficient_fluorescent_electricity-households_useful_demand_light@light": 0.485
-  :"households_lighting_incandescent_electricity-households_useful_demand_light@light": 0.495
-  :"households_lighting_led_electricity-households_useful_demand_light@light": 0.02
-  :"households_solar_pv_solar_radiation-households_locally_available_electricity@electricity": 20828079.72
-
-  :"buildings_appliances_coal-buildings_useful_demand_for_appliances@not_defined": 0
-  :"buildings_appliances_crude_oil-buildings_useful_demand_for_appliances@not_defined": 0
-  :"buildings_appliances_electricity-buildings_useful_demand_for_appliances@not_defined": 0.952630017108249
-  :"buildings_appliances_network_gas-buildings_useful_demand_for_appliances@not_defined": 0.047369982891751
-  :"buildings_appliances_wood_pellets-buildings_useful_demand_for_appliances@not_defined": 0
-  :"buildings_cooling_airconditioning_electricity-buildings_useful_demand_after_insulation_cooling@cooling": 0.936
-  :"buildings_cooling_collective_heatpump_water_water_ts_electricity-buildings_useful_demand_after_insulation_cooling@cooling": 0.064
-  :"buildings_cooling_heatpump_air_water_network_gas-buildings_useful_demand_after_insulation_cooling@cooling": 0
-  :"buildings_chp_engine_biogas-buildings_final_demand_steam_hot_water@steam_hot_water": 0
-  :"buildings_collective_chp_network_gas-buildings_final_demand_steam_hot_water@steam_hot_water": 0
-  :"buildings_collective_chp_wood_pellets-buildings_final_demand_steam_hot_water@steam_hot_water": 0
-  :"buildings_collective_geothermal-buildings_final_demand_steam_hot_water@steam_hot_water": 0
-#  :"buildings_heat_network_connection_steam_hot_water-buildings_final_demand_steam_hot_water@steam_hot_water": 1
-  :"buildings_space_heater_coal-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0
-  :"buildings_space_heater_collective_heatpump_water_water_ts_electricity-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0.032598731893259
-  :"buildings_space_heater_crude_oil-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0
-  :"buildings_space_heater_district_heating_steam_hot_water-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0.0463905050262843
-  :"buildings_space_heater_electricity-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0
-  :"buildings_space_heater_heatpump_air_water_network_gas-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0
-  :"buildings_space_heater_network_gas-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0.920408085169778
-  :"buildings_space_heater_solar_thermal-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0.000602677910678362
-  :"buildings_space_heater_wood_pellets-buildings_useful_demand_for_space_heating_after_insulation@useable_heat": 0
-  :"buildings_lighting_efficient_fluorescent_electricity-buildings_useful_demand_after_motion_detection_daylight_control_light@light": 0.065
-  :"buildings_lighting_led_electricity-buildings_useful_demand_after_motion_detection_daylight_control_light@light": 0.016
-  :"buildings_lighting_standard_fluorescent_electricity-buildings_useful_demand_after_motion_detection_daylight_control_light@light": 0.919
-  :"buildings_solar_pv_solar_radiation-buildings_local_production_electricity@electricity":  8926319.88
-
-  :"energy_heater_for_heat_network_crude_oil-energy_heat_network_steam_hot_water@steam_hot_water": 0
-  :"energy_heater_for_heat_network_network_gas-energy_heat_network_steam_hot_water@steam_hot_water": 0
-  :"energy_heater_for_heat_network_waste_mix-energy_heat_network_steam_hot_water@steam_hot_water": 0
-  :"energy_heater_for_heat_network_wood_pellets-energy_heat_network_steam_hot_water@steam_hot_water": 0
-  :"energy_heater_for_heat_network_geothermal-energy_heat_network_steam_hot_water@steam_hot_water": 0
-  :"energy_heater_for_heat_network_coal-energy_heat_network_steam_hot_water@steam_hot_water": 0
-  :"energy_heater_for_heat_network_lignite-energy_heat_network_steam_hot_water@steam_hot_water": 0
-
-  :"transport_useful_demand_cars-transport_useful_demand_passenger_kms@passenger_kms": 0.695965826840937
-  :"transport_useful_demand_motorcycles-transport_useful_demand_passenger_kms@passenger_kms": 0.0257422529364249
-  :"transport_useful_demand_bicycles-transport_useful_demand_passenger_kms@passenger_kms": 0.0730715351869993
-  :"transport_useful_demand_planes-transport_useful_demand_passenger_kms@passenger_kms": 0.000559830039302487
-  :"transport_useful_demand_busses-transport_useful_demand_passenger_kms@passenger_kms": 0.0573096182846915
-  :"transport_useful_demand_passenger_trains-transport_useful_demand_passenger_kms@passenger_kms": 0.147350936711645
-  :"transport_useful_demand_trams-transport_useful_demand_passenger_kms@passenger_kms": 0
-  :"transport_useful_demand_trucks-transport_useful_demand_freight_tonne_kms@freight_tonne_kms": 0.679608632677542
-  :"transport_useful_demand_ships-transport_useful_demand_freight_tonne_kms@freight_tonne_kms": 0.258914879449084
-  :"transport_useful_demand_freight_trains-transport_useful_demand_freight_tonne_kms@freight_tonne_kms": 0.0614764878733741
-  :"transport_car_using_compressed_natural_gas-transport_useful_demand_cars@passenger_kms": 0.00168030981559238
-  :"transport_car_using_diesel_mix-transport_useful_demand_cars@passenger_kms": 0.202623301409379
-  :"transport_car_using_electricity-transport_useful_demand_cars@passenger_kms": 0.0103321624581391
-  :"transport_car_using_gasoline_mix-transport_useful_demand_cars@passenger_kms": 0.751656099262982
-  :"transport_car_using_hydrogen-transport_useful_demand_cars@passenger_kms": 0
-  :"transport_car_using_lpg-transport_useful_demand_cars@passenger_kms": 0.0337081270539067
-  :"transport_truck_using_compressed_natural_gas-transport_useful_demand_trucks@freight_tonne_kms": 0.002843860008515
-  :"transport_truck_using_diesel_mix-transport_useful_demand_trucks@freight_tonne_kms": 0.983646856873628
-  :"transport_truck_using_electricity-transport_useful_demand_trucks@freight_tonne_kms": 0.000169519628880114
-  :"transport_truck_using_gasoline_mix-transport_useful_demand_trucks@freight_tonne_kms": 0.0104438007022963
-  :"transport_truck_using_hydrogen-transport_useful_demand_trucks@freight_tonne_kms": 0
-  :"transport_truck_using_lng_mix-transport_useful_demand_trucks@freight_tonne_kms": 0.00289596278668079
-  :"transport_bus_using_compressed_natural_gas-transport_useful_demand_busses@passenger_kms": 0.112184354943284
-  :"transport_bus_using_diesel_mix-transport_useful_demand_busses@passenger_kms": 0.881506122740171
-  :"transport_bus_using_electricity-transport_useful_demand_busses@passenger_kms": 0.00453396651352511
-  :"transport_bus_using_gasoline_mix-transport_useful_demand_busses@passenger_kms": 0.00177555580302015
-  :"transport_bus_using_hydrogen-transport_useful_demand_busses@passenger_kms": 0
-  :"transport_bus_using_lng_mix-transport_useful_demand_busses@passenger_kms": 0
-  :"transport_passenger_train_using_coal-transport_useful_demand_passenger_trains@passenger_kms": 0
-  :"transport_passenger_train_using_diesel_mix-transport_useful_demand_passenger_trains@passenger_kms": 0.109020817843035
-  :"transport_passenger_train_using_electricity-transport_useful_demand_passenger_trains@passenger_kms": 0.890979182156965
-  :"transport_plane_using_bio_ethanol-transport_useful_demand_planes@passenger_kms": 0
-  :"transport_plane_using_gasoline-transport_useful_demand_planes@passenger_kms": 0.12620851415992
-  :"transport_plane_using_kerosene-transport_useful_demand_planes@passenger_kms": 0.87379148584008
-  :"transport_motorcycle_using_electricity-transport_useful_demand_motorcycles@passenger_kms": 0.00237776530896569
-  :"transport_motorcycle_using_gasoline_mix-transport_useful_demand_motorcycles@passenger_kms": 0.997622234691034
-  :"transport_bicycle_using_electricity-transport_useful_demand_bicycles@passenger_kms": 0.0319457039503783
-  :"transport_bicycle_using_human_energy-transport_useful_demand_bicycles@passenger_kms": 0.968054296049622
-  :"transport_freight_train_using_diesel_mix-transport_useful_demand_freight_trains@freight_tonne_kms": 0.363339447500924
-  :"transport_freight_train_using_electricity-transport_useful_demand_freight_trains@freight_tonne_kms": 0.636660552499076
-  :"transport_ship_using_diesel_mix-transport_useful_demand_ships@freight_tonne_kms": 1
-  :"transport_ship_using_lng_mix-transport_useful_demand_ships@freight_tonne_kms": 0
-
-  :"industry_chemicals_fertilizers_burner_coal-industry_useful_demand_for_chemical_fertilizers_useable_heat@useable_heat": 0
-  :"industry_chemicals_fertilizers_burner_crude_oil-industry_useful_demand_for_chemical_fertilizers_useable_heat@useable_heat": 0
-  :"industry_chemicals_fertilizers_burner_network_gas-industry_useful_demand_for_chemical_fertilizers_useable_heat@useable_heat": 1
-  :"industry_chemicals_fertilizers_burner_wood_pellets-industry_useful_demand_for_chemical_fertilizers_useable_heat@useable_heat": 0
-  :"industry_final_demand_for_chemical_fertilizers_steam_hot_water-industry_useful_demand_for_chemical_fertilizers_useable_heat@useable_heat": 0
-  :"industry_chemicals_other_burner_coal-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0
-  :"industry_chemicals_other_burner_crude_oil-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0.434
-  :"industry_chemicals_other_burner_network_gas-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0.192
-  :"industry_chemicals_other_burner_wood_pellets-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0
-  :"industry_final_demand_for_chemical_other_steam_hot_water-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0.375
-  :"industry_chemicals_other_heatpump_water_water_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0
-  :"industry_chemicals_other_steam_recompression_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0
-  :"industry_chemicals_other_heater_electricity-industry_useful_demand_for_chemical_other_useable_heat_after_p2h@useable_heat": 0
-  :"industry_chemicals_refineries_burner_coal-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat": 0
-  :"industry_chemicals_refineries_burner_crude_oil-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat": 0.645
-  :"industry_chemicals_refineries_burner_network_gas-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat": 0.25
-  :"industry_chemicals_refineries_burner_wood_pellets-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat": 0
-  :"industry_final_demand_for_chemical_refineries_steam_hot_water-industry_useful_demand_for_chemical_refineries_useable_heat_after_p2h@useable_heat": 0.105
-  :"industry_other_paper_burner_coal-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat": 0
-  :"industry_other_paper_burner_crude_oil-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat": 0
-  :"industry_other_paper_burner_network_gas-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat": 0.818
-  :"industry_other_paper_burner_wood_pellets-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat": 0
-  :"industry_final_demand_for_other_paper_steam_hot_water-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat": 0.182
-  :"industry_other_paper_heater_electricity-industry_useful_demand_for_other_paper_useable_heat_after_p2h@useable_heat": 0
-  :"industry_other_food_burner_coal-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat": 0.015
-  :"industry_other_food_burner_crude_oil-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat": 0.003
-  :"industry_other_food_burner_network_gas-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat": 0.868
-  :"industry_other_food_burner_wood_pellets-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat": 0
-  :"industry_final_demand_for_other_food_steam_hot_water-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat": 0.114
-  :"industry_other_food_heater_electricity-industry_useful_demand_for_other_food_useable_heat_after_p2h@useable_heat": 0
-  :"industry_chp_engine_gas_power_fuelmix-industry_locally_available_electricity@electricity": 0
-  :"industry_chp_turbine_gas_power_fuelmix-industry_locally_available_electricity@electricity": 0
-  :"industry_chp_combined_cycle_gas_power_fuelmix-industry_locally_available_electricity@electricity": 0
-
-preset_demand_setter:
-  agriculture_useful_demand_electricity: 62038198.5665446
-  agriculture_useful_demand_useable_heat: 894150370.842944
-
-  households_useful_demand_cooking_useable_heat: 286264568.01328
-  households_appliances_clothes_dryer_electricity: 166150281.385822
-  households_appliances_computer_media_electricity: 222098845.525945
-  households_appliances_dishwasher_electricity: 139023704.833034
-  households_appliances_fridge_freezer_electricity: 500146255.192014
-  households_appliances_other_electricity: 194972268.973158
-  households_appliances_television_electricity: 222098845.525945
-  households_appliances_vacuum_cleaner_electricity: 111897128.280247
-  households_appliances_washing_machine_electricity: 139023704.833034
-  households_new_houses_useful_demand_for_cooling: 55862255.2899969
-  households_old_houses_useful_demand_for_cooling: 844787908.43671
-  households_useful_demand_hot_water: 1564848056.88079
-  households_useful_demand_light: 28074367.1890909
-  households_new_houses_useful_demand_for_heating: 524735986.465014
-  households_old_houses_useful_demand_for_heating: 7935422839.37526
-
-  buildings_useful_demand_cooling: 5790233505.7929
-  buildings_useful_demand_for_appliances: 4124663965.92312
-  buildings_useful_demand_for_space_heating: 7323627966.7036
-  buildings_useful_demand_light: 532712733.407593
-
-  energy_power_combined_cycle_network_gas: 0
-  energy_power_supercritical_waste_mix: 0
-  energy_power_ultra_supercritical_coal: 24806217600
-  energy_power_ultra_supercritical_cofiring_coal: 0
-  energy_power_wind_turbine_coastal: 1248480000
-  energy_power_wind_turbine_inland: 235008000
-  energy_power_wind_turbine_offshore: 0
-  energy_power_solar_pv_solar_radiation: 0
-  energy_chp_combined_cycle_network_gas: 0
-  energy_chp_supercritical_waste_mix: 0
-  energy_chp_ultra_supercritical_coal: 0
-  energy_chp_ultra_supercritical_cofiring_coal: 0
-  energy_power_hydro_river: 0
-  energy_power_ultra_supercritical_network_gas: 728640000
-  energy_power_nuclear_gen2_uranium_oxide: 0
-  energy_power_supercritical_coal: 0
-  energy_power_combined_cycle_coal: 0
-
-  other_useful_demand_useable_heat: 0
-  other_useful_demand_electricity: 0
-  other_useful_demand_crude_oil_non_energetic: 0
-
-  transport_useful_demand_passenger_kms: 5937468821.31923
-  transport_useful_demand_freight_tonne_kms: 7075459249.7445
-
-  industry_steel_production: 126275432.79
-  industry_aluminium_production: 114097.35
-  industry_other_metals_production: 12161536.5266563
-  industry_useful_demand_for_chemical_fertilizers_electricity: 0
-  industry_chemicals_fertilizers_haber_bosch_process_hydrogen: 0
-  industry_useful_demand_for_chemical_other_coal_non_energetic: 0
-  industry_useful_demand_for_chemical_other_crude_oil_non_energetic: 108568310671.309
-  industry_useful_demand_for_chemical_other_electricity: 10393167415.9417
-  industry_useful_demand_for_chemical_other_network_gas_non_energetic: 4265712263.65178
-  industry_useful_demand_for_chemical_other_useable_heat: 45994620707.8734
-  industry_useful_demand_for_chemical_other_wood_pellets_non_energetic: 0
-  industry_useful_demand_for_chemical_refineries_coal_non_energetic: 0
-  industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic: 1891623347800
-  industry_useful_demand_for_chemical_refineries_electricity: 6794606400
-  industry_useful_demand_for_chemical_refineries_network_gas_non_energetic: 0
-  industry_useful_demand_for_chemical_refineries_useable_heat: 94211894846
-  industry_useful_demand_for_chemical_refineries_wood_pellets_non_energetic: 0
-  industry_useful_demand_for_other_construction_coal: 1789442.14218
-  industry_useful_demand_for_other_construction_crude_oil: 501690423.42759
-  industry_useful_demand_for_other_construction_electricity: 97698893.0613597
-  industry_useful_demand_for_other_construction_network_gas: 126214403.495359
-  industry_useful_demand_for_other_construction_useable_heat: 0
-  industry_useful_demand_for_other_construction_wood_pellets: 3514456.07041276
-  industry_useful_demand_for_other_food_electricity: 1464283063.74812
-  industry_useful_demand_for_other_food_useable_heat: 3353779275.78008
-  industry_useful_demand_for_other_machinery_coal: 0
-  industry_useful_demand_for_other_machinery_crude_oil: 2871124.11798
-  industry_useful_demand_for_other_machinery_electricity: 164480021.199028
-  industry_useful_demand_for_other_machinery_network_gas: 162828614.38752
-  industry_useful_demand_for_other_machinery_useable_heat: 890764.718169997
-  industry_useful_demand_for_other_machinery_wood_pellets: 0
-  industry_useful_demand_for_other_minerals_coal: 15013834.52728
-  industry_useful_demand_for_other_minerals_crude_oil: 4270198.33272
-  industry_useful_demand_for_other_minerals_electricity: 43373563.9889999
-  industry_useful_demand_for_other_minerals_network_gas: 179943859.388137
-  industry_useful_demand_for_other_minerals_useable_heat: 31123.2916399999
-  industry_useful_demand_for_other_minerals_wood_pellets: 0
-  industry_useful_demand_for_other_mining_coal: 0
-  industry_useful_demand_for_other_mining_crude_oil: 0
-  industry_useful_demand_for_other_mining_electricity: 0
-  industry_useful_demand_for_other_mining_network_gas: 0
-  industry_useful_demand_for_other_mining_useable_heat: 0
-  industry_useful_demand_for_other_mining_wood_pellets: 0
-  industry_useful_demand_for_other_non_specified_coal_non_energetic: 4390685.28615
-  industry_useful_demand_for_other_non_specified_coal: 4297975.13363
-  industry_useful_demand_for_other_non_specified_crude_oil_non_energetic: 173637980.507568
-  industry_useful_demand_for_other_non_specified_crude_oil: 4628907.39991009
-  industry_useful_demand_for_other_non_specified_electricity: 233671641.60502
-  industry_useful_demand_for_other_non_specified_network_gas_non_energetic: 0
-  industry_useful_demand_for_other_non_specified_network_gas: 486913107.060528
-  industry_useful_demand_for_other_non_specified_useable_heat: 33255622.8885398
-  industry_useful_demand_for_other_non_specified_wood_pellets_non_energetic: 0
-  industry_useful_demand_for_other_non_specified_wood_pellets: 66250460.0997099
-  industry_useful_demand_for_other_paper_electricity: 17954234.36134
-  industry_useful_demand_for_other_paper_useable_heat: 26868275.8336061
-  industry_useful_demand_for_other_textile_coal: 0
-  industry_useful_demand_for_other_textile_crude_oil: 0
-  industry_useful_demand_for_other_textile_electricity: 6103043.55264
-  industry_useful_demand_for_other_textile_network_gas: 10837737.17016
-  industry_useful_demand_for_other_textile_useable_heat: 245448.087999999
-  industry_useful_demand_for_other_textile_wood_pellets: 0
-  industry_useful_demand_for_other_transport_equipment_coal: 0
-  industry_useful_demand_for_other_transport_equipment_crude_oil: 7286170.57542
-  industry_useful_demand_for_other_transport_equipment_electricity: 31072775.4136798
-  industry_useful_demand_for_other_transport_equipment_network_gas: 30106707.46974
-  industry_useful_demand_for_other_transport_equipment_useable_heat: 15549.1379999999
-  industry_useful_demand_for_other_transport_equipment_wood_pellets: 0
-  industry_useful_demand_for_other_wood_products_coal: 0
-  industry_useful_demand_for_other_wood_products_crude_oil: 0
-  industry_useful_demand_for_other_wood_products_electricity: 2907088.07099999
-  industry_useful_demand_for_other_wood_products_network_gas: 1665494.04337886
-  industry_useful_demand_for_other_wood_products_useable_heat: 0
-  industry_useful_demand_for_other_wood_products_wood_pellets: 3348567.8435032
-  industry_useful_demand_for_other_ict_electricity: 301798800
-
-number_of_units_setter:
-  agriculture_chp_engine_biogas: 0
-  agriculture_chp_engine_network_gas: 0.139458061255202
-  agriculture_chp_supercritical_wood_pellets: 0
-
-  energy_power_wind_turbine_coastal: 45.3333333333333
-  energy_power_wind_turbine_inland: 11.3333333333333
-  energy_power_wind_turbine_offshore: 0
-  energy_chp_combined_cycle_network_gas: 0
-  energy_chp_supercritical_waste_mix: 0
-  energy_chp_ultra_supercritical_coal: 0
-  energy_chp_ultra_supercritical_cofiring_coal: 0
-  energy_power_combined_cycle_network_gas: 0
-  energy_power_solar_pv_solar_radiation: 0
-  energy_power_supercritical_waste_mix: 0
-  energy_power_ultra_supercritical_coal: 2.375
-  energy_power_ultra_supercritical_cofiring_coal: 0
-  energy_heater_for_heat_network_crude_oil: 0
-  energy_heater_for_heat_network_network_gas: 0
-  energy_heater_for_heat_network_waste_mix: 0
-  energy_heater_for_heat_network_wood_pellets: 0
-  energy_heater_for_heat_network_geothermal: 0
-  energy_heater_for_heat_network_coal: 0
-  energy_heater_for_heat_network_lignite: 0
-  energy_power_hydro_river: 0
-  energy_power_ultra_supercritical_network_gas: 1.375
-  energy_power_nuclear_gen2_uranium_oxide: 0
-  energy_power_supercritical_coal: 0
-  energy_power_combined_cycle_coal: 0
-
-  industry_chemicals_other_flexibility_p2h_electricity: 0
-  industry_chemicals_refineries_flexibility_p2h_electricity: 0
-  energy_hydrogen_flexibility_p2g_electricity: 0
-  industry_other_food_flexibility_p2h_electricity: 0
-  industry_other_paper_flexibility_p2h_electricity: 0
-  industry_chp_combined_cycle_gas_power_fuelmix: 0
-  industry_chp_engine_gas_power_fuelmix: 0
-
-conversion_setter:
-  :"energy_chp_ultra_supercritical_coal@coal": 1
-  :"energy_chp_ultra_supercritical_coal@torrified_biomass_pellets": 0
-  :"energy_chp_ultra_supercritical_cofiring_coal@coal": 0.5
-  :"energy_chp_ultra_supercritical_cofiring_coal@torrified_biomass_pellets": 0
-  :"energy_power_combined_cycle_ccs_coal@coal": 1
-  :"energy_power_combined_cycle_ccs_coal@torrified_biomass_pellets": 0
-  :"energy_power_combined_cycle_coal@coal": 1
-  :"energy_power_combined_cycle_coal@torrified_biomass_pellets": 0
-  :"energy_power_supercritical_coal@coal": 1
-  :"energy_power_supercritical_coal@torrified_biomass_pellets": 0
-  :"energy_power_ultra_supercritical_ccs_coal@coal": 1
-  :"energy_power_ultra_supercritical_ccs_coal@torrified_biomass_pellets": 0
-  :"energy_power_ultra_supercritical_coal@coal": 1
-  :"energy_power_ultra_supercritical_coal@torrified_biomass_pellets": 0
-  :"energy_power_ultra_supercritical_cofiring_coal@coal": 1
-  :"energy_power_ultra_supercritical_cofiring_coal@torrified_biomass_pellets": 0
-  :"energy_power_ultra_supercritical_lignite@lignite": 1
-  :"energy_power_ultra_supercritical_lignite@torrified_biomass_pellets": 0
-  :"energy_power_ultra_supercritical_oxyfuel_ccs_lignite@lignite": 1
-  :"energy_power_ultra_supercritical_oxyfuel_ccs_lignite@torrified_biomass_pellets": 0
-
-  :"transport_road_mixer_diesel@biodiesel": 0.028278196309641
-  :"transport_road_mixer_diesel@diesel": 0.971721803690359
-  :"transport_road_mixer_gasoline@bio_ethanol": 0.035433070866142
-  :"transport_road_mixer_gasoline@gasoline": 0.964566929133858
+households_final_demand_electricity:
+  demand: 2622.6212960912
+households_final_demand_network_gas:
+  demand: 8092.91
+households_final_demand_wood_pellets:
+  demand: 61.0
+households_final_demand_coal:
+  demand: 0.0203721950615234
+households_final_demand_crude_oil:
+  demand: 0.0
+households_solar_pv_solar_radiation:
+  demand: 97.7723299482353
+households_collective_chp_network_gas:
+  demand: 0.0
+households_collective_chp_biogas:
+  demand: 0.0
+households_collective_chp_wood_pellets:
+  demand: 0.0
+households_collective_geothermal:
+  demand: 0.0
+households_final_demand_steam_hot_water:
+  demand: 1440.0
+households_final_demand_for_space_heating_electricity-households_space_heater_electricity@electricity:
+  parent_share: 0.9124
+households_final_demand_for_space_heating_electricity-households_space_heater_heatpump_air_water_electricity@electricity:
+  parent_share: 0.0425
+households_final_demand_for_space_heating_electricity-households_space_heater_hybrid_heatpump_air_water_electricity@electricity:
+  parent_share: 0.0
+households_final_demand_for_space_heating_network_gas-households_space_heater_combined_network_gas@network_gas:
+  parent_share: 0.9581
+households_final_demand_for_space_heating_network_gas-households_space_heater_hybrid_heatpump_air_water_electricity@network_gas:
+  parent_share: 0.0
+households_final_demand_for_space_heating_network_gas-households_space_heater_network_gas@network_gas:
+  parent_share: 0.0419
+households_final_demand_for_hot_water_electricity-households_water_heater_heatpump_air_water_electricity@electricity:
+  parent_share: 0.0133
+households_final_demand_for_hot_water_electricity-households_water_heater_heatpump_ground_water_electricity@electricity:
+  parent_share: 0.0146
+households_final_demand_for_hot_water_electricity-households_water_heater_hybrid_heatpump_air_water_electricity@electricity:
+  parent_share: 0.0
+households_final_demand_for_hot_water_network_gas-households_water_heater_combined_network_gas@network_gas:
+  parent_share: 0.9581
+households_final_demand_for_hot_water_network_gas-households_water_heater_fuel_cell_chp_network_gas@network_gas:
+  parent_share: 0.0
+households_final_demand_for_hot_water_network_gas-households_water_heater_hybrid_heatpump_air_water_electricity@network_gas:
+  parent_share: 0.0
+households_final_demand_for_hot_water_network_gas-households_water_heater_micro_chp_network_gas@network_gas:
+  parent_share: 0.0
+buildings_local_production_electricity:
+  demand: 8397.59381026789
+buildings_local_production_electricity-industry_final_demand_for_other_ict_electricity@electricity:
+  parent_share: 0.0373058291551263
+buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
+  parent_share: 0.962694170844874
+buildings_final_demand_network_gas:
+  demand: 6345.35
+buildings_final_demand_wood_pellets:
+  demand: 47.0
+buildings_final_demand_coal:
+  demand: 0.0407036660949378
+buildings_final_demand_crude_oil:
+  demand: 0.0
+buildings_solar_pv_solar_radiation:
+  demand: 58.41350064
+buildings_collective_chp_network_gas:
+  demand: 0.0
+buildings_chp_engine_biogas:
+  demand: 0.0
+buildings_collective_chp_wood_pellets:
+  demand: 0.0
+buildings_collective_geothermal:
+  demand: 0.0
+buildings_final_demand_steam_hot_water:
+  demand: 1860.0
+transport_useful_demand_cars:
+  number_of_units: 216052.0
+transport_useful_demand_bicycles:
+  demand: 420.0
+transport_final_demand_lpg:
+  demand: 260.700813306042
+transport_final_demand_gasoline:
+  demand: 6408.62825965684
+transport_final_demand_gasoline-transport_final_demand_for_road_gasoline@gasoline:
+  parent_share: 0.999694084316468
+transport_final_demand_diesel:
+  demand: 21695.1129246101
+transport_final_demand_diesel-transport_final_demand_for_rail_diesel@diesel:
+  parent_share: 0.00543901294314746
+transport_final_demand_diesel-transport_final_demand_for_road_diesel@diesel:
+  parent_share: 0.350913726564385
+transport_final_demand_compressed_network_gas:
+  demand: 63.0392695416551
+transport_final_demand_for_road_compressed_network_gas:
+  demand: 63.0392695416551
+transport_final_demand_lng:
+  demand: 14.5935524048761
+transport_final_demand_for_road_lng:
+  demand: 14.5935524048761
+transport_final_demand_for_shipping_lng:
+  demand: 0.0
+transport_final_demand_for_shipping_bio_lng:
+  demand: 0.0
+transport_final_demand_for_road_bio_lng:
+  demand: 0.0
+transport_final_demand_bio_lng:
+  demand: 0.0
+transport_final_demand_kerosene:
+  demand: 17.243042140781
+transport_final_demand_heavy_fuel_oil:
+  demand: 0.0
+transport_final_demand_biodiesel:
+  demand: 166.304397687118
+transport_final_demand_bio_ethanol:
+  demand: 151.695602312882
+transport_final_demand_electricity:
+  demand: 224.226302254233
+transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
+  parent_share: 0.314703513743562
+transport_final_demand_crude_oil_non_energetic:
+  demand: 0.0
+transport_final_demand_coal:
+  demand: 0.0
+agriculture_final_demand_electricity:
+  demand: 508.246933731487
+agriculture_chp_engine_network_gas:
+  demand: 1038.22914821276
+agriculture_final_demand_network_gas:
+  demand: 2.61275178724023
+agriculture_final_demand_crude_oil:
+  demand: 0.0
+agriculture_final_demand_wood_pellets:
+  demand: 2.51624606779139
+agriculture_chp_engine_biogas:
+  demand: 104.761904761905
+agriculture_chp_supercritical_wood_pellets:
+  demand: 208.2352941176
+agriculture_final_demand_electricity-agriculture_heatpump_water_water_ts_electricity@electricity:
+  parent_share: 0.0016297397678426
+agriculture_final_demand_electricity-agriculture_geothermal@electricity:
+  parent_share: 0.0
+agriculture_final_demand_steam_hot_water:
+  demand: 701.634366326624
+other_final_demand_coal:
+  demand: 0.0
+other_final_demand_crude_oil:
+  demand: 0.0
+other_final_demand_electricity:
+  demand: 0.0
+other_final_demand_network_gas:
+  demand: 0.0
+other_final_demand_steam_hot_water:
+  demand: 0.0
+other_final_demand_wood_pellets:
+  demand: 0.0
+energy_cokesoven_consumption_coal_gas:
+  demand: 0.0
+energy_steel_hisarna_transformation_coal:
+  demand: 0.0
+energy_steel_blastfurnace_current_transformation_cokes:
+  demand: 0.0
+industry_final_demand_for_metal_network_gas-industry_steel_blastfurnace_burner_coal_gas@network_gas:
+  parent_share: 0.0
+industry_final_demand_for_metal_network_gas-industry_steel_electricfurnace_burner_network_gas@network_gas:
+  parent_share: 0.0
+industry_final_demand_for_metal_steam_hot_water-industry_steel_hisarna_consumption_useable_heat@useable_heat:
+  parent_share: 0.0
+industry_final_demand_for_metal_electricity-industry_steel_blastfurnace_bat_consumption_useable_heat@electricity:
+  parent_share: 0.0
+industry_final_demand_for_metal_electricity-industry_steel_blastfurnace_current_consumption_useable_heat@electricity:
+  parent_share: 0.0
+industry_final_demand_for_metal_electricity-industry_steel_electricfurnace_electricity@electricity:
+  parent_share: 0.0
+industry_final_demand_for_metal_electricity-industry_steel_hisarna_consumption_useable_heat@electricity:
+  parent_share: 0.0
+industry_final_demand_for_metal_coal-industry_steel_blastfurnace_burner_coal_gas@coal:
+  parent_share: 0.0
+industry_final_demand_for_metal_network_gas-industry_aluminium_burner_network_gas@network_gas:
+  parent_share: 0.153603704240539
+industry_final_demand_for_metal_electricity-industry_aluminium_electrolysis_current_electricity@electricity:
+  parent_share: 0.60505759431731
+industry_final_demand_for_metal_electricity-industry_aluminium_electrolysis_bat_electricity@electricity:
+  parent_share: 0.0
+industry_final_demand_for_metal_electricity-industry_aluminium_carbothermalreduction_electricity@electricity:
+  parent_share: 0.0
+industry_final_demand_for_metal_coal-industry_other_metals_burner_network_gas@coal:
+  parent_share: 1.0
+industry_final_demand_for_chemical_coal-industry_final_demand_for_chemical_refineries_coal@coal:
+  parent_share: 0.0
+energy_export_oil_products:
+  demand: 311925.358327688
+? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_refineries_wood_pellets_non_energetic@wood_pellets
+: parent_share: 0.0
+industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemical_refineries_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_refineries_steam_hot_water@steam_hot_water:
+  parent_share: 0.443872787098052
+? industry_final_demand_for_chemical_network_gas_non_energetic-industry_final_demand_for_chemical_refineries_network_gas_non_energetic@network_gas
+: parent_share: 0.0
+industry_final_demand_for_chemical_network_gas-industry_final_demand_for_chemical_refineries_network_gas@network_gas:
+  parent_share: 0.789016522745755
+industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_refineries_electricity@electricity:
+  parent_share: 0.473356152989592
+industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_refineries_crude_oil@crude_oil:
+  parent_share: 0.810258894616475
+industry_final_demand_for_chemical_coal_non_energetic-industry_final_demand_for_chemical_refineries_coal_non_energetic@coal:
+  parent_share: 0.0
+industry_final_demand_for_chemical_coal-industry_final_demand_for_chemical_fertilizers_coal@coal:
+  parent_share: 0.0
+industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_fertilizers_crude_oil@crude_oil:
+  parent_share: 0.0
+? industry_final_demand_for_chemical_crude_oil_non_energetic-industry_final_demand_for_chemical_fertilizers_crude_oil_non_energetic@crude_oil
+: parent_share: 0.0
+industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_fertilizers_electricity@electricity:
+  parent_share: 0.0
+industry_final_demand_for_chemical_network_gas-industry_final_demand_for_chemical_fertilizers_network_gas@network_gas:
+  parent_share: 0.0
+? industry_final_demand_for_chemical_network_gas_non_energetic-industry_final_demand_for_chemical_fertilizers_network_gas_non_energetic@network_gas
+: parent_share: 0.0
+? industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_fertilizers_steam_hot_water@steam_hot_water
+: parent_share: 0.0
+industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemical_fertilizers_wood_pellets@wood_pellets:
+  parent_share: 0.0
+? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_fertilizers_wood_pellets_non_energetic@wood_pellets
+: parent_share: 0.0
+industry_final_demand_for_chemical_other_crude_oil_non_energetic:
+  demand: 86854.6484483153
+? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_other_wood_pellets_non_energetic@wood_pellets
+: parent_share: 1.0
+industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemical_other_wood_pellets@wood_pellets:
+  parent_share: 1.0
+industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_other_steam_hot_water@steam_hot_water:
+  parent_share: 0.556127212901948
+? industry_final_demand_for_chemical_network_gas_non_energetic-industry_final_demand_for_chemical_other_network_gas_non_energetic@network_gas
+: parent_share: 1.0
+industry_final_demand_for_chemical_network_gas-industry_final_demand_for_chemical_other_network_gas@network_gas:
+  parent_share: 0.210983477254245
+industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_other_electricity@electricity:
+  parent_share: 0.526643847010408
+industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_other_crude_oil@crude_oil:
+  parent_share: 0.189741105383525
+industry_final_demand_for_chemical_coal_non_energetic-industry_final_demand_for_chemical_other_coal_non_energetic@coal:
+  parent_share: 1.0
+industry_final_demand_for_chemical_coal-industry_final_demand_for_chemical_other_coal@coal:
+  parent_share: 1.0
+industry_final_demand_for_other_crude_oil_non_energetic:
+  demand: 0.0
+industry_final_demand_coal:
+  demand: 474.998743798788
+industry_final_demand_coal-industry_final_demand_for_chemical_coal@coal:
+  parent_share: 0.0
+industry_final_demand_coal-industry_final_demand_for_metal_coal@coal:
+  parent_share: 0.852855032503724
+industry_final_demand_coal-industry_final_demand_for_other_coal@coal:
+  parent_share: 0.147144967496276
+industry_final_demand_for_other_coal-industry_final_demand_for_other_construction_coal@coal:
+  parent_share: 0.0331402194926266
+industry_final_demand_for_other_coal-industry_final_demand_for_other_food_coal@coal:
+  parent_share: 0.872765763842464
+industry_final_demand_for_other_coal-industry_final_demand_for_other_machinery_coal@coal:
+  parent_share: 0.0
+industry_final_demand_for_other_coal-industry_final_demand_for_other_minerals_coal@coal:
+  parent_share: 0.0326480892530168
+industry_final_demand_for_other_coal-industry_final_demand_for_other_mining_coal@coal:
+  parent_share: 0.0
+industry_final_demand_for_other_coal-industry_final_demand_for_other_non_specified_coal@coal:
+  parent_share: 0.0614459274118927
+industry_final_demand_for_other_coal-industry_final_demand_for_other_paper_coal@coal:
+  parent_share: 0.0
+industry_final_demand_for_other_coal-industry_final_demand_for_other_textile_coal@coal:
+  parent_share: 0.0
+industry_final_demand_for_other_coal-industry_final_demand_for_other_transport_equipment_coal@coal:
+  parent_share: 0.0
+industry_final_demand_for_other_coal-industry_final_demand_for_other_wood_products_coal@coal:
+  parent_share: 0.0
+industry_final_demand_coal_non_energetic:
+  demand: 4.38732077340936
+industry_final_demand_coal_non_energetic-industry_final_demand_for_chemical_coal_non_energetic@coal:
+  parent_share: 0.0
+industry_final_demand_crude_oil:
+  demand: 101234.568215988
+industry_final_demand_crude_oil-industry_final_demand_for_chemical_crude_oil@crude_oil:
+  parent_share: 0.999225452670675
+industry_final_demand_crude_oil-industry_final_demand_for_metal_crude_oil@crude_oil:
+  parent_share: 0.000113645655984685
+industry_final_demand_crude_oil-industry_final_demand_for_other_crude_oil@crude_oil:
+  parent_share: 0.000660901673340589
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_construction_crude_oil@crude_oil:
+  parent_share: 0.0
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_food_crude_oil@crude_oil:
+  parent_share: 0.2008293360035
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_machinery_crude_oil@crude_oil:
+  parent_share: 0.656434004928643
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_minerals_crude_oil@crude_oil:
+  parent_share: 0.00970032709172279
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_mining_crude_oil@crude_oil:
+  parent_share: 0.0
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_non_specified_crude_oil@crude_oil:
+  parent_share: 0.0691321217360239
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_paper_crude_oil@crude_oil:
+  parent_share: 0.0
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_textile_crude_oil@crude_oil:
+  parent_share: 0.0
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_transport_equipment_crude_oil@crude_oil:
+  parent_share: 0.0639042102401104
+industry_final_demand_for_other_crude_oil-industry_final_demand_for_other_wood_products_crude_oil@crude_oil:
+  parent_share: 0.0
+industry_final_demand_electricity:
+  demand: 36575.3041993595
+industry_final_demand_electricity-industry_final_demand_for_metal_electricity@electricity:
+  parent_share: 0.0294532555622131
+industry_final_demand_electricity-industry_final_demand_for_chemical_electricity@electricity:
+  parent_share: 0.839527416491405
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_construction_electricity@electricity:
+  parent_share: 0.0263901538958927
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_food_electricity@electricity:
+  parent_share: 0.389034879522755
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_machinery_electricity@electricity:
+  parent_share: 0.525042704707164
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_minerals_electricity@electricity:
+  parent_share: 0.00137564322489304
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_mining_electricity@electricity:
+  parent_share: 0.0
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_non_specified_electricity@electricity:
+  parent_share: 0.0487247674182186
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_paper_electricity@electricity:
+  parent_share: 0.00374665347088231
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_textile_electricity@electricity:
+  parent_share: 0.00127357091138559
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_transport_equipment_electricity@electricity:
+  parent_share: 0.00380498155535807
+industry_final_demand_for_other_electricity-industry_final_demand_for_other_wood_products_electricity@electricity:
+  parent_share: 0.000606645293450583
+industry_final_demand_network_gas:
+  demand: 43991.1125088843
+industry_final_demand_network_gas-industry_final_demand_for_metal_network_gas@network_gas:
+  parent_share: 0.00849814448123642
+industry_final_demand_network_gas-industry_final_demand_for_chemical_network_gas@network_gas:
+  parent_share: 0.844727809990618
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_construction_network_gas@network_gas:
+  parent_share: 0.0253029002317248
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_food_network_gas@network_gas:
+  parent_share: 0.500887609984605
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_machinery_network_gas@network_gas:
+  parent_share: 0.385763653945966
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_minerals_network_gas@network_gas:
+  parent_share: 0.00423571605724844
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_mining_network_gas@network_gas:
+  parent_share: 0.0
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_non_specified_network_gas@network_gas:
+  parent_share: 0.0753536571372069
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_paper_network_gas@network_gas:
+  parent_share: 0.00378382355181242
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_textile_network_gas@network_gas:
+  parent_share: 0.00167851173084196
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_transport_equipment_network_gas@network_gas:
+  parent_share: 0.00273618134041326
+industry_final_demand_for_other_network_gas-industry_final_demand_for_other_wood_products_network_gas@network_gas:
+  parent_share: 0.000257946020181511
+industry_final_demand_network_gas_non_energetic:
+  demand: 3412.5698074351
+industry_final_demand_steam_hot_water:
+  demand: 25225.0538523948
+industry_final_demand_steam_hot_water-industry_final_demand_for_metal_steam_hot_water@steam_hot_water:
+  parent_share: 0.000262224393868527
+industry_final_demand_steam_hot_water-industry_final_demand_for_chemical_steam_hot_water@steam_hot_water:
+  parent_share: 0.984355874702193
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_construction_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_food_steam_hot_water@steam_hot_water:
+  parent_share: 0.987422521684156
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_machinery_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_minerals_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_mining_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_non_specified_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_paper_steam_hot_water@steam_hot_water:
+  parent_share: 0.0125774783158438
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_textile_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+? industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_transport_equipment_steam_hot_water@steam_hot_water
+: parent_share: 0.0
+industry_final_demand_for_other_steam_hot_water-industry_final_demand_for_other_wood_products_steam_hot_water@steam_hot_water:
+  parent_share: 0.0
+industry_final_demand_wood_pellets:
+  demand: 74.0974471383743
+industry_final_demand_wood_pellets-industry_final_demand_for_metal_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_wood_pellets-industry_final_demand_for_chemical_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_construction_wood_pellets@wood_pellets:
+  parent_share: 0.0613946414710701
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_food_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_machinery_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_minerals_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_mining_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_non_specified_wood_pellets@wood_pellets:
+  parent_share: 0.893413956564371
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_paper_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_textile_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_transport_equipment_wood_pellets@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_wood_products_wood_pellets@wood_pellets:
+  parent_share: 0.0451914019645595
+industry_final_demand_wood_pellets_non_energetic:
+  demand: 0.0
+industry_final_demand_wood_pellets_non_energetic-industry_final_demand_for_chemical_wood_pellets_non_energetic@wood_pellets:
+  parent_share: 0.0
+industry_final_demand_crude_oil_non_energetic-industry_final_demand_for_chemical_crude_oil_non_energetic@crude_oil:
+  parent_share: 0.0
+industry_final_demand_crude_oil_non_energetic-industry_final_demand_for_other_crude_oil_non_energetic@crude_oil:
+  parent_share: 1.0
+industry_chp_combined_cycle_gas_power_fuelmix:
+  demand: 0.0
+industry_chp_engine_gas_power_fuelmix:
+  demand: 0.0
+industry_chp_turbine_gas_power_fuelmix:
+  demand: 55014.95
+industry_chp_ultra_supercritical_coal:
+  demand: 0.0
+energy_chp_supercritical_waste_mix:
+  demand: 10632.0
+energy_heater_for_heat_network_wood_pellets:
+  demand: 0.0
+energy_heater_for_heat_network_network_gas:
+  demand: 0.0
+energy_heater_for_heat_network_waste_mix:
+  demand: 757.7567567568
+energy_power_supercritical_waste_mix:
+  demand: 0.0
+energy_heat_network_loss:
+  demand: 0.0
+energy_heater_for_heat_network_geothermal:
+  demand: 0.0
+energy_heater_for_heat_network_crude_oil:
+  demand: 0.0
+energy_heater_for_heat_network_coal:
+  demand: 0.0
+energy_power_hydro_river:
+  demand: 0.0
+energy_power_sector_own_use_electricity:
+  demand: 0.0
+energy_power_solar_pv_solar_radiation:
+  demand: 0.0
+energy_power_wind_turbine_inland:
+  demand: 1076.02960824742
+energy_power_wind_turbine_coastal:
+  demand: 461.155546391753
+energy_power_wind_turbine_offshore:
+  demand: 0.0
+energy_production_biogas:
+  demand: 104.761904761905
+energy_power_ultra_supercritical_network_gas:
+  demand: 0.0
+energy_power_ultra_supercritical_cofiring_coal:
+  demand: 5010.0949945195
+energy_power_ultra_supercritical_coal:
+  demand: 79765.94429165
+energy_power_turbine_network_gas:
+  demand: 190.588235294118
+energy_power_supercritical_coal:
+  demand: 0.0
+energy_power_nuclear_gen2_uranium_oxide:
+  demand: 0.0
+energy_chp_combined_cycle_network_gas:
+  demand: 0.0
+energy_power_engine_network_gas:
+  demand: 0.0
+energy_power_combined_cycle_network_gas:
+  demand: 24651.9
+energy_power_combined_cycle_coal:
+  demand: 0.0
+energy_chp_ultra_supercritical_cofiring_coal:
+  demand: 2880.0
+energy_chp_ultra_supercritical_coal:
+  demand: 0.0
+energy_production_wood:
+  demand: 0.0
+energy_production_biodiesel:
+  demand: 0.0
+energy_production_bio_oil:
+  demand: 0.0
+energy_production_bio_ethanol:
+  demand: 0.0
+energy_extraction_uranium_oxide:
+  demand: 0.0
+energy_extraction_natural_gas:
+  demand: 0.0
+energy_extraction_crude_oil:
+  demand: 0.0
+energy_extraction_coal:
+  demand: 0.0
+energy_power_ultra_supercritical_crude_oil:
+  demand: 0.0
+energy_power_geothermal:
+  demand: 0.0
+energy_power_engine_diesel:
+  demand: 0.0
+energy_power_combined_cycle_ccs_network_gas:
+  demand: 0.0
+energy_power_combined_cycle_ccs_coal:
+  demand: 0.0
+industry_final_demand_for_metal_electricity-industry_aluminium_smeltoven_electricity@electricity:
+  parent_share: 0.0114300308111935
+buildings_collective_heatpump_water_water_electricity:
+  demand: 0.0
+households_collective_heatpump_water_water_electricity:
+  demand: 0.0
+industry_steel_blastfurnace_burner_coal_gas:
+  input:
+    network_gas: 1.0
+    coal: 0.0
+    coal_gas: 0.0
+households_useful_demand_for_cooling_after_insulation-households_new_houses_useful_demand_for_cooling@cooling:
+  parent_share: 0.193175390785685
+households_useful_demand_for_cooling_after_insulation-households_old_houses_useful_demand_for_cooling@cooling:
+  parent_share: 0.806824609214315
+households_useful_demand_for_space_heating_after_insulation-households_new_houses_useful_demand_for_heating@useable_heat:
+  parent_share: 0.193175390785685
+households_useful_demand_for_space_heating_after_insulation-households_old_houses_useful_demand_for_heating@useable_heat:
+  parent_share: 0.806824609214315
+other_final_demand_crude_oil_non_energetic:
+  demand: 0.0
+energy_mixer_for_gas_power_fuel:
+  input:
+    bio_oil: 0.0
+    crude_oil: 0.0
+    network_gas: 1.0
