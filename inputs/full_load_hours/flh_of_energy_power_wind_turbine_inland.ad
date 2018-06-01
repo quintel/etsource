@@ -1,15 +1,4 @@
-- query =
-    share_2 =
-        DIVIDE(
-            (USER_INPUT() - QUERY_PRESENT(->{ V(energy_power_wind_turbine_inland, full_load_hours) })),
-            (3500 - QUERY_PRESENT(->{ V(energy_power_wind_turbine_inland, full_load_hours) }))
-        );
-
-    EACH(
-        UPDATE(V(energy_power_wind_turbine_inland), full_load_hours, USER_INPUT()),
-        UPDATE(AREA(), inland_wind_profile_1_share, (1 - share_2)),
-        UPDATE(AREA(), inland_wind_profile_2_share, share_2)
-    )
+- query = UPDATE(V(energy_power_wind_turbine_inland), full_load_hours, USER_INPUT())
 - max_value = 3500.0
 - min_value_gql = present:V(energy_power_wind_turbine_inland, full_load_hours)
 - start_value_gql = present:V(energy_power_wind_turbine_inland, full_load_hours)
