@@ -1,0 +1,9 @@
+# The extra needed capacity is the delta (difference) between the present capacity of the net and the peak load in the future scenario. The difference is the extra needed capacity.
+
+- query =
+          PRODUCT(
+                  QUERY_PRESENT(lv_net_capacity_present) - QUERY_PRESENT(lv_net_peak_load_present),
+                  1.0 - (INPUT_VALUE(costs_infrastructure_useable_spare_capacity)/100)
+                  )
+
+- unit = MW
