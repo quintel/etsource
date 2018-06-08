@@ -1,0 +1,8 @@
+# Query for Sankey diagram: connection between geo_solar_wind_water_ambient and electricity
+
+- unit = MJ
+- query =
+        SUM(
+            V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, primary_demand_of(electricity)),
+            V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, primary_demand_of(electricity))
+        )
