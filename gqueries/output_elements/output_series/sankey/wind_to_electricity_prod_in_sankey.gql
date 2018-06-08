@@ -1,4 +1,4 @@
-# Query for Sankey diagram: connection between geo_solar_wind_water_ambient and electricity
+# Query for Sankey diagram: connection between wind and electricity
 
 - unit = PJ
-- query = V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, primary_demand_of(electricity))
+- query = DIVIDE(V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, primary_demand_of(electricity)),BILLIONS)

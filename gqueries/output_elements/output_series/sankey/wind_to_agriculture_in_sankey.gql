@@ -1,4 +1,4 @@
 # Query for Sankey diagram: connection between geo_solar_wind_water_ambient and agriculture
 
-- unit = MJ
-- query = SUM(V(INTERSECTION(SECTOR(agriculture),G(final_demand_group)),"input_of_wind"))
+- unit = PJ
+- query = DIVIDE(SUM(V(INTERSECTION(SECTOR(agriculture),G(final_demand_group)),"input_of_wind")),BILLIONS)

@@ -1,8 +1,10 @@
 # Query for Sankey diagram: connection between geo_solar_wind_water_ambient and chps
 
-- unit = MJ
+- unit = PJ
 - query =
+    DIVIDE(
         SUM(
             V(Q(heat_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_radiation? }}, primary_demand_of(electricity)),
             V(Q(heat_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.solar_thermal? }}, primary_demand_of(electricity))
-        )
+        ),
+    BILLIONS)

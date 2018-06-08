@@ -1,4 +1,4 @@
 # Query for Sankey diagram: connection between geo_solar_wind_water_ambient and other
 
-- unit = MJ
-- query = SUM(V(INTERSECTION(SECTOR(other),G(final_demand_group)),"input_of_solar_radiation + input_of_solar_thermal"))
+- unit = PJ
+- query = DIVIDE(SUM(V(INTERSECTION(SECTOR(other),G(final_demand_group)),"input_of_solar_radiation + input_of_solar_thermal")),BILLIONS)
