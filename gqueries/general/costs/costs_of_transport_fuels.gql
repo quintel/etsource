@@ -1,10 +1,13 @@
-# still not perfect, as "weighted_carrier_cost_per_mj" costs are also calculated for electricity. This should be an exception so it does not have to be subtracted anymore.
+# only takes into account energetic transport fuel costs; non-energetic fuel costs are included in Q(costs_of_non_energetic_demand)
 
 - query =
-    SUM( 
-      V( INTERSECTION( G(final_demand_group), SECTOR(transport) )," demand * weighted_carrier_cost_per_mj "),
+    SUM(
+      V(INTERSECTION(
+        INTERSECTION( G(final_demand_group), SECTOR(transport) ),
+        USE(energetic)),
+        " demand * weighted_carrier_cost_per_mj "),
       NEG(V(
-        INTERSECTION( 
+        INTERSECTION(
           G(final_demand_group),
           SECTOR(transport) ),
           " input_of_electricity * weighted_carrier_cost_per_mj + input_of_hydrogen * weighted_carrier_cost_per_mj"
