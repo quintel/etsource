@@ -1,0 +1,9 @@
+# The interconnection capacity of the area
+
+- query =
+          future:MAX(
+                      MAX(MERIT_LOAD_CURVES(energy_interconnector_imported_electricity)),
+                      NEG(MIN(MERIT_LOAD_CURVES(:energy_export_electricity)))
+                      )
+
+- unit = MW
