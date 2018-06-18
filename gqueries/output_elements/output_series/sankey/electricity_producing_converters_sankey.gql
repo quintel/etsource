@@ -1,35 +1,7 @@
-# Group for Sankey
+# Group for Sankey: all electricity producing converters that only produce electricity and no heat
+# - excluding all chps
+# - including local solar panels in households and buildings
 
 - query =
-    V(
-    energy_power_solar_pv_solar_radiation,
-    energy_power_ultra_supercritical_network_gas,
-    energy_power_supercritical_waste_mix,
-    energy_power_ultra_supercritical_coal,
-    energy_power_ultra_supercritical_cofiring_coal,
-    energy_power_ultra_supercritical_ccs_coal,
-    energy_power_supercritical_coal,
-    energy_power_ultra_supercritical_lignite,
-    energy_power_ultra_supercritical_oxyfuel_ccs_lignite,
-    energy_power_combined_cycle_coal,
-    energy_power_combined_cycle_ccs_coal,
-    energy_power_ultra_supercritical_crude_oil,
-    energy_power_combined_cycle_network_gas,
-    energy_power_nuclear_gen3_uranium_oxide,
-    energy_power_wind_turbine_inland,
-    energy_power_wind_turbine_coastal,
-    energy_power_wind_turbine_offshore,
-    energy_power_solar_csp_solar_radiation,
-    energy_power_hydro_river,
-    energy_power_hydro_mountain,
-    energy_power_geothermal,
-    households_solar_pv_solar_radiation,
-    buildings_solar_pv_solar_radiation,
-    energy_power_nuclear_gen2_uranium_oxide,
-    energy_power_combined_cycle_ccs_network_gas,
-    energy_power_engine_diesel,
-    energy_power_engine_network_gas,
-    energy_power_turbine_network_gas,
-    energy_power_turbine_hydrogen
-    )
+    FILTER(G(electricity_production),"steam_hot_water_output_conversion && useable_heat_output_conversion == 0")
 - unit = converters
