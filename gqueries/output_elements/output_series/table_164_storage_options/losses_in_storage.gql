@@ -2,17 +2,17 @@
 # This includes losses for charging and discharging of P2P batteries and PV and
 # conversion losses in P2H and P2G
 
-- unit = PJ
 - query =
     SUM(
-      V(households_flexibility_p2p_electricity, "loss_output_conversion * demand"),
-      V(households_flexibility_p2p_electricity, "(electricity_input_conversion - 1.0) * demand"),
-      V(transport_car_flexibility_p2p_electricity, "loss_output_conversion * demand"),
-      V(transport_car_flexibility_p2p_electricity, "(electricity_input_conversion - 1.0) * demand"),
+      V(households_flexibility_p2p_electricity, "input_of_electricity - output_of_electricity"),
+      V(transport_car_flexibility_p2p_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
       V(households_flexibility_p2h_electricity, "loss_output_conversion * demand"),
       V(energy_hydrogen_flexibility_p2g_electricity, "loss_output_conversion * demand"),
+      V(bunkers_flexibility_p2g_electricity, "loss_output_conversion * demand"),
       V(industry_chemicals_other_flexibility_p2h_electricity, "loss_output_conversion * demand"),
       V(industry_chemicals_refineries_flexibility_p2h_electricity, "loss_output_conversion * demand"),
       V(industry_other_food_flexibility_p2h_electricity, "loss_output_conversion * demand"),
       V(industry_other_paper_flexibility_p2h_electricity, "loss_output_conversion * demand")
     ) / BILLIONS
+- unit = PJ
+
