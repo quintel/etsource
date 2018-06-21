@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between coal_and_derivatives and transport losses
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_distribution_coal_gas,
+          energy_distribution_lignite,
+          energy_distribution_cokes,
+          energy_distribution_coal,
+          output_of_loss))
+          ,BILLIONS)

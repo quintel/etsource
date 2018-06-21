@@ -1,0 +1,15 @@
+# Query for Sankey diagram: connection between oil_and_derivatives and transport losses
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_distribution_crude_oil,
+          energy_distribution_heavy_fuel_oil,
+          energy_distribution_diesel,
+          energy_distribution_kerosene,
+          energy_distribution_gasoline,
+          energy_distribution_lpg,
+          output_of_loss))
+          ,BILLIONS)

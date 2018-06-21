@@ -1,0 +1,8 @@
+# Query for Sankey diagram: connection between central heat and conversion loss
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(V(
+        Q(central_heat_producing_converters_sankey), output_of_loss)),
+        BILLIONS)

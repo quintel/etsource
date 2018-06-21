@@ -1,0 +1,21 @@
+# Query for Sankey diagram: connection between biomass products and transport losses
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_distribution_torrified_biomass_pellets,
+          energy_distribution_wood_pellets,
+          energy_distribution_bio_oil,
+          energy_distribution_woody_biomass,
+          energy_distribution_greengas,
+          energy_distribution_biogas,
+          energy_distribution_bio_kerosene,
+          energy_distribution_biodiesel,
+          energy_distribution_bio_ethanol,
+          energy_distribution_non_biogenic_waste,
+          energy_distribution_biogenic_waste,
+          energy_distribution_bio_lng,
+          output_of_loss))
+          ,BILLIONS)

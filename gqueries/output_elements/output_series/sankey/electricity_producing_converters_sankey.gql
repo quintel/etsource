@@ -1,7 +1,6 @@
-# Group for Sankey: all electricity producing converters that only produce electricity and no heat
-# - excluding all chps
-# - including local solar panels in households and buildings
+# Group for Sankey: all electricity producing converters including CHPs
+# micro CHPs and fuel cells are excluded
 
 - query =
-    FILTER(G(electricity_production),"steam_hot_water_output_conversion && useable_heat_output_conversion == 0")
+    FILTER(G(electricity_production),"useable_heat_output_conversion == 0")
 - unit = converters

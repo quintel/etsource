@@ -1,4 +1,4 @@
 # Query for Sankey diagram: connection between hydrogen_production and energy
 
 - unit = PJ
-- query = DIVIDE(SUM(V(INTERSECTION(SECTOR(energy),G(final_demand_group)),"input_of_hydrogen")),BILLIONS)
+- query = DIVIDE(SUM(V(INTERSECTION(INTERSECTION(SECTOR(energy),G(final_demand_group)), USE(energetic)), "input_of_hydrogen")), BILLIONS)

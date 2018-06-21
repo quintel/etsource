@@ -1,0 +1,4 @@
+# Query for Sankey diagram: connection between water and hydrogen
+
+- unit = PJ
+- query = DIVIDE(V(Q(hydrogen_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.water? }}, primary_demand_of(electricity)),BILLIONS)
