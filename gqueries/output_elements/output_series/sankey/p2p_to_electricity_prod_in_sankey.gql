@@ -1,5 +1,5 @@
 # Group for Sankey: p2p to electricity production
 
 - query =
-    DIVIDE(V(Q(p2p_producing_converters_sankey), "demand * electricity_output_conversion"), BILLIONS)
+    DIVIDE(SUM(V(Q(p2p_producing_converters_sankey), "demand * electricity_output_conversion")), BILLIONS)
 - unit = converters

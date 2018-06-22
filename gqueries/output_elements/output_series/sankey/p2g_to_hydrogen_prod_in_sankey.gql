@@ -2,5 +2,5 @@
 # p2g for bunkers goes directly to p2l node, so we filter on energy sector
 
 - query =
-    DIVIDE(V(INTERSECTION(Q(p2g_producing_converters_sankey), SECTOR(energy)), "output_of_hydrogen"), BILLIONS)
+    DIVIDE(SUM(V(INTERSECTION(Q(p2g_producing_converters_sankey), SECTOR(energy)), "output_of_hydrogen")), BILLIONS)
 - unit = PJ
