@@ -1,0 +1,78 @@
+# Final demand of the 'oil_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          crude_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          gasoline?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          diesel?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          lpg?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          kerosene?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          heavy_fuel_oil?
+        ),
+        value
+      )
+    ) / BILLIONS

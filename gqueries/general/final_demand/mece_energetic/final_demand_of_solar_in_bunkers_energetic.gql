@@ -1,0 +1,30 @@
+# Final demand of the 'solar' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          solar_radiation?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :bunkers"
+            ),
+            energetic?
+          ),
+          solar_thermal?
+        ),
+        value
+      )
+    ) / BILLIONS

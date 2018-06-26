@@ -1,0 +1,30 @@
+# Final demand of the 'heat' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :other"
+            ),
+            energetic?
+          ),
+          steam_hot_water?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :other"
+            ),
+            energetic?
+          ),
+          useable_heat?
+        ),
+        value
+      )      
+    ) / BILLIONS
