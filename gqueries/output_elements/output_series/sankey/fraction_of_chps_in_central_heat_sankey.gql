@@ -1,0 +1,8 @@
+
+
+- query =
+    IF(EQUALS(SUM(V(G(heat_production), output_of_steam_hot_water)),0),
+    1.0,
+    SUM(V(Q(electricity_producing_converters_sankey), output_of_steam_hot_water))/
+    SUM(V(G(heat_production), output_of_steam_hot_water)))
+- unit =

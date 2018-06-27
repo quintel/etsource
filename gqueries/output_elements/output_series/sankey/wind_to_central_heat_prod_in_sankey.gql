@@ -1,0 +1,9 @@
+# Query for Sankey diagram: connection between solar and central heat & CHPs
+- unit = PJ
+- query =
+    DIVIDE(
+        SUM(
+            V(Q(central_heat_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, primary_demand_of(electricity))
+        ),
+    BILLIONS
+    )

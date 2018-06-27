@@ -1,0 +1,10 @@
+# Query for Sankey diagram: connection between wind and electricity
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.wind? }}, primary_demand_of(electricity))
+      ),
+    BILLIONS
+    )

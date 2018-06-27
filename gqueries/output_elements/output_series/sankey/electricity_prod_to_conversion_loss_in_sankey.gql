@@ -1,0 +1,9 @@
+# Query for Sankey diagram: connection between electricity_prod and loss
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(V(
+        Q(electricity_producing_converters_sankey), output_of_loss),
+        V(energy_flexibility_curtailment_electricity, demand)),
+        BILLIONS)

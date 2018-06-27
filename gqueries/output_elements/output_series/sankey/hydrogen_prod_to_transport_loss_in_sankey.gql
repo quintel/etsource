@@ -1,0 +1,11 @@
+# Query for Sankey diagram: connection between hydrogen_production and transport loss
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+        energy_transport_hydrogen_compressed_trucks,
+        energy_transport_hydrogen_pipelines,
+        output_of_loss)),
+        BILLIONS)
