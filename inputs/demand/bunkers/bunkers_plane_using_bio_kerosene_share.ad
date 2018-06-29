@@ -1,9 +1,9 @@
-- query = UPDATE(FIRST(LINKS(OUTPUT_SLOTS(V(bunkers_final_demand_for_aviation_bio_kerosene),kerosene))), share, DIVIDE(USER_INPUT(),V(100.0)))
+- query = UPDATE(INPUT_SLOTS(V(bunkers_aviation_mixer_kerosene),bio_kerosene), conversion, DIVIDE(USER_INPUT(),V(100.0)))
 - share_group = bunkers_aviation
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(bunkers_final_demand_for_aviation_bio_kerosene,share_of_bunkers_aviation_mixer_kerosene) * 100
+- start_value_gql = present:V(bunkers_aviation_mixer_kerosene,bio_kerosene_input_conversion) * 100
 - step_value = 0.1
 - unit = %
 - update_period = future

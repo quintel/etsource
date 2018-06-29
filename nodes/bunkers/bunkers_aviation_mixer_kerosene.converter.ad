@@ -2,3 +2,7 @@
 - energy_balance_group = local mixer
 - groups = []
 - free_co2_factor = 0.0
+
+~ input.kerosene = (-EB(international_aviation_bunkers, kerosene_type_jet_fuel) + -EB(international_aviation_bunkers, other_kerosene)) / (-EB(international_aviation_bunkers, kerosene_type_jet_fuel) + -EB(international_aviation_bunkers, other_kerosene) + -EB(international_aviation_bunkers, other_liquid_biofuels))
+
+~ input.bio_kerosene = (-EB(international_aviation_bunkers, other_liquid_biofuels)) / (-EB(international_aviation_bunkers, kerosene_type_jet_fuel) + -EB(international_aviation_bunkers, other_kerosene) + -EB(international_aviation_bunkers, other_liquid_biofuels))
