@@ -45,6 +45,8 @@ namespace :import do
           cp_csv(csv, dest.join('shares'))
         when /time_curve$/
           cp_csv(csv, dest.join('time_curves'))
+        when /^bicycles_demand/
+          cp_csv(csv, dest.join('demands/bicycles_demand.csv'))
         when /^metal_demands/
           cp_csv(csv, dest.join('demands/metal_demands.csv'))
         when /^primary_production/
