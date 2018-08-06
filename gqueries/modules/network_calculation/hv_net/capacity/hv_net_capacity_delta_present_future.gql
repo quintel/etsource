@@ -1,5 +1,5 @@
 # The delta (difference) between the low voltage net capacity in the present and the future.
 
-- query = QUERY_FUTURE(hv_net_capacity_future) - QUERY_PRESENT(hv_net_capacity_present)
+- query = MAX(0, QUERY_FUTURE(hv_net_capacity_future) - QUERY_PRESENT(hv_net_capacity_present))
 
 - unit = MW
