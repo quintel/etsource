@@ -1,3 +1,8 @@
-- query = GRAPH(area_footprint) / AREA(areable_land)
+- query =
+    IF(
+      AREA(areable_land) == 0,
+      0.0,
+      ->{ GRAPH(area_footprint) / AREA(areable_land) }
+    )
 - unit = factor
 - deprecated_key = area_footprint_per_nl
