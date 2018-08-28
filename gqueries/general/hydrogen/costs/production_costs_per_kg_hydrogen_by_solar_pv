@@ -1,0 +1,15 @@
+# Total cost of hydrogen production from solar pv park per kg produced hydrogen
+
+- query =
+    DIVIDE(
+        SUM(
+            V(energy_hydrogen_electrolysis_solar_electricity, total_costs_per(:converter)),
+            V(energy_hydrogen_solar_pv_solar_radiation, total_costs_per(:converter))
+        ),
+        DIVIDE(
+            V(energy_hydrogen_electrolysis_solar_electricity, output_of_hydrogen),
+            120.1
+        )
+    )
+
+# energy density of h2 is 120.1 MJ/kg

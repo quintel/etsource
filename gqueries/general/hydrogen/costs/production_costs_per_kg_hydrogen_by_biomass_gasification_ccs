@@ -1,0 +1,12 @@
+# Total cost of hydrogen production by biomass gasification + ccs per kg produced hydrogen
+
+- query =
+    DIVIDE(
+        V(energy_hydrogen_biomass_gasification_ccs, total_costs_per(:converter)),
+        DIVIDE(
+            V(energy_hydrogen_biomass_gasification_ccs, output_of_hydrogen),
+            120.1
+        )
+    )
+
+# energy density of h2 is 120.1 MJ/kg
