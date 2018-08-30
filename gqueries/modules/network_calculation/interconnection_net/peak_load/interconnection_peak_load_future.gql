@@ -1,10 +1,10 @@
 # The interconnection capacity of the area
 
 - query =
-          QUERY_FUTURE(->{
-                          MAX(
-                              MAX(MERIT_LOAD_CURVES(energy_interconnector_imported_electricity)),
-                              NEG(MIN(MERIT_LOAD_CURVES(energy_export_electricity)))
-                              )
-                              })
+    QUERY_FUTURE(->{
+      MAX(
+        MAX(V(energy_interconnector_imported_electricity, electricity_output_curve)),
+        MAX(V(energy_export_electricity, electricity_input_curve)))
+      )
+    })
 - unit = MW
