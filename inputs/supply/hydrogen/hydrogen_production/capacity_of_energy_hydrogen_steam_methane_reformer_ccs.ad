@@ -12,12 +12,9 @@
         )
     )
 - priority = 0
-- max_value = 16000.0
-#- max_value_gql = DIVIDE( 1.233e+8, V(energy_hydrogen_steam_methane_reformer_ccs, full_load_hours))
+- max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),PRODUCT(V(energy_hydrogen_steam_methane_reformer_ccs,full_load_hours),3600)))
 - min_value = 0.0
-- start_value = 0.0
+- start_value_gql = present:PRODUCT(V(energy_hydrogen_steam_methane_reformer_ccs,number_of_units),V(energy_hydrogen_steam_methane_reformer_ccs,typical_input_capacity))
 - step_value = 0.1
 - unit = MW
 - update_period = future
-
-# max_value is calculated based on Gasunie-predictions of how much hydrogen is needed in 2050 (444PJ = 1.233e+8 MWh) divided by the FLH of this technology
