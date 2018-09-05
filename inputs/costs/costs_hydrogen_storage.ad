@@ -1,0 +1,19 @@
+# Energy density of hydrogen is 0.0333 MWh/kg
+# Max value is based on costs given in other sources (Kalavasta, SBC)
+
+- query =
+      UPDATE(
+        V(
+          energy_hydrogen_storage,
+          storage
+        ),
+        cost_per_mwh,
+        DIVIDE(USER_INPUT(), 0.0333)
+      )
+- priority = 0
+- max_value = 15.0
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(energy_hydrogen_storage,"storage.cost_per_mwh"),0.0333)
+- step_value = 0.01
+- unit = euro
+- update_period = future
