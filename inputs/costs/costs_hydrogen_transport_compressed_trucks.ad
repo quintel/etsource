@@ -1,0 +1,16 @@
+# Energy density of hydrogen is 120.1 MJ/kg
+# The start_value is calculated with = DIVIDE(V(energy_transport_hydrogen_compressed_trucks, fixed_costs_per(:converter)),DIVIDE(V(energy_transport_hydrogen_compressed_trucks, input_of_hydrogen),120.1))
+
+- query =
+    present_value = 1.696;
+    relative_value = USER_INPUT() / present_value;
+      EACH(
+      UPDATE_WITH_FACTOR(V(energy_transport_hydrogen_compressed_trucks), initial_investment, relative_value),
+      UPDATE_WITH_FACTOR(V(energy_transport_hydrogen_compressed_trucks), fixed_operation_and_maintenance_costs_per_year, relative_value)
+      )
+- priority = 0
+- max_value = 5.0
+- min_value = 0.0
+- start_value = 1.696
+- unit = euro
+- update_period = future
