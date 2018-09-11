@@ -1,9 +1,10 @@
 # Query for Sankey diagram: connection between electricity_prod and loss
+# Excluding the losses of sustainable electricity nodes, since their output energy is primary energy
 
 - unit = PJ
 - query =
     DIVIDE(
       SUM(V(
-        Q(electricity_producing_converters_sankey), output_of_loss),
+        EXCLUDE(Q(electricity_producing_converters_sankey),G(primary_energy_demand)), output_of_loss),
         V(energy_flexibility_curtailment_electricity, demand)),
         BILLIONS)
