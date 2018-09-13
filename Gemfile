@@ -9,11 +9,11 @@ gem 'rake'
 
 group :development, :test do
   gem 'roo'
-  gem 'atlas',    ref: '6d920b7', github: 'quintel/atlas'
+  gem 'atlas',    ref: '12dc35d', github: 'quintel/atlas'
 end
 
 group :test do
   gem 'rspec'
   gem 'rubel',    ref: 'e36554a', github: 'quintel/rubel'
-  gem 'refinery', ref: '90cc27e', github: 'quintel/refinery'
+  gem 'refinery', ref: '333ffc7', github: 'quintel/refinery'
 end
