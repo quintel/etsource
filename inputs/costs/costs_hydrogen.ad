@@ -1,12 +1,14 @@
+# unit = euro/MWh
+
 - query =
-    present_value = QUERY_PRESENT(-> {Q(price_of_hydrogen)});
+    present_value = present:PRODUCT(V(CARRIER(hydrogen), "cost_per_mj"),3600);
     relative_value = USER_INPUT() / present_value;
       UPDATE_WITH_FACTOR(
         CARRIER(hydrogen, imported_hydrogen), cost_per_mj, relative_value)
 - priority = 0
-- max_value = 20.0
+- max_value = 200.0
 - min_value = 0.0
-- start_value_gql = present:Q(price_of_hydrogen)
+- start_value_gql = present:PRODUCT(V(CARRIER(hydrogen), "cost_per_mj"),3600)
 - step_value = 0.1
 - unit = euro
 - update_period = future
