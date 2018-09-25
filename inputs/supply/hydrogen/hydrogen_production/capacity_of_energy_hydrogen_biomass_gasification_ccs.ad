@@ -7,7 +7,7 @@
         USER_INPUT() / V(energy_hydrogen_biomass_gasification_ccs, typical_input_capacity)
     )
 - priority = 0
-- max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),PRODUCT(V(energy_hydrogen_biomass_gasification_ccs,full_load_hours),3600)))
+- max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),PRODUCT(V(energy_hydrogen_biomass_gasification_ccs,full_load_hours),MJ_PER_MWH)))
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(energy_hydrogen_biomass_gasification_ccs,number_of_units),V(energy_hydrogen_biomass_gasification_ccs,typical_input_capacity))
 - step_value = 0.1
