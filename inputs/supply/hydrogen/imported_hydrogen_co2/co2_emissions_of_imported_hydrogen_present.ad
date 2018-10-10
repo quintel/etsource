@@ -1,10 +1,10 @@
-#The user inserts kg CO2 per kg H2 and the ETM processes kg/MJ.
+#The user inserts kg CO2 per MWh H2 and the ETM processes kg/MJ.
 
-- query = UPDATE(CARRIER(imported_hydrogen), co2_conversion_per_mj, USER_INPUT() / V(CARRIER(imported_hydrogen),mj_per_kg))
+- query = UPDATE(CARRIER(imported_hydrogen), co2_conversion_per_mj, USER_INPUT() / MJ_PER_MWH))
 - priority = 0
-- max_value = 100
+- max_value = 1500
 - min_value = 0
-- start_value_gql = present:V(CARRIER(imported_hydrogen),"co2_conversion_per_mj * mj_per_kg")
-- step_value = 0.1
+- start_value_gql = present:V(CARRIER(imported_hydrogen),"co2_conversion_per_mj * MJ_PER_MWH")
+- step_value = 1.0
 - unit = kg
 - update_period = present

@@ -1,0 +1,17 @@
+# To calculate the max_value_gql the full load hours are assumed to be 1870
+
+- query =
+    EACH(
+        UPDATE(
+            V(energy_hydrogen_flexibility_p2g_electricity),
+            number_of_units,
+            USER_INPUT() / V(energy_hydrogen_flexibility_p2g_electricity, typical_input_capacity)
+        )
+    )
+- priority = 0
+- max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),PRODUCT(1870,3600)))
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(energy_hydrogen_flexibility_p2g_electricity,number_of_units),V(energy_hydrogen_flexibility_p2g_electricity,typical_input_capacity))
+- step_value = 0.1
+- unit = MW
+- update_period = future
