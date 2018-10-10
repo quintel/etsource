@@ -10,7 +10,18 @@
         V(energy_import_diesel, demand),
         V(energy_import_heavy_fuel_oil, demand),
         Q(factsheet_supply_electricity_from_import_except_imbalance)
-
+    ) -
+    SUM(
+        V(INTERSECTION(G(final_demand_group), USE(non_energetic)),
+        "input_of_crude_oil +
+        input_of_coal +
+        input_of_lignite +
+        input_of_uranium_oxide +
+        input_of_non_biogenic_waste +
+        input_of_gasoline +
+        input_of_kerosene +
+        input_of_diesel +
+        input_of_heavy_fuel_oil")
     )
 
 - unit = MJ
