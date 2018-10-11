@@ -2,7 +2,7 @@
     total_demand_other_industry_energetic = Q(final_demand_of_aggregated_other_industry_energetic);
     EACH(
       UPDATE(EXCLUDE(FILTER(Q(aggregated_other_industry_energetic_converters), "useable_heat_input_conversion > 0.0"),V(industry_useful_demand_for_other_non_specified_useable_heat)), preset_demand, 0),
-      UPDATE(V(industry_useful_demand_for_other_non_specified_useable_heat), preset_demand, USER_INPUT() * total_demand_other_industry_energetic * 10000000)
+      UPDATE(V(industry_useful_demand_for_other_non_specified_useable_heat), preset_demand, (USER_INPUT() / 100) * total_demand_other_industry_energetic * BILLIONS)
     )
 - share_group = other_industry_energetic
 - priority = 0
