@@ -1,1 +1,8 @@
-- query = V(energy_flexibility_pumped_storage_electricity, electricity_output_curve)
+- query =
+    SUM_CURVES(
+      V(energy_flexibility_pumped_storage_electricity, electricity_output_curve),
+      INVERT_CURVE(
+        V(energy_flexibility_pumped_storage_electricity, electricity_input_curve)
+      )
+    )
+- unit = curve
