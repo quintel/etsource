@@ -1,0 +1,14 @@
+---
+# Defines groups in the "Fever" heating calculation. Nodes which provide sources
+# of demand or supply may be assigned to a group like so:
+#
+#   - fever.group = space_heating
+#
+# The order of groups specified here is important: those which appear first are
+# calculated first. This is significant when technologies area capable of
+# satsifying demand for more than one group. If the "hot_water" group is above
+# "space_heating", technologies will use their capacity to meet hot water demand
+# first, with any remaining being made available for space heating.
+
+- hot_water
+- space_heating
