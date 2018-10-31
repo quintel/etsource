@@ -21,7 +21,7 @@
 
   insulation_fraction_new_houses = (((QUERY_PRESENT(-> {AREA(insulation_level_new_houses_min) }) / INPUT_VALUE(households_insulation_level_new_houses)) - min_insulation_ratio_new_houses) / scaling_factor_new_houses); 
 
-  insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + USER_INPUT())==0), 1.0, (insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * USER_INPUT()) / (INPUT_VALUE(households_number_of_new_houses) + USER_INPUT()));
+  insulation_fraction_weighted_average = IF(((INPUT_VALUE(households_number_of_new_houses) + USER_INPUT())==0), 1.0, DIVIDE((insulation_fraction_new_houses * INPUT_VALUE(households_number_of_new_houses) + insulation_fraction_old_houses * USER_INPUT()) ,(INPUT_VALUE(households_number_of_new_houses) + USER_INPUT())));
 
   new_gas_share = insulation_fraction_weighted_average * initial_gas_share;
   new_electricity_share = (1.0 - new_gas_share) / (1.0 - initial_gas_share) * initial_electricity_share;
