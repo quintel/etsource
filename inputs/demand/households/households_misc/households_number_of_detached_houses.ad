@@ -1,0 +1,28 @@
+# when insulation sliders are added the input_value of that slider should be multiplied with the useful demand of low insulated houses
+
+- query =
+  more_less_houses = DIVIDE(USER_INPUT(),QUERY_FUTURE(-> { AREA(number_of_detached_houses_thousands) }));
+
+  future_useful_demand =
+    IF(QUERY_PRESENT(-> { AREA(number_of_detached_houses_thousands) }) > 0.0,
+    more_less_houses * QUERY_FUTURE(-> { V(households_detached_houses_useful_demand_for_heating, preset_demand) }),
+    PRODUCT((USER_INPUT()*THOUSANDS), QUERY_FUTURE(-> { AREA(useful_heat_demand_per_detached_house_low_insulation) }))
+    );
+
+  future_number_of_residences = QUERY_FUTURE(-> { AREA(number_of_residences) }) + (USER_INPUT() - QUERY_FUTURE(-> { AREA(number_of_detached_houses_thousands) })) * THOUSANDS;
+
+  EACH(
+    UPDATE(AREA(), number_of_residences, future_number_of_residences),
+    UPDATE(AREA(), number_of_detached_houses_thousands, USER_INPUT()),
+    UPDATE(AREA(), residences_roof_surface_available_for_pv, more_less_houses * QUERY_PRESENT(-> { AREA(residences_roof_surface_available_for_pv) })),
+    UPDATE(V(households_detached_houses_useful_demand_for_heating), preset_demand, future_useful_demand),
+    UPDATE(V(households_flexibility_p2p_electricity), number_of_units, future_number_of_residences * INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration) / 100.0)
+  )
+- priority = 0
+- max_value_gql = present:AREA(number_of_residences) / THOUSANDS
+- min_value = 0.0
+- start_value_gql = present:AREA(number_of_detached_houses_thousands)
+- step_value = 0.1
+- unit = #
+- update_period = future
+- update_type = mixed
