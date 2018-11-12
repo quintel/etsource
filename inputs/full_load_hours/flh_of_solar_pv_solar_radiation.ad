@@ -1,4 +1,14 @@
+# The query starts by fetching the original number of units (nou): we want the new FLH
+# to increase the preset demand, so we have to set this value after updating FLH
+# to prevent ETEngine from calculating a new (lower) NoU.
+#
+# See https://github.com/quintel/etmodel/issues/2906
 - query =
+    original_nou_solar_park = V(energy_power_solar_pv_solar_radiation, number_of_units);
+    original_nou_solar_hydrogen = V(energy_hydrogen_solar_pv_solar_radiation, number_of_units);
+    original_nou_solar_buildings = V(buildings_solar_pv_solar_radiation, number_of_units);
+    original_nou_solar_households = V(households_solar_pv_solar_radiation, number_of_units);
+
     share_2 =
         DIVIDE(
             (USER_INPUT() - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) })),
@@ -6,10 +16,15 @@
         );
 
     EACH(
-        UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+        UPDATE(V(energy_power_solar_pv_solar_radiation, energy_hydrogen_solar_pv_solar_radiation, buildings_solar_pv_solar_radiation, households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+        UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou_solar_park),
+        UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), number_of_units, original_nou_solar_hydrogen),
+        UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, original_nou_solar_buildings),
+        UPDATE(V(households_solar_pv_solar_radiation), number_of_units, original_nou_solar_households),
+        UPDATE(V(energy_power_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)),
+        UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_hydrogen_solar_pv_solar_radiation, production_based_on_number_of_units)),
+        UPDATE(V(buildings_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)),
+        UPDATE(V(households_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(households_solar_pv_solar_radiation, production_based_on_number_of_units)),
         UPDATE(AREA(), solar_pv_profile_1_share, (1 - share_2)),
         UPDATE(AREA(), solar_pv_profile_2_share, share_2)
     )
