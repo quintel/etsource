@@ -1,17 +1,32 @@
 - query =
-    start_value = QUERY_FUTURE(-> { AREA(insulation_apartments) });
-    end_value = USER_INPUT();
-    relative_useful_heat_demand_change = DIVIDE((100.0 - end_value), (100.0 - start_value));
-    future_useful_demand = relative_useful_heat_demand_change * QUERY_FUTURE(-> { V(households_apartments_useful_demand_for_space_heating, preset_demand) });
+    start_reduction = QUERY_FUTURE(-> { AREA(insulation_apartments_start_value) });
+    future_reduction = USER_INPUT();
+    share_of_useful_heat_demand_after_insulation = DIVIDE((100.0 - future_reduction), (100.0 - start_reduction));
+    share_of_useful_heat_demand_savings_from_insulation = 1.0 - share_of_useful_heat_demand_after_insulation;
+    medium_reduction = 32.0;
+    high_reduction = 67.0;
+    insulation_apartments_low_share =
+      IF(future_reduction < medium_reduction,
+      DIVIDE((medium_reduction - future_reduction), medium_reduction),
+      0.0);
+    insulation_apartments_high_share =
+      IF(future_reduction > medium_reduction,
+      DIVIDE(future_reduction, high_reduction),
+      0.0);
+    insulation_apartments_medium_share = 1.0 - insulation_apartments_low_share - insulation_apartments_high_share;
 
     EACH(
-      UPDATE(AREA(), insulation_apartments, USER_INPUT()),
-      UPDATE(V(households_apartments_useful_demand_for_space_heating), preset_demand, future_useful_demand)
+      UPDATE(AREA(), insulation_apartments_start_value, future_reduction),
+      UPDATE(LINK(households_apartments_useful_demand_for_space_heating_after_insulation, households_apartments_useful_demand_for_space_heating), share, share_of_useful_heat_demand_after_insulation),
+      UPDATE(LINK(households_space_heating_savings_from_insulation, households_apartments_useful_demand_for_space_heating), share, share_of_useful_heat_demand_savings_from_insulation),
+      UPDATE(AREA(), insulation_apartments_low_share, insulation_apartments_low_share),
+      UPDATE(AREA(), insulation_apartments_medium_share, insulation_apartments_medium_share),
+      UPDATE(AREA(), insulation_apartments_high_share, insulation_apartments_high_share)
     )
 - priority = 0
-- max_value = 70.0
+- max_value = 67.0
 - min_value = 0.0
-- start_value_gql = present:AREA(insulation_apartments)
+- start_value_gql = present:AREA(insulation_apartments_start_value)
 - step_value = 0.1
 - unit = %
 - update_period = future

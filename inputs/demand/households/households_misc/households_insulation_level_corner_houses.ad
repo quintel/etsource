@@ -1,17 +1,18 @@
 - query =
-    start_value = QUERY_FUTURE(-> { AREA(insulation_corner_houses) });
+    start_value = QUERY_FUTURE(-> { AREA(insulation_corner_houses_start_value) });
     end_value = USER_INPUT();
-    relative_useful_heat_demand_change = DIVIDE((100.0 - end_value), (100.0 - start_value));
-    future_useful_demand = relative_useful_heat_demand_change * QUERY_FUTURE(-> { V(households_corner_houses_useful_demand_for_space_heating, preset_demand) });
+    share_of_useful_heat_demand_after_insulation = DIVIDE((100.0 - end_value), (100.0 - start_value));
+    share_of_useful_heat_demand_savings_from_insulation = 1.0 - share_of_useful_heat_demand_after_insulation;
 
     EACH(
-      UPDATE(AREA(), insulation_corner_houses, USER_INPUT()),
-      UPDATE(V(households_corner_houses_useful_demand_for_space_heating), preset_demand, future_useful_demand)
+      UPDATE(AREA(), insulation_corner_houses_start_value, USER_INPUT()),
+      UPDATE(LINK(households_corner_houses_useful_demand_for_space_heating_after_insulation, households_corner_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_after_insulation),
+      UPDATE(LINK(households_space_heating_savings_from_insulation, households_corner_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_savings_from_insulation)
     )
 - priority = 0
 - max_value = 70.0
 - min_value = 0.0
-- start_value_gql = present:AREA(insulation_corner_houses)
+- start_value_gql = present:AREA(insulation_corner_houses_start_value)
 - step_value = 0.1
 - unit = %
 - update_period = future
