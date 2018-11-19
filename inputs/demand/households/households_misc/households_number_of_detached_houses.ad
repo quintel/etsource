@@ -12,8 +12,8 @@
   EACH(
     UPDATE(AREA(), number_of_residences, future_number_of_residences),
     UPDATE(AREA(), number_of_detached_houses, USER_INPUT()),
-    UPDATE(AREA(), residences_roof_surface_available_for_pv, more_less_residences * QUERY_FUTURE(-> { AREA(residences_roof_surface_available_for_pv) })),
-    UPDATE(V(households_useful_demand_for_cooling), preset_demand, more_less_residences * QUERY_FUTURE(-> { V(households_useful_demand_for_cooling, preset_demand) })),
+    UPDATE_WITH_FACTOR(AREA(), residences_roof_surface_available_for_pv, more_less_residences),
+    UPDATE_WITH_FACTOR(L(households_useful_demand_for_cooling), preset_demand, more_less_residences),
     UPDATE(V(households_detached_houses_useful_demand_for_space_heating), preset_demand, future_useful_demand),
     UPDATE(V(households_flexibility_p2p_electricity), number_of_units, future_number_of_residences * INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration) / 100.0),
     UPDATE(V(households_flexibility_p2h_electricity), number_of_units, future_number_of_residences * INPUT_VALUE(households_flexibility_p2h_electricity_market_penetration) / 100.0),
