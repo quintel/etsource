@@ -6,7 +6,7 @@
   future_useful_demand =
     IF(QUERY_PRESENT(-> { AREA(number_of_apartments) }) > 0.0,
     more_less_apartments * QUERY_FUTURE(-> { V(households_apartments_useful_demand_for_space_heating, preset_demand) }),
-    PRODUCT(USER_INPUT(), 10000.0 * (1.0 - (INPUT_VALUE(households_insulation_level_apartments)/100.0)))
+    PRODUCT(USER_INPUT(), QUERY_PRESENT(-> { AREA(typical_useful_demand_space_heating_apartment) }) * (1.0 - (INPUT_VALUE(households_insulation_level_apartments)/100.0)))
     );
 
   EACH(
