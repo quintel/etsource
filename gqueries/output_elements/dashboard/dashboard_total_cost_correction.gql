@@ -1,27 +1,27 @@
 # Correction for the fact that heating and hot water combi technologies are counted double or triple.
-# First all double or triple technologies are subtracted to remove them from the 
+# First all double or triple technologies are subtracted to remove them from the
 # 'costs_of_produced_heat_plus_insulation' query which looks like this:
 #
 #- query =
-#    SUM( 
+#    SUM(
 #      V(
 #        G(cost_traditional_heat),
 #        G(cost_heat_pumps),
 #        total_costs_per(:converter)
-#      ), 
+#      ),
 #      Q(costs_of_insulation),
 #      Q(dashboard_total_cost_correction)
 #    )
 #
 # Next, for households, the MAXIMUM value for the FIXED costs is taken for combi technologies.
-# For heat-pumps that also provide cooling, the cooling is considered complimentary 
+# For heat-pumps that also provide cooling, the cooling is considered complimentary
 # EXCEPT if cooling is the only use of the technology.
 # For buildings, the MAXIMUM of space heating and cooling is taken for heat pumps.
 # Variable costs need to be taken into account for all technologies and should not be corrected.
-# 
+#
 
 
-- query = 
+- query =
     SUM(
       - V(
         buildings_space_heater_collective_heatpump_water_water_ts_electricity,
@@ -48,7 +48,6 @@
       Q(buildings_heatpump_air_water_network_gas_total_cost_for_correction),
       Q(households_heater_combined_network_gas_total_cost_for_correction),
       Q(households_heatpump_ground_water_electricity_total_cost_for_correction),
-      Q(households_heater_micro_chp_network_gas_total_cost_for_correction),
       Q(households_heater_district_heating_steam_hot_water_total_cost_for_correction),
       Q(households_heater_heatpump_air_water_electricity_total_cost_for_correction),
       Q(households_heater_hybrid_heatpump_air_water_electricity_total_cost_for_correction)
