@@ -8,12 +8,16 @@
     insulation_costs_existing_corner_houses = INSULATION_COST(existing_corner_houses, AREA(insulation_corner_houses_start_value ), INPUT_VALUE(households_insulation_level_corner_houses));
     insulation_costs_new_corner_houses = INSULATION_COST(new_builds, corner_houses, INPUT_VALUE(households_insulation_level_corner_houses));
     present_number_of_corner_houses = QUERY_PRESENT(-> { AREA(number_of_corner_houses) });
-    future_number_of_corner_houses = QUERY_FUTURE(-> { AREA(number_of_corner_houses) });
+    future_number_of_corner_houses = INPUT_VALUE(households_number_of_corner_houses);
 
     IF(
-        GRAPH().future?,
-        IF(future_number_of_corner_houses >= present_number_of_corner_houses,
-        insulation_costs_existing_corner_houses * present_number_of_corner_houses + insulation_costs_new_corner_houses * (future_number_of_corner_houses - present_number_of_corner_houses),
-        insulation_costs_existing_corner_houses * future_number_of_corner_houses),
-        0.0
+      GRAPH().future?,
+      -> {
+        IF(
+          future_number_of_corner_houses >= present_number_of_corner_houses,
+          -> { insulation_costs_existing_corner_houses * present_number_of_corner_houses + insulation_costs_new_corner_houses * (future_number_of_corner_houses - present_number_of_corner_houses) },
+          -> { insulation_costs_existing_corner_houses * future_number_of_corner_houses }
+        )
+      },
+      0.0
     )

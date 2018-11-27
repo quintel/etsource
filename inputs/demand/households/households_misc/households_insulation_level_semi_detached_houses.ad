@@ -15,7 +15,8 @@
       UPDATE(LINK(households_space_heating_savings_from_insulation, households_semi_detached_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_savings_from_insulation),
       UPDATE(AREA(), insulation_semi_detached_houses_low_share, low_profile_share),
       UPDATE(AREA(), insulation_semi_detached_houses_medium_share, medium_profile_share),
-      UPDATE(AREA(), insulation_semi_detached_houses_high_share, high_profile_share)
+      UPDATE(AREA(), insulation_semi_detached_houses_high_share, high_profile_share),
+      UPDATE(V(households_space_heating_savings_from_insulation), initial_investment, QUERY_FUTURE(-> { Q(total_costs_of_insulation_households)}))
     )
 - priority = 0
 - max_value_gql = present:AREA(heat_demand_reduction_high_insulation_semi_detached_house)
