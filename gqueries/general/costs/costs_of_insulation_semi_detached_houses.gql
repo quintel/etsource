@@ -8,12 +8,16 @@
     insulation_costs_existing_semi_detached_houses = INSULATION_COST(existing_semi_detached_houses, AREA(insulation_semi_detached_houses_start_value ), INPUT_VALUE(households_insulation_level_semi_detached_houses));
     insulation_costs_new_semi_detached_houses = INSULATION_COST(new_builds, semi_detached_houses, INPUT_VALUE(households_insulation_level_semi_detached_houses));
     present_number_of_semi_detached_houses = QUERY_PRESENT(-> { AREA(number_of_semi_detached_houses) });
-    future_number_of_semi_detached_houses = QUERY_FUTURE(-> { AREA(number_of_semi_detached_houses) });
+    future_number_of_semi_detached_houses = INPUT_VALUE(households_number_of_semi_detached_houses);
 
     IF(
-        GRAPH().future?,
-        IF(future_number_of_semi_detached_houses >= present_number_of_semi_detached_houses,
-        insulation_costs_existing_semi_detached_houses * present_number_of_semi_detached_houses + insulation_costs_new_semi_detached_houses * (future_number_of_semi_detached_houses - present_number_of_semi_detached_houses),
-        insulation_costs_existing_semi_detached_houses * future_number_of_semi_detached_houses),
-        0.0
+      GRAPH().future?,
+      -> {
+        IF(
+          future_number_of_semi_detached_houses >= present_number_of_semi_detached_houses,
+          -> { insulation_costs_existing_semi_detached_houses * present_number_of_semi_detached_houses + insulation_costs_new_semi_detached_houses * (future_number_of_semi_detached_houses - present_number_of_semi_detached_houses) },
+          -> { insulation_costs_existing_semi_detached_houses * future_number_of_semi_detached_houses }
+        )
+      },
+      0.0
     )

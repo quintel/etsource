@@ -12,6 +12,7 @@
   EACH(
     UPDATE(AREA(), number_of_residences, future_number_of_residences),
     UPDATE(AREA(), number_of_terraced_houses, USER_INPUT()),
+    UPDATE(V(households_space_heating_savings_from_insulation), initial_investment, QUERY_FUTURE(-> { Q(total_costs_of_insulation_households)})),
     UPDATE_WITH_FACTOR(AREA(), residences_roof_surface_available_for_pv, more_less_residences),
     UPDATE_WITH_FACTOR(L(households_useful_demand_for_cooling), preset_demand, more_less_residences),
     UPDATE(V(households_terraced_houses_useful_demand_for_space_heating), preset_demand, future_useful_demand),
