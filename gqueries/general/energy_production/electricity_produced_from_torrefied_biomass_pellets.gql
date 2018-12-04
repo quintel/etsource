@@ -1,0 +1,9 @@
+# Returns the produced electricity using torrefied_biomass_pellets.
+# It works by looking to converters directly fed by the "biocoal distribution" converter that have output of electricity.
+
+- unit = MJ
+- query =
+    V(
+      Q(electricity_producing_torrefied_biomass_pellets_converters),
+      "output_of_electricity * torrefied_biomass_pellets_input_conversion"
+    ).sum
