@@ -30,10 +30,10 @@ describe 'Load profiles' do
   end
 
   Atlas::Dataset.all.each do |dataset|
-    describe "for #{ dataset.key.upcase }" do
+    describe "for #{dataset.key.upcase}" do
       if dataset.key != :example
         nl_profiles.each do |prof_name|
-          it "should have a #{ prof_name } load profile" do
+          it "should have a #{prof_name} load profile" do
             expect(dataset.load_profile_path(prof_name)).to be_file
           end
         end
@@ -44,15 +44,15 @@ describe 'Load profiles' do
           # Skip any curves which are symlinks to curves in other datasets.
           next if symlinked_curve?(dataset, file)
 
-          it "#{ file.basename } does not permit CR (\\r) line endings" do
+          it "#{file.basename} does not permit CR (\\r) line endings" do
             message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \
                       "to not have CR line endings"
 
-            expect(file.read).to_not match(/\r[^\n]/), message
+            expect(file.read).not_to match(/\r[^\n]/), message
           end
 
           if file.basename.to_s != 'air_temperature.csv'
-            it "#{ file.basename } should have values summing to 1/3600" do
+            it "#{file.basename} should have values summing to 1/3600" do
               values    = File.foreach(file).map(&:to_f)
               in_joules = values.reduce(:+) * 3600
 
