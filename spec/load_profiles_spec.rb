@@ -9,6 +9,26 @@ describe 'Load profiles' do
     end
   end
 
+  # Internal: Determines if a path to a curve is a symlink to a curve elsewhere.
+  #
+  # Checks each parent directory up to the path of the dataset, but not beyond
+  # in case ETSource itself is symlinked.
+  #
+  # Returns true or false.
+  def self.symlinked_curve?(dataset, path)
+    prev = nil
+
+    while path != dataset.dataset_dir
+      return true  if path.symlink?
+      return false if path == prev
+
+      prev = path
+      path = path.parent
+    end
+
+    false
+  end
+
   Atlas::Dataset.all.each do |dataset|
     describe "for #{ dataset.key.upcase }" do
       if dataset.key != :example
@@ -19,26 +39,31 @@ describe 'Load profiles' do
         end
       end
 
-      Pathname.glob(dataset.dataset_dir.join('load_profiles/*.csv')) do |file|
-        it "#{ file.basename } does not permit CR (\\r) line endings" do
-          message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \
-                    "to not have CR line endings"
+      unless dataset.dataset_dir.join('load_profiles').symlink?
+        Pathname.glob(dataset.dataset_dir.join('load_profiles/*.csv')) do |file|
+          # Skip any curves which are symlinks to curves in other datasets.
+          next if symlinked_curve?(dataset, file)
 
-          expect(file.read).to_not match(/\r[^\n]/), message
-        end
+          it "#{ file.basename } does not permit CR (\\r) line endings" do
+            message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \
+                      "to not have CR line endings"
 
-        if file.basename.to_s != 'air_temperature.csv'
-          it "#{ file.basename } should have values summing to 1/3600" do
-            values    = File.foreach(file).map(&:to_f)
-            in_joules = values.reduce(:+) * 3600
-
-            # The sum of the values in the load profile ought to equal 1.0 / 3600
-            # since the load profile will implicitly convert values from ETEngine,
-            # which are in Joules, into watthours.
-            expect(in_joules).to be_within(1e-7).of(1.0)
+            expect(file.read).to_not match(/\r[^\n]/), message
           end
-        end
-      end # each profile
+
+          if file.basename.to_s != 'air_temperature.csv'
+            it "#{ file.basename } should have values summing to 1/3600" do
+              values    = File.foreach(file).map(&:to_f)
+              in_joules = values.reduce(:+) * 3600
+
+              # The sum of the values in the load profile ought to equal
+              # 1.0 / 3600 since the load profile will implicitly convert values
+              # from ETEngine, which are in Joules, into watthours.
+              expect(in_joules).to be_within(1e-7).of(1.0)
+            end
+          end
+        end # each profile
+      end
     end # for dataset
   end # each dataset
 end # Load profiles
