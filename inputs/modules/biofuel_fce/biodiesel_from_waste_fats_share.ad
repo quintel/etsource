@@ -1,3 +1,8 @@
+- query = 
+    EACH(
+        UPDATE_FCE(CARRIER(biodiesel),waste_fats, USER_INPUT() / 100),
+        UPDATE(LINK(energy_production_biodiesel,energy_production_biodiesel_from_waste_fats), share, DIVIDE(USER_INPUT(),100))
+    )
 - query = UPDATE_FCE(CARRIER(biodiesel),waste_fats, USER_INPUT() / 100)
 - share_group = biodiesel_fce
 - priority = 0
