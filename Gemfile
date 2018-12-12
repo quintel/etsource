@@ -9,7 +9,7 @@ gem 'rake'
 
 group :development, :test do
   gem 'roo'
-  gem 'atlas',    ref: '8bdb2c9', github: 'quintel/atlas'
+  gem 'atlas',    ref: 'dcc7d55', github: 'quintel/atlas'
 end
 
 group :test do
