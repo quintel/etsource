@@ -1,0 +1,11 @@
+# equals old houses/new houses split
+
+- query =
+    average_useful_demand =
+    DATASET_INPUT(input_percentage_of_apartments) * AREA(typical_useful_demand_space_heating_apartment) * (1.0  - DATASET_INPUT(input_households_apartments_heat_demand_reduction)) +
+    DATASET_INPUT(input_percentage_of_terraced_houses) * AREA(typical_useful_demand_space_heating_terraced_house) * (1.0 - DATASET_INPUT(input_households_terraced_houses_heat_demand_reduction)) +
+    DATASET_INPUT(input_percentage_of_corner_houses) * AREA(typical_useful_demand_space_heating_corner_house) * (1.0 - DATASET_INPUT(input_households_corner_houses_heat_demand_reduction)) +
+    DATASET_INPUT(input_percentage_of_semi_detached_houses) * AREA(typical_useful_demand_space_heating_semi_detached_house) * (1.0 - DATASET_INPUT(input_households_semi_detached_houses_heat_demand_reduction)) +
+    DATASET_INPUT(input_percentage_of_detached_houses) * AREA(typical_useful_demand_space_heating_detached_house) * (1.0 - DATASET_INPUT(input_households_detached_houses_heat_demand_reduction))
+
+    (DATASET_INPUT(input_percentage_of_corner_houses) * AREA(typical_useful_demand_space_heating_corner_house) * (1.0 - DATASET_INPUT(input_households_corner_houses_heat_demand_reduction))) / average_useful_demand
