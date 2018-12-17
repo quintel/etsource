@@ -1,10 +1,12 @@
 - query =
     IF(
       GOAL_IS_SET(electricity_costs),
-      LESS_OR_EQUAL(
-        Q(policy_goal_electricity_costs_value),
-        Q(policy_goal_electricity_costs_target_value)
-      ),
+      -> {
+        LESS_OR_EQUAL(
+          Q(policy_goal_electricity_costs_value),
+          Q(policy_goal_electricity_costs_target_value)
+        )
+      },
       nil
     )
 - unit = boolean

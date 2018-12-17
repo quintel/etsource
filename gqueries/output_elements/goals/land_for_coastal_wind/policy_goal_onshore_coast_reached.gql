@@ -1,10 +1,12 @@
 - query =
     IF(
       GOAL_IS_SET(onshore_coast),
-      LESS_OR_EQUAL(
-        V(energy_power_wind_turbine_coastal,total_land_use),
-        GOAL_USER_VALUE(onshore_coast)
-      ),
+      -> {
+        LESS_OR_EQUAL(
+          V(energy_power_wind_turbine_coastal,total_land_use),
+          GOAL_USER_VALUE(onshore_coast)
+        )
+      },
       nil
     )
 - unit = boolean
