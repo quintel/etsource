@@ -5,4 +5,4 @@
     medium_reduction = AREA(heat_demand_reduction_medium_insulation_detached_house);
     high_reduction = AREA(heat_demand_reduction_high_insulation_detached_house);
 
-    IF(reduction >= medium_reduction, DIVIDE((reduction - medium_reduction), (high_reduction - medium_reduction)), 0.0)
+    IF(reduction >= medium_reduction, (reduction - medium_reduction) / (high_reduction - medium_reduction), 0.0)
