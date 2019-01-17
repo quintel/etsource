@@ -1,3 +1,3 @@
 # this query calculates the heat demand profile shares
 
-- query = 1.0 - AREA(insulation_terraced_houses_low_share) - AREA(insulation_terraced_houses_high_share)
+- query = 1.0 - SPARSE_GRAPH_QUERY(area, insulation_terraced_houses_low_share) - SPARSE_GRAPH_QUERY(area, insulation_terraced_houses_high_share)
