@@ -189,6 +189,8 @@ energy_power_engine_diesel:
   demand: 0.0
 energy_power_wind_turbine_coastal:
   demand: 0.0
+energy_import_heat:
+  demand: 0.0
 energy_power_ultra_supercritical_coal:
   demand: 0.0
 energy_cokesoven_consumption_coal_gas:
@@ -330,7 +332,7 @@ buildings_final_demand_electricity-buildings_final_demand_for_lighting_electrici
 buildings_final_demand_for_space_heating_network_gas-buildings_space_heater_heatpump_air_water_network_gas@network_gas:
   parent_share: 0.0
 buildings_final_demand_for_lighting_electricity-buildings_lighting_efficient_fluorescent_electricity@electricity:
-  parent_share: 0.94
+  parent_share: 0.05
 buildings_final_demand_wood_pellets-buildings_final_demand_for_space_heating_wood_pellets@wood_pellets:
   parent_share: 1.0
 buildings_final_demand_electricity-buildings_final_demand_for_space_heating_electricity@electricity:
@@ -342,7 +344,7 @@ buildings_final_demand_crude_oil-buildings_final_demand_for_space_heating_crude_
 buildings_final_demand_for_cooling_electricity-buildings_cooling_airconditioning_electricity@electricity:
   parent_share: 0.99
 buildings_final_demand_for_lighting_electricity-buildings_lighting_standard_fluorescent_electricity@electricity:
-  parent_share: 0.05
+  parent_share: 0.94
 buildings_final_demand_network_gas-buildings_final_demand_for_space_heating_network_gas@network_gas:
   parent_share: 0.97
 buildings_final_demand_network_gas-buildings_final_demand_for_appliances_network_gas@network_gas:
@@ -407,6 +409,8 @@ households_final_demand_for_space_heating_electricity-households_space_heater_el
   parent_share: 0.0
 households_final_demand_for_lighting_electricity-households_lighting_incandescent_electricity@electricity:
   parent_share: 0.01
+households_final_demand_for_hot_water_electricity-households_water_heater_resistive_electricity@electricity:
+  parent_share: 0.0
 households_final_demand_for_hot_water_network_gas-households_water_heater_hybrid_heatpump_air_water_electricity@network_gas:
   parent_share: 0.0
 households_final_demand_for_hot_water_electricity-households_water_heater_heatpump_air_water_electricity@electricity:
@@ -427,6 +431,8 @@ households_final_demand_wood_pellets-households_final_demand_for_hot_water_wood_
   parent_share: 0.0
 households_final_demand_for_appliances_electricity-households_appliances_vacuum_cleaner_electricity@electricity:
   parent_share: 0.07
+? households_useful_demand_for_space_heating_after_insulation-households_apartments_useful_demand_for_space_heating_after_insulation@useable_heat
+: parent_share: 0.0
 households_final_demand_network_gas-households_final_demand_for_space_heating_network_gas@network_gas:
   parent_share: 0.79
 households_final_demand_for_cooking_electricity-households_cooker_halogen_electricity@electricity:
@@ -441,6 +447,10 @@ households_final_demand_for_space_heating_network_gas-households_space_heater_ne
   parent_share: 0.04
 households_final_demand_crude_oil-households_final_demand_for_space_heating_crude_oil@crude_oil:
   parent_share: 1.0
+? households_useful_demand_for_space_heating_after_insulation-households_terraced_houses_useful_demand_for_space_heating_after_insulation@useable_heat
+: parent_share: 0.19691425397424706
+? households_useful_demand_for_space_heating_after_insulation-households_detached_houses_useful_demand_for_space_heating_after_insulation@useable_heat
+: parent_share: 0.407738114833991
 households_final_demand_steam_hot_water-households_final_demand_for_hot_water_steam_hot_water@steam_hot_water:
   parent_share: 0.17
 households_final_demand_coal-households_final_demand_for_space_heating_coal@coal:
@@ -465,6 +475,10 @@ households_final_demand_electricity-households_final_demand_for_lighting_electri
   parent_share: 0.03
 households_final_demand_network_gas-households_final_demand_for_hot_water_network_gas@network_gas:
   parent_share: 0.16
+? households_useful_demand_for_space_heating_after_insulation-households_corner_houses_useful_demand_for_space_heating_after_insulation@useable_heat
+: parent_share: 0.19800360342113726
+? households_useful_demand_for_space_heating_after_insulation-households_semi_detached_houses_useful_demand_for_space_heating_after_insulation@useable_heat
+: parent_share: 0.19734402777062462
 households_final_demand_electricity-households_final_demand_for_cooling_electricity@electricity:
   parent_share: 0.08
 households_final_demand_for_space_heating_network_gas-households_space_heater_hybrid_heatpump_air_water_electricity@network_gas:
