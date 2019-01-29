@@ -1,19 +1,18 @@
 - priority = 0
 - step_value = 0.1
-- max_value_gql = present:AREA(insulation_level_buildings_max)
-- min_value_gql = present:AREA(insulation_level_buildings_min)
-- start_value_gql = present:AREA(insulation_level_buildings_min)
-- unit = m^2K/W
+- max_value_gql = present:AREA(heat_demand_reduction_high_insulation_buildings)
+- min_value = 0.0
+- start_value_gql = present:AREA(insulation_buildings_start_value)
+- unit = %
 - update_period = future
 - dependent_on = has_buildings
 - query =
-    cost_per_building = AREA(buildings_insulation_cost_constant) * (USER_INPUT() - AREA(insulation_level_buildings_min));
-    total_cost = cost_per_building * AREA(number_of_buildings);
-    saving_fraction = 1.0 - AREA(buildings_insulation_constant_1) / (USER_INPUT() + AREA(buildings_insulation_constant_2));
+    start_reduction = AREA(insulation_buildings_start_value);
+    future_reduction = USER_INPUT();
+    share_of_savings_from_insulation = 1.0 - DIVIDE((100.0 - future_reduction), (100.0 - start_reduction));
 
     EACH(
-      UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, total_cost),
-      UPDATE(LINK(buildings_useful_demand_for_space_heating,buildings_heating_savings_from_insulation_useable_heat), share, saving_fraction),
-      UPDATE(LINK(buildings_useful_demand_cooling,buildings_cooling_savings_insulation_cooling), share, saving_fraction)
+      UPDATE(LINK(buildings_useful_demand_for_space_heating,buildings_heating_savings_from_insulation_useable_heat), share, share_of_savings_from_insulation ),
+      UPDATE(LINK(buildings_useful_demand_cooling,buildings_cooling_savings_insulation_cooling), share, share_of_savings_from_insulation),
+      UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings)}))
     )
-

@@ -1,4 +1,8 @@
-- query = UPDATE_FCE(CARRIER(bio_ethanol),sugar_cane, USER_INPUT() / 100)
+- query =
+    EACH(
+        UPDATE_FCE(CARRIER(bio_ethanol),sugar_cane, USER_INPUT() / 100),
+        UPDATE(LINK(energy_production_bio_ethanol,energy_production_bio_ethanol_from_sugar_cane), share, DIVIDE(USER_INPUT(),100))
+    )
 - share_group = bio_ethanol_fce
 - priority = 0
 - max_value = 100.0

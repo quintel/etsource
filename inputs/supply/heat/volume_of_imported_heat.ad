@@ -1,0 +1,10 @@
+
+
+- query = UPDATE(V(energy_import_heat), preset_demand, (USER_INPUT() * BILLIONS))
+- priority = 0
+- max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),BILLIONS))
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(V(energy_import_heat, demand),BILLIONS)
+- step_value = 0.1
+- unit = joules
+- update_period = future

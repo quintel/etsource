@@ -7,10 +7,10 @@
 # if total_heat is zero (i.e. there are no HHPs in the start year) the input slots shares are set equal to the default node values
 
 - query =
-    elec_tj = DATASET_INPUT(households_final_demand_electricity_demand) * DATASET_INPUT(households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share) * DATASET_INPUT(households_final_demand_for_hot_water_electricity_households_water_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    elec_tj = DATASET_INPUT(households_final_demand_electricity_demand) * DATASET_INPUT(households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share) * SPARSE_GRAPH_QUERY("households_final_demand_for_hot_water_electricity-households_water_heater_hybrid_heatpump_air_water_electricity@electricity", parent_share);
     ambient_relative_to_elec = NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat) / NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity);
     ambient_tj = elec_tj * ambient_relative_to_elec;
-    gas_tj = DATASET_INPUT(households_final_demand_network_gas_demand) * DATASET_INPUT(households_final_demand_network_gas_households_final_demand_for_hot_water_network_gas_parent_share) * DATASET_INPUT(households_final_demand_for_hot_water_network_gas_households_water_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    gas_tj = DATASET_INPUT(households_final_demand_network_gas_demand) * DATASET_INPUT(households_final_demand_network_gas_households_final_demand_for_hot_water_network_gas_parent_share) * SPARSE_GRAPH_QUERY("households_final_demand_for_hot_water_network_gas-households_water_heater_hybrid_heatpump_air_water_electricity@network_gas", parent_share);
     total_heat = elec_tj + ambient_tj + gas_tj;
 
     IF(total_heat > 0.0, {

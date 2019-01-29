@@ -9,9 +9,9 @@ I18n.enforce_available_locales = true
 RSpec::Matchers.define :be_valid do
   diffable
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     identify_as = (@document && @document.key.inspect) || actual
-    "expected that #{ identify_as } would be valid"
+    "expected that #{identify_as} would be valid"
   end
 
   match do |document|
@@ -37,9 +37,6 @@ end
 RSpec.configure do |config|
   # Use only the "expect" syntax.
   config.expect_with(:rspec) { |c| c.syntax = :expect }
-
-  # Allow adding examples to a filter group with only a symbol.
-  config.treat_symbols_as_metadata_keys_with_true_values = true
 
   # Tries to find examples / groups with the focus tag, and runs them. If no
   # examples are focues, run everything. Prevents the need to specify
