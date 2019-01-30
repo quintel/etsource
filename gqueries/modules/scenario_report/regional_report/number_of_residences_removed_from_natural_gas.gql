@@ -1,0 +1,10 @@
+- query =
+          DIVIDE(
+                SUM(
+                  QUERY_DELTA(-> { V(households_space_heater_combined_network_gas, number_of_units) }),
+                  QUERY_DELTA(-> { V(households_space_heater_network_gas, number_of_units) })
+                ),
+                Q(scenario_duration)
+            ) * -1
+
+- unit = #
