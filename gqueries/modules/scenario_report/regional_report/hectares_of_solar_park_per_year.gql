@@ -1,0 +1,10 @@
+# land use is in square km, while the outcome is in hectares. For this reason it is times 100.
+
+- query =
+      DIVIDE(
+            PRODUCT(
+                QUERY_DELTA(-> { V(energy_power_solar_pv_solar_radiation, number_of_units) }),
+                V(energy_power_solar_pv_solar_radiation, land_use_per_unit)
+            ),
+            Q(scenario_duration)
+        ) * 100
