@@ -3,11 +3,10 @@
 # The total costs for hydrogen production and transport are already explicitly taken into
 # account in the dashboard.
 # Costs for production and transport are included in the hydrogen cost/price and are counted
-# twice. 
+# twice.
 # Here we subtract the cost for the hydrogen used in heating and hot water technologies.
 
-- query = 
-    - SUM(V(G(cost_traditional_heat),input_of_hydrogen)) * V(CARRIER(hydrogen),cost_per_mj)
+- query =
+    - (SUM(V(G(cost_traditional_heat),input_of_hydrogen)) + SUM(V(G(cost_heat_pumps),input_of_hydrogen))) * V(CARRIER(hydrogen),cost_per_mj)
 
 - unit = euro
-
