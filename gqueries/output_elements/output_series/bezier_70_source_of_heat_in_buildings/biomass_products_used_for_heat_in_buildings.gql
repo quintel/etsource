@@ -3,8 +3,8 @@
 - unit = PJ
 - query =
     SUM(
-      V(CHILDREN(V(buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)),input_of_biodiesel),
-      V(CHILDREN(V(buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)),input_of_bio_ethanol),
-      V(CHILDREN(V(buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)),input_of_wood_pellets),
-      V(CHILDREN(V(buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)),input_of_bio_lng)
+      V(Q(individual_heating_converters_in_buildings),input_of_biodiesel),
+      V(Q(individual_heating_converters_in_buildings),input_of_bio_ethanol),
+      V(Q(individual_heating_converters_in_buildings),input_of_wood_pellets),
+      V(Q(individual_heating_converters_in_buildings),input_of_bio_lng)
     ) / BILLIONS
