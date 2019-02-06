@@ -1,17 +1,27 @@
 - query =
     SUM(
-        V(CHILDREN(V(households_final_demand_steam_hot_water)), output_of_steam_hot_water).sum - V(households_collective_heatpump_water_water_electricity, households_collective_burner_network_gas, households_collective_burner_hydrogen, output_of_steam_hot_water).sum,
-        V(CHILDREN(V(buildings_final_demand_steam_hot_water)), output_of_steam_hot_water).sum - V(buildings_collective_heatpump_water_water_electricity, buildings_collective_burner_hydrogen, buildings_collective_burner_network_gas, output_of_steam_hot_water).sum,
-        V(agriculture_final_demand_steam_hot_water, input_of_steam_hot_water),
-        V(industry_final_demand_steam_hot_water, input_of_steam_hot_water),
-        V(energy_heat_network_unused_steam_hot_water, input_of_steam_hot_water),
-        V(agriculture_geothermal, output_of_useable_heat),
-        - V(energy_heater_for_heat_network_coal, output_of_steam_hot_water),
-        - V(energy_heater_for_heat_network_lignite, output_of_steam_hot_water),
-        - V(energy_heater_for_heat_network_crude_oil, output_of_steam_hot_water),
-        - V(energy_heater_for_heat_network_network_gas, output_of_steam_hot_water),
-        - V(energy_heater_for_heat_network_waste_mix, output_of_steam_hot_water),
-        - V(energy_heat_network_backup_heater_network_gas, output_of_steam_hot_water)
+       V(households_collective_geothermal,
+       households_collective_chp_network_gas,
+       households_collective_chp_wood_pellets,
+       households_collective_chp_biogas,
+       agriculture_chp_engine_network_gas,
+       agriculture_chp_engine_biogas,
+       agriculture_chp_supercritical_wood_pellets,
+       buildings_collective_chp_network_gas,
+       buildings_collective_chp_wood_pellets,
+       buildings_chp_engine_biogas,
+       buildings_collective_geothermal,
+       industry_chp_engine_gas_power_fuelmix,
+       industry_chp_turbine_gas_power_fuelmix,
+       industry_chp_ultra_supercritical_coal,
+       industry_chp_combined_cycle_gas_power_fuelmix,
+       energy_chp_supercritical_waste_mix,
+       energy_chp_combined_cycle_network_gas,
+       energy_chp_ultra_supercritical_coal,
+       energy_chp_ultra_supercritical_lignite,
+       energy_distribution_imported_heat,
+       output_of_steam_hot_water),
+       V(agriculture_geothermal, output_of_useable_heat)
     )
 
 - unit = MJ
