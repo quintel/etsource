@@ -1,2 +1,9 @@
-- query = INVERT_CURVE(V(energy_export_electricity, electricity_input_curve))
+- query =
+    SUM_CURVES(
+      V(energy_export_electricity, electricity_output_curve),
+      INVERT_CURVE(
+        V(energy_export_electricity, electricity_input_curve)
+      )
+    )
+
 - unit = curve

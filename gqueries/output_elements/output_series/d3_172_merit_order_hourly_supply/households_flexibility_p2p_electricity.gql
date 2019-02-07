@@ -1,2 +1,9 @@
-- query = V(households_flexibility_p2p_electricity, electricity_output_curve)
+- query =
+    SUM_CURVES(
+      V(households_flexibility_p2p_electricity, electricity_output_curve),
+      INVERT_CURVE(
+        V(households_flexibility_p2p_electricity, electricity_input_curve)
+      )
+    )
+
 - unit = curve

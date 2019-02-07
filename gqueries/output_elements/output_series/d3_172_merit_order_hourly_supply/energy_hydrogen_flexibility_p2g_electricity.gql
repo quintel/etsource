@@ -1,2 +1,9 @@
-- query = V(energy_hydrogen_flexibility_p2g_electricity, electricity_output_curve)
+- query =
+    SUM_CURVES(
+      V(energy_hydrogen_flexibility_p2g_electricity, electricity_output_curve),
+      INVERT_CURVE(
+        V(energy_hydrogen_flexibility_p2g_electricity, electricity_input_curve)
+      )
+    )
+
 - unit = curve
