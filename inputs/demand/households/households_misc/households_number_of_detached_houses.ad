@@ -1,3 +1,10 @@
+# This query updates:
+# - the useful heat demand of detached houses based on the changed number of detached houses
+# - the roof surface available for solar PV on houses based on the changed total number of houses
+# - the total useful demand for cooling based on the changed total number of houses
+# - the number of units P2H and P2P based on the changed total number of houses
+# - the electricity production of households solar PV, because user sets a share of the potential
+
 - query =
   more_less_detached_houses = DIVIDE(USER_INPUT(),QUERY_FUTURE(-> { AREA(number_of_detached_houses) }));
   future_number_of_residences = QUERY_FUTURE(-> { AREA(number_of_residences) }) + (USER_INPUT() - QUERY_FUTURE(-> { AREA(number_of_detached_houses) }));
