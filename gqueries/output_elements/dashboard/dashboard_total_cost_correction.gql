@@ -1,22 +1,21 @@
-# Correction for the fact that heating and hot water combi technologies are counted double or triple.
-# First all double or triple technologies are subtracted to remove them from the
+# Correction for the fact that heating and cooling technologies are counted double.
+# First all double technologies are subtracted to remove them from the
 # 'costs_of_produced_heat_plus_insulation' query which looks like this:
 #
 #- query =
-#    SUM(
-#      V(
-#        G(cost_traditional_heat),
-#        G(cost_heat_pumps),
-#        total_costs_per(:converter)
-#      ),
-#      Q(costs_of_insulation),
-#      Q(dashboard_total_cost_correction)
-#    )
-#
-# Next, for households, the MAXIMUM value for the FIXED costs is taken for combi technologies.
-# For heat-pumps that also provide cooling, the cooling is considered complimentary
-# EXCEPT if cooling is the only use of the technology.
-# For buildings, the MAXIMUM of space heating and cooling is taken for heat pumps.
+#   SUM(
+#     V(
+#       G(cost_traditional_heat),
+#       G(cost_heat_pumps),
+#       total_costs_per(:converter)
+#     ),
+#     Q(costs_of_insulation),
+#     Q(costs_of_imported_heat),
+#     Q(dashboard_total_cost_correction),
+#     Q(hydrogen_heat_correction)
+#   )
+# Next, for households and buildings, the MAXIMUM value for the FIXED costs is
+# taken for heat pumps that provide heating and cooling.
 # Variable costs need to be taken into account for all technologies and should not be corrected.
 #
 
@@ -28,29 +27,15 @@
         buildings_cooling_collective_heatpump_water_water_ts_electricity,
         buildings_space_heater_heatpump_air_water_network_gas,
         buildings_cooling_heatpump_air_water_network_gas,
-        households_space_heater_combined_network_gas,
-        households_water_heater_combined_network_gas,
-        households_space_heater_district_heating_steam_hot_water,
-        households_water_heater_district_heating_steam_hot_water,
         households_cooling_heatpump_air_water_electricity_share,
         households_space_heater_heatpump_air_water_electricity,
-        households_water_heater_heatpump_air_water_electricity,
         households_cooling_heatpump_ground_water_electricity,
-        households_water_heater_heatpump_ground_water_electricity,
         households_space_heater_heatpump_ground_water_electricity,
-        households_space_heater_hybrid_heatpump_air_water_electricity,
-        households_water_heater_hybrid_heatpump_air_water_electricity,
-        households_space_heater_hybrid_hydrogen_heatpump_air_water_electricity,
-        households_water_heater_hybrid_hydrogen_heatpump_air_water_electricity,
         "fixed_costs_per(:converter)"
       ).sum,
       Q(buildings_collective_heatpump_water_water_ts_electricity_total_cost_for_correction),
       Q(buildings_heatpump_air_water_network_gas_total_cost_for_correction),
-      Q(households_heater_combined_network_gas_total_cost_for_correction),
       Q(households_heatpump_ground_water_electricity_total_cost_for_correction),
-      Q(households_heater_district_heating_steam_hot_water_total_cost_for_correction),
       Q(households_heater_heatpump_air_water_electricity_total_cost_for_correction),
-      Q(households_heater_hybrid_heatpump_air_water_electricity_total_cost_for_correction),
-      Q(households_heater_hybrid_hydrogen_heatpump_air_water_electricity_total_cost_for_correction)
     )
 - unit = euro
