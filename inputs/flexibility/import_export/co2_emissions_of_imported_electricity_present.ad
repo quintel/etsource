@@ -1,8 +1,17 @@
-#The user insert g/KWH and the ETM processes kg/MJ. FOr this reason we divide it by 1000 and with MJ_PER_KWH
+# The co2_conversion_per_mj is defined in the FCE-module can only be updated by
+# updating shares. Therefore, we have to calculate the shares of renewable electricity
+# (0 g/kWh) and fossil electricity (1000 g/kWh) and then update the FCE.
 
-- query = UPDATE(CARRIER(imported_electricity), co2_conversion_per_mj, USER_INPUT() / 1000 / MJ_PER_KWH)
+- query =
+    share_fossil_electricity = USER_INPUT() / 1000;
+    share_renewable_electricity = 1 - share_fossil_electricity;
+
+    EACH(
+      UPDATE_FCE(CARRIER(imported_electricity), renewable_electricity, share_renewable_electricity),
+      UPDATE_FCE(CARRIER(imported_electricity), fossil_electricity, share_fossil_electricity)
+    )
 - priority = 0
-- max_value = 1000
+- max_value = 1000.0
 - min_value = 0
 - start_value_gql = present:Q(average_co2_emissions_of_imported_electricity)
 - step_value = 0.1
