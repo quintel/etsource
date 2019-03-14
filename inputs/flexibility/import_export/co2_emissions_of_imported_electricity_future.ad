@@ -1,9 +1,10 @@
 # The co2_conversion_per_mj defined in the FCE-module can only be updated by
-# updating shares. Therefore, we have to calculate the shares of renewable electricity 
+# updating shares. Therefore, we have to calculate the shares of renewable electricity
 # (0 g/kWh) and fossil electricity (1000 g/kWh) and then update the FCE.
+# NOTE: when updating the slider-max the share calculation should also be updated.
 
 - query =
-    share_fossil_electricity = USER_INPUT() / 1000;
+    share_fossil_electricity = USER_INPUT() / 1000.0;
     share_renewable_electricity = 1 - share_fossil_electricity;
 
     EACH(
