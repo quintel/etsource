@@ -5,24 +5,24 @@
 # Reference values:
 #
 # DEMAND
-# * Isolation:          67
+# * Isolation:          67%
 # * Electric cars:      75%
 # * LED:                90%
 # * Electric trucks:    75%
-# * heat pump:          50%
-# * solar water heater: 25%
+# * Heat pump:          50%
+# * Solar water heater: 25%
 #
 # SUPPLY
-# * coal plants:         0
-# * gas plants:          6
-# * nuclear:             0
-# * wind mills:       1600
-# * solar:              41%
-# * green gas:           3%
+# * Coal plants:         0
+# * Gas plants:          6
+# * Nuclear:             0
+# * Wind mills:       1600
+# * Solar:              41%
+# * Green gas:           3%
 
 - query =
     - [
-      1.0e-4 * (AVG(INPUT_VALUE(households_insulation_level_apartments),INPUT_VALUE(households_insulation_level_detached_houses),INPUT_VALUE(households_insulation_level_semi_detached_houses),INPUT_VALUE(households_insulation_level_terraced_houses),INPUT_VALUE(households_insulation_level_corner_houses)) - 2.8)**2,
+      1.0e-4 * (INPUT_VALUE(households_insulation_level_terraced_houses) - 67.0)**2,
       1.0e-4 * (INPUT_VALUE(transport_car_using_electricity_share) - 75.0)**2,
       1.0e-4 * (INPUT_VALUE(households_lighting_led_electricity_share) - 90.0)**2,
       1.0e-4 * (INPUT_VALUE(transport_truck_using_electricity_share) - 75.0)**2,
