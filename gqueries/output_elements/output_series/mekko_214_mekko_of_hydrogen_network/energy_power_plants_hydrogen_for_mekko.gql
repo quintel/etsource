@@ -1,0 +1,9 @@
+- unit = PJ
+- query =
+    DIVIDE(
+        SUM(
+            V(LINK(energy_power_turbine_hydrogen,energy_distribution_hydrogen_after_transport), demand),
+            V(LINK(energy_power_combined_cycle_hydrogen,energy_distribution_hydrogen_after_transport), demand)
+        ),
+        BILLIONS
+    )
