@@ -6,13 +6,9 @@
     SUM (
       V(households_space_heater_combined_network_gas,"number_of_units * initial_investment"),
       V(households_space_heater_heatpump_ground_water_electricity,"number_of_units * initial_investment"),
-      V(households_space_heater_district_heating_steam_hot_water, "number_of_units * initial_investment"),
-      V(households_water_heater_combined_network_gas,"number_of_units * initial_investment"),
-      V(households_water_heater_heatpump_ground_water_electricity,"number_of_units * initial_investment"),
-      V(households_water_heater_district_heating_steam_hot_water, "number_of_units * initial_investment"),
+      V(households_space_heater_hybrid_heatpump_air_water_electricity, "number_of_units * initial_investment"),
       V(households_cooling_airconditioning_electricity,"number_of_units * initial_investment"),
       V(households_solar_pv_solar_radiation,"number_of_units * initial_investment"),
-      V(households_water_heater_solar_thermal,"initial_investment") * (INPUT_VALUE(households_water_heater_solar_thermal_share) / 50.0) * AREA(number_of_residences),
       V(households_water_heater_solar_thermal,"initial_investment") * (INPUT_VALUE(households_water_heater_solar_thermal_share) / 50.0) * AREA(number_of_residences),
       Q(costs_of_insulation_terraced_houses)
     ) / AREA(number_of_residences)
