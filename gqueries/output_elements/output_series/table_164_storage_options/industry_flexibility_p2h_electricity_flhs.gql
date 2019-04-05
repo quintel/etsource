@@ -1,9 +1,17 @@
-- query = 
-    SUM(
-        V(industry_chemicals_refineries_flexibility_p2h_electricity, full_load_hours),
-        V(industry_chemicals_other_flexibility_p2h_electricity, full_load_hours),
-        V(industry_other_food_flexibility_p2h_electricity, full_load_hours),
-        V(industry_other_paper_flexibility_p2h_electricity, full_load_hours)
-    )
-- unit = hours
+# This gquery takes the weiged average of the full load hours of the four P2H technologies
 
+- query = 
+	DIVIDE(
+			SUM(
+				V(industry_chemicals_refineries_flexibility_p2h_electricity, "number_of_units * full_load_hours"),
+				V(industry_chemicals_other_flexibility_p2h_electricity, "number_of_units * full_load_hours"),
+				V(industry_other_food_flexibility_p2h_electricity, "number_of_units * full_load_hours"),
+				V(industry_other_paper_flexibility_p2h_electricity, "number_of_units * full_load_hours")),
+			SUM(
+        		V(industry_chemicals_refineries_flexibility_p2h_electricity, number_of_units),
+        		V(industry_chemicals_other_flexibility_p2h_electricity, number_of_units),
+        		V(industry_other_food_flexibility_p2h_electricity, number_of_units),
+        		V(industry_other_paper_flexibility_p2h_electricity, number_of_units))
+	)
+
+- unit = hours
