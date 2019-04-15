@@ -1,0 +1,12 @@
+# Final demand of the 'oil_and_derivatives' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_heavy_fuel_oil),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_kerosene),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_lpg),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_diesel),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_gasoline),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_crude_oil)
+    )

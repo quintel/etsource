@@ -1,0 +1,8 @@
+# Final demand of the 'coal_and_derivatives' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_coal),
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_coal_gas)
+    )
