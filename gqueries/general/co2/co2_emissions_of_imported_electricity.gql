@@ -1,13 +1,9 @@
 # The total related CO2 of all the imported electricity is calculated here.
-#
-#
 
 - query =
-      PRODUCT(
-        V(
-           CARRIER(
-            imported_electricity), co2_conversion_per_mj), V(
-            energy_import_electricity, demand) / BILLIONS
-   )
+    PRODUCT(
+        V(CARRIER(imported_electricity), co2_conversion_per_mj),
+        V(energy_import_electricity, demand) / BILLIONS
+    )
 - unit = MT
 - deprecated_key = co2_emission_electricity_import
