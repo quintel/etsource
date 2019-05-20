@@ -3,6 +3,10 @@
 # assigned no CO2 emission as primary carrier. This is standard, because CO2
 # emissions are not standard calculated for import yet!
 
-- query = V(G(final_demand_group),primary_co2_emission).sum
+- query =
+    SUM(
+      V(G(co2_emissions_primary),primary_co2_emission),
+      V(G(co2_emissions_refinery_products), "demand * weighted_carrier_co2_per_mj")
+      )
 - unit = kg
 - deprecated_key = co2_emission_excl_electricity_import
