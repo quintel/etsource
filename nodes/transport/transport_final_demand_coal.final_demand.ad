@@ -1,40 +1,40 @@
 - use = energetic
 - energy_balance_group = final consumption
-- groups = [final_demand_group]
+- groups = [final_demand_group, co2_emissions_primary]
 - graph_methods = [demand]
 - free_co2_factor = 0.0
 
 ~ demand =
     EB("transport", "hard_coal_(if_no_detail)") -
-    EB("non-specified (transport)", "hard_coal_(if_no_detail)") - 
-    EB("pipeline transport", "hard_coal_(if_no_detail)") + 
+    EB("non-specified (transport)", "hard_coal_(if_no_detail)") -
+    EB("pipeline transport", "hard_coal_(if_no_detail)") +
     EB("transport", "brown_coal_(if_no_detail)") -
-    EB("non-specified (transport)", "brown_coal_(if_no_detail)") - 
-    EB("pipeline transport", "brown_coal_(if_no_detail)") + 
+    EB("non-specified (transport)", "brown_coal_(if_no_detail)") -
+    EB("pipeline transport", "brown_coal_(if_no_detail)") +
     EB("transport", anthracite) -
-    EB("non-specified (transport)", anthracite) - 
-    EB("pipeline transport", anthracite) + 
+    EB("non-specified (transport)", anthracite) -
+    EB("pipeline transport", anthracite) +
     EB("transport", coking_coal) -
-    EB("non-specified (transport)", coking_coal) - 
-    EB("pipeline transport", coking_coal) + 
+    EB("non-specified (transport)", coking_coal) -
+    EB("pipeline transport", coking_coal) +
     EB("transport", other_bituminous_coal) -
-    EB("non-specified (transport)", other_bituminous_coal) - 
-    EB("pipeline transport", other_bituminous_coal) + 
+    EB("non-specified (transport)", other_bituminous_coal) -
+    EB("pipeline transport", other_bituminous_coal) +
     EB("transport", sub_bituminous_coal) -
-    EB("non-specified (transport)", sub_bituminous_coal) - 
-    EB("pipeline transport", sub_bituminous_coal) + 
+    EB("non-specified (transport)", sub_bituminous_coal) -
+    EB("pipeline transport", sub_bituminous_coal) +
     EB("transport", lignite) -
-    EB("non-specified (transport)", lignite) - 
-    EB("pipeline transport", lignite) + 
+    EB("non-specified (transport)", lignite) -
+    EB("pipeline transport", lignite) +
     EB("transport", patent_fuel) -
-    EB("non-specified (transport)", patent_fuel) - 
-    EB("pipeline transport", patent_fuel) + 
+    EB("non-specified (transport)", patent_fuel) -
+    EB("pipeline transport", patent_fuel) +
     EB("transport", coke_oven_coke) -
-    EB("non-specified (transport)", coke_oven_coke) - 
-    EB("pipeline transport", coke_oven_coke) + 
+    EB("non-specified (transport)", coke_oven_coke) -
+    EB("pipeline transport", coke_oven_coke) +
     EB("transport", gas_coke) -
-    EB("non-specified (transport)", lignite) - 
-    EB("pipeline transport", lignite) + 
+    EB("non-specified (transport)", lignite) -
+    EB("pipeline transport", lignite) +
     EB("transport", coal_tar) -
     EB("non-specified (transport)", coal_tar) -
     EB("pipeline transport", coal_tar) +

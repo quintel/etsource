@@ -3,5 +3,5 @@
 - unit = tonne
 - query =
     SUM(
-      V(INTERSECTION(G(final_demand_group),SECTOR(other)).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission")
+      V(INTERSECTION(G(co2_emissions_primary),SECTOR(other)).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission")
     ) / THOUSANDS

@@ -1,7 +1,9 @@
 # CO2 of transport sector
 
-- unit = kg
 - query =
     SUM(
-      V(INTERSECTION(G(final_demand_group),SECTOR(transport)), primary_co2_emission)
-    ) / BILLIONS
+      V( INTERSECTION(G(co2_emissions_primary), SECTOR(transport)), primary_co2_emission),
+      V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(transport)), "demand * weighted_carrier_co2_per_mj")
+    )
+       / BILLIONS
+- unit = mt
