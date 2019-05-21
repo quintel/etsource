@@ -25,7 +25,11 @@ namespace :import do
 
     curves.each do |country, year|
       # If ETSource country is nl2016, one should look for nl in ETDataset folders
-      if country == 'nl2016'
+      if country == 'nl2012'
+        etdataset_country = 'nl'
+      elsif country == 'nl2013'
+        etdataset_country = 'nl'
+      elsif country == 'nl2016'
         etdataset_country = 'nl'
       else
         etdataset_country = country
@@ -40,7 +44,7 @@ namespace :import do
       # Remove all insulation curves from the set of missing curves, since
       # these are copied later on
       missing_curves.each do |curve_name, curve_path|
-        if curve_name.basename.to_s.start_with?('insulation')
+        if (curve_name.basename.to_s.start_with?('air') || curve_name.basename.to_s.start_with?('insulation'))
           missing_curves.delete(curve_name.basename)
         end
       end
@@ -64,7 +68,7 @@ namespace :import do
           cp_csv(csv, dest)
           # and duplicate solar_pv to solar_pv_profile_1
           cp_csv(csv, Pathname.new("datasets/#{ country }/curves/solar_pv_profile_1.csv"))
-        elsif !csv_base.start_with?('insulation')
+        elsif (!csv_base.start_with?('air') && !csv_base.start_with?('insulation'))
           # Copy the new files
           cp_csv(csv, dest)
         end
