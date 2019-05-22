@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Load profiles' do
   def self.nl_profiles
-    profiles_dir = Atlas::Dataset.find(:nl).dataset_dir.join('load_profiles')
+    profiles_dir = Atlas::Dataset.find(:nl).dataset_dir.join('curves')
 
     Pathname.glob(profiles_dir.join('*.csv')).map do |path|
       path.relative_path_from(profiles_dir).basename('.csv')
@@ -39,8 +39,8 @@ describe 'Load profiles' do
         end
       end
 
-      unless dataset.dataset_dir.join('load_profiles').symlink?
-        Pathname.glob(dataset.dataset_dir.join('load_profiles/*.csv')) do |file|
+      unless dataset.dataset_dir.join('curves').symlink?
+        Pathname.glob(dataset.dataset_dir.join('curves/*.csv')) do |file|
           # Skip any curves which are symlinks to curves in other datasets.
           next if symlinked_curve?(dataset, file)
 
