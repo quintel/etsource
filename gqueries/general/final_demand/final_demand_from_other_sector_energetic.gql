@@ -1,0 +1,15 @@
+# The final demand in the other sector.
+
+- unit = MJ
+- query =
+  SUM(
+    V(
+      FILTER(
+          FILTER(
+            LG(final_demand),"sector == :other"
+          ),
+          energetic?
+        ),
+      value
+    )
+  )
