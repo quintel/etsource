@@ -19,6 +19,18 @@
         FILTER(
           FILTER(
             FILTER(
+              LG(final_demand),"sector == :agriculture"
+            ),
+            energetic?
+          ),
+          compressed_network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
               LG(final_demand),"sector == :transport"
             ),
             energetic?
@@ -38,5 +50,5 @@
           lng?
         ),
         value
-      )        
+      )
     ) / BILLIONS
