@@ -1,0 +1,15 @@
+# The final demand in the industry sector.
+
+- unit = PJ
+- query =
+  SUM(
+    V(
+        FILTER(
+          FILTER(
+            LG(final_demand),"sector == :industry"
+          ),
+          energetic?
+        ),
+      value
+    )
+  ) / BILLIONS
