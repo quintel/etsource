@@ -1,4 +1,4 @@
-# Query for Sankey diagram: connection between geo_ambient and electricity
+# Query for Sankey diagram: connection between geo_ambient and hydrogen_production
 
 - unit = PJ
 - query =
@@ -8,4 +8,4 @@
             V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, primary_demand_of(electricity)),
             V(Q(electricity_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, primary_demand_of(electricity))
         ),
-    BILLIONS)
+      BILLIONS)

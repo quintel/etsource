@@ -15,10 +15,19 @@
       V(
         FILTER(
           FILTER(
+            LG(final_demand),"sector == :bunkers"
+          ),
+          compressed_network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
             LG(final_demand),"sector == :households"
           ),
           lng?
         ),
         value
-      )        
+      )
     ) / BILLIONS
