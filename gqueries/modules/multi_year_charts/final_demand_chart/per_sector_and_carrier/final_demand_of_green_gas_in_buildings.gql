@@ -1,0 +1,30 @@
+# Energetic final demand of the 'natural_gas_and_derivatives' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :buildings"
+            ),
+            energetic?
+          ),
+          network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :buildings"
+            ),
+            energetic?
+          ),
+          compressed_network_gas?
+        ),
+        value
+      )
+    )

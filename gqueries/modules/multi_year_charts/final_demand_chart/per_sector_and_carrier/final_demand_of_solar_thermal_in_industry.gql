@@ -1,0 +1,18 @@
+# Energetic final demand of the 'solar' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :industry"
+            ),
+            energetic?
+          ),
+          solar_thermal?
+        ),
+        value
+      )
+    )
