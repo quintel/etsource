@@ -1,4 +1,4 @@
-# Energetic final demand of the 'natural_gas_and_derivatives' carrier group
+# Energetic final demand of the 'greengas' carrier group
 
 - unit = MJ
 - query =
@@ -14,7 +14,7 @@
           network_gas?
         ),
         value
-      ),
+      ) * V(energy_national_gas_network_natural_gas,greengas_input_conversion),
       V(
         FILTER(
           FILTER(
@@ -26,5 +26,5 @@
           compressed_network_gas?
         ),
         value
-      )
+      ) * V(energy_national_gas_network_natural_gas,greengas_input_conversion)
     )
