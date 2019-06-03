@@ -1,2 +1,2 @@
 - unit = PJ
-- query = DIVIDE(SUM(V(buildings_solar_pv_solar_radiation,output_of_electricity)),BILLIONS)
+- query = DIVIDE(SUM(V(buildings_solar_pv_solar_radiation,output_of_electricity)),BILLIONS) * V(LINK(buildings_local_production_electricity, buildings_final_demand_electricity), parent_share)
