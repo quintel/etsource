@@ -29,6 +29,7 @@ task symlink_curves: :environment do
     # Remove old directory that is symlinked to the NL2015 curves
     # in order to prevent circular symlinks
     FileUtils.rm_rf(Pathname.new("datasets/#{ area }/curves/"), :secure=>true)
+    FileUtils.rm_rf(Pathname.new("datasets/#{ area }/load_profiles/"), :secure=>true)
 
     # Create new empty directories
     FileUtils.mkdir_p(dest)

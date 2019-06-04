@@ -51,6 +51,9 @@ namespace :import do
       puts "Importing curves for: #{ country }/#{ year }"
 
       count = csvs.select.with_index do |csv, index|
+        # Remove old load_profiles directory
+        FileUtils.rm_rf(Pathname.new("datasets/#{ country }/load_profiles/"), :secure=>true)
+
         # Remove the old files, some of which may no longer exist in ETDataset.
         Pathname.glob(dest.join("/*.csv")).each(&FileUtils.method(:rm))
 
