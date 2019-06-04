@@ -93,7 +93,7 @@ namespace :import do
           puts "   - Symlinking to NL"
 
           # Symlink the NL 2015 profile.
-          FileUtils.ln_sf(Pathname.new("datasets/nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
+          FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
         end
       end
 
@@ -113,9 +113,21 @@ namespace :import do
         end
 
       else
-        # symlink to NL2015 heat curves
-        FileUtils.ln_sf(Dir.glob("datasets/nl/curves/heat/1987/*.csv"), Pathname.new("datasets/#{ country }/curves/heat/1987/"))
-        FileUtils.ln_sf(Dir.glob("datasets/nl/curves/heat/default/*.csv"), Pathname.new("datasets/#{ country }/curves/heat/default/"))
+        # symlink to NL2015 1987 heat curves
+        Pathname.glob("datasets/nl/curves/heat/1987/*.csv").each do |csv|
+          FileUtils.ln_sf(
+            Pathname.new("../../../../nl/curves/heat/1987/#{ csv.basename }"),
+            Pathname.new("datasets/#{ country }/curves/heat/1987/")
+          )
+        end
+
+        # symlink to NL2015 default heat curves
+        Pathname.glob("datasets/nl/curves/heat/default/*.csv").each do |csv|
+          FileUtils.ln_sf(
+            Pathname.new("../../../../nl/curves/heat/default/#{ csv.basename }"),
+            Pathname.new("datasets/#{ country }/curves/heat/default/")
+          )
+        end
       end
 
       encrypt_balance(dest)
