@@ -48,7 +48,7 @@ namespace :import do
       dest = Pathname.new("datasets/#{ country }/curves")
       csvs = Pathname.glob("#{ETDATASET_PATH}/curves/**/#{ etdataset_country }/#{ year }/output/*.csv")
 
-      puts "Importing #{ country }/#{ year } curves"
+      puts "Importing #{ country }/#{ year } curves:"
 
       count = csvs.select.with_index do |csv, index|
         # Remove the old files, some of which may no longer exist in ETDataset.
@@ -76,6 +76,8 @@ namespace :import do
       end
 
       missing_curves.each do |curve_name, curve_path|
+        puts "   - Missing curve: #{ curve_name }"
+
         # Create a path to a profile in a different year (it may not exist).
         other_year_path = [1, -1, 2, -2]
           .map { |other_year| curve_path.join("../../../../#{ etdataset_country }/#{ (year.to_i + other_year).to_s }/output/#{ curve_name }") }
@@ -83,37 +85,38 @@ namespace :import do
 
 
         if other_year_path
+          puts "   - Copying from #{ other_year_path }"
+
           # If the other year profile exists, copy it.
           cp_csv(other_year_path, dest)
         else
+          puts "   - Symlinking to NL"
+
           # Symlink the NL 2015 profile.
           FileUtils.ln_sf(Pathname.new("datasets/nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
         end
       end
 
-      # if etdataset_country == 'nl'
-      #   # Copy 1987 heat curves from ETDataset
-      #   dest = Pathname.new("datasets/#{ country }/curves/heat/1987")
-      #   heat_1987_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/#{ etdataset_country }/1987/output/*.csv")
-      #   heat_1987_csvs.each do |csv|
-      #     cp_csv(csv, dest)
-      #   end
-      #
-      #   # Copy default heat curves from ETDataset
-      #   dest = Pathname.new("datasets/#{ country }/curves/heat/default")
-      #   heat_default_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/#{ etdataset_country }/#{ year }/output/*.csv")
-      #   heat_default_csvs.each do |csv|
-      #     cp_csv(csv, dest)
-      #   end
-      #
-      # else
-      #   # puts "Symlinking heat curves for #{ country } to nl 2015"
-      #   # symlink to NL2015 heat curves
-      #   FileUtils.ln_sf(Dir.glob("datasets/nl/curves/heat/1987/*.csv"), Pathname.new("datasets/#{ country }/curves/heat/1987/"))
-      #   FileUtils.ln_sf(Dir.glob("datasets/nl/curves/heat/default/*.csv"), Pathname.new("datasets/#{ country }/curves/heat/default/"))
-      # end
+      if etdataset_country == 'nl'
+        # Copy 1987 heat curves from ETDataset
+        dest = Pathname.new("datasets/#{ country }/curves/heat/1987")
+        heat_1987_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/#{ etdataset_country }/1987/output/*.csv")
+        heat_1987_csvs.each do |csv|
+          cp_csv(csv, dest)
+        end
 
-      # puts "  - Imported #{ count.length } CSVs directly."
+        # Copy default heat curves from ETDataset
+        dest = Pathname.new("datasets/#{ country }/curves/heat/default")
+        heat_default_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/#{ etdataset_country }/#{ year }/output/*.csv")
+        heat_default_csvs.each do |csv|
+          cp_csv(csv, dest)
+        end
+
+      else
+        # symlink to NL2015 heat curves
+        FileUtils.ln_sf(Dir.glob("datasets/nl/curves/heat/1987/*.csv"), Pathname.new("datasets/#{ country }/curves/heat/1987/"))
+        FileUtils.ln_sf(Dir.glob("datasets/nl/curves/heat/default/*.csv"), Pathname.new("datasets/#{ country }/curves/heat/default/"))
+      end
 
       encrypt_balance(dest)
     end
