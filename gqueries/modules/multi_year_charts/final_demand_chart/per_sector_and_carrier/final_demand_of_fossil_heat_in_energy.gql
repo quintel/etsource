@@ -1,0 +1,18 @@
+# Energetic final demand of the 'fossil heat' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :energy"
+            ),
+            energetic?
+          ),
+          steam_hot_water?
+        ),
+        "(1 - sustainability_share) * value"
+      )
+    )

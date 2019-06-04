@@ -1,0 +1,7 @@
+# CO2 of carrier group 'electricity' in industry
+
+- unit = tonne
+- query =
+    SUM(
+      V(INTERSECTION(INTERSECTION(G(final_demand_group),SECTOR(industry)),USE(energetic)).select {|node| node.input_slots.detect { |slot| slot.carrier.electricity? }}, "primary_co2_emission")
+    ) / THOUSANDS
