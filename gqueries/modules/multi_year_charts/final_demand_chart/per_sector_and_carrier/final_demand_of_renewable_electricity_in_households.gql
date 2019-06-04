@@ -1,0 +1,18 @@
+# Energetic final demand of the 'renewable electricity' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :households"
+            ),
+            energetic?
+          ),
+          electricity?
+        ),
+        "sustainability_share * value"
+      )
+    )

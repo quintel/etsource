@@ -1,0 +1,30 @@
+# Energetic final demand of the 'greengas' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :households"
+            ),
+            energetic?
+          ),
+          network_gas?
+        ),
+        value
+      ) * V(energy_national_gas_network_natural_gas,greengas_input_conversion),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :households"
+            ),
+            energetic?
+          ),
+          compressed_network_gas?
+        ),
+        value
+      ) * V(energy_national_gas_network_natural_gas,greengas_input_conversion)
+    )

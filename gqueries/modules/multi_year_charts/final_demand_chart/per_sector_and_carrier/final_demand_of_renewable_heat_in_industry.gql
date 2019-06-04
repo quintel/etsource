@@ -1,0 +1,18 @@
+# Energetic final demand of the 'renewable heat' carrier group
+
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :industry"
+            ),
+            energetic?
+          ),
+          steam_hot_water?
+        ),
+        "sustainability_share * value"
+      )
+    )
