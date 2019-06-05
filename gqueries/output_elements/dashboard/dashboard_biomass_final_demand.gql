@@ -1,6 +1,6 @@
 # Sum of final demand liquid, solid and gaseous biofuels (green gas)
 
-- unit = MJ
+- unit = PJ
 - query =
     SUM(
       V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_bio_kerosene),
@@ -9,4 +9,4 @@
       V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_biodiesel),
       V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_wood_pellets),
       V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_network_gas).sum * DIVIDE(INPUT_VALUE(green_gas_total_share),100.0)
-    )
+    ) / BILLIONS
