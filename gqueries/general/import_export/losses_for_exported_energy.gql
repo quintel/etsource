@@ -1,4 +1,10 @@
-# This is the loss of the energy export.
+# This is the loss of the energy export excl. refinery products
 
 - unit = MJ
-- query = V(G(energy_export),"primary_demand - demand").sum
+- query =
+  SUM(
+    V(
+      G(export_converters_excl_refinery_products),
+      "primary_demand - demand"
+    )
+  )
