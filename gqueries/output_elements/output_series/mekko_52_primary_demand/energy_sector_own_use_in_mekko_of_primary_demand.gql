@@ -1,8 +1,8 @@
-# Sum of all primary demand from curtailment
-
 - unit = PJ
 - query =
   SUM(
-    V(energy_power_sector_own_use_electricity, primary_demand),
-    V(energy_heat_network_unused_steam_hot_water, primary_demand)
+    V(
+      INTERSECTION(SECTOR(energy),G(final_demand_group)),
+      primary_demand
+    )
   ) / BILLIONS
