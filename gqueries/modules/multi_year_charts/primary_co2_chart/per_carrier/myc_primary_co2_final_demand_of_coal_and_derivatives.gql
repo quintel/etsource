@@ -2,7 +2,13 @@
 
 - unit = tonne
 - query =
-  SUM(
-    V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.coal? }}, "coal_input_conversion * primary_co2_emission"),
-    V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.coal_gas? }}, "coal_gas_input_conversion * primary_co2_emission")
-  ) / THOUSANDS
+    SUM(
+      V(
+        FILTER(G(co2_emissions_primary), "coal_input_conversion > 0"),
+        "coal_input_conversion * primary_co2_emission"
+      ),
+      V(
+        FILTER(G(co2_emissions_primary), "coal_gas_input_conversion > 0"),
+        "coal_gas_input_conversion * primary_co2_emission"
+      )
+    ) / THOUSANDS

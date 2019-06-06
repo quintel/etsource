@@ -3,7 +3,16 @@
 - unit = tonne
 - query =
   SUM(
-    V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "network_gas_input_conversion * primary_co2_emission"),
-    V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.compressed_network_gas? }}, "compressed_network_gas_input_conversion * primary_co2_emission"),
-    V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.lng? }}, "lng_input_conversion * primary_co2_emission")
+    V(
+      FILTER(G(co2_emissions_primary), "network_gas_input_conversion > 0"),
+      "network_gas_input_conversion * primary_co2_emission"
+    ),
+    V(
+      FILTER(G(co2_emissions_primary), "compressed_network_gas_input_conversion > 0"),
+      "compressed_network_gas_input_conversion * primary_co2_emission"
+    ),
+    V(
+      FILTER(G(co2_emissions_primary), "lng_input_conversion > 0"),
+      "lng_input_conversion * primary_co2_emission"
+    )
   ) / THOUSANDS

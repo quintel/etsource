@@ -1,4 +1,10 @@
 # The primary co2 of final demand hydrogen
 
 - unit = tonne
-- query = V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.hydrogen? }}, "hydrogen_input_conversion * primary_co2_emission").sum / THOUSANDS
+- query =
+    SUM(
+      V(
+        FILTER(G(co2_emissions_primary), "hydrogen_input_conversion > 0"),
+        "hydrogen_input_conversion * primary_co2_emission"
+      )
+    ) / THOUSANDS
