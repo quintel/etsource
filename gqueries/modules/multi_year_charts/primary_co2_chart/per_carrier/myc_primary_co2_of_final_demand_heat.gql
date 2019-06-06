@@ -1,0 +1,4 @@
+# The primary co2 of final demand heat
+
+- unit = tonne
+- query = V(G(co2_emissions_primary).select {|node| node.input_slots.detect { |slot| slot.carrier.steam_hot_water? }}, "steam_hot_water_input_conversion * primary_co2_emission").sum / THOUSANDS
