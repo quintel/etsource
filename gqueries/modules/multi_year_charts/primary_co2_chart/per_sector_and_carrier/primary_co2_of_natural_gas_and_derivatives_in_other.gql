@@ -1,9 +1,0 @@
-# CO2 of carrier group 'natural_gas_and_derivatives' in other
-
-- unit = tonne
-- query =
-    SUM(
-      V(INTERSECTION(INTERSECTION(G(final_demand_group),SECTOR(other)),USE(energetic)).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "primary_co2_emission"),
-      V(INTERSECTION(INTERSECTION(G(final_demand_group),SECTOR(other)),USE(energetic)).select {|node| node.input_slots.detect { |slot| slot.carrier.lng? }}, "primary_co2_emission"),
-      V(INTERSECTION(INTERSECTION(G(final_demand_group),SECTOR(other)),USE(energetic)).select {|node| node.input_slots.detect { |slot| slot.carrier.compressed_network_gas? }}, "primary_co2_emission")
-    ) / THOUSANDS

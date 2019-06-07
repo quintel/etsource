@@ -1,0 +1,14 @@
+# Final demand of electricity from wind
+# The final demand of renewable electricity is multiplied with the share of
+# wind in the total renewable electricity produced. In this way electricity
+# network losses are not included.
+
+- unit = MJ
+- query =
+    PRODUCT(
+        Q(myc_final_demand_of_renewable_electricity),
+        DIVIDE(
+            Q(electricity_produced_from_wind),
+            Q(total_renewable_electricity_produced)
+        )
+    )

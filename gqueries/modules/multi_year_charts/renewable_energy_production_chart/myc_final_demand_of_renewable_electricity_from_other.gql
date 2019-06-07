@@ -1,0 +1,11 @@
+# Final demand of electricity from other renewable sources
+# The final demand of renewable electricity is calculated by subtracting
+# wind and solar electricity from the total renewable final demand electricity
+
+- unit = MJ
+- query =
+    SUM(
+        Q(myc_final_demand_of_renewable_electricity),
+        NEG(Q(myc_final_demand_of_renewable_electricity_from_solar)),
+        NEG(Q(myc_final_demand_of_renewable_electricity_from_wind))
+    )
