@@ -24,7 +24,7 @@ task symlink_curves: :environment do
     source = Pathname.new("../../#{base_dataset}/curves/")
     source_heat = Pathname.new("../../../../#{base_dataset}/curves/heat/")
 
-    puts "Importing curves for: #{ area }/#{ year }"
+    puts "Symlinking curves for: #{ area }/#{ year }"
 
     # Remove old directory that is symlinked to the NL2015 curves
     # in order to prevent circular symlinks

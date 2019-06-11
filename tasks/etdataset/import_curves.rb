@@ -77,7 +77,7 @@ namespace :import do
         if country == 'nl'
           cp_csv(Pathname.new("#{ETDATASET_PATH}/curves/supply/solar/data/es/2015/output/solar_pv.csv"), Pathname.new("datasets/#{ country }/curves/solar_pv_profile_2.csv"))
         else
-          FileUtils.ln_sf(Pathname.new("../../nl/curves/solar_pv_profile_2.csv"), dest)
+          FileUtils.ln_sf(Pathname.new("../../nl/curves/solar_pv_profile_2.csv"), Pathname.new("datasets/#{ country }/curves/"))
         end
 
         # Remove the name of this file from missing_curves.
@@ -91,11 +91,22 @@ namespace :import do
           .detect(&:exist?)
 
         if other_year_path
-          # If the other year profile exists, copy it.
-          cp_csv(other_year_path, dest)
+          if other_year_path.basename.to_s == 'solar_pv.csv'
+            cp_csv(other_year_path, dest)
+            cp_csv(other_year_path, Pathname.new("datasets/#{ country }/curves/solar_pv_profile_1.csv"))
+          else
+            # If the other year profile exists, copy it.
+            cp_csv(other_year_path, dest)
+          end
         else
-          # Symlink the NL 2015 profile.
-          FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
+          if curve_name.basename.to_s == 'solar_pv.csv'
+            # Symlink the NL 2015 profiles for solar pv.
+            FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
+            FileUtils.ln_sf(Pathname.new("../../nl/curves/solar_pv_profile_1.csv"), Pathname.new("datasets/#{ country }/curves/"))
+          else
+            # Symlink the NL 2015 profile.
+            FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
+          end
         end
       end
 
