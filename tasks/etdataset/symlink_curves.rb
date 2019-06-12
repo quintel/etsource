@@ -14,6 +14,7 @@ task symlink_curves: :environment do
 
   curves.each do |area, year|
     # Check to which base dataset the dataset should symlink
+    # Note: the script only symlinks to NL datasets
     if year == "2015"
       base_dataset = "nl"
     else
@@ -31,32 +32,8 @@ task symlink_curves: :environment do
     FileUtils.rm_rf(Pathname.new("datasets/#{ area }/curves/"), :secure=>true)
     FileUtils.rm_rf(Pathname.new("datasets/#{ area }/load_profiles/"), :secure=>true)
 
-    # Create new empty directories
-    # FileUtils.mkdir_p(dest.join("curves/"))
-    # FileUtils.mkdir_p(dest.join("curves/weather/"))
-    # FileUtils.mkdir_p(dest.join("curves/weather/1987"))
-    # FileUtils.mkdir_p(dest.join("curves/weather/default"))
-
     # Symlink all curves in the root directory
     FileUtils.ln_sf(source, dest)
-
-    # Symlink all curves in the root directory
-    # Pathname.glob("datasets/#{base_dataset}/curves/*.csv").each do |csv|
-    #   # Symlink to base country curve
-    #   FileUtils.ln_sf(Pathname.new(source.join(csv.basename)), Pathname.new(dest))
-    # end
-    #
-    # # Symlink all curves in the weather/1987 directory
-    # Pathname.glob("datasets/#{base_dataset}/curves/weather/1987/*.csv").each do |csv|
-    #   # Symlink to base country curve
-    #   FileUtils.ln_sf(Pathname.new(source_heat.join("1987/#{csv.basename}")), Pathname.new(dest.join("weather/1987")))
-    # end
-    #
-    # # Symlink all curves in the weather/default directory
-    # Pathname.glob("datasets/#{base_dataset}/curves/weather/default/*.csv").each do |csv|
-    #   # Symlink to base country curve
-    #   FileUtils.ln_sf(Pathname.new(source_heat.join("default/#{csv.basename}")), Pathname.new(dest.join("weather/default")))
-    # end
 
     encrypt_balance(dest)
   end # each curve
