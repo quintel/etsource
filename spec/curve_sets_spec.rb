@@ -3,9 +3,9 @@ require 'spec_helper'
 def nl_curve_sets
   base_path = Atlas::Dataset.find(:nl).dataset_dir
 
-  Pathname.glob(base_path.join('curves').join('*')).map do |fullpath|
-    fullpath.relative_path_from(base_path)
-  end
+  Pathname.glob(base_path.join('curves').join('*'))
+    .select { |path| path.directory? }
+    .map { |fullpath| fullpath.relative_path_from(base_path) }
 end
 
 Atlas::Dataset.all.each do |dataset|
