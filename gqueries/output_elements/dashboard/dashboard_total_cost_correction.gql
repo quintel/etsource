@@ -1,6 +1,6 @@
 # Correction for the fact that heating and cooling technologies are counted double.
 # First all double technologies are subtracted to remove them from the
-# 'costs_of_produced_heat_plus_insulation' query which looks like this:
+# 'costs_of_produced_heat' query which looks like this:
 #
 #- query =
 #   SUM(
@@ -9,7 +9,6 @@
 #       G(cost_heat_pumps),
 #       total_costs_per(:converter)
 #     ),
-#     Q(costs_of_insulation),
 #     Q(costs_of_imported_heat),
 #     Q(dashboard_total_cost_correction),
 #     Q(hydrogen_heat_correction)
