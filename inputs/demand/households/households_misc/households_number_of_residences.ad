@@ -1,13 +1,14 @@
 # This query updates:
 # - the useful heat demand of each housing type with a factor based on the changed total number of houses
-# - the number houses for each housing type should be updated
+# - the number of houses for each housing type and total should be updated in the AREA-file
 # - the roof surface available for solar PV on houses based on the changed total number of houses
 # - the total useful demand for cooling based on the changed total number of houses
+# - the insulation costs because of the changed number of houses per type, by rerunning this query: Q(total_costs_of_insulation_households)
 # - the number of units P2H and P2P based on the changed total number of houses
 # - the electricity production of households solar PV, because user sets a share of the potential
 
 - query =
-  future_number_of_residences = USER_INPUT();
+  future_number_of_residences = USER_INPUT() * 1.0e6;
   change_in_number_of_residences = DIVIDE(future_number_of_residences, QUERY_FUTURE(-> { AREA(number_of_residences) }));
 
   EACH(
@@ -35,9 +36,9 @@
   )
 
 - priority = 0
-- max_value_gql = present:AREA(number_of_residences) * 1.5
-- min_value = 0.0
-- start_value_gql = present:AREA(number_of_residences)
+- max_value_gql = present:AREA(number_of_residences) * 1.0e-06 * 2
+- min_value_gql = present:AREA(number_of_residences) * 1.0e-06 * 0.5
+- start_value_gql = present:AREA(number_of_residences) * 1.0e-06
 - step_value = 0.1
 - unit = #
 - update_period = future
