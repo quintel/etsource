@@ -8,7 +8,7 @@
 # - the electricity production of households solar PV, because user sets a share of the potential
 
 - query =
-  future_number_of_residences = USER_INPUT() * 1.0e6;
+  future_number_of_residences = USER_INPUT() * MILLIONS;
   change_in_number_of_residences = DIVIDE(future_number_of_residences, QUERY_FUTURE(-> { AREA(number_of_residences) }));
 
   EACH(
@@ -36,9 +36,9 @@
   )
 
 - priority = 0
-- max_value_gql = present:AREA(number_of_residences) * 1.0e-06 * 2
-- min_value_gql = present:AREA(number_of_residences) * 1.0e-06 * 0.5
-- start_value_gql = present:AREA(number_of_residences) * 1.0e-06
+- max_value_gql = present:AREA(number_of_residences) / MILLIONS * 2
+- min_value_gql = present:AREA(number_of_residences) / MILLIONS * 0.5
+- start_value_gql = present:AREA(number_of_residences) / MILLIONS
 - step_value = 0.1
 - unit = #
 - update_period = future
