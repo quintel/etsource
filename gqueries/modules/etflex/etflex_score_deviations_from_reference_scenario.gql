@@ -13,10 +13,10 @@
 # * Solar water heater: 25%
 #
 # SUPPLY
-# * Coal plants:         0
-# * Gas plants:          6 units ~ 3990 MW
-# * Nuclear:             0 units ~ 0 MW
-# * Wind turbines:    1600 units ~ 4800 MW
+# * Coal plants:         0 units ~ 0 MW (800 MW / unit)
+# * Gas plants:          6 units ~ 3990 MW (665 MW / unit)
+# * Nuclear:             0 units ~ 0 MW (1650 MW / unit)
+# * Wind turbines:    1600 units ~ 4800 MW (3 MW / unit)
 # * Solar:              41%
 # * Green gas:           3%
 
@@ -28,10 +28,10 @@
       1.0e-4 * (INPUT_VALUE(transport_truck_using_electricity_share) - 75.0)**2,
       1.0e-4 * (INPUT_VALUE(households_heater_heatpump_ground_water_electricity_share) - 50.0)**2,
       1.0e-4 * (INPUT_VALUE(households_water_heater_solar_thermal_share) - 25.0)**2,
-      0.01 * (INPUT_VALUE(capacity_of_energy_power_ultra_supercritical_coal) - 0.0)**2,
-      0.027778 * (INPUT_VALUE(capacity_of_energy_power_combined_cycle_ccs_network_gas) - 3990.0)**2,
-      0.25 * (INPUT_VALUE(capacity_of_energy_power_nuclear_gen3_uranium_oxide) - 0.0)**2,
-      3.90625e-7 * (INPUT_VALUE(capacity_of_energy_power_wind_turbine_offshore) - 4800.0)**2,
+      0.01 * (DIVIDE(INPUT_VALUE(capacity_of_energy_power_ultra_supercritical_coal), V(energy_power_ultra_supercritical_coal, electricity_output_capacity)) - 0.0)**2,
+      0.027778 * (DIVIDE(INPUT_VALUE(capacity_of_energy_power_combined_cycle_ccs_network_gas), V(energy_power_combined_cycle_ccs_network_gas, electricity_output_capacity)) - 6.0)**2,
+      0.25 * (DIVIDE(INPUT_VALUE(capacity_of_energy_power_nuclear_gen3_uranium_oxide), V(energy_power_nuclear_gen3_uranium_oxide, electricity_output_capacity)) - 0.0)**2,
+      3.90625e-7 * (DIVIDE(INPUT_VALUE(capacity_of_energy_power_wind_turbine_offshore), V(energy_power_wind_turbine_offshore, electricity_output_capacity)) - 1600.0)**2,
       1.0e-4 * (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) - 41.0)**2,
       1.0e-4 * (INPUT_VALUE(green_gas_total_share) - 3.0)**2
     ].sum
