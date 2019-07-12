@@ -1,17 +1,17 @@
 - query =
     EACH(
         UPDATE(
-            V(energy_heater_for_heat_network_geothermal), 
-            number_of_units, 
+            V(energy_heater_for_heat_network_geothermal),
+            number_of_units,
             USER_INPUT() / V(energy_heater_for_heat_network_geothermal,heat_output_capacity)
         ),
         UPDATE(
             OUTPUT_LINKS(V(energy_heater_for_heat_network_geothermal),constant),
-            share, 
+            share,
             V(energy_heater_for_heat_network_geothermal, production_based_on_number_of_heat_units)
     ))
 - priority = 0
-- max_value_gql = present:MAX(5.0,PRODUCT(DIVIDE(SUM(V(G(heat_production),output_of_heat_carriers)),V(energy_heater_for_heat_network_geothermal,typical_heat_production_per_unit)),2.0,V(energy_heater_for_heat_network_geothermal,heat_output_capacity)))
+- max_value_gql = present:DIVIDE(DIVIDE(MAX(0.5 * Q(heat_production_total) * BILLIONS, V(energy_heater_for_heat_network_geothermal, output_of_steam_hot_water)*2), V(energy_heater_for_heat_network_geothermal,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(energy_heater_for_heat_network_geothermal,number_of_units),V(energy_heater_for_heat_network_geothermal,heat_output_capacity))
 - step_value = 1.0

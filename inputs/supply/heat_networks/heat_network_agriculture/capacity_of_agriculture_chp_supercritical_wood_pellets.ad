@@ -5,17 +5,17 @@
 - query =
     EACH(
         UPDATE(
-            V(agriculture_chp_supercritical_wood_pellets), 
-            number_of_units, 
+            V(agriculture_chp_supercritical_wood_pellets),
+            number_of_units,
             USER_INPUT() / V(agriculture_chp_supercritical_wood_pellets,heat_output_capacity)
         ),
         UPDATE(
-            OUTPUT_LINKS(V(agriculture_chp_supercritical_wood_pellets),constant), 
-            share, 
+            OUTPUT_LINKS(V(agriculture_chp_supercritical_wood_pellets),constant),
+            share,
             V(agriculture_chp_supercritical_wood_pellets, production_based_on_number_of_units)
     ))
 - priority = 0
-- max_value_gql = present:PRODUCT(Q(maximum_number_of_agriculture_chp_supercritical_wood_pellets),V(agriculture_chp_supercritical_wood_pellets,heat_output_capacity))
+- max_value_gql = present:DIVIDE(DIVIDE(MAX(V(agriculture_final_demand_electricity,demand), V(agriculture_chp_supercritical_wood_pellets, output_of_electricity)*2), V(agriculture_chp_supercritical_wood_pellets,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(agriculture_chp_supercritical_wood_pellets,number_of_units),V(agriculture_chp_supercritical_wood_pellets,heat_output_capacity))
 - step_value = 1.0
