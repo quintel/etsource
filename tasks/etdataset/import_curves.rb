@@ -71,7 +71,7 @@ namespace :import do
 
       missing_curves.each do |curve_name, curve_path|
         # Create a path to a profile in a different year (it may not exist).
-        other_year_path = [1, -1, 2, -2]
+        other_year_path = [1, -1, 2, -2, 3, -3]
           .map { |other_year| curve_path.join("../../../../#{ etdataset_country }/#{ (year.to_i + other_year).to_s }/output/#{ curve_name }") }
           .detect(&:exist?)
 
