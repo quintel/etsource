@@ -219,7 +219,7 @@ The `TIME_CURVE` function is presently hard-coded to use values from the
 "2011" row.
 
 ```ruby
-TIME_CURVE(woody_biomass, max_demand) # => 34.0
+TIME_CURVE(dry_biomass, max_demand) # => 34.0
 ```
 
 ##### CENTRAL_PRODUCTION(node_key)
