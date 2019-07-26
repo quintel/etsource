@@ -1,0 +1,11 @@
+# Central heat production from wet biomass
+
+- query =
+    SUM(
+      V(FILTER(
+          G(heat_production),
+          "input_of_bio_resources > 0 &&
+          electricity_output_conversion == 0 &&
+          steam_hot_water_output_conversion > 0"),
+        demand_of_bio_resources_including_abroad_of(wet_biomass)))
+- unit = MJ

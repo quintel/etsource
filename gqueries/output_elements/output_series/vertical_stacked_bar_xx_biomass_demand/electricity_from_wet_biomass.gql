@@ -1,0 +1,11 @@
+# Electricity production from wet biomass
+
+- query =
+    SUM(
+      V(FILTER(
+          G(electricity_production),
+          "input_of_bio_resources > 0 &&
+          electricity_output_conversion > 0 &&
+          heat_output_conversion == 0"),
+        demand_of_bio_resources_including_abroad_of(wet_biomass)))
+- unit = MJ
