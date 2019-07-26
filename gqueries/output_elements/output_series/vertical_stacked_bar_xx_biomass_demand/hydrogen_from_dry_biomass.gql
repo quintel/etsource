@@ -1,0 +1,10 @@
+# Hydrogen production from dry biomass
+
+- query =
+    SUM(
+      V(FILTER(
+          G(hydrogen_production),
+          "input_of_bio_resources > 0 &&
+          hydrogen_output_conversion > 0"),
+        demand_of_bio_resources_including_abroad_of(dry_biomass)))
+- unit = MJ

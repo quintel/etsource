@@ -1,0 +1,9 @@
+# Final demand of wood (energetic + non-energetic) from dry biomass
+
+- query =
+    SUM(
+      V(FILTER(
+        G(final_demand_group),
+        "(input_of_wood_pellets + input_of_torrefied_biomass_pellets) > 0"),
+      demand_of_bio_resources_including_abroad_of(dry_biomass)))
+- unit = MJ
