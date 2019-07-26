@@ -1,9 +1,12 @@
 # Demand of bio fuels from oily biomass
 
+- unit = PJ
 - query =
-    SUM(
-      V(FILTER(
-        G(final_demand_group),
-        "input_of_bio_fuels > 0"),
-      demand_of_bio_resources_including_abroad_of(oily_biomass)))
-- unit = MJ
+    DIVIDE(
+      SUM(
+        V(FILTER(
+          G(final_demand_group),
+          "input_of_bio_fuels > 0"),
+        demand_of_bio_resources_including_abroad_of(oily_biomass))),
+      BILLIONS
+    )

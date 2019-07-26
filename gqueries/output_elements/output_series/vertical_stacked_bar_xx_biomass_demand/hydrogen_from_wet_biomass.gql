@@ -1,10 +1,13 @@
 # Hydrogen production from wet biomass
 
+- unit = PJ
 - query =
-    SUM(
-      V(FILTER(
+    DIVIDE(
+      SUM(
+        V(FILTER(
           G(hydrogen_production),
           "input_of_bio_resources > 0 &&
           hydrogen_output_conversion > 0"),
-        demand_of_bio_resources_including_abroad_of(wet_biomass)))
-- unit = MJ
+        demand_of_bio_resources_including_abroad_of(wet_biomass))),
+      BILLIONS
+    )

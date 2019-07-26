@@ -1,9 +1,12 @@
 # Demand of bio fuels from wet biomass
 
+- unit = PJ
 - query =
-    SUM(
-      V(FILTER(
-        G(final_demand_group),
-        "input_of_bio_fuels > 0"),
-      demand_of_bio_resources_including_abroad_of(wet_biomass)))
-- unit = MJ
+    DIVIDE(
+      SUM(
+        V(FILTER(
+          G(final_demand_group),
+          "input_of_bio_fuels > 0"),
+        demand_of_bio_resources_including_abroad_of(wet_biomass))),
+      BILLIONS
+    )

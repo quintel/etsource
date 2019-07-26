@@ -1,9 +1,12 @@
 # Final demand of greengas (energetic + non-energetic) from wet biomass
 
+- unit = PJ
 - query =
-    SUM(
-      V(FILTER(
-        G(final_demand_group),
-        "(input_of_network_gas + input_of_compressed_network_gas) > 0"),
-      demand_of_bio_resources_including_abroad_of(wet_biomass)))
-- unit = MJ
+    DIVIDE(
+      SUM(
+        V(FILTER(
+          G(final_demand_group),
+          "(input_of_network_gas + input_of_compressed_network_gas) > 0"),
+        demand_of_bio_resources_including_abroad_of(wet_biomass))),
+      BILLIONS
+    )
