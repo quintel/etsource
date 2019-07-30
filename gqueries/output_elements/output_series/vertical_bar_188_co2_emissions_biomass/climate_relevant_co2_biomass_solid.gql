@@ -12,17 +12,13 @@
         V(CARRIER(biogenic_waste), potential_co2_conversion_per_mj),
       V(G(final_demand_group), key, primary_demand_of_torrefied_biomass_pellets).sum *
         V(CARRIER(torrefied_biomass_pellets), potential_co2_conversion_per_mj),
-      V(G(final_demand_group), key, primary_demand_of_wood).sum *
-        V(CARRIER(wood), potential_co2_conversion_per_mj),
       V(G(final_demand_group), key, primary_demand_of_wood_pellets).sum *
-        V(CARRIER(wood_pellets), potential_co2_conversion_per_mj),
-      V(G(final_demand_group), key, primary_demand_of_dry_biomass).sum *
-        V(CARRIER(dry_biomass), potential_co2_conversion_per_mj)
-    ) *
+        V(CARRIER(wood_pellets), potential_co2_conversion_per_mj)    
+      ) *
     INPUT_VALUE(
       IF(
         scope.graph.future?,
         climate_relevant_co2_biomass_solid_future,
         climate_relevant_co2_biomass_solid_present
       )
-    ) / 100 / BILLIONS
+    ) / 100.0 / BILLIONS
