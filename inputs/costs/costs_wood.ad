@@ -1,0 +1,15 @@
+# This slider updates the cost_per_mj of wood_pellets and torrefied_biomass_pellets
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_wood_pellets)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+      CARRIER(
+        wood_pellets,torrefied_biomass_pellets), cost_per_mj, relative_value)
+- priority = 0
+- max_value = 1550.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_wood_pellets)
+- step_value = 1.0
+- unit = euro
+- update_period = future

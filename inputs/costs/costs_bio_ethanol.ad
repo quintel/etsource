@@ -1,0 +1,15 @@
+# This slider updates the cost_per_mj of bio_ethanol (unit: eur / liter)
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_bio_ethanol)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+      CARRIER(
+        bio_ethanol), cost_per_mj, relative_value)
+- priority = 0
+- max_value = 10.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_bio_ethanol)
+- step_value = 0.1
+- unit = euro
+- update_period = future
