@@ -1,0 +1,15 @@
+# This slider updates the cost_per_mj of biodiesel and other oily liquid biofuels (bio_oil, bio_kerosene) (unit: eur / liter)
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(price_of_biodiesel)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+      CARRIER(
+        biodiesel, bio_oil, bio_kerosene), cost_per_mj, relative_value)
+- priority = 0
+- max_value = 10.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_biodiesel)
+- step_value = 0.1
+- unit = euro
+- update_period = future
