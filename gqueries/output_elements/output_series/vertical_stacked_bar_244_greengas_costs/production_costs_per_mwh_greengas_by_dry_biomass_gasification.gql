@@ -1,0 +1,14 @@
+# Total cost of greengas production by dry biomass gasification per MWh produced greengas
+
+- unit = euro
+- query =
+    PRODUCT(
+      DIVIDE(
+        V(energy_greengas_gasification_dry_biomass, total_costs_per(:converter)),
+        DIVIDE(
+          V(energy_greengas_gasification_dry_biomass, output_of_greengas),
+          MJ_PER_MWH
+        )
+      ),
+      Q(share_of_greengas_production_by_dry_biomass_gasification)
+    )
