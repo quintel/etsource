@@ -1,0 +1,20 @@
+# Final demand of greengas (energetic + non-energetic) from dry biomass
+#
+# The greengas required for transport_final_demand_compressed_network_gas should be included in this query.
+# However, the compression of network gas requires electricity. We don't want to include the bio resources
+# required for this electricity in this query (as this is already included in the electricity_from_dry_biomass).
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(FILTER(
+          G(final_demand_group),
+          "input_of_network_gas > 0"),
+        demand_of_bio_resources_including_abroad_of(dry_biomass)),
+        PRODUCT(
+          V(LINK(energy_compressor_network_gas, energy_national_gas_network_natural_gas), parent_share),
+          V(energy_distribution_greengas, demand_of_bio_resources_including_abroad_of(dry_biomass))
+        )),
+      BILLIONS
+    )
