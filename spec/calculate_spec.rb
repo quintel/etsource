@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Calculating the ETSource datasets' do
+describe 'Calculating the ETSource datasets', :slow do
   datasets = Atlas::Dataset.all.select do |dataset|
     dataset.enabled && dataset.enabled[:etengine]
   end
