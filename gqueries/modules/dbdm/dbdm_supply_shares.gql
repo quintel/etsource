@@ -1,0 +1,13 @@
+# Shares of transport, industry and households in total electricity supply by wind and solar
+
+- unit = factor
+- query =
+      IF(
+        Q(dbdm_households_progress) > 1
+        [ 0, 0, 1 ],
+        IF(
+          Q(dbdm_industry_progress) > 1,
+          [ Q(dbdm_households_share), 0, 1 - Q(dbdm_households_share)],
+          [ Q(dbdm_households_share), PRODUCT(5,Q(dbdm_transport_share)), 1 - SUM(Q(dbdm_households_share),Q(dbdm_transport_share)) ]
+        )
+      )
