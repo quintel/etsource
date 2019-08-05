@@ -1,8 +1,8 @@
 - query =
           IF(
               GRAPH().present?,
-              0,
-              QUERY_FUTURE(interconnection_net_total_investment_costs)
+              -> { 0 },
+              -> { QUERY_FUTURE(interconnection_net_total_investment_costs) }
           )
 
 - unit = euro
