@@ -5,4 +5,9 @@
 # [ electricity supply for households, electricity supply for transport, electricity supply for industry ]
 
 - unit = MJ
-- query = Q(dbdm_supply_shares).map{ |x| x * Q(dbdm_electricity_supply_by_wind_and_solar) }
+- query =
+    [
+      Q(dbdm_households_share),
+      Q(dbdm_transport_share),
+      Q(dbdm_industry_share),
+    ].map{ |x| x * Q(dbdm_electricity_supply_by_wind_and_solar) }
