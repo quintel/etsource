@@ -1,0 +1,18 @@
+# Progress share of households
+
+- unit = factor
+- query =
+    DIVIDE(
+      IF(
+        Q(dbdm_progress_share_of_transport) > 1.0,
+        SUM(
+          Q(dbdm_electricity_supply_for_households),
+          PRODUCT(
+            Q(dbdm_progress_share_of_transport) - 1,
+            V(transport_final_demand_electricity, demand)
+          )
+        ),
+        Q(dbdm_electricity_supply_for_households)
+      ),
+      V(households_final_demand_electricity, demand)
+    )
