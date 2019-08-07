@@ -1,5 +1,10 @@
 # Returns renewability fraction of primary energy use
 
-- query = Q(renewability)
+- query =
+    IF(
+      GRAPH().future?,
+      -> { Q(renewability )},
+      -> { 0 }
+    )
 - unit = factor
 - deprecated_key = policy_renewable_percentage

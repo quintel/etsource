@@ -1,2 +1,8 @@
-- query = Q(share_of_renewable_electricity)
+- query =
+    IF(
+      GRAPH().future?,
+      -> { Q(share_of_renewable_electricity) },
+      -> { 0 }
+    )
+
 - unit = factor

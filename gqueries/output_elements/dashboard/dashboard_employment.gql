@@ -1,4 +1,10 @@
 # Returns number of man year of employment
 
-- query = Q(total_man_years)
+- query =
+    IF(
+      GRAPH().future?,
+      -> { Q(total_man_years) },
+      -> { 0 }
+    )
+
 - unit = man_years

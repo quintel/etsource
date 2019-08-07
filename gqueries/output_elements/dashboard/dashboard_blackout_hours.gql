@@ -1,2 +1,6 @@
 - query =
-  V(GRAPH(), number_of_blackout_hours)
+    IF(
+      GRAPH().future?,
+      -> { V(GRAPH(), number_of_blackout_hours) },
+      -> { 0 }
+    )

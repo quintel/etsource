@@ -1,3 +1,9 @@
+- query =
+    IF(
+      GRAPH().future?,
+      -> { Q(primary_demand_caused_by_final_demand) },
+      -> { 0 }
+    )
+
 - unit = MJ
-- query = Q(primary_demand_caused_by_final_demand)
 - deprecated_key = policy_total_primary_energy

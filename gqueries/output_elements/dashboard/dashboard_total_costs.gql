@@ -1,3 +1,9 @@
-- query = UNIT(Q(total_costs),billions)
+- query =
+    IF(
+      GRAPH().future?,
+      -> { UNIT(Q(total_costs),billions) },
+      -> { 0 }
+    )
+
 - unit = bln_euro
 - deprecated_key = policy_total_energy_cost

@@ -1,3 +1,9 @@
-- query = Q(net_import_of_energy)
+- query =
+    IF(
+      GRAPH().future?,
+      -> { Q(net_import_of_energy) },
+      -> { 0 }
+    )
+
 - unit = factor
 - deprecated_key = policy_net_energy_import

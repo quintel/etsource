@@ -1,10 +1,17 @@
 - query =
-    GROUP(merit_order_converters_for_dashboard).each_with_object({}){ |c,h|
-      h[c.key] = {
-        :profitability => c.converter_api.profitability,
-        :capacity => c.converter_api.input_capacity *
-                     c.converter_api.electricity_output_conversion *
-                     c.converter_api.number_of_units
-      }
-    }
+    IF(
+      GRAPH().future?,
+      -> {
+        GROUP(merit_order_converters_for_dashboard).each_with_object({}){ |c,h|
+          h[c.key] = {
+            :profitability => c.converter_api.profitability,
+            :capacity => c.converter_api.input_capacity *
+                        c.converter_api.electricity_output_conversion *
+                        c.converter_api.number_of_units
+          }
+        }
+      },
+      -> { {} }
+    )
+
 - unit = hash

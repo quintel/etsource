@@ -16,25 +16,30 @@
 # Next, for households and buildings, the MAXIMUM value for the FIXED costs is
 # taken for heat pumps that provide heating and cooling.
 # Variable costs need to be taken into account for all technologies and should not be corrected.
-#
-
 
 - query =
-    SUM(
-      - V(
-        buildings_space_heater_collective_heatpump_water_water_ts_electricity,
-        buildings_cooling_collective_heatpump_water_water_ts_electricity,
-        buildings_space_heater_heatpump_air_water_network_gas,
-        buildings_cooling_heatpump_air_water_network_gas,
-        households_cooling_heatpump_air_water_electricity_share,
-        households_space_heater_heatpump_air_water_electricity,
-        households_cooling_heatpump_ground_water_electricity,
-        households_space_heater_heatpump_ground_water_electricity,
-        "fixed_costs_per(:converter)"
-      ).sum,
-      Q(buildings_collective_heatpump_water_water_ts_electricity_total_cost_for_correction),
-      Q(buildings_heatpump_air_water_network_gas_total_cost_for_correction),
-      Q(households_heatpump_ground_water_electricity_total_cost_for_correction),
-      Q(households_heater_heatpump_air_water_electricity_total_cost_for_correction),
+    IF(
+      GRAPH().future?,
+      -> {
+        SUM(
+          - V(
+            buildings_space_heater_collective_heatpump_water_water_ts_electricity,
+            buildings_cooling_collective_heatpump_water_water_ts_electricity,
+            buildings_space_heater_heatpump_air_water_network_gas,
+            buildings_cooling_heatpump_air_water_network_gas,
+            households_cooling_heatpump_air_water_electricity_share,
+            households_space_heater_heatpump_air_water_electricity,
+            households_cooling_heatpump_ground_water_electricity,
+            households_space_heater_heatpump_ground_water_electricity,
+            "fixed_costs_per(:converter)"
+          ).sum,
+          Q(buildings_collective_heatpump_water_water_ts_electricity_total_cost_for_correction),
+          Q(buildings_heatpump_air_water_network_gas_total_cost_for_correction),
+          Q(households_heatpump_ground_water_electricity_total_cost_for_correction),
+          Q(households_heater_heatpump_air_water_electricity_total_cost_for_correction),
+        )
+      },
+      -> { 0 }
     )
+
 - unit = euro

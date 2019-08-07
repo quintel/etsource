@@ -1,3 +1,9 @@
-- query = Q(bio_footprint)
+- query =
+    IF(
+      GRAPH().future?,
+      -> { Q(bio_footprint) },
+      -> { 0 }
+    )
+
 - unit = factor
 - deprecated_key = policy_not_shown

@@ -1,3 +1,8 @@
+# All other dashboard queries return values only for the future year, as the
+# dashboard does not care about the present. This query is an exception, as
+# the dashboard will calculate the difference between the two to show the
+# change in energy use.
+
 - unit = MJ
 - query = Q(primary_demand_caused_by_final_demand) + Q(losses_for_exported_energy)
 - deprecated_key = policy_total_primary_energy
