@@ -10,10 +10,8 @@
         biogas = G(energy_export).select { |node| node.query.input_of_biogas > 0 };
         torrefied_biomass_pellets = G(energy_export).select { |node| node.query.input_of_torrefied_biomass_pellets > 0 };
         wood_pellets = G(energy_export).select { |node| node.query.input_of_wood_pellets > 0 };
-        dry_biomass = G(energy_export).select { |node| node.query.input_of_dry_biomass > 0 };
-        corn = G(energy_export).select { |node| node.query.input_of_corn > 0 };
-        manure = G(energy_export).select { |node| node.query.input_of_manure > 0 };
-        wood = G(energy_export).select { |node| node.query.input_of_wood > 0 };
+        bio_kerosene = G(energy_export).select { |node| node.query.input_of_bio_kerosene > 0 };
+        biogenic_waste = G(energy_export).select { |node| node.query.input_of_biogenic_waste > 0 };
 
         SUM(
             V(greengas, "greengas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
@@ -24,8 +22,6 @@
             V(biogas, "biogas_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
             V(torrefied_biomass_pellets, "torrefied_biomass_pellets_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
             V(wood_pellets, "wood_pellets_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            V(dry_biomass, "dry_biomass_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            V(corn, "corn_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            V(manure, "manure_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
-            V(wood, "wood_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
+            V(bio_kerosene, "bio_kerosene_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)"),
+            V(biogenic_waste, "biogenic_waste_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
         ) / THOUSANDS
