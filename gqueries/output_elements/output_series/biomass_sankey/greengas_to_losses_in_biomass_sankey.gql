@@ -3,12 +3,14 @@
 - unit = PJ
 - query =
     DIVIDE(
-       SUM(
-        V(energy_national_gas_network_natural_gas,
-          energy_greengas_upgrade_biogas,
+      SUM(
+        V(energy_greengas_upgrade_biogas,
           energy_greengas_gasification_dry_biomass,
           energy_greengas_gasification_wet_biomass,
           output_of_loss),
-        V(energy_torrefaction_wood, input_of_network_gas) * Q(share_of_greengas_in_gas_network)),
+        V(energy_national_gas_network_natural_gas,
+          output_of_loss) * Q(share_of_greengas_in_gas_network),
+        V(energy_torrefaction_wood,
+          input_of_network_gas) * Q(share_of_greengas_in_gas_network)),
        BILLIONS
        )
