@@ -138,6 +138,8 @@ energy_export_oil_products:
   demand: 0.0
 energy_power_turbine_network_gas:
   demand: 0.0
+energy_production_wet_biomass:
+  max_demand: 77.70614712
 energy_power_supercritical_waste_mix:
   demand: 0.0
 energy_power_engine_network_gas:
@@ -152,6 +154,8 @@ energy_heat_network_loss:
   demand: 0.0
 energy_power_combined_cycle_ccs_coal:
   demand: 0.0
+energy_distribution_greengas:
+  demand: 0.4386275369015
 energy_extraction_coal:
   demand: 0.0
 energy_heater_for_heat_network_network_gas:
@@ -160,6 +164,8 @@ energy_extraction_uranium_oxide:
   demand: 0.0
 energy_power_sector_own_use_electricity:
   demand: 0.202264
+energy_production_oily_biomass:
+  max_demand: 23.79459099
 energy_power_ultra_supercritical_crude_oil:
   demand: 0.0
 energy_power_combined_cycle_ccs_network_gas:
@@ -197,6 +203,10 @@ energy_power_wind_turbine_inland:
   demand: 7.695463917525774
 energy_power_nuclear_gen2_uranium_oxide:
   demand: 0.0
+energy_chp_engine_biogas:
+  demand: 0.0
+energy_production_dry_biomass:
+  max_demand: 110.3435735
 energy_heater_for_heat_network_waste_mix:
   demand: 0.0
 energy_power_hydro_river:
@@ -387,6 +397,16 @@ transport_final_demand_for_rail_electricity-transport_freight_train_using_electr
   parent_share: 0.137103914951699
 transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel:
   parent_share: 1.0
+energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
+  child_share: 0.55
+energy_greengas_upgrade_biogas-energy_distribution_greengas@greengas:
+  child_share: 1.0
+energy_greengas_gasification_dry_biomass-energy_distribution_greengas@greengas:
+  child_share: 0.0
+energy_distribution_non_biogenic_waste-energy_distribution_waste_mix@waste_mix:
+  child_share: 0.45
+energy_greengas_gasification_wet_biomass-energy_distribution_greengas@greengas:
+  child_share: 0.0
 households_final_demand_for_space_heating_electricity-households_space_heater_heatpump_air_water_electricity@electricity:
   parent_share: 0.04
 households_final_demand_electricity-households_final_demand_for_hot_water_electricity@electricity:

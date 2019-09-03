@@ -138,6 +138,8 @@ energy_export_oil_products:
   demand: 0.0
 energy_power_turbine_network_gas:
   demand: 0.0
+energy_production_wet_biomass:
+  max_demand: 3776.3892
 energy_power_supercritical_waste_mix:
   demand: 5083.2
 energy_power_engine_network_gas:
@@ -152,6 +154,8 @@ energy_heat_network_loss:
   demand: 0.0
 energy_power_combined_cycle_ccs_coal:
   demand: 0.0
+energy_distribution_greengas:
+  demand: 10.991586
 energy_extraction_coal:
   demand: 0.0
 energy_heater_for_heat_network_network_gas:
@@ -160,6 +164,8 @@ energy_extraction_uranium_oxide:
   demand: 0.0
 energy_power_sector_own_use_electricity:
   demand: 290.580344
+energy_production_oily_biomass:
+  max_demand: 415.9247601
 energy_power_ultra_supercritical_crude_oil:
   demand: 0.0
 energy_power_combined_cycle_ccs_network_gas:
@@ -176,13 +182,13 @@ energy_power_nuclear_gen3_uranium_oxide:
 energy_heater_for_heat_network_coal:
   demand: 0.0
 energy_heater_for_heat_network_wood_pellets:
-  demand: 13.423645320197044
+  demand: 133.74384236453201
 energy_power_engine_diesel:
   demand: 0.0
 energy_power_wind_turbine_coastal:
   demand: 0.0
 energy_import_heat:
-  demand: 0.0
+  demand: 77.4
 energy_power_ultra_supercritical_coal:
   demand: 0.0
 energy_cokesoven_consumption_coal_gas:
@@ -197,8 +203,12 @@ energy_power_wind_turbine_inland:
   demand: 66.63711340206186
 energy_power_nuclear_gen2_uranium_oxide:
   demand: 0.0
+energy_chp_engine_biogas:
+  demand: 0.0
+energy_production_dry_biomass:
+  max_demand: 3064.429955
 energy_heater_for_heat_network_waste_mix:
-  demand: 903.6756756757
+  demand: 998.6486486486486
 energy_power_hydro_river:
   demand: 0.0
 energy_power_supercritical_coal:
@@ -244,7 +254,7 @@ households_water_heater_hybrid_heatpump_air_water_electricity:
     :network_gas: 0.0
     :ambient_heat: 0.6666666666666672
 households_final_demand_steam_hot_water:
-  demand: 558.5
+  demand: 567.428
 households_collective_burner_hydrogen:
   demand: 0.0
 households_final_demand_crude_oil:
@@ -256,7 +266,7 @@ households_final_demand_network_gas:
 households_collective_chp_wood_pellets:
   demand: 0.0
 households_collective_burner_network_gas:
-  demand: 108.44660194174757
+  demand: 108.44650881941747
 households_final_demand_solar_thermal:
   demand: 38.889961
 households_solar_pv_solar_radiation:
@@ -387,6 +397,16 @@ transport_final_demand_for_rail_electricity-transport_freight_train_using_electr
   parent_share: 0.137104
 transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel:
   parent_share: 1.0
+energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
+  child_share: 0.55
+energy_greengas_upgrade_biogas-energy_distribution_greengas@greengas:
+  child_share: 1.0
+energy_greengas_gasification_dry_biomass-energy_distribution_greengas@greengas:
+  child_share: 0.0
+energy_distribution_non_biogenic_waste-energy_distribution_waste_mix@waste_mix:
+  child_share: 0.45
+energy_greengas_gasification_wet_biomass-energy_distribution_greengas@greengas:
+  child_share: 0.0
 households_final_demand_for_space_heating_electricity-households_space_heater_heatpump_air_water_electricity@electricity:
   parent_share: 0.04
 households_final_demand_electricity-households_final_demand_for_hot_water_electricity@electricity:
