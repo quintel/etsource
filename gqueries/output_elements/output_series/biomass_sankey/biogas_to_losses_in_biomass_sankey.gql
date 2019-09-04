@@ -3,6 +3,9 @@
 - unit = PJ
 - query =
     DIVIDE(
-       V(energy_biogas_fermentation_wet_biomass, output_of_loss),
-       BILLIONS
-       )
+      PRODUCT(
+         V(energy_biogas_fermentation_wet_biomass, output_of_loss),
+         (1.0 - V(LINK(energy_greengas_upgrade_biogas, energy_distribution_biogas), parent_share))
+      ),
+      BILLIONS
+    )
