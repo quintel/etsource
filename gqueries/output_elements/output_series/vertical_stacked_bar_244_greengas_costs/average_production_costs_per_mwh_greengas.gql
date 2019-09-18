@@ -1,0 +1,9 @@
+# Total cost of greengas production by biogas fermentation (including the upgrade) per MWh produced greengas
+
+- unit = euro
+- query =
+    SUM(
+      Q(production_costs_per_mwh_greengas_by_biogas_fermentation),
+      Q(production_costs_per_mwh_greengas_by_dry_biomass_gasification),
+      Q(production_costs_per_mwh_greengas_by_wet_biomass_gasification)
+    )
