@@ -1,0 +1,9 @@
+# Primary demand of carrier group 'biomass_products' for the export converter group
+
+- unit = PJ
+- query =
+    SUM(
+       V(energy_flexibility_curtailment_electricity, primary_demand_of_torrefied_biomass_pellets),
+       V(energy_flexibility_curtailment_electricity, primary_demand_of_wood_pellets),
+       V(energy_flexibility_curtailment_electricity, primary_demand_of_dry_biomass)
+    ) / BILLIONS
