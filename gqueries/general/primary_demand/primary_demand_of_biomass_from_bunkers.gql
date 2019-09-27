@@ -1,0 +1,11 @@
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(SECTOR(bunkers),G(final_demand_group)),
+          "primary_demand_of_wood_pellets + primary_demand_of_torrefied_biomass_pellets")
+        ),
+      BILLIONS
+    )
+- deprecated_key = bunkers_biomass_primary_demand
