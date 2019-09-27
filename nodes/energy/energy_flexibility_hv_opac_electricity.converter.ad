@@ -1,15 +1,15 @@
 - use = energetic
 - energy_balance_group = technologies
-- output.electricity = 0.85
+- output.electricity = 0.8
 - output.loss = elastic
-- groups = [cost_flexibility, lv_net_flexibility, p2p]
-- merit_order.group = household_batteries
-- merit_order.level = lv
+- groups = [cost_flexibility, hv_net_flexibility, p2p]
+- merit_order.group = opac
+- merit_order.level = hv
 - merit_order.subtype = storage
 - merit_order.type = flex
 - storage.cost_per_mwh = 0.0
-- storage.decay = 4.9e-08
-- storage.volume = 0.0198
+- storage.decay = 0.0
+- storage.volume = 8400.0
 - availability = 1.0
 - free_co2_factor = 0.0
 - forecasting_error = 0.0
@@ -19,19 +19,19 @@
 - takes_part_in_ets = 0.0
 - part_load_efficiency_penalty = 0.0
 - part_load_operating_point = 0.0
-- electricity_output_capacity = 0.0044
+- electricity_output_capacity = 1400.0
 - heat_output_capacity = 0.0
-- typical_input_capacity = 0.00126
+- typical_input_capacity = 500.0
 - sustainability_share = 1.0
-- initial_investment = 7147.6
+- initial_investment = 1785000000.0
 - ccs_investment = 0.0
 - cost_of_installing = 0.0
 - decommissioning_costs = 0.0
-- fixed_operation_and_maintenance_costs_per_year = 0.0
+- fixed_operation_and_maintenance_costs_per_year = 19800000.0
 - variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
-- construction_time = 0.0
-- technical_lifetime = 10.0
+- construction_time = 5.0
+- technical_lifetime = 50.0
 - wacc = 0.04
 - hours_prep_nl = 0.0
 - hours_prod_nl = 0.0
@@ -39,6 +39,6 @@
 - hours_maint_nl = 0.0
 - hours_remov_nl = 0.0
 
-~ input.electricity = 1.0 / 0.89
+~ input.electricity = 1.0 / 0.9
 
 ~ demand = 0.0
