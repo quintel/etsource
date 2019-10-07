@@ -7,7 +7,7 @@
 - query =
     IF(
         QUERY_FUTURE(households_space_heater_heatpump_air_water_electricity_future_in_investment_cost_table) >
-        QUERY_FUTURE(households_cooling_heatpump_air_water_electricity_future_in_investment_cost_table),
+        (V(households_cooling_heatpump_air_water_electricity, total_investment_over_lifetime_per(:converter)) / BILLIONS),
         V(households_space_heater_heatpump_air_water_electricity,fixed_costs_per(:converter)),
         V(households_cooling_heatpump_air_water_electricity,fixed_costs_per(:converter))
     )
