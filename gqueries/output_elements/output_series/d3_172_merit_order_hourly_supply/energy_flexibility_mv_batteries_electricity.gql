@@ -1,0 +1,8 @@
+- query =
+    SUM_CURVES(
+      V(energy_flexibility_mv_batteries_electricity, electricity_output_curve),
+      INVERT_CURVE(
+        V(energy_flexibility_mv_batteries_electricity, electricity_input_curve)
+      )
+    )
+- unit = curve

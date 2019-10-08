@@ -1,11 +1,11 @@
-# investment costs of buildings_cooling_heatpump_air_water_network_gas 
+# investment costs of buildings_cooling_heatpump_air_water_network_gas
 # and buildings_space_heater_heatpump_air_water_network_gas
 # IF newly built (green field approach)
 # Corrected for double counting
 
 - query =
     IF(
-        QUERY_FUTURE(buildings_cooling_heatpump_air_water_network_gas_future_in_investment_cost_table) > 
+        (V(buildings_cooling_heatpump_air_water_network_gas, total_investment_over_lifetime_per(:converter)) / BILLIONS) >
         QUERY_FUTURE(buildings_space_heater_heatpump_air_water_network_gas_future_in_investment_cost_table),
         V(buildings_cooling_heatpump_air_water_network_gas,fixed_costs_per(:converter)),
         V(buildings_space_heater_heatpump_air_water_network_gas,fixed_costs_per(:converter))
