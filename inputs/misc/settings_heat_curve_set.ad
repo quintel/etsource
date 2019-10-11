@@ -1,8 +1,6 @@
-- query = UPDATE(AREA(), heat_curve_set, USER_INPUT() == 1.0 ? 1.0 : 0.0)
+- query = UPDATE(AREA(), heat_curve_set, USER_INPUT())
 - priority = 1
-- max_value = 1.0
-- min_value = 0.0
-- start_value_gql = present:0.0
-- step_value = 1.0
-- unit = x
+- min_value_gql = present:CURVE_SET_VARIANTS(heat)
+- start_value_gql = present:"default"
+- unit = enum
 - update_period = future
