@@ -37,12 +37,12 @@ Atlas::Dataset.all.each do |dataset|
       end # each variant in the curve-set
     end # each curve set
 
-    # Heat / insulation profiles
+    # Weather profiles
     # --------------------------
     # Values in the insulation profiles should sum to 1/3600, representing the
     # demand profile throughout the year, converted from joules to watts.
 
-    heat_set = dataset.dataset_dir.join('curves/heat')
+    heat_set = dataset.dataset_dir.join('curves/weather')
 
     Pathname.glob(heat_set.join('**/*insulated_household.csv')).each do |file|
       context file.to_s do
