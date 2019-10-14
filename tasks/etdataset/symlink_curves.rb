@@ -22,7 +22,7 @@ task symlink_curves: :environment do
 
     dest = Pathname.new("datasets/#{ area }/")
     source = Pathname.new("../#{base_dataset}/curves/")
-    source_heat = Pathname.new("../../../#{base_dataset}/curves/heat/")
+    source_heat = Pathname.new("../../../#{base_dataset}/curves/weather/")
 
     puts "Symlinking curves for: #{ area }/#{ year }"
 
@@ -33,9 +33,9 @@ task symlink_curves: :environment do
 
     # Create new empty directories
     # FileUtils.mkdir_p(dest.join("curves/"))
-    # FileUtils.mkdir_p(dest.join("curves/heat/"))
-    # FileUtils.mkdir_p(dest.join("curves/heat/1987"))
-    # FileUtils.mkdir_p(dest.join("curves/heat/default"))
+    # FileUtils.mkdir_p(dest.join("curves/weather/"))
+    # FileUtils.mkdir_p(dest.join("curves/weather/1987"))
+    # FileUtils.mkdir_p(dest.join("curves/weather/default"))
 
     # Symlink all curves in the root directory
     FileUtils.ln_sf(source, dest)
@@ -46,16 +46,16 @@ task symlink_curves: :environment do
     #   FileUtils.ln_sf(Pathname.new(source.join(csv.basename)), Pathname.new(dest))
     # end
     #
-    # # Symlink all curves in the heat/1987 directory
-    # Pathname.glob("datasets/#{base_dataset}/curves/heat/1987/*.csv").each do |csv|
+    # # Symlink all curves in the weather/1987 directory
+    # Pathname.glob("datasets/#{base_dataset}/curves/weather/1987/*.csv").each do |csv|
     #   # Symlink to base country curve
-    #   FileUtils.ln_sf(Pathname.new(source_heat.join("1987/#{csv.basename}")), Pathname.new(dest.join("heat/1987")))
+    #   FileUtils.ln_sf(Pathname.new(source_heat.join("1987/#{csv.basename}")), Pathname.new(dest.join("weather/1987")))
     # end
     #
-    # # Symlink all curves in the heat/default directory
-    # Pathname.glob("datasets/#{base_dataset}/curves/heat/default/*.csv").each do |csv|
+    # # Symlink all curves in the weather/default directory
+    # Pathname.glob("datasets/#{base_dataset}/curves/weather/default/*.csv").each do |csv|
     #   # Symlink to base country curve
-    #   FileUtils.ln_sf(Pathname.new(source_heat.join("default/#{csv.basename}")), Pathname.new(dest.join("heat/default")))
+    #   FileUtils.ln_sf(Pathname.new(source_heat.join("default/#{csv.basename}")), Pathname.new(dest.join("weather/default")))
     # end
 
     encrypt_balance(dest)

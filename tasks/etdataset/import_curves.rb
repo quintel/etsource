@@ -111,34 +111,34 @@ namespace :import do
       end
 
       if etdataset_country == 'nl'
-        # Copy 1987 heat curves from ETDataset
-        dest = Pathname.new("datasets/#{ country }/curves/heat/1987")
+        # Copy 1987 weather curves from ETDataset
+        dest = Pathname.new("datasets/#{ country }/curves/weather/1987")
         heat_1987_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/1987/output/*.csv")
         heat_1987_csvs.each do |csv|
           cp_csv(csv, dest)
         end
 
-        # Copy default heat curves from ETDataset
-        dest = Pathname.new("datasets/#{ country }/curves/heat/default")
+        # Copy default weather curves from ETDataset
+        dest = Pathname.new("datasets/#{ country }/curves/weather/default")
         heat_default_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/#{ year }/output/*.csv")
         heat_default_csvs.each do |csv|
           cp_csv(csv, dest)
         end
 
       else
-        # symlink to NL2015 1987 heat curves
-        Pathname.glob("datasets/nl/curves/heat/1987/*.csv").each do |csv|
+        # symlink to NL2015 1987 weather curves
+        Pathname.glob("datasets/nl/curves/weather/1987/*.csv").each do |csv|
           FileUtils.ln_sf(
-            Pathname.new("../../../../nl/curves/heat/1987/#{ csv.basename }"),
-            Pathname.new("datasets/#{ country }/curves/heat/1987/")
+            Pathname.new("../../../../nl/curves/weather/1987/#{ csv.basename }"),
+            Pathname.new("datasets/#{ country }/curves/weather/1987/")
           )
         end
 
-        # symlink to NL2015 default heat curves
-        Pathname.glob("datasets/nl/curves/heat/default/*.csv").each do |csv|
+        # symlink to NL2015 default weather curves
+        Pathname.glob("datasets/nl/curves/weather/default/*.csv").each do |csv|
           FileUtils.ln_sf(
-            Pathname.new("../../../../nl/curves/heat/default/#{ csv.basename }"),
-            Pathname.new("datasets/#{ country }/curves/heat/default/")
+            Pathname.new("../../../../nl/curves/weather/default/#{ csv.basename }"),
+            Pathname.new("datasets/#{ country }/curves/weather/default/")
           )
         end
       end
