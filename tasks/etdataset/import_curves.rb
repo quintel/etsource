@@ -47,11 +47,18 @@ namespace :import do
       end
 
       dest = Pathname.new("datasets/#{ country }/curves")
+
+      # If the curves directory doesn't exist yet, create an empty directory
+      if !dest.exist?
+        FileUtils.mkdir_p(dest)
+      end
+
       csvs = Pathname.glob("#{ETDATASET_PATH}/curves/**/#{ etdataset_country }/#{ year }/output/*.csv")
 
       puts "Importing curves for: #{ country }/#{ year }"
 
       csvs.select.with_index do |csv, index|
+        # puts "    - #{ csv }"
         # Remove old load_profiles directory, if it still exists
         FileUtils.rm_rf(Pathname.new("datasets/#{ country }/load_profiles/"), :secure=>true)
 
@@ -110,6 +117,7 @@ namespace :import do
           Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/#{ extreme_weather_year }/output/*.csv").each do |csv|
             cp_csv(csv, dest.join("weather/#{ extreme_weather_year }"))
           end
+        end
 
         # Copy default heat curves from ETDataset.
         Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/#{ year }/output/*.csv").each do |csv|
