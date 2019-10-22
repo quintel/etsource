@@ -3,7 +3,7 @@
 - input.electricity = 0.0416666666666667
 - input.geothermal = 0.9583333333333333
 - output.steam_hot_water = 1.0
-- groups = [cost_heat_pumps, heat_production, application_group, non_final_electricity_demand_converters, wacc_proven_tech]
+- groups = [cost_heat_pumps, heat_production, application_group, non_final_electricity_demand_converters]
 - presentation_group = heat_pumps
 - merit_order.group = households_heating
 - merit_order.level = mv
@@ -28,11 +28,13 @@
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
 - construction_time = 0.0
 - technical_lifetime = 25.0
-- wacc = 0.04
+- wacc = 0.06
 - hours_prep_nl = 0.0
 - hours_prod_nl = 0.0
 - hours_place_nl = 19530.0
 - hours_maint_nl = 10710.0
 - hours_remov_nl = 0.0
 
-~ demand = EB("residential", geothermal)
+~ demand =
+    EB(commercial_and_public_services, geothermal) +
+    EB("residential", geothermal)
