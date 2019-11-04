@@ -1,4 +1,6 @@
 - query =
+  UPDATE(AREA(), weather_curve_set, USER_INPUT());
+
   x = WEATHER_PROPERTY(average_difference_in_air_temperature);
   heat_factor = 1.0 - 0.0893386 * x;
   cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
@@ -16,7 +18,6 @@
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, cool_factor),
       UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating), preset_demand, heat_factor),
       UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor),
-      UPDATE(AREA(), weather_curve_set, USER_INPUT()),
       UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
       UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
       UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
