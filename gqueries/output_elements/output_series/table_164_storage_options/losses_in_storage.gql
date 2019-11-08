@@ -12,9 +12,6 @@
       V(energy_flexibility_hv_opac_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
       V(energy_flexibility_mv_batteries_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
       V(bunkers_flexibility_p2g_electricity, "loss_output_conversion * demand"),
-      V(industry_chemicals_other_flexibility_p2h_electricity, "loss_output_conversion * demand"),
-      V(industry_chemicals_refineries_flexibility_p2h_electricity, "loss_output_conversion * demand"),
-      V(industry_other_food_flexibility_p2h_electricity, "loss_output_conversion * demand"),
-      V(industry_other_paper_flexibility_p2h_electricity, "loss_output_conversion * demand")
+      SUM(V(INTERSECTION(G(p2h), SECTOR(industry)), "loss_output_conversion * demand"))
     ) / BILLIONS
 - unit = PJ
