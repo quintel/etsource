@@ -24,25 +24,22 @@ namespace :import do
     end
 
     curves.each do |country, year|
-      # If ETSource country is nl2016, one should look for nl in ETDataset folders
-      if country == 'nl2012'
-        etdataset_country = 'nl'
-      elsif country == 'nl2013'
-        etdataset_country = 'nl'
-      elsif country == 'nl2016'
+      # If ETSource country is nl (either nl2012, nl2013, nl or nl2016),
+      # one should look for nl in ETDataset folders
+      if country.start_with? 'nl'
         etdataset_country = 'nl'
       else
         etdataset_country = country
       end
 
-      # missing_curves is now a hash (dictionary) in the form:
+      # Missing_curves is now a hash (dictionary) in the form:
       # { "curve_name" => "datasets/nl/curves/.../curve_name.csv" }
       missing_curves =
         Pathname.glob("#{ETDATASET_PATH}/curves/**/nl/2015/output/*.csv")
           .each_with_object({}) { |path, data| data[path.basename] = path }
 
-      # Remove all insulation curves from the set of missing curves, since
-      # these are copied later on
+      # Remove all heat curves from the set of missing curves, since
+      # these are copied separately at a later stage in this script
       missing_curves.each do |curve_name, curve_path|
         if (curve_name.basename.to_s.start_with?('air') || curve_name.basename.to_s.start_with?('insulation'))
           missing_curves.delete(curve_name.basename)
@@ -50,12 +47,19 @@ namespace :import do
       end
 
       dest = Pathname.new("datasets/#{ country }/curves")
+
+      # If the curves directory doesn't exist yet, create an empty directory
+      if !dest.exist?
+        FileUtils.mkdir_p(dest)
+      end
+
       csvs = Pathname.glob("#{ETDATASET_PATH}/curves/**/#{ etdataset_country }/#{ year }/output/*.csv")
 
       puts "Importing curves for: #{ country }/#{ year }"
 
-      count = csvs.select.with_index do |csv, index|
-        # Remove old load_profiles directory
+      csvs.select.with_index do |csv, index|
+        # puts "    - #{ csv }"
+        # Remove old load_profiles directory, if it still exists
         FileUtils.rm_rf(Pathname.new("datasets/#{ country }/load_profiles/"), :secure=>true)
 
         # Remove the old files, some of which may no longer exist in ETDataset.
@@ -63,21 +67,9 @@ namespace :import do
 
         csv_base = csv.basename('.csv').to_s
 
-        if csv_base.start_with?('solar_pv')
-          # Copy the solar_pv curve
-          cp_csv(csv, dest)
-          # and duplicate solar_pv to solar_pv_profile_1
-          cp_csv(csv, Pathname.new("datasets/#{ country }/curves/solar_pv_profile_1.csv"))
-        elsif (!csv_base.start_with?('air') && !csv_base.start_with?('insulation'))
+        if (!csv_base.start_with?('air') && !csv_base.start_with?('insulation'))
           # Copy the new files
           cp_csv(csv, dest)
-        end
-
-        # If nl, copy es2012 solar pv profile
-        if country == 'nl'
-          cp_csv(Pathname.new("#{ETDATASET_PATH}/curves/supply/solar/data/es/2015/output/solar_pv.csv"), Pathname.new("datasets/#{ country }/curves/solar_pv_profile_2.csv"))
-        else
-          FileUtils.ln_sf(Pathname.new("../../nl/curves/solar_pv_profile_2.csv"), Pathname.new("datasets/#{ country }/curves/"))
         end
 
         # Remove the name of this file from missing_curves.
@@ -86,61 +78,55 @@ namespace :import do
 
       missing_curves.each do |curve_name, curve_path|
         # Create a path to a profile in a different year (it may not exist).
-        other_year_path = [1, -1, 2, -2]
+        other_year_path = [1, -1, 2, -2, 3, -3]
           .map { |other_year| curve_path.join("../../../../#{ etdataset_country }/#{ (year.to_i + other_year).to_s }/output/#{ curve_name }") }
           .detect(&:exist?)
 
         if other_year_path
-          if other_year_path.basename.to_s == 'solar_pv.csv'
-            cp_csv(other_year_path, dest)
-            cp_csv(other_year_path, Pathname.new("datasets/#{ country }/curves/solar_pv_profile_1.csv"))
-          else
-            # If the other year profile exists, copy it.
-            cp_csv(other_year_path, dest)
-          end
+          # If the other year curve exists, copy it.
+          cp_csv(other_year_path, dest)
         else
-          if curve_name.basename.to_s == 'solar_pv.csv'
-            # Symlink the NL 2015 profiles for solar pv.
-            FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
-            FileUtils.ln_sf(Pathname.new("../../nl/curves/solar_pv_profile_1.csv"), Pathname.new("datasets/#{ country }/curves/"))
-          else
-            # Symlink the NL 2015 profile.
-            FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), Pathname.new("datasets/#{ country }/curves/"))
-          end
+          # Else, symlink the nl 2015 curve.
+          FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), dest)
         end
       end
 
-      if etdataset_country == 'nl'
-        # Copy 1987 heat curves from ETDataset
-        dest = Pathname.new("datasets/#{ country }/curves/heat/1987")
-        heat_1987_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/1987/output/*.csv")
-        heat_1987_csvs.each do |csv|
-          cp_csv(csv, dest)
-        end
+      # Duplicate solar_pv.csv to solar_pv_profile_1.csv.
+      cp_csv(Pathname.new("datasets/#{ country }/curves/solar_pv.csv"), Pathname.new("datasets/#{ country }/curves/solar_pv_profile_1.csv"))
 
-        # Copy default heat curves from ETDataset
-        dest = Pathname.new("datasets/#{ country }/curves/heat/default")
-        heat_default_csvs = Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/#{ year }/output/*.csv")
-        heat_default_csvs.each do |csv|
-          cp_csv(csv, dest)
-        end
-
+      # If nl, copy es2012 solar pv profile as solar_pv_profile_2.csv
+      if country == 'nl'
+        cp_csv(Pathname.new("#{ETDATASET_PATH}/curves/supply/solar/data/es/2015/output/solar_pv.csv"), Pathname.new("datasets/#{ country }/curves/solar_pv_profile_2.csv"))
       else
-        # symlink to NL2015 1987 heat curves
-        Pathname.glob("datasets/nl/curves/heat/1987/*.csv").each do |csv|
-          FileUtils.ln_sf(
-            Pathname.new("../../../../nl/curves/heat/1987/#{ csv.basename }"),
-            Pathname.new("datasets/#{ country }/curves/heat/1987/")
-          )
+        FileUtils.ln_sf(Pathname.new("../../nl/curves/solar_pv_profile_2.csv"), dest)
+      end
+
+      # If the directories for the heat curves do not exist yet,
+      # create new empty ones for the nl dataset
+      if etdataset_country == 'nl'
+        # If the directories for the heat curves do not exist yet,
+        # create new empty ones
+        ["weather/", "weather/1987", "weather/1997", "weather/2004", "weather/default"].each do |dir|
+          if !dest.join(dir).exist?
+            FileUtils.mkdir_p(dest.join(dir))
+          end
         end
 
-        # symlink to NL2015 default heat curves
-        Pathname.glob("datasets/nl/curves/heat/default/*.csv").each do |csv|
-          FileUtils.ln_sf(
-            Pathname.new("../../../../nl/curves/heat/default/#{ csv.basename }"),
-            Pathname.new("datasets/#{ country }/curves/heat/default/")
-          )
+        # Copy heat curves from ETDataset for the extreme weather years (1987, 1997, and 2004).
+        ["1987", "1997", "2004"].each do |extreme_weather_year|
+          Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/#{ extreme_weather_year }/output/*.csv").each do |csv|
+            cp_csv(csv, dest.join("weather/#{ extreme_weather_year }"))
+          end
         end
+
+        # Copy default heat curves from ETDataset.
+        Pathname.glob("#{ETDATASET_PATH}/curves/demand/households/space_heating/data/nl/#{ year }/output/*.csv").each do |csv|
+          cp_csv(csv, dest.join("weather/default"))
+        end
+      else
+        # Remove old directory with heat curves and create a new symlink to the NL2015 heat curves
+        FileUtils.rm_rf(dest.join("/weather/"), :secure=>true)
+        FileUtils.ln_sf(Pathname.new("../../nl/curves/weather/"), dest)
       end
 
       encrypt_balance(dest)
@@ -151,10 +137,10 @@ end # :curves
 desc <<-DESC
   Import ETDataset CSVs from #{ETDATASET_PATH}
 
-  Defaults to importing all datasets listed in datasets.yml. Providing an optional DATASET environment
-  parameter results in importing only one dataset. If an optional YEAR environment parameter is provided,
-  imports the dataset for that country and year; if no YEAR is provided, import the year that is listed in
-  datasets.yml for that country.
+  Defaults to importing all curves listed in curves.yml. Providing an optional DATASET environment
+  parameter results in importing curves for only one dataset. If an optional YEAR environment parameter is provided,
+  imports the curves for that country and year; if no YEAR is provided, import the year that is listed in
+  curves.yml for that country.
 
   DATASET=nl YEAR=2015 rake import
 DESC

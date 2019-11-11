@@ -1,9 +1,2 @@
-- query = 
-    SUM(
-        V(industry_chemicals_refineries_flexibility_p2h_electricity, "number_of_units * input_capacity"),
-        V(industry_chemicals_other_flexibility_p2h_electricity, "number_of_units * input_capacity"),
-        V(industry_other_food_flexibility_p2h_electricity, "number_of_units * input_capacity"),
-        V(industry_other_paper_flexibility_p2h_electricity, "number_of_units * input_capacity")
-    )
+- query = SUM(V(INTERSECTION(G(p2h), SECTOR(industry)), "number_of_units * input_capacity"))
 - unit = MW
-

@@ -1,0 +1,8 @@
+# Nodes that constitute network_gas demand. Includes nodes which participate as consumers in time-resolved network_gas and export.
+
+- query =
+    FILTER(
+      ALL(),
+      "network_gas && (network_gas.type == :consumer || network_gas.type == :export)"
+    )
+- unit = converters

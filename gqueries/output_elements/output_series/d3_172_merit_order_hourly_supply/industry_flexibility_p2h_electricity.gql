@@ -1,18 +1,26 @@
 - query =
     SUM_CURVES(
       SUM_CURVES(V(
-        industry_chemicals_other_flexibility_p2h_electricity,
-        industry_chemicals_refineries_flexibility_p2h_electricity,
-        industry_other_food_flexibility_p2h_electricity,
-        industry_other_paper_flexibility_p2h_electricity,
+        industry_chemicals_other_flexibility_p2h_hydrogen_electricity,
+        industry_chemicals_other_flexibility_p2h_network_gas_electricity,
+        industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
+        industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
+        industry_other_paper_flexibility_p2h_hydrogen_electricity,
+        industry_other_paper_flexibility_p2h_network_gas_electricity,
+        industry_other_food_flexibility_p2h_hydrogen_electricity,
+        industry_other_food_flexibility_p2h_network_gas_electricity,
         electricity_output_curve
       )),
       INVERT_CURVE(SUM_CURVES(
         V(
-          industry_chemicals_other_flexibility_p2h_electricity,
-          industry_chemicals_refineries_flexibility_p2h_electricity,
-          industry_other_food_flexibility_p2h_electricity,
-          industry_other_paper_flexibility_p2h_electricity,
+          industry_chemicals_other_flexibility_p2h_hydrogen_electricity,
+          industry_chemicals_other_flexibility_p2h_network_gas_electricity,
+          industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
+          industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
+          industry_other_paper_flexibility_p2h_hydrogen_electricity,
+          industry_other_paper_flexibility_p2h_network_gas_electricity,
+          industry_other_food_flexibility_p2h_hydrogen_electricity,
+          industry_other_food_flexibility_p2h_network_gas_electricity,
           electricity_input_curve
         )
       ))
