@@ -1,0 +1,9 @@
+- query =
+    SUM_CURVES(V(
+      INTERSECTION(
+        FILTER(ALL(),"hydrogen && (hydrogen.type == :consumer || hydrogen.type == :export)"),
+        EXCLUDE(INTERSECTION(SECTOR(industry), USE(energetic)),G(electricity_production))
+      ),
+      hydrogen_input_curve
+    ))
+- unit = curve
