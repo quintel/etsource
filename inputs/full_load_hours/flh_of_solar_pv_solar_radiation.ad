@@ -4,27 +4,33 @@
 #
 # See https://github.com/quintel/etmodel/issues/2906
 - query =
-    original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
+    IF(
+      EQUALS(INPUT_VALUE(settings_weather_curve_set), "default"),
+      ->{
+        original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
 
-    share_2 =
-        DIVIDE(
-            (USER_INPUT() - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) })),
-            (1500 - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) }))
-        );
+        share_2 =
+            DIVIDE(
+                (USER_INPUT() - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) })),
+                (1500 - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) }))
+            );
 
-    EACH(
-        UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-        UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou),
-        UPDATE(
-          V(energy_power_solar_pv_solar_radiation),
-          preset_demand_by_electricity_production,
-          V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
-        ),
-        UPDATE(AREA(), solar_pv_profile_1_share, (1 - share_2)),
-        UPDATE(AREA(), solar_pv_profile_2_share, share_2)
+        EACH(
+            UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+            UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+            UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+            UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+            UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou),
+            UPDATE(
+            V(energy_power_solar_pv_solar_radiation),
+            preset_demand_by_electricity_production,
+            V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
+            ),
+            UPDATE(AREA(), solar_pv_profile_1_share, (1 - share_2)),
+            UPDATE(AREA(), solar_pv_profile_2_share, share_2)
+        )
+      },
+      -> {}
     )
 - priority = 1
 - max_value_gql = present:AREA(flh_solar_pv_solar_radiation_max)
