@@ -1,7 +1,3 @@
-# The max value is dynamically determined by how many CHPs would be build if all of the electricity demand would be supplied by this specific CHP.
-#
-# The max value field is taken from the Excel model, but is overrided by the dynamic field, so not used.
-
 - query =
     EACH(
         UPDATE(
@@ -15,7 +11,7 @@
             V(industry_chp_turbine_gas_power_fuelmix, production_based_on_number_of_units)
     ))
 - priority = 0
-- max_value_gql = present:DIVIDE(DIVIDE(MAX(V(industry_final_demand_electricity,demand), V(industry_chp_turbine_gas_power_fuelmix, output_of_electricity)*2), V(industry_chp_turbine_gas_power_fuelmix,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(heat_production_industry) * BILLIONS, V(industry_chp_turbine_gas_power_fuelmix, output_of_steam_hot_water)*2), V(industry_chp_turbine_gas_power_fuelmix,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(industry_chp_turbine_gas_power_fuelmix,number_of_units),V(industry_chp_turbine_gas_power_fuelmix,heat_output_capacity))
 - step_value = 1.0
