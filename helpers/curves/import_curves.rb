@@ -25,7 +25,6 @@ class ImportCurves
   # Add methods that handle the curve csv files, you wish to
   # handle differently
   def import_curve_exceptions
-    add_solar_profiles
     add_weather_profiles
   end
 

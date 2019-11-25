@@ -9,8 +9,9 @@ def copy_and_symlink
       .each_with_object({}) { |path, data| data[path.basename] = path }
   missing_curves = remove_exceptions_from_curves(missing_curves)
 
-  csvs = Pathname.glob("#{ETDATASET_PATH}/curves/**/#{ @etdataset_country }/#{ @year }/output/*.csv")
-  csvs.each do |csv|
+  Pathname.glob(@dest.join("/*.csv")).each(&FileUtils.method(:rm))
+  csvs_path = "#{ETDATASET_PATH}/curves/**/#{ @etdataset_country }/#{ @year }/output/*.csv"
+  Pathname.glob(csvs_path).each do |csv|
     update_csv(csv)
     missing_curves.delete(csv.basename)
   end
@@ -20,7 +21,6 @@ end
 
 # Remove old csv and copy
 def update_csv(csv)
-  Pathname.glob(@dest.join("/*.csv")).each(&FileUtils.method(:rm))
   csv_base = csv.basename('.csv').to_s
   cp_csv(csv, @dest) if curve_is_no_exception(csv_base)
 end
@@ -35,6 +35,6 @@ def handle_missing_curve(curve_name, curve_path)
   if other_year_path
     cp_csv(other_year_path, @dest)
   else
-    FileUtils.ln_sf(Pathname.new("../../nl/curves/#{ curve_name }"), @dest)
+    FileUtils.ln_sf(@dest.join("../../nl/curves/#{ curve_name }").expand_path, @dest)
   end
 end
