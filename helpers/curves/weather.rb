@@ -48,5 +48,3 @@ def symlink_weather
     end
   end
 end
-
-
