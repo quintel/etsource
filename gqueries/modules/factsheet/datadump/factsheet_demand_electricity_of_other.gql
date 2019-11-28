@@ -1,7 +1,8 @@
 - query =
-          Q(future_demand_in_source_of_electricity_production)
+            SUM(
+                Q(future_demand_in_source_of_electricity_production)*BILLIONS,
+                )
           - SUM(
-                Q(factsheet_demand_electricity_of_production_of_hydrogen),
                 Q(factsheet_demand_electricity_of_built_environment_ex_heating),
                 Q(factsheet_demand_electricity_of_individual_heating),
                 Q(factsheet_demand_electricity_of_collective_heating),
