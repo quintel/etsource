@@ -1,0 +1,17 @@
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              LG(final_demand),"sector == :industry"
+            ),
+            energetic?
+          ),
+          network_gas?
+        ),
+        value
+      )
+    ) * Q(share_of_greengas_in_gas_network)
+
+- unit = MJ

@@ -1,0 +1,8 @@
+- query =
+          SUM(
+              V(G(heat_production), "output_of_steam_hot_water*ambient_heat_input_conversion").sum,
+              V(G(heat_production), "output_of_useable_heat*ambient_heat_input_conversion").sum + V(G(heat_production), "output_of_cooling*ambient_cold_input_conversion").sum
+              )
+
+
+- unit = MJ
