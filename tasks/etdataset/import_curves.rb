@@ -1,7 +1,7 @@
 namespace :import do
   # See documentation for "task :import".
   task curves: :environment do
-    require_relative './../../helpers/curves/import_curves.rb'
+    require_relative './../../lib/curve_importer.rb'
 
     if ENV['DATASET']
       if ENV['YEAR']
@@ -17,9 +17,8 @@ namespace :import do
 
     curves.each do |country, year|
       puts "Importing curves for: #{ country }/#{ year }"
-      importer = ImportCurves.new(country, year)
+      importer = CurveImporter.new(country, year)
       importer.import_curves
-      importer.import_curve_exceptions
 
       encrypt_balance(Pathname.new("datasets/#{ country }/curves"))
     end
