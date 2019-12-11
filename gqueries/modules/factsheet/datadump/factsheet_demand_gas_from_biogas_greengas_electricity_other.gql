@@ -1,0 +1,10 @@
+- query =
+          Q(factsheet_supply_gas_from_biogas) -
+          SUM(
+              Q(factsheet_demand_gas_from_biogas_greengas_individual),
+              Q(factsheet_demand_gas_from_biogas_greengas_collective),
+              Q(factsheet_demand_gas_from_biogas_greengas_industry),
+              Q(factsheet_demand_gas_from_biogas_greengas_transport)
+          )
+
+- unit = MJ
