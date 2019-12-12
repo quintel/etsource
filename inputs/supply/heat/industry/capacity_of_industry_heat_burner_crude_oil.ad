@@ -1,4 +1,5 @@
 - query =
+    demand_per_mw_output = V(industry_heat_burner_crude_oil, "full_load_hours / steam_hot_water_output_conversion * MJ_PER_MWH");
     EACH(
         UPDATE(
             V(industry_heat_burner_crude_oil),
@@ -6,10 +7,10 @@
             USER_INPUT() / V(industry_heat_burner_crude_oil,heat_output_capacity)
         ),
         UPDATE(
-            OUTPUT_LINKS(V(industry_heat_burner_crude_oil),constant),
-          share,
-          V(industry_heat_burner_crude_oil, production_based_on_number_of_heat_units)
-    ))
+            V(industry_heat_burner_crude_oil),
+            preset_demand,
+            USER_INPUT() * demand_per_mw_output)
+    )
 - priority = 0
 - max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(heat_production_industry) * BILLIONS, V(industry_heat_burner_crude_oil, output_of_steam_hot_water)*2), V(industry_heat_burner_crude_oil,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
