@@ -1,0 +1,12 @@
+- query =
+        SUM(
+            DIVIDE(
+                   (SUM(Q(merit_order_price_curve))/8760) * (V(energy_heat_heatpump_water_water_electricity,input_of_electricity)/3600),
+                   (V(energy_heat_heatpump_water_water_electricity,output_of_steam_hot_water)/3600)
+            ),
+            V(energy_heat_heatpump_water_water_electricity,variable_operation_and_maintenance_costs_per(:mwh_heat))
+        )
+
+
+
+- unit = EUR
