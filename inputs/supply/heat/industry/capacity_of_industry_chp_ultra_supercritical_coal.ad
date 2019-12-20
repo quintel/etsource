@@ -1,0 +1,19 @@
+- query =
+    EACH(
+        UPDATE(
+            V(industry_chp_ultra_supercritical_coal),
+            number_of_units,
+            USER_INPUT() / V(industry_chp_ultra_supercritical_coal,heat_output_capacity)
+        ),
+        UPDATE(
+            OUTPUT_LINKS(V(industry_chp_ultra_supercritical_coal),constant),
+            share,
+            V(industry_chp_ultra_supercritical_coal, production_based_on_number_of_units)
+    ))
+- priority = 0
+- max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(heat_production_industry) * BILLIONS, V(industry_chp_ultra_supercritical_coal, output_of_steam_hot_water)*2), V(industry_chp_ultra_supercritical_coal,full_load_hours)), MJ_PER_MWH)
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(industry_chp_ultra_supercritical_coal,number_of_units),V(industry_chp_ultra_supercritical_coal,heat_output_capacity))
+- step_value = 1.0
+- unit = MW
+- update_period = future

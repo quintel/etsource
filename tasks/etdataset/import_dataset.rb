@@ -53,7 +53,7 @@ namespace :import do
           cp_csv(csv, dest.join('primary_production.csv'))
         when /^corrected_energy_balance_step_2/
           cp_csv(csv, dest.join('energy_balance.csv'))
-        when /^central_electricity_production_step_2/
+        when /^central_producers.csv/
           cp_csv(csv, dest.join('central_producers.csv'))
         when /^#{ Regexp.escape(country.downcase) }$/
           if csv.to_s.include?('11_area/output')
