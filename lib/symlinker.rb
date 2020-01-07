@@ -15,7 +15,6 @@ class Symlinker
     Pathname.glob(@source_path + "/curves/**/*.csv").each do |csv|
       d = Destination.new(csv.basename.to_s, @country, folder_year(csv))
       unless d.destination_path.join(csv.basename).exist?
-        puts csv
         create_folder_and_symlink(csv.expand_path, d.destination_path.join(csv.basename))
       end
     end

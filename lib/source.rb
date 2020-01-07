@@ -4,7 +4,7 @@ class Source
   attr_reader :year
 
   def initialize(base_path, country, year)
-    @country, @year, @base_path = country, year, base_path
+    @country, @year, @base_path = country, year.to_i, base_path
   end
 
   def etdata_path
