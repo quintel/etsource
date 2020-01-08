@@ -1,0 +1,15 @@
+# Updates the hourly volume loss in heat storage
+
+- query =
+    yearly_loss = DIVIDE(USER_INPUT(),100.0);
+    hourly_loss = 1.0 - (1.0 - yearly_loss)**(1/8760);
+
+    UPDATE(V(energy_heat_network_storage, storage), decay, hourly_loss)
+
+- priority = 0
+- max_value = 50.0
+- min_value = 0.0
+- start_value_gql = present:(1.0 - (1.0 - V(energy_heat_network_storage, "storage.decay"))**8760) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
