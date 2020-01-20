@@ -5,14 +5,15 @@ class Symlinker
   # Symlinker links all nonexistent files for an etsource country
   # to the files from a source_area
 
-  def initialize(source_area, country, year)
-    @country, @year = country, year
+  def initialize(source_area, country, year, symlink_weather = true)
+    @country, @year, @symlink_weather = country, year, symlink_weather
     @source_path = "datasets/#{ source_area }"
     validate!
   end
 
   def symlink_curves
     Pathname.glob(@source_path + "/curves/**/*.csv").each do |csv|
+      next if skip?(csv)
       d = Destination.new(csv.basename.to_s, @country, folder_year(csv))
       unless d.destination_path.join(csv.basename).exist?
         create_folder_and_symlink(csv.expand_path, d.destination_path.join(csv.basename))
@@ -42,6 +43,13 @@ class Symlinker
     unless Pathname.new(@source_path).expand_path.directory?
       raise ArgumentError.new("Symlinker source path does not exist")
     end
+  end
+
+  def skip?(file)
+    return false if @symlink_weather
+    return true if is_in_year_directory?(file)
+
+    false
   end
 
 end

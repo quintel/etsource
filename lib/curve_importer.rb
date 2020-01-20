@@ -7,6 +7,7 @@ class CurveImporter
 
   WEATHER_YEAR_SPECIAL_YEARS = [1987, 1997, 2004]
   DEFAULT_AREA = "nl"
+  SKIP_STARTS = %w(flh)
 
   def initialize(country, year)
     # If ETSource country is nl (either nl2012, nl2013, nl or nl2016),
@@ -20,10 +21,10 @@ class CurveImporter
   def import_curves
     prepare
     import_from_data_folders
-    import_weather_years
+    import_weather_years if include_weather?
     extend_solar_profiles(@dest, @country)
     unless @country == DEFAULT_AREA
-      symlinker = Symlinker.new(DEFAULT_AREA, @country, @year)
+      symlinker = Symlinker.new(DEFAULT_AREA, @country, @year, include_weather?)
       symlinker.symlink_curves
     end
   end
@@ -47,6 +48,7 @@ class CurveImporter
 
   def copy_from_source(source)
     source.files.each do | file |
+      next if skip?(file.basename.to_s)
       destination = Destination.new(file.basename.to_s, @country, source.year)
       cp_csv(destination.destination_path, file)
     end
@@ -65,5 +67,17 @@ class CurveImporter
   def remove_stale
     FileUtils.rm_rf(Pathname.new("datasets/#{ @country }/load_profiles/"),
                                  :secure=>true)
+  end
+
+  def skip?(filename)
+    SKIP_STARTS.each do |name_start|
+      return true if filename.start_with?(name_start)
+    end
+
+    false
+  end
+
+  def include_weather?
+    @etdataset_country == 'nl'
   end
 end
