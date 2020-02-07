@@ -1,2 +1,2 @@
 - unit = PJ
-- query = DIVIDE(V(buildings_local_production_electricity,electricity_flexible_input_link_value),BILLIONS) * V(LINK(buildings_local_production_electricity, buildings_final_demand_electricity), parent_share)
+- query = MAX(DIVIDE(V(buildings_final_demand_electricity,demand),BILLIONS) - Q(solar_panels_in_source_of_electricity_in_buildings), 0)
