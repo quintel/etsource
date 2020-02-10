@@ -16,7 +16,7 @@ class Symlinker
       next if skip?(csv)
       d = Destination.new(csv.basename.to_s, @country, folder_year(csv))
       unless d.destination_path.join(csv.basename).exist?
-        create_folder_and_symlink(csv.expand_path, d.destination_path.join(csv.basename))
+        create_folder_and_symlink(relative_path(csv), d.destination_path.join(csv.basename))
       end
     end
   end
@@ -34,8 +34,17 @@ class Symlinker
     WEATHER_YEAR_SPECIAL_YEARS.include?(parent_to_i(csv))
   end
 
+  def is_in_weather_directory?(csv)
+    csv.parent.parent.basename.to_s == 'weather'
+  end
+
   def parent_to_i(csv)
     csv.parent.basename.to_s.to_i
+  end
+
+  def relative_path(csv)
+    cd_up = is_in_weather_directory?(csv) ? '../../../../../' : '../../../'
+    File.join(cd_up, csv)
   end
 
   private
