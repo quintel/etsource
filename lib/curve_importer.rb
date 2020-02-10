@@ -70,6 +70,8 @@ class CurveImporter
   end
 
   def skip?(filename)
+    return true unless filename.end_with?('csv')
+
     SKIP_STARTS.each do |name_start|
       return true if filename.start_with?(name_start)
     end
