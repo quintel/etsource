@@ -1,0 +1,52 @@
+require 'spec_helper'
+require 'source.rb'
+
+ETSOURCE_PATH  = File.expand_path('../../', __FILE__)
+ETDATASET_PATH = ETSOURCE_PATH.sub('etsource', 'etdataset')
+
+describe Source do
+  let(:default_year) { 2015 }
+  let(:etdata_path) { "#{ETDATASET_PATH}/curves/demand/buildings/appliances/data/nl/2015/output/" }
+  let(:etdata_small_path) {Pathname.new("#{ETDATASET_PATH}/curves/demand/buildings/appliances/data/")}
+  let(:source) { Source.new(etdata_small_path, "nl", default_year) }
+
+
+  describe '#set_valid_path' do
+    context 'with valid path' do
+      it 'keeps the path' do
+        pending('Cannot test direct path to etdatset on semaphore')
+        source
+        expect(source.etdata_path.to_s).to eq(etdata_path)
+      end
+    end
+
+    context 'with unavailible country' do
+      let(:danish_source) { Source.new(etdata_small_path, "dk", default_year) }
+
+      it 'be falsey' do
+        danish_source
+        expect(danish_source.etdata_path).to eq(false)
+      end
+    end
+
+    context 'with unavailible year' do
+      let(:unvalid_source) { Source.new(etdata_small_path, "nl", (default_year - 1)) }
+
+      it 'creates a valid path' do
+        pending('Cannot test direct path to etdatset on semaphore')
+        unvalid_source
+        expect(unvalid_source.etdata_path.to_s).to eq(etdata_path)
+      end
+
+      context 'out of range' do
+        let(:unvalid_source_old) { Source.new(etdata_small_path, "nl", (default_year - 4)) }
+
+        it 'be falsey' do
+          unvalid_source_old
+          expect(unvalid_source_old.etdata_path).to eq(false)
+        end
+      end
+    end
+  end
+
+end
