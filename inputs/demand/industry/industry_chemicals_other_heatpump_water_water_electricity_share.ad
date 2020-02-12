@@ -1,9 +1,11 @@
 # This query adjusts the share of heat pumps and also adjusts the potential
-# of residual heat from processes. Heat pumps reuse heat from processes.
+# of residual heat from processes. Heat pumps and steam recompression reuse
+# heat from processes.
 
 - query =
   present_potential_residual_heat_processes = QUERY_PRESENT(->{ V(LINK(industry_useful_demand_for_chemical_other_useable_heat,industry_chemicals_other_processes_potential_residual_heat),share) });
-  future_potential_residual_heat_processes = present_potential_residual_heat_processes * (1.0 - DIVIDE(USER_INPUT(), 100));
+  share_technologies_without_residual_heat_processes = DIVIDE(SUM(USER_INPUT(),INPUT_VALUE(industry_chemicals_other_steam_recompression_electricity_share)), 100.0);
+  future_potential_residual_heat_processes = present_potential_residual_heat_processes * (1.0 - share_technologies_without_residual_heat_processes);
 
   EACH(
     UPDATE(

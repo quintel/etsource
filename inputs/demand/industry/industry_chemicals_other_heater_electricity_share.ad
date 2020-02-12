@@ -1,10 +1,10 @@
 # This query adjusts the share of electric boilers and also adjusts the potential
-# of residual heat from flue gasses, because electric boilers and heat pumps do
-# not emit flue gasses.
+# of residual heat from flue gasses, because electric boilers, heat pumps and
+# steam recompression do not emit flue gasses.
 
 - query =
   present_potential_residual_heat_flue_gasses = QUERY_PRESENT(->{ V(LINK(industry_useful_demand_for_chemical_other_useable_heat,industry_chemicals_other_flue_gasses_potential_residual_heat),share) });
-  share_technologies_without_flue_gasses = DIVIDE(SUM(USER_INPUT(),INPUT_VALUE(industry_chemicals_other_heatpump_water_water_electricity_share)), 100.0);
+  share_technologies_without_flue_gasses = DIVIDE(SUM(USER_INPUT(),INPUT_VALUE(industry_chemicals_other_heatpump_water_water_electricity_share),INPUT_VALUE(industry_chemicals_other_steam_recompression_electricity_share)), 100.0);
   future_potential_residual_heat_flue_gasses = present_potential_residual_heat_flue_gasses * (1.0 - share_technologies_without_flue_gasses);
 
   EACH(
