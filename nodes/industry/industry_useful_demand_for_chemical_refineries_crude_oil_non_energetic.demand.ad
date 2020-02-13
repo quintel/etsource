@@ -1,4 +1,13 @@
 - use = non_energetic
 - energy_balance_group = application
 - groups = [preset_demand, non_energetic_use, useful_demand, useful_demand_non_energetic, chemical_industry, refineries_industry]
+- graph_methods = [demand]
 - free_co2_factor = 0.0
+
+~ demand =
+    -EB("Oil refineries_transformation", "Crude/NGL/feedstocks (if no detail)") -
+    EB("Oil refineries_transformation", "Crude oil") -
+    EB("Oil refineries_transformation", "Natural gas liquids") -
+    EB("Oil refineries_transformation", "Refinery feedstocks") -
+    EB("Oil refineries_transformation", "Additives/blending components") -
+    EB("Oil refineries_transformation", "Other hydrocarbons")
