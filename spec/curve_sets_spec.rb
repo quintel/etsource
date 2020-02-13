@@ -29,7 +29,15 @@ Atlas::Dataset.all.each do |dataset|
       set.each do |variant|
         describe "curves/#{set.name}/#{variant.name}" do
           it 'has the same curves as the NL default' do
-            expect(variant.curves.map(&:basename)).to eq(orig_files)
+            expect(variant.curves.map(&:basename)).to include(*orig_files)
+          end
+
+          next if variant.name == 'default'
+
+          weather_properties = Pathname.new('weather_properties.csv')
+
+          it 'has a weather_properties.csv' do
+            expect(variant.curves.map(&:basename)).to include(weather_properties)
           end
         end
       end
@@ -40,9 +48,9 @@ Atlas::Dataset.all.each do |dataset|
     # Values in the insulation profiles should sum to 1/3600, representing the
     # demand profile throughout the year, converted from joules to watts.
 
-    heat_set = dataset.dataset_dir.join('curves/weather')
+    weather_set = dataset.dataset_dir.join('curves/weather')
 
-    Pathname.glob(heat_set.join('**/*insulated_household.csv')).each do |file|
+    Pathname.glob(weather_set.join('**/*insulated_household.csv')).each do |file|
       context file.to_s do
         it 'should have values summing to 1.0' do
           sum = File.foreach(file).map(&:to_f).reduce(:+)
