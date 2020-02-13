@@ -34,9 +34,8 @@ Atlas::Dataset.all.each do |dataset|
 
           next if variant.name == 'default'
 
-          weather_properties = Pathname.new('weather_properties.csv')
-
           it 'has a weather_properties.csv' do
+            weather_properties = Pathname.new('weather_properties.csv')
             expect(variant.curves.map(&:basename)).to include(weather_properties)
           end
         end
