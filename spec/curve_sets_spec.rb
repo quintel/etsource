@@ -28,14 +28,17 @@ Atlas::Dataset.all.each do |dataset|
 
       set.each do |variant|
         describe "curves/#{set.name}/#{variant.name}" do
+          weather_properties = Pathname.new('weather_properties.csv')
+
           it 'has the same curves as the NL default' do
-            expect(variant.curves.map(&:basename)).to include(*orig_files)
+            expect(
+              variant.curves.map(&:basename) - [weather_properties]
+              ).to eq(orig_files)
           end
 
           next if variant.name == 'default'
 
           it 'has a weather_properties.csv' do
-            weather_properties = Pathname.new('weather_properties.csv')
             expect(variant.curves.map(&:basename)).to include(weather_properties)
           end
         end
