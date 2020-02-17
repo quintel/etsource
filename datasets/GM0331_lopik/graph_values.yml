@@ -85,7 +85,7 @@ transport_final_demand_coal:
 transport_rail_mixer_diesel:
   input:
     :diesel: 0.9727388572565022
-    :biodiesel: 0.027261142743497804
+    :biodiesel: 0.027261142743497793
 transport_final_demand_biodiesel:
   demand: 6.43507360513954
 transport_final_demand_for_shipping_lng:
@@ -112,28 +112,42 @@ energy_extraction_natural_gas:
   demand: 0.0
 energy_power_ultra_supercritical_network_gas:
   demand: 0.0
-energy_export_oil_products:
-  demand: 0.0
 energy_power_turbine_network_gas:
   demand: 0.0
+energy_production_wet_biomass:
+  max_demand: 177.1474309
 energy_power_supercritical_waste_mix:
+  demand: 0.0
+energy_heat_solar_thermal:
   demand: 0.0
 energy_power_engine_network_gas:
   demand: 0.0
+energy_heat_burner_network_gas:
+  demand: 0.0
 energy_chp_supercritical_waste_mix:
+  demand: 0.0
+energy_heat_burner_waste_mix:
+  demand: 0.0
+energy_heat_heatpump_water_water_electricity:
   demand: 0.0
 energy_chp_ultra_supercritical_cofiring_coal:
   demand: 0.0
-energy_heat_burner_crude_oil:
-  demand: 0.0
 energy_power_combined_cycle_ccs_coal:
   demand: 0.0
+energy_distribution_greengas:
+  demand: 0.1689722846746
+energy_chp_local_engine_biogas:
+  demand: 0.0
 energy_extraction_coal:
+  demand: 0.0
+energy_chp_local_engine_network_gas:
   demand: 0.0
 energy_extraction_uranium_oxide:
   demand: 0.0
 energy_power_sector_own_use_electricity:
   demand: 0.0
+energy_production_oily_biomass:
+  max_demand: 8.793256955
 energy_power_ultra_supercritical_crude_oil:
   demand: 0.0
 energy_power_combined_cycle_ccs_network_gas:
@@ -143,19 +157,15 @@ energy_mixer_for_gas_power_fuel:
     :network_gas: 1.0
     :crude_oil: 0.0
     :bio_oil: 0.0
+energy_heat_burner_hydrogen:
+  demand: 0.0
 energy_power_hv_network_loss:
   demand: 10.5055605752345
 energy_power_nuclear_gen3_uranium_oxide:
   demand: 0.0
-energy_heat_burner_coal:
-  demand: 0.0
-energy_heat_burner_wood_pellets:
-  demand: 0.0
 energy_power_engine_diesel:
   demand: 0.0
 energy_power_wind_turbine_coastal:
-  demand: 0.0
-energy_import_heat:
   demand: 0.0
 energy_power_ultra_supercritical_coal:
   demand: 0.0
@@ -163,15 +173,23 @@ energy_cokesoven_consumption_coal_gas:
   demand: 0.0
 energy_steel_hisarna_transformation_coal:
   demand: 0.0
+energy_heat_burner_wood_pellets:
+  demand: 0.0
 energy_power_combined_cycle_network_gas:
   demand: 0.0
 energy_power_ultra_supercritical_cofiring_coal:
   demand: 0.0
+energy_heat_burner_coal:
+  demand: 0.0
 energy_power_wind_turbine_inland:
   demand: 53.628865979381445
+energy_heat_burner_crude_oil:
+  demand: 0.0
 energy_power_nuclear_gen2_uranium_oxide:
   demand: 0.0
-energy_heat_burner_waste_mix:
+energy_production_dry_biomass:
+  max_demand: 67.5541532
+energy_chp_local_wood_pellets:
   demand: 0.0
 energy_power_hydro_river:
   demand: 0.0
@@ -184,6 +202,8 @@ energy_extraction_crude_oil:
 energy_chp_ultra_supercritical_coal:
   demand: 0.0
 energy_steel_blastfurnace_current_transformation_cokes:
+  demand: 0.0
+energy_heat_well_geothermal:
   demand: 0.0
 other_final_demand_electricity:
   demand: 0.0
@@ -201,9 +221,9 @@ other_final_demand_wood_pellets:
   demand: 0.0
 households_space_heater_hybrid_heatpump_air_water_electricity:
   input:
-    :electricity: 0.2222222222222225
+    :electricity: 0.2222222222222222
     :network_gas: 0.0
-    :ambient_heat: 0.7777777777777775
+    :ambient_heat: 0.7777777777777778
 households_final_demand_electricity:
   demand: 68.4942051322141
 households_water_heater_hybrid_heatpump_air_water_electricity:
@@ -242,9 +262,15 @@ industry_final_demand_electricity:
   demand: 37.61849600000001
 industry_chp_combined_cycle_gas_power_fuelmix:
   demand: 0.0
+industry_heat_burner_lignite:
+  demand: 0.0
+industry_heat_well_geothermal:
+  demand: 0.0
 industry_chp_engine_gas_power_fuelmix:
   demand: 0.0
 industry_final_demand_for_other_crude_oil_non_energetic:
+  demand: 0.0
+industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic:
   demand: 0.0
 industry_final_demand_network_gas:
   demand: 52.63395
@@ -254,9 +280,13 @@ industry_final_demand_crude_oil:
   demand: 11.0515487314235
 industry_final_demand_coal:
   demand: 0.601620026668
+industry_heat_burner_coal:
+  demand: 0.0
 industry_final_demand_coal_non_energetic:
   demand: 0.0
 industry_final_demand_steam_hot_water:
+  demand: 0.0
+industry_chp_wood_pellets:
   demand: 0.0
 industry_final_demand_hydrogen_non_energetic:
   demand: 0.0
@@ -294,9 +324,9 @@ buildings_final_demand_for_cooling_electricity-buildings_cooling_airconditioning
 buildings_final_demand_for_lighting_electricity-buildings_lighting_standard_fluorescent_electricity@electricity:
   parent_share: 0.94
 buildings_final_demand_network_gas-buildings_final_demand_for_space_heating_network_gas@network_gas:
-  parent_share: 0.97
+  parent_share: 1.0
 buildings_final_demand_network_gas-buildings_final_demand_for_appliances_network_gas@network_gas:
-  parent_share: 0.03
+  parent_share: 0.0
 buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
   parent_share: 0.969460503164774
 transport_final_demand_electricity-transport_final_demand_for_road_electricity@electricity:
@@ -347,6 +377,16 @@ transport_final_demand_for_rail_electricity-transport_freight_train_using_electr
   parent_share: 0.137103914951699
 transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel:
   parent_share: 1.0
+energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
+  child_share: 0.55
+energy_greengas_upgrade_biogas-energy_distribution_greengas@greengas:
+  child_share: 1.0
+energy_greengas_gasification_dry_biomass-energy_distribution_greengas@greengas:
+  child_share: 0.0
+energy_distribution_non_biogenic_waste-energy_distribution_waste_mix@waste_mix:
+  child_share: 0.45
+energy_greengas_gasification_wet_biomass-energy_distribution_greengas@greengas:
+  child_share: 0.0
 households_final_demand_for_space_heating_electricity-households_space_heater_heatpump_air_water_electricity@electricity:
   parent_share: 0.04
 households_final_demand_electricity-households_final_demand_for_hot_water_electricity@electricity:
@@ -579,31 +619,3 @@ industry_final_demand_for_metal_network_gas-industry_aluminium_burner_network_ga
   parent_share: 0.0
 industry_final_demand_for_metal_coal-industry_other_metals_burner_network_gas@coal:
   parent_share: 1.0
-energy_chp_local_engine_network_gas:
-  demand: 0.0
-energy_chp_local_engine_biogas:
-  demand: 0.0
-energy_chp_local_wood_pellets:
-  demand: 0.0
-energy_heat_heatpump_water_water_electricity:
-  demand: 0.0
-energy_heat_burner_hydrogen:
-  demand: 0.0
-energy_heat_burner_network_gas:
-  demand: 0.0
-energy_heat_well_geothermal:
-  demand: 0.0
-industry_heat_burner_crude_oil:
-  demand: 0.0
-industry_heat_well_geothermal:
-  demand: 0.0
-industry_heat_burner_coal:
-  demand: 0.0
-industry_heat_burner_lignite:
-  demand: 0.0
-industry_chp_wood_pellets:
-  demand: 0.0
-energy_heat_solar_thermal:
-  demand: 0.0
-energy_heat_distribution_loss:
-  demand: 0.0
