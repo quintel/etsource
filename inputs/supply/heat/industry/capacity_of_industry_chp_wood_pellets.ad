@@ -1,4 +1,5 @@
 - query =
+    demand_per_mw = V(industry_chp_wood_pellets,"full_load_hours * MJ_PER_MWH / steam_hot_water_output_conversion");
     EACH(
         UPDATE(
             V(industry_chp_wood_pellets),
@@ -6,9 +7,9 @@
             USER_INPUT() / V(industry_chp_wood_pellets,heat_output_capacity)
         ),
         UPDATE(
-            OUTPUT_LINKS(V(industry_chp_wood_pellets),constant),
-            share,
-            V(industry_chp_wood_pellets, production_based_on_number_of_units)
+            L(industry_chp_wood_pellets),
+            preset_demand,
+            USER_INPUT() * demand_per_mw
     ))
 - priority = 0
 - max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(heat_production_industry) * BILLIONS, V(industry_chp_wood_pellets, output_of_steam_hot_water)*2), V(industry_chp_wood_pellets,full_load_hours)), MJ_PER_MWH)
