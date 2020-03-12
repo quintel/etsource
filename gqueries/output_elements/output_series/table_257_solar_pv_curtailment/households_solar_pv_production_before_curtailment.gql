@@ -1,0 +1,8 @@
+# Electricity production after curtailment of 'households_solar_pv_solar_radiation'
+
+- unit = PJ
+- query =
+    SUM(
+      V(households_solar_pv_solar_radiation, output_of_electricity),
+      PRODUCT(SUM(V(households_solar_pv_solar_radiation, curtailment_output_curve)), MJ_PER_MWH)
+    ) / BILLIONS

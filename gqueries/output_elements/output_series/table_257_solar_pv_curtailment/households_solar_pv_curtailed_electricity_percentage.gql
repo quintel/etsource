@@ -1,0 +1,8 @@
+# The percentage of the electricity that is curtailed for 'households_solar_pv_solar_radiation'
+
+- unit = %
+- query =
+    PRODUCT(
+      1.0 - DIVIDE(Q(households_solar_pv_production_after_curtailment),Q(households_solar_pv_production_before_curtailment)),
+      100.0
+    )

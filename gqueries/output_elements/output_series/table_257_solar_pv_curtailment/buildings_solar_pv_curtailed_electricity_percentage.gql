@@ -1,0 +1,8 @@
+# The percentage of the electricity that is curtailed for 'buildings_solar_pv_solar_radiation'
+
+- unit = %
+- query =
+    PRODUCT(
+      1.0 - DIVIDE(Q(buildings_solar_pv_production_after_curtailment),Q(buildings_solar_pv_production_before_curtailment)),
+      100.0
+    )

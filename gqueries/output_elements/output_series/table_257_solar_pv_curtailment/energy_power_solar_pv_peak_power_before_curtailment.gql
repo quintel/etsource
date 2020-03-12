@@ -1,0 +1,8 @@
+# Peak power before curtailment of 'energy_power_solar_pv_solar_radiation'
+
+- unit = MW
+- query =
+    SUM(
+      MAX(Q(energy_power_solar_pv_electricity_output_curve)),
+      MAX(Q(energy_power_solar_pv_curtailed_electricity_output_curve))
+    )
