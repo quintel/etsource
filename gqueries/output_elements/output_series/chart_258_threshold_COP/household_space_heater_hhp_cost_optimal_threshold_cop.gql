@@ -1,0 +1,9 @@
+# This query calculates the cost-optimal threshold COP (x) and
+# the accompanied costs / MJ heat (y)
+
+- query =
+    y = Q(household_space_heater_hhp_network_gas_gas_cop_costs)
+    x = DIVIDE(DIVIDE(INPUT_VALUE(households_flexibility_consumer_electricity_price), MJ_PER_KWH), Q(household_space_heater_hhp_network_gas_gas_cop_costs))
+
+    [x, y]
+- unit =

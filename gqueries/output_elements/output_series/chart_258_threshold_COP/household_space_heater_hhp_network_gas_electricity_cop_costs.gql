@@ -1,0 +1,10 @@
+# This query calculates the costs for one MJ heat when the HHP would
+# use electricity. The costs are depended on the COP and six values are
+# given for COP = 1, 2, 3, 4, 5, 6
+
+- query =
+    costs_per_mj = DIVIDE(INPUT_VALUE(households_flexibility_consumer_electricity_price), MJ_PER_KWH);
+
+    [costs_per_mj / 1.0, costs_per_mj / 2.0, costs_per_mj / 3.0, costs_per_mj / 4.0, costs_per_mj / 5.0, costs_per_mj / 6.0]
+
+- unit = curve
