@@ -1,0 +1,15 @@
+# This query calculates the costs for one MJ heat when the HHP would
+# use gas
+# Hard-coded values will be replaced:
+# 31.65 = lower heating value natural gas [MJ/m3]
+# 1.07 = efficiency of gas part of HHP
+
+- query =
+    DIVIDE(
+      DIVIDE(
+        INPUT_VALUE(households_flexibility_consumer_gas_price),
+        31.65
+      ),
+      1.07
+    )
+- unit = euro

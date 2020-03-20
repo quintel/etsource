@@ -8,7 +8,7 @@
 - output.useable_heat.ambient_heat = 1
 - output.useable_heat.electricity = 1
 - output.useable_heat.network_gas = 0.9
-- groups = [cost_heat_pumps, demand_driven, heat_production, etmoses, merit_household_hot_water_producers, application_group, aggregator_producer, lv_net_demand, wacc_households]
+- groups = [cost_heat_pumps, demand_driven, heat_production, etmoses, merit_household_hot_water_producers, application_group, aggregator_producer, lv_net_demand, wacc_households, merit_order_csv_include]
 - presentation_group = heat_pumps
 - fever.base_cop = 1.86
 - fever.capacity.electricity = 0.001294498
@@ -19,11 +19,11 @@
 - fever.efficiency_based_on = electricity
 - fever.group = households_hot_water
 - fever.type = producer
-- network_gas.type = consumer
-- network_gas.profile = self: heat_output_curve
 - storage.cost_per_mwh = 50713.75
 - storage.decay = 0.0
 - storage.volume = 0.0
+- network_gas.profile = self: network_gas_input_curve
+- network_gas.type = consumer
 - graph_methods = [input]
 - availability = 0.0
 - free_co2_factor = 0.0
