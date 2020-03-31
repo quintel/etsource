@@ -1,0 +1,12 @@
+# This query calculates the share of the produced hot water that is heated
+# with gas. The gas efficiency is hard-coded (0.9), because it's not possible
+# to query at the moment.
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(households_water_heater_hybrid_heatpump_air_water_electricity, input_of_network_gas),
+        0.9
+      ),
+      V(households_water_heater_hybrid_heatpump_air_water_electricity, demand)
+    ) * 100.0
+- unit = factor
