@@ -1,12 +1,21 @@
 # This query calculates the share of the produced heat that is heated
-# with gas. The gas efficiency is hard-coded (1.07), because it's not possible
+# with gas or hydrogen. The gas and hydrogen efficiency are hard-coded, because it's not possible
 # to query at the moment.
 - query =
-    DIVIDE(
-      PRODUCT(
-        V(households_space_heater_hybrid_heatpump_air_water_electricity, input_of_network_gas),
-        1.07
-      ),
-      V(households_space_heater_hybrid_heatpump_air_water_electricity, demand)
-    ) * 100.0
+    IF(INPUT_VALUE(households_heater_hybrid_heatpump_air_water_electricity_share) > 0.0,
+        DIVIDE(
+          PRODUCT(
+            V(households_space_heater_hybrid_heatpump_air_water_electricity, input_of_network_gas),
+            1.07
+          ),
+          V(households_space_heater_hybrid_heatpump_air_water_electricity, demand)
+        ) * 100.0,
+        DIVIDE(
+          PRODUCT(
+            V(households_space_heater_hybrid_hydrogen_heatpump_air_water_electricity, input_of_hydrogen),
+            1.12825
+          ),
+          V(households_space_heater_hybrid_hydrogen_heatpump_air_water_electricity, demand)
+        ) * 100.0
+    )
 - unit = factor
