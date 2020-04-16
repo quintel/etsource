@@ -8,6 +8,10 @@
 # Since the share of roof surface covered does not change when updating efficiency, the install number of units
 # should remain stable. This is achieved by updating total electricity production, in addition
 # to electricity conversion and output capacity per panel.
+#
+# The priority of this input is set to be higher than that of the
+# capacity_of_energy_hydrogen_solar_pv_solar_radiation input, as the capacity
+# input will use the output shares to set the demand of the H2 solar PV node.
 
 - query =
       start_value = QUERY_PRESENT(-> {V(households_solar_pv_solar_radiation,electricity_output_conversion)}) * 100;
@@ -49,7 +53,7 @@
             number_of_units,
             1 / (USER_INPUT() / start_value)),
       )
-- priority = 0
+- priority = 2
 - max_value = 100.0
 - min_value = 10.0
 - start_value_gql = present:V(households_solar_pv_solar_radiation,electricity_output_conversion) * 100.0
