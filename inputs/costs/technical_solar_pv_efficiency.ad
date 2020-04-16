@@ -1,0 +1,58 @@
+# This updates the efficiency of solar PV. This affects the output conversion,
+# output capacity per panel, and, for households and buildings, total electricity production.
+# For solar PV farms and solar H2 farms the user sets the installed capacity.
+# Since installed capacity is given by the user, a higher efficiency means
+# a lower number of units installed. This is achieved by updating both the
+# electricity conversion and output capacity (per panel), keeping production stable.
+# For solar panels in households and buildings the user sets the percentage of roof surface covered.
+# Since the share of roof surface covered does not change when updating efficiency, the install number of units
+# should remain stable. This is achieved by updating total electricity production, in addition
+# to electricity conversion and output capacity per panel.
+
+- query =
+      start_value = QUERY_PRESENT(-> {V(households_solar_pv_solar_radiation,electricity_output_conversion)}) * 100;
+      EACH(
+        UPDATE_WITH_FACTOR(
+          OUTPUT_SLOTS(
+            V(
+              households_solar_pv_solar_radiation,
+              buildings_solar_pv_solar_radiation,
+              energy_power_solar_pv_solar_radiation,
+              energy_hydrogen_solar_pv_solar_radiation),
+              electricity),
+          conversion,
+          USER_INPUT() / start_value),
+
+        UPDATE_WITH_FACTOR(
+          V(
+            households_solar_pv_solar_radiation,
+            buildings_solar_pv_solar_radiation,
+            energy_power_solar_pv_solar_radiation,
+            energy_hydrogen_solar_pv_solar_radiation),
+          electricity_output_capacity,
+          USER_INPUT() / start_value),
+
+        UPDATE_WITH_FACTOR(
+          V(
+            OUTPUT_SLOTS(
+              LOOKUP(households_solar_pv_solar_radiation,
+                     buildings_solar_pv_solar_radiation),
+                     electricity),
+              "links.detect{|l| !l.flexible? }"),
+          share,
+          USER_INPUT() / start_value),
+
+        UPDATE_WITH_FACTOR(
+          V(
+            energy_power_solar_pv_solar_radiation,
+            energy_hydrogen_solar_pv_solar_radiation),
+            number_of_units,
+            1 / (USER_INPUT() / start_value)),
+      )
+- priority = 0
+- max_value = 100.0
+- min_value = 10.0
+- start_value_gql = present:V(households_solar_pv_solar_radiation,electricity_output_conversion) * 100.0
+- step_value = 1.0
+- unit = %
+- update_period = future
