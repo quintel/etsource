@@ -47,11 +47,14 @@
           USER_INPUT() / start_value),
 
         UPDATE_WITH_FACTOR(
-          V(
-            energy_power_solar_pv_solar_radiation,
-            energy_hydrogen_solar_pv_solar_radiation),
+          V(energy_hydrogen_solar_pv_solar_radiation),
             number_of_units,
             1 / (USER_INPUT() / start_value)),
+
+        UPDATE(
+          V(energy_power_solar_pv_solar_radiation),
+          number_of_units,
+          V(energy_power_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_value)),
       )
 - priority = 2
 - max_value = 100.0
