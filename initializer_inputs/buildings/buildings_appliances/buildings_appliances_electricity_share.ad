@@ -1,9 +1,0 @@
-- query =
-    EACH(
-      UPDATE(LINK(buildings_appliances_electricity,buildings_useful_demand_for_appliances), share, DIVIDE(USER_INPUT(),100)),
-      UPDATE(LINK(buildings_useful_demand_for_appliances,buildings_appliances_network_gas), share,
-        ->{SUM(NEG(SUM(V(EXCLUDE(INPUT_LINKS(V(buildings_useful_demand_for_appliances)),UPDATE_COLLECTION()), share))), 1)}
-      )
-    )
-- share_group = buildings_appliances
-- priority = 10
