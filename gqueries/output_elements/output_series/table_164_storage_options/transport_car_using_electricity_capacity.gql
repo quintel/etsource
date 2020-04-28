@@ -1,2 +1,7 @@
-- query = V(transport_car_using_electricity, "number_of_units*input_capacity * (1 - reserved_fraction)")
+- query =
+    PRODUCT(
+      V(transport_car_using_electricity, "number_of_units * input_capacity"),
+      V(transport_car_flexibility_p2p_electricity, availability)
+    )
+
 - unit = MW
