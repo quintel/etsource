@@ -10,9 +10,9 @@ task mimick_full_dataset: :environment do
       dest_f = Pathname.new("datasets/#{destination}/#{f.basename}").expand_path
       unless dest_f.exist? || f.basename.to_s.include?('full')
         if f.file?
-          FileUtils.ln_sf(f.expand_path, "datasets/#{destination}")
+          FileUtils.ln_sf(f.to_s.gsub('datasets', '..'), "datasets/#{destination}")
         else
-          FileUtils.ln_s(f.expand_path, "datasets/#{destination}")
+          FileUtils.ln_s(f.to_s.gsub('datasets', '..'), "datasets/#{destination}")
         end
       end
     end
@@ -22,7 +22,7 @@ task mimick_full_dataset: :environment do
     full = File.read(full_path(source))
 
     new_id = Atlas::Dataset.all.map(&:id).max + 1
-    parent_id = full.lines[4].gsub(/\D/, '')
+    parent_id = full.lines[3].gsub(/\D/, '')
 
     adjusted_data =
       "- area = #{destination}
