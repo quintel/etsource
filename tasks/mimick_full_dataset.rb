@@ -31,7 +31,7 @@ task mimick_full_dataset: :environment do
        - group = country
        - id = #{new_id}
        - parent_id = #{parent_id}
-       - enabled.etengine = true
+       - enabled.etengine = false
        - enabled.etmodel = false
        - analysis_year = #{destination.gsub(/\D/, '')}\n"
 

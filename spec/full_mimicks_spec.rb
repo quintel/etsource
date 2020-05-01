@@ -16,8 +16,8 @@ MIMICKED_SETS.each do |mimicked|
       expect(mimicked_full[:enabled][:etmodel]).to be_falsey
     end
 
-    it 'is enabled in etenigine' do
-      expect(mimicked_full[:enabled][:etengine]).to be_truthy
+    it 'is disabled in etenigine' do
+      expect(mimicked_full[:enabled][:etengine]).to be_falsey
     end
 
     # this is ugly but the easiest way to provide the devs with info on
