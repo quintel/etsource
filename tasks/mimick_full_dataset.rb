@@ -6,6 +6,8 @@ DESC
 task mimick_full_dataset: :environment do
 
   def symlink_files(source, destination)
+    FileUtils.mkdir_p "datasets/#{destination}"
+
     Pathname.glob("datasets/#{source}/**") do |f|
       dest_f = Pathname.new("datasets/#{destination}/#{f.basename}").expand_path
       unless dest_f.exist? || f.basename.to_s.include?('full')
