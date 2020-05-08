@@ -1,9 +1,6 @@
-# free_co2_factor is set to 1.0 to ensure that any CO2 associated with the
-# interconnector NOT be included in the calculation of marginal costs. Marginal
-# costs should be determined by the cost_per_mj of the input edge only.
 - use = undefined
 - energy_balance_group = undefined
-- groups = [cost_other]
+- groups = [cost_other, electricity_interconnectors_import]
 - merit_order.group = import
 - merit_order.level = hv
 - merit_order.subtype = dispatchable
@@ -19,5 +16,6 @@
 - variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
 
+~ demand = 0.0
+~ electricity_output_capacity = 0
 ~ max_demand = infinity
-~ electricity_output_capacity = AREA(interconnector_capacity)
