@@ -1,0 +1,42 @@
+# When setting a cost curve, we have to wrap the curve inside an extra array to
+# stop UPDATE from extracting and setting only the first value from the curve.
+- query =
+    EACH(
+      UPDATE(
+        V(energy_interconnector_1_imported_electricity),
+        marginal_cost_curve,
+        [ATTACHED_CURVE(interconnector_1_price_curve)]
+      ),
+      UPDATE(
+        V(energy_interconnector_2_imported_electricity),
+        marginal_cost_curve,
+        [ATTACHED_CURVE(interconnector_2_price_curve)]
+      ),
+      UPDATE(
+        V(energy_interconnector_3_imported_electricity),
+        marginal_cost_curve,
+        [ATTACHED_CURVE(interconnector_3_price_curve)]
+      ),
+      UPDATE(
+        V(energy_interconnector_4_imported_electricity),
+        marginal_cost_curve,
+        [ATTACHED_CURVE(interconnector_4_price_curve)]
+      ),
+      UPDATE(
+        V(energy_interconnector_5_imported_electricity),
+        marginal_cost_curve,
+        [ATTACHED_CURVE(interconnector_5_price_curve)]
+      ),
+      UPDATE(
+        V(energy_interconnector_6_imported_electricity),
+        marginal_cost_curve,
+        [ATTACHED_CURVE(interconnector_6_price_curve)]
+      )
+    )
+- priority = 0
+- max_value = 0
+- min_value = 0
+- start_value = 0
+- step_value = 0.1
+- unit = #
+- update_period = before
