@@ -1,0 +1,10 @@
+# Query for Sankey diagram: connection between biomass_waste and electricity network
+
+- unit = PJ
+- query =
+    SUM(
+        Q(biogas_in_source_of_electricity_production),
+        Q(biomass_in_source_of_electricity_production),
+        Q(waste_in_source_of_electricity_production),
+        Q(greengas_in_source_of_electricity_production)
+    )

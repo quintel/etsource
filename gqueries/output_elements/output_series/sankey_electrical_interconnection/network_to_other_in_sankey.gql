@@ -1,0 +1,15 @@
+# Query for Sankey diagram: connection between electricity network and other electricity demand
+
+- unit = PJ
+- query =
+    SUM(
+        Q(demand_in_source_of_electricity_production),
+        NEG(Q(network_to_agriculture_in_sankey),
+        NEG(Q(network_to_buildings_in_sankey),
+        NEG(Q(network_to_households_in_sankey),
+        NEG(Q(network_to_industry_in_sankey),
+        NEG(Q(network_to_transport_in_sankey),
+        NEG(Q(network_to_flexibility_in_sankey)),
+        NEG(Q(network_to_transport_losses_in_sankey)),
+        NEG(DIVIDE(SUM(V(G(energy_export),"input_of_electricity")),BILLIONS))
+    )
