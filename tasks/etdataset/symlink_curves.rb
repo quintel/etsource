@@ -1,15 +1,12 @@
 task symlink_curves: :environment do
 
-  if ENV['DATASET']
-    if ENV['YEAR']
-      # if a YEAR is specified, import the dataset for that year
-      curves = { ENV['DATASET'] => ENV['YEAR'] }
-    else
-      # if no YEAR is specified, import the dataset for the year listed in datasets.yml
-      curves = { ENV['DATASET'] => YAML.load_file('local_curves.yml')["#{ ENV['DATASET'] }"] }
-    end
+  if ENV['DATASET'] and ENV['YEAR']
+    # if a YEAR is specified, import the dataset for that year
+    curves = { ENV['DATASET'] => ENV['YEAR'] }
   else
-    curves = YAML.load_file('local_curves.yml')
+    # if YEAR nor DATASET are specified, point this out to the user.
+    abort("\nNo DATASET and/or YEAR are specified. Make sure you run: \n \
+           \nbundle exec rake symlink_curves DATASET=<dataset> YEAR=<year>")
   end
 
   curves.each do |area, year|
