@@ -3,13 +3,9 @@
 - unit = PJ
 - query =
     SUM(
-        Q(demand_in_source_of_electricity_production),
-        NEG(Q(network_to_agriculture_in_sankey),
-        NEG(Q(network_to_buildings_in_sankey),
-        NEG(Q(network_to_households_in_sankey),
-        NEG(Q(network_to_industry_in_sankey),
-        NEG(Q(network_to_transport_in_sankey),
-        NEG(Q(network_to_flexibility_in_sankey)),
-        NEG(Q(network_to_transport_losses_in_sankey)),
-        NEG(DIVIDE(SUM(V(G(energy_export),"input_of_electricity")),BILLIONS))
+      Q(electricity_prod_to_other_in_sankey),
+      Q(electricity_prod_to_central_heat_prod_in_sankey),
+      Q(electricity_prod_to_energy_in_sankey),
+      Q(electricity_prod_to_feedstock_in_sankey),
+      DIVIDE(V(energy_compressor_network_gas,input_of_electricity),BILLIONS)
     )
