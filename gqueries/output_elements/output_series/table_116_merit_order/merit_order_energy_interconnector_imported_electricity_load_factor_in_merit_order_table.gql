@@ -1,0 +1,11 @@
+# Load factor of 'energy_interconnector_1_imported_electricity' in merit order table
+
+- query =
+    AVG(
+      V(
+        GROUP(electricity_interconnectors_import),
+        "full_load_hours / HOURS_PER_YEAR"
+      )
+    )
+
+- unit = factor

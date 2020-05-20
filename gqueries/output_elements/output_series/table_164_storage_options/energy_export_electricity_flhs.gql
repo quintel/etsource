@@ -1,2 +1,9 @@
-- query = V(energy_export_electricity, full_load_hours)
+- query =
+    AVG(
+      V(
+        GROUP(electricity_interconnectors_export),
+        full_load_hours
+      )
+    )
+
 - unit = hours
