@@ -4,7 +4,7 @@
       ->{
         x = USER_INPUT();
 
-        heat_factor = 1.0 - 0.0893386 * x;
+        heat_factor = 1.0 - 0.1507409694 * x;
         cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
 
         EACH(
@@ -15,7 +15,8 @@
           UPDATE_WITH_FACTOR(V(households_apartments_useful_demand_for_space_heating), preset_demand, heat_factor),
           UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, cool_factor),
           UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating), preset_demand, heat_factor),
-          UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor)
+          UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor),
+          UPDATE_WITH_FACTOR(V(agriculture_useful_demand_useable_heat), preset_demand, heat_factor)
         )
       },
       -> {},
