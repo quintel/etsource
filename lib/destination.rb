@@ -1,7 +1,7 @@
 class Destination
   attr_reader :destination_path
 
-  WEATHER_CURVE_STARTS = %w(wind solar air insulation weather flh)
+  WEATHER_CURVE_STARTS = %w(wind solar air insulation weather flh buildings_heating agriculture_heating)
   WEATHER_YEAR_SPECIAL_YEARS = [1987, 1997, 2004]
 
   def initialize(file_name, country, year)
