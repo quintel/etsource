@@ -1,2 +1,8 @@
-- query = V(energy_export_electricity, "typical_input_capacity * availability")
+- query =
+    SUM(
+      V(
+        GROUP(electricity_interconnectors_export),
+        "typical_input_capacity * availability"
+      )
+    )
 - unit = MW
