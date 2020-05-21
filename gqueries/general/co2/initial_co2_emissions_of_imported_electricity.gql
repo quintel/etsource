@@ -1,0 +1,10 @@
+# Describes the default CO2 emissions of imported electricity. Individual
+# interconnectors may customise their CO2 emissions; for the ACTUAL CO2
+# emissions use "average_co2_emissions_of_imported_electricity".
+- query =
+    PRODUCT(
+        V(CARRIER(imported_electricity), co2_conversion_per_mj),
+        MJ_PER_MWH
+    )
+
+- unit = gCO2/kWh
