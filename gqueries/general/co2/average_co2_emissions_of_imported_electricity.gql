@@ -2,8 +2,11 @@
 
 - query =
     PRODUCT(
-      V(CARRIER(imported_electricity), co2_conversion_per_mj),
-      MJ_PER_KWH * THOUSANDS
+      AVG(
+        V(INPUT_LINKS(GROUP(electricity_interconnectors_import)), co2_per_mj)
+      ),
+      MJ_PER_MWH
     )
+
 - unit = gCO2/kWh
 - deprecated_key = co2_emission_electricity_import
