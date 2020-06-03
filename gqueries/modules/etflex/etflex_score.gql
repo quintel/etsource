@@ -1,34 +1,25 @@
 # Total score calculated for ETFlex.
-# We start of with ~1000 points (see base) and give penalties or bonus points
+# We start of with ~1000 points (see base) and give penalties
 #
 # * cost:          penalty
 # * co2:           penalty
-# * electric car:  penalty
-# * greengas:      penalty
-# * heatpump:      penalty
 # * imbalance:     penalty
-# * led:           penalty
-# * nuclear waste: penalty
 # * reliability:   penalty
-# * renewability:  bonus
-#
-# * deviations:    penalty
+# * renewability:  penalty
+
 
 - query =
-    MAX(0,
-      SUM(
-        Q(etflex_score_base),
-        Q(etflex_score_cost),
-        Q(etflex_score_co2),
-        Q(etflex_score_electric_car),
-        Q(etflex_score_greengas),
-        Q(etflex_score_heatpump),
-        Q(etflex_score_imbalance),
-        Q(etflex_score_led),
-        Q(etflex_score_nuclear_waste),
-        Q(etflex_score_reliability),
-        Q(etflex_score_renewability),
-        50 * Q(etflex_score_deviations_from_reference_scenario)
-      )
-    )
+      MIN(
+          MAX(0,
+            SUM(
+              Q(etflex_score_base),
+              Q(etflex_score_cost),
+              Q(etflex_score_co2),
+              Q(etflex_score_imbalance),
+              Q(etflex_score_reliability),
+              Q(etflex_score_renewability)
+            )
+          ),
+          1000
+          )
 - unit = #
