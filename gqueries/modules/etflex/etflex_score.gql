@@ -9,17 +9,18 @@
 
 
 - query =
-      MIN(
-          MAX(0,
-            SUM(
-              Q(etflex_score_base),
-              Q(etflex_score_cost),
-              Q(etflex_score_co2),
-              Q(etflex_score_imbalance),
-              Q(etflex_score_reliability),
-              Q(etflex_score_renewability)
-            )
-          ),
-          1000
-          )
+
+    MIN(
+      MAX(0,
+        SUM(
+          Q(etflex_score_base),
+          Q(etflex_score_cost),
+          Q(etflex_score_co2),
+          Q(etflex_score_imbalance),
+          Q(etflex_score_reliability),
+          Q(etflex_score_renewability)
+        )
+      ),
+      999
+    )
 - unit = #
