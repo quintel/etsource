@@ -5,8 +5,8 @@
     PRODUCT(
       DIVIDE(
         SUM(
-          V(energy_biogas_fermentation_wet_biomass, total_costs_per(:converter)) * V(LINK(energy_greengas_upgrade_biogas, energy_distribution_biogas), parent_share),
-          V(energy_greengas_upgrade_biogas, fixed_costs_per(:converter))
+          V(energy_biogas_fermentation_wet_biomass, total_costs_per(:node)) * V(LINK(energy_greengas_upgrade_biogas, energy_distribution_biogas), parent_share),
+          V(energy_greengas_upgrade_biogas, fixed_costs_per(:node))
         ),
         DIVIDE(
           V(energy_greengas_upgrade_biogas, output_of_greengas),

@@ -2,8 +2,8 @@
 
 - query =
     SUM(
-      V(G(cost_hydrogen_production), total_costs_per(:converter)),
-      V(G(cost_hydrogen_infrastructure), fixed_costs_per(:converter)),
+      V(G(cost_hydrogen_production), total_costs_per(:node)),
+      V(G(cost_hydrogen_infrastructure), fixed_costs_per(:node)),
       V(G(cost_hydrogen_storage), "storage.volume * storage.cost_per_mwh"),
       Q(costs_of_imported_hydrogen)
     )
