@@ -1,6 +1,28 @@
+# The IF condition skips processing the input if one of two conditions are true:
+#
+# 1. The curve set specified by the user is "default" - this prevents attempting to load the
+#    weather properties CSV, which doesn't exist for the default curve set.
+#
+# 2. If the curve set specified doesn't exist. ETEngine validation will catch this in new and
+#    updated scenarios, but not when creating clones of old scenarios; an old scenario may specify
+#    a curve set which no longer exists. This is done by checking the intersection of allowed
+#    values and the value provided by the user. If the intersection length is 0, the value is not
+#    valid.
+#
 - query =
   IF(
-    EQUALS(USER_INPUT(), "default"),
+    OR(
+      EQUALS(USER_INPUT(), "default"),
+      EQUALS(
+        COUNT(
+          INTERSECTION(
+            CURVE_SET_VARIANTS(weather),
+            [USER_INPUT()]
+          )
+        ),
+        0
+      )
+    ),
     -> {},
     -> {
       UPDATE(AREA(), weather_curve_set, USER_INPUT());
