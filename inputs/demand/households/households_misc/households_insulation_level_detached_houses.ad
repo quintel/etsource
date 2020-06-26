@@ -18,8 +18,8 @@
     medium_profile_share = (1.0 - low_profile_share - high_profile_share);
 
     EACH(
-      UPDATE(LINK(households_detached_houses_useful_demand_for_space_heating_after_insulation, households_detached_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_after_insulation),
-      UPDATE(LINK(households_space_heating_savings_from_insulation, households_detached_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_savings_from_insulation),
+      UPDATE(EDGE(households_detached_houses_useful_demand_for_space_heating_after_insulation, households_detached_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_after_insulation),
+      UPDATE(EDGE(households_space_heating_savings_from_insulation, households_detached_houses_useful_demand_for_space_heating), share, share_of_useful_heat_demand_savings_from_insulation),
       UPDATE(AREA(), insulation_detached_houses_low_share, low_profile_share),
       UPDATE(AREA(), insulation_detached_houses_medium_share, medium_profile_share),
       UPDATE(AREA(), insulation_detached_houses_high_share, high_profile_share),

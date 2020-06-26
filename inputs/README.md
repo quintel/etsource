@@ -55,7 +55,7 @@ An example:
     - query =
         EACH(
           UPDATE(V(agriculture_chp_engine_network_gas), number_of_units, USER_INPUT()),
-          UPDATE(OUTPUT_LINKS(V(agriculture_chp_engine_network_gas),constant), share, V(agriculture_chp_engine_network_gas, production_based_on_number_of_units)),
+          UPDATE(OUTPUT_EDGES(V(agriculture_chp_engine_network_gas),constant), share, V(agriculture_chp_engine_network_gas, production_based_on_number_of_units)),
         )
     - priority = 0
     - max_value = 1214.0

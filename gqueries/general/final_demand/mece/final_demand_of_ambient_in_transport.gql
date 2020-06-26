@@ -6,7 +6,7 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :transport"
+            EG(final_demand),"sector == :transport"
           ),
           ambient_heat?
         ),
@@ -15,10 +15,10 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :transport"
+            EG(final_demand),"sector == :transport"
           ),
           ambient_cold?
         ),
         value
-      )      
+      )
     ) / BILLIONS

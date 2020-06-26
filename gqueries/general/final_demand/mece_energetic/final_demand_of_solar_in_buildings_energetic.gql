@@ -7,7 +7,7 @@
         FILTER(
           FILTER(
             FILTER(
-              LG(final_demand),"sector == :buildings"
+              EG(final_demand),"sector == :buildings"
             ),
             energetic?
           ),
@@ -19,12 +19,12 @@
         FILTER(
           FILTER(
             FILTER(
-              LG(final_demand),"sector == :buildings"
+              EG(final_demand),"sector == :buildings"
             ),
             energetic?
           ),
           solar_thermal?
         ),
         value
-      )      
+      )
     ) / BILLIONS

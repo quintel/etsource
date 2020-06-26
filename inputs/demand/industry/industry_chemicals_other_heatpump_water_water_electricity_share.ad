@@ -3,18 +3,18 @@
 # heat from processes.
 
 - query =
-  present_potential_residual_heat_processes = QUERY_PRESENT(->{ V(LINK(industry_useful_demand_for_chemical_other_useable_heat,industry_chemicals_other_processes_potential_residual_heat),share) });
+  present_potential_residual_heat_processes = QUERY_PRESENT(->{ V(EDGE(industry_useful_demand_for_chemical_other_useable_heat,industry_chemicals_other_processes_potential_residual_heat),share) });
   share_technologies_without_residual_heat_processes = DIVIDE(SUM(USER_INPUT(),INPUT_VALUE(industry_chemicals_other_steam_recompression_electricity_share)), 100.0);
   future_potential_residual_heat_processes = present_potential_residual_heat_processes * (1.0 - share_technologies_without_residual_heat_processes);
 
   EACH(
     UPDATE(
-      LINK(industry_chemicals_other_heatpump_water_water_electricity, industry_useful_demand_for_chemical_other_useable_heat),
+      EDGE(industry_chemicals_other_heatpump_water_water_electricity, industry_useful_demand_for_chemical_other_useable_heat),
       share,
       DIVIDE(USER_INPUT(), 100)
     ),
     UPDATE(
-      LINK(industry_chemicals_other_processes_potential_residual_heat,industry_useful_demand_for_chemical_other_useable_heat),
+      EDGE(industry_chemicals_other_processes_potential_residual_heat,industry_useful_demand_for_chemical_other_useable_heat),
       share,
       future_potential_residual_heat_processes
     )

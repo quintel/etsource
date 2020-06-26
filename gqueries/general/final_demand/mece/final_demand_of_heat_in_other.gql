@@ -6,7 +6,7 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :other"
+            EG(final_demand),"sector == :other"
           ),
           steam_hot_water?
         ),
@@ -15,10 +15,10 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :other"
+            EG(final_demand),"sector == :other"
           ),
           useable_heat?
         ),
         value
-      )      
+      )
     ) / BILLIONS

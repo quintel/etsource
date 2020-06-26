@@ -6,7 +6,7 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :transport"
+            EG(final_demand),"sector == :transport"
           ),
           network_gas?
         ),
@@ -15,7 +15,7 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :transport"
+            EG(final_demand),"sector == :transport"
           ),
           compressed_network_gas?
         ),
@@ -24,10 +24,10 @@
       V(
         FILTER(
           FILTER(
-            LG(final_demand),"sector == :transport"
+            EG(final_demand),"sector == :transport"
           ),
           lng?
         ),
         value
-      )        
+      )
     ) / BILLIONS
