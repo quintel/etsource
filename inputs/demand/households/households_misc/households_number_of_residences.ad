@@ -24,7 +24,7 @@
     UPDATE(V(households_space_heating_savings_from_insulation), initial_investment, QUERY_FUTURE(-> { Q(total_costs_of_insulation_households)})),
     UPDATE(V(households_flexibility_p2p_electricity), number_of_units, future_number_of_residences * INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration) / 100.0),
     UPDATE(
-      V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "links.detect{|l| !l.flexible? }"),
+      V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "edges.detect{|l| !l.flexible? }"),
       share,
       (
         (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) / 100.0) *

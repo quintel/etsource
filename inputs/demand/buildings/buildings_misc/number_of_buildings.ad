@@ -28,7 +28,7 @@
       ),
 
     UPDATE_ABSOLUTE(
-      V(OUTPUT_SLOTS(LOOKUP(buildings_solar_pv_solar_radiation), electricity), "links.detect{|l| !l.flexible? }"),
+      V(OUTPUT_SLOTS(LOOKUP(buildings_solar_pv_solar_radiation), electricity), "edges.detect{|l| !l.flexible? }"),
       share,
       (
         ((INPUT_VALUE(buildings_solar_pv_solar_radiation_market_penetration) / 100.0) *
