@@ -13,6 +13,7 @@ agriculture_final_demand_hydrogen:
   demand: 0.0
 buildings_solar_pv_solar_radiation:
   demand: 110.99075011296168
+  full_load_hours: 890.0
 buildings_final_demand_wood_pellets:
   demand: 55.705772205398254
 buildings_final_demand_coal:
@@ -28,7 +29,7 @@ buildings_final_demand_steam_hot_water:
 buildings_local_production_electricity:
   demand: 561.9080290608
 transport_final_demand_diesel:
-  demand: 661.3516190881643
+  demand: 659.3655744985633
 transport_final_demand_lng:
   demand: 0.0
 transport_final_demand_bio_lng:
@@ -43,8 +44,8 @@ transport_final_demand_gasoline:
   demand: 135.24232795873087
 transport_road_mixer_diesel:
   input:
-    :diesel: 0.9337056626689831
-    :biodiesel: 0.0662943373310168
+    :diesel: 0.9454954485960033
+    :biodiesel: 0.054504551403996744
 transport_final_demand_hydrogen:
   demand: 0.0
 transport_final_demand_lpg:
@@ -69,8 +70,8 @@ transport_shipping_mixer_lng:
     :bio_lng: 0.0
 transport_road_mixer_gasoline:
   input:
-    :gasoline: 1.0
-    :bio_ethanol: 0.0
+    :gasoline: 0.9382786679729058
+    :bio_ethanol: 0.061721332027094136
 transport_shipping_mixer_diesel:
   input:
     :lng: 0.0
@@ -79,7 +80,7 @@ transport_shipping_mixer_diesel:
     :biodiesel: 0.0
     :heavy_fuel_oil: 0.0
 transport_final_demand_bio_ethanol:
-  demand: 0.0
+  demand: 8.896436541706633
 transport_final_demand_coal:
   demand: 0.0
 transport_rail_mixer_diesel:
@@ -87,7 +88,7 @@ transport_rail_mixer_diesel:
     :diesel: 1.0
     :biodiesel: 0.0
 transport_final_demand_biodiesel:
-  demand: 46.956839915608825
+  demand: 38.01015108285176
 transport_final_demand_for_shipping_lng:
   demand: 0.0
 transport_useful_demand_bicycles:
@@ -104,22 +105,27 @@ energy_power_combined_cycle_coal:
   demand: 0.0
 energy_power_wind_turbine_offshore:
   demand: 0.0
+  full_load_hours: 3230.0
 energy_power_solar_pv_solar_radiation:
   demand: 0.0
+  full_load_hours: 890.0
 energy_power_ultra_supercritical_ccs_coal:
   demand: 0.0
 energy_extraction_natural_gas:
   demand: 0.0
 energy_power_ultra_supercritical_network_gas:
   demand: 0.0
+  full_load_hours: 330.0
 energy_power_turbine_network_gas:
   demand: 0.0
+  full_load_hours: 1800.0
 energy_production_wet_biomass:
   max_demand: 0.0
 energy_heat_distribution_loss:
   demand: 0.0
 energy_power_supercritical_waste_mix:
   demand: 0.0
+  full_load_hours: 5100.0
 energy_heat_solar_thermal:
   demand: 0.0
 energy_power_engine_network_gas:
@@ -128,6 +134,7 @@ energy_heat_burner_network_gas:
   demand: 0.0
 energy_chp_supercritical_waste_mix:
   demand: 0.0
+  full_load_hours: 4100.0
 energy_heat_burner_waste_mix:
   demand: 0.0
 energy_heat_heatpump_water_water_electricity:
@@ -140,10 +147,12 @@ energy_distribution_greengas:
   demand: 0.0
 energy_chp_local_engine_biogas:
   demand: 0.0
+  full_load_hours: 8000.0
 energy_extraction_coal:
   demand: 0.0
 energy_chp_local_engine_network_gas:
   demand: 0.0
+  full_load_hours: 3610.0
 energy_extraction_uranium_oxide:
   demand: 0.0
 energy_power_sector_own_use_electricity:
@@ -167,8 +176,10 @@ energy_power_nuclear_gen3_uranium_oxide:
   demand: 0.0
 energy_power_engine_diesel:
   demand: 0.0
+  full_load_hours: 4000.0
 energy_power_wind_turbine_coastal:
   demand: 0.0
+  full_load_hours: 2850.0
 energy_import_heat:
   demand: 0.0
 energy_power_ultra_supercritical_coal:
@@ -181,12 +192,16 @@ energy_heat_burner_wood_pellets:
   demand: 0.0
 energy_power_combined_cycle_network_gas:
   demand: 0.0
+  full_load_hours: 850.0
 energy_power_ultra_supercritical_cofiring_coal:
+  demand: 0.0
+energy_power_hydro_mountain:
   demand: 0.0
 energy_heat_burner_coal:
   demand: 0.0
 energy_power_wind_turbine_inland:
   demand: 0.0
+  full_load_hours: 2050.0
 energy_heat_burner_crude_oil:
   demand: 0.0
 energy_power_nuclear_gen2_uranium_oxide:
@@ -195,12 +210,16 @@ energy_production_dry_biomass:
   max_demand: 0.0
 energy_chp_local_wood_pellets:
   demand: 0.0
+  full_load_hours: 6000.0
 energy_power_hydro_river:
   demand: 0.0
+  full_load_hours: 3330.0
 energy_power_supercritical_coal:
   demand: 0.0
+  full_load_hours: 7500.0
 energy_chp_combined_cycle_network_gas:
   demand: 5.5102040816326525
+  full_load_hours: 4900.0
 energy_extraction_crude_oil:
   demand: 0.0
 energy_chp_ultra_supercritical_coal:
@@ -247,6 +266,7 @@ households_final_demand_solar_thermal:
   demand: 2.221239622425721
 households_solar_pv_solar_radiation:
   demand: 141.01249244297878
+  full_load_hours: 890.0
 households_final_demand_wood_pellets:
   demand: 42.7882324526783
 industry_final_demand_wood_pellets:
@@ -272,6 +292,10 @@ industry_heat_well_geothermal:
   demand: 0.0
 industry_chp_engine_gas_power_fuelmix:
   demand: 0.0
+industry_transformation_generic_coal:
+  output:
+    :coal: 1.0
+    :loss: 0.0
 industry_final_demand_for_other_crude_oil_non_energetic:
   demand: 0.0
 industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic:
@@ -366,9 +390,9 @@ transport_final_demand_diesel-transport_final_demand_for_rail_diesel@diesel:
 transport_road_mixer_gasoline-transport_car_using_gasoline_mix@gasoline_mix:
   parent_share: 0.999534119099442
 transport_road_mixer_diesel-transport_car_using_diesel_mix@diesel_mix:
-  parent_share: 0.5707067029428554
+  parent_share: 0.5724257022407647
 transport_road_mixer_diesel-transport_bus_using_diesel_mix@diesel_mix:
-  parent_share: 0.04737820832150833
+  parent_share: 0.044508860226200556
 transport_final_demand_gasoline-transport_final_demand_for_road_gasoline@gasoline:
   parent_share: 1.0
 transport_road_mixer_compressed_network_gas-transport_bus_using_compressed_natural_gas@compressed_network_gas:
@@ -376,7 +400,7 @@ transport_road_mixer_compressed_network_gas-transport_bus_using_compressed_natur
 transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
   parent_share: 0.00046588090055790245
 transport_final_demand_bio_ethanol-transport_final_demand_for_road_bio_ethanol@bio_ethanol:
-  parent_share: 0.0
+  parent_share: 1.0
 transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
   parent_share: 0.00178130659462488
 transport_final_demand_for_rail_electricity-transport_freight_train_using_electricity@electricity:
@@ -639,7 +663,3 @@ industry_final_demand_for_metal_network_gas-industry_aluminium_burner_network_ga
   parent_share: 0.0
 industry_final_demand_for_metal_coal-industry_other_metals_burner_network_gas@coal:
   parent_share: 1.0
-industry_transformation_generic_coal:
-  output:
-    :coal: 1.0
-    :loss: 0.0
