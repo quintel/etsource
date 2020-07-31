@@ -23,7 +23,7 @@ RSpec.describe 'config/fever.yml' do
     expect(counts.all? { |_, count| count.one? }).to be(true)
   end
 
-  Atlas::Node.all.select(&:fever).each do |node|
+  Atlas::EnergyNode.all.select(&:fever).each do |node|
     describe "#{node.key} node" do
       it 'uses a valid Fever group' do
         expect(node.fever.group).to be_fever_group
