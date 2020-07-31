@@ -1,8 +1,6 @@
 - query =
-    SUM(V(
-      energy_power_wind_turbine_inland,
-      energy_power_wind_turbine_coastal,
-      number_of_units
-    ))
-
+    DIVIDE(
+      Q(factsheet_installed_capacity_of_wind_turbine_inland_coastal),
+      Q(energy_mix_capacity_per_unit_wind_turbine_inland)
+    )
 - unit = #
