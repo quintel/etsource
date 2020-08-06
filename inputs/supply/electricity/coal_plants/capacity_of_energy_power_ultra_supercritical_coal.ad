@@ -3,17 +3,28 @@
         UPDATE(
             V(energy_power_ultra_supercritical_coal),
             number_of_units,
-            USER_INPUT() / V(energy_power_ultra_supercritical_coal, electricity_output_capacity)
+            (1.0 - DIVIDE(INPUT_VALUE(share_of_energy_power_ultra_supercritical_ccs_coal),100.0)) * USER_INPUT() / V(energy_power_ultra_supercritical_coal, electricity_output_capacity)
         ),
         UPDATE(
-        	L(energy_power_ultra_supercritical_coal),
-        	preset_demand_by_electricity_production,
-        	V(energy_power_ultra_supercritical_coal, production_based_on_number_of_units)
-    ))
+          	L(energy_power_ultra_supercritical_coal),
+          	preset_demand_by_electricity_production,
+          	V(energy_power_ultra_supercritical_coal, production_based_on_number_of_units)
+        ),
+        UPDATE(
+            V(energy_power_ultra_supercritical_ccs_coal),
+            number_of_units,
+            DIVIDE(INPUT_VALUE(share_of_energy_power_ultra_supercritical_ccs_coal),100.0) * USER_INPUT() / V(energy_power_ultra_supercritical_ccs_coal, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_power_ultra_supercritical_ccs_coal),
+            preset_demand_by_electricity_production,
+            V(energy_power_ultra_supercritical_ccs_coal, production_based_on_number_of_units)
+        )
+    )
 - priority = 0
 - max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(total_electricity_consumed), V(energy_power_ultra_supercritical_coal, output_of_electricity)*2), V(energy_power_ultra_supercritical_coal,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(energy_power_ultra_supercritical_coal,number_of_units),V(energy_power_ultra_supercritical_coal,electricity_output_capacity))
+- start_value_gql = present:SUM(V(energy_power_ultra_supercritical_ccs_coal, "number_of_units*electricity_output_capacity"),V(energy_power_ultra_supercritical_coal, "number_of_units*electricity_output_capacity"))
 - step_value = 1.0
 - unit = MW
 - update_period = future
