@@ -42,7 +42,7 @@ namespace :import do
         when /efficiency$/
           cp_csv(csv, dest.join('efficiencies'))
         when /(?:parent|child)_share$/
-          cp_csv(csv, dest.join('shares'))
+          cp_csv(csv, dest.join('shares/energy'))
         when /time_curve$/
           cp_csv(csv, dest.join('time_curves'))
         when /^bicycles_demand/
