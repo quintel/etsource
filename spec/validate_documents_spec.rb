@@ -14,7 +14,8 @@ TO_VALIDATE = {
 
 PERMITTED_VALIDATION_ERRORS = {
   Atlas::Input            => [:query],
-  Atlas::InitializerInput => [:query]
+  Atlas::InitializerInput => [:query],
+  Atlas::Preset           => [:user_values]
 }
 
 TO_VALIDATE.each do |name, klass|
@@ -22,8 +23,6 @@ TO_VALIDATE.each do |name, klass|
 
   describe "Validating #{name}:" do
     klass.all.each do |document|
-      # xit(document.key.to_s) { expect(document).to be_valid }
-
       it document.key.to_s do
         # This is a bit silly, but mark any document which isn't valid as
         # pending, until such a time as we actually care about validation.
@@ -39,6 +38,6 @@ TO_VALIDATE.each do |name, klass|
           expect(document).to be_valid
         end
       end
-    end # klass.all.each
-  end # describe "Validating ..."
-end # TO_VALIDATE.each
+    end
+  end
+end
