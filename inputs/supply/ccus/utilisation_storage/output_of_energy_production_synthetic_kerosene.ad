@@ -1,0 +1,13 @@
+- query =
+    UPDATE(
+        V(energy_production_synthetic_kerosene),
+        demand,
+        DIVIDE((USER_INPUT() * BILLIONS), V(energy_production_synthetic_kerosene, kerosene_output_conversion))
+    )
+- priority = 0
+- max_value_gql = present:DIVIDE(SUM(V(bunkers_total_useful_demand_planes, demand), V(transport_final_demand_kerosene, demand)),BILLIONS)
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = PJ
+- update_period = future
