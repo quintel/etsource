@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-MIMICKED_SETS = %w[nl2016 nl2017]
+MIMICKED_SETS = %w[nl2016 nl2017 nl2018]
 
 MIMICKED_SETS.each do |mimicked|
   describe "mimicked full of #{mimicked} dataset" do
