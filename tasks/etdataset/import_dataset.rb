@@ -25,11 +25,12 @@ namespace :import do
 
     datasets.each do |country, year|
       dest = Pathname.new("datasets/#{ country }")
-      csvs = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/*.csv")
+      csvs_energy = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/*.csv")
+      csvs_molecules = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/molecules/*.csv")
 
       puts "Importing #{ country }/#{ year } dataset:"
 
-      %w( demands efficiencies shares time_curves ).each do |dir|
+      %w( demands efficiencies shares shares/energy shares/molecules time_curves ).each do |dir|
         # Remove the old files, some of which may no longer exist in ETDataset.
         Pathname.glob(dest.join("#{ dir }/*.csv")).each(&FileUtils.method(:rm))
 
@@ -37,7 +38,7 @@ namespace :import do
         FileUtils.mkdir_p(dest.join(dir))
       end
 
-      count = csvs.select.with_index do |csv, index|
+      count = csvs_energy.select.with_index do |csv, index|
         case csv.basename('.csv').to_s
         when /efficiency$/
           cp_csv(csv, dest.join('efficiencies'))
@@ -62,7 +63,16 @@ namespace :import do
         end
       end # each csv
 
-      puts "  - Imported #{ count.length } CSVs"
+      puts "  - Imported #{ count.length } energy CSVs"
+
+      count = csvs_molecules.select.with_index do |csv, index|
+        case csv.basename('.csv').to_s
+        when /(?:parent|child)_share$/
+          cp_csv(csv, dest.join('shares/molecules'))
+        end
+      end # each csv
+
+      puts "  - Imported #{ count.length } molecules CSVs"
 
       encrypt_balance(dest)
     end # each dataset
