@@ -1,6 +1,11 @@
+# Uses primary_co2_emission attribute to set demand as the emission factor of
+# coal gas depends on the amount of coal/cokes used to produce it. This can differ
+# between countries/datasets
+# Unfortunately this is not perfect as industry_steel_electricfurnace_burner_network_gas
+# also has a network_gas input. The greengas share of network_gas has a
+# primary_co2_emission of zero, so this bio CO2 does not appear in this node
+# even though in reality it can be captured
+
 - from_energy.source = industry_steel_blastfurnace_burner_coal_gas
-- from_energy.direction = input
-- from_energy.conversion.coal_gas = carrier: co2_conversion_per_mj
-- from_energy.conversion.coal = carrier: co2_conversion_per_mj
-- from_energy.conversion.network_gas = carrier: co2_conversion_per_mj
+- from_energy.attribute = primary_co2_emission
 - input.co2 = 1.0
