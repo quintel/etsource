@@ -11,9 +11,21 @@ namespace :import do
 
   DESC
   task node: :environment do
-    node      = Atlas::Node.find(ENV['NODE'])
+    if ENV['NODE'].blank?
+      raise "Please provide a node name. For example: bundle exec rake import:node NODE=my_node"
+    end
+
+    node =
+      if Atlas::EnergyNode.exists?(ENV['NODE'])
+        Atlas::EnergyNode.find(ENV['NODE'])
+      elsif Atlas::MoleculeNode.exists?(ENV['NODE'])
+        Atlas::MoleculeNode.find(ENV['NODE'])
+      else
+        raise "No such node found in ETSource: #{ENV['NODE']}"
+      end
+
     basename  = [node.key, node.class.subclass_suffix].compact.join('.')
-    node_path = "#{node.sector}/#{basename}"
+    node_path = "#{node.graph_config.name}/#{node.sector}/#{basename}"
     xlsx      = Roo::Spreadsheet.open("#{ETDATASET_PATH}/nodes_source_analyses/#{node_path}.xlsx")
 
     xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
@@ -23,8 +35,17 @@ namespace :import do
 
       if attribute =~ /\./
         attribute, subkey = attribute.split('.', 2)
-        subhash           = node.public_send(attribute)
-        right             = subkey
+        right = subkey
+
+        if node.respond_to?(attribute)
+          subhash = node.public_send(attribute)
+        else
+          $stderr.puts(
+            "Ignored #{attribute}.#{subkey} = #{key_val[:value]} " \
+            "(no such attribute on #{node.class})"
+          )
+          next
+        end
 
         # For FeverDetails and TransformerDetails
         if subhash.is_a?(Atlas::ValueObject)
@@ -45,7 +66,13 @@ namespace :import do
 
         subhash[subkey.to_sym] = key_val[:value]
       else
-        node.public_send("#{attribute}=", key_val[:value])
+        if node.respond_to?("#{attribute}=")
+          node.public_send("#{attribute}=", key_val[:value])
+        else
+          $stderr.puts(
+            "Ignored #{attribute} = #{key_val[:value]} (no such attribute on #{node.class})"
+          )
+        end
       end
     end
 
