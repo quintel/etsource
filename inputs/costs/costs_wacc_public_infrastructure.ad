@@ -1,6 +1,11 @@
 # This slider updates the wacc for public infrastructure
 
-- query = UPDATE(G(wacc_public_infra), wacc, DIVIDE(USER_INPUT(),100.0))
+- query =
+    UPDATE(
+      FLATTEN(GROUP(wacc_public_infra), MGROUP(wacc_public_infra)),
+      wacc,
+      DIVIDE(USER_INPUT(), 100.0)
+    )
 - priority = 0
 - max_value = 15.0
 - min_value = 0.0
