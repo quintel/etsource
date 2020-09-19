@@ -1,0 +1,9 @@
+# Energy use of carbon capture for power plants can be calculated by comparing the difference
+# in efficiency of a plant with and without CCS. The difference times the demand of the
+# CCS node gives the additional energy required
+- unit = MJ
+- query =
+    eff_without_ccs = V(energy_power_ultra_supercritical_coal, electricity_output_conversion);
+    eff_with_ccs = V(energy_power_ultra_supercritical_ccs_coal, electricity_output_conversion);
+    diff_eff = eff_without_ccs - eff_with_ccs;
+    V(energy_power_ultra_supercritical_ccs_coal, demand) * diff_eff
