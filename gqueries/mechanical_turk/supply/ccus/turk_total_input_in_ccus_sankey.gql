@@ -1,0 +1,14 @@
+# Sum of all carbon input flows (column: 0) in the CCUS sankey
+
+- unit = MT
+- query =
+    SUM(
+      Q(dac_captured_co2_total_in_ccus_sankey),
+      Q(power_production_captured_co2_total_in_ccus_sankey),
+      Q(hydrogen_production_captured_co2_total_in_ccus_sankey),
+      Q(industry_steel_captured_co2_total_in_ccus_sankey),
+      Q(industry_food_captured_co2_total_in_ccus_sankey),
+      Q(industry_paper_captured_co2_total_in_ccus_sankey),
+      Q(industry_fertilizers_captured_co2_total_in_ccus_sankey),
+      Q(import_captured_co2_total_in_ccus_sankey),
+    )
