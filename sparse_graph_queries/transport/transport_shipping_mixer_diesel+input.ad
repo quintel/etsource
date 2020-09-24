@@ -10,9 +10,9 @@
         diesel: DATASET_INPUT(input_transport_ship_diesel_demand) / total_shipping_mixer_diesel_demand,
         biodiesel: DATASET_INPUT(input_transport_ship_biodiesel_demand) / total_shipping_mixer_diesel_demand,
         heavy_fuel_oil: DATASET_INPUT(transport_final_demand_heavy_fuel_oil_demand) / total_shipping_mixer_diesel_demand }, {
-        lng: SHARE(transport_shipping_mixer_diesel_child_share, transport_final_demand_for_shipping_lng),
-        bio_lng: SHARE(transport_shipping_mixer_diesel_child_share, transport_final_demand_for_shipping_bio_lng),
-        diesel: SHARE(transport_shipping_mixer_diesel_child_share, transport_final_demand_for_shipping_diesel),
-        biodiesel: SHARE(transport_shipping_mixer_diesel_child_share, transport_final_demand_for_shipping_biodiesel),
-        heavy_fuel_oil: SHARE(transport_shipping_mixer_diesel_child_share, transport_final_demand_for_shipping_heavy_fuel_oil)}
+        lng: SHARE("energy/transport_shipping_mixer_diesel_child_share", transport_final_demand_for_shipping_lng),
+        bio_lng: SHARE("energy/transport_shipping_mixer_diesel_child_share", transport_final_demand_for_shipping_bio_lng),
+        diesel: SHARE("energy/transport_shipping_mixer_diesel_child_share", transport_final_demand_for_shipping_diesel),
+        biodiesel: SHARE("energy/transport_shipping_mixer_diesel_child_share", transport_final_demand_for_shipping_biodiesel),
+        heavy_fuel_oil: SHARE("energy/transport_shipping_mixer_diesel_child_share", transport_final_demand_for_shipping_heavy_fuel_oil)}
         )
