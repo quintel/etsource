@@ -50,6 +50,8 @@ namespace :import do
           cp_csv(csv, dest.join('demands/bicycles_demand.csv'))
         when /^metal_demands/
           cp_csv(csv, dest.join('demands/metal_demands.csv'))
+        when /^fertilizers_ccus_demands/
+          cp_csv(csv, dest.join('demands/fertilizers_ccus_demands.csv'))
         when /^primary_production/
           cp_csv(csv, dest.join('primary_production.csv'))
         when /^corrected_energy_balance_step_2/
