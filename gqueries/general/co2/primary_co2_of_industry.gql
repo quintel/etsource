@@ -4,21 +4,6 @@
 - unit = kg
 - query =
     SUM(
-    SUM(
       V( INTERSECTION(G(co2_emissions_primary), SECTOR(industry)), primary_co2_emission),
       V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(industry)), "demand * weighted_carrier_co2_per_mj")
-      )
-       / BILLIONS,
-      NEG(
-        MIN(
-          Q(point_source_co_used),
-          Q(point_source_co_available)
-        ) * INPUT_VALUE(flexibility_p2l_co2_reduction_industry) / 100.0 * 44 / 28
-      ),
-      NEG(
-        MIN(
-          Q(point_source_co2_used),
-          Q(point_source_co2_available)
-        ) * INPUT_VALUE(flexibility_p2l_co2_reduction_industry) / 100.0
-      )
-    )
+      ) / BILLIONS
