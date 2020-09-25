@@ -1,0 +1,14 @@
+# CO2 of energy sector. Includes emissions of CCU. Emissions captured by DAC are deducted
+# Sequestered emissions are not deducted as we already deduct captured emissions from industry,
+# power and h2 production and from energy (DAC)
+
+- query =
+    DIVIDE(
+      SUM(
+        V( INTERSECTION(G(co2_emissions_primary), SECTOR(energy)), primary_co2_emission),
+        V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(energy)), "demand * weighted_carrier_co2_per_mj"),
+        MV(MG(ccu_emitted), demand),
+        NEG(MV(molecules_direct_air_capture_co2, demand))
+      ),
+      BILLIONS)
+- unit = mt

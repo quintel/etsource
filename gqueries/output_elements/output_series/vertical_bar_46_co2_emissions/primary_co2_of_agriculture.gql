@@ -1,0 +1,9 @@
+# CO2 of agriculture sector
+
+- query =
+    SUM(
+      V( INTERSECTION(G(co2_emissions_primary), SECTOR(agriculture)), primary_co2_emission),
+      V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(agriculture)), "demand * weighted_carrier_co2_per_mj")
+    )
+       / BILLIONS
+- unit = mt
