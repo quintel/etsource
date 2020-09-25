@@ -1,9 +1,0 @@
-# CO2 of households sector
-
-- query =
-    SUM(
-      V( INTERSECTION(G(co2_emissions_primary), SECTOR(households)), primary_co2_emission),
-      V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(households)), "demand * weighted_carrier_co2_per_mj")
-    )
-       / BILLIONS
-- unit = mt

@@ -1,9 +1,0 @@
-# CO2 of bunkers sector; if any CO2 reduction from synthetic kerosene is subtracted from the industry emissions
-# they are added here
-
-- unit = kg
-- query =
-    SUM(
-      V( INTERSECTION(G(co2_emissions_primary), SECTOR(bunkers)), primary_co2_emission),
-      V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(bunkers)), "demand * weighted_carrier_co2_per_mj")
-    ) / BILLIONS
