@@ -1,0 +1,9 @@
+# CO2 of buildings sector
+
+- query =
+    SUM(
+      V( INTERSECTION(G(co2_emissions_primary), SECTOR(buildings)), primary_co2_emission),
+      V( INTERSECTION(G(co2_emissions_refinery_products), SECTOR(buildings)), "demand * weighted_carrier_co2_per_mj")
+    )
+       / BILLIONS
+- unit = mt
