@@ -1,6 +1,5 @@
 - unit = PJ
 - query =
-    SUM(
       DIVIDE(
         SUM(
           V(
@@ -9,13 +8,4 @@
           )
         ),
         BILLIONS
-      ),
-      MIN(
-        Q(point_source_co_used),
-        Q(point_source_co_available)
-      ) * INPUT_VALUE(flexibility_p2l_co2_reduction_industry) / 100.0 * 44 / 28,
-      MIN(
-        Q(point_source_co2_used),
-        Q(point_source_co2_available)
-      ) * INPUT_VALUE(flexibility_p2l_co2_reduction_industry) / 100.0
-    )
+      )
