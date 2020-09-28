@@ -1,0 +1,25 @@
+# Includes non_energetic emissions from the fertilizer industry (SMR) and
+# 'delayed' emissions in molecules_other_utilisation_co2 node
+# More non_energetic emissions may be added in the future
+
+- unit = mt
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
+            INTERSECTION(
+              G(co2_emissions_primary),
+              SECTOR(industry)),
+            USE(non_energetic)),
+          primary_co2_emission),
+        MV(
+          molecules_other_utilisation_co2,
+          demand),
+        NEG(
+          MV(
+            MG(captured_non_energetic_emissions_industry),
+            demand))
+      ),
+      BILLIONS
+    )
