@@ -1,0 +1,9 @@
+# International transport is not included in this chart, since it is separately shown
+# with the query: primary_co2_of_bunkers
+
+- unit = PJ
+- query =
+    SUM(
+        Q(total_local_co2_emissions) / BILLIONS,
+        NEG(Q(primary_co2_of_bunkers))
+    )
