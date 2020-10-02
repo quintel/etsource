@@ -1,7 +1,0 @@
-# CO2 of carrier group 'oil_and_derivatives' for the export converter group
-
-- unit = tonne
-- query =
-    SUM(
-        V(G(energy_export).select { |node| node.query.input_of_crude_oil > 0 }, "crude_oil_input_conversion * primary_co2_emission * (1.0 - demand / primary_demand)")
-    ) / THOUSANDS
