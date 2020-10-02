@@ -1,8 +1,0 @@
-# CO2 of carrier group 'ambient' in industry
-
-- unit = tonne
-- query =
-    SUM(
-      V(INTERSECTION(G(co2_emissions_primary),SECTOR(industry)).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, "ambient_heat_input_conversion * primary_co2_emission"),
-      V(INTERSECTION(G(co2_emissions_primary),SECTOR(industry)).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, "ambient_cold_input_conversion * primary_co2_emission")
-    ) / THOUSANDS

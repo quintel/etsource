@@ -1,8 +1,0 @@
-# CO2 of carrier group 'heat' in energy
-
-- unit = tonne
-- query =
-    SUM(
-      V(INTERSECTION(G(co2_emissions_primary),SECTOR(energy)).select {|node| node.input_slots.detect { |slot| slot.carrier.steam_hot_water? }}, "steam_hot_water_input_conversion * primary_co2_emission"),
-      V(INTERSECTION(G(co2_emissions_primary),SECTOR(energy)).select {|node| node.input_slots.detect { |slot| slot.carrier.useable_heat? }}, "useable_heat_input_conversion * primary_co2_emission")
-    ) / THOUSANDS
