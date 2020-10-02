@@ -1,9 +1,9 @@
-# CO2 of coal in energy
+# CO2 captured in energy sector
 
 - unit = tonne
-- query = 
+- query =
     SUM(
-        Q(energy_coal_captured_in_co2_sankey),
-        Q(energy_gas_captured_in_co2_sankey),
-        Q(energy_oil_captured_in_co2_sankey)
-    )
+        MV(energy_power_captured_co2, demand),
+        MV(energy_hydrogen_captured_co2, demand),
+        MV(molecules_direct_air_capture_co2, demand)
+    ) / THOUSANDS

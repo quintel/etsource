@@ -1,0 +1,8 @@
+# CO2 of biomass in buildings
+
+- unit = tonne
+- query =
+    PRODUCT(
+        V(bunkers_final_demand_bio_kerosene, demand),
+        V(CARRIER(bio_kerosene), potential_co2_conversion_per_mj)
+    ) / THOUSANDS

@@ -1,0 +1,8 @@
+# CO2 of network gas (fossil + green) in households
+
+- unit = tonne
+- query =
+    PRODUCT(
+        V(households_final_demand_network_gas, demand),
+        V(CARRIER(network_gas), co2_conversion_per_mj)
+    ) / THOUSANDS

@@ -1,9 +1,9 @@
-# CO2 of gas in energy
+# CO2 of network gas (green + fossil) in energy
 
 - unit = tonne
 - query =
     SUM(
-        V(CHILDREN(V(energy_power_hv_network_electricity)).select {|node| node.input_slots.detect { |slot| slot.carrier.network_gas? }}, "weighted_carrier_co2_per_mj * demand * (1.0 - free_co2_factor)"),
+        V(CHILDREN(V(energy_power_hv_network_electricity)), input_of_network_gas),
         V(
             energy_heat_burner_network_gas,
             energy_heat_backup_burner_network_gas,
@@ -12,6 +12,6 @@
             energy_biomass_gasification_hydrogen,
             energy_steam_methane_reformer_ccs_hydrogen,
             energy_steam_methane_reformer_hydrogen,
-            "weighted_carrier_co2_per_mj * demand * (1.0 - free_co2_factor)"
+            input_of_network_gas
         )
-    ) / THOUSANDS
+    ) * V(CARRIER(network_gas), co2_conversion_per_mj) / THOUSANDS

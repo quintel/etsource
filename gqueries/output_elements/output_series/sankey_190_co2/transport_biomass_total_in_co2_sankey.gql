@@ -1,0 +1,9 @@
+# CO2 of biomass in buildings
+
+- unit = tonne
+- query =
+    SUM(
+        V(bunkers_final_demand_bio_ethanol, demand) * V(CARRIER(bio_ethanol), potential_co2_conversion_per_mj),
+        V(bunkers_final_demand_biodiesel, demand) * V(CARRIER(biodiesel), potential_co2_conversion_per_mj),
+        V(bunkers_final_demand_bio_lng, demand) * V(CARRIER(bio_lng), potential_co2_conversion_per_mj)
+    ) / THOUSANDS
