@@ -1,0 +1,9 @@
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(bunkers_final_demand_for_aviation_kerosene,demand),
+        1-V(EDGE(energy_distribution_kerosene, energy_production_synthetic_kerosene), share)
+      ),
+      BILLIONS
+    )
