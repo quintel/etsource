@@ -15,7 +15,7 @@ TO_VALIDATE = {
 PERMITTED_VALIDATION_ERRORS = {
   Atlas::Input            => [:query],
   Atlas::InitializerInput => [:query],
-  Atlas::Preset           => [:user_values]
+  Atlas::Preset           => [:user_values, :flexibility_order]
 }
 
 TO_VALIDATE.each do |name, klass|
