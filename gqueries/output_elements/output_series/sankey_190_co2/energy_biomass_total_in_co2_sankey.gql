@@ -1,5 +1,4 @@
-# CO2 of solid biomass and biogas in energy (NOTE: biogenic waste
-# is not included)
+# CO2 of solid biomass, biogas and biogenic waste in energy
 
 - unit = tonne
 - query =
@@ -13,5 +12,6 @@
                 input_of_wood_pellets
             )
         ) * V(CARRIER(wood_pellets), potential_co2_conversion_per_mj),
-        V(energy_chp_local_engine_biogas, input_of_biogas) *  V(CARRIER(biogas), potential_co2_conversion_per_mj)
+        V(energy_chp_local_engine_biogas, input_of_biogas) *  V(CARRIER(biogas), potential_co2_conversion_per_mj),
+        V(energy_distribution_biogenic_waste, demand) * V(CARRIER(biogenic_waste), potential_co2_conversion_per_mj)
     ) / THOUSANDS
