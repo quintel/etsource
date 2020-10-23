@@ -3,9 +3,14 @@
 - unit = tonne
 - query =
     SUM(
+      SUM(
         V(
             industry_final_demand_wood_pellets,
             industry_chp_wood_pellets,
             input_of_wood_pellets
         ) * V(CARRIER(wood_pellets), potential_co2_conversion_per_mj)
-    ) / THOUSANDS
+      ) / THOUSANDS,
+      PRODUCT(
+        Q(industry_network_gas_total_in_co2_sankey),
+        Q(share_of_greengas_in_gas_network))
+    )

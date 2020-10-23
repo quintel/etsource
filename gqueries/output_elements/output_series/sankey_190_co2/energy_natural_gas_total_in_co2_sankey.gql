@@ -1,0 +1,14 @@
+# CO2 of natural gas in energy
+
+- unit = tonne
+- query =
+    PRODUCT(
+        Q(energy_network_gas_total_in_co2_sankey),
+        Q(share_of_fossil_gas_in_gas_network)
+    )
+    + PRODUCT(
+        SUM(
+          V(energy_steam_methane_reformer_ccs_hydrogen,
+            energy_steam_methane_reformer_hydrogen,
+            input_of_natural_gas)),
+        V(CARRIER(natural_gas), co2_conversion_per_mj)) / THOUSANDS
