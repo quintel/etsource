@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Load profiles' do
+  CURVE_GLOB = '{,weather/default}/*.csv'
+
   def self.nl_profiles
     profiles_dir = Atlas::Dataset.find(:nl).dataset_dir.join('curves')
 
-    Pathname.glob(profiles_dir.join('*.csv')).map do |path|
-      path.relative_path_from(profiles_dir).basename('.csv')
+    Pathname.glob(profiles_dir.join(CURVE_GLOB)).map do |path|
+      path.relative_path_from(profiles_dir).to_s.gsub(/\.csv$/, '')
     end
   end
 
@@ -30,17 +34,23 @@ describe 'Load profiles' do
   end
 
   Atlas::Dataset.all.each do |dataset|
+    # Skip testing a dataset curves if the curves directory is a symlink.
+    next if symlinked_curve?(dataset, dataset.dataset_dir.join('curves'))
+
     describe "for #{dataset.key.upcase}" do
       if dataset.key != :example
         nl_profiles.each do |prof_name|
+          curve_path = dataset.load_profile_path(prof_name)
+          next if symlinked_curve?(dataset, curve_path)
+
           it "should have a #{prof_name} load profile" do
-            expect(dataset.load_profile_path(prof_name)).to be_file
+            expect(curve_path).to be_file
           end
         end
       end
 
       unless dataset.dataset_dir.join('curves').symlink?
-        Pathname.glob(dataset.dataset_dir.join('curves/*.csv')) do |file|
+        Pathname.glob(dataset.dataset_dir.join('curves', CURVE_GLOB)) do |file|
           # Skip any curves which are symlinks to curves in other datasets.
           next if symlinked_curve?(dataset, file)
 
