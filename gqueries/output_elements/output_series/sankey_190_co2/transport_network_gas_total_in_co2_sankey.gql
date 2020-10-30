@@ -1,8 +1,12 @@
-# CO2 of network gas and LNG in transport
+# CO2 of natural gas and LNG in transport
 
 - unit = tonne
 - query =
-    SUM(
-        V(transport_final_demand_compressed_network_gas, demand) * V(CARRIER(network_gas), co2_conversion_per_mj),
-        V(transport_final_demand_lng, "weighted_carrier_co2_per_mj * demand")
+    PRODUCT(
+      SUM(
+        V(transport_final_demand_compressed_network_gas,
+          transport_final_demand_lng,
+          demand
+          )),
+        V(CARRIER(network_gas), co2_conversion_per_mj)
     ) / THOUSANDS

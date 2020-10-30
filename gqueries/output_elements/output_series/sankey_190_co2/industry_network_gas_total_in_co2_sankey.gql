@@ -1,4 +1,4 @@
-# CO2 of network gas (green + fossil) in industry
+# CO2 of network gas in industry
 
 - unit = tonne
 - query =
@@ -8,6 +8,5 @@
             industry_heat_backup_burner_network_gas,
             industry_final_demand_for_chemical_fertilizers_network_gas_non_energetic_co2,
             input_of_network_gas
-        ) * V(CARRIER(network_gas), co2_conversion_per_mj),
-        Q(industry_fuelmix_total_in_co2_sankey) * (1.0 - Q(oil_fraction_of_fuelmix))
-    ) / THOUSANDS
+        ) * V(CARRIER(network_gas), co2_conversion_per_mj)) / THOUSANDS
+    + Q(industry_fuelmix_network_gas_in_co2_sankey)

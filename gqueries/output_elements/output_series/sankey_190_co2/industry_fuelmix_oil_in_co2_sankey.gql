@@ -1,0 +1,14 @@
+# CO2 of oil in fuel mix in industry
+
+- unit = tonne
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          industry_chp_combined_cycle_gas_power_fuelmix,
+          industry_chp_turbine_gas_power_fuelmix,
+          industry_chp_engine_gas_power_fuelmix,
+          demand
+        )) * Q(oil_fraction_of_fuelmix) * V(CARRIER(crude_oil), co2_conversion_per_mj),
+      THOUSANDS)
+

@@ -1,4 +1,4 @@
-# CO2 of solid biomass, biogas and biogenic waste in energy
+# CO2 of biomass in energy
 
 - unit = tonne
 - query =
@@ -15,3 +15,6 @@
         V(energy_chp_local_engine_biogas, input_of_biogas) *  V(CARRIER(biogas), potential_co2_conversion_per_mj),
         V(energy_distribution_biogenic_waste, demand) * V(CARRIER(biogenic_waste), potential_co2_conversion_per_mj)
     ) / THOUSANDS
+    + PRODUCT(
+        Q(energy_network_gas_total_in_co2_sankey),
+        Q(share_of_greengas_in_gas_network))
