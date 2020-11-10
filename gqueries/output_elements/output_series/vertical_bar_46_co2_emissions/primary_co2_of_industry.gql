@@ -15,8 +15,11 @@
             SECTOR(industry)),
           "demand * weighted_carrier_co2_per_mj"),
         NEG(
-          MV(
-            MG(captured_energetic_emissions_industry),
-            demand))
+          SUM(
+            MV(
+              MG(captured_energetic_emissions_industry),
+              demand)
+            )
+          )
         ),
       BILLIONS)

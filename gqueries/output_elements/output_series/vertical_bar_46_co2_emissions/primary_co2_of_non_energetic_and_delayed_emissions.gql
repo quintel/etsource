@@ -18,9 +18,13 @@
           molecules_other_utilisation_co2,
           demand),
         NEG(
-          MV(
-            MG(captured_non_energetic_emissions_industry),
-            demand))
+          SUM(
+            MV(
+              MG(captured_non_energetic_emissions_industry),
+              demand
+            )
+          )
+        )
       ),
       BILLIONS
     )
