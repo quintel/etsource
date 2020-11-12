@@ -5,7 +5,7 @@
         DIVIDE((USER_INPUT() * BILLIONS), V(energy_production_synthetic_methanol, methanol_output_conversion))
     )
 - priority = 0
-- max_value_gql = present:MIN(50.0,DIVIDE(V(industry_final_demand_for_chemical_network_gas_non_energetic,demand), BILLIONS))
+- max_value_gql = present:MAX(50.0,DIVIDE(V(industry_final_demand_for_chemical_network_gas_non_energetic,demand), BILLIONS))
 - min_value = 0.0
 - start_value_gql = present:V(energy_production_synthetic_methanol, output_of_methanol) / BILLIONS
 - step_value = 0.1
