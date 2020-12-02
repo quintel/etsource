@@ -1,0 +1,14 @@
+# Nodes that constitute flexible electricity demand. Includes nodes which participate as time-resolved flexible electricity consumers and export.
+
+- query =
+    EXCLUDE(
+      FILTER(
+        ALL(),
+        "merit_order && (merit_order.type == :flex)"
+        ),
+      FILTER(
+        ALL(),
+        "merit_order && (merit_order.subtype == :curtailment)"
+        )
+      )
+- unit = nodes

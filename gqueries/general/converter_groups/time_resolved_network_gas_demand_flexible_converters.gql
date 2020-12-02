@@ -1,0 +1,32 @@
+# Nodes that constitute flexible network_gas demand. Includes nodes which participate as flexible consumers in time-resolved network_gas and storage.
+
+- query =
+    V(
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "network_gas && (network_gas.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.subtype == :dispatchable)"
+        )
+      ),
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "network_gas && (network_gas.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "heat_network && (heat_network.subtype == :dispatchable)"
+        )
+      ),
+      energy_heat_backup_burner_network_gas,
+      industry_heat_backup_burner_network_gas,
+      FILTER(
+        ALL(),
+        "network_gas && (network_gas.type == :storage)"
+      )
+    )
+- unit = nodes

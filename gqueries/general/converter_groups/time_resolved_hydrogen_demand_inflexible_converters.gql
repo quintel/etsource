@@ -1,0 +1,15 @@
+# Nodes that constitute inflexible hydrogen demand. Includes nodes which participate as time-resolved hydrogen consumption and export.
+
+- query =
+    EXCLUDE(
+      FILTER(
+        ALL(),
+        "hydrogen && (hydrogen.type == :consumer || hydrogen.type == :export)"
+      ),
+      V(
+        energy_power_combined_cycle_hydrogen,
+        energy_power_turbine_hydrogen,
+        energy_heat_burner_hydrogen
+      )
+    )
+- unit = nodes
