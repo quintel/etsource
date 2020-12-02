@@ -1,0 +1,8 @@
+# Nodes that constitute inflexible electricity supply. Includes nodes which participate as time-resolved volatile and must-run electricity producers.
+
+- query =
+    FILTER(
+      ALL(),
+      "merit_order && (merit_order.subtype == :volatile || merit_order.subtype == :must_run)"
+      )
+- unit = nodes

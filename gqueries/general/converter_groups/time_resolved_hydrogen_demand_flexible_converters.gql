@@ -1,0 +1,10 @@
+# Nodes that constitute flexible hydrogen demand. Includes nodes which participate as time-resolved dispatchable consumption and storage.
+
+- query =
+    V(
+      energy_power_combined_cycle_hydrogen,
+      energy_power_turbine_hydrogen,
+      energy_heat_burner_hydrogen,
+      FILTER(ALL(),"hydrogen && (hydrogen.type == :storage)")
+    )
+- unit = nodes
