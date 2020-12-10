@@ -1,12 +1,15 @@
-# The total related CO2 of all the imported electricity is calculated here.
+# Calculates the weighted average emission factor of imported electricity
+# I.e. the emission factor of each interconnector weighted by its import volume
 
 - query =
     PRODUCT(
-      AVG(
-        V(INPUT_EDGES(GROUP(electricity_interconnectors_import)), co2_per_mj)
-      ),
-      MJ_PER_MWH
-    )
-
+        DIVIDE(
+            SUM(
+                V(INPUT_EDGES(GROUP(electricity_interconnectors_import)), "demand * co2_per_mj")
+            ),
+            SUM(V(INPUT_EDGES(GROUP(electricity_interconnectors_import)), "demand")
+            )
+        ),
+        MJ_PER_MWH)
 - unit = gCO2/kWh
 - deprecated_key = co2_emission_electricity_import
