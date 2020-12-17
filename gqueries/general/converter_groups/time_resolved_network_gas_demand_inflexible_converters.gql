@@ -6,33 +6,8 @@
         ALL(),
         "network_gas && (network_gas.type == :consumer || network_gas.type == :export)"
       ),
-      V(
-        INTERSECTION(
-          FILTER(
-            ALL(),
-            "network_gas && (network_gas.type == :consumer)"
-          ),
-          FILTER(
-            ALL(),
-            "merit_order && (merit_order.subtype == :dispatchable)"
-          )
-        ),
-        INTERSECTION(
-          FILTER(
-            ALL(),
-            "network_gas && (network_gas.type == :consumer)"
-          ),
-          FILTER(
-            ALL(),
-            "heat_network && (heat_network.subtype == :dispatchable)"
-          )
-        ),
-        energy_heat_backup_burner_network_gas,
-        industry_heat_backup_burner_network_gas,
-        FILTER(
-          ALL(),
-          "network_gas && (network_gas.type == :storage)"
-        )
+      Q(
+        time_resolved_network_gas_demand_flexible_converters
       )
     )
 - unit = nodes

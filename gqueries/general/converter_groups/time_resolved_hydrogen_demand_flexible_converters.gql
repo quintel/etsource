@@ -2,9 +2,26 @@
 
 - query =
     V(
-      energy_power_combined_cycle_hydrogen,
-      energy_power_turbine_hydrogen,
-      energy_heat_burner_hydrogen,
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "hydrogen && (hydrogen.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.subtype == :dispatchable)"
+        )
+      ),
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "hydrogen && (hydrogen.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "heat_network && (heat_network.subtype == :dispatchable)"
+        )
+      ),
       FILTER(ALL(),"hydrogen && (hydrogen.type == :storage)")
     )
 - unit = nodes
