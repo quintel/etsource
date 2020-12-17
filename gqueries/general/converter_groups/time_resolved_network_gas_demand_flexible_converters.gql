@@ -22,8 +22,16 @@
           "heat_network && (heat_network.subtype == :dispatchable)"
         )
       ),
-      energy_heat_backup_burner_network_gas,
-      industry_heat_backup_burner_network_gas,
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "network_gas && (network_gas.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "heat_network && (heat_network.subtype == :backup)"
+        )
+      ),
       FILTER(
         ALL(),
         "network_gas && (network_gas.type == :storage)"
