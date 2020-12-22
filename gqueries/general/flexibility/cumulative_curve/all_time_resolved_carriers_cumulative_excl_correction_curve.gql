@@ -1,0 +1,10 @@
+- query =
+    CUMULATIVE_CURVE(
+        SUM_CURVES(
+            Q(all_time_resolved_carriers_production_inflexible_curve),
+            INVERT_CURVE(
+                Q(all_time_resolved_carriers_demand_inflexible_curve)
+            )
+        )
+    )
+- unit = curve
