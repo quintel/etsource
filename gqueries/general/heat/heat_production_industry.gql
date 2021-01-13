@@ -1,8 +1,10 @@
-# Total heat produced in 'heat_production' in the industry sector
+# Total heat produced in 'heat_production' in the industry sector plus the total energetic demand of
+# the other industry as there is no heat production there
 
 - unit = PJ
 - query =
     SUM(
       V(INTERSECTION(G(heat_production), SECTOR(industry)), "output_of_useable_heat"),
-      V(INTERSECTION(G(heat_production), SECTOR(industry)), "output_of_steam_hot_water")
+      V(INTERSECTION(G(heat_production), SECTOR(industry)), "output_of_steam_hot_water"),
+      V(INTERSECTION(G(other_non_specified_industry), USE(energetic)), demand)
     ) / BILLIONS
