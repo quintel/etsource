@@ -1,0 +1,41 @@
+- query = 
+    SUM_CURVES(
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "heat_network && (heat_network.group == :buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)"
+          ), 
+          heat_input_curve
+         )
+      ),
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "merit_order && (merit_order.group == :buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)"
+          ), 
+          electricity_input_curve
+         )
+      ),
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "network_gas && (network_gas.profile == :buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)"
+          ), 
+          network_gas_input_curve
+         )
+      ),
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "hydrogen && (hydrogen.profile == :buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)"
+          ), 
+          hydrogen_input_curve
+         )
+      )
+  )
+
+- unit = curve
