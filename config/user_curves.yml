@@ -90,8 +90,117 @@ interconnector_5_price:
 interconnector_6_price:
   type: price
 
-households_hot_water:
+weather/buildings_heating:
   type: profile
+
+electric_buses:
+  type: profile
+
+electric_trucks:
+  type: profile
+
+electric_vehicle_profile_1:
+  type: profile
+
+electric_vehicle_profile_2:
+  type: profile
+
+electric_vehicle_profile_3:
+  type: profile
+
+electric_vehicle_profile_4:
+  type: profile
+
+electric_vehicle_profile_5:
+  type: profile
+
+industry_chemicals_electricity:
+  type: profile
+
+industry_chemicals_heat:
+  type: profile
+
+industry_ict:
+  type: profile
+
+industry_metals_electricity:
+  type: profile
+
+industry_metals_heat:
+  type: profile
+
+industry_other_electricity:
+  type: profile
+
+industry_other_heat:
+  type: profile
+
+industry_refineries_electricity:
+  type: profile
+
+industry_refineries_heat:
+  type: profile
+
+hydrogen_export:
+  type: profile
+
+hydrogen_import:
+  type: profile
+
+network_gas_export:
+  type: profile
+
+network_gas_import:
+  type: profile
+
+solar_pv:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_solar_pv_solar_radiation
+
+weather/solar_thermal:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_solar_thermal
+
+geothermal_heat:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_geothermal_heat
+
+river:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_hydro_river
+
+wind_offshore:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_energy_power_wind_turbine_offshore
+
+wind_coastal:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_energy_power_wind_turbine_coastal
+
+wind_inland:
+  type: profile
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_energy_power_wind_turbine_inland
 
 weather/air_temperature:
   type: temperature
