@@ -1,0 +1,12 @@
+- query =
+    SUM_CURVES(
+      V(
+        FILTER(
+        ALL(),
+        "merit_order && (merit_order.group.to_s.gsub(/\s/, '') == 'dynamic:wind_coastal')"
+        ),
+        electricity_output_curve
+       )
+     )
+
+- unit = curve
