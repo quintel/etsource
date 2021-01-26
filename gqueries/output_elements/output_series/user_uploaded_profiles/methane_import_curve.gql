@@ -1,0 +1,12 @@
+- query = 
+    SUM_CURVES(
+      V(
+        FILTER(
+        ALL(),
+        "network_gas && (network_gas.profile == :network_gas_import)"
+        ), 
+        network_gas_output_curve
+       )
+     )
+
+- unit = curve

@@ -1,0 +1,12 @@
+- query = 
+    SUM_CURVES(
+      V(
+        FILTER(
+        ALL(),
+        "merit_order && (merit_order.group == :river)"
+        ), 
+        electricity_output_curve
+       )
+     )
+
+- unit = curve

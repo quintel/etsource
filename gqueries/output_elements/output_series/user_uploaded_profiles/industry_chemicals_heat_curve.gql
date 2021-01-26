@@ -1,0 +1,41 @@
+- query = 
+    SUM_CURVES(
+        SUM_CURVES(
+          V(
+            FILTER(
+            ALL(),
+            "heat_network && (heat_network.group == :industry_chemicals_heat)"
+            ), 
+            heat_input_curve
+           )
+        ),
+        SUM_CURVES(
+          V(
+            FILTER(
+            ALL(),
+            "merit_order && (merit_order.group == :industry_chemicals_heat)"
+            ), 
+            electricity_input_curve
+           )
+        ),
+        SUM_CURVES(
+          V(
+            FILTER(
+            ALL(),
+            "network_gas && (network_gas.profile == :industry_chemicals_heat)"
+            ), 
+            network_gas_input_curve
+           )
+        ),
+        SUM_CURVES(
+          V(
+            FILTER(
+            ALL(),
+            "hydrogen && (hydrogen.profile == :industry_chemicals_heat)"
+            ), 
+            hydrogen_input_curve
+           )
+        )
+    )
+
+- unit = curve

@@ -1,0 +1,12 @@
+- query = 
+    SUM_CURVES(
+      V(
+        FILTER(
+        ALL(),
+        "heat_network && (heat_network.group == :'weather/solar_thermal')"
+        ), 
+        steam_hot_water_output_curve
+       )
+     )
+
+- unit = curve
