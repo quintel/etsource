@@ -30,6 +30,18 @@
 #   shape of the user curve is retained, and useable as a demand profile, but
 #   the specific values are not).
 #
+# `type: capacity_profile`
+#
+#   Similar to the "profile" type, except that the curve provided by the user
+#   describes the hourly capacity use of the related technology. Values should
+#   be between 0 (representing the technology being unused) and 1 (where the
+#   technology is running at full capacity). These capacities may be used with
+#   the "full_load_hours" reducer to calculate and set FLH for the technology.
+#
+# `type: temperature`
+#
+#   The uploaded curve represents the hourly temperature in degrees celcius.
+#
 # #### Setting an input
 #
 # Uploaded curves may be "reduced" to a single numeric value, with that value
@@ -44,6 +56,9 @@
 #
 # reduce.sets - Either a string or array of strings containing input keys whose
 #               values should be set.
+#
+# The "full_load_hours" reducer may only be used with the "capacity_profile"
+# curve type.
 #
 # #### Examples
 #
@@ -181,7 +196,7 @@ network_gas_import:
   display_group: gas_import_export
 
 weather/solar_pv_profile_1:
-  type: profile
+  type: capacity_profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
@@ -190,7 +205,7 @@ weather/solar_pv_profile_1:
       - flh_of_solar_pv_solar_radiation_user_curve
 
 weather/solar_thermal:
-  type: profile
+  type: capacity_profile
   display_group: heat_production
   reduce:
     as: full_load_hours
@@ -198,7 +213,7 @@ weather/solar_thermal:
       - flh_of_solar_thermal
 
 geothermal_heat:
-  type: profile
+  type: capacity_profile
   display_group: heat_production
   reduce:
     as: full_load_hours
@@ -206,7 +221,7 @@ geothermal_heat:
       - flh_of_geothermal_heat
 
 river:
-  type: profile
+  type: capacity_profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
@@ -214,7 +229,7 @@ river:
       - flh_of_hydro_river
 
 weather/wind_offshore_baseline:
-  type: profile
+  type: capacity_profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
@@ -223,7 +238,7 @@ weather/wind_offshore_baseline:
       - flh_of_energy_power_wind_turbine_offshore_user_curve
 
 weather/wind_coastal_baseline:
-  type: profile
+  type: capacity_profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
@@ -232,7 +247,7 @@ weather/wind_coastal_baseline:
       - flh_of_energy_power_wind_turbine_coastal_user_curve
 
 weather/wind_inland_baseline:
-  type: profile
+  type: capacity_profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
