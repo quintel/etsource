@@ -1,0 +1,22 @@
+# This input is closely linked with flh_of_energy_power_wind_turbine_offshore
+# It is used when a custom curve is uploaded by the user. In contrast with
+# flh_of_energy_power_wind_turbine_offshore it runs regardless of the chosen
+# weather year.
+
+- query =
+    original_nou = V(energy_power_wind_turbine_offshore, number_of_units);
+    EACH(
+      UPDATE(V(energy_power_wind_turbine_offshore), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_power_wind_turbine_offshore), number_of_units, original_nou),
+      UPDATE(
+        V(energy_power_wind_turbine_offshore),
+        preset_demand_by_electricity_production,
+        V(energy_power_wind_turbine_offshore, production_based_on_number_of_units)
+      )
+    )
+- priority = 1
+- max_value = 8760.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_power_wind_turbine_offshore, full_load_hours)
+- unit = hours
+- update_period = future
