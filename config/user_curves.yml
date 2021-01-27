@@ -180,13 +180,14 @@ network_gas_import:
   type: profile
   display_group: gas_import_export
 
-solar_pv:
+weather/solar_pv_profile_1:
   type: profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
     sets:
       - flh_of_solar_pv_solar_radiation
+      - flh_of_solar_pv_solar_radiation_user_curve
 
 weather/solar_thermal:
   type: profile
@@ -212,34 +213,29 @@ river:
     sets:
       - flh_of_hydro_river
 
-wind_offshore:
+weather/wind_offshore_baseline:
   type: profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
     sets:
       - flh_of_energy_power_wind_turbine_offshore
+      - flh_of_energy_power_wind_turbine_offshore_user_curve
 
-wind_coastal:
+weather/wind_coastal_baseline:
   type: profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
     sets:
       - flh_of_energy_power_wind_turbine_coastal
+      - flh_of_energy_power_wind_turbine_coastal_user_curve
 
-wind_inland:
+weather/wind_inland_baseline:
   type: profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
     sets:
       - flh_of_energy_power_wind_turbine_inland
-
-weather/air_temperature:
-  type: temperature
-  display_group: weather
-  reduce:
-    as: temperature
-    sets:
-      - flexibility_outdoor_temperature
+      - flh_of_energy_power_wind_turbine_inland_user_curve
