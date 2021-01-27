@@ -1,0 +1,28 @@
+# This input is closely linked with flh_of_solar_pv_solar_radiation
+# It is used when a custom curve is uploaded by the user. In contrast with
+# flh_of_solar_pv_solar_radiation it runs regardless of the chosen
+# weather year. In addition, it sets solar_pv_profile_1_share to 1.0
+# to prevent interpolation.
+
+- query =
+    original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
+    EACH(
+        UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+        UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+        UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+        UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+        UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou),
+        UPDATE(
+        V(energy_power_solar_pv_solar_radiation),
+        preset_demand_by_electricity_production,
+        V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
+        ),
+        UPDATE(AREA(), solar_pv_profile_1_share, 1.0),
+        UPDATE(AREA(), solar_pv_profile_2_share, 0.0)
+    )
+- priority = 1
+- max_value = 8760.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_power_solar_pv_solar_radiation, full_load_hours)
+- unit = hours
+- update_period = future
