@@ -1,4 +1,6 @@
 # Final demand of sustainable heat
 
 - unit = MJ
-- query = SUM(V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_steam_hot_water"))
+- query =
+	SUM(V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_steam_hot_water")) +
+	SUM(V(FILTER(EG(final_demand),geothermal?),value))
