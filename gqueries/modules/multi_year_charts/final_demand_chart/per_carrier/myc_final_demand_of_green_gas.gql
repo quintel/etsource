@@ -4,5 +4,5 @@
 - query =
     SUM(
       V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_network_gas).sum * V(energy_national_gas_network_natural_gas,greengas_input_conversion),
-      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_compressed_network_gas) * V(energy_national_gas_network_natural_gas,greengas_input_conversion)
+      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_compressed_network_gas).sum * V(energy_national_gas_network_natural_gas,greengas_input_conversion)
     )
