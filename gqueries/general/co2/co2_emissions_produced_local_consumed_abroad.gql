@@ -1,5 +1,9 @@
 # This query calculates the co2 emission for electricity and hydrogen export
 
-- query = V(energy_export_electricity,primary_co2_emission)
+- query = 
+    SUM(
+      V(energy_export_electricity,primary_co2_emission),
+      V(energy_export_hydrogen,primary_co2_emission)
+    )
 - unit = kg
 - deprecated_key = co2_emission_electricity_export
