@@ -1,0 +1,12 @@
+# Selects the electricity output capacity of dispatchable hydrogen power plants using the electricity producing hydrogen converters query.
+
+- query =
+    SUM(
+      V(
+        Q(
+          electricity_producing_hydrogen_converters
+        ),
+        "input_capacity * electricity_output_conversion * number_of_units"
+      )
+    )
+- unit = MW

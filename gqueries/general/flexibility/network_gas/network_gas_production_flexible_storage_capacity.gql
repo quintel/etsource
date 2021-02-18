@@ -1,0 +1,13 @@
+# Selects the gas output capacity of the gas storage by taking the maximum value of the hourly output curve.
+
+- query =
+    MAX(
+      V(
+        FILTER(
+          ALL(),
+          "network_gas && (network_gas.type == :storage)"
+        ),
+        network_gas_output_curve
+      )
+    )
+- unit = MW

@@ -1,0 +1,15 @@
+# Selects the electricity input capacity of power-to-hydrogen technologies. Capacity of demand technologies is considered negative for the installed flexible capacities chart.
+
+- query =
+    PRODUCT(
+      -1,
+      SUM(
+        V(
+          FILTER(
+            ALL(),"merit_order && (merit_order.subtype == :power_to_gas)"
+          ),
+          "input_capacity * number_of_units"
+        )
+      )
+    )
+- unit = MW

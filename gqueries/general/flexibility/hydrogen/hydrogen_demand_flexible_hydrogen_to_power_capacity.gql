@@ -1,0 +1,22 @@
+# Selects the hydrogen input capacity of dispatchable hydrogen power plants. Capacity of demand technologies is considered negative for the installed flexible capacities chart.
+
+- query =
+    PRODUCT(
+      -1,
+      SUM(
+        V(
+          INTERSECTION(
+            FILTER(
+              ALL(),
+              "hydrogen && (hydrogen.type == :consumer)"
+            ),
+            FILTER(
+              ALL(),
+              "merit_order && (merit_order.subtype == :dispatchable)"
+            )
+          ),
+          "input_capacity * number_of_units"
+        )
+      )
+    )
+- unit = MW

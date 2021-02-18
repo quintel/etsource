@@ -1,0 +1,21 @@
+# Selects the electricity input capacity of power-to-power storage technologies using individual nodes due to dual node structure of batteries in electric vehicles, which differs from the other power-to-power nodes.
+
+- query =
+    PRODUCT(
+      -1,
+      SUM(
+        V(households_flexibility_p2p_electricity, "number_of_units * input_capacity"
+        ),
+        PRODUCT(
+          V(transport_car_using_electricity, "number_of_units * input_capacity"),
+          V(transport_car_flexibility_p2p_electricity, availability)
+        ),
+        V(energy_flexibility_pumped_storage_electricity, "number_of_units * input_capacity"
+        ),
+        V(energy_flexibility_hv_opac_electricity, "number_of_units * input_capacity"
+        ),
+        V(energy_flexibility_mv_batteries_electricity, "number_of_units * input_capacity"
+        )
+      )
+    )
+- unit = MW

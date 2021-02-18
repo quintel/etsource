@@ -1,0 +1,10 @@
+# Selects the maximum value of the hourly electricity imbalance if it's a positive value, which indicates a shortage, else it returns 0.
+
+- query =
+    MAX(
+      0,
+      Q(
+        electricity_imbalance_inflexible_curve
+      )
+    )
+- unit = MW

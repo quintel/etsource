@@ -1,0 +1,12 @@
+# Selects the heat output capacity of dispatchable hydrogen heat sources using the heat network producing hydrogen converters query.
+
+- query =
+    SUM(
+      V(
+        Q(
+          heat_network_flexible_producing_hydrogen_converters
+        ),
+        "input_capacity * steam_hot_water_output_conversion * number_of_units"
+      )
+    )
+- unit = MW
