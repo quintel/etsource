@@ -1,4 +1,6 @@
 # Primary demand of fossil carriers. Excludes uranium.
+# Also excludes imported electricity and hydrogen as it is ambiguous whether
+# fossil sources have been used to produce this.
 
 - unit = MJ
-- query = Q(primary_demand_of_fossil) - Q(primary_demand_of_uranium)
+- query = Q(primary_demand_of_fossil) - Q(primary_demand_of_uranium) - Q(primary_demand_of_imported_electricity) - Q(primary_demand_of_imported_hydrogen)
