@@ -1,7 +1,10 @@
-# Primary demand of carrier group 'oil_and_derivatives' for the export converter group
-
 - unit = PJ
 - query =
     SUM(
-       V(G(energy_export), primary_demand_of_crude_oil)
+      V(G(energy_export),primary_demand_of_crude_oil),
+      V(G(energy_export),primary_demand_of_gasoline),
+      V(G(energy_export),primary_demand_of_diesel),
+      V(G(energy_export),primary_demand_of_kerosene),
+      V(G(energy_export),primary_demand_of_lpg),
+      V(G(energy_export),primary_demand_of_heavy_fuel_oil)
     ) / BILLIONS
