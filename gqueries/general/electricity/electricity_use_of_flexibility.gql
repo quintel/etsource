@@ -1,0 +1,17 @@
+- unit = MJ
+- query =
+    SUM(
+      V(
+       EXCLUDE(
+          FILTER(
+            ALL(),
+            "merit_order && (merit_order.type == :flex)"
+            ),
+          FILTER(
+            ALL(),
+            "merit_order && ((merit_order.subtype == :storage) || (merit_order.subtype == :curtailment) || (merit_order.subtype == :export))"
+            )
+          ),
+       input_of_electricity
+       )
+    )
