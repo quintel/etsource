@@ -1,0 +1,11 @@
+- unit = MJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          G(heat_production),
+          "steam_hot_water_output_conversion > 0.0 && electricity_output_conversion == 0"
+        ),
+        "input_of_network_gas"
+      )
+    )
