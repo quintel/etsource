@@ -1,7 +1,10 @@
-# Primary demand of carrier group 'oil_and_derivatives' for the curtailment converter
-
 - unit = PJ
 - query =
     SUM(
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_crude_oil)
+      V(energy_flexibility_curtailment_electricity, primary_demand_of_crude_oil),
+      V(energy_flexibility_curtailment_electricity, primary_demand_of_gasoline),
+      V(energy_flexibility_curtailment_electricity, primary_demand_of_diesel),
+      V(energy_flexibility_curtailment_electricity, primary_demand_of_kerosene),
+      V(energy_flexibility_curtailment_electricity, primary_demand_of_lpg),
+      V(energy_flexibility_curtailment_electricity, primary_demand_of_heavy_fuel_oil)
     ) / BILLIONS
