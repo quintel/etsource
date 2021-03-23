@@ -1,0 +1,13 @@
+# Selects the hydrogen output capacity of the hydrogen storage by taking the maximum value of the hourly output curve.
+
+- query =
+    MAX(
+      V(
+        FILTER(
+          ALL(),
+          "hydrogen && (hydrogen.type == :storage)"
+        ),
+        hydrogen_output_curve
+      )
+    )
+- unit = MW

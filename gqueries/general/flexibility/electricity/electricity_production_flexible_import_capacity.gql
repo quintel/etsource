@@ -1,0 +1,13 @@
+# Selects the electricity output capacity of electricity import, taking into account the import availability of the interconnectors.
+
+- query =
+    SUM(
+      V(
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.group == :import)"
+        ),
+        "input_capacity * electricity_output_conversion * number_of_units * availability"
+      )
+    )
+- unit = MW

@@ -1,0 +1,13 @@
+# Selects the electricity output capacity of dispatchable nuclear power plants only when must-run is turned-off.
+
+- query =
+    SUM(
+      V(
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.subtype == :dispatchable || merit_order.subtype == :storage) && uranium_oxide_input_conversion > 0"
+        ),
+        "input_capacity * electricity_output_conversion * number_of_units"
+      )
+    )
+- unit = MW

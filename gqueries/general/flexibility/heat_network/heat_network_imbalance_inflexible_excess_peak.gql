@@ -1,0 +1,10 @@
+# Selects the minimum value of the hourly heat network imbalance if it's a negative value, which indicates an excess, else it returns 0.
+
+- query =
+    MIN(
+      0,
+      Q(
+        heat_network_imbalance_inflexible_curve
+      )
+    )
+- unit = MW

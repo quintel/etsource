@@ -1,0 +1,12 @@
+# Selects the hydrogen output capacity of power-to-hydrogen technologies.
+
+- query =
+    SUM(
+      V(
+        FILTER(
+          ALL(),"merit_order && (merit_order.subtype == :power_to_gas)"
+        ),
+        "input_capacity * hydrogen_output_conversion * number_of_units"
+      )
+    )
+- unit = MW

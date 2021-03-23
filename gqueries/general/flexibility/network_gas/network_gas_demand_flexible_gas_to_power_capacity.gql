@@ -1,0 +1,15 @@
+# Selects the gas input capacity of dispatchable gas power plants using the electricity producing gas converters query. Capacity of demand technologies is considered negative for the installed flexible capacities chart.
+
+- query =
+    PRODUCT(
+      -1,
+      SUM(
+        V(
+          Q(
+            electricity_producing_gas_converters
+          ),
+          "input_capacity * number_of_units"
+        )
+      )
+    )
+- unit = MW

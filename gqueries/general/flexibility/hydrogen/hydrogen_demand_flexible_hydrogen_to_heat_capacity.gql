@@ -1,0 +1,22 @@
+# Selects the hydrogen input capacity of dispatchable hydrogen heat sources. Capacity of demand technologies is considered negative for the installed flexible capacities chart.
+
+- query =
+    PRODUCT(
+      -1,
+      SUM(
+        V(
+          INTERSECTION(
+            FILTER(
+              ALL(),
+              "hydrogen && (hydrogen.type == :consumer)"
+            ),
+            FILTER(
+              ALL(),
+              "heat_network && (heat_network.subtype == :dispatchable)"
+            )
+          ),
+          "input_capacity * number_of_units"
+        )
+      )
+    )
+- unit = MW

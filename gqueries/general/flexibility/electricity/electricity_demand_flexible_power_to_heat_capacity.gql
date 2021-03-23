@@ -1,0 +1,15 @@
+# Selects the electricity input capacity of power-to-heat technologies using the p2h node group. Capacity of demand technologies is considered negative for the installed flexible capacities chart.
+
+- query =
+    PRODUCT(
+      -1,
+      SUM(
+        V(
+          G(
+            p2h
+          ),
+          "input_capacity * number_of_units"
+        )
+      )
+    )
+- unit = MW

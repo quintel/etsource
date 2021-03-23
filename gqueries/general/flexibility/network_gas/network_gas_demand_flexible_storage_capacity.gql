@@ -1,0 +1,16 @@
+# Selects the gas input capacity of the gas storage by taking the maximum value of the hourly input curve. Capacity of demand technologies is considered negative for the installed flexible capacities chart.
+
+- query =
+    PRODUCT(
+      -1,
+      MAX(
+        V(
+          FILTER(
+            ALL(),
+            "network_gas && (network_gas.type == :storage)"
+          ),
+          network_gas_input_curve
+        )
+      )
+    )
+- unit = MW
