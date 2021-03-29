@@ -1,6 +1,7 @@
 - query =
-          SUM(
-              V(
+    SUM(
+        SUM(
+            V(
                 industry_final_demand_for_chemical_electricity,
                 industry_final_demand_for_chemical_coal,
                 industry_final_demand_for_chemical_network_gas,
@@ -8,6 +9,13 @@
                 industry_final_demand_for_chemical_crude_oil,
                 industry_final_demand_for_chemical_steam_hot_water,
                 primary_co2_emission)
-                ) / THOUSANDS
+        ) / THOUSANDS,
+        SUM(
+            AREA(
+            non_energetic_emissions_co2_chemical_industry,
+            non_energetic_emissions_other_ghg_chemical_industry
+            )
+        ) * MILLIONS
+    )
 
 - unit = T
