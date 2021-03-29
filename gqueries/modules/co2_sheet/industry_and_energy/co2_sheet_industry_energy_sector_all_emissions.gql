@@ -1,6 +1,9 @@
 - query =
+     SUM( 
         SUM(
             V(INTERSECTION(G(final_demand_group),SECTOR(energy)), primary_co2_emission)
-            ) / THOUSANDS
+            ) / THOUSANDS,
+        AREA(energetic_emissions_other_ghg_energy) * MILLIONS
+        )
 
 - unit = T
