@@ -1,6 +1,5 @@
 # Returns the produced electricity using waste.
-#
-# It works by looking to waste converters.
 
 - unit = MJ
-- query = V(Q(electricity_producing_waste_converters),output_of_electricity).sum
+- query =
+    V(G(electricity_production),"output_of_electricity * waste_mix_input_conversion").sum
