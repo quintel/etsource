@@ -1,0 +1,11 @@
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(INTERSECTION(SECTOR(industry),
+        G(final_demand_group)),primary_demand_of_imported_heat),
+        V(INTERSECTION(SECTOR(energy),
+        G(final_demand_group)),primary_demand_of_imported_heat)
+      ),
+      BILLIONS
+    )
