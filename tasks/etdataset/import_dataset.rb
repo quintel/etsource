@@ -52,8 +52,11 @@ namespace :import do
           cp_csv(csv, dest.join('demands/fertilizers_ccus_demands.csv'))
         when /^primary_production/
           cp_csv(csv, dest.join('primary_production.csv'))
+        when /^corrected_energy_balance_step_2.open_access/
+          cp_csv(csv, dest.join('energy_balance.open_access.csv'))
         when /^corrected_energy_balance_step_2/
           cp_csv(csv, dest.join('energy_balance.csv'))
+          encrypt_balance(dest)
         when /^central_producers.csv/
           cp_csv(csv, dest.join('central_producers.csv'))
         when /^#{ Regexp.escape(country.downcase) }$/
@@ -74,7 +77,6 @@ namespace :import do
 
       puts "  - Imported #{ count.length } molecules CSVs"
 
-      encrypt_balance(dest)
     end # each dataset
   end # :dataset
 end
