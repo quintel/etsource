@@ -1,0 +1,15 @@
+# This query presents the total emissions relative to the start year
+
+- query =
+    IF(
+      GRAPH().future?,
+      -> {
+        DIVIDE(
+          QUERY_FUTURE(emissions_total),
+          QUERY_PRESENT(emissions_total)
+        ) - 1.0
+      },
+      -> { 0 }
+    )
+
+- unit = factor
