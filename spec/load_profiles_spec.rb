@@ -13,35 +13,15 @@ describe 'Load profiles' do
     end
   end
 
-  # Internal: Determines if a path to a curve is a symlink to a curve elsewhere.
-  #
-  # Checks each parent directory up to the path of the dataset, but not beyond
-  # in case ETSource itself is symlinked.
-  #
-  # Returns true or false.
-  def self.symlinked_curve?(dataset, path)
-    prev = nil
-
-    while path != dataset.dataset_dir
-      return true  if path.symlink?
-      return false if path == prev
-
-      prev = path
-      path = path.parent
-    end
-
-    false
-  end
-
   Atlas::Dataset.all.each do |dataset|
     # Skip testing a dataset curves if the curves directory is a symlink.
-    next if symlinked_curve?(dataset, dataset.dataset_dir.join('curves'))
+    next unless dataset.dataset_dir.join('curves').exist?
 
     describe "for #{dataset.key.upcase}" do
       if dataset.key != :example
         nl_profiles.each do |prof_name|
           curve_path = dataset.load_profile_path(prof_name)
-          next if symlinked_curve?(dataset, curve_path)
+          next unless curve_path.exist?
 
           it "should have a #{prof_name} load profile" do
             expect(curve_path).to be_file
@@ -49,10 +29,10 @@ describe 'Load profiles' do
         end
       end
 
-      unless dataset.dataset_dir.join('curves').symlink?
+      if dataset.dataset_dir.join('curves').exist?
         Pathname.glob(dataset.dataset_dir.join('curves', CURVE_GLOB)) do |file|
           # Skip any curves which are symlinks to curves in other datasets.
-          next if symlinked_curve?(dataset, file)
+          next unless file.exist?
 
           it "#{file.basename} does not permit CR (\\r) line endings" do
             message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \

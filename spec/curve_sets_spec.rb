@@ -7,13 +7,13 @@ end
 Atlas::Dataset.all.each do |dataset|
   RSpec.describe "#{dataset.key.to_s.upcase} dataset:" do
     # Skip the tests if ./curves is an alias to another dataset.
-    next if dataset.dataset_dir.join('curves').symlink?
+    next unless dataset.dataset_dir.join('curves').exist?
 
     nl_curve_sets.each do |nl_set|
       set = dataset.curve_sets.get(nl_set.name)
 
       # Skip if ./curves/{curve_set} is an alias to another dataset.
-      next if set.path.symlink?
+      next if set.path.join('').to_s == set.path.resolve('').to_s
 
       it "has a curve set called #{nl_set.name}" do
         expect(dataset.curve_sets.key?(nl_set.name)).to be(true)
@@ -31,9 +31,8 @@ Atlas::Dataset.all.each do |dataset|
           weather_properties = Pathname.new('weather_properties.csv')
 
           it 'has the same curves as the NL default' do
-            expect(
-              variant.curves.map(&:basename) - [weather_properties]
-              ).to eq(orig_files)
+            expect(orig_files)
+              .to include(*(variant.curves.map(&:basename) - [weather_properties]))
           end
 
           next if variant.name == 'default'
