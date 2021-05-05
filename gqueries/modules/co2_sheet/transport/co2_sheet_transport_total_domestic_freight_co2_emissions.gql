@@ -1,18 +1,20 @@
 - query =
           SUM(
               V(
-                transport_ship_using_diesel_mix,
                 transport_ship_using_lng_mix,
-                transport_freight_train_using_diesel_mix,
                 transport_freight_train_using_electricity,
                 transport_truck_using_hydrogen,
                 transport_truck_using_electricity,
                 transport_truck_using_lng_mix,
-                transport_truck_using_diesel_mix,
                 transport_truck_using_compressed_natural_gas,
-                transport_truck_using_gasoline_mix,
                 primary_co2_emission
-                )
+                ),
+                V(
+                  transport_ship_using_diesel_mix,
+                  transport_freight_train_using_diesel_mix,
+                  transport_truck_using_diesel_mix,
+                  transport_truck_using_gasoline_mix,
+                "demand * weighted_carrier_co2_per_mj")
               ) / THOUSANDS
 
 - unit = T

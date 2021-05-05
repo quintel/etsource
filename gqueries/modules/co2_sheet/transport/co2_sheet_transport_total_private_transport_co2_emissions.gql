@@ -3,15 +3,18 @@
               V(
                 transport_bicycle_using_electricity,
                 transport_motorcycle_using_electricity,
-                transport_motorcycle_using_gasoline_mix,
                 transport_car_using_hydrogen,
                 transport_car_using_electricity,
                 transport_car_using_compressed_natural_gas,
+                primary_co2_emission
+                ),
+              V(
+                transport_motorcycle_using_gasoline_mix,
                 transport_car_using_diesel_mix,
                 transport_car_using_gasoline_mix,
                 transport_car_using_lpg,
-                primary_co2_emission
-                )
+                "demand * weighted_carrier_co2_per_mj"
+              )
               ) / THOUSANDS
 
 - unit = T
