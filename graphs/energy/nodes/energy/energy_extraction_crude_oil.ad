@@ -6,4 +6,28 @@
 - graph_methods = [demand]
 - free_co2_factor = 0.0
 
-~ demand = TIME_CURVE(energy_extraction_crude_oil, preset_demand)
+~ demand = 
+    EB("production", "crude/ngl/feedstocks_(if_no_detail)") +
+    EB("production", "crude_oil") +
+    EB("production", "natural_gas_liquids") +
+    EB("production", "refinery_feedstocks") +
+    EB("production", "additives/blending_components") +
+    EB("production", "other_hydrocarbons") +
+    EB("production", "refinery_gas") +
+    EB("production", "ethane") +
+    EB("production", "liquefied_petroleum_gases_(lpg)") +
+    EB("production", "motor_gasoline") +
+    EB("production", "aviation_gasoline") +
+    EB("production", "gasoline_type_jet_fuel") +
+    EB("production", "kerosene_type_jet_fuel") +
+    EB("production", "other_kerosene") +
+    EB("production", "gas/diesel_oil") +
+    EB("production", "fuel_oil") +
+    EB("production", "naphtha") +
+    EB("production", "white_spirit_&_sbp") +
+    EB("production", "lubricants") +
+    EB("production", "bitumen") +
+    EB("production", "paraffin_waxes") +
+    EB("production", "petroleum_coke") +
+    EB("production", "non-specified_oil_products")
+    
