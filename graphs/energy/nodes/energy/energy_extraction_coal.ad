@@ -6,4 +6,16 @@
 - graph_methods = [demand]
 - free_co2_factor = 0.0
 
-~ demand = TIME_CURVE(energy_extraction_coal, preset_demand)
+~ demand = 
+    EB("production", "hard_coal_(if_no_detail)") +
+    EB("production", "brown_coal_(if_no_detail)") +
+    EB("production", "anthracite") +
+    EB("production", "coking_coal") +
+    EB("production", "other_bituminous_coal") +
+    EB("production", "sub-bituminous_coal")
+    EB("production", "patent_fuel")
+    EB("production", "coke_oven_coke")
+    EB("production", "gas_coke")
+    EB("production", "coal_tar")
+    EB("production", "bkb/peat_briquettes")
+    EB("production", "peat")
