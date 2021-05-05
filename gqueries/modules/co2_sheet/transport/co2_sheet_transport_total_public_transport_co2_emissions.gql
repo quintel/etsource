@@ -2,17 +2,20 @@
           SUM(
               V(
                 transport_tram_using_electricity,
-                transport_passenger_train_using_diesel_mix,
                 transport_passenger_train_using_electricity,
                 transport_passenger_train_using_coal,
                 transport_bus_using_hydrogen,
                 transport_bus_using_lng_mix,
                 transport_bus_using_compressed_natural_gas,
-                transport_bus_using_diesel_mix,
                 transport_bus_using_electricity,
-                transport_bus_using_gasoline_mix,
                 primary_co2_emission
-                )
+                ),
+              V(
+                transport_passenger_train_using_diesel_mix,
+                transport_bus_using_diesel_mix,
+                transport_bus_using_gasoline_mix,
+                "demand * weighted_carrier_co2_per_mj"
+              )
               ) / THOUSANDS
 
 - unit = T
