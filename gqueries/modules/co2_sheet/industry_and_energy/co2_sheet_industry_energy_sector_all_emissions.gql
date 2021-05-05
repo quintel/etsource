@@ -1,7 +1,8 @@
 - query =
-     SUM( 
+     SUM(
         SUM(
-            V(INTERSECTION(G(final_demand_group),SECTOR(energy)), primary_co2_emission)
+            V(INTERSECTION(G(final_demand_group),SECTOR(energy)), primary_co2_emission),
+            - MV(molecules_direct_air_capture_co2, demand)
             ) / THOUSANDS,
         AREA(energetic_emissions_other_ghg_energy) * MILLIONS
         )
