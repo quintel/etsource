@@ -30,7 +30,7 @@ namespace :import do
 
       puts "Importing #{ country }/#{ year } dataset:"
 
-      %w( demands efficiencies shares shares/energy shares/molecules time_curves ).each do |dir|
+      %w[demands efficiencies shares shares/energy shares/molecules].each do |dir|
         # Remove the old files, some of which may no longer exist in ETDataset.
         Pathname.glob(dest.join("#{ dir }/*.csv")).each(&FileUtils.method(:rm))
 
@@ -44,8 +44,6 @@ namespace :import do
           cp_csv(csv, dest.join('efficiencies'))
         when /(?:parent|child)_share$/
           cp_csv(csv, dest.join('shares/energy'))
-        when /time_curve$/
-          cp_csv(csv, dest.join('time_curves'))
         when /^bicycles_demand/
           cp_csv(csv, dest.join('demands/bicycles_demand.csv'))
         when /^metal_demands/
