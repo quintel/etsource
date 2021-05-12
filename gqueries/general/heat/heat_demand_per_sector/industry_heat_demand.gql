@@ -1,0 +1,4 @@
+# Use slightly different query than other sectors to include metal burners (which are not in application_group)
+- query =
+    SUM(V(INTERSECTION(SECTOR(industry), G(heat_production)), output_of_heat_and_cooling_carriers))
+- unit = MJ
