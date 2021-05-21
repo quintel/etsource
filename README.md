@@ -209,19 +209,6 @@ be consistent across every region, i.e. if you add a "cng.csv" file to
 "datasets/nl/shares", then a similar file should be added for the other
 regions also.
 
-##### TIME_CURVE(file_name, attribute)
-
-Files containing time curve data (demands and max. demands which vary over
-time) are found at "data/datasets/:area/time_curves". Provide the name of the
-curve file and the column name to retrieve the desired value.
-
-The `TIME_CURVE` function is presently hard-coded to use values from the
-"2011" row.
-
-```ruby
-TIME_CURVE(dry_biomass, max_demand) # => 34.0
-```
-
 ##### CENTRAL_PRODUCTION(node_key)
 
 Like CHP data, the energy output of central production nodes is specified in
