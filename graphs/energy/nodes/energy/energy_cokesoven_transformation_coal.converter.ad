@@ -1,7 +1,8 @@
 - use = energetic
 - energy_balance_group = coal conversion
 - output.loss = elastic
-- groups = [metal, steel_alu_prod]
+- groups = [metal, steel_alu_prod, preset_demand]
+- graph_methods = [demand]
 - free_co2_factor = 0.0
 
 ~ input.coupling_carrier = 1/EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coupling_carrier)
@@ -9,3 +10,5 @@
 ~ output.coal_gas = EFFICIENCY(energy_cokesoven_transformation_coal, output, coal_gas)
 
 ~ output.cokes = EFFICIENCY(energy_cokesoven_transformation_coal, output, cokes)
+
+~ demand = 81660.0
