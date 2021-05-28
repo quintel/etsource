@@ -26,5 +26,17 @@
           coal_gas?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(metal_industry)
+            ),
+            energetic?
+          ),
+          cokes?
+        ),
+        value
       )
     ) / BILLIONS
