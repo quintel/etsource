@@ -26,5 +26,17 @@
           coal_gas?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :other"
+            ),
+            energetic?
+          ),
+          cokes?
+        ),
+        value
       )
     ) / BILLIONS
