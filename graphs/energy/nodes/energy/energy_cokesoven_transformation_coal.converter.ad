@@ -1,7 +1,7 @@
 - use = energetic
 - energy_balance_group = coal conversion
 - output.loss = elastic
-- groups = [metal, steel_alu_prod, preset_demand]
+- groups = [metal, steel_alu_prod]
 - graph_methods = [demand]
 - free_co2_factor = 0.0
 
@@ -11,16 +11,3 @@
 
 ~ output.cokes = EFFICIENCY(energy_cokesoven_transformation_coal, output, cokes)
 
-~ demand = 
-    -EB("coke ovens_transformation", "hard_coal_(if_no_detail)") -
-    EB("coke ovens_transformation", "brown_coal_(if_no_detail)") -
-    EB("coke ovens_transformation", anthracite) -
-    EB("coke ovens_transformation", coking_coal) -
-    EB("coke ovens_transformation", other_bituminous_coal) -
-    EB("coke ovens_transformation", sub_bituminous_coal) -
-    EB("coke ovens_transformation", peat) -
-    EB("coke ovens_transformation", lignite) -
-    EB("coke ovens_transformation", patent_fuel) -
-    EB("coke ovens_transformation", gas_coke) -
-    EB("coke ovens_transformation", coal_tar) -
-    EB("coke ovens_transformation", "bkb/peat_briquettes")
