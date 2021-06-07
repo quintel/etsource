@@ -3,4 +3,8 @@
 - groups = [energy_export]
 - free_co2_factor = 0.0
 
-~ demand = 2080.46
+~ demand = 
+    ( - EB(total_final_consumption, coke_oven_coke)
+    ) + (
+      EB(transformation_processes, coke_oven_coke)
+    )
