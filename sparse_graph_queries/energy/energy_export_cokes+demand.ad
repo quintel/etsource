@@ -1,0 +1,7 @@
+# scales with steel sector scaling factor (user input)
+# for parent values, divide by 1 million because values in the CSV are in MJ and we need TJ
+
+- query =
+    DATASET_INPUT(input_industry_metal_steel_scaling_factor) *
+    PARENT_VALUE(energy_export_cokes, demand) / 1_000_000.0
+
