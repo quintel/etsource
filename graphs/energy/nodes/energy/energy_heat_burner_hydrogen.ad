@@ -2,7 +2,6 @@
 - use = energetic
 - energy_balance_group = technologies
 - output.loss = elastic
-- output.steam_hot_water = 1.09593
 - groups = [cost_traditional_heat, heat_production, central_production, preset_demand, wacc_proven_tech]
 - presentation_group = traditional_heat
 - hydrogen.profile = self: steam_hot_water_output_curve
@@ -32,3 +31,4 @@
 
 ~ demand = 0
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_heat_burner_hydrogen, full_load_hours)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_heat_burner_hydrogen, steam_hot_water_output_conversion)

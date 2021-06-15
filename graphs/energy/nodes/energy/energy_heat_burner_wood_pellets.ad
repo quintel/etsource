@@ -1,7 +1,6 @@
 - use = energetic
 - energy_balance_group = central heat generation
 - output.loss = elastic
-- output.steam_hot_water = 0.9
 - groups = [preset_demand, central_production, cost_traditional_heat, heat_production, wacc_proven_tech]
 - presentation_group = traditional_heat
 - heat_network.subtype = dispatchable
@@ -29,3 +28,4 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_heat_burner_wood_pellets, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_heat_burner_wood_pellets, full_load_hours)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_heat_burner_wood_pellets, steam_hot_water_output_conversion)

@@ -1,7 +1,6 @@
 - use = energetic
 - energy_balance_group = central heat generation
 - output.loss = elastic
-- output.steam_hot_water = 0.72
 - groups = [cost_traditional_heat, heat_production, wacc_proven_tech]
 - graph_methods = [demand]
 - presentation_group = traditional_heat
@@ -27,3 +26,4 @@
 
 ~ demand = CENTRAL_PRODUCTION(industry_heat_burner_lignite, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(industry_heat_burner_lignite, full_load_hours)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(industry_heat_burner_lignite, steam_hot_water_output_conversion)

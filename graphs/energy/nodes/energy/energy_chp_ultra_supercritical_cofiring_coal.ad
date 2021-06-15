@@ -1,8 +1,6 @@
 - use = energetic
 - energy_balance_group = central power generation
-- output.electricity = 0.37
 - output.loss = elastic
-- output.steam_hot_water = 0.15
 - groups = [preset_demand, central_production, cost_chps, electricity_production, dispatchable_production, heat_production, hv_net_supply, wacc_proven_tech, primary_heat_infrastructure]
 - presentation_group = chps
 - merit_order.level = hv
@@ -43,3 +41,5 @@
 ~ input.coal = 0.5
 ~ input.torrefied_biomass_pellets = 0.0
 ~ input.wood_pellets = 0.5
+~ output.electricity = CENTRAL_PRODUCTION(energy_chp_ultra_supercritical_cofiring_coal, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_chp_ultra_supercritical_cofiring_coal, steam_hot_water_output_conversion)

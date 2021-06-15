@@ -2,7 +2,6 @@
 - energy_balance_group = central heat generation
 - input.ambient_heat = 0.7777777777777778
 - input.electricity = 0.2222222222222222
-- output.steam_hot_water = 1.0
 - groups = [cost_heat_pumps, heat_production, central_production,non_final_electricity_demand_converters, wacc_proven_tech, preset_demand]
 - presentation_group = heat_pumps
 - merit_order.group = self: steam_hot_water_output_curve
@@ -34,3 +33,4 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_heat_heatpump_water_water_electricity, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_heat_heatpump_water_water_electricity, full_load_hours)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_heat_heatpump_water_water_electricity, steam_hot_water_output_conversion)

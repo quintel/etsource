@@ -2,9 +2,7 @@
 - energy_balance_group = central_chp
 - input.coal = 1.0
 - input.torrefied_biomass_pellets = 0.0
-- output.electricity = 0.4
 - output.loss = elastic
-- output.steam_hot_water = 0.15
 - groups = [preset_demand, cost_chps, electricity_production, dispatchable_production, heat_production, mv_net_supply, wacc_proven_tech]
 - presentation_group = chps
 - merit_order.level = mv
@@ -41,3 +39,5 @@
 ~ full_load_hours = CENTRAL_PRODUCTION(industry_chp_ultra_supercritical_coal, full_load_hours)
 ~ input.coal = 1.0
 ~ input.torrefied_biomass_pellets = 0.0
+~ output.electricity = CENTRAL_PRODUCTION(industry_chp_ultra_supercritical_coal, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(industry_chp_ultra_supercritical_coal, steam_hot_water_output_conversion)

@@ -1,8 +1,6 @@
 - use = energetic
 - energy_balance_group = local CHPs
-- output.electricity = 0.43
 - output.loss = elastic
-- output.steam_hot_water = 0.47
 - groups = [preset_demand, cost_chps, electricity_production, heat_production, must_run_electricity_production, wacc_proven_tech]
 - presentation_group = chps
 - merit_order.group = flat
@@ -40,3 +38,5 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_chp_local_engine_biogas, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_chp_local_engine_biogas, full_load_hours)
+~ output.electricity = CENTRAL_PRODUCTION(energy_chp_local_engine_biogas, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_chp_local_engine_biogas, steam_hot_water_output_conversion)

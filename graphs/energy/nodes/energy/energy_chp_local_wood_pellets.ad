@@ -1,8 +1,6 @@
 - use = energetic
 - energy_balance_group = local CHPs
-- output.electricity = 0.289
 - output.loss = elastic
-- output.steam_hot_water = 0.821
 - groups = [preset_demand, cost_chps, electricity_production, heat_production, dispatchable_production, wacc_proven_tech]
 - presentation_group = chps
 - merit_order.level = mv
@@ -40,3 +38,5 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, full_load_hours)
+~ output.electricity = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, steam_hot_water_output_conversion)

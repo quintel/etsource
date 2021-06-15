@@ -1,8 +1,6 @@
 - use = undefined
 - energy_balance_group = central_chp
-- output.electricity = 0.35
 - output.loss = elastic
-- output.steam_hot_water = 0.15
 - groups = [preset_demand, central_production, cost_chps, electricity_production, merit_order_converters_for_dashboard, dispatchable_production, heat_production, hv_net_supply, wacc_proven_tech, primary_heat_infrastructure]
 - presentation_group = chps
 - merit_order.level = hv
@@ -39,3 +37,5 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_chp_ultra_supercritical_lignite, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_chp_ultra_supercritical_lignite, full_load_hours)
+~ output.electricity = CENTRAL_PRODUCTION(energy_chp_ultra_supercritical_lignite, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_chp_ultra_supercritical_lignite, steam_hot_water_output_conversion)

@@ -1,8 +1,6 @@
 - use = energetic
 - energy_balance_group = central power generation
-- output.electricity = 0.27
 - output.loss = elastic
-- output.steam_hot_water = 0.15
 - groups = [preset_demand, central_production, cost_chps, electricity_production, dispatchable_production, heat_production, hv_net_supply, wacc_proven_tech, primary_heat_infrastructure]
 - presentation_group = chps
 - merit_order.level = hv
@@ -35,3 +33,5 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_chp_supercritical_waste_mix, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_chp_supercritical_waste_mix, full_load_hours)
+~ output.electricity = CENTRAL_PRODUCTION(energy_chp_supercritical_waste_mix, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_chp_supercritical_waste_mix, steam_hot_water_output_conversion)
