@@ -5,7 +5,11 @@
 - free_co2_factor = 0.0
 
 ~ demand = 
-    ( EB(total_final_consumption, coke_oven_coke)
+    ( - EB(blast_furnaces_transformation, coke_oven_coke)
     ) - (
-      EB(transformation_processes, coke_oven_coke)
+      EB(coke_ovens_transformation, coke_oven_coke)
+    ) + (
+      EB(industry, coke_oven_coke)
+    ) + (
+      EB("non-energy use industry/transformation/energy", coke_oven_coke)
     )
