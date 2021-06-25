@@ -24,7 +24,11 @@ namespace :import do
     end
 
     datasets.each do |country, year|
-      dest = Pathname.new("datasets/#{ country }")
+      if ENV['YEAR_NAME']
+        dest = Pathname.new("datasets/#{ country }#{ year }")
+      else
+        dest = Pathname.new("datasets/#{ country }")
+      end
       csvs_energy = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/*.csv")
       csvs_molecules = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/molecules/*.csv")
 
@@ -90,5 +94,6 @@ desc <<-DESC
   datasets.yml for that country.
 
   DATASET=de YEAR=2011 rake import
+  Use YEAR_NAME=true to import dataset with name 'de2011' instead of 'de'
 DESC
 task :import => ['import:dataset']
