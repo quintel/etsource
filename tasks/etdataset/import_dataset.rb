@@ -25,10 +25,11 @@ namespace :import do
 
     datasets.each do |country, year|
       if ENV['YEAR_NAME']
-        dest = Pathname.new("datasets/#{ country }#{ year }")
+        dataset_name = "#{ country.downcase }#{ year }"
       else
-        dest = Pathname.new("datasets/#{ country }")
+        dataset_name = "#{ country.downcase }"
       end
+      dest = Pathname.new("datasets/#{ dataset_name }")
       csvs_energy = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/*.csv")
       csvs_molecules = Pathname.glob("#{ETDATASET_PATH}/data/#{ country }/#{ year }/*/output/molecules/*.csv")
 
@@ -63,9 +64,9 @@ namespace :import do
           encrypt_balance(dest)
         when /^central_producers.csv/
           cp_csv(csv, dest.join('central_producers.csv'))
-        when /^#{ Regexp.escape(country.downcase) }$/
+        when /^#{ Regexp.escape(dataset_name) }$/
           if csv.to_s.include?('11_area/output')
-            cp_csv(csv, dest.join("#{ country.downcase }.full.ad"))
+            cp_csv(csv, dest.join("#{ dataset_name }.full.ad"))
           end
         end
       end # each csv
