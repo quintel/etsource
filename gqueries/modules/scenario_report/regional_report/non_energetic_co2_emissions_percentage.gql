@@ -1,18 +1,13 @@
-# The CO2 emissions of bunkering are added to the emissions of 1990 with the percentage
-# that is set by the international transport sliders.
-
 - query =
     DIVIDE(
         SUM(
-            Q(co2_sheet_non_energy_emissions_agriculture),
-            Q(co2_sheet_non_energy_emissions_built_environment),
-            Q(co2_sheet_non_energy_emissions_transport),
-            Q(co2_sheet_non_energy_emissions_industry_energy)
+            Q(emissions_non_energetic_all_co2),
+            Q(emissions_non_energetic_all_other_ghg)
         ),
         SUM(
-            Q(co2_sheet_agriculture_total_co2_emissions),
-            Q(co2_sheet_buildings_households_total_co2_emissions),
-            Q(co2_sheet_industry_energy_total_co2_emissions),
-            Q(co2_sheet_transport_total_co2_emissions)
+            Q(emissions_non_energetic_all_co2),
+            Q(emissions_non_energetic_all_other_ghg),
+            Q(emissions_energetic_all_co2),
+            Q(emissions_energetic_all_other_ghg)
         )
     )
