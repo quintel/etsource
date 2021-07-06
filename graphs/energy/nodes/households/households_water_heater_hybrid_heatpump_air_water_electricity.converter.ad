@@ -1,8 +1,5 @@
 - use = energetic
 - energy_balance_group = technologies
-- input.ambient_heat = 0.444444444444445
-- input.electricity = 0.222222222222222
-- input.network_gas = 0.333333333333333
 - output.cooling = 0.0
 - output.loss = elastic
 - output.useable_heat.ambient_heat = 1
@@ -51,3 +48,9 @@
 - hours_place_nl = 11.5
 - hours_maint_nl = 2.0
 - hours_remov_nl = 11.5
+
+~ input.electricity = EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity)
+
+~ input.network_gas = EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, network_gas)
+
+~ input.ambient_heat = EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)
