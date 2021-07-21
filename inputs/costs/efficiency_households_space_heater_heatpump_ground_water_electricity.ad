@@ -1,9 +1,12 @@
-- query = UPDATE(V(households_space_heater_heatpump_ground_water_electricity), electricity_input), conversion, DIVIDE(1.0, USER_INPUT()))
+- query = 
+    EACH(
+        UPDATE(INPUT_SLOTS(V(households_space_heater_heatpump_ground_water_electricity), electricity), conversion, DIVIDE(1.0, USER_INPUT())),
+        UPDATE(INPUT_SLOTS(V(households_space_heater_heatpump_ground_water_electricity), ambient_heat), conversion, (1.0 - DIVIDE(1.0, USER_INPUT())))
+    )
 - priority = 0
 - max_value = 10.0
 - min_value = 0.0
 - start_value_gql = present:1.0/V(households_space_heater_heatpump_ground_water_electricity, electricity_input_conversion)
 - step_value = 1.0
-- unit = #
+- unit = 
 - update_period = future
-- update_type = #
