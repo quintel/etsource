@@ -1,0 +1,12 @@
+- use = energetic
+- energy_balance_group = final consumption
+- groups = [co2_emissions_primary]
+- graph_methods = [demand]
+- free_co2_factor = 0.0
+
+~ demand =
+    EB(industry, biodiesels) -
+    EB(energy_industry_own_use, biodiesels) +
+    EB("own_use_in_electricity,_CHP_and_heat_plants", biodiesels) +
+    EB(blast_furnaces_own_use, biodiesels) +
+    EB(coke_ovens_own_use, biodiesels)

@@ -1,0 +1,23 @@
+- use = energetic
+- energy_balance_group = final consumption
+- groups = [co2_emissions_primary]
+- graph_methods = [demand]
+- free_co2_factor = 0.0
+
+~ demand =
+    (
+      EB(industry, kerosene_type_jet_fuel) +
+      EB(industry, other_kerosene)
+    ) - (
+      EB(energy_industry_own_use, kerosene_type_jet_fuel) +
+      EB(energy_industry_own_use, other_kerosene)
+    ) + (
+      EB("own_use_in_electricity,_CHP_and_heat_plants", kerosene_type_jet_fuel) +
+      EB("own_use_in_electricity,_CHP_and_heat_plants", other_kerosene)
+    ) + (
+      EB(blast_furnaces_own_use, kerosene_type_jet_fuel) +
+      EB(blast_furnaces_own_use, other_kerosene)
+    ) + (
+      EB(coke_ovens_own_use, kerosene_type_jet_fuel) +
+      EB(coke_ovens_own_use, other_kerosene)
+    )
