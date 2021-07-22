@@ -1,0 +1,25 @@
+- use = energetic
+- energy_balance_group = final consumption
+- groups = [co2_emissions_primary]
+- graph_methods = [demand]
+- free_co2_factor = 0.0
+
+~ demand =
+    EB("residential", "crude/ngl/feedstocks_(if_no_detail)") +
+    EB("residential", crude_oil) +
+    EB("residential", natural_gas_liquids) +
+    EB("residential", "additives/blending_components") +
+    EB("residential", other_hydrocarbons) +
+    EB("residential", refinery_gas) +
+    EB("residential", ethane) +
+    EB("residential", motor_gasoline) +
+    EB("residential", aviation_gasoline) +
+    EB("residential", gasoline_type_jet_fuel) +
+    EB("residential", fuel_oil) +
+    EB("residential", naphtha) +
+    EB("residential", "white_spirit_&_sbp") +
+    EB("residential", lubricants) +
+    EB("residential", bitumen) +
+    EB("residential", paraffin_waxes) +
+    EB("residential", petroleum_coke) +
+    EB("residential", "non-specified_oil_products")
