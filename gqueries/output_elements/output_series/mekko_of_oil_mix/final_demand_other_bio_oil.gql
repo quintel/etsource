@@ -1,0 +1,12 @@
+# Sums the final demand of bio_oil for all sectors
+
+- unit = MJ
+- query =
+  SUM(
+    V(agriculture_final_demand_other_bio_oil, input_of_bio_oil),
+    V(buildings_final_demand_other_bio_oil, input_of_bio_oil),
+    V(industry_final_demand_other_bio_oil, input_of_bio_oil),
+    V(households_final_demand_other_bio_oil, input_of_bio_oil),
+    V(transport_final_demand_bio_ethanol, input_of_bio_ethanol),
+    V(transport_final_demand_bio_lng, input_of_bio_lng)
+  )
