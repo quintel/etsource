@@ -4,7 +4,14 @@ agriculture_final_demand_wood_pellets:
 agriculture_final_demand_steam_hot_water:
   demand: 1352.497745331
 agriculture_final_demand_crude_oil:
-  demand: 0.0
+  input: &1
+    :diesel: 0.0
+    :biodiesel: 0.0
+    :kerosene: 0.0
+    :bio_kerosene: 0.0
+    :lpg: 0.0
+    :bio_oil: 0.0
+    :crude_oil: 1.0
 agriculture_final_demand_network_gas:
   demand: 229.9637727
 agriculture_final_demand_electricity:
@@ -16,7 +23,7 @@ buildings_final_demand_wood_pellets:
 buildings_final_demand_coal:
   demand: 0.0
 buildings_final_demand_crude_oil:
-  demand: 0.0
+  input: *1
 buildings_final_demand_network_gas:
   demand: 116.75685
 buildings_final_demand_solar_thermal:
@@ -340,7 +347,7 @@ households_water_heater_hybrid_heatpump_air_water_electricity:
 households_final_demand_steam_hot_water:
   demand: 1.0
 households_final_demand_crude_oil:
-  demand: 0.0
+  input: *1
 households_final_demand_coal:
   demand: 0.0
 households_final_demand_network_gas:
@@ -397,7 +404,7 @@ industry_chp_combined_cycle_gas_power_fuelmix:
 industry_final_demand_network_gas:
   demand: 2699.6246000000006
 industry_final_demand_crude_oil:
-  demand: 0.0
+  input: *1
 industry_final_demand_coal:
   demand: 0.0
 industry_heat_burner_crude_oil:
@@ -781,3 +788,73 @@ industry_final_demand_for_metal_network_gas-industry_aluminium_burner_network_ga
   parent_share: 0.0
 industry_final_demand_for_metal_coal-industry_other_metals_burner_network_gas@coal:
   parent_share: 1.0
+energy_heat_distribution_loss:
+  demand: 0.0
+industry_transformation_generic_coal:
+  output:
+    :coal: 1.0
+    :loss: 0.0
+energy_transformation_cokes-industry_final_demand_coal@coal:
+  demand: 0.0
+energy_import_cokes:
+  demand: 0.0
+energy_transformation_cokes_non_energetic-industry_final_demand_coal_non_energetic@coal:
+  demand: 0.0
+energy_export_cokes:
+  demand: 0.0
+households_final_demand_other_oil:
+  demand: 0.0
+households_final_demand_diesel:
+  demand: 0.0
+households_final_demand_biodiesel:
+  demand: 0.0
+households_final_demand_kerosene:
+  demand: 0.0
+households_final_demand_bio_kerosene:
+  demand: 0.0
+households_final_demand_lpg:
+  demand: 0.0
+households_final_demand_other_bio_oil:
+  demand: 0.0
+buildings_final_demand_other_oil:
+  demand: 0.0
+buildings_final_demand_diesel:
+  demand: 0.0
+buildings_final_demand_biodiesel:
+  demand: 0.0
+buildings_final_demand_kerosene:
+  demand: 0.0
+buildings_final_demand_bio_kerosene:
+  demand: 0.0
+buildings_final_demand_lpg:
+  demand: 0.0
+buildings_final_demand_other_bio_oil:
+  demand: 0.0
+agriculture_final_demand_other_oil:
+  demand: 0.0
+agriculture_final_demand_diesel:
+  demand: 0.0
+agriculture_final_demand_biodiesel:
+  demand: 0.0
+agriculture_final_demand_kerosene:
+  demand: 0.0
+agriculture_final_demand_bio_kerosene:
+  demand: 0.0
+agriculture_final_demand_lpg:
+  demand: 0.0
+agriculture_final_demand_other_bio_oil:
+  demand: 0.0
+industry_final_demand_other_oil:
+  demand: 4.4959438315952
+industry_final_demand_diesel:
+  demand: 0.0
+industry_final_demand_biodiesel:
+  demand: 0.0
+industry_final_demand_kerosene:
+  demand: 0.0
+industry_final_demand_bio_kerosene:
+  demand: 0.0
+industry_final_demand_lpg:
+  demand: 0.0
+industry_final_demand_other_bio_oil:
+  demand: 0.0
