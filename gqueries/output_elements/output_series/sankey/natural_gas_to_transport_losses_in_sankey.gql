@@ -1,11 +1,11 @@
-# Query for Sankey diagram: connection between coal_and_derivatives and transport losses
+# Query for Sankey diagram: connection between natural_gas and transport losses
 
 - unit = PJ
 - query =
     DIVIDE(
       SUM(
         V(energy_regasification_lng, output_of_loss),
-        V(energy_compressor_network_gas, output_of_loss),
+        (V(energy_compressor_network_gas, output_of_loss) * (1 - Q(share_of_greengas_in_gas_network))),
         (V(energy_national_gas_network_natural_gas, output_of_loss) * (1 - Q(share_of_greengas_in_gas_network))))
           ,BILLIONS)
 
