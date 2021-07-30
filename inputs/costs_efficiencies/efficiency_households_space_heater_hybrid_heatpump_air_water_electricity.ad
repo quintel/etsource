@@ -1,4 +1,10 @@
-- query = UPDATE_WITH_FACTOR(V(households_space_heater_hybrid_heatpump_air_water_electricity, fever), base_cop, USER_INPUT())
+- query = 
+    EACH(
+        UPDATE_WITH_FACTOR(V(households_space_heater_hybrid_heatpump_air_water_electricity, fever), base_cop, USER_INPUT()),
+        UPDATE_WITH_FACTOR(V(households_space_heater_hybrid_heatpump_air_water_electricity, fever), cop_per_degree, USER_INPUT()),
+        UPDATE_WITH_FACTOR(V(households_space_heater_hybrid_hydrogen_heatpump_air_water_electricity, fever), base_cop, USER_INPUT()),
+        UPDATE_WITH_FACTOR(V(households_space_heater_hybrid_hydrogen_heatpump_air_water_electricity, fever), cop_per_degree, USER_INPUT())
+    )
 - priority = 0
 - max_value = 200.0
 - min_value = 0.0
