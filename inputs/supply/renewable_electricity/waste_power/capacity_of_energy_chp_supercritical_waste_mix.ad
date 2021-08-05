@@ -3,13 +3,25 @@
         UPDATE(
             V(energy_chp_supercritical_waste_mix),
             number_of_units,
-            USER_INPUT() / V(energy_chp_supercritical_waste_mix, electricity_output_capacity)
+            (1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_waste_mix),100.0)) * USER_INPUT() / V(energy_chp_supercritical_waste_mix, electricity_output_capacity)
         ),
         UPDATE(
-        	L(energy_chp_supercritical_waste_mix),
-        	preset_demand_by_electricity_production,
-        	V(energy_chp_supercritical_waste_mix, production_based_on_number_of_units)
-    ))
+          	L(energy_chp_supercritical_waste_mix),
+          	preset_demand_by_electricity_production,
+          	V(energy_chp_supercritical_waste_mix, production_based_on_number_of_units)
+        ),
+        UPDATE(
+            V(energy_chp_supercritical_ccs_waste_mix),
+            number_of_units,
+            DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_waste_mix),100.0) * USER_INPUT() / V(energy_chp_supercritical_ccs_waste_mix, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_supercritical_ccs_waste_mix),
+            preset_demand_by_electricity_production,
+            V(energy_chp_supercritical_ccs_waste_mix, production_based_on_number_of_units)
+        )
+    )
+
 - priority = 0
 - max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(total_electricity_consumed), V(energy_chp_supercritical_waste_mix, output_of_electricity)*2), V(energy_chp_supercritical_waste_mix,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
