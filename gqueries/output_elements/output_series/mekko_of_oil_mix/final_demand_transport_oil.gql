@@ -1,0 +1,16 @@
+# Final demand for all oil in transport
+
+- unit = MJ
+- query =
+  SUM(
+    V(transport_final_demand_lpg, output_of_lpg),
+    V(transport_final_demand_gasoline, output_of_gasoline),
+    V(transport_final_demand_kerosene, output_of_kerosene),
+    V(transport_final_demand_diesel, output_of_diesel),
+    V(transport_final_demand_heavy_fuel_oil, output_of_heavy_fuel_oil),
+    V(transport_final_demand_bio_ethanol, output_of_bio_ethanol),
+    V(transport_final_demand_biodiesel, output_of_biodiesel),
+    V(transport_final_demand_lng, output_of_lng),
+    V(transport_final_demand_bio_lng, output_of_bio_lng),
+    V(transport_final_demand_crude_oil_non_energetic, output_of_crude_oil)
+  )

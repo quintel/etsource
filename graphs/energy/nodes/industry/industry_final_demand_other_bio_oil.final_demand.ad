@@ -1,0 +1,28 @@
+- use = energetic
+- energy_balance_group = final consumption
+- groups = []
+- graph_methods = [demand]
+- free_co2_factor = 0.0
+
+~ demand =
+    (
+      EB(industry, biogasoline) +
+      EB(industry, other_liquid_biofuels) +
+      EB(industry, "non-specified_primary_biofuels_and_waste")
+    ) - (
+      EB(energy_industry_own_use, biogasoline) +
+      EB(energy_industry_own_use, other_liquid_biofuels) +
+      EB(energy_industry_own_use, "non-specified_primary_biofuels_and_waste")
+    ) + (
+      EB("own_use_in_electricity,_CHP_and_heat_plants", biogasoline) +
+      EB("own_use_in_electricity,_CHP_and_heat_plants", other_liquid_biofuels) +
+      EB("own_use_in_electricity,_CHP_and_heat_plants", "non-specified_primary_biofuels_and_waste")
+    ) + (
+      EB(blast_furnaces_own_use, biogasoline) +
+      EB(blast_furnaces_own_use, other_liquid_biofuels) +
+      EB(blast_furnaces_own_use, "non-specified_primary_biofuels_and_waste")
+    ) + (
+      EB(coke_ovens_own_use, biogasoline) +
+      EB(coke_ovens_own_use, other_liquid_biofuels) +
+      EB(coke_ovens_own_use, "non-specified_primary_biofuels_and_waste")
+    )

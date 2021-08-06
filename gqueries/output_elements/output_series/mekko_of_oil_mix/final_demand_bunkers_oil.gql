@@ -1,0 +1,10 @@
+# Final demand for all oil in bunkers
+
+- unit = MJ
+- query =
+  SUM(
+    V(bunkers_final_demand_kerosene, output_of_kerosene),
+    V(bunkers_final_demand_bio_kerosene, output_of_bio_kerosene),
+    V(bunkers_final_demand_heavy_fuel_oil, output_of_heavy_fuel_oil),
+    V(bunkers_final_demand_lng, output_of_lng),
+  )

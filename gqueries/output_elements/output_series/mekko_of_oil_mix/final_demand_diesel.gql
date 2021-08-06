@@ -1,0 +1,11 @@
+# Sums the final demand of diesel for all sectors
+
+- unit = MJ
+- query =
+  SUM(
+    V(agriculture_final_demand_diesel, input_of_diesel),
+    V(buildings_final_demand_diesel, input_of_diesel),
+    V(industry_final_demand_diesel, input_of_diesel),
+    V(households_final_demand_diesel, input_of_diesel),
+    V(transport_final_demand_diesel, input_of_diesel)
+  )
