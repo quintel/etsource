@@ -1,0 +1,12 @@
+# Sums the final demand of bio_kerosene for all sectors
+
+- unit = MJ
+- query =
+  SUM(
+    V(agriculture_final_demand_bio_kerosene, input_of_bio_kerosene),
+    V(buildings_final_demand_bio_kerosene, input_of_bio_kerosene),
+    V(industry_final_demand_bio_kerosene, input_of_bio_kerosene),
+    V(households_final_demand_bio_kerosene, input_of_bio_kerosene),
+    V(transport_final_demand_bio_kerosene, input_of_bio_kerosene),
+    V(bunkers_final_demand_bio_kerosene, input_of_bio_kerosene)
+  )

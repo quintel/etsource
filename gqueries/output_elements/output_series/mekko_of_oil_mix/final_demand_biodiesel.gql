@@ -1,0 +1,11 @@
+# Sums the final demand of biodiesel for all sectors
+
+- unit = MJ
+- query =
+  SUM(
+    V(agriculture_final_demand_biodiesel, input_of_biodiesel),
+    V(buildings_final_demand_biodiesel, input_of_biodiesel),
+    V(industry_final_demand_biodiesel, input_of_biodiesel),
+    V(households_final_demand_biodiesel, input_of_biodiesel),
+    V(transport_final_demand_biodiesel, input_of_biodiesel)
+  )
