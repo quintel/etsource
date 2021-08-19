@@ -1,0 +1,11 @@
+# Sets the price of electricity whenever all producers are running at full capacity. This is
+# typically the case when there is a deficit of production.
+
+- query = UPDATE(CARRIER(electricity), fallback_price, USER_INPUT())
+- priority = 0
+- max_value = 5000.0
+- min_value = 300.0
+- start_value_gql = present:V(CARRIER(hydrogen), fallback_price)
+- step_value = 1.0
+- unit = euro
+- update_period = future
