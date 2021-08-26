@@ -1,0 +1,10 @@
+# Query for Biomass Sankey diagram: connection between biofuels and agriculture
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+       V(INTERSECTION(G(final_demand_group), SECTOR(agriculture)),
+       input_of(bio_oil, bio_kerosene, bio_ethanol, biodiesel, bio_lng))),
+       BILLIONS
+       )
