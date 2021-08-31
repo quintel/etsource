@@ -1,0 +1,11 @@
+# Query for Biomass Sankey diagram: connection between biofuels and industry
+# Only query biofuels used for heating
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+       V(INTERSECTION(G(final_demand_group), SECTOR(industry)),
+       input_of(bio_oil, bio_kerosene, bio_ethanol, biodiesel, bio_lng))),
+       BILLIONS
+       )
