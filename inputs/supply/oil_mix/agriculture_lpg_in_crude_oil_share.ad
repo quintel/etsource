@@ -1,21 +1,11 @@
-# Is different than the other sectors to make sure the german dataset, that has
-# zero demand for any oil in agriculture, still can be computed.
+# Sets the share of lpg in the sectors' final demand of crude oil
 
-- query =
-  UPDATE(
-    EDGE(agriculture_final_demand_crude_oil, agriculture_final_demand_lpg),
-    share,
-    DIVIDE(USER_INPUT(),100)
-  )
+- query = UPDATE(INPUT_SLOTS(agriculture_final_demand_crude_oil,lpg), conversion, DIVIDE(USER_INPUT(),100))
 - share_group = agriculture_crude_oil
 - priority = 5
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql =
-  present:V(
-    EDGE(agriculture_final_demand_crude_oil, agriculture_final_demand_lpg),
-    share
-  ) * 100
+- start_value_gql = present:V(agriculture_final_demand_crude_oil,lpg_input_conversion) * 100
 - step_value = 0.1
 - unit = %
 - update_period = future
