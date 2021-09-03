@@ -1,0 +1,20 @@
+- query =
+    (SUM(
+      PRODUCT(V(CARRIER(crude_oil), cost_per_mj), V(energy_extraction_crude_oil, demand)),
+      PRODUCT(V(CARRIER(crude_oil), cost_per_mj), V(energy_import_crude_oil, demand)),
+      PRODUCT(V(CARRIER(kerosene), cost_per_mj), V(energy_import_kerosene, demand)),
+      PRODUCT(V(CARRIER(gasoline), cost_per_mj), V(energy_import_gasoline, demand)),
+      PRODUCT(V(CARRIER(lpg), cost_per_mj), V(energy_import_lpg, demand)),
+      PRODUCT(V(CARRIER(diesel), cost_per_mj), V(energy_import_diesel, demand)),
+      PRODUCT(V(CARRIER(heavy_fuel_oil), cost_per_mj), V(energy_import_heavy_fuel_oil, demand))
+    )-
+    SUM(
+      PRODUCT(V(CARRIER(crude_oil), cost_per_mj), V(energy_export_crude_oil, demand)),
+      PRODUCT(V(CARRIER(kerosene), cost_per_mj), V(energy_export_kerosene, demand)),
+      PRODUCT(V(CARRIER(gasoline), cost_per_mj), V(energy_export_gasoline, demand)),
+      PRODUCT(V(CARRIER(lpg), cost_per_mj), V(energy_export_lpg, demand)),
+      PRODUCT(V(CARRIER(diesel), cost_per_mj), V(energy_export_diesel, demand)),
+      PRODUCT(V(CARRIER(heavy_fuel_oil), cost_per_mj), V(energy_export_heavy_fuel_oil, demand))
+    )
+
+- unit = euro
