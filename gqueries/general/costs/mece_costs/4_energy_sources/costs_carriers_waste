@@ -1,0 +1,12 @@
+- query =
+    SUM(
+      PRODUCT(V(CARRIER(biogenic_waste), cost_per_mj), V(energy_import_non_biogenic_waste, demand)),
+      PRODUCT(V(CARRIER(biogenic_waste), cost_per_mj), V(energy_production_non_biogenic_waste, demand)),
+      PRODUCT(V(CARRIER(biogenic_waste), cost_per_mj), V(energy_production_biogenic_waste, demand)),
+      PRODUCT(V(CARRIER(biogenic_waste), cost_per_mj), V(energy_import_biogenic_waste, demand))
+    )-
+    SUM(
+      PRODUCT(V(CARRIER(biogenic_waste), cost_per_mj), V(energy_export_non_biogenic_waste, demand))
+    )
+
+- unit = euro

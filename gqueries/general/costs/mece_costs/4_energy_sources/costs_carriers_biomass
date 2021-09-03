@@ -1,0 +1,11 @@
+- query =
+    SUM(
+      PRODUCT(V(CARRIER(dry_biomass), cost_per_mj), V(energy_import_dry_biomass, demand)),
+      PRODUCT(V(CARRIER(dry_biomass), cost_per_mj), V(energy_production_dry_biomass, demand)),
+      PRODUCT(V(CARRIER(wet_biomass), cost_per_mj), V(energy_import_wet_biomass, demand)),
+      PRODUCT(V(CARRIER(wet_biomass), cost_per_mj), V(energy_production_wet_biomass, demand)),
+      PRODUCT(V(CARRIER(oily_biomass), cost_per_mj), V(energy_import_oily_biomass, demand)),
+      PRODUCT(V(CARRIER(oily_biomass), cost_per_mj), V(energy_production_oily_biomass, demand))
+    )
+
+- unit = euro
