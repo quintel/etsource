@@ -1,0 +1,10 @@
+# CAPEX and OPEX of the costs in powerplants ex fuels ex CCUS.
+
+- query =
+          SUM(
+              V(G(costs_production_dedicated_hydrogen_production), capital_expenditures_excluding_ccs_per(:node)),
+              V(G(costs_production_dedicated_hydrogen_production), operating_expenses_excluding_ccs_per(:node))
+              )
+
+
+- unit = euro
