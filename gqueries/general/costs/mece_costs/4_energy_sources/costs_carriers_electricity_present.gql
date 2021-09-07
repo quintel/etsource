@@ -1,0 +1,13 @@
+- query = 
+  present:(
+    PRODUCT(
+      V(CARRIER(imported_electricity), cost_per_mj), 
+      V(energy_import_electricity, demand)
+    )-
+    PRODUCT(
+      V(CARRIER(exported_electricity), cost_per_mj), 
+      V(energy_export_electricity, demand)
+    )
+  )
+
+- unit = euro
