@@ -2,11 +2,10 @@
 
 - query =
           SUM(
-              V(G(costs_building_and_installations_buildings), capital_expenditures_excluding_ccs),
-              V(G(costs_building_and_installations_buildings), operating_expenses_excluding_ccs)
+              V(G(costs_building_and_installations_buildings), capital_expenditures_excluding_ccs_per(:node)),
+              V(G(costs_building_and_installations_buildings), operating_expenses_excluding_ccs_per(:node))
               )
               +
               Q(costs_building_and_installations_buildings_insulation)
-
 
 - unit = euro
