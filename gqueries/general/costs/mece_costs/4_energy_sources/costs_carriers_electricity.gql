@@ -1,6 +1,6 @@
 - query =
     SUM(
-      PRODUCT(V(CARRIER(electricity), cost_per_mj), V(energy_import_electricity, demand)),
+      PRODUCT(V(CARRIER(imported_electricity), cost_per_mj), V(energy_import_electricity, demand)),
       PRODUCT(V(CARRIER(electricity), cost_per_mj), V(energy_production_excess_electricity, demand))
     )-
     SUM(
@@ -8,3 +8,4 @@
     )
 
 - unit = euro
+

@@ -1,0 +1,8 @@
+# Total cost of all carbon capture, carbon sequestration and carbon utilisation technologies
+
+- query =
+    SUM(
+      V(G(cost_ccus), MG(cost_ccus), total_costs_per(:node)),
+      Q(hydrogen_ccus_correction)
+    )
+- unit = euro

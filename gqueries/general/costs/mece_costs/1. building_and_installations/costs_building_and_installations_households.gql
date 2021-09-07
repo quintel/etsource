@@ -2,8 +2,8 @@
 
 - query =
           SUM(
-              V(G(costs_building_and_installations_households), capital_expenditures_excluding_ccs),
-              V(G(costs_building_and_installations_households), operating_expenses_excluding_ccs)
+              V(G(costs_building_and_installations_households), capital_expenditures_excluding_ccs_per(:node)),
+              V(G(costs_building_and_installations_households), operating_expenses_excluding_ccs_per(:node))
               )
               +
               Q(costs_building_and_installations_households_insulation)
