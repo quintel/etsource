@@ -1,8 +1,6 @@
 - query =
-    SUM_CURVES(V(
-      industry_other_food_flexibility_p2h_hydrogen_electricity,
-      industry_other_food_flexibility_p2h_network_gas_electricity,
-      energy_flexibility_mv_batteries_electricity,
-      electricity_input_curve
-    ))
+    SUM_CURVES(
+      V(G(mv_net_flexibility), electricity_input_curve)
+    )
 - unit = curve
+
