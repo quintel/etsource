@@ -62,7 +62,7 @@ namespace :import do
         when /^corrected_energy_balance_step_2/
           cp_csv(csv, dest.join('energy_balance.csv'))
           encrypt_balance(dest)
-        when /^central_producers.csv/
+        when /^central_producers/
           cp_csv(csv, dest.join('central_producers.csv'))
         when /^#{ Regexp.escape(dataset_name) }$/
           if csv.to_s.include?('11_area/output')
