@@ -1,0 +1,10 @@
+# Calculates the future total costs of electricity input for power-to-gas.
+
+- query =
+    SUM(
+      PRODUCT_CURVES(
+        V(energy_hydrogen_flexibility_p2g_electricity, electricity_input_curve),
+        V(CARRIER(electricity), cost_curve)
+      )
+    )
+- unit = EUR

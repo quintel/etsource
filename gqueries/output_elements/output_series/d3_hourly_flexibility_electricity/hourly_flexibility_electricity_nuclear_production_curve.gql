@@ -1,0 +1,11 @@
+- query =
+    SUM_CURVES(
+      V(
+        FILTER(
+          Q(electricity_producing_nuclear_converters),
+          "merit_order && (merit_order.subtype == :dispatchable)"
+        ),
+        electricity_output_curve
+      )
+    )
+- unit = curve
