@@ -1,0 +1,16 @@
+# Calculates the variable costs per MWh produced heat for power-to-heat for the district heating network.
+
+- query =
+    IF(
+        SUM(V(INTERSECTION(G(p2h),SECTOR(energy)), output_of_steam_hot_water)) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                SUM(V(INTERSECTION(G(p2h),SECTOR(energy)), variable_costs_per(:node))),
+                DIVIDE(
+                    SUM(V(INTERSECTION(G(p2h),SECTOR(energy)), output_of_steam_hot_water)),
+                    3600
+                )
+            )
+        }
+    )
