@@ -1,9 +1,9 @@
 
 # for the steel sector, steam hot water is turned into useable heat and then sent to the steel_hisarna_consumption node. The only useable_heat coming into that node comes from steam_hot_water, so we can safely set:
-# PARENT_VALUE(industry_steel_hisarna_consumption_useable_heat, input_of_useable_heat)
+# PARENT_VALUE(industry_steel_hisarna_bof, input_of_useable_heat)
 
 - query =
-    steel_steam_hot_water_demand = DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_hisarna_consumption_useable_heat, input_of_useable_heat) / 1_000_000.0;
+    steel_steam_hot_water_demand = DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_hisarna_bof, input_of_useable_heat) / 1_000_000.0;
     metal_steam_hot_water_demand =  steel_steam_hot_water_demand + DATASET_INPUT(input_industry_metal_other_steam_hot_water_demand);
     metal_steam_hot_water_demand = IF(metal_steam_hot_water_demand > 0.0, metal_steam_hot_water_demand, 1.0)
 
