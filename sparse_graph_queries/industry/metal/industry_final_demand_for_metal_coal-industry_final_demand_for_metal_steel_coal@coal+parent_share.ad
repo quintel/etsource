@@ -1,0 +1,8 @@
+
+- query =
+    steel_coal_demand = DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_final_demand_for_metal_steel_coal, input_of_coal) / 1_000_000.0;
+    metal_coal_demand =  steel_coal_demand + DATASET_INPUT(input_industry_metal_other_coal_demand);
+    metal_coal_demand = IF(metal_coal_demand > 0.0, metal_coal_demand, 1.0);
+
+    steel_coal_demand /
+    metal_coal_demand
