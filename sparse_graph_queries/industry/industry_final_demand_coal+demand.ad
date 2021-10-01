@@ -3,7 +3,7 @@
 # for parent values, divide by 1 million because values in the CSV are in MJ and we need TJ
 
 - query =
-    steel_coal_demand = DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_blastfurnace_burner_coal_gas, input_of_coal) / 1_000_000.0;
+    steel_coal_demand = DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_blastfurnace_bof, input_of_coal) / 1_000_000.0;
     metal_coal_demand =  steel_coal_demand + DATASET_INPUT(input_industry_metal_other_coal_demand);
     fertilizers_coal_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_coal, input_of_coal) / 1_000_000.0;
     refineries_coal_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_coal, input_of_coal) / 1_000_000.0;
