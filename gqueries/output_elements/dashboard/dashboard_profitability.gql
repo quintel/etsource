@@ -2,7 +2,7 @@
     IF(
       GRAPH().future?,
       -> {
-        GROUP(merit_order_converters_for_dashboard).each_with_object({}){ |c,h|
+        GROUP(dispatchable_production).each_with_object({}){ |c,h|
           h[c.key] = {
             :profitability => c.node_api.profitability,
             :full_load_hours => c.node_api.full_load_hours,
