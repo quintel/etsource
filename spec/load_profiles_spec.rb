@@ -42,14 +42,19 @@ describe 'Load profiles' do
           end
 
           if file.basename.to_s != 'air_temperature.csv'
+            let(:values) { File.foreach(file).map(&:to_f) }
+
             it "#{file.basename} should have values summing to 1/3600" do
-              values    = File.foreach(file).map(&:to_f)
               in_joules = values.reduce(:+) * 3600
 
               # The sum of the values in the load profile ought to equal
               # 1.0 / 3600 since the load profile will implicitly convert values
               # from ETEngine, which are in Joules, into watthours.
               expect(in_joules).to be_within(1e-7).of(1.0)
+            end
+
+            it "#{file.basename} should have 8760 lines" do
+              expect(values.length).to eq(8760)
             end
           end
         end # each profile
