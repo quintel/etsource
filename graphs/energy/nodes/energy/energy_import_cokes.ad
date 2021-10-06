@@ -1,15 +1,5 @@
 - use = undefined
 - energy_balance_group = import
 - groups = [energy_import, energy_import_export, primary_energy_demand]
-- graph_methods = [demand]
+- graph_methods = []
 - free_co2_factor = 0.0
-
-~ demand = 
-    ( - EB(blast_furnaces_transformation, coke_oven_coke)
-    ) - (
-      EB(coke_ovens_transformation, coke_oven_coke)
-    ) + (
-      EB(industry, coke_oven_coke)
-    ) + (
-      EB("non-energy use industry/transformation/energy", coke_oven_coke)
-    )
