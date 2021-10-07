@@ -1,0 +1,16 @@
+- use = energetic
+- energy_balance_group = final consumption
+- groups = [final_demand_group, co2_emissions_primary, metal_industry]
+- free_co2_factor = 0.0
+
+~ demand =
+    ( EB(industry, coke_oven_coke)
+    ) - (
+      EB(energy_industry_own_use, coke_oven_coke)
+    ) + (
+      EB("own_use_in_electricity,_CHP_and_heat_plants", coke_oven_coke)
+    ) + (
+      EB(blast_furnaces_own_use, coke_oven_coke)
+    ) + (
+      EB(coke_ovens_own_use, coke_oven_coke)
+    )
