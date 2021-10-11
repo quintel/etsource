@@ -7,14 +7,23 @@
 - graph_methods = [demand]
 - free_co2_factor = 0.0
 
-~ input.electricity = 0.03
 #~ input.electricity = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, electricity)
-
-~ input.coal_gas = 0.97
+~ input.electricity = 0
 #~ input.coal_gas = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coal_gas)
-
-~ input.cokes = 0.00
+~ input.coal_gas = 1
 #~ input.cokes = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, cokes)
 
+~ demand = 8356.0
 
-~ demand = 10000.0
+#~ demand =
+    - (
+      EB(blast_furnaces_own_use, coke_oven_gas) +
+      EB(blast_furnaces_own_use, blast_furnace_gas) +
+      EB(blast_furnaces_own_use, other_recovered_gases) +
+      EB(blast_furnaces_own_use, electricity)
+    ) - (
+      EB(coke_ovens_own_use, coke_oven_gas) +
+      EB(coke_ovens_own_use, blast_furnace_gas) +
+      EB(coke_ovens_own_use, other_recovered_gases) +
+      EB(coke_ovens_own_use, electricity)
+    )
