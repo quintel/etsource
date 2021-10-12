@@ -11,4 +11,18 @@
 
 ~ output.coal_gas = EFFICIENCY(energy_steel_blastfurnace_current_transformation_cokes, output, coal_gas)
 
-~ demand = 91726
+~ demand = 
+    - ( EB("blast furnaces_transformation", "hard_coal_(if_no_detail)") +
+      EB("blast furnaces_transformation", "brown_coal_(if_no_detail)") +
+      EB("blast furnaces_transformation", anthracite) +
+      EB("blast furnaces_transformation", coking_coal) +
+      EB("blast furnaces_transformation", other_bituminous_coal) +
+      EB("blast furnaces_transformation", sub_bituminous_coal) +
+      EB("blast furnaces_transformation", peat) +
+      EB("blast furnaces_transformation", lignite) +
+      EB("blast furnaces_transformation", patent_fuel) +
+      EB("blast furnaces_transformation", coke_oven_coke) +
+      EB("blast furnaces_transformation", gas_coke) +
+      EB("blast furnaces_transformation", coal_tar) +
+      EB("blast furnaces_transformation", "bkb/peat_briquettes")
+    )
