@@ -1,2 +1,16 @@
 - type = share
 - reversed = true
+
+~ parent_share = SHARE("energy/energy_distribution_coal_gas_parent_share", energy_cokesoven_consumption_coal_gas)
+#~ demand =
+    - (
+      EB(blast_furnaces_own_use, coke_oven_gas) +
+      EB(blast_furnaces_own_use, blast_furnace_gas) +
+      EB(blast_furnaces_own_use, other_recovered_gases) +
+      EB(blast_furnaces_own_use, electricity)
+    ) - (
+      EB(coke_ovens_own_use, coke_oven_gas) +
+      EB(coke_ovens_own_use, blast_furnace_gas) +
+      EB(coke_ovens_own_use, other_recovered_gases) +
+      EB(coke_ovens_own_use, electricity)
+    )
