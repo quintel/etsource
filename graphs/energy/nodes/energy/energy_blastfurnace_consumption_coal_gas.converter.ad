@@ -1,0 +1,24 @@
+- use = energetic
+- energy_balance_group = energy sector own use
+- groups = [final_demand_group, co2_emissions_primary, metal, application_group, mv_net_demand]
+- merit_order.group = flat
+- merit_order.type = consumer
+- merit_order.level = hv
+- graph_methods = [demand]
+- free_co2_factor = 0.0
+
+~ input.electricity = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, electricity)
+
+~ input.coal_gas = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, coal_gas)
+
+~ input.cokes = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, cokes)
+
+~ input.coal = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, coal)
+
+~ input.network_gas = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, network_gas)
+
+~ input.waste_mix = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, waste_mix)
+
+~ input.crude_oil = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, crude_oil)
+
+~ input.steam_hot_water = EFFICIENCY(energy_blastfurnace_consumption_coal_gas, input, steam_hot_water)

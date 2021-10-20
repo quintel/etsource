@@ -13,15 +13,12 @@
 
 ~ input.cokes = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, cokes)
 
-#~ demand =
-    - (
-      EB(blast_furnaces_own_use, coke_oven_gas) +
-      EB(blast_furnaces_own_use, blast_furnace_gas) +
-      EB(blast_furnaces_own_use, other_recovered_gases) +
-      EB(blast_furnaces_own_use, electricity)
-    ) - (
-      EB(coke_ovens_own_use, coke_oven_gas) +
-      EB(coke_ovens_own_use, blast_furnace_gas) +
-      EB(coke_ovens_own_use, other_recovered_gases) +
-      EB(coke_ovens_own_use, electricity)
-    )
+~ input.coal = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, coal)
+
+~ input.network_gas = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, network_gas)
+
+~ input.waste_mix = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, waste_mix)
+
+~ input.crude_oil = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, crude_oil)
+
+~ input.steam_hot_water = EFFICIENCY(energy_cokesoven_consumption_coal_gas, input, steam_hot_water)
