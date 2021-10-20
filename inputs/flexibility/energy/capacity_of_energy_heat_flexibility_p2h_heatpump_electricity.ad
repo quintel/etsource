@@ -1,15 +1,8 @@
 - query =
-    EACH(
-        UPDATE(
-            V(energy_heat_flexibility_p2h_heatpump_electricity),
-            number_of_units,
-            USER_INPUT() / V(energy_heat_flexibility_p2h_heatpump_electricity,heat_output_capacity)
-        ),
-        UPDATE(
-            V(energy_heat_flexibility_p2h_heatpump_electricity),
-            preset_demand,
-            V(energy_heat_flexibility_p2h_heatpump_electricity, production_based_on_number_of_heat_units)
-        )
+    UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_electricity),
+        number_of_units,
+        USER_INPUT() / V(energy_heat_flexibility_p2h_heatpump_electricity,heat_output_capacity)
     )
 - priority = 0
 - max_value_gql = present:DIVIDE(DIVIDE(MAX(0.5 * Q(heat_production_total) * BILLIONS, V(energy_heat_flexibility_p2h_heatpump_electricity, output_of_steam_hot_water)*2), V(energy_heat_flexibility_p2h_heatpump_electricity,full_load_hours)), MJ_PER_MWH)
