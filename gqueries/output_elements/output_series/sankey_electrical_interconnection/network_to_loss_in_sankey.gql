@@ -1,4 +1,9 @@
 # Query for Sankey diagram: connection between electricity network and transport losses HV network
+# Also included are roundtrip efficiency losses by P2P technologies
 
 - unit = PJ
-- query = DIVIDE(V(energy_power_hv_network_loss, demand),BILLIONS)
+- query = 
+    SUM(
+      DIVIDE(V(energy_power_hv_network_loss, demand),BILLIONS),
+      Q(losses_in_storage)
+    )

@@ -1,0 +1,9 @@
+# This gquery includes all losses related to conversion of electricity by flexible demand technologies
+# This includes conversion losses in P2H and P2G
+
+- query =
+    SUM(
+      V(energy_hydrogen_flexibility_p2g_electricity, "loss_output_conversion * demand"),
+      SUM(V(G(p2h), "loss_output_conversion * demand"))
+    ) / BILLIONS
+- unit = PJ
