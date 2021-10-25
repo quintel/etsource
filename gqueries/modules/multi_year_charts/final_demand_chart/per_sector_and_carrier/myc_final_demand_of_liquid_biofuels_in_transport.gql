@@ -50,5 +50,17 @@
           bio_lng?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :transport"
+            ),
+            energetic?
+          ),
+          bio_oil?
+        ),
+        value
       )
     )
