@@ -4,10 +4,13 @@
 - output.loss = elastic
 - groups = [preset_demand, primary_energy_demand, sustainable_production, volatile_production, cost_electricity_production, wacc_proven_tech]
 - presentation_group = solar_pv_plant
-#- merit_order.group = dynamic: solar_pv
-#- merit_order.level = hv
-#- merit_order.subtype = volatile
-#- merit_order.type = producer
+- merit_order.group = dynamic: solar_pv
+- merit_order.level = hv
+- merit_order.relations.curtailment = energy_battery_curtailed_solar_electricity
+- merit_order.relations.output = energy_battery_solar_electricity
+- merit_order.relations.storage = energy_flexibility_solar_batteries_electricity
+- merit_order.subtype = always_on_battery_park
+- merit_order.type = producer
 #- graph_methods = [demand, full_load_hours]
 - availability = 0.98
 - free_co2_factor = 0.0
