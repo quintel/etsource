@@ -1,0 +1,22 @@
+# Returns the difference between primary coal demand and cokes/coal gas production.
+# This demand is shown in the 'Energy demand of steel sector' chart to give a better impression
+# of the total energy needed for the Blastfurnace production route
+# Coal gas used for power plants and CHP is not included in this chart to avoid double-counting
+# (e.g. we already include final demand electricity for steel)
+# The transformation losses for converting coal to coal gas used in power plants/CHP is included.
+# The reason for this is that coal gas can be considered a 'waste gas' of steel production, so the
+# transformation losses are closely tied to the blastfurnace production route
+
+- unit = MJ
+- query =
+        SUM(
+            V(
+                industry_final_demand_for_metal_steel_coal_gas,
+                industry_final_demand_for_metal_steel_cokes,
+                energy_blastfurnace_own_use,
+                energy_cokesoven_own_use,
+                energy_chp_coal_gas,
+                energy_power_combined_cycle_coal_gas,
+                "primary_demand_of_coal - input_of_cokes - input_of_coal_gas"
+            )
+        )
