@@ -1,12 +1,15 @@
-#- query =
-#    EACH(
-#    UPDATE( INPUT_SLOTS(V(industry_steel_cyclonefurnace_bof),torrefied_biomass_pellets), conversion, DIVIDE(USER_INPUT(),100)),
-#    UPDATE( INPUT_SLOTS(V(industry_steel_cyclonefurnace_bof),coal), conversion, 1-(DIVIDE(USER_INPUT(),100)))
-#    )
-#- priority = 0
-#- max_value = 100.0
-#- min_value = 0.0
-#- start_value_gql = present:V(industry_steel_cyclonefurnace_bof,torrefied_biomass_pellets_input_conversion) * 100
-#- step_value = 0.1
-#- unit = %
-#- update_period = future
+- query =
+    old_coal_in_cyclone_furnace = QUERY_PRESENT(-> { V(industry_steel_cyclonefurnace_bof, coal_input_conversion) });
+    new_coal_in_cyclone_furnace = old_coal_in_cyclone_furnace * ( 1 - USER_INPUT() / 100);
+    biomass_in_cyclone_furnace = old_coal_in_cyclone_furnace * USER_INPUT() / 100;
+    EACH(
+        UPDATE( INPUT_SLOTS(V(industry_steel_cyclonefurnace_bof),wood_pellets), conversion, biomass_in_cyclone_furnace),
+        UPDATE( INPUT_SLOTS(V(industry_steel_cyclonefurnace_bof),coal), conversion, new_coal_in_cyclone_furnace)
+    )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_steel_cyclonefurnace_bof,wood_pellets_input_conversion) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
