@@ -1,9 +1,25 @@
 - use = energetic
 - energy_balance_group = energy sector own use
-- groups = [final_demand_group, co2_emissions_primary, metal, application_group]
+- groups = [final_demand_group, co2_emissions_primary, metal, application_group, must_run_electricity_production, central_production, electricity_production, heat_production]
+- merit_order.level = mv
+- merit_order.subtype = must_run
+- merit_order.type = producer
+- merit_order.group = flat
 - graph_methods = [demand]
 - free_co2_factor = 0.0
+- initial_investment = 1542475240.0
+- ccs_investment = 0.0
+- cost_of_installing = 0.0
+- decommissioning_costs = 0.0
+- fixed_operation_and_maintenance_costs_per_year = 16000000.0
+- variable_operation_and_maintenance_costs_per_full_load_hour = 801.247999672602
+- variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
+- construction_time = 5.0
+- technical_lifetime = 30.0
+- wacc = 0.04
+- takes_part_in_ets = 1.0
 
-#~ demand = 0.0
+
 ~ output.electricity = 0.5
 ~ output.steam_hot_water = 0.5
+~ full_load_hours = 8000.0
