@@ -1,0 +1,7 @@
+- query =
+    blastfurnace_coal_gas_output = (DATASET_INPUT(input_energy_blastfurnace_transformation_coal_input_demand) + DATASET_INPUT(input_energy_blastfurnace_transformation_cokes_input_demand)) * DATASET_INPUT(input_energy_blastfurnace_transformation_coal_gas_output_conversion);
+    cokesoven_coal_gas_output = DATASET_INPUT(input_energy_cokesoven_transformation_coal_input_demand) * DATASET_INPUT(input_energy_cokesoven_transformation_coal_gas_output_conversion);
+    total_coal_gas_demand = blastfurnace_coal_gas_output + cokesoven_coal_gas_output;
+    total_coal_gas_demand = IF(total_coal_gas_demand > 0.0, total_coal_gas_demand, 1.0);
+
+    blastfurnace_coal_gas_output / total_coal_gas_demand

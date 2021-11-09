@@ -1,0 +1,7 @@
+- query =
+    steel_cokes_demand = DATASET_INPUT(input_industry_metal_steel_cokes_demand);
+    other_cokes_demand = DATASET_INPUT(input_industry_other_cokes_demand);
+    industry_total_cokes_demand = steel_cokes_demand + other_cokes_demand;
+    industry_total_cokes_demand = IF(industry_total_cokes_demand > 0.0, industry_total_cokes_demand, 1.0);
+
+    steel_cokes_demand / industry_total_cokes_demand

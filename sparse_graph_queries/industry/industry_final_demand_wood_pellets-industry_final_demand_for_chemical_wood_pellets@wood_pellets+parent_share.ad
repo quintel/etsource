@@ -1,6 +1,6 @@
 
 - query =
-    metal_wood_pellets_demand = DATASET_INPUT(input_industry_metal_other_wood_pellets_demand);
+    metal_wood_pellets_demand = DATASET_INPUT(input_industry_metal_steel_wood_pellets_demand);
     fertilizers_wood_pellets_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_wood_pellets, input_of_wood_pellets) / 1_000_000.0;
     refineries_wood_pellets_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_wood_pellets, input_of_wood_pellets) / 1_000_000.0;
     chemical_wood_pellets_demand = fertilizers_wood_pellets_demand + refineries_wood_pellets_demand + DATASET_INPUT(input_industry_chemical_other_wood_pellets_demand);

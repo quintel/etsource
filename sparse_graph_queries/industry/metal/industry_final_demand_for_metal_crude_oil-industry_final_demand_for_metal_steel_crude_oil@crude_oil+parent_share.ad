@@ -1,0 +1,8 @@
+
+- query =
+    steel_network_gas_demand = DATASET_INPUT(input_industry_metal_steel_crude_oil_demand);
+    metal_network_gas_demand = steel_network_gas_demand + DATASET_INPUT(input_industry_metal_other_network_gas_demand);
+    metal_network_gas_demand = IF(metal_network_gas_demand > 0.0, metal_network_gas_demand, 1.0);
+
+    steel_network_gas_demand /
+    metal_network_gas_demand
