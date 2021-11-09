@@ -1,0 +1,10 @@
+# If no steel sector is present, use dummy values for coal and cokes inputs
+
+- query =
+    total_input = DATASET_INPUT(input_energy_blastfurnace_transformation_coal_input_demand) + DATASET_INPUT(input_energy_blastfurnace_transformation_cokes_input_demand);
+
+    IF(total_input > 0.0,
+        {coal: DATASET_INPUT(input_energy_blastfurnace_transformation_coal_input_demand) / total_input,
+        cokes: DATASET_INPUT(input_energy_blastfurnace_transformation_cokes_input_demand) / total_input},
+        {coal: 0.44,
+        cokes: 0.56})

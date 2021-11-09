@@ -1,0 +1,11 @@
+
+- query =
+    industry_final_demand = DATASET_INPUT(input_industry_metal_steel_coal_gas_demand);
+    cokesoven_own_use =  DATASET_INPUT(input_energy_cokesoven_own_use_coal_gas);
+    blastfurnace_own_use = DATASET_INPUT(input_energy_blastfurnace_own_use_coal_gas);
+    power_plant_demand = DATASET_INPUT(input_energy_power_combined_cycle_coal_gas_coal_gas_input_demand);
+    chp_demand = DATASET_INPUT(input_energy_chp_coal_gas_coal_gas_input_demand);
+    total_coal_gas_demand = industry_final_demand + cokesoven_own_use + blastfurnace_own_use + power_plant_demand + chp_demand;
+    total_coal_gas_demand = IF(total_coal_gas_demand > 0.0, total_coal_gas_demand, 1.0);
+
+    chp_demand / total_coal_gas_demand

@@ -1,6 +1,6 @@
 
 - query =
-    steel_network_gas_demand = (DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_blastfurnace_bof, input_of_network_gas) / 1_000_000.0) + (DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_steel_scrap_hbi_eaf, input_of_network_gas) / 1_000_000.0);
+    steel_network_gas_demand = DATASET_INPUT(input_industry_metal_steel_network_gas_demand);
     aluminium_network_gas_demand = DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_aluminium_burner_network_gas, input_of_network_gas) / 1_000_000.0;
     metal_network_gas_demand =  steel_network_gas_demand + aluminium_network_gas_demand + DATASET_INPUT(input_industry_metal_other_network_gas_demand);
     fertilizers_network_gas_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_network_gas, input_of_network_gas) / 1_000_000.0;

@@ -1,9 +1,0 @@
-
-- query =
-    steel_electricity_demand = (DATASET_INPUT(input_industry_metal_steel_scaling_factor) * PARENT_VALUE(industry_final_demand_for_metal_steel_electricity, input_of_electricity) / 1_000_000.0);
-    aluminium_electricity_demand = (DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_final_demand_for_metal_aluminium_electricity, input_of_electricity) / 1_000_000.0);
-    metal_electricity_demand =  steel_electricity_demand + aluminium_electricity_demand + DATASET_INPUT(input_industry_metal_other_electricity_demand);
-    metal_electricity_demand = IF(metal_electricity_demand > 0.0, metal_electricity_demand, 1.0);
-
-    aluminium_electricity_demand /
-    metal_electricity_demand
