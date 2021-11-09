@@ -1,14 +1,16 @@
 - use = energetic
 - energy_balance_group = preferred technologies
-- output.not_defined = 0.21
 - output.loss = elastic
-- input.electricity = 0.25
-- input.network_gas = 0.57
-- input.coal = 0.18
 - groups = [metal_industry, application_group, mv_net_demand]
 - free_co2_factor = 0.0
 - merit_order.group = industry_metals_electricity
 - merit_order.level = mv
 - merit_order.type = consumer
 
-~ demand = 0.0
+#~ input.electricity = EFFICIENCY(industry_steel_scrap_hbi_eaf, input, electricity)
+
+#~ input.network_gas = EFFICIENCY(industry_steel_scrap_hbi_eaf, input, network_gas)
+
+#~ input.coal = EFFICIENCY(industry_steel_scrap_hbi_eaf, input, coal)
+
+~ output.not_defined = EFFICIENCY(industry_steel_scrap_hbi_eaf, output, not_defined)
