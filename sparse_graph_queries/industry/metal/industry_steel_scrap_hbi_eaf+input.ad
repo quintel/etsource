@@ -1,0 +1,16 @@
+# If no EAF available in the start situation, use placeholder values (taken from MIDDEN PBL/TNO). Note this also includes gas/electricity demand for downstream processes.
+
+- query =
+    scrap_hbi_coal = DATASET_INPUT(input_industry_metal_steel_coal_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_coal_industry_steel_scrap_hbi_eaf_parent_share);
+    scrap_hbi_electricity = DATASET_INPUT(input_industry_metal_steel_electricity_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_electricity_industry_steel_scrap_hbi_eaf_parent_share);
+    scrap_hbi_network_gas = DATASET_INPUT(input_industry_metal_steel_network_gas_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_network_gas_industry_steel_scrap_hbi_eaf_parent_share);
+    scrap_hbi_total = scrap_hbi_coal + scrap_hbi_electricity + scrap_hbi_network_gas;
+
+    IF(scrap_hbi_total > 0.0, {
+        coal: scrap_hbi_coal / scrap_hbi_total,
+        electricity: scrap_hbi_electricity / scrap_hbi_total,
+        network_gas: scrap_hbi_network_gas / scrap_hbi_total }, {
+        coal: 0.177,
+        electricity: 0.251,
+        network_gas: 0.572}
+        )
