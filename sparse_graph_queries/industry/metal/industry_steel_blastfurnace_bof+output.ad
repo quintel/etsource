@@ -1,4 +1,5 @@
 # If no BF BOF available in the start situation, use placeholder values (taken from NL2015).
+# Steel output is in MT, energy is in TJ. ETM assumes efficiency in kg / MJ hence multiply by thousand.
 
 - query =
     blastfurnace_bof_coal = DATASET_INPUT(input_industry_metal_steel_coal_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_coal_industry_steel_blastfurnace_bof_parent_share);
@@ -7,12 +8,11 @@
     blastfurnace_bof_coal_gas = DATASET_INPUT(input_industry_metal_steel_coal_gas_demand);
     blastfurnace_bof_cokes = DATASET_INPUT(input_industry_metal_steel_cokes_demand);
     blastfurnace_bof_steam_hot_water = DATASET_INPUT(input_industry_metal_steel_steam_hot_water_demand);
-    blastfurnace_bof_wood_pellets = DATASET_INPUT(input_industry_metal_steel_wood_pellets_demand);
     blastfurnace_bof_crude_oil = DATASET_INPUT(input_industry_metal_steel_crude_oil_demand);
-    blastfurnace_bof_total = blastfurnace_bof_coal + blastfurnace_bof_electricity + blastfurnace_bof_network_gas + blastfurnace_bof_coal_gas + blastfurnace_bof_cokes + blastfurnace_bof_steam_hot_water + blastfurnace_bof_wood_pellets + blastfurnace_bof_crude_oil;
+    blastfurnace_bof_total = blastfurnace_bof_coal + blastfurnace_bof_electricity + blastfurnace_bof_network_gas + blastfurnace_bof_coal_gas + blastfurnace_bof_cokes + blastfurnace_bof_steam_hot_water + blastfurnace_bof_crude_oil;
     steel_output = DATASET_INPUT(input_industry_metal_steel_production) * DATASET_INPUT(input_industry_steel_blastfurnace_bof_share);
 
     IF(blastfurnace_bof_total > 0.0, {
-        not_defined: steel_output / blastfurnace_bof_total}, {
+        not_defined: steel_output * 1000.0 / blastfurnace_bof_total}, {
         not_defined: 0.1525}
         )

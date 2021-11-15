@@ -1,13 +1,14 @@
 # If no EAF available in the start situation, use placeholder values (taken from MIDDEN PBL/TNO).
+# Steel output is in MT, energy is in TJ. ETM assumes efficiency in kg / MJ hence multiply by thousand.
 
 - query =
-    scrap_hbi_coal = DATASET_INPUT(input_industry_metal_steel_coal_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_coal_industry_steel_scrap_hbi_eaf_parent_share);
-    scrap_hbi_electricity = DATASET_INPUT(input_industry_metal_steel_electricity_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_electricity_industry_steel_scrap_hbi_eaf_parent_share);
-    scrap_hbi_network_gas = DATASET_INPUT(input_industry_metal_steel_network_gas_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_network_gas_industry_steel_scrap_hbi_eaf_parent_share);
+    scrap_hbi_coal = DATASET_INPUT(input_industry_metal_steel_coal_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_coal_industry_steel_blastfurnace_bof_parent_share));
+    scrap_hbi_electricity = DATASET_INPUT(input_industry_metal_steel_electricity_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_electricity_industry_steel_blastfurnace_bof_parent_share));
+    scrap_hbi_network_gas = DATASET_INPUT(input_industry_metal_steel_network_gas_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_network_gas_industry_steel_blastfurnace_bof_parent_share));
     scrap_hbi_total = scrap_hbi_coal + scrap_hbi_electricity + scrap_hbi_network_gas;
-    steel_output = DATASET_INPUT(input_industry_metal_steel_production) * DATASET_INPUT(input_industry_steel_scrap_hbi_eaf_share);
+    steel_output = DATASET_INPUT(input_industry_metal_steel_production) * (1- DATASET_INPUT(input_industry_steel_blastfurnace_bof_share));
 
     IF(scrap_hbi_total > 0.0, {
-        not_defined: steel_output / scrap_hbi_total}, {
+        not_defined: steel_output * 1000.0 / scrap_hbi_total}, {
         not_defined: 0.206}
         )
