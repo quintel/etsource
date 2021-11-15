@@ -1,7 +1,7 @@
 
 - query =
     steel_network_gas_demand = DATASET_INPUT(input_industry_metal_steel_network_gas_demand);
-    aluminium_network_gas_demand = DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_aluminium_burner_network_gas, input_of_network_gas) / 1_000_000.0;
+    aluminium_network_gas_demand = DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_final_demand_for_metal_aluminium_network_gas, input_of_network_gas) / 1_000_000.0;
     metal_network_gas_demand = steel_network_gas_demand + aluminium_network_gas_demand + DATASET_INPUT(input_industry_metal_other_network_gas_demand);
     metal_network_gas_demand = IF(metal_network_gas_demand > 0.0, metal_network_gas_demand, 1.0);
 

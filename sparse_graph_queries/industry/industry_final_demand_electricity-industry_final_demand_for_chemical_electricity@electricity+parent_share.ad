@@ -1,8 +1,8 @@
 
 - query =
     steel_electricity_demand = DATASET_INPUT(input_industry_metal_steel_electricity_demand);
-    aluminium_electricity_demand = (DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_aluminium_electrolysis_current_electricity, input_of_electricity) / 1_000_000.0) + (DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_aluminium_electrolysis_bat_electricity, input_of_electricity) / 1_000_000.0) + (DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_aluminium_carbothermalreduction_electricity, input_of_electricity) / 1_000_000.0) + (DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_aluminium_smeltoven_electricity, input_of_electricity) / 1_000_000.0);
-    metal_electricity_demand =  steel_electricity_demand + aluminium_electricity_demand + DATASET_INPUT(input_industry_metal_other_electricity_demand);
+    aluminium_electricity_demand = DATASET_INPUT(input_industry_metal_aluminium_scaling_factor) * PARENT_VALUE(industry_final_demand_for_metal_aluminium_electricity, input_of_electricity) / 1_000_000.0;
+    metal_electricity_demand = steel_electricity_demand + aluminium_electricity_demand + DATASET_INPUT(input_industry_metal_other_electricity_demand);
     fertilizers_electricity_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_electricity, input_of_electricity) / 1_000_000.0;
     refineries_electricity_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_electricity, input_of_electricity) / 1_000_000.0;
     chemical_electricity_demand = fertilizers_electricity_demand + refineries_electricity_demand + DATASET_INPUT(input_industry_chemical_other_electricity_demand);
