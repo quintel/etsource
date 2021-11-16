@@ -1,0 +1,39 @@
+- query =
+    EACH(
+        UPDATE(
+            V(energy_battery_solar_pv_solar_radiation),
+            number_of_units,
+            USER_INPUT() / V(energy_battery_solar_pv_solar_radiation, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_battery_solar_pv_solar_radiation),
+            preset_demand_by_electricity_production,
+            V(energy_battery_solar_pv_solar_radiation, production_based_on_number_of_units)
+        ),
+        UPDATE(
+          V(energy_flexibility_solar_batteries_electricity),
+          number_of_units,
+          DIVIDE(
+            PRODUCT(
+              USER_INPUT(),
+              DIVIDE(INPUT_VALUE(battery_capacity_always_on_solar_pv_solar_radiation),100)
+            ),
+            V(energy_flexibility_solar_batteries_electricity, typical_input_capacity)
+          )
+        ),
+        UPDATE(
+          V(energy_battery_solar_electricity),
+          electricity_output_capacity,
+          PRODUCT(
+            USER_INPUT(),
+            DIVIDE(INPUT_VALUE(connection_capacity_always_on_solar_pv_solar_radiation),100)
+          )
+        )
+    )
+- priority = 0
+- max_value_gql = present:PRODUCT(DIVIDE(AREA(total_land_area),V(energy_battery_solar_pv_solar_radiation,land_use_per_unit)),V(energy_battery_solar_pv_solar_radiation, electricity_output_capacity))
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(energy_battery_solar_pv_solar_radiation,number_of_units),V(energy_battery_solar_pv_solar_radiation,electricity_output_capacity))
+- step_value = 1.0
+- unit = MW
+- update_period = future
