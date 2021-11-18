@@ -2,8 +2,8 @@
 - query =
     steel_coal_demand = DATASET_INPUT(input_industry_metal_steel_coal_demand);
     metal_coal_demand =  steel_coal_demand + DATASET_INPUT(input_industry_metal_other_coal_demand);
-    fertilizers_coal_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_coal, input_of_coal) / 1_000_000.0;
-    refineries_coal_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_coal, input_of_coal) / 1_000_000.0;
+    fertilizers_coal_demand = DATASET_INPUT(input_industry_chemical_fertilizers_coal_demand);
+    refineries_coal_demand = DATASET_INPUT(input_industry_chemical_refineries_coal_demand);
     chemical_coal_demand = fertilizers_coal_demand + refineries_coal_demand + DATASET_INPUT(input_industry_chemical_other_coal_demand);
     other_coal_demand = DATASET_INPUT(input_industry_food_coal_demand) + DATASET_INPUT(input_industry_paper_coal_demand) + DATASET_INPUT(input_industry_other_coal_demand);
     industry_total_coal_demand = metal_coal_demand + chemical_coal_demand + other_coal_demand;

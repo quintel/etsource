@@ -1,11 +1,9 @@
 # final demand equals user inputs of all subsector demands
-# demand for aluminium, fertilizers and refineries is calculated using the scaling factor given by the user and the total demand in the parent dataset (parent_values.csv)
-# for parent values, divide by 1 million because values in the CSV are in MJ and we need TJ
 
 - query =
     metal_crude_oil_demand =  DATASET_INPUT(input_industry_metal_steel_crude_oil_demand) + DATASET_INPUT(input_industry_metal_other_crude_oil_demand);
-    fertilizers_crude_oil_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_crude_oil, input_of_crude_oil) / 1_000_000.0;
-    refineries_crude_oil_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_crude_oil, input_of_crude_oil) / 1_000_000.0;
+    fertilizers_crude_oil_demand = DATASET_INPUT(input_industry_chemical_fertilizers_crude_oil_demand);
+    refineries_crude_oil_demand = DATASET_INPUT(input_industry_chemical_refineries_crude_oil_demand);
     chemical_crude_oil_demand = fertilizers_crude_oil_demand + refineries_crude_oil_demand + DATASET_INPUT(input_industry_chemical_other_crude_oil_demand);
     other_crude_oil_demand = DATASET_INPUT(input_industry_food_crude_oil_demand) + DATASET_INPUT(input_industry_paper_crude_oil_demand) + DATASET_INPUT(input_industry_other_crude_oil_demand);
 
