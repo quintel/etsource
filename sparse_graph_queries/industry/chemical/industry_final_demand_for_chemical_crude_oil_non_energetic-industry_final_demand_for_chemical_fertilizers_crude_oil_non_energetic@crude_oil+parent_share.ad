@@ -5,7 +5,7 @@
 # if the refinery sector produces more than the demand of the chemical other sector, 'industry_final_demand_for_chemical_crude_oil_non_energetic' can be 0 (if fertilizers crude oil demand is 0 as well), while 'industry_final_demand_for_chemical_other_crude_oil_non_energetic' is NOT zero. In other words, 'industry_final_demand_for_chemical_crude_oil_non_energetic' is not simply the sum of the demands of chemical fertilizers, refineries and chemical other
 
 - query =
-    chemical_fertilizers_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_crude_oil_non_energetic, input_of_crude_oil) / 1_000_000.0;
+    chemical_fertilizers_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_crude_oil_non_energetic_demand);
     chemical_locally_available_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_locally_available_crude_oil_non_energetic_for_chemical, input_of_crude_oil) / 1_000_000.0;
     chemical_other_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_other_crude_oil_non_energetic_demand);
     chemical_final_demand_crude_oil_non_energetic = chemical_fertilizers_crude_oil_non_energetic_demand + MAX(0, chemical_other_crude_oil_non_energetic_demand - chemical_locally_available_crude_oil_non_energetic_demand);
