@@ -1,9 +1,6 @@
 # final demand equals user inputs of all subsector demands
-# demand for aluminium, fertilizers and refineries is calculated using the scaling factor given by the user and the total demand in the parent dataset (parent_values.csv)
-# for parent values, divide by 1 million because values in the CSV are in MJ and we need TJ
 
 - query =
-    fertilizers_hydrogen_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_hydrogen_non_energetic, input_of_hydrogen) / 1_000_000.0;
+    fertilizers_hydrogen_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_hydrogen_non_energetic_demand);
 
     fertilizers_hydrogen_non_energetic_demand
-

@@ -1,7 +1,7 @@
 
 - query =
-    chemical_fertilizers_coal_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_coal_non_energetic, input_of_coal) / 1_000_000.0;
-    chemical_refineries_coal_non_energetic_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_coal, input_of_coal) / 1_000_000.0;
+    chemical_fertilizers_coal_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_coal_non_energetic_demand);
+    chemical_refineries_coal_non_energetic_demand = DATASET_INPUT(input_industry_chemical_refineries_coal_non_energetic_demand);
     chemical_coal_non_energetic_demand = chemical_fertilizers_coal_non_energetic_demand + chemical_refineries_coal_non_energetic_demand + DATASET_INPUT(input_industry_chemical_other_coal_non_energetic_demand);
     chemical_coal_non_energetic_demand = IF(chemical_coal_non_energetic_demand > 0.0, chemical_coal_non_energetic_demand, 1.0);
 

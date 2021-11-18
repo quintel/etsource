@@ -1,7 +1,7 @@
 
 - query =
-    fertilizers_network_gas_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_network_gas, input_of_network_gas) / 1_000_000.0;
-    refineries_network_gas_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_network_gas, input_of_network_gas) / 1_000_000.0;
+    fertilizers_network_gas_demand = DATASET_INPUT(input_industry_chemical_fertilizers__network_gas);
+    refineries_network_gas_demand = DATASET_INPUT(input_industry_chemical_refineries_network_gas);
     chemical_network_gas_demand = fertilizers_network_gas_demand + refineries_network_gas_demand + DATASET_INPUT(input_industry_chemical_other_network_gas_demand);
     chemical_network_gas_demand = IF(chemical_network_gas_demand > 0.0, chemical_network_gas_demand, 1.0);
 

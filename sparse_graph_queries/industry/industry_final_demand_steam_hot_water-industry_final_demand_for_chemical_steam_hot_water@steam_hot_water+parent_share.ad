@@ -2,8 +2,8 @@
 - query =
     steel_steam_hot_water_demand = DATASET_INPUT(input_industry_metal_steel_steam_hot_water_demand);
     metal_steam_hot_water_demand =  steel_steam_hot_water_demand + DATASET_INPUT(input_industry_metal_other_steam_hot_water_demand);
-    fertilizers_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_steam_hot_water, input_of_steam_hot_water) / 1_000_000.0;
-    refineries_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_steam_hot_water, input_of_steam_hot_water) / 1_000_000.0;
+    fertilizers_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_fertilizers_steam_hot_water_demand);
+    refineries_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_refineries_steam_hot_water_demand);
     chemical_steam_hot_water_demand = fertilizers_steam_hot_water_demand + refineries_steam_hot_water_demand + DATASET_INPUT(input_industry_chemical_other_steam_hot_water_demand);
     other_steam_hot_water_demand = DATASET_INPUT(input_industry_food_steam_hot_water_demand) + DATASET_INPUT(input_industry_paper_steam_hot_water_demand) + DATASET_INPUT(input_industry_other_steam_hot_water_demand);
     industry_total_steam_hot_water_demand = metal_steam_hot_water_demand + chemical_steam_hot_water_demand + other_steam_hot_water_demand;

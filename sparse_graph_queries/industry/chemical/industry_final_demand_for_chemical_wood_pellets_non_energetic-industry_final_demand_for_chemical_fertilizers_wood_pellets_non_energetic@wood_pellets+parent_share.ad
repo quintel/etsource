@@ -1,7 +1,7 @@
 
 - query =
-    chemical_fertilizers_wood_pellets_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_fertilizers_wood_pellets_non_energetic, input_of_wood_pellets) / 1_000_000.0;
-    chemical_refineries_wood_pellets_non_energetic_demand =  DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_final_demand_for_chemical_refineries_wood_pellets, input_of_wood_pellets) / 1_000_000.0;
+    chemical_fertilizers_wood_pellets_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_wood_pellets_non_energetic);
+    chemical_refineries_wood_pellets_non_energetic_demand =  DATASET_INPUT(input_industry_chemical_refineries_wood_pellets0;
     chemical_wood_pellets_non_energetic_demand = chemical_fertilizers_wood_pellets_non_energetic_demand + chemical_refineries_wood_pellets_non_energetic_demand + DATASET_INPUT(input_industry_chemical_other_wood_pellets_non_energetic_demand);
     chemical_wood_pellets_non_energetic_demand = IF(chemical_wood_pellets_non_energetic_demand > 0.0, chemical_wood_pellets_non_energetic_demand, 1.0);
 
