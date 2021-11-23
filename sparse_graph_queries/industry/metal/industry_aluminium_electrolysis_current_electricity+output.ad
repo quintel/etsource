@@ -1,0 +1,14 @@
+# If no electrolysis current process available in the start situation, use placeholder values (taken from NL2015).
+# Aluminium output is in MT, energy is in TJ. ETM assumes efficiency in kg / MJ hence multiply by thousand.
+
+- query =
+    electrolysis_current_electricity = DATASET_INPUT(input_industry_metal_aluminium_electricity_demand) * DATASET_INPUT(industry_final_demand_for_metal_aluminium_electricity_industry_aluminium_electrolysis_current_electricity_parent_share);
+    electrolysis_current_network_gas = DATASET_INPUT(input_industry_metal_aluminium_network_gas_demand) * DATASET_INPUT(industry_final_demand_for_metal_aluminium_network_gas_industry_aluminium_electrolysis_current_electricity_parent_share);
+    electrolysis_current_useable_heat = electrolysis_current_network_gas / NODE_EFFICIENCY(industry_aluminium_burner_network_gas, output, useable_heat);
+    electrolysis_current_total = electrolysis_current_electricity + electrolysis_current_useable_heat;
+    aluminium_output = DATASET_INPUT(input_industry_metal_aluminium_production) * DATASET_INPUT(industry_aluminium_electrolysis_current_electricity_share);
+
+    IF(smeltoven_total > 0.0, {
+        not_defined: aluminium_output * 1000.0 / electrolysis_current_total}, {
+        not_defined: 0.0162972620599739}
+        )
