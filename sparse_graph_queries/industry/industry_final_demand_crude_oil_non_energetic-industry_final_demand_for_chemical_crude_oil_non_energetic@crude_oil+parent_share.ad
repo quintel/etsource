@@ -6,7 +6,7 @@
 
 - query =
     chemical_fertilizers_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_crude_oil_non_energetic_demand);
-    chemical_locally_available_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_refineries_scaling_factor) * PARENT_VALUE(industry_locally_available_crude_oil_non_energetic_for_chemical, input_of_crude_oil) / 1_000_000.0;
+    chemical_locally_available_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_other_oil_demand);
     chemical_other_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_other_crude_oil_non_energetic_demand);
     chemical_final_demand_crude_oil_non_energetic = chemical_fertilizers_crude_oil_non_energetic_demand + MAX(0, chemical_other_crude_oil_non_energetic_demand - chemical_locally_available_crude_oil_non_energetic_demand);
     other_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_other_crude_oil_non_energetic_demand);
