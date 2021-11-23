@@ -1,0 +1,13 @@
+# If no fertilizer sector in the start situation, use placeholder values (taken from NL2015).
+
+- query =
+    steam_methane_reformer_useable_heat = SPARSE_GRAPH_QUERY("industry_useful_demand_for_chemical_fertilizers_useable_heat", demand);
+    steam_methane_reformer_network_gas = DATASET_INPUT(input_industry_chemical_fertilizers_network_gas_non_energetic_demand);
+    steam_methane_reformer_total = steam_methane_reformer_useable_heat + steam_methane_reformer_network_gas;
+
+    IF(steam_methane_reformer_total > 0.0, {
+        useable_heat: steam_methane_reformer_useable_heat / steam_methane_reformer_total,
+        network_gas: steam_methane_reformer_network_gas / steam_methane_reformer_total}, {
+        useable_heat: 0.232,
+        network_gas: 0.768}
+        )

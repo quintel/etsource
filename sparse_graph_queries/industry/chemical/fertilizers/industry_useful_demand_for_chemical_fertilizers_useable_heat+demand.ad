@@ -1,0 +1,10 @@
+# Sets the useful demand of useable heat in the fertilizer sector.
+
+- query =
+    useful_demand_coal = DATASET_INPUT(input_industry_chemical_fertilizers_coal_demand) / NODE_EFFICIENCY(industry_chemicals_fertilizers_burner_coal, output, useable_heat);
+    useful_demand_network_gas = DATASET_INPUT(input_industry_chemical_fertilizers_network_gas_demand) / NODE_EFFICIENCY(industry_chemicals_fertilizers_burner_network_gas, output, useable_heat);
+    useful_demand_wood_pellets = DATASET_INPUT(input_industry_chemical_fertilizers_wood_pellets_demand) / NODE_EFFICIENCY(industry_chemicals_fertilizers_burner_wood_pellets, output, useable_heat);
+    useful_demand_crude_oil = DATASET_INPUT(input_industry_chemical_fertilizers_crude_oil_demand) / NODE_EFFICIENCY(industry_chemicals_fertilizers_burner_crude_oil, output, useable_heat);
+    useful_demand_steam_hot_water = DATASET_INPUT(input_industry_chemical_fertilizers_steam_hot_water_demand);
+
+    useful_demand_total_useable_heat = useful_demand_coal + useful_demand_network_gas + useful_demand_wood_pellets + useful_demand_crude_oil + useful_demand_steam_hot_water
