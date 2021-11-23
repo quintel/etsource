@@ -1,9 +1,0 @@
-# This SGQ is required for derived datasets that do not have a refinery sector but do have an other chemical sector with
-# non-energetic crude oil demand. In this case the graph cannot be calculated because there is insufficient
-# information to determine the origin of the demand in the industry_locally_available_crude_oil_non_energetic_for_chemical node.
-# There is not enough information to determine whether the oil comes from industry_final_demand_for_chemical_crude_oil_non_energetic
-# or industry_refinery_transformation_crude_oil, despite the fact that no refinery is present.
-# This query sets the non-energetic crude oil demand of the refinery sector, thereby providing the required information about its size.
-# For parent values, we divide by 1 million because values in the CSV are in MJ and we need TJ
-
-- query = DATASET_INPUT(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic_demand)
