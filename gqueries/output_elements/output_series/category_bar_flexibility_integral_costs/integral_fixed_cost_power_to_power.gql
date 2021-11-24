@@ -1,0 +1,18 @@
+# Calculates the fixed costs per MWh produced electricity for power-to-power.
+# Excludes EV batteries because these costs are already incurred by EV owners and not explicitly calculated.
+
+- query =
+    IF(
+        SUM(V(G(p2p), output_of_electricity)) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                SUM(V(EXCLUDE(G(p2p),V(transport_car_flexibility_p2p_electricity)), fixed_costs_per(:node))),
+                DIVIDE(
+                    SUM(V(G(p2p), output_of_electricity)),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh
