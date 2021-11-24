@@ -1,0 +1,10 @@
+# Calculates the future total costs of electricity input for power-to-power.
+
+- query =
+    SUM(
+      PRODUCT_CURVES(
+        SUM_CURVES(V(G(p2p), electricity_input_curve)),
+        V(CARRIER(electricity), cost_curve)
+      )
+    )
+- unit = EUR
