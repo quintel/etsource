@@ -1,6 +1,8 @@
 # Sets the oil mix for the crude oil node
 
 - query =
+    crude_oil_share = DATASET_INPUT(input_percentage_of_diesel_agriculture_final_demand_crude_oil) + DATASET_INPUT(input_percentage_of_biodiesel_agriculture_final_demand_crude_oil) + DATASET_INPUT(input_percentage_of_kerosene_agriculture_final_demand_crude_oil) + DATASET_INPUT(input_percentage_of_bio_kerosene_agriculture_final_demand_crude_oil) + DATASET_INPUT(input_percentage_of_lpg_agriculture_final_demand_crude_oil) + DATASET_INPUT(input_percentage_of_bio_oil_agriculture_final_demand_crude_oil);
+
   {
     diesel: DATASET_INPUT(input_percentage_of_diesel_agriculture_final_demand_crude_oil),
     biodiesel: DATASET_INPUT(input_percentage_of_biodiesel_agriculture_final_demand_crude_oil),
@@ -8,5 +10,5 @@
     bio_kerosene: DATASET_INPUT(input_percentage_of_bio_kerosene_agriculture_final_demand_crude_oil),
     lpg: DATASET_INPUT(input_percentage_of_lpg_agriculture_final_demand_crude_oil),
     bio_oil: DATASET_INPUT(input_percentage_of_bio_oil_agriculture_final_demand_crude_oil),
-    crude_oil: DATASET_INPUT(input_percentage_of_crude_oil_agriculture_final_demand_crude_oil)
+    crude_oil: crude_oil_share
   }
