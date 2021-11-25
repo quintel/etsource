@@ -1,1 +1,9 @@
-- query = IF(AREA(has_coal_oil_for_heating_built_environment) > 0.0, true, false)
+- query = IF(
+            SUM(
+              SPARSE_GRAPH_QUERY(buildings_final_demand_crude_oil+input),
+              SPARSE_GRAPH_QUERY(buildings_final_demand_other_oil+demand),
+              SPARSE_GRAPH_QUERY(households_final_demand_crude_oil+input),
+              SPARSE_GRAPH_QUERY(households_final_demand_diesel+demand),
+              SPARSE_GRAPH_QUERY(households_final_demand_other_oil+demand)
+            )
+          ) > 0.0, true, false)
