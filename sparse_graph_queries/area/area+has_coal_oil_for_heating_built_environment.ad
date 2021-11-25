@@ -1,9 +1,7 @@
 - query = IF(
             SUM(
-              SPARSE_GRAPH_QUERY(buildings_final_demand_crude_oil+input),
-              SPARSE_GRAPH_QUERY(buildings_final_demand_other_oil+demand),
-              SPARSE_GRAPH_QUERY(households_final_demand_crude_oil+input),
-              SPARSE_GRAPH_QUERY(households_final_demand_diesel+demand),
-              SPARSE_GRAPH_QUERY(households_final_demand_other_oil+demand)
-            )
-          ) > 0.0, true, false)
+              DATASET_INPUT(input_buildings_final_demand_crude_oil_demand),
+              DATASET_INPUT(buildings_final_demand_coal_demand),
+              DATASET_INPUT(input_households_final_demand_crude_oil_demand),
+              DATASET_INPUT(households_final_demand_coal_demand)
+            ) > 0.0, true, false)
