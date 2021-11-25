@@ -1,0 +1,14 @@
+# Heat fuel costs excluding H2
+
+- query =
+    SUM(
+      V(
+        G(cost_traditional_heat),
+        G(cost_heat_pumps),
+        fuel_costs_per(:node)
+      ),
+      Q(hydrogen_heat_correction)
+    )
+- unit = euro
+
+

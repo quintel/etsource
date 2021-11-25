@@ -1,0 +1,5 @@
+# CO2 costs paid by power and hydrogen production
+
+- query =
+     SUM(MAX(V(FLATTEN(G(electricity_production), G(hydrogen_production)), "primary_co2_emission * (1-free_co2_factor) * takes_part_in_ets")),0) * AREA(co2_price)
+- unit = euro
