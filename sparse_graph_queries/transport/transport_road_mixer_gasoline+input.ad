@@ -3,7 +3,6 @@
 
 - query =
   total_road_mixer_gasoline_demand = DATASET_INPUT(input_transport_road_gasoline_demand) + DATASET_INPUT(input_transport_road_bio_ethanol_demand);
-  total_road_mixer_gasoline_parent_demand = total_road_gasoline_parent_demand + total_road_bio_ethanol_parent_demand;
 
   IF(total_road_mixer_gasoline_demand > 0.0, {
     gasoline: DATASET_INPUT(input_transport_road_gasoline_demand) / total_road_mixer_gasoline_demand,
