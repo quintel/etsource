@@ -1,17 +1,13 @@
 # sets input slot shares of mixer equal to the user input for different carriers coming into the node
 # if demand of mixer is zero, calculate parent dataset default slot shares
-# NOTE: for this node parent dataset default input slot shares are not specified, but can be inferred from energy flows in parent dataset
-# we use PARENT_VALUE to calculate this
 
 - query =
   total_road_mixer_gasoline_demand = DATASET_INPUT(input_transport_road_gasoline_demand) + DATASET_INPUT(input_transport_road_bio_ethanol_demand);
-  total_road_gasoline_parent_demand = PARENT_VALUE(transport_road_mixer_gasoline, input_of_gasoline);
-  total_road_bio_ethanol_parent_demand = PARENT_VALUE(transport_road_mixer_gasoline, input_of_bio_ethanol);
   total_road_mixer_gasoline_parent_demand = total_road_gasoline_parent_demand + total_road_bio_ethanol_parent_demand;
 
   IF(total_road_mixer_gasoline_demand > 0.0, {
     gasoline: DATASET_INPUT(input_transport_road_gasoline_demand) / total_road_mixer_gasoline_demand,
     bio_ethanol: DATASET_INPUT(input_transport_road_bio_ethanol_demand) / total_road_mixer_gasoline_demand }, {
-    gasoline: total_road_gasoline_parent_demand / total_road_mixer_gasoline_parent_demand,
-    bio_ethanol: total_road_bio_ethanol_parent_demand / total_road_mixer_gasoline_parent_demand}
+    gasoline: 1.0,
+    bio_ethanol: 0.0}
   )
