@@ -22,7 +22,6 @@
 - wacc = 0.04
 - takes_part_in_ets = 1.0
 
-
-~ output.electricity = 0.5
-~ output.steam_hot_water = 0.5
-~ full_load_hours = 8000.0
+~ output.electricity = CENTRAL_PRODUCTION(industry_chp_coal_gas, electricity_output_conversion)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(industry_chp_coal_gas, steam_hot_water_output_conversion)
+~ full_load_hours = CENTRAL_PRODUCTION(industry_chp_coal_gas, full_load_hours)
