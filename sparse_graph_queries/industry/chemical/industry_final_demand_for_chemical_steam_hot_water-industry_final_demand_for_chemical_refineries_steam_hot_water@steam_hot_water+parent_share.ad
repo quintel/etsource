@@ -1,7 +1,7 @@
 
 - query =
-    fertilizers_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_fertilizers_steam_hot_water);
-    refineries_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_refineries_steam_hot_water);
+    fertilizers_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_fertilizers_steam_hot_water_demand);
+    refineries_steam_hot_water_demand = DATASET_INPUT(input_industry_chemical_refineries_steam_hot_water_demand);
     chemical_steam_hot_water_demand = fertilizers_steam_hot_water_demand + refineries_steam_hot_water_demand + DATASET_INPUT(input_industry_chemical_other_steam_hot_water_demand);
     chemical_steam_hot_water_demand = IF(chemical_steam_hot_water_demand > 0.0, chemical_steam_hot_water_demand, 1.0);
 
