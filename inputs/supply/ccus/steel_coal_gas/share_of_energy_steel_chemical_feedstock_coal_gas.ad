@@ -1,0 +1,17 @@
+- query =
+    pp_share = 0.2;
+    chp_share = 0.1;
+    total_share = pp_share + chp_share;
+    UPDATE(
+      EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas),
+      share,
+      DIVIDE(USER_INPUT(), 100.0) * total_share
+    )
+- share_group = coal_gas_ccus
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = %
+- update_period = future
