@@ -3,7 +3,7 @@
 - query =
     electrolysis_current_electricity = DATASET_INPUT(input_industry_metal_aluminium_electricity_demand) * DATASET_INPUT(industry_final_demand_for_metal_aluminium_electricity_industry_aluminium_electrolysis_current_electricity_parent_share);
     electrolysis_current_network_gas = DATASET_INPUT(input_industry_metal_aluminium_network_gas_demand) * DATASET_INPUT(industry_aluminium_burner_network_gas_industry_aluminium_electrolysis_current_electricity_parent_share);
-    electrolysis_current_useable_heat = electrolysis_current_network_gas / NODE_EFFICIENCY(industry_aluminium_burner_network_gas, output, useable_heat);
+    electrolysis_current_useable_heat = electrolysis_current_network_gas * NODE_EFFICIENCY(industry_aluminium_burner_network_gas, output, useable_heat);
     electrolysis_current_total = electrolysis_current_electricity + electrolysis_current_useable_heat;
     aluminium_output = DATASET_INPUT(input_industry_metal_aluminium_production) * DATASET_INPUT(input_industry_aluminium_electrolysis_current_electricity_share);
 
