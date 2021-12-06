@@ -1,6 +1,6 @@
 - query =
-    pp_share = 0.2;
-    chp_share = 0.1;
+    pp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas), share)});;
+    chp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_chp_coal_gas), share)});;
     total_share = pp_share + chp_share;
     UPDATE(
       EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas),
