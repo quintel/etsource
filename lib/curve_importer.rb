@@ -23,10 +23,10 @@ class CurveImporter
     import_from_data_folders
     import_weather_years if include_weather?
     extend_solar_profiles(@dest, @country)
-    unless @country == DEFAULT_AREA
-      symlinker = Symlinker.new(DEFAULT_AREA, @country, @year, include_weather?)
-      symlinker.symlink_curves
-    end
+    # unless @country == DEFAULT_AREA
+    #   symlinker = Symlinker.new(DEFAULT_AREA, @country, @year, include_weather?)
+    #   symlinker.symlink_curves
+    # end
   end
 
   def prepare
