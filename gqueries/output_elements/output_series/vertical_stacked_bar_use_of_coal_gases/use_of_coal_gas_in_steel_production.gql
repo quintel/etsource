@@ -1,0 +1,12 @@
+# This sums the coal gas used for final demand and in the own use of the blast furnace and cokesoven.
+
+- query = 
+    SUM(
+      V(
+        energy_blastfurnace_own_use,
+        energy_cokesoven_own_use,
+        industry_final_demand_coal_gas, 
+        input_of_coal_gas
+      )
+    )
+- unit = MJ
