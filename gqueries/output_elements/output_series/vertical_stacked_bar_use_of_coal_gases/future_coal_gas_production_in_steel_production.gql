@@ -1,0 +1,11 @@
+# This sums the future coal gas produced by the blast furnace and cokesoven.
+
+- query = 
+    future:SUM(
+      V(
+        energy_blastfurnace_transformation_cokes,
+        energy_cokesoven_transformation_coal,
+        output_of_coal_gas
+      )
+    )
+- unit = MJ
