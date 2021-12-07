@@ -4,6 +4,8 @@
           FILTER(ALL(),"network_gas && (network_gas.type == :consumer || network_gas.type == :export)"),
           EXCLUDE(SECTOR(other),G(electricity_production))),
         network_gas_input_curve),
-      V(energy_torrefaction_wood,network_gas_input_curve)
+      V(energy_torrefaction_wood, network_gas_input_curve),
+      V(energy_cokesoven_own_use, network_gas_input_curve),
+      V(energy_blastfurnace_own_use, network_gas_input_curve)
     )
 - unit = curve
