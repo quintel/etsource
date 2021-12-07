@@ -1,27 +1,40 @@
+- use = energetic
+- energy_balance_group = preferred technologies
 - output.loss = elastic
 - groups = [application_group, mv_net_demand, wacc_proven_tech]
-- use = energetic
 - graph_methods = [input, output]
 - full_load_hours = 8000.0
 - typical_input_capacity = 267.0940170940171
 - fixed_operation_and_maintenance_costs_per_year = 265000000.0
 - initial_investment = 965000000.0
-- technical_lifetime = 15.0
 - variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
 - wacc = 0.04
-- energy_balance_group = preferred technologies
+- technical_lifetime = 15.0
 - merit_order.group = industry_metals_electricity
 - merit_order.level = mv
 - merit_order.subtype = generic
 - merit_order.type = consumer
 - free_co2_factor = 0.0
 - takes_part_in_ets = 1.0
+- variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
+- decommissioning_costs = 0.0
+- cost_of_installing = 0.0
+- ccs_investment = 0.0
+- construction_time = 0.0
+
 
 ~ input.electricity = EFFICIENCY(industry_steel_blastfurnace_bof, input, electricity)
+
 ~ input.coal_gas = EFFICIENCY(industry_steel_blastfurnace_bof, input, coal_gas)
+
 ~ input.cokes = EFFICIENCY(industry_steel_blastfurnace_bof, input, cokes)
+
 ~ input.coal = EFFICIENCY(industry_steel_blastfurnace_bof, input, coal)
+
 ~ input.network_gas = EFFICIENCY(industry_steel_blastfurnace_bof, input, network_gas)
+
 ~ input.crude_oil = EFFICIENCY(industry_steel_blastfurnace_bof, input, crude_oil)
+
 ~ input.steam_hot_water = EFFICIENCY(industry_steel_blastfurnace_bof, input, steam_hot_water)
+
 ~ output.not_defined = EFFICIENCY(industry_steel_blastfurnace_bof, output, not_defined)
