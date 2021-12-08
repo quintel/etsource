@@ -8,7 +8,7 @@
     electrolysis_current_total = electrolysis_current_electricity + electrolysis_current_useable_heat;
     aluminium_output = DATASET_INPUT(input_industry_metal_aluminium_production) * DATASET_INPUT(input_industry_aluminium_electrolysis_current_electricity_share);
 
-    IF(smeltoven_total > 0.0, {
+    IF(electrolysis_current_total > 0.0, {
         not_defined: aluminium_output * 1000.0 / electrolysis_current_total}, {
         not_defined: 0.0162972620599739}
         )
