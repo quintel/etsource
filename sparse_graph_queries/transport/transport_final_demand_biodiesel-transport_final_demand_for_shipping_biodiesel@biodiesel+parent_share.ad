@@ -1,5 +1,7 @@
 
 - query =
-    1 -
-    SPARSE_GRAPH_QUERY("transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel", parent_share) -
-    SPARSE_GRAPH_QUERY("transport_final_demand_biodiesel-transport_final_demand_for_rail_biodiesel@biodiesel", parent_share)
+    transport_biodiesel = SPARSE_GRAPH_QUERY(transport_final_demand_biodiesel, demand);
+    transport_biodiesel = IF(transport_biodiesel > 0.0, transport_biodiesel, 1.0);
+
+    DATASET_INPUT(input_transport_ship_biodiesel_demand) /
+    transport_biodiesel
