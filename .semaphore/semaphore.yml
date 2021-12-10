@@ -1,0 +1,39 @@
+version: v1.0
+name: Test ETSource
+agent:
+  machine:
+    type: e1-standard-8
+    os_image: ubuntu2004
+blocks:
+  - name: RSpec
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+          - gem install bundler -v '< 2'
+          - bundle install --path vendor/bundle
+          - cache store
+          - bundle exec rake decrypt
+      jobs:
+        - name: Test ETSource
+          commands:
+            - mkdir -p /tmp/test-results
+            - bundle exec rspec --tag '~slow' --format RspecJunitFormatter --out /tmp/test-results/etsource.xml --format progress
+        - name: Test datasets
+          commands:
+            - mkdir -p /tmp/test-results
+            - bundle exec rspec --tag 'slow' --format RspecJunitFormatter --out /tmp/test-results/datasets-${SEMAPHORE_JOB_INDEX}.xml --format progress
+          parallelism: 7
+      epilogue:
+        always:
+          commands:
+            - test-results publish /tmp/test-results
+      secrets:
+        - name: ETSource key
+after_pipeline:
+  task:
+    jobs:
+      - name: Publish Results
+        commands:
+          - test-results gen-pipeline-report
