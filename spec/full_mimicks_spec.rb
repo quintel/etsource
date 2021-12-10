@@ -22,7 +22,7 @@ MIMICKED_SETS.each do |mimicked|
 
     # this is ugly but the easiest way to provide the devs with info on
     # which key value pair is wrong
-    Atlas::Dataset::Full.find(mimicked.gsub(/[^a-zA-Z]/, ''))
+    Atlas::Dataset::Full.find(mimicked.gsub(/nl\d{4}/, 'nl2015'))
                         .attributes
                         .each do |key, value|
       next if %i[area id enabled analysis_year].include? key
