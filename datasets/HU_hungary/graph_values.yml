@@ -463,8 +463,12 @@ industry_steel_scrap_hbi_eaf:
     :coal: 0.0009497935027078441
     :electricity: 0.4082434059485299
     :network_gas: 0.5908068005487623
+    :cokes: 0.0
+    :crude_oil: 0.0
+    :steam_hot_water: 0.0
+    :wood_pellets: 0.0
   output:
-    :not_defined: 0.12106700313153672
+    :not_defined: 0.48730989702693894
 industry_final_demand_wood_pellets:
   demand: 9146.0
 industry_final_demand_other_bio_oil:
@@ -570,15 +574,16 @@ industry_chp_ultra_supercritical_coal:
   full_load_hours: 0.0
 industry_steel_blastfurnace_bof:
   input:
-    :coal: 0.005995760710473275
-    :electricity: 0.1300553462475796
-    :network_gas: 0.08532290575657464
-    :coal_gas: 0.5893484173446657
-    :cokes: 0.11176405179320034
-    :steam_hot_water: 0.07395282650115442
-    :crude_oil: 0.0035606916463518795
+    :coal: 0.005992776314870085
+    :electricity: 0.12999061107513774
+    :network_gas: 0.08528043619898429
+    :wood_pellets: 0.0004977509522649211
+    :coal_gas: 0.5890550686087166
+    :cokes: 0.11170842112999128
+    :steam_hot_water: 0.0739160164113408
+    :crude_oil: 0.0035589193086941863
   output:
-    :not_defined: 0.11760815108250758
+    :not_defined: 0.11754961151331215
 industry_final_demand_cokes:
   demand: 1522.196
 industry_final_demand_coal_gas:
@@ -812,6 +817,8 @@ industry_final_demand_for_metal_steel_network_gas-industry_steel_blastfurnace_bo
   parent_share: 0.37437242
 industry_final_demand_for_other_electricity-industry_final_demand_for_other_paper_electricity@electricity:
   parent_share: 0.058649136375354495
+industry_final_demand_for_metal_steel_wood_pellets-industry_steel_blastfurnace_bof@wood_pellets:
+  parent_share: 1.0
 industry_final_demand_for_metal_steel_electricity-industry_steel_blastfurnace_bof@electricity:
   parent_share: 0.56896716
 industry_final_demand_for_metal_crude_oil-industry_final_demand_for_metal_steel_crude_oil@crude_oil:
@@ -870,6 +877,8 @@ industry_final_demand_for_metal_aluminium_electricity-industry_aluminium_electro
   parent_share: 1.0
 industry_final_demand_for_metal_steel_coal-industry_steel_blastfurnace_bof@coal:
   parent_share: 0.963176671
+industry_final_demand_for_metal_steel_crude_oil-industry_steel_blastfurnace_bof@crude_oil:
+  parent_share: 1.0
 industry_final_demand_for_other_food_electricity-industry_useful_demand_for_other_food_electricity@electricity:
   parent_share: 1.0
 industry_final_demand_for_metal_coal-industry_final_demand_for_metal_steel_coal@coal:
@@ -912,6 +921,8 @@ industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_
 : parent_share: 0.03
 industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_fertilizers_electricity@electricity:
   parent_share: 0.05405311970448793
+industry_final_demand_for_metal_steel_steam_hot_water-industry_steel_blastfurnace_bof@steam_hot_water:
+  parent_share: 1.0
 industry_final_demand_network_gas-industry_final_demand_for_chemical_network_gas@network_gas:
   parent_share: 0.25789129818412215
 ? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_fertilizers_wood_pellets_non_energetic@wood_pellets
@@ -962,3 +973,5 @@ industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemic
   parent_share: 1.0
 industry_final_demand_for_other_network_gas-industry_final_demand_for_other_paper_network_gas@network_gas:
   parent_share: 0.04779114037347012
+industry_final_demand_for_metal_steel_cokes-industry_steel_blastfurnace_bof@cokes:
+  parent_share: 1.0
