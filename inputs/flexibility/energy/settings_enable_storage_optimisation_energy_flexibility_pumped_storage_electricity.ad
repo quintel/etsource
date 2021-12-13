@@ -1,0 +1,15 @@
+- query =
+  IF(
+    EQUALS(USER_INPUT(), 1.0),
+    -> {
+      UPDATE(V(energy_flexibility_pumped_storage_electricity, merit_order), subtype, optimizing_storage);
+    },
+    -> {}
+  )
+- priority = 0
+- max_value = 1.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = x
+- update_period = future
