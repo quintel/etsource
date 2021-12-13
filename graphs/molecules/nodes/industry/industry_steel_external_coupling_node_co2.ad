@@ -1,0 +1,13 @@
+# This node can be used for external coupling of the steel sector by API users.
+# All node attributes are approximate default values of the NL2019 blastfurnace process.
+# These attributes should be updated by the API user to model the steel production technology.
+
+- from_energy.source = industry_steel_external_coupling_node
+- from_energy.direction = input
+- from_energy.conversion.coal_gas = edges: primary_co2_emission_of_bio_and_fossil_without_capture_factor
+- from_energy.conversion.cokes = edges: primary_co2_emission_of_bio_and_fossil_without_capture_factor
+- from_energy.conversion.coal = carrier: co2_conversion_per_mj
+- from_energy.conversion.crude_oil = carrier: co2_conversion_per_mj
+- from_energy.conversion.network_gas = edges: primary_co2_emission_of_bio_and_fossil_without_capture_factor
+- from_energy.conversion.wood_pellets = carrier: co2_conversion_per_mj
+- input.co2 = 1.0
