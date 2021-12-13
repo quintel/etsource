@@ -2,6 +2,7 @@
   IF(
     EQUALS(USER_INPUT(), 1.0),
     -> {
+      UPDATE(V(energy_flexibility_pumped_storage_electricity, storage), decay, 0.0);
       UPDATE(V(energy_flexibility_pumped_storage_electricity, merit_order), subtype, optimizing_storage);
     },
     -> {}
