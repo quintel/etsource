@@ -10,7 +10,7 @@
     scrap_hbi_steam_hot_water = DATASET_INPUT(input_industry_metal_steel_steam_hot_water_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_steam_hot_water_industry_steel_blastfurnace_bof_parent_share));
     scrap_hbi_wood_pellets = DATASET_INPUT(input_industry_metal_steel_wood_pellets_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_wood_pellets_industry_steel_blastfurnace_bof_parent_share));
     scrap_hbi_total = scrap_hbi_coal + scrap_hbi_electricity + scrap_hbi_network_gas + scrap_hbi_cokes + scrap_hbi_crude_oil + scrap_hbi_steam_hot_water + scrap_hbi_wood_pellets;
-    steel_output = DATASET_INPUT(input_industry_metal_steel_production) * DATASET_INPUT(input_industry_steel_scrap_hbi_eaf_share);
+    steel_output = DATASET_INPUT(input_industry_metal_steel_production) * (1 - DATASET_INPUT(input_industry_steel_blastfurnace_bof_share));
 
     IF(scrap_hbi_total > 0.0, {
         not_defined: steel_output * 1000.0 / scrap_hbi_total}, {
