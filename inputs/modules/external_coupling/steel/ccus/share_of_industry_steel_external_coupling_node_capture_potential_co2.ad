@@ -1,0 +1,17 @@
+- query =
+    capture_potential_share = QUERY_PRESENT(-> {V(EDGE(industry_steel_external_coupling_node_co2, industry_steel_external_coupling_node_capture_potential_co2), share)});;
+    emission_share = QUERY_PRESENT(-> {V(EDGE(industry_steel_external_coupling_node_co2, industry_steel_emitted_co2), share)});;
+    total_share = capture_potential_share + emission_share;
+    UPDATE(
+      EDGE(industry_steel_external_coupling_node_co2, industry_steel_external_coupling_node_capture_potential_co2),
+      share,
+      DIVIDE(USER_INPUT(), 100.0) * total_share
+    )
+- share_group = external_coupling_capture potential
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = %
+- update_period = future
