@@ -1,0 +1,8 @@
+# sum of user inputs for road transport, rail transport , ships, planes
+
+- query =
+    transport_diesel = SPARSE_GRAPH_QUERY(transport_final_demand_diesel, demand);
+    transport_diesel = IF(transport_diesel > 0.0, transport_diesel, 1.0);
+
+    DATASET_INPUT(input_transport_ship_diesel_demand) /
+    transport_diesel
