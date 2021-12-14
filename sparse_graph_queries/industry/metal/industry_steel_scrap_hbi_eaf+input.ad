@@ -4,13 +4,25 @@
     scrap_hbi_coal = DATASET_INPUT(input_industry_metal_steel_coal_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_coal_industry_steel_blastfurnace_bof_parent_share));
     scrap_hbi_electricity = DATASET_INPUT(input_industry_metal_steel_electricity_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_electricity_industry_steel_blastfurnace_bof_parent_share));
     scrap_hbi_network_gas = DATASET_INPUT(input_industry_metal_steel_network_gas_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_network_gas_industry_steel_blastfurnace_bof_parent_share));
-    scrap_hbi_total = scrap_hbi_coal + scrap_hbi_electricity + scrap_hbi_network_gas;
+    scrap_hbi_cokes = DATASET_INPUT(input_industry_metal_steel_cokes_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_cokes_industry_steel_blastfurnace_bof_parent_share));
+    scrap_hbi_crude_oil = DATASET_INPUT(input_industry_metal_steel_crude_oil_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_crude_oil_industry_steel_blastfurnace_bof_parent_share));
+    scrap_hbi_steam_hot_water = DATASET_INPUT(input_industry_metal_steel_steam_hot_water_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_steam_hot_water_industry_steel_blastfurnace_bof_parent_share));
+    scrap_hbi_wood_pellets = DATASET_INPUT(input_industry_metal_steel_wood_pellets_demand) * (1 - DATASET_INPUT(industry_final_demand_for_metal_steel_wood_pellets_industry_steel_blastfurnace_bof_parent_share));
+    scrap_hbi_total = scrap_hbi_coal + scrap_hbi_electricity + scrap_hbi_network_gas + scrap_hbi_cokes + scrap_hbi_crude_oil + scrap_hbi_steam_hot_water + scrap_hbi_wood_pellets;
 
     IF(scrap_hbi_total > 0.0, {
         coal: scrap_hbi_coal / scrap_hbi_total,
         electricity: scrap_hbi_electricity / scrap_hbi_total,
-        network_gas: scrap_hbi_network_gas / scrap_hbi_total }, {
+        network_gas: scrap_hbi_network_gas / scrap_hbi_total,
+        cokes: scrap_hbi_cokes / scrap_hbi_total,
+        crude_oil: scrap_hbi_crude_oil / scrap_hbi_total,
+        steam_hot_water: scrap_hbi_steam_hot_water / scrap_hbi_total,
+        wood_pellets: scrap_hbi_wood_pellets / scrap_hbi_total, }, {
         coal: 0.17635,
         electricity: 0.24449,
-        network_gas: 0.57916}
+        network_gas: 0.57916,
+        cokes: 0.0,
+        crude_oil: 0.0,
+        steam_hot_water: 0.0,
+        wood_pellets: 0.0}
         )
