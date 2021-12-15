@@ -1,8 +1,8 @@
 - query =
-    pp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas), share)});;
-    chp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_chp_coal_gas), share)});;
-    final_demand_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, industry_final_demand_coal_gas), share)});;
-    methanol_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas), share)});;
+    pp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas), share)});
+    chp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_chp_coal_gas), share)});
+    final_demand_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, industry_final_demand_coal_gas), share)});
+    methanol_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas), share)});
     total_share = pp_share + chp_share + final_demand_share + methanol_share;
     UPDATE(
       EDGE(energy_distribution_coal_gas, industry_final_demand_coal_gas),
