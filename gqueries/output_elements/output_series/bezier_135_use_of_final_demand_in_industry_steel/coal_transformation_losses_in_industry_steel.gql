@@ -1,4 +1,4 @@
-# Returns the difference between primary coal demand and cokes/coal gas production.
+# Returns the difference between primary demand and cokes/coal gas production.
 # This demand is shown in the 'Energy demand of steel sector' chart to give a better impression
 # of the total energy needed for the Blastfurnace production route
 # Coal gas used for power plants and CHP is not included in this chart to avoid double-counting
@@ -12,10 +12,10 @@
         SUM(
             V(
                 industry_final_demand_for_metal_steel_coal_gas,
+                industry_final_demand_for_metal_steel_cokes,
                 energy_chp_coal_gas,
                 energy_power_combined_cycle_coal_gas,
                 energy_methanol_production_coal_gas,
-                "primary_demand_of_coal - input_of_cokes - input_of_coal_gas"
-            ),
-            V(industry_final_demand_for_metal_steel_cokes, "primary_demand - demand")
+                "primary_demand - input_of_cokes - input_of_coal_gas"
+            )
         )
