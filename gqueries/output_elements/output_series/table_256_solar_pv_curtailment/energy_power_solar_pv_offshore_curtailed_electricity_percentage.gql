@@ -1,0 +1,8 @@
+# The percentage of the electricity that is curtailed for 'energy_power_solar_pv_offshore'
+
+- unit = %
+- query =
+    PRODUCT(
+      1.0 - DIVIDE(Q(energy_power_solar_pv_offshore_production_after_curtailment),Q(energy_power_solar_pv_offshore_production_before_curtailment)),
+      100.0
+    )
