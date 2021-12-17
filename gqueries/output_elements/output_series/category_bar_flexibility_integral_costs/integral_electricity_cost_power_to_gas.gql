@@ -1,0 +1,17 @@
+# Calculates the electricity input costs per MWh produced hydrogen for power-to-gas.
+
+- query =
+    IF(
+        V(energy_hydrogen_flexibility_p2g_electricity, output_of_hydrogen) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                Q(total_electricity_input_cost_power_to_gas),
+                DIVIDE(
+                    V(energy_hydrogen_flexibility_p2g_electricity, output_of_hydrogen),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh
