@@ -1,0 +1,17 @@
+# Calculates the variable costs per MWh produced hydrogen for power-to-gas.
+
+- query =
+    IF(
+        V(energy_hydrogen_flexibility_p2g_electricity, output_of_hydrogen) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                V(energy_hydrogen_flexibility_p2g_electricity, variable_costs_per(:node)),
+                DIVIDE(
+                    V(energy_hydrogen_flexibility_p2g_electricity, output_of_hydrogen),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh

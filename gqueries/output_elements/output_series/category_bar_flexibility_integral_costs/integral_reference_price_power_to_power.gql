@@ -1,0 +1,17 @@
+# Calculates the electricity output revenue per MWh produced electricity for power-to-power.
+
+- query =
+    IF(
+        SUM(V(G(p2p), output_of_electricity)) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                Q(total_electricity_output_revenue_power_to_power),
+                DIVIDE(
+                    SUM(V(G(p2p), output_of_electricity)),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh

@@ -1,0 +1,16 @@
+# This gquery takes the weighted average of the full load hours of P2H technologies of the paper industry
+
+- query =
+		DIVIDE(
+	      SUM(V(
+	        industry_other_paper_flexibility_p2h_network_gas_electricity,
+            industry_other_paper_flexibility_p2h_hydrogen_electricity,
+	        "number_of_units*full_load_hours"
+	      )),
+	      SUM(V(
+	        industry_other_paper_flexibility_p2h_network_gas_electricity,
+            industry_other_paper_flexibility_p2h_hydrogen_electricity,
+	        number_of_units
+	      ))
+		)
+- unit = hours

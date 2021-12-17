@@ -1,16 +1,12 @@
-# This gquery includes all losses related to storage and conversion of excess electricity
-# This includes losses for charging and discharging of P2P batteries and PV and
-# conversion losses in P2H and P2G
+# This gquery includes all losses related to storage of electricity by flexible demand technologies
+# This includes losses for charging and discharging of P2P technologies
 
 - query =
     SUM(
       V(households_flexibility_p2p_electricity, "input_of_electricity - output_of_electricity"),
       V(transport_car_flexibility_p2p_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
-      V(households_flexibility_p2h_electricity, "loss_output_conversion * demand"),
-      V(energy_hydrogen_flexibility_p2g_electricity, "loss_output_conversion * demand"),
       V(energy_flexibility_pumped_storage_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
       V(energy_flexibility_hv_opac_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
-      V(energy_flexibility_mv_batteries_electricity, "input_of_electricity - (demand * electricity_output_conversion)"),
-      SUM(V(INTERSECTION(G(p2h), SECTOR(industry)), "loss_output_conversion * demand"))
+      V(energy_flexibility_mv_batteries_electricity, "input_of_electricity - (demand * electricity_output_conversion)")
     ) / BILLIONS
 - unit = PJ

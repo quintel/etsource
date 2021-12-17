@@ -1,0 +1,17 @@
+# Calculates the electricity input costs per MWh produced heat for power-to-heat for district heating.
+
+- query =
+    IF(
+        SUM(V(INTERSECTION(G(p2h),SECTOR(energy)), output_of_steam_hot_water)) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                Q(total_electricity_input_cost_power_to_heat_network),
+                DIVIDE(
+                    SUM(V(INTERSECTION(G(p2h),SECTOR(energy)), output_of_steam_hot_water)),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh

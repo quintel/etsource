@@ -1,12 +1,9 @@
-# Does not include EVs or P2H which are included in separate curves:
+# Does not include EV electricity demand for transport which is included in a separate curve:
 #
 # * EV:  lv_ev_load_curve
-# * P2H: lv_households_hot_water_load_curve
 
 - query =
     SUM_CURVES(
-      V(households_flexibility_p2p_electricity, electricity_input_curve),
-      V(transport_car_flexibility_p2p_electricity, electricity_input_curve)
+      V(G(lv_net_flexibility), electricity_input_curve)
     )
-
 - unit = curve
