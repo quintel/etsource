@@ -3,7 +3,7 @@
 - query =
           IF(
               QUERY_FUTURE(lv_mv_trafo_extra_capacity_needed) > 0.0,
-              CEIL(QUERY_FUTURE(lv_mv_trafo_extra_capacity_needed) / AREA(lv_mv_trafo_capacity_per_step)),
+              CEIL(DIVIDE(QUERY_FUTURE(lv_mv_trafo_extra_capacity_needed), AREA(lv_mv_trafo_capacity_per_step))),
               0.0
             )
 
