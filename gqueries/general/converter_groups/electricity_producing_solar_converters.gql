@@ -1,3 +1,12 @@
-- query = FILTER( G(electricity_production), "solar_radiation_input_conversion > 0")
+# The output node of the solar PV plant with battery system, energy_battery_solar_electricity, is communicated to the merit order but does not have input of solar radiation, therefore it is added separately here.
+
+- query = 
+    V(
+      FILTER(
+        G(electricity_production),
+        "solar_radiation_input_conversion > 0"
+      ),
+      energy_battery_solar_electricity
+    )
 - unit = nodes
 - deprecated_key = electricity_producing_converters_solar
