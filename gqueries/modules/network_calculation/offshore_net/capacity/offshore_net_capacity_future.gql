@@ -1,5 +1,9 @@
-# The interconnection capacity of the area
+# The future capacity of the offshore network
 
-- query = future:V(energy_power_wind_turbine_offshore, "electricity_output_capacity * number_of_units")
+- query = 
+    future:SUM(
+      V(energy_power_wind_turbine_offshore, "electricity_output_capacity * number_of_units"),
+      V(energy_power_solar_pv_offshore, "electricity_output_capacity * number_of_units")
+    )
 
 - unit = MW
