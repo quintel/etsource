@@ -1,0 +1,9 @@
+# The future peak load of the offshore network
+
+- query = 
+    future:SUM(
+      MAX(V(energy_power_solar_pv_offshore,electricity_output_curve)),
+      MAX(V(energy_power_wind_turbine_offshore,electricity_output_curve))
+    )
+
+- unit = MW
