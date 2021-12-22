@@ -55,10 +55,18 @@
 #               values are "full_load_hours" and "temperature".
 #
 # reduce.sets - Either a string or array of strings containing input keys whose
-#               values should be set.
+#               values should be set. Any matching inputs in ETModel will be
+#               disabled when a custom curve is present.
 #
 # The "full_load_hours" reducer may only be used with the "capacity_profile"
 # curve type.
+#
+# #### Disabling an input
+#
+# An optional "disables" value is accepted. This should be an array of input
+# keys which will be disabled whenever a curve is set. Note that if you are
+# already using "reduce.sets" (documented above) you do not need to specify
+# the inputs again here.
 #
 # #### Examples
 #
@@ -66,6 +74,13 @@
 #
 # interconnector_1_price:
 #   type: price
+#
+# # Configures an interconnector price curve and disables the price slider.
+#
+# interconnector_1_price:
+#   type: price
+#   disables:
+#     - electricity_interconnector_1_marginal_costs
 #
 # # Configures a profile for the offshore wind. Sets a single input.
 #
@@ -90,26 +105,38 @@
 interconnector_1_price:
   type: price
   display_group: interconnectors
+  disables:
+    - electricity_interconnector_1_marginal_costs
 
 interconnector_2_price:
   type: price
   display_group: interconnectors
+  disables:
+    - electricity_interconnector_2_marginal_costs
 
 interconnector_3_price:
   type: price
   display_group: interconnectors
+  disables:
+    - electricity_interconnector_3_marginal_costs
 
 interconnector_4_price:
   type: price
   display_group: interconnectors
+  disables:
+    - electricity_interconnector_4_marginal_costs
 
 interconnector_5_price:
   type: price
   display_group: interconnectors
+  disables:
+    - electricity_interconnector_5_marginal_costs
 
 interconnector_6_price:
   type: price
   display_group: interconnectors
+  disables:
+    - electricity_interconnector_6_marginal_costs
 
 weather/buildings_heating:
   type: profile
