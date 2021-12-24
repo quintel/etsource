@@ -1,8 +1,8 @@
 - query =
     UPDATE(
       V(energy_flexibility_flow_batteries_electricity),
-      typical_input_capacity,
-      USER_INPUT()
+      number_of_units,
+      USER_INPUT() / V(energy_flexibility_flow_batteries_electricity, typical_input_capacity)
     )
 - priority = 0
 - max_value_gql = present:MAX(1.0, PRODUCT(DIVIDE(Q(total_electricity_consumed), SECS_PER_YEAR), 6))
