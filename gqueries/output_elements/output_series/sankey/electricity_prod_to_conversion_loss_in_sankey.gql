@@ -4,7 +4,7 @@
 - unit = PJ
 - query =
     DIVIDE(
-      SUM(V(
-        EXCLUDE(Q(electricity_producing_converters_sankey),G(primary_energy_demand)), output_of_loss),
+      SUM(
+        V(EXCLUDE(Q(electricity_producing_converters_sankey),G(primary_energy_demand)), output_of_loss),
         V(energy_flexibility_curtailment_electricity, demand)),
         BILLIONS)
