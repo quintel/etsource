@@ -1,11 +1,8 @@
 # Updates both space heating and hot water shares
 - query =
-    solar_thermal_collector_dem = QUERY_FUTURE(-> {V(EDGE(households_final_demand_for_hot_water_solar_thermal, households_water_heater_solar_thermal), demand)});;
-    total_solar_thermal_dem = QUERY_FUTURE(-> {V(households_final_demand_solar_thermal, demand)});;
     EACH(
       UPDATE(EDGE(households_space_heater_heatpump_pvt_electricity_aggregator,households_useful_demand_for_space_heating_after_insulation), share, DIVIDE(USER_INPUT(),100)),
       UPDATE(EDGE(households_water_heater_heatpump_pvt_electricity_aggregator,households_useful_demand_for_hot_water_after_solar_heater), share, DIVIDE(USER_INPUT(),100)),
-      UPDATE(EDGE(energy_production_solar_thermal, households_final_demand_solar_thermal), share, solar_thermal_collector_dem / total_solar_thermal_dem)
       )
 - share_group = heating_households
 - priority = 10
