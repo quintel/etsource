@@ -19,7 +19,9 @@
               households_solar_pv_solar_radiation,
               buildings_solar_pv_solar_radiation,
               energy_power_solar_pv_solar_radiation,
-              energy_hydrogen_solar_pv_solar_radiation),
+              energy_hydrogen_solar_pv_solar_radiation,
+              energy_battery_solar_pv_solar_radiation,
+              energy_power_solar_pv_offshore),
               electricity),
           conversion,
           USER_INPUT() / start_value),
@@ -29,12 +31,24 @@
             households_solar_pv_solar_radiation,
             buildings_solar_pv_solar_radiation,
             energy_power_solar_pv_solar_radiation,
-            energy_hydrogen_solar_pv_solar_radiation),
+            energy_hydrogen_solar_pv_solar_radiation,
+            energy_battery_solar_pv_solar_radiation,
+            energy_power_solar_pv_offshore),
           electricity_output_capacity,
           USER_INPUT() / start_value),
 
         UPDATE_WITH_FACTOR(
           V(energy_hydrogen_solar_pv_solar_radiation),
+            number_of_units,
+            1 / (USER_INPUT() / start_value)),
+
+        UPDATE_WITH_FACTOR(
+          V(energy_battery_solar_pv_solar_radiation),
+            number_of_units,
+            1 / (USER_INPUT() / start_value)),
+
+        UPDATE_WITH_FACTOR(
+          V(energy_power_solar_pv_offshore),
             number_of_units,
             1 / (USER_INPUT() / start_value)),
 
