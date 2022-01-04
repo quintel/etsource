@@ -1,7 +1,19 @@
 - query =
     EACH(
-      UPDATE(V(energy_power_wind_turbine_coastal,energy_power_wind_turbine_inland), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(energy_power_wind_turbine_coastal,energy_power_wind_turbine_inland), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
+      UPDATE(
+        V(
+          energy_power_wind_turbine_coastal,
+          energy_power_wind_turbine_inland,
+          energy_battery_wind_turbine_inland
+        ), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()
+      ),
+      UPDATE(
+        V(
+          energy_power_wind_turbine_coastal,
+          energy_power_wind_turbine_inland,
+          energy_battery_wind_turbine_inland
+        ), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()
+      )
     )
 - priority = 0
 - max_value = 300.0
