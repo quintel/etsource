@@ -1,0 +1,11 @@
+- query =
+    SUM_CURVES(
+      V(energy_battery_wind_turbine_inland, electricity_output_curve),
+      INVERT_CURVE(
+        Q(energy_battery_curtailed_wind_electricity_input)
+      ),
+      INVERT_CURVE(
+        Q(energy_flexibility_wind_batteries_electricity_input)
+      )
+    )
+- unit = curve

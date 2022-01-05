@@ -1,8 +1,11 @@
-# Nodes that constitute inflexible electricity supply. Includes nodes which participate as time-resolved volatile and must-run electricity producers.
+# Nodes that constitute inflexible electricity supply. Includes nodes which participate as time-resolved volatile and must-run electricity producers. Always on producer group is added separately because the output nodes of solar and wind parks with batteries do not have a merit subtype.
 
 - query =
-    FILTER(
-      ALL(),
-      "merit_order && (merit_order.subtype == :volatile || merit_order.subtype == :must_run)"
-      )
+    V(
+      FILTER(
+        ALL(),
+        "merit_order && (merit_order.subtype == :volatile || merit_order.subtype == :must_run)"
+        ),
+      G(always_on_battery_park_production)
+    )
 - unit = nodes

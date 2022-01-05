@@ -1,0 +1,16 @@
+- query =
+    UPDATE(
+      V(energy_battery_wind_electricity),
+      electricity_output_capacity,
+      PRODUCT(
+        DIVIDE(USER_INPUT(), 100),
+        INPUT_VALUE(capacity_of_energy_battery_wind_turbine_inland)
+      )
+    )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 75.0
+- step_value = 0.1
+- unit = %
+- update_period = future

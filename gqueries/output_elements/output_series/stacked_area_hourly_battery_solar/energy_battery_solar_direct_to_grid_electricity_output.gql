@@ -1,0 +1,11 @@
+- query =
+    SUM_CURVES(
+      V(energy_battery_solar_pv_solar_radiation, electricity_output_curve),
+      INVERT_CURVE(
+        Q(energy_battery_curtailed_solar_electricity_input)
+      ),
+      INVERT_CURVE(
+        Q(energy_flexibility_solar_batteries_electricity_input)
+      )
+    )
+- unit = curve
