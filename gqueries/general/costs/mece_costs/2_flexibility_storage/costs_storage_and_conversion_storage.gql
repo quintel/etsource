@@ -1,9 +1,10 @@
-#convert MJ to MWh with 1/3600
-
 - query =
     SUM(
       Q(heat_infrastructure_storage_annualised_costs),
-      PRODUCT(V(energy_hydrogen_storage, "storage.cost_per_mwh"),V(energy_hydrogen_storage,demand)/3600)
+      PRODUCT(
+          V(energy_hydrogen_storage, "storage.cost_per_mwh"),
+          V(energy_hydrogen_storage, "storage.volume")
+      )
     )
 
 - unit = euro
