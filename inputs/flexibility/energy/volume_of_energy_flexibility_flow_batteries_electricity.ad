@@ -3,7 +3,7 @@
       V(energy_flexibility_flow_batteries_electricity, storage),
       "volume",
       PRODUCT(
-        DIVIDE(USER_INPUT(), 100),
+        USER_INPUT(),
         DIVIDE(
           INPUT_VALUE(capacity_of_energy_flexibility_flow_batteries_electricity),
           V(energy_flexibility_flow_batteries_electricity,number_of_units)
@@ -11,9 +11,9 @@
       )
     )
 - priority = 0
-- max_value = 5000.0
-- min_value = 0.75
-- start_value_gql = present:PRODUCT(DIVIDE(V(energy_flexibility_flow_batteries_electricity, "storage.volume"),V(energy_flexibility_flow_batteries_electricity,typical_input_capacity)),100)
+- max_value = 100.0
+- min_value = 1.0
+- start_value_gql = present:DIVIDE(V(energy_flexibility_flow_batteries_electricity, "storage.volume"),V(energy_flexibility_flow_batteries_electricity,typical_input_capacity))
 - step_value = 0.1
-- unit = %
+- unit = hours
 - update_period = future
