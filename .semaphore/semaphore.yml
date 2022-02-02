@@ -14,7 +14,6 @@ blocks:
           - gem install bundler -v '< 2'
           - bundle install --path vendor/bundle
           - cache store
-          - bundle exec rake decrypt
       jobs:
         - name: Test ETSource
           commands:
@@ -30,7 +29,7 @@ blocks:
           commands:
             - test-results publish /tmp/test-results
       secrets:
-        - name: ETSource key
+        - name: ETSource password
 after_pipeline:
   task:
     jobs:

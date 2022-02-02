@@ -2,7 +2,26 @@ desc <<-DESC
   Decrypts the energy balance for every area.
 DESC
 task decrypt: :environment do
-  passphrase = ENV['ETSOURCE_KEY']
+  puts '+-----------------------------------------------------------------+'
+  puts '| MANUAL DECRYPTION IS NO LONGER NEEDED                           |'
+  puts '| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |'
+  puts '| The latest versions of ETEngine and ETLocal master branches do  |'
+  puts '| not require manual decryption of energy balance files. Atlas    |'
+  puts '| will perform the decryption on-demand, whenever an application  |'
+  puts '| wants to read the file.                                         |'
+  puts '|                                                                 |'
+  puts '| You only need to decrypt manually if you want to run an old     |'
+  puts '| application or branch.                                          |'
+  puts '+-----------------------------------------------------------------+'
+  puts
+  print 'Do you with to decrypt the balances anyway? (y/N): '
+
+  if $stdin.gets.strip.downcase != 'y'
+    puts '=> Exiting without decrypting.'
+    exit
+  end
+
+  passphrase = ENV['ETSOURCE_KEY'] || ENV['ETSOURCE_PASSWORD']
   passphrase = File.read('.password').strip if passphrase.nil? && File.exists?('.password')
 
   if passphrase.nil?

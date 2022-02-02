@@ -6,7 +6,7 @@ Pathname.glob(Atlas.data_dir.join('datasets/*/efficiencies/*.csv')).each do |csv
 
   describe "#{ region_name }/efficiencies/#{ filename }" do
     before(:all) do
-      @document = Atlas::CSVDocument.new(csv_path)
+      @document = Atlas::CSVDocument.read(csv_path)
     end
 
     it 'has a "key" header' do
