@@ -1,0 +1,14 @@
+- query =
+    UPDATE(
+      EDGE(industry_useful_demand_for_chemical_other_wood_pellets_non_energetic, industry_useful_demand_for_chemical_other_non_energetic),
+      share,
+      DIVIDE(USER_INPUT(), 100.0)
+    )
+- share_group = external_coupling_chemical_other_non_energetic
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_useful_demand_for_chemical_other_wood_pellets_non_energetic,share_of_industry_useful_demand_for_chemical_other_non_energetic) * 100.0
+- step_value = 0.1
+- unit = %
+- update_period = future
