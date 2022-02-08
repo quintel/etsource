@@ -2,12 +2,12 @@
     UPDATE(
       V(
         industry_chemicals_fertilizers_external_coupling_node_energetic,
-      ), wacc, USER_INPUT()
+      ), wacc, DIVIDE(USER_INPUT(),100)
     )
 - priority = 0
-- max_value = 1.0
+- max_value = 15.0
 - min_value = 0.0
-- start_value = 0.0
-- step_value = 1.0
-- unit = %
+- start_value = present:V(industry_chemicals_fertilizers_external_coupling_node_energetic,wacc) * 100
+- step_value = 0.1
 - update_period = future
+- unit = %
