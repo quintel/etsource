@@ -1,9 +1,16 @@
 - query =
+  EACH(
     UPDATE(
       MEDGE(industry_chemical_other_capture_potential_co2, industry_chemical_other_combustion_co2),
       share,
       DIVIDE(USER_INPUT(), 100)
+    ),
+    UPDATE(
+      MEDGE(industry_chemical_other_emitted_co2, industry_chemical_other_combustion_co2),
+      share,
+      1 - (DIVIDE(USER_INPUT(), 100))
     )
+  )
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
