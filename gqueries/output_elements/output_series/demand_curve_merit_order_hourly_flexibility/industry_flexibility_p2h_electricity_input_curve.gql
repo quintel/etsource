@@ -1,14 +1,7 @@
 - query =
     SUM_CURVES(
       V(
-        industry_chemicals_other_flexibility_p2h_hydrogen_electricity,
-        industry_chemicals_other_flexibility_p2h_network_gas_electricity,
-        industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
-        industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
-        industry_other_paper_flexibility_p2h_hydrogen_electricity,
-        industry_other_paper_flexibility_p2h_network_gas_electricity,
-        industry_other_food_flexibility_p2h_hydrogen_electricity,
-        industry_other_food_flexibility_p2h_network_gas_electricity,
+        INTERSECTION(SECTOR(industry),G(p2h)),
         electricity_input_curve
       )
     )
