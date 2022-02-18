@@ -1,3 +1,16 @@
 - use = energetic
-- groups = []
-- free_co2_factor = 0.0
+- groups = [preset_demand]
+
+- merit_order.type = flex
+- merit_order.subtype = load_shifting
+- merit_order.level = omit
+- merit_order.demand_source = [industry_final_demand_for_metal_steel_electricity, industry_final_demand_for_metal_aluminium_electricity, industry_final_demand_for_metal_other_metals_electricity]
+- merit_order.load_shifting_hours = 72
+
+- marginal_costs = 48.0
+- max_consumption_price = 48.0
+
+- availability = 1.0
+- number_of_units = 0.0
+
+~ demand = 0.0
