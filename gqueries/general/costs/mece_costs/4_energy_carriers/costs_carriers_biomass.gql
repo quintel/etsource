@@ -1,15 +1,19 @@
 - query =
     SUM(
-      PRODUCT(V(CARRIER(dry_biomass), cost_per_mj), V(energy_import_dry_biomass, demand)),
-      PRODUCT(V(CARRIER(dry_biomass), cost_per_mj), V(energy_production_dry_biomass, demand)),
-      PRODUCT(V(CARRIER(wet_biomass), cost_per_mj), V(energy_import_wet_biomass, demand)),
-      PRODUCT(V(CARRIER(wet_biomass), cost_per_mj), V(energy_production_wet_biomass, demand)),
-      PRODUCT(V(CARRIER(oily_biomass), cost_per_mj), V(energy_import_oily_biomass, demand)),
-      PRODUCT(V(CARRIER(oily_biomass), cost_per_mj), V(energy_production_oily_biomass, demand))
+      PRODUCT(V(CARRIER(torrefied_biomass_pellets), cost_per_mj), V(energy_torrefaction_wood, primary_demand_of_torrefied_biomass_pellets)),
+      PRODUCT(V(CARRIER(wood_pellets), cost_per_mj), V(energy_production_wood_pellets, primary_demand_of_wood_pellets)),
+      PRODUCT(V(CARRIER(bio_kerosene), cost_per_mj), V(energy_production_bio_kerosene, primary_demand_of_bio_kerosene)),
+      PRODUCT(V(CARRIER(bio_ethanol), cost_per_mj), V(energy_production_bio_ethanol, primary_demand_of_bio_ethanol)),
+      PRODUCT(V(CARRIER(bio_lng), cost_per_mj), V(energy_production_bio_lng, primary_demand_of_bio_lng)),
+      PRODUCT(V(CARRIER(biodiesel), cost_per_mj), V(energy_production_biodiesel, primary_demand_of_biodiesel)),
+      PRODUCT(V(CARRIER(bio_oil), cost_per_mj), V(energy_production_bio_oil, primary_demand_of_bio_oil)),
+      PRODUCT(V(CARRIER(biogas), cost_per_mj), V(energy_biogas_fermentation_wet_biomass, primary_demand_of_biogas)),
+      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_greengas_gasification_wet_biomass, primary_demand_of_greengas)),
+      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_greengas_gasification_dry_biomass, primary_demand_of_greengas))
     )-
     SUM(
-      PRODUCT(V(CARRIER(wet_biomass), cost_per_mj), V(energy_export_greengas, primary_demand_of_wet_biomass)),
-      PRODUCT(V(CARRIER(dry_biomass), cost_per_mj), V(energy_export_greengas, primary_demand_of_dry_biomass))
+      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_export_greengas, primary_demand_of_greengas)),
+      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_export_greengas, primary_demand_of_greengas))
     )
 
 - unit = euro
