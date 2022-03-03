@@ -1,0 +1,17 @@
+# Calculates the electricity input costs per MWh produced heat for power-to-heat
+
+- query =
+    IF(
+        SUM(V(INTERSECTION(G(p2h),G(refineries_industry)), output_of_useable_heat)) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                Q(total_electricity_input_cost_power_to_heat_industry_chemical_refineries),
+                DIVIDE(
+                    SUM(V(INTERSECTION(G(p2h),G(refineries_industry)), output_of_useable_heat)),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh
