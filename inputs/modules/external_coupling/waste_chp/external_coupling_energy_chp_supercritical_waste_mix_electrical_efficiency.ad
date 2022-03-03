@@ -1,9 +1,8 @@
 - query = UPDATE(OUTPUT_SLOTS(V(energy_chp_supercritical_waste_mix), electricity), conversion, DIVIDE(USER_INPUT(), 100.0))
 - priority = 0
 - max_value_gql = present:(V(energy_chp_supercritical_waste_mix, electricity_output_conversion) * 100.0) + 10.0
-- min_value_gql = present:(V(energy_chp_supercritical_waste_mix, electricity_output_conversion) * 100.0) - 10.0
+- min_value = 0.0
 - start_value_gql = present:V(energy_chp_supercritical_waste_mix, electricity_output_conversion) * 100.0
 - step_value = 1.0
 - unit = %
 - update_period = future
-- disabled_by = external_coupling_energy_chp_supercritical_waste_mix_electrical_efficiency
