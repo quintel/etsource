@@ -1,0 +1,13 @@
+- query =
+  EACH(
+    UPDATE(MEDGE(industry_chemical_other_captured_co2, industry_chemical_other_capture_potential_co2), share, DIVIDE(USER_INPUT(),100.0)),
+    UPDATE(MEDGE(industry_chemical_other_emitted_co2, industry_chemical_other_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0))
+  )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(MEDGE(industry_chemical_other_capture_potential_co2, industry_chemical_other_captured_co2), parent_share) * 100.0
+- step_value = 1.0
+- unit = %
+- update_period = future
+- disabled_by = external_coupling_industry_chemical_other_captured_co2
