@@ -1,0 +1,10 @@
+# Calculates the future total costs of electricity input for power-to-heat
+
+- query =
+    SUM(
+      PRODUCT_CURVES(
+        SUM_CURVES(V(INTERSECTION(G(p2h),G(paper_industry)), electricity_input_curve)),
+        V(CARRIER(electricity), cost_curve)
+      )
+    )
+- unit = EUR
