@@ -143,7 +143,7 @@ transport_final_demand_kerosene:
   demand: 0.0
 energy_power_ultra_supercritical_network_gas:
   demand: 0.0
-  full_load_hours: 4000.0
+  full_load_hours: 0.0
   output:
     :electricity: 0.4
 energy_power_solar_csp_solar_radiation:
@@ -154,7 +154,7 @@ energy_power_wind_turbine_coastal:
   full_load_hours: 2245.5085
 energy_power_combined_cycle_network_gas:
   demand: 0.0
-  full_load_hours: 4000.0
+  full_load_hours: 0.0
   output:
     :electricity: 0.6
 energy_heat_burner_waste_mix:
@@ -186,16 +186,17 @@ energy_chp_ultra_supercritical_lignite:
     :steam_hot_water: 0.15
     :electricity: 0.35
   full_load_hours: 5350.0
+  demand: 0.0
 energy_power_hydro_river:
   demand: 0.0
-  full_load_hours: 2005.0
+  full_load_hours: 0.0
 energy_power_supercritical_ccs_waste_mix:
   full_load_hours: 4100.0
 energy_power_ultra_supercritical_crude_oil:
   demand: 0.0
   output:
     :electricity: 0.45
-  full_load_hours: 4000.0
+  full_load_hours: 0.0
 energy_production_wet_biomass:
   max_demand: 2071.4328
 energy_distribution_crude_oil_loss:
@@ -219,7 +220,7 @@ energy_heat_burner_coal:
   full_load_hours: 6000.0
 energy_power_turbine_network_gas:
   demand: 0.0
-  full_load_hours: 4000.0
+  full_load_hours: 0.0
   output:
     :electricity: 0.34
 energy_power_solar_pv_solar_radiation:
@@ -236,7 +237,7 @@ energy_extraction_coal:
   demand: 0.0
 energy_power_supercritical_coal:
   demand: 0.0
-  full_load_hours: 5000.0
+  full_load_hours: 0.0
   output:
     :electricity: 0.36
 energy_heat_heatpump_water_water_electricity:
@@ -302,10 +303,11 @@ energy_chp_local_engine_network_gas:
 energy_power_ultra_supercritical_lignite:
   output:
     :electricity: 0.4
-  full_load_hours: 7500.0
+  full_load_hours: 0.0
+  demand: 0.0
 energy_power_supercritical_waste_mix:
   demand: 1566.902
-  full_load_hours: 7243.07568438008
+  full_load_hours: 7243.075684
   output:
     :electricity: 0.28706007140204043
 energy_chp_local_engine_biogas:
@@ -360,13 +362,13 @@ energy_power_ultra_supercritical_coal:
   demand: 0.0
   output:
     :electricity: 0.46
-  full_load_hours: 5440.0
+  full_load_hours: 0.0
 energy_power_wind_turbine_offshore:
   demand: 0.0
   full_load_hours: 2245.5085
 energy_power_hydro_mountain:
   demand: 3597.3126315789473
-  full_load_hours: 8500.0
+  full_load_hours: 27537.2272
 energy_power_ultra_supercritical_oxyfuel_ccs_lignite:
   output:
     :electricity: 0.305
@@ -378,12 +380,12 @@ energy_power_engine_network_gas:
   full_load_hours: 1126.0
 energy_power_geothermal:
   demand: 0.0
-  full_load_hours: 8000.0
+  full_load_hours: 0.0
 energy_power_nuclear_gen2_uranium_oxide:
   demand: 0.0
   output:
     :electricity: 0.32
-  full_load_hours: 7630.0
+  full_load_hours: 0.0
 energy_extraction_crude_oil:
   demand: 0.0
 energy_power_combined_cycle_ccs_coal:
@@ -659,16 +661,24 @@ buildings_final_demand_network_gas-buildings_final_demand_for_appliances_network
   parent_share: 0.24281168062114314
 buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
   parent_share: 0.8904194545814237
+transport_final_demand_for_road_electricity-transport_van_using_electricity@electricity:
+  parent_share: 0.084312137807553
 transport_final_demand_electricity-transport_final_demand_for_road_electricity@electricity:
   parent_share: 0.020013266153632702
 transport_final_demand_biodiesel-transport_final_demand_for_rail_biodiesel@biodiesel:
   parent_share: 0.0
+transport_road_mixer_gasoline-transport_van_using_gasoline_mix@gasoline_mix:
+  parent_share: 9.399285050289817e-06
 transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@electricity:
   parent_share: 0.0
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 0.0
+transport_road_mixer_diesel-transport_van_using_diesel_mix@diesel_mix:
+  parent_share: 0.014059841197050595
 transport_final_demand_biodiesel-transport_final_demand_for_shipping_biodiesel@biodiesel:
   parent_share: 0.0
+transport_road_mixer_diesel-transport_truck_using_diesel_mix@diesel_mix:
+  parent_share: 0.401090654277316
 transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natural_gas@compressed_network_gas:
   parent_share: 0.7311608338373816
 transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
@@ -676,39 +686,41 @@ transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
 transport_road_mixer_lng-transport_bus_using_lng_mix@lng_mix:
   parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_car_using_electricity@electricity:
-  parent_share: 0.5929593338374768
+  parent_share: 0.5929593338374767
 transport_final_demand_diesel-transport_final_demand_for_road_diesel@diesel:
   parent_share: 0.9982320955224967
 transport_final_demand_for_road_hydrogen-transport_bus_using_hydrogen@hydrogen:
   parent_share: 0.0
 transport_road_mixer_gasoline-transport_bus_using_gasoline_mix@gasoline_mix:
-  parent_share: 3.148563817246383e-05
+  parent_share: 3.1485342229975655e-05
 transport_final_demand_for_road_electricity-transport_bus_using_electricity@electricity:
-  parent_share: 0.29094730287198634
+  parent_share: 0.2909473028719863
 transport_rail_mixer_diesel-transport_freight_train_using_diesel_mix@diesel_mix:
   parent_share: 0.07164971295144446
 transport_final_demand_diesel-transport_final_demand_for_rail_diesel@diesel:
   parent_share: 0.0017679044775032351
 transport_road_mixer_gasoline-transport_car_using_gasoline_mix@gasoline_mix:
-  parent_share: 0.9891073377462112
+  parent_share: 0.9890980408443983
 transport_road_mixer_diesel-transport_car_using_diesel_mix@diesel_mix:
-  parent_share: 0.5754068828439677
+  parent_share: 0.5754068828439676
 transport_road_mixer_diesel-transport_bus_using_diesel_mix@diesel_mix:
-  parent_share: 0.009442621681665727
+  parent_share: 0.009442621681665726
 transport_final_demand_gasoline-transport_final_demand_for_road_gasoline@gasoline:
   parent_share: 0.9993697172546588
 transport_road_mixer_compressed_network_gas-transport_bus_using_compressed_natural_gas@compressed_network_gas:
   parent_share: 0.24504461555871632
 transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
-  parent_share: 0.00276940958654958
+  parent_share: 0.002769383556079455
 transport_final_demand_bio_ethanol-transport_final_demand_for_road_bio_ethanol@bio_ethanol:
   parent_share: 1.0
 transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
-  parent_share: 0.03178122548298403
+  parent_share: 0.031781225482984024
 transport_final_demand_for_rail_electricity-transport_freight_train_using_electricity@electricity:
   parent_share: 0.09218960081893153
 transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel:
   parent_share: 1.0
+transport_road_mixer_compressed_network_gas-transport_van_using_compressed_natural_gas@compressed_network_gas:
+  parent_share: 0.02379455060390203
 energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
   child_share: 0.3780000280808883
 energy_regasification_lng-energy_national_gas_network_natural_gas@natural_gas:
