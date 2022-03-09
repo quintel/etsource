@@ -60,7 +60,7 @@ buildings_final_demand_bio_kerosene:
 buildings_final_demand_solar_thermal:
   demand: 0.07052055502811262
 buildings_solar_pv_solar_radiation:
-  demand: 407.05882352941177
+  demand: 267.53372580342
   full_load_hours: 890.0
 buildings_final_demand_biodiesel:
   demand: 0.0
@@ -69,7 +69,7 @@ buildings_final_demand_steam_hot_water:
 buildings_final_demand_lpg:
   demand: 0.0
 buildings_local_production_electricity:
-  demand: 336.97
+  demand: 346.3763389083052
 transport_final_demand_diesel:
   demand: 730.6782234563166
 transport_final_demand_lng:
@@ -398,7 +398,7 @@ energy_blastfurnace_transformation_cokes:
   output:
     :coal_gas: 0.400028846858287
 other_final_demand_electricity:
-  demand: 9.41
+  demand: 0.0
 other_final_demand_crude_oil:
   demand: 0.0
 other_final_demand_steam_hot_water:
@@ -644,6 +644,8 @@ buildings_final_demand_crude_oil-buildings_final_demand_for_space_heating_crude_
   parent_share: 0.985954067059938
 buildings_final_demand_for_cooling_electricity-buildings_cooling_airconditioning_electricity@electricity:
   parent_share: 1.0
+buildings_final_demand_for_space_heating_electricity-buildings_space_heater_hybrid_heatpump_air_water_electricity@electricity:
+  parent_share: 0.0
 buildings_final_demand_for_space_heating_electricity-buildings_space_heater_heatpump_air_water_electricity@electricity:
   parent_share: 0.0
 buildings_final_demand_for_lighting_electricity-buildings_lighting_standard_fluorescent_electricity@electricity:
@@ -654,16 +656,24 @@ buildings_final_demand_network_gas-buildings_final_demand_for_appliances_network
   parent_share: 0.372594803996927
 buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
   parent_share: 1.0
+transport_final_demand_for_road_electricity-transport_van_using_electricity@electricity:
+  parent_share: 0.0
 transport_final_demand_electricity-transport_final_demand_for_road_electricity@electricity:
   parent_share: 1.0
 transport_final_demand_biodiesel-transport_final_demand_for_rail_biodiesel@biodiesel:
   parent_share: 0.0
+transport_road_mixer_gasoline-transport_van_using_gasoline_mix@gasoline_mix:
+  parent_share: 0.00234938
 transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@electricity:
   parent_share: 0.0
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 1.0
+transport_road_mixer_diesel-transport_van_using_diesel_mix@diesel_mix:
+  parent_share: 0.177693371
 transport_final_demand_biodiesel-transport_final_demand_for_shipping_biodiesel@biodiesel:
   parent_share: 0.0
+transport_road_mixer_diesel-transport_truck_using_diesel_mix@diesel_mix:
+  parent_share: 0.428322757
 transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natural_gas@compressed_network_gas:
   parent_share: 0.214206400711135
 transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
@@ -695,7 +705,7 @@ transport_final_demand_gasoline-transport_final_demand_for_road_gasoline@gasolin
 transport_road_mixer_compressed_network_gas-transport_bus_using_compressed_natural_gas@compressed_network_gas:
   parent_share: 0.538601677132764
 transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
-  parent_share: 2.192855387360471e-05
+  parent_share: 0.954544044
 transport_final_demand_bio_ethanol-transport_final_demand_for_road_bio_ethanol@bio_ethanol:
   parent_share: 1.0
 transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
@@ -704,6 +714,8 @@ transport_final_demand_for_rail_electricity-transport_freight_train_using_electr
   parent_share: 0.0
 transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel:
   parent_share: 1.0
+transport_road_mixer_compressed_network_gas-transport_van_using_compressed_natural_gas@compressed_network_gas:
+  parent_share: 0.389607783
 energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
   child_share: 0.333705349424366
 energy_regasification_lng-energy_national_gas_network_natural_gas@natural_gas:
@@ -757,7 +769,7 @@ households_final_demand_wood_pellets-households_final_demand_for_hot_water_wood_
 households_final_demand_for_appliances_electricity-households_appliances_vacuum_cleaner_electricity@electricity:
   parent_share: 0.0483870967741935
 ? households_useful_demand_for_space_heating_after_insulation-households_apartments_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.23074487321724785
+: parent_share: 0.26757117873358016
 households_final_demand_network_gas-households_final_demand_for_space_heating_network_gas@network_gas:
   parent_share: 0.915161477270717
 households_final_demand_for_cooking_electricity-households_cooker_halogen_electricity@electricity:
@@ -773,9 +785,9 @@ households_final_demand_for_space_heating_network_gas-households_space_heater_ne
 households_final_demand_crude_oil-households_final_demand_for_space_heating_crude_oil@crude_oil:
   parent_share: 0.945405877311072
 ? households_useful_demand_for_space_heating_after_insulation-households_terraced_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.4227425204512621
+: parent_share: 0.3666046214287305
 ? households_useful_demand_for_space_heating_after_insulation-households_detached_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.15352837561466998
+: parent_share: 0.19159506950200847
 households_final_demand_steam_hot_water-households_final_demand_for_hot_water_steam_hot_water@steam_hot_water:
   parent_share: 0.0
 households_final_demand_coal-households_final_demand_for_space_heating_coal@coal:
@@ -803,7 +815,7 @@ households_final_demand_network_gas-households_final_demand_for_hot_water_networ
 ? households_useful_demand_for_space_heating_after_insulation-households_corner_houses_useful_demand_for_space_heating_after_insulation@useable_heat
 : parent_share: 0.0
 ? households_useful_demand_for_space_heating_after_insulation-households_semi_detached_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.19298423071682017
+: parent_share: 0.1742291303356809
 households_final_demand_electricity-households_final_demand_for_cooling_electricity@electricity:
   parent_share: 0.0064886983567156034
 households_final_demand_for_space_heating_network_gas-households_space_heater_hybrid_heatpump_air_water_electricity@network_gas:
