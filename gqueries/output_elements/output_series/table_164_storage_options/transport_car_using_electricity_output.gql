@@ -1,2 +1,7 @@
-- query = V(transport_car_flexibility_p2p_electricity, "demand * electricity_output_conversion") / BILLIONS
+- query = 
+    DIVIDE(
+      PRODUCT(SUM(V(transport_car_flexibility_p2p_electricity, electricity_output_curve)),MJ_PER_MWH),
+      BILLIONS
+    )
 - unit = PJ
+
