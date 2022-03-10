@@ -1,4 +1,4 @@
-# Without electricity
+# Without electricity and heat
 
 - query =
     SUM(
@@ -19,31 +19,7 @@
       PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_lpg,primary_demand_of_crude_oil)),
       PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_heavy_fuel_oil, primary_demand_of_crude_oil)),
       PRODUCT(V(CARRIER(uranium_oxide), cost_per_mj), V(energy_export_uranium_oxide, demand)),
-      PRODUCT(V(CARRIER(non_biogenic_waste), cost_per_mj), V(energy_export_non_biogenic_waste, demand)),
-      PRODUCT_CURVES(
-        INVERT_CURVE(V(energy_interconnector_1_exported_electricity, electricity_output_curve)),
-        Q(interconnector_1_marginal_cost_curve)
-      ),
-      PRODUCT_CURVES(
-        INVERT_CURVE(V(energy_interconnector_2_exported_electricity, electricity_output_curve)),
-        Q(interconnector_2_marginal_cost_curve)
-      ),
-      PRODUCT_CURVES(
-        INVERT_CURVE(V(energy_interconnector_3_exported_electricity, electricity_output_curve)),
-        Q(interconnector_3_marginal_cost_curve)
-      ),
-      PRODUCT_CURVES(
-        INVERT_CURVE(V(energy_interconnector_4_exported_electricity, electricity_output_curve)),
-        Q(interconnector_4_marginal_cost_curve)
-      ),
-      PRODUCT_CURVES(
-        INVERT_CURVE(V(energy_interconnector_5_exported_electricity, electricity_output_curve)),
-        Q(interconnector_5_marginal_cost_curve)
-      ),
-      PRODUCT_CURVES(
-        INVERT_CURVE(V(energy_interconnector_6_exported_electricity, electricity_output_curve)),
-        Q(interconnector_6_marginal_cost_curve)
-      )
+      PRODUCT(V(CARRIER(non_biogenic_waste), cost_per_mj), V(energy_export_non_biogenic_waste, demand))
     )
 
 - unit = euro
