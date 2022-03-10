@@ -1,0 +1,10 @@
+- query =
+    SUM(
+      PRODUCT(V(CARRIER(uranium_oxide), cost_per_mj), V(energy_extraction_uranium_oxide, demand)),
+      PRODUCT(V(CARRIER(uranium_oxide), cost_per_mj), V(energy_import_uranium_oxide, demand))
+    )-
+    SUM(
+      PRODUCT(V(CARRIER(uranium_oxide), cost_per_mj), V(energy_export_uranium_oxide, demand))
+    )
+
+- unit = euro
