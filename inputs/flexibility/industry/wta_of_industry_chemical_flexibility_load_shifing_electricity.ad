@@ -1,8 +1,15 @@
 - query =
-    UPDATE(
-      V(industry_final_demand_for_chemical_dsr_load_shifting_electricity),
-      marginal_costs,
-      USER_INPUT()
+    EACH(
+      UPDATE(
+        V(industry_final_demand_for_chemical_dsr_load_shifting_electricity),
+        marginal_costs,
+        USER_INPUT()
+      ),
+      UPDATE(
+        V(industry_final_demand_for_chemical_dsr_load_shifting_electricity),
+        max_consumption_price,
+        USER_INPUT()
+      )
     )
 - priority = 0
 - max_value = 100.0
