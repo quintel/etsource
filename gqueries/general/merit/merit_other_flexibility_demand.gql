@@ -2,6 +2,9 @@
     SUM_CURVES(
       Q(hv_flexibility_load_curve),
       Q(mv_flexibility_load_curve),
-      Q(lv_flexibility_load_curve)
+      Q(lv_flexibility_load_curve),
+      SUM_CURVES(
+        V(G(load_shifting), electricity_input_curve)
+      )
     )
 - unit = curve
