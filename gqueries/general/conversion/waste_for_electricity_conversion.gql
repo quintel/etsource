@@ -1,0 +1,15 @@
+# Query for scenario tools regional overview: direct conversion demand of waste for electricity production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(electricity_producing_converters_sankey),
+          input_of(
+            waste_mix
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
