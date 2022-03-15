@@ -1,0 +1,19 @@
+# Query for scenario tools regional overview: direct conversion demand of gas for electricity production
+
+- query =
+    SUM(
+    DIVIDE(
+      SUM(
+        V(
+          Q(electricity_producing_converters_sankey),
+          input_of(
+            natural_gas,
+            lng
+          )
+        )
+      ),
+      BILLIONS
+    ),
+    Q(network_gas_for_electricity_conversion) * Q(share_of_natural_gas_in_gas_network)
+    )
+- unit = PJ

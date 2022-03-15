@@ -1,0 +1,15 @@
+# Query for scenario tools regional overview: direct conversion demand of gas power fuelmix for electricity production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(electricity_producing_converters_sankey),
+          input_of(
+            gas_power_fuelmix
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

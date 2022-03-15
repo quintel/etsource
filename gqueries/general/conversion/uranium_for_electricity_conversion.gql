@@ -1,0 +1,15 @@
+# Query for scenario tools regional overview: direct conversion demand of uranium for electricity production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(electricity_producing_converters_sankey),
+          input_of(
+            uranium_oxide
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
