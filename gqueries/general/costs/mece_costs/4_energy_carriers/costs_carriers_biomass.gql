@@ -10,10 +10,8 @@
       PRODUCT(V(CARRIER(biogas), cost_per_mj), V(energy_biogas_fermentation_wet_biomass, primary_demand_of_biogas)),
       PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_greengas_gasification_wet_biomass, primary_demand_of_greengas)),
       PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_greengas_gasification_dry_biomass, primary_demand_of_greengas))
-    )-
-    SUM(
-      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_export_greengas, primary_demand_of_greengas)),
-      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_export_greengas, primary_demand_of_greengas))
     )
+    - PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_export_greengas, primary_demand_of_greengas))
+
 
 - unit = euro
