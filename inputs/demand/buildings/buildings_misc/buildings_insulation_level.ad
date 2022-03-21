@@ -13,7 +13,7 @@
     EACH(
       UPDATE(EDGE(buildings_useful_demand_for_space_heating,buildings_heating_savings_from_insulation_useable_heat), share, share_of_savings_from_insulation ),
       UPDATE(EDGE(buildings_useful_demand_cooling,buildings_cooling_savings_insulation_cooling), share, share_of_savings_from_insulation),
-      UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings)}))
+      UPDATE(V(buildings_heating_savings_from_insulation_useable_heat), initial_investment, QUERY_FUTURE(-> { Q(costs_building_and_installations_buildings_insulation)}))
     )
 - priority = 0
 - step_value = 0.1
