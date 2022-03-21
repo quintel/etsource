@@ -1,0 +1,6 @@
+# Correction for the fact that CCUS technologies can use hydrogen and the cost of this hydrogen is taken into account
+# in the total_costs_per(:node) methods. Here we subtract the cost for the hydrogen used in CCUS technologies.
+
+- query =
+    - SUM(V(G(cost_ccus),input_of_hydrogen)) * V(CARRIER(hydrogen),cost_per_mj)
+- unit = euro
