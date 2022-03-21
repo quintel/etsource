@@ -1,9 +1,0 @@
-# The additional CCS costs in the energy sector
-
-- query =
-    SUM(
-      SUM(V(FLATTEN(G(electricity_production), G(hydrogen_production)), ccs_investment_per(:node))),
-      SUM(V(FLATTEN(G(electricity_production), G(hydrogen_production)), "variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour * full_load_hours * number_of_units"))
-    )
-- unit = euro
-
