@@ -1,0 +1,13 @@
+
+- query =
+    steel_electricity_demand = DATASET_INPUT(input_industry_metal_steel_electricity_demand);
+    aluminium_electricity_demand = DATASET_INPUT(input_industry_metal_aluminium_electricity_demand);
+    metal_electricity_demand = steel_electricity_demand + aluminium_electricity_demand + DATASET_INPUT(input_industry_metal_other_electricity_demand);
+    fertilizers_electricity_demand = DATASET_INPUT(input_industry_chemical_fertilizers_electricity_demand);
+    refineries_electricity_demand = DATASET_INPUT(input_industry_chemical_refineries_electricity_demand);
+    chemical_electricity_demand = fertilizers_electricity_demand + refineries_electricity_demand + DATASET_INPUT(input_industry_chemical_other_electricity_demand);
+    other_electricity_demand = DATASET_INPUT(input_industry_food_electricity_demand) + DATASET_INPUT(input_industry_paper_electricity_demand) + DATASET_INPUT(input_industry_other_electricity_demand);
+    industry_total_electricity_demand = metal_electricity_demand + chemical_electricity_demand + other_electricity_demand;
+    industry_total_electricity_demand = IF(industry_total_electricity_demand > 0.0, industry_total_electricity_demand, 1.0);
+
+    other_electricity_demand / industry_total_electricity_demand
