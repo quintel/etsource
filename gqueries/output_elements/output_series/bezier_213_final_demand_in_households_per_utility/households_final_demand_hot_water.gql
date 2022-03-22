@@ -1,12 +1,14 @@
 - unit = PJ
 - query =
       SUM(V(
+        households_final_demand_for_hot_water_solar_thermal,
+        households_final_demand_for_hot_water_solar_thermal_pvt,
         households_final_demand_for_hot_water_coal,
         households_final_demand_for_hot_water_crude_oil,
         households_final_demand_for_hot_water_network_gas,
         households_final_demand_for_hot_water_wood_pellets,
         households_final_demand_for_hot_water_electricity,
         households_final_demand_for_hot_water_steam_hot_water,
-        EDGE(households_water_heater_solar_thermal, households_useful_demand_for_hot_water_for_houses_with_solar_heater),
+        households_final_demand_for_hot_water_hydrogen,
         demand
       )) / BILLIONS
