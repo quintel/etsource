@@ -186,6 +186,7 @@ energy_chp_ultra_supercritical_lignite:
     :steam_hot_water: 0.15
     :electricity: 0.35
   full_load_hours: 4500.0
+  demand: 0.0
 energy_power_hydro_river:
   demand: 0.0
   full_load_hours: 2515.0
@@ -198,6 +199,8 @@ energy_power_ultra_supercritical_crude_oil:
   full_load_hours: 4000.0
 energy_production_wet_biomass:
   max_demand: 763.751483
+energy_distribution_crude_oil_loss:
+  demand: 0.0
 energy_heat_distribution_loss:
   demand: 0.0
 energy_extraction_lignite:
@@ -259,6 +262,10 @@ energy_chp_combined_cycle_network_gas:
   output:
     :steam_hot_water: 0.42
     :electricity: 0.46
+energy_battery_solar_pv_solar_radiation:
+  full_load_hours: 867.0
+energy_power_solar_pv_offshore:
+  full_load_hours: 867.0
 energy_heat_burner_hydrogen:
   demand: 0.0
   output:
@@ -295,6 +302,7 @@ energy_power_ultra_supercritical_lignite:
   output:
     :electricity: 0.4
   full_load_hours: 6329.0
+  demand: 0.0
 energy_power_supercritical_waste_mix:
   demand: 0.0
   full_load_hours: 4100.0
@@ -337,6 +345,8 @@ energy_power_combined_cycle_coal_gas:
   full_load_hours: 2188.0
 energy_production_dry_biomass:
   max_demand: 1001.44208
+energy_battery_wind_turbine_inland:
+  full_load_hours: 1920.0
 energy_chp_ultra_supercritical_cofiring_coal:
   demand: 0.0
   output:
@@ -446,6 +456,8 @@ households_final_demand_diesel:
   demand: 0.0
 households_final_demand_biodiesel:
   demand: 0.0
+households_solar_pvt_solar_radiation:
+  full_load_hours: 867.0
 households_final_demand_lpg:
   demand: 0.0
 households_final_demand_wood_pellets:
@@ -455,6 +467,10 @@ industry_steel_scrap_hbi_eaf:
     :coal: 0.17532667429965665
     :electricity: 0.2388548388280101
     :network_gas: 0.5858184868723333
+    :cokes: 0.0
+    :crude_oil: 0.0
+    :steam_hot_water: 0.0
+    :wood_pellets: 0.0
   output:
     :not_defined: 0.20095748710471392
 industry_final_demand_wood_pellets:
@@ -565,6 +581,7 @@ industry_steel_blastfurnace_bof:
     :coal: 0.04550813877936157
     :electricity: 0.18085243481285512
     :network_gas: 0.19561439941744505
+    :wood_pellets: 0.0
     :coal_gas: 0.5096904410918403
     :cokes: 0.06512427016561628
     :steam_hot_water: 1.8729963435715263e-05
@@ -650,6 +667,8 @@ transport_final_demand_biodiesel-transport_final_demand_for_shipping_biodiesel@b
   parent_share: 0.0
 transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natural_gas@compressed_network_gas:
   parent_share: 0.062762
+transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
+  parent_share: 0.3175007033696986
 transport_road_mixer_lng-transport_bus_using_lng_mix@lng_mix:
   parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_car_using_electricity@electricity:
@@ -699,7 +718,7 @@ energy_greengas_gasification_dry_biomass-energy_distribution_greengas@greengas:
 energy_cokesoven_transformation_coal-energy_distribution_coal_gas@coal_gas:
   child_share: 0.30926197874791295
 energy_distribution_coal_gas-energy_power_combined_cycle_coal_gas@coal_gas:
-  parent_share: 0.16331743552599423
+  parent_share: 0.3256534723691955
 energy_distribution_non_biogenic_waste-energy_distribution_waste_mix@waste_mix:
   child_share: 1.0
 energy_distribution_coal_gas-energy_chp_coal_gas@coal_gas:
@@ -891,7 +910,7 @@ buildings_local_production_electricity-industry_final_demand_for_other_ict_elect
 industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemical_refineries_wood_pellets@wood_pellets:
   parent_share: 0.0
 energy_distribution_coal_gas-industry_final_demand_coal_gas@coal_gas:
-  parent_share: 0.6733651289480116
+  parent_share: 0.5110290921048103
 industry_final_demand_for_other_coal-industry_final_demand_for_other_paper_coal@coal:
   parent_share: 0.0
 industry_final_demand_for_other_wood_pellets-industry_final_demand_for_other_food_wood_pellets@wood_pellets:
