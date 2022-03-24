@@ -1,0 +1,20 @@
+- query =
+    EACH(
+      UPDATE(
+        V(industry_final_demand_for_other_dsr_load_shifting_electricity),
+        marginal_costs,
+        USER_INPUT()
+      ),
+      UPDATE(
+        V(industry_final_demand_for_other_dsr_load_shifting_electricity),
+        max_consumption_price,
+        USER_INPUT()
+      )
+    )
+- priority = 0
+- max_value = 500.0
+- min_value = 0.1
+- start_value_gql = present:V(industry_final_demand_for_other_dsr_load_shifting_electricity, marginal_costs)
+- step_value = 0.1
+- unit = euro
+- update_period = future

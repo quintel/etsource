@@ -1,0 +1,13 @@
+- query =
+    EACH(
+      UPDATE(V(industry_final_demand_for_metal_dsr_load_shifting_electricity), availability, (USER_INPUT() / 100.0)),
+      UPDATE(V(industry_final_demand_for_metal_dsr_load_shifting_electricity), number_of_units, 1.0),
+    )
+
+- priority = 0
+- max_value = 50.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = %
+- update_period = future
