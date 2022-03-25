@@ -1,0 +1,17 @@
+- query =
+    SUM(
+      PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_extraction_coal, demand)),
+      PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_import_coal, demand)),
+      PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_extraction_lignite, demand)),
+      PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_import_lignite, demand)),
+      PRODUCT(V(CARRIER(coal_gas), cost_per_mj), V(energy_import_coal_gas, demand)),
+      PRODUCT(V(CARRIER(cokes), cost_per_mj), V(energy_import_cokes, demand))
+    )-
+    SUM(
+      PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_export_coal, demand)),
+      PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_export_lignite, demand)),
+      PRODUCT(V(CARRIER(coal_gas), cost_per_mj), V(energy_export_coal_gas, demand)),
+      PRODUCT(V(CARRIER(cokes), cost_per_mj), V(energy_export_cokes, demand))
+    )
+
+- unit = euro

@@ -1,0 +1,16 @@
+# Costs of the insulation in households and buildings
+
+- query =
+    DIVIDE(
+      SUM(
+        Q(costs_of_insulation_corner_houses),
+        Q(costs_of_insulation_detached_houses),
+        Q(costs_of_insulation_semi_detached_houses),
+        Q(costs_of_insulation_terraced_houses),
+        Q(costs_of_insulation_apartments)
+      ),
+      V(households_space_heating_savings_from_insulation,technical_lifetime)
+    )
+
+- unit = euro
+- deprecated_key = insulation_costs

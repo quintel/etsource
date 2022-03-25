@@ -1,0 +1,10 @@
+# CAPEX and OPEX of the costs in heat producers ex fuels ex CCUS. CHP is not in this scope.
+
+- query =
+          SUM(
+              V(G(costs_production_heat_plants), capital_expenditures_excluding_ccs_per(:node)),
+              V(G(costs_production_heat_plants), operating_expenses_excluding_ccs_per(:node))
+              )
+
+
+- unit = euro

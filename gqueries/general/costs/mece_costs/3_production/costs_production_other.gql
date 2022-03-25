@@ -1,0 +1,11 @@
+# CAPEX and OPEX of the costs in of other ex fuels ex CCUS. Other includes
+# energy_compressor_network_gas
+# energy_regasification_lng
+
+- query =
+          SUM(
+              V(G(costs_production_other), capital_expenditures_excluding_ccs_per(:node)),
+              V(G(costs_production_other), operating_expenses_excluding_ccs_per(:node))
+              )
+
+- unit = euro
