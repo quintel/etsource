@@ -165,7 +165,7 @@ energy_heat_burner_waste_mix:
 energy_extraction_natural_gas:
   demand: 4315.488
 energy_chp_local_wood_pellets:
-  demand: 9855.352885225111
+  demand: 11035.88291876456
   full_load_hours: 6000.0
   output:
     :steam_hot_water: 0.2561509217416254
@@ -183,10 +183,10 @@ energy_chp_supercritical_waste_mix:
     :electricity: 0.1867924528301887
 energy_chp_ultra_supercritical_lignite:
   output:
-    :steam_hot_water: 0.15
-    :electricity: 0.35
+    :steam_hot_water: 0.22500309179350772
+    :electricity: 0.24685887348613578
   full_load_hours: 5350.0
-  demand: 0.0
+  demand: 20635.272
 energy_power_hydro_river:
   demand: 0.0
   full_load_hours: 0.0
@@ -214,7 +214,7 @@ energy_chp_coal_gas:
     :electricity: 0.6609129458717885
   full_load_hours: 5320.0
 energy_heat_burner_coal:
-  demand: 2.442225040512929
+  demand: 1.736554695523659
   output:
     :steam_hot_water: 0.72
   full_load_hours: 6000.0
@@ -246,10 +246,10 @@ energy_heat_heatpump_water_water_electricity:
     :steam_hot_water: 0.5
   full_load_hours: 6000.0
 energy_chp_ultra_supercritical_coal:
-  demand: 6882.710244662861
+  demand: 7707.160292327347
   output:
-    :steam_hot_water: 0.2769100088691318
-    :electricity: 0.340919770563213
+    :steam_hot_water: 0.27691000886913175
+    :electricity: 0.34091977056321293
   full_load_hours: 5350.0
 energy_power_engine_diesel:
   demand: 0.0
@@ -260,8 +260,8 @@ energy_chp_combined_cycle_network_gas:
   demand: 0.0
   full_load_hours: 5265.0
   output:
-    :steam_hot_water: 0.42507286909813885
-    :electricity: 0.33857594879814995
+    :steam_hot_water: 0.4250728690981389
+    :electricity: 0.33857594879815006
 energy_battery_solar_pv_solar_radiation:
   full_load_hours: 931.8024255111801
 energy_power_solar_pv_offshore:
@@ -290,7 +290,7 @@ energy_power_hv_network_loss:
 energy_distribution_network_gas_loss:
   demand: 3438.03
 energy_heat_burner_crude_oil:
-  demand: 0.8140750135043097
+  demand: 0.578851565174553
   output:
     :steam_hot_water: 0.72
   full_load_hours: 6000.0
@@ -393,7 +393,7 @@ energy_power_combined_cycle_ccs_coal:
   output:
     :electricity: 0.373
 energy_heat_well_geothermal:
-  demand: 119.4716761783978
+  demand: 133.7826707747802
 energy_blastfurnace_transformation_cokes:
   input:
     :coal: 0.5843912147977978
@@ -516,7 +516,7 @@ industry_heat_burner_coal:
     :steam_hot_water: 0.72
   full_load_hours: 6000.0
 industry_heat_well_geothermal:
-  demand: 99.0566476432044
+  demand: 70.43465845043961
 industry_chemicals_fertilizers_steam_methane_reformer_hydrogen:
   input:
     :useable_heat: 0.25889369785367466
@@ -526,9 +526,9 @@ industry_final_demand_diesel:
 industry_final_demand_for_other_crude_oil_non_energetic:
   demand: 4776.457
 industry_chp_wood_pellets:
-  demand: 4085.647114774889
+  demand: 2905.11708123544
   output:
-    :steam_hot_water: 0.2561509217416254
+    :steam_hot_water: 0.25615092174162546
     :electricity: 0.2918011620400258
   full_load_hours: 6000.0
 industry_final_demand_lpg:
@@ -542,7 +542,7 @@ industry_chp_turbine_gas_power_fuelmix:
 industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic:
   demand: 235603.53999999998
 industry_chp_combined_cycle_gas_power_fuelmix:
-  demand: 5852.061888924118
+  demand: 4161.133959044112
   output:
     :steam_hot_water: 0.4250728690981389
     :electricity: 0.33857594879815006
@@ -577,7 +577,7 @@ industry_heat_burner_lignite:
     :steam_hot_water: 1.3457465584186374
   full_load_hours: 6000.0
 industry_chp_ultra_supercritical_coal:
-  demand: 2853.304755337138
+  demand: 2028.8547076726536
   output:
     :steam_hot_water: 0.27691000886913175
     :electricity: 0.34091977056321293
@@ -661,6 +661,8 @@ buildings_final_demand_network_gas-buildings_final_demand_for_appliances_network
   parent_share: 0.19906649204414897
 buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
   parent_share: 0.8634071402331096
+transport_final_demand_for_road_hydrogen-transport_truck_using_hydrogen@hydrogen:
+  parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_van_using_electricity@electricity:
   parent_share: 0.005152624668417176
 transport_final_demand_electricity-transport_final_demand_for_road_electricity@electricity:
@@ -673,6 +675,10 @@ transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@
   parent_share: 0.0
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 0.02848606903785627
+transport_final_demand_for_road_hydrogen-transport_van_using_hydrogen@hydrogen:
+  parent_share: 0.0
+transport_final_demand_for_road_lpg-transport_car_using_lpg@lpg:
+  parent_share: 0.9988011217697776
 transport_road_mixer_diesel-transport_van_using_diesel_mix@diesel_mix:
   parent_share: 0.060925487141677004
 transport_final_demand_biodiesel-transport_final_demand_for_shipping_biodiesel@biodiesel:
@@ -683,6 +689,10 @@ transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natur
   parent_share: 0.8052997266636545
 transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
   parent_share: 0.0
+transport_final_demand_for_road_electricity-transport_truck_using_electricity@electricity:
+  parent_share: 0.0
+transport_final_demand_for_road_lpg-transport_van_using_lpg@lpg:
+  parent_share: 0.0011988782302222558
 transport_road_mixer_lng-transport_bus_using_lng_mix@lng_mix:
   parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_car_using_electricity@electricity:
