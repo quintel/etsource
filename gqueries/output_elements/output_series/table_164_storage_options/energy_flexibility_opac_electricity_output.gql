@@ -1,2 +1,6 @@
-- query = V(energy_flexibility_hv_opac_electricity, "demand * electricity_output_conversion") / BILLIONS
+- query = 
+    DIVIDE(
+      PRODUCT(SUM(V(energy_flexibility_hv_opac_electricity, electricity_output_curve)),MJ_PER_MWH),
+      BILLIONS
+    )
 - unit = PJ

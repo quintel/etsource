@@ -4,5 +4,6 @@
 # See https://github.com/quintel/mechanical_turk/issues/152#issuecomment-1060882609
 
 - query =
-    DIVIDE(PRODUCT(SUM(V(G(p2p), electricity_output_curve)),MJ_PER_MWH),BILLIONS)
-- unit = PJ
+    V(households_flexibility_p2p_electricity, input_of_electricity) -
+    PRODUCT(SUM(V(households_flexibility_p2p_electricity, electricity_output_curve)),MJ_PER_MWH)
+- unit = MJ
