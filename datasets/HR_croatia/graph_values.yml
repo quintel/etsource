@@ -165,11 +165,11 @@ energy_heat_burner_waste_mix:
 energy_extraction_natural_gas:
   demand: 35641.096
 energy_chp_local_wood_pellets:
-  demand: 0.0
+  demand: 6331.873299630864
   full_load_hours: 6000.0
   output:
-    :steam_hot_water: 0.821
-    :electricity: 0.289
+    :steam_hot_water: 0.34348077736470695
+    :electricity: 0.19121568976647893
 energy_heat_burner_wood_pellets:
   demand: 2.8
   output:
@@ -183,10 +183,10 @@ energy_chp_supercritical_waste_mix:
     :electricity: 0.27
 energy_chp_ultra_supercritical_lignite:
   output:
-    :steam_hot_water: 0.15
-    :electricity: 0.35
+    :steam_hot_water: 0.0
+    :electricity: 0.46098003629764067
   full_load_hours: 5350.0
-  demand: 0.0
+  demand: 99.17999999999999
 energy_power_hydro_river:
   demand: 2902.670934604212
   full_load_hours: 1821.931133
@@ -260,8 +260,8 @@ energy_chp_combined_cycle_network_gas:
   demand: 0.0
   full_load_hours: 5265.0
   output:
-    :steam_hot_water: 0.42
-    :electricity: 0.46
+    :steam_hot_water: 0.3056833583866736
+    :electricity: 0.39061037762611717
 energy_battery_solar_pv_solar_radiation:
   full_load_hours: 985.7757611304614
 energy_power_solar_pv_offshore:
@@ -290,9 +290,9 @@ energy_power_hv_network_loss:
 energy_distribution_network_gas_loss:
   demand: 1091.16
 energy_heat_burner_crude_oil:
-  demand: 199.30555555555557
+  demand: 51.661651151766044
   output:
-    :steam_hot_water: 0.72
+    :steam_hot_water: 0.8200328013120525
   full_load_hours: 6000.0
 energy_chp_local_engine_network_gas:
   demand: 0.0
@@ -526,10 +526,10 @@ industry_final_demand_diesel:
 industry_final_demand_for_other_crude_oil_non_energetic:
   demand: 5022.269
 industry_chp_wood_pellets:
-  demand: 8984.2
+  demand: 2652.326700369138
   output:
     :steam_hot_water: 0.34348077736470695
-    :electricity: 0.19121568976647893
+    :electricity: 0.1912156897664789
   full_load_hours: 6000.0
 industry_final_demand_lpg:
   demand: 841.6777105948952
@@ -542,10 +542,10 @@ industry_chp_turbine_gas_power_fuelmix:
 industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic:
   demand: 125720.811
 industry_chp_combined_cycle_gas_power_fuelmix:
-  demand: 27601.11
+  demand: 8148.4340300556105
   output:
     :steam_hot_water: 0.3056833583866736
-    :electricity: 0.39061037762611717
+    :electricity: 0.3906103776261171
   full_load_hours: 1843.3333333333333
 industry_final_demand_network_gas:
   demand: 24157.858999999997
@@ -554,9 +554,9 @@ industry_final_demand_kerosene:
 industry_final_demand_coal:
   demand: 2426.5060000000003
 industry_heat_burner_crude_oil:
-  demand: 174.993
+  demand: 51.66165115176605
   output:
-    :steam_hot_water: 0.8200328013120525
+    :steam_hot_water: 0.8200328013120523
   full_load_hours: 6000.0
 industry_final_demand_crude_oil:
   input:
@@ -661,6 +661,8 @@ buildings_final_demand_network_gas-buildings_final_demand_for_appliances_network
   parent_share: 0.29987790720531154
 buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
   parent_share: 0.8949946396078435
+transport_final_demand_for_road_hydrogen-transport_truck_using_hydrogen@hydrogen:
+  parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_van_using_electricity@electricity:
   parent_share: 0.06068805193246371
 transport_final_demand_electricity-transport_final_demand_for_road_electricity@electricity:
@@ -673,6 +675,10 @@ transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@
   parent_share: 0.0
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 0.1946546923478064
+transport_final_demand_for_road_hydrogen-transport_van_using_hydrogen@hydrogen:
+  parent_share: 0.0
+transport_final_demand_for_road_lpg-transport_car_using_lpg@lpg:
+  parent_share: 0.9947374947414486
 transport_road_mixer_diesel-transport_van_using_diesel_mix@diesel_mix:
   parent_share: 0.05528105602653307
 transport_final_demand_biodiesel-transport_final_demand_for_shipping_biodiesel@biodiesel:
@@ -683,6 +689,10 @@ transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natur
   parent_share: 0.013838830592303028
 transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
   parent_share: 0.04647773840657589
+transport_final_demand_for_road_electricity-transport_truck_using_electricity@electricity:
+  parent_share: 0.0
+transport_final_demand_for_road_lpg-transport_van_using_lpg@lpg:
+  parent_share: 0.005262505258551428
 transport_road_mixer_lng-transport_bus_using_lng_mix@lng_mix:
   parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_car_using_electricity@electricity:
