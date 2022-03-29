@@ -7,7 +7,7 @@
 # if total_heat is zero (i.e. there are no HHPs in the start year) the input slots shares are set equal to the default node values
 
 - query =
-    elec_tj = DATASET_INPUT(buildings_final_demand_electricity_demand) * DATASET_INPUT(buildings_final_demand_electricity_buildings_final_demand_for_space_heating_electricity_parent_share) * DATASET_INPUT(buildings_final_demand_for_space_heating_electricity_buildings_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    elec_tj = DATASET_INPUT(input_buildings_electricity_demand) * DATASET_INPUT(buildings_final_demand_electricity_buildings_final_demand_for_space_heating_electricity_parent_share) * DATASET_INPUT(buildings_final_demand_for_space_heating_electricity_buildings_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
     ambient_relative_to_elec = NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat) / NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, electricity);
     ambient_tj = elec_tj * ambient_relative_to_elec;
     gas_tj = DATASET_INPUT(buildings_final_demand_network_gas_demand) * DATASET_INPUT(buildings_final_demand_network_gas_buildings_final_demand_for_space_heating_network_gas_parent_share) * DATASET_INPUT(buildings_final_demand_for_space_heating_network_gas_buildings_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
