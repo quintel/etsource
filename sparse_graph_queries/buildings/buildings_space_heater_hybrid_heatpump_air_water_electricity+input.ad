@@ -1,0 +1,23 @@
+# this query ensures that the hybrid heat pump input slot shares for electricity, gas and ambient heat are set in the right proportion (i.e. in accordance with the electricity and gas going into the node as specified by the user)
+# first, the electricity going to HHPs is calculated (elec_tj)
+# secondly, the ambient accompanying this electricity is calculated (by calculating the ratio between electricity and ambient in the HHP node)
+# thirdly, the gas going to HHPs is calculated (gas_tj)
+# this gives the total demand of the HHP node
+# finally, the input slot shares for electricity, gas and ambient_heat are set using their respective share in the total demand of the HHP node
+# if total_heat is zero (i.e. there are no HHPs in the start year) the input slots shares are set equal to the default node values
+
+- query =
+    elec_tj = DATASET_INPUT(buildings_final_demand_electricity_demand) * DATASET_INPUT(buildings_final_demand_electricity_buildings_final_demand_for_space_heating_electricity_parent_share) * DATASET_INPUT(buildings_final_demand_for_space_heating_electricity_buildings_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    ambient_relative_to_elec = NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat) / NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, electricity);
+    ambient_tj = elec_tj * ambient_relative_to_elec;
+    gas_tj = DATASET_INPUT(buildings_final_demand_network_gas_demand) * DATASET_INPUT(buildings_final_demand_network_gas_buildings_final_demand_for_space_heating_network_gas_parent_share) * DATASET_INPUT(buildings_final_demand_for_space_heating_network_gas_buildings_space_heater_hybrid_heatpump_air_water_electricity_parent_share);
+    total_heat = elec_tj + ambient_tj + gas_tj;
+
+    IF(total_heat > 0.0, {
+        electricity: elec_tj / total_heat,
+        network_gas: gas_tj / total_heat,
+        ambient_heat: ambient_tj / total_heat}, {
+        electricity: NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, electricity),
+        network_gas: NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, network_gas),
+        ambient_heat: NODE_EFFICIENCY(buildings_space_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)}
+        )
