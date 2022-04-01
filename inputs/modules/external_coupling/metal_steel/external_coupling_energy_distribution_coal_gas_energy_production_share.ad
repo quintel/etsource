@@ -2,28 +2,24 @@
     pp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas), share)});;
     chp_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_chp_coal_gas), share)});;
     mth_share = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas), share)});;
-    total_share = pp_share + chp_share + mth_share;
+    total_share = pp_share + chp_share;
     EACH(
       UPDATE(
         EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas),
         share,
-        (1 - DIVIDE(USER_INPUT(), 100)) / total_share * pp_share
+        DIVIDE(USER_INPUT(), 100) * pp_share / total_share
       ),
       UPDATE(
         EDGE(energy_distribution_coal_gas, energy_chp_coal_gas),
         share,
-        (1 - DIVIDE(USER_INPUT(), 100)) / total_share * chp_share
-      ),
-      UPDATE(
-        EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas),
-        share,
-        (1 - DIVIDE(USER_INPUT(), 100)) / total_share * mth_share
+        DIVIDE(USER_INPUT(), 100) * chp_share / total_share
       )
     )
+- share_group = coal_gas_ccus
 - priority = 0
 - max_value = 100.0
-- min_value = 0.1
-- start_value = 100.0
-- step_value = 0.1
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
 - unit = %
 - update_period = future
