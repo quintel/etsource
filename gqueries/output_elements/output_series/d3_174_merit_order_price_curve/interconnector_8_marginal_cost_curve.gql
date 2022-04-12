@@ -1,0 +1,12 @@
+- query =
+    IF(
+      V(energy_interconnector_8_imported_electricity, input_capacity) > 0,
+      -> {
+        COALESCE_CURVE(
+          V(energy_interconnector_8_imported_electricity, marginal_cost_curve),
+          V(energy_interconnector_8_imported_electricity, marginal_costs)
+        )
+      },
+      -> { [] }
+    )
+- unit = curve
