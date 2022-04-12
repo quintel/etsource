@@ -1,0 +1,16 @@
+- query =
+    UPDATE(
+      EDGE(
+        energy_interconnector_12_imported_electricity,
+        energy_import_electricity
+      ),
+      co2_per_mj,
+      DIVIDE(USER_INPUT(), MJ_PER_MWH)
+    )
+- priority = 0
+- max_value = 1000.0
+- min_value = 0
+- start_value_gql = present:Q(initial_co2_emissions_of_imported_electricity)
+- step_value = 0.1
+- unit = gCO2/KWh
+- update_period = present
