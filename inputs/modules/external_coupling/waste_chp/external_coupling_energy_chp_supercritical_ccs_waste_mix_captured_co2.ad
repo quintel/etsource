@@ -3,7 +3,7 @@
         UPDATE(
             V(energy_chp_supercritical_waste_mix),
             number_of_units,
-            (1.0 - DIVIDE(USER_INPUT(),100.0)) * INPUT_VALUE(capacity_of_energy_chp_supercritical_waste_mix) / V(energy_chp_supercritical_waste_mix, electricity_output_capacity)
+            (1.0 - DIVIDE(USER_INPUT(),100.0)) * INPUT_VALUE(external_coupling_energy_chp_supercritical_waste_mix_capacity) / V(energy_chp_supercritical_waste_mix, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_chp_supercritical_waste_mix),
@@ -13,7 +13,7 @@
         UPDATE(
             V(energy_chp_supercritical_ccs_waste_mix),
             number_of_units,
-            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_supercritical_waste_mix) / V(energy_chp_supercritical_ccs_waste_mix, electricity_output_capacity)
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(external_coupling_energy_chp_supercritical_waste_mix_capacity) / V(energy_chp_supercritical_ccs_waste_mix, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_chp_supercritical_ccs_waste_mix),
