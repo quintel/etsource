@@ -1,0 +1,11 @@
+# Direct conversion input of geothermal for central heat production
+
+- query =
+    DIVIDE(
+      V(
+        FILTER(Q(central_heat_producing_converters_sankey), "geothermal_input_conversion > 0"),
+        output_of_steam_hot_water
+      ),
+      BILLIONS
+    )
+- unit = PJ

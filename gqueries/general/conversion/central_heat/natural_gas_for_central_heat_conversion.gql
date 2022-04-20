@@ -1,0 +1,20 @@
+# Direct conversion input of natural gas for central heat production
+
+- query =
+    SUM(
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          input_of(
+            natural_gas,
+            lng,
+            compressed_natural_gas
+          )
+        )
+      ),
+      BILLIONS
+    ),
+    Q(network_gas_for_central_heat_conversion) * Q(share_of_natural_gas_in_gas_network)
+    )
+- unit = PJ

@@ -1,0 +1,15 @@
+# Direct conversion input of gas power fuelmix for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          input_of(
+            gas_power_fuelmix
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

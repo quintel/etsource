@@ -1,11 +1,4 @@
 # Query for Sankey diagram: connection between geo_ambient and chps
 
+- query = Q(ambient_for_central_heat_conversion) + Q(geothermal_for_central_heat_conversion)
 - unit = PJ
-- query =
-    DIVIDE(
-        SUM(
-            V(Q(central_heat_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.geothermal? }}, "input_of_geothermal + input_of_ambient_heat + input_of_ambient_cold"),
-            V(Q(central_heat_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_heat? }}, "input_of_geothermal + input_of_ambient_heat + input_of_ambient_cold"),
-            V(Q(central_heat_producing_converters_sankey).select {|node| node.input_slots.detect { |slot| slot.carrier.ambient_cold? }}, "input_of_geothermal + input_of_ambient_heat + input_of_ambient_cold")
-        ),
-    BILLIONS)

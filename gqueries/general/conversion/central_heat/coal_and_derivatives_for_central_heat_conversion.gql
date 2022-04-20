@@ -1,0 +1,18 @@
+# Direct conversion input of coal and derivates for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          input_of(
+            coal,
+            coal_gas,
+            lignite,
+            cokes
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

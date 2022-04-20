@@ -1,0 +1,15 @@
+# Direct conversion input of uranium for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          input_of(
+            uranium_oxide
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
