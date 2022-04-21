@@ -4,9 +4,9 @@
     DIVIDE(
       SUM(
         V(
-          FILTER(Q(central_heat_producing_converters_sankey), "ambient_heat_input_conversion > 0 || ambient_cold_input_conversion > 0" ),
-          output_of_steam_hot_water
-        ),
+          FILTER(Q(central_heat_producing_converters_sankey), "ambient_heat_input_conversion > 0" ),
+          input_of_ambient_heat
+        )
       ),
       BILLIONS
     )
