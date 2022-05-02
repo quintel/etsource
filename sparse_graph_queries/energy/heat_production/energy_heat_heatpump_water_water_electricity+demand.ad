@@ -1,5 +1,5 @@
-# User provides heat production, divide by heat output efficiency to get node demand
+# User provides heat production. Since the heat output conversion for a heatpump is 1.0, the
+# heat production does not have to be divided by the efficiency to get the demand.
 
 - query =
-    DATASET_INPUT(input_energy_heat_heatpump_water_water_electricity_production) /
-    ( DATASET_INPUT(input_energy_heat_heatpump_water_water_electricity_steam_hot_water_output_conversion) / 100.0 )
+    DATASET_INPUT(input_energy_heat_heatpump_water_water_electricity_production)
