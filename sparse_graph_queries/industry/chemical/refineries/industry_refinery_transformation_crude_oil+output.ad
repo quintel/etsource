@@ -6,6 +6,7 @@
     lpg_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_lpg_demand);
     crude_oil_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_other_oil_demand);
     refinery_gas_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_refinery_gas_demand);
+    total_product_output = diesel_output + gasoline_output + heavy_fuel_oil_output + kerosene_output + lpg_output + crude_oil_output + refinery_gas_output;
     crude_oil_input = DATASET_INPUT(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic_demand);
 
     IF(crude_oil_input > 0.0, {
@@ -15,7 +16,9 @@
         kerosene: kerosene_output / crude_oil_input,
         lpg: lpg_output / crude_oil_input,
         crude_oil: crude_oil_output / crude_oil_input,
-        refinery_gas: refinery_gas_output / crude_oil_input},{
+        refinery_gas: refinery_gas_output / crude_oil_input,
+        loss: 1 - (total_product_output / crude_oil_input)},
+        {
         diesel: 0.1,
         gasoline: 0.1,
         heavy_fuel_oil: 0.1,
