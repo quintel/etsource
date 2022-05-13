@@ -1,0 +1,19 @@
+# Production of biomass products
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(mining_and_extraction),
+          output_of(
+            non_biogenic_waste,
+            biogenic_waste,
+            oily_biomass,
+            wet_biomass,
+            dry_biomass
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

@@ -1,0 +1,17 @@
+# Import of natural gas
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_import),
+          output_of(
+            natural_gas,
+            lng,
+            compressed_natural_gas
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

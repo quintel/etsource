@@ -1,0 +1,20 @@
+# Import of oil and derivatives
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_import),
+          output_of(
+            crude_oil,
+            diesel,
+            gasoline,
+            lpg,
+            kerosene,
+            heavy_fuel_oil
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
