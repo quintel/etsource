@@ -1,0 +1,14 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
+            G(final_demand_group),
+            USE(non_energetic)
+          ),
+          "input_of_steam_hot_water"
+        )
+      ),
+    BILLIONS
+    )
+- unit = PJ
