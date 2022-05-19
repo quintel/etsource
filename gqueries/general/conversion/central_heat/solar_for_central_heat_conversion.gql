@@ -1,0 +1,13 @@
+# Direct conversion input of solar for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(Q(central_heat_producing_converters_sankey), "solar_thermal_input_conversion > 0"),
+          input_of_solar_thermal
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

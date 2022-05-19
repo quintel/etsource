@@ -1,0 +1,13 @@
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        Q(electricity_produced_from_torrefied_biomass_pellets),
+        Q(electricity_produced_from_wood_pellets),
+        Q(electricity_produced_from_bio_oil),
+        Q(electricity_produced_from_greengas),
+        Q(electricity_produced_from_biogas),
+        Q(electricity_produced_from_waste)
+      ),
+      BILLIONS
+    )

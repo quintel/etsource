@@ -5,5 +5,6 @@
     DIVIDE(
       SUM(
         V(energy_power_hv_network_electricity, "demand * loss_output_conversion"),
+        V(energy_compressor_network_gas, "output_of_loss * electricity_input_conversion"),
         V(energy_distribution_steam_hot_water, output_of_loss) * Q(fraction_of_chps_in_central_heat_sankey)),
         BILLIONS)

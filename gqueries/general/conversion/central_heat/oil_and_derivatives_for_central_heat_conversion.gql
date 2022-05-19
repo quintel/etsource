@@ -1,0 +1,23 @@
+# Direct conversion input of oil and derivatives for central heat production
+
+- query =
+    SUM(
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          input_of(
+            crude_oil,
+            diesel,
+            gasoline,
+            lpg,
+            kerosene,
+            heavy_fuel_oil
+          )
+        )
+      ),
+      BILLIONS
+    ),
+    Q(gas_power_fuelmix_for_central_heat_conversion) * V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+    )
+- unit = PJ

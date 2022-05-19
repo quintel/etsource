@@ -5,7 +5,7 @@
     DIVIDE(
       SUM(
         V(energy_regasification_lng, output_of_loss),
-        (V(energy_compressor_network_gas, output_of_loss) * (1 - Q(share_of_greengas_in_gas_network))),
+        V(energy_treatment_natural_gas, output_of_loss),
+        (V(energy_compressor_network_gas, "output_of_loss * network_gas_input_conversion") * (1 - Q(share_of_greengas_in_gas_network))),
         (V(energy_national_gas_network_natural_gas, output_of_loss) * (1 - Q(share_of_greengas_in_gas_network))))
           ,BILLIONS)
-

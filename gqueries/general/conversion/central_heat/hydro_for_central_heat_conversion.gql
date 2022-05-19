@@ -1,0 +1,13 @@
+# Direct conversion input of hydro for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(Q(central_heat_producing_converters_sankey), "water_input_conversion > 0"),
+          output_of_steam_hot_water
+        ),
+      ),
+      BILLIONS
+    )
+- unit = PJ

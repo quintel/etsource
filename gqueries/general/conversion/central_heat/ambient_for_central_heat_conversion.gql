@@ -1,0 +1,13 @@
+# Direct conversion input of ambient for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(Q(central_heat_producing_converters_sankey), "ambient_heat_input_conversion > 0" ),
+          input_of_ambient_heat
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

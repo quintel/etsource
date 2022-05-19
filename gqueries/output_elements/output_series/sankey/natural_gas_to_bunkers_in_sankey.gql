@@ -3,7 +3,13 @@
 - unit = PJ
 - query =
     DIVIDE(
+      SUM(
         SUM(
-            V(INTERSECTION(INTERSECTION(SECTOR(bunkers),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng + input_of_compressed_network_gas + input_of_gas_power_fuelmix + input_of_network_gas")
+          V(INTERSECTION(INTERSECTION(SECTOR(bunkers),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng")
         ),
-    BILLIONS) * (1 - Q(share_of_greengas_in_gas_network))
+        SUM( 
+          V(INTERSECTION(INTERSECTION(SECTOR(bunkers),G(final_demand_group)),USE(energetic)),"input_of_compressed_network_gas + input_of_network_gas")
+        ) * Q(share_of_natural_gas_in_gas_network)
+      ),
+      BILLIONS
+    )
