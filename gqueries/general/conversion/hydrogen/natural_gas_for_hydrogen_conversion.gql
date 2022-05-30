@@ -1,0 +1,19 @@
+# Direct conversion input of natural gas for central hydrogen production
+
+- query =
+    SUM(
+    DIVIDE(
+      SUM(
+        V(
+          Q(hydrogen_producing_converters_sankey),
+          input_of(
+            natural_gas,
+            lng,
+            compressed_natural_gas
+          )
+        )
+      ),
+      BILLIONS
+    ),
+    Q(network_gas_for_hydrogen_conversion) * Q(share_of_natural_gas_in_gas_network)
+    )

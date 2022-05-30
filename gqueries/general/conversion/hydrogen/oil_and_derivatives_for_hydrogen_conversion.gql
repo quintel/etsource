@@ -1,0 +1,20 @@
+# Direct conversion input of oil and derivatives for central hydrogen production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(hydrogen_producing_converters_sankey),
+          input_of(
+            crude_oil,
+            diesel,
+            gasoline,
+            lpg,
+            kerosene,
+            heavy_fuel_oil
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

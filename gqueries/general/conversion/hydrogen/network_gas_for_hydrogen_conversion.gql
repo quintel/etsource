@@ -1,0 +1,15 @@
+# Direct conversion input of network gas for central hydrogen production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          input_of(
+            network_gas
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
