@@ -1,0 +1,4 @@
+# Query for Sankey diagram: connection between coal_and_derivatives and bunkers
+
+- unit = PJ
+- query = DIVIDE(SUM(V(INTERSECTION(INTERSECTION(SECTOR(bunkers),G(final_demand_group)), USE(energetic)),"input_of_coal + input_of_lignite + input_of_cokes + input_of_coal_gas")),BILLIONS)
