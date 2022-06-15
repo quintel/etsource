@@ -1,0 +1,7 @@
+# bcm = billion cubic meters
+# In ETM all energy flows are in lower heating value (LHV), therefore we have to use the LHV caloric value
+# to calculate the volume
+# LHV caloric values = 31.65 MJ / m3
+
+- unit = bcm
+- query = (QUERY_FUTURE(production_green_gas) - QUERY_PRESENT(production_green_gas)) / 31.65
