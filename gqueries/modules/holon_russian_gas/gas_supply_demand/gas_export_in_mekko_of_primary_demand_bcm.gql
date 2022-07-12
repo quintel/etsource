@@ -6,4 +6,11 @@
 # LHV caloric values = 31.65 MJ / m3
 
 - unit = bcm
-- query = DIVIDE(Q(gas_industry_in_mekko_of_primary_demand), 31.65)
+- query =
+    DIVIDE(
+      SUM(
+        Q(gas_export_in_mekko_of_primary_demand),
+        Q(lng_export_in_mekko_of_primary_demand)
+      ),
+      31.65
+    )
