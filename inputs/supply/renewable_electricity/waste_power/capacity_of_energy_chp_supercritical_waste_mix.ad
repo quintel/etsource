@@ -23,7 +23,7 @@
     )
 
 - priority = 0
-- max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(total_electricity_consumed), V(energy_chp_supercritical_waste_mix, output_of_electricity)*2), V(energy_chp_supercritical_waste_mix,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_chp_supercritical_waste_mix,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(energy_chp_supercritical_waste_mix,number_of_units),V(energy_chp_supercritical_waste_mix,electricity_output_capacity))
 - step_value = 1.0

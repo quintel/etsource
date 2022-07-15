@@ -12,7 +12,7 @@
             USER_INPUT() * demand_per_mw
     ))
 - priority = 0
-- max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(heat_production_industry) * BILLIONS, V(industry_chp_turbine_gas_power_fuelmix, output_of_steam_hot_water)*2), V(industry_chp_turbine_gas_power_fuelmix,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(heat_production_industry) * BILLIONS, V(industry_chp_turbine_gas_power_fuelmix,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(industry_chp_turbine_gas_power_fuelmix,number_of_units),V(industry_chp_turbine_gas_power_fuelmix,heat_output_capacity))
 - step_value = 1.0

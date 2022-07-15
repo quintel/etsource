@@ -11,7 +11,7 @@
             V(energy_power_hydro_mountain, production_based_on_number_of_units)
     ))
 - priority = 0
-- max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(total_electricity_consumed), V(energy_power_hydro_mountain, output_of_electricity)*2), V(energy_power_hydro_mountain,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_power_hydro_mountain,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(energy_power_hydro_mountain,number_of_units),V(energy_power_hydro_mountain,electricity_output_capacity))
 - step_value = 1.0

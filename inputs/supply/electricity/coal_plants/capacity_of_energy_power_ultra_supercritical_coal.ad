@@ -22,7 +22,7 @@
         )
     )
 - priority = 0
-- max_value_gql = present:DIVIDE(DIVIDE(MAX(Q(total_electricity_consumed), V(energy_power_ultra_supercritical_coal, output_of_electricity)*2), V(energy_power_ultra_supercritical_coal,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_power_ultra_supercritical_coal,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = present:SUM(V(energy_power_ultra_supercritical_ccs_coal, "number_of_units*electricity_output_capacity"),V(energy_power_ultra_supercritical_coal, "number_of_units*electricity_output_capacity"))
 - step_value = 1.0
