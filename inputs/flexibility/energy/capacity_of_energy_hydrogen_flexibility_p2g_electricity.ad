@@ -9,7 +9,7 @@
         )
     )
 - priority = 0
-- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(offshore_suitable_for_wind),V(energy_power_wind_turbine_offshore, land_use_per_unit)),V(energy_power_wind_turbine_offshore, electricity_output_capacity)))
+- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(SUM(AREA(offshore_suitable_for_wind),AREA(total_land_area)),V(energy_power_wind_turbine_offshore, land_use_per_unit)),V(energy_power_wind_turbine_offshore, electricity_output_capacity)))
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(energy_hydrogen_flexibility_p2g_electricity,number_of_units),V(energy_hydrogen_flexibility_p2g_electricity,typical_input_capacity))
 - step_value = 0.1
