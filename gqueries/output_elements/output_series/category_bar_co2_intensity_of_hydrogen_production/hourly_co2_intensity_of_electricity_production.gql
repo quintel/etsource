@@ -1,0 +1,5 @@
+- query = 
+    PRODUCT_CURVES(
+      Q(hourly_co2_emissions_of_electricity_production),
+      MAP(Q(hourly_total_electricity_production), ->(v) { DIVIDE(1, v) })
+    )
