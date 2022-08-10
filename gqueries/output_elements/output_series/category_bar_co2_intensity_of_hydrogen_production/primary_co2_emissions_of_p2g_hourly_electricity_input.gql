@@ -1,5 +1,6 @@
 - query =
     DIVIDE(
-      SUM(hourly_co2_emissions_of_p2g_electricity_input),
-      Q(energy_hydrogen_flexibility_p2g_electricity_for_mekko)
-    )`
+      SUM(Q(hourly_co2_emissions_of_p2g_electricity_input),
+      SUM(Q(energy_hydrogen_flexibility_p2g_electricity_hydrogen_output_curve))
+    )
+- unit = kg/MWh
