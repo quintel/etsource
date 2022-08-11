@@ -1,0 +1,14 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_imported_hydrogen_backup,
+          energy_imported_hydrogen_baseload,
+          primary_co2_emission
+        )
+      ),
+      SUM(
+        Q(energy_imported_hydrogen_output_curve)
+      )
+    )
+- unit = kg/MWh
