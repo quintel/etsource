@@ -1,10 +1,10 @@
 - query =
-    demand_per_mw = V(industry_chp_turbine_gas_power_fuelmix,"full_load_hours * MJ_PER_MWH / steam_hot_water_output_conversion");
+    demand_per_mw = V(industry_chp_turbine_gas_power_fuelmix,"full_load_hours * MJ_PER_MWH / electricity_output_conversion");
     EACH(
         UPDATE(
             V(industry_chp_turbine_gas_power_fuelmix),
             number_of_units,
-            USER_INPUT() / V(industry_chp_turbine_gas_power_fuelmix,heat_output_capacity)
+            USER_INPUT() / V(industry_chp_turbine_gas_power_fuelmix,electricity_output_capacity)
         ),
         UPDATE(
             L(industry_chp_turbine_gas_power_fuelmix),
@@ -14,7 +14,7 @@
 - priority = 0
 - max_value_gql = present:2*DIVIDE(DIVIDE(Q(heat_production_industry) * BILLIONS, V(industry_chp_turbine_gas_power_fuelmix,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(industry_chp_turbine_gas_power_fuelmix,number_of_units),V(industry_chp_turbine_gas_power_fuelmix,heat_output_capacity))
+- start_value_gql = present:PRODUCT(V(industry_chp_turbine_gas_power_fuelmix,number_of_units),V(industry_chp_turbine_gas_power_fuelmix,electricity_output_capacity))
 - step_value = 1.0
 - unit = MW
 - update_period = future
