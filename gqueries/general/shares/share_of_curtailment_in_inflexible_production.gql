@@ -1,0 +1,9 @@
+- query =
+    DIVIDE(
+      Q(dashboard_total_curtailment) * BILLIONS,
+      SUM(
+        Q(electricity_produced_from_inflexible_converters),
+        Q(electricity_curtailment_solar_pv_input)
+      )
+    )
+- unit = %
