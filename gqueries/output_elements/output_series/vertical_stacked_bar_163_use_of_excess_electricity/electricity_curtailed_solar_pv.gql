@@ -1,7 +1,5 @@
 - unit = PJ
 - query =
-    SUM(
-      PRODUCT(SUM(V(households_solar_pv_solar_radiation, curtailment_output_curve)), MJ_PER_MWH),
-      PRODUCT(SUM(V(buildings_solar_pv_solar_radiation, curtailment_output_curve)), MJ_PER_MWH),
-      PRODUCT(SUM(V(energy_power_solar_pv_solar_radiation, curtailment_output_curve)), MJ_PER_MWH)
+    PRODUCT(
+      SUM(SUM_CURVES(V(Q(electricity_producing_solar_converters),curtailment_output_curve))), MJ_PER_MWH
     ) / BILLIONS
