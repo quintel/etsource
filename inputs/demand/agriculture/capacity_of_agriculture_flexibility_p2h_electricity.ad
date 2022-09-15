@@ -1,0 +1,24 @@
+- query =
+    share_hydrogen = INPUT_VALUE(agriculture_burner_hydrogen_share);
+    share_network_gas = INPUT_VALUE(agriculture_burner_network_gas_share);
+    share_1 = DIVIDE(share_hydrogen,SUM(share_hydrogen,share_network_gas));
+    EACH(
+      UPDATE(
+        V(agriculture_flexibility_p2h_hydrogen_electricity),
+        number_of_units,
+        PRODUCT(share_1, USER_INPUT()) / V(agriculture_flexibility_p2h_hydrogen_electricity, heat_output_capacity)
+      ),
+      UPDATE(
+        V(agriculture_flexibility_p2h_network_gas_electricity),
+        number_of_units,
+        PRODUCT((1.0 - share_1), USER_INPUT()) / V(agriculture_flexibility_p2h_network_gas_electricity, heat_output_capacity)
+      )
+    )
+- priority = 0
+- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(V(agriculture_useful_demand_useable_heat,demand),(8760 * MJ_PER_MWH)),2.0))
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = MW
+- update_period = future
+#- disabled_by = external_coupling_agriculture_p2h_capacity
