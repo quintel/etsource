@@ -4,6 +4,6 @@
 - query =
     SUM(
       V(CHILDREN(V(agriculture_useful_demand_useable_heat)),input_of_electricity),
-      V(agriculture_flexibility_p2h_hydrogen_electricity,input_of_electricity),
-      V(agriculture_flexibility_p2h_network_gas_electricity,input_of_electricity)      
+      V(CHILDREN(V(agriculture_hydrogen_hybrid_heat)),input_of_electricity),
+      V(CHILDREN(V(agriculture_network_gas_hybrid_heat)),input_of_electricity)    
     ) / BILLIONS
