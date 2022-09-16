@@ -1,0 +1,10 @@
+# Calculates the future total costs of electricity input for power-to-heat for the industry.
+
+- query =
+    SUM(
+      PRODUCT_CURVES(
+        SUM_CURVES(V(INTERSECTION(G(p2h),SECTOR(agriculture)), electricity_input_curve)),
+        V(CARRIER(electricity), cost_curve)
+      )
+    )
+- unit = EUR
