@@ -1,0 +1,17 @@
+# Calculates the variable costs per MWh produced heat for power-to-heat for the agriculture.
+
+- query =
+    IF(
+        SUM(V(INTERSECTION(G(p2h),SECTOR(agriculture)), output_of_useable_heat)) == 0,
+        0.0,
+        -> {
+            DIVIDE(
+                SUM(V(INTERSECTION(G(p2h),SECTOR(agriculture)), variable_costs_per(:node))),
+                DIVIDE(
+                    SUM(V(INTERSECTION(G(p2h),SECTOR(agriculture)), output_of_useable_heat)),
+                    3600
+                )
+            )
+        }
+    )
+- unit = euro/MWh
