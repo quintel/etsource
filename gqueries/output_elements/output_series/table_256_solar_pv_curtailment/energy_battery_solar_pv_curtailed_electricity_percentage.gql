@@ -1,0 +1,10 @@
+# The percentage of the electricity that is curtailed for 'energy_power_solar_pv_battery'
+
+- unit = %
+- query =
+    PRODUCT(
+      DIVIDE(
+        V(energy_battery_curtailed_solar_electricity,input_of_electricity),
+        V(energy_battery_solar_pv_solar_radiation,output_of_electricity)
+      ),100.0
+    )
