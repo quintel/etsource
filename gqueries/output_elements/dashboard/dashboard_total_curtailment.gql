@@ -2,13 +2,7 @@
     IF(
       GRAPH().future?,
       -> {
-        PRODUCT(
-          SUM(
-            Q(electricity_curtailment_input_curve),
-            Q(electricity_curtailment_solar_pv_input_curve)
-          ),
-          MJ_PER_MWH
-        )
+        V(energy_flexibility_curtailment_electricity,input_of_electricity)
       },
       -> { 0 }
     )
