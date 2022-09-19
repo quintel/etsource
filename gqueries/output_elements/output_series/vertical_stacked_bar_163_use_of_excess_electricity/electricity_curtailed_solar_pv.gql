@@ -1,5 +1,10 @@
 - unit = PJ
 - query =
-    PRODUCT(
-      SUM(SUM_CURVES(V(Q(electricity_producing_solar_converters),curtailment_output_curve))), MJ_PER_MWH
+    SUM(
+      PRODUCT(
+        SUM(SUM_CURVES(V(Q(electricity_producing_solar_converters),curtailment_output_curve))), MJ_PER_MWH
+      ),
+      V(
+        energy_battery_curtailed_solar_electricity,input_of_electricity
+      )
     ) / BILLIONS
