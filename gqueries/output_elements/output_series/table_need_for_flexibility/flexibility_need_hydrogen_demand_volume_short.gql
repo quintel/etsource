@@ -1,0 +1,13 @@
+- query =
+    PRODUCT(
+      SUM(
+        CLAMP_CURVE(
+          Q(hydrogen_imbalance_inflexible_smoothed_delta_curve),
+          -INFINITY,
+          0
+        )
+      ),
+      -1,
+      MJ_PER_MWH
+    ) / BILLIONS
+- unit = PJ
