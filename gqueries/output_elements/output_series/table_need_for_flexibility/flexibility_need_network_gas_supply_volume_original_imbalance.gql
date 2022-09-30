@@ -1,0 +1,12 @@
+- query =
+    PRODUCT(
+      SUM(
+        CLAMP_CURVE(
+          Q(network_gas_imbalance_inflexible_curve),
+          0,
+          INFINITY
+        )
+      ),
+      MJ_PER_MWH
+    ) / BILLIONS
+- unit = PJ
