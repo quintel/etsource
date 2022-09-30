@@ -1,0 +1,12 @@
+- query =
+    SUM_CURVES(
+      V(
+        FILTER(
+        ALL(),
+        "fever && (fever.group == :households_appliances)"
+        ),
+        "electricity_input_curve + hydrogen_input_curve + network_gas_input_curve + steam_hot_water_input_curve"
+       )
+     )
+
+- unit = curve
