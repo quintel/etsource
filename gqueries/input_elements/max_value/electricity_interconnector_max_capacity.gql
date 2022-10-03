@@ -1,0 +1,13 @@
+# If there is no interconnection capacity in the start year, the max value is set to the installed electricity production  capacity, else it is set to ten times the start capacity
+
+- query =
+  IF(AREA(interconnector_capacity) == 0,
+    SUM(
+      V(
+        Q(electricity_producing_converters),
+        "input_capacity * electricity_output_conversion * number_of_units"
+      )
+    ),
+    AREA(interconnector_capacity) * 10
+  )
+- unit = MW
