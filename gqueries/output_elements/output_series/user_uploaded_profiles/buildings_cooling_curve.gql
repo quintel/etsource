@@ -1,9 +1,12 @@
 - query =
-    V(
-      FILTER(
-        ALL(),
-        "merit_order && (merit_order.group == :buildings_cooling)"
-      ),
-      electricity_input_curve
+    SUM_CURVES(
+      V(
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.group == :buildings_cooling)"
+        ),
+        "electricity_input_curve"
+      )
     )
+
 - unit = curve
