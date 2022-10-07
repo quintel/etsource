@@ -26,6 +26,7 @@ task add_carrier: :environment do
 
     ATTRIBUTES.each do |key|
       next if key == 'key'
+      next if ENV[key].empty?
 
       dataset.carriers.set(carrier_name, key, ENV[key])
     end
