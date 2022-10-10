@@ -1,0 +1,15 @@
+- query =
+    UPDATE(
+      EDGE(industry_chemicals_fertilizers_production, industry_final_demand_for_chemical_fertilizers_ammonia_non_energetic),
+      share,
+      DIVIDE(USER_INPUT(), 100)
+    )
+- share_group = ammonia_production
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_final_demand_for_chemical_fertilizers_ammonia_non_energetic,share_of_industry_chemicals_fertilizers_production) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
+- disabled_by = external_coupling_industry_chemical_fertilizers_total_excluding_electricity
