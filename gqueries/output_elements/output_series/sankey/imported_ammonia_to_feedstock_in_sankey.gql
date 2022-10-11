@@ -1,0 +1,9 @@
+# Query for Sankey diagram: connection between ammonia and feedstock
+
+- unit = PJ
+- query =
+    DIVIDE(
+        SUM(
+            V(INTERSECTION(G(final_demand_group),USE(non_energetic)),"input_of_ammonia")
+        ),
+    BILLIONS)
