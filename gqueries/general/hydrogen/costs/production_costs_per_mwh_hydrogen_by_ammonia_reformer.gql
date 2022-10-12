@@ -1,0 +1,10 @@
+# Total cost of hydrogen production by ammonia reforming per MWh produced hydrogen
+
+- query =
+    DIVIDE(
+        V(energy_hydrogen_ammonia_reformer, total_costs_per(:node)),
+        DIVIDE(
+            V(energy_hydrogen_ammonia_reformer, output_of_hydrogen),
+            MJ_PER_MWH
+        )
+    )
