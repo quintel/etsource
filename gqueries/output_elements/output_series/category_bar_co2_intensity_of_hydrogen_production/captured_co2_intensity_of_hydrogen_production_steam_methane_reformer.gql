@@ -1,0 +1,15 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_hydrogen_steam_methane_reformer_ccs,
+          energy_hydrogen_steam_methane_reformer,
+          "primary_co2_emission_without_capture - primary_co2_emission"
+        )
+      ),
+      SUM(
+        Q(energy_hydrogen_steam_methane_reformer_hydrogen_output_curve),
+        Q(energy_hydrogen_steam_methane_reformer_ccs_hydrogen_output_curve)
+      )
+    )
+- unit = kg/MWh
