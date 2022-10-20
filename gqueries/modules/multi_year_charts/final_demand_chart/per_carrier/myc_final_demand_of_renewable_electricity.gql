@@ -1,4 +1,4 @@
 # Final demand of sustainable electricity
 
 - unit = MJ
-- query = V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_electricity").sum
+- query = SUM(V(G(final_demand_group), "sustainability_share * supply_of_electricity"))
