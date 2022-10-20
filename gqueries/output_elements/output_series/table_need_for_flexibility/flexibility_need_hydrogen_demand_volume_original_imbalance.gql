@@ -1,3 +1,5 @@
+# CLAMP_CURVE is used to filter out positive values
+
 - query =
     PRODUCT(
       SUM(
@@ -7,7 +9,6 @@
           0
         )
       ),
-      -1,
-      MJ_PER_MWH
-    ) / BILLIONS
-- unit = PJ
+      -1
+    ) / MILLIONS
+- unit = TWh
