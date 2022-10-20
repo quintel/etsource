@@ -3,6 +3,7 @@
 - unit = MJ
 - query =
     SUM(
-      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_coal),
-      V(INTERSECTION(G(final_demand_group),USE(energetic)), input_of_coal_gas)
+      V(G(final_demand_group), input_of_coal),
+      V(G(final_demand_group), input_of_coal_gas),
+      V(G(final_demand_group), input_of_cokes)
     )
