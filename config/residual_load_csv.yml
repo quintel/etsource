@@ -1,20 +1,26 @@
 # Configuration for a simple CSV file which contains residual loads based on queries.
 # Each curve is output in a column, with each row containing a value for the hour.
 ---
-- name: Electricty imbalance (MW)
+- name: Electricity imbalance (MW)
   query: electricity_imbalance_inflexible_curve
 
 - name: Heat network imbalance (MW)
   query: heat_network_imbalance_inflexible_curve
 
-- name: Network gas imbalance (cumulative) (MW)
-  query: network_gas_imbalance_cumulative_curve
+- name: Network gas imbalance (MW)
+  query: network_gas_imbalance_inflexible_curve
 
 - name: Hydrogen imbalance (MW)
   query: hydrogen_imbalance_inflexible_curve
 
-- name: Network gas imbalance (smoothed) (MW)
+- name: Network gas imbalance (short timescale) (MW)
+  query: network_gas_imbalance_inflexible_smoothed_delta_curve
+
+- name: Network gas imbalance (long timescale) (MW)
   query: network_gas_imbalance_inflexible_smoothed_curve
 
-- name: Hydrogen imblanace (smoothed) (MW)
+- name: Hydrogen imblanace (short timescale) (MW)
+  query: hydrogen_imbalance_inflexible_smoothed_delta_curve
+
+- name: Hydrogen imblanace (long timescale) (MW)
   query: hydrogen_imbalance_inflexible_smoothed_curve
