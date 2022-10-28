@@ -1,0 +1,10 @@
+- query = 
+    SUM_CURVES(
+        SUM_CURVES(V(Q(electricity_producing_torrefied_biomass_pellets_converters),electricity_output_curve)),
+        SUM_CURVES(V(Q(electricity_producing_wood_pellets_converters),electricity_output_curve)),
+        PRODUCT_CURVES(
+            SUM_CURVES(V(Q(electricity_producing_gas_power_fuelmix_converters), electricity_output_curve)),
+            COALESCE_CURVE(nil,V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion))
+        )
+    )
+- unit = curve

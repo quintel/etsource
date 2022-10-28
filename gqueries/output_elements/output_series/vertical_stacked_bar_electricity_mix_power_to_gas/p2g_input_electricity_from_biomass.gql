@@ -1,0 +1,11 @@
+- query = 
+    PRODUCT(
+        SUM(
+            PRODUCT_CURVES(
+                Q(hourly_share_of_p2g_in_total_electricity_demand),
+                Q(hourly_supply_electricity_from_biomass)
+            )
+         ),
+         MJ_PER_MWH / BILLIONS
+    )
+- unit = PJ
