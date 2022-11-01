@@ -5,4 +5,8 @@
     chp_demand = DATASET_INPUT(input_energy_chp_coal_gas_coal_gas_input_demand);
     total_coal_gas_demand = industry_final_demand + power_plant_demand + chp_demand;
 
-    IF(total_coal_gas_demand > 0.0, chp_demand / total_coal_gas_demand, 0.16)
+    IF(
+      total_coal_gas_demand > 0.0,
+      -> { chp_demand / total_coal_gas_demand },
+      -> { 0.16 }
+    ).call

@@ -4,9 +4,18 @@
 - query =
     total_shipping_mixer_lng_demand = DATASET_INPUT(transport_final_demand_for_shipping_lng_demand) + DATASET_INPUT(transport_final_demand_for_shipping_bio_lng_demand);
 
-    IF(total_shipping_mixer_lng_demand > 0.0, {
-      lng: DATASET_INPUT(transport_final_demand_for_shipping_lng_demand) / total_shipping_mixer_lng_demand,
-      bio_lng: DATASET_INPUT(transport_final_demand_for_shipping_bio_lng_demand) / total_shipping_mixer_lng_demand }, {
-      lng: SHARE("energy/transport_shipping_mixer_lng_child_share", transport_final_demand_for_shipping_lng),
-      bio_lng: SHARE("energy/transport_shipping_mixer_lng_child_share", transport_final_demand_for_shipping_bio_lng)}
+    IF(
+      total_shipping_mixer_lng_demand > 0.0,
+      ->{
+        {
+          lng: DATASET_INPUT(transport_final_demand_for_shipping_lng_demand) / total_shipping_mixer_lng_demand,
+          bio_lng: DATASET_INPUT(transport_final_demand_for_shipping_bio_lng_demand) / total_shipping_mixer_lng_demand
+        }
+      },
+      -> {
+        {
+          lng: SHARE("energy/transport_shipping_mixer_lng_child_share", transport_final_demand_for_shipping_lng),
+          bio_lng: SHARE("energy/transport_shipping_mixer_lng_child_share", transport_final_demand_for_shipping_bio_lng)
+        }
+      }
     )

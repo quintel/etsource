@@ -4,9 +4,18 @@
 - query =
   total_road_mixer_lng_demand = DATASET_INPUT(transport_final_demand_for_road_lng_demand) + DATASET_INPUT(transport_final_demand_for_road_bio_lng_demand);
 
-  IF(total_road_mixer_lng_demand > 0.0, {
-    lng: DATASET_INPUT(transport_final_demand_for_road_lng_demand) / total_road_mixer_lng_demand,
-    bio_lng: DATASET_INPUT(transport_final_demand_for_road_bio_lng_demand) / total_road_mixer_lng_demand }, {
-    lng: SHARE("energy/transport_road_mixer_lng_child_share", transport_final_demand_for_road_lng),
-    bio_lng: SHARE("energy/transport_road_mixer_lng_child_share", transport_final_demand_for_road_bio_lng)}
+  IF(
+    total_road_mixer_lng_demand > 0.0,
+    -> {
+      {
+        lng: DATASET_INPUT(transport_final_demand_for_road_lng_demand) / total_road_mixer_lng_demand,
+        bio_lng: DATASET_INPUT(transport_final_demand_for_road_bio_lng_demand) / total_road_mixer_lng_demand
+      }
+    },
+    -> {
+      {
+        lng: SHARE("energy/transport_road_mixer_lng_child_share", transport_final_demand_for_road_lng),
+        bio_lng: SHARE("energy/transport_road_mixer_lng_child_share", transport_final_demand_for_road_bio_lng)
+      }
+    }
   )

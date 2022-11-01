@@ -13,7 +13,12 @@
     blastfurnace_bof_total = blastfurnace_bof_coal + blastfurnace_bof_electricity + blastfurnace_bof_network_gas + blastfurnace_bof_wood_pellets + blastfurnace_bof_coal_gas + blastfurnace_bof_cokes + blastfurnace_bof_steam_hot_water + blastfurnace_bof_crude_oil;
     steel_output = DATASET_INPUT(input_industry_metal_steel_production) * DATASET_INPUT(input_industry_steel_blastfurnace_bof_share);
 
-    IF(blastfurnace_bof_total > 0.0, {
-        not_defined: steel_output * 1000.0 / blastfurnace_bof_total}, {
-        not_defined: 0.129012}
-        )
+    IF(
+      blastfurnace_bof_total > 0.0,
+      -> {
+        { not_defined: steel_output * 1000.0 / blastfurnace_bof_total }
+      },
+      -> {
+        { not_defined: 0.129012 }
+      }
+    )
