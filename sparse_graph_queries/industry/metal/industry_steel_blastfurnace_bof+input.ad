@@ -11,21 +11,30 @@
     blastfurnace_bof_crude_oil = DATASET_INPUT(input_industry_metal_steel_crude_oil_demand) * DATASET_INPUT(industry_final_demand_for_metal_steel_crude_oil_industry_steel_blastfurnace_bof_parent_share);
     blastfurnace_bof_total = blastfurnace_bof_coal + blastfurnace_bof_electricity + blastfurnace_bof_network_gas + blastfurnace_bof_wood_pellets + blastfurnace_bof_coal_gas + blastfurnace_bof_cokes + blastfurnace_bof_steam_hot_water + blastfurnace_bof_crude_oil;
 
-    IF(blastfurnace_bof_total > 0.0, {
-        coal: blastfurnace_bof_coal / blastfurnace_bof_total,
-        electricity: blastfurnace_bof_electricity / blastfurnace_bof_total,
-        network_gas: blastfurnace_bof_network_gas / blastfurnace_bof_total,
-        wood_pellets: blastfurnace_bof_wood_pellets / blastfurnace_bof_total,
-        coal_gas: blastfurnace_bof_coal_gas / blastfurnace_bof_total,
-        cokes: blastfurnace_bof_cokes / blastfurnace_bof_total,
-        steam_hot_water: blastfurnace_bof_steam_hot_water / blastfurnace_bof_total,
-        crude_oil: blastfurnace_bof_crude_oil / blastfurnace_bof_total}, {
-        coal: 0.0455,
-        electricity: 0.1809,
-        network_gas: 0.1956,
-        wood_pellets: 0.0,
-        coal_gas: 0.5097,
-        cokes: 0.0651,
-        steam_hot_water: 0.0,
-        crude_oil: 0.0032}
-        )
+    IF(
+      blastfurnace_bof_total > 0.0,
+      -> {
+        {
+          coal: blastfurnace_bof_coal / blastfurnace_bof_total,
+          electricity: blastfurnace_bof_electricity / blastfurnace_bof_total,
+          network_gas: blastfurnace_bof_network_gas / blastfurnace_bof_total,
+          wood_pellets: blastfurnace_bof_wood_pellets / blastfurnace_bof_total,
+          coal_gas: blastfurnace_bof_coal_gas / blastfurnace_bof_total,
+          cokes: blastfurnace_bof_cokes / blastfurnace_bof_total,
+          steam_hot_water: blastfurnace_bof_steam_hot_water / blastfurnace_bof_total,
+          crude_oil: blastfurnace_bof_crude_oil / blastfurnace_bof_total
+        }
+      },
+      -> {
+        {
+          coal: 0.0455,
+          electricity: 0.1809,
+          network_gas: 0.1956,
+          wood_pellets: 0.0,
+          coal_gas: 0.5097,
+          cokes: 0.0651,
+          steam_hot_water: 0.0,
+          crude_oil: 0.0032
+        }
+      }
+    )

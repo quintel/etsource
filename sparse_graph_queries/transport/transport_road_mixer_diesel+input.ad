@@ -4,9 +4,18 @@
 - query =
   total_road_mixer_diesel_demand = DATASET_INPUT(input_transport_road_diesel_demand) + DATASET_INPUT(input_transport_road_biodiesel_demand);
 
-  IF(total_road_mixer_diesel_demand > 0.0, {
-    diesel: DATASET_INPUT(input_transport_road_diesel_demand) / total_road_mixer_diesel_demand,
-    biodiesel: DATASET_INPUT(input_transport_road_biodiesel_demand) / total_road_mixer_diesel_demand }, {
-    diesel: 1.0,
-    biodiesel: 0.0}
+  IF(
+    total_road_mixer_diesel_demand > 0.0,
+    -> {
+      {
+        diesel: DATASET_INPUT(input_transport_road_diesel_demand) / total_road_mixer_diesel_demand,
+        biodiesel: DATASET_INPUT(input_transport_road_biodiesel_demand) / total_road_mixer_diesel_demand
+      }
+    },
+    -> {
+      {
+        diesel: 1.0,
+        biodiesel: 0.0
+      }
+    }
   )

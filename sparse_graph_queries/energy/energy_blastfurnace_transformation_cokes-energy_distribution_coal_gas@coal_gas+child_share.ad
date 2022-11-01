@@ -3,4 +3,8 @@
     cokesoven_coal_gas_output = DATASET_INPUT(input_energy_cokesoven_transformation_coal_input_demand) * DATASET_INPUT(input_energy_cokesoven_transformation_coal_gas_output_conversion);
     total_coal_gas_demand = blastfurnace_coal_gas_output + cokesoven_coal_gas_output;
 
-    IF(total_coal_gas_demand > 0.0, blastfurnace_coal_gas_output / total_coal_gas_demand, 0.6907)
+    IF(
+      total_coal_gas_demand > 0.0,
+      -> { blastfurnace_coal_gas_output / total_coal_gas_demand },
+      -> { 0.6907 }
+    ).call
