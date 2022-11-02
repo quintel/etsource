@@ -1,0 +1,15 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_hydrogen_biomass_gasification,
+          energy_hydrogen_biomass_gasification_ccs,
+          "primary_co2_emission_without_capture - primary_co2_emission"
+        )
+      ),
+      SUM(
+        Q(energy_hydrogen_biomass_gasification_hydrogen_output_curve),
+        Q(energy_hydrogen_biomass_gasification_ccs_hydrogen_output_curve)
+      )
+    )
+- unit = kg/MWh

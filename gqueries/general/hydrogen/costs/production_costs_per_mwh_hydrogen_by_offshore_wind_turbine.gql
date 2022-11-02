@@ -1,5 +1,4 @@
-# Total cost of hydrogen production from offshore wind per kg produced hydrogen
-# Energy density of h2 is 120.1 MJ per kg
+# Total cost of hydrogen production from offshore wind per MWh produced hydrogen
 
 - query =
     DIVIDE(
@@ -9,6 +8,6 @@
         ),
         DIVIDE(
             V(energy_hydrogen_electrolysis_wind_electricity, output_of_hydrogen),
-            3600
+            MJ_PER_MWH
         )
     )

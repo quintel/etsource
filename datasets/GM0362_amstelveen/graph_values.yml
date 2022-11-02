@@ -139,11 +139,11 @@ transport_final_demand_biodiesel:
 transport_final_demand_for_shipping_lng:
   demand: 0.0
 transport_useful_demand_bicycles:
-  demand: 80.00625706887614
+  demand: 76.21363718940148
 transport_final_demand_heavy_fuel_oil:
   demand: 0.0
 transport_final_demand_electricity:
-  demand: 12.22471637
+  demand: 9.324592676
 transport_final_demand_kerosene:
   demand: 0.0
 energy_power_ultra_supercritical_network_gas:
@@ -415,6 +415,10 @@ other_final_demand_network_gas:
   demand: 0.0
 other_final_demand_wood_pellets:
   demand: 0.0
+bunkers_total_useful_demand_ships:
+  demand: 491955.99
+bunkers_total_useful_demand_planes:
+  demand: 166290.19
 households_space_heater_hybrid_heatpump_air_water_electricity:
   input:
     :electricity: 0.15030496816503802
@@ -503,10 +507,6 @@ industry_aluminium_electrolysis_current_electricity:
     :useable_heat: 0.0596479791395046
   output:
     :not_defined: 0.0162972620599739
-industry_chemicals_fertilizers_haber_bosch_process_hydrogen:
-  input:
-    :hydrogen: 0.8624
-    :useable_heat: 0.1376
 industry_heat_burner_coal:
   demand: 0.0
   output:
@@ -624,6 +624,8 @@ industry_other_metals_burner_network_gas:
     :network_gas: 0.0
 agriculture_final_demand_electricity-agriculture_geothermal@electricity:
   parent_share: 0.0
+agriculture_final_demand_electricity-agriculture_heatpump_water_water_electricity@electricity:
+  parent_share: 0.0
 agriculture_final_demand_electricity-agriculture_heatpump_water_water_ts_electricity@electricity:
   parent_share: 0.0
 buildings_final_demand_coal-buildings_final_demand_for_space_heating_coal@coal:
@@ -665,27 +667,29 @@ buildings_local_production_electricity-buildings_final_demand_electricity@electr
 transport_final_demand_for_road_hydrogen-transport_truck_using_hydrogen@hydrogen:
   parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_van_using_electricity@electricity:
-  parent_share: 0.17157599949045
+  parent_share: 0.171575999
 transport_final_demand_electricity-transport_final_demand_for_road_electricity@electricity:
   parent_share: 1.0
 transport_final_demand_biodiesel-transport_final_demand_for_rail_biodiesel@biodiesel:
   parent_share: 0.0
 transport_road_mixer_gasoline-transport_van_using_gasoline_mix@gasoline_mix:
-  parent_share: 0.00853738171752783
+  parent_share: 0.008537382
+transport_final_demand_electricity-transport_final_demand_for_shipping_electricity@electricity:
+  parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@electricity:
-  parent_share: 0.0457710468263948
+  parent_share: 0.045771047
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 0.104901171
 transport_final_demand_for_road_hydrogen-transport_van_using_hydrogen@hydrogen:
   parent_share: 1.0
 transport_final_demand_for_road_lpg-transport_car_using_lpg@lpg:
-  parent_share: 0.755243905375229
+  parent_share: 0.755243905
 transport_road_mixer_diesel-transport_van_using_diesel_mix@diesel_mix:
-  parent_share: 0.119054666740871
+  parent_share: 0.119054667
 transport_final_demand_biodiesel-transport_final_demand_for_shipping_biodiesel@biodiesel:
   parent_share: 0.0
 transport_road_mixer_diesel-transport_truck_using_diesel_mix@diesel_mix:
-  parent_share: 0.578354095835082
+  parent_share: 0.578354096
 transport_road_mixer_compressed_network_gas-transport_car_using_compressed_natural_gas@compressed_network_gas:
   parent_share: 0.0
 transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
@@ -693,11 +697,13 @@ transport_final_demand_diesel-transport_final_demand_for_shipping_diesel@diesel:
 transport_final_demand_for_road_electricity-transport_truck_using_electricity@electricity:
   parent_share: 0.0
 transport_final_demand_for_road_lpg-transport_van_using_lpg@lpg:
-  parent_share: 0.244756094624771
+  parent_share: 0.244756095
+transport_final_demand_electricity-transport_final_demand_for_aviation_electricity@electricity:
+  parent_share: 0.0
 transport_road_mixer_lng-transport_bus_using_lng_mix@lng_mix:
   parent_share: 1.0
 transport_final_demand_for_road_electricity-transport_car_using_electricity@electricity:
-  parent_share: 0.735242839874803
+  parent_share: 0.73524284
 transport_final_demand_diesel-transport_final_demand_for_road_diesel@diesel:
   parent_share: 0.9973928848160766
 transport_final_demand_for_road_hydrogen-transport_bus_using_hydrogen@hydrogen:
@@ -711,11 +717,11 @@ transport_rail_mixer_diesel-transport_freight_train_using_diesel_mix@diesel_mix:
 transport_final_demand_diesel-transport_final_demand_for_rail_diesel@diesel:
   parent_share: 0.0
 transport_road_mixer_gasoline-transport_car_using_gasoline_mix@gasoline_mix:
-  parent_share: 0.958787896257333
+  parent_share: 0.958787896
 transport_road_mixer_diesel-transport_car_using_diesel_mix@diesel_mix:
-  parent_share: 0.213160079923232
+  parent_share: 0.21316008
 transport_road_mixer_diesel-transport_bus_using_diesel_mix@diesel_mix:
-  parent_share: 0.0894311575008152
+  parent_share: 0.089431157
 transport_final_demand_gasoline-transport_final_demand_for_road_gasoline@gasoline:
   parent_share: 1.0
 transport_road_mixer_compressed_network_gas-transport_bus_using_compressed_natural_gas@compressed_network_gas:
@@ -725,7 +731,7 @@ transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
 transport_final_demand_bio_ethanol-transport_final_demand_for_road_bio_ethanol@bio_ethanol:
   parent_share: 1.0
 transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
-  parent_share: 0.0474101138083521
+  parent_share: 0.047410114
 transport_final_demand_for_rail_electricity-transport_freight_train_using_electricity@electricity:
   parent_share: 0.137103915
 transport_final_demand_biodiesel-transport_final_demand_for_road_biodiesel@biodiesel:
@@ -930,16 +936,12 @@ industry_final_demand_for_metal_steam_hot_water-industry_final_demand_for_metal_
   parent_share: 0.0
 industry_final_demand_crude_oil-industry_final_demand_for_metal_crude_oil@crude_oil:
   parent_share: 0.0
-? industry_chemicals_fertilizers_haber_bosch_process_hydrogen-industry_chemicals_fertilizers_processes_potential_residual_heat@useable_heat
-: parent_share: 0.04
 industry_final_demand_for_chemical_coal_non_energetic-industry_final_demand_for_chemical_other_coal_non_energetic@coal:
   parent_share: 1.0
 industry_final_demand_for_other_food_electricity-industry_other_food_heater_electricity@electricity:
   parent_share: 0.0
 industry_final_demand_wood_pellets-industry_final_demand_for_metal_wood_pellets@wood_pellets:
   parent_share: 0.0
-buildings_local_production_electricity-industry_final_demand_for_other_ict_dsr_electricity@electricity:
-  parent_share: 0.042938526197601155
 industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemical_refineries_wood_pellets@wood_pellets:
   parent_share: 0.0
 energy_distribution_coal_gas-industry_final_demand_coal_gas@coal_gas:
@@ -960,8 +962,6 @@ industry_final_demand_for_metal_electricity-industry_final_demand_for_metal_alum
   parent_share: 0.0
 industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_refineries_crude_oil@crude_oil:
   parent_share: 0.0
-? industry_chemicals_fertilizers_haber_bosch_process_hydrogen-industry_chemicals_fertilizers_flue_gasses_potential_residual_heat@useable_heat
-: parent_share: 0.03
 industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_fertilizers_electricity@electricity:
   parent_share: 0.0
 industry_final_demand_for_metal_steel_steam_hot_water-industry_steel_blastfurnace_bof@steam_hot_water:
@@ -1004,6 +1004,8 @@ industry_final_demand_for_chemical_network_gas-industry_final_demand_for_chemica
 : parent_share: 0.18
 ? industry_useful_demand_for_chemical_refineries_useable_heat-industry_chemicals_refineries_processes_potential_residual_heat@useable_heat
 : parent_share: 0.29
+buildings_local_production_electricity-industry_final_demand_for_other_ict_dsr_electricity@electricity:
+  parent_share: 0.042938526197601155
 industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_refineries_electricity@electricity:
   parent_share: 0.0
 industry_final_demand_for_other_paper_electricity-industry_useful_demand_for_other_paper_electricity@electricity:

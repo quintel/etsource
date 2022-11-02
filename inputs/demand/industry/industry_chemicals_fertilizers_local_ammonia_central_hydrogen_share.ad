@@ -1,0 +1,35 @@
+# x represents the share of local ammonia production (through Haber-Bosch) with local hydrogen production (through steam methane reforming) in the total ammonia demand for fertilizer production
+# y represents the share of local ammonia production (through Haber_Bosch) with central hydrogen (from the network) in the total ammonia demand for fertilizer production
+# This query then calculates, using x and y, the split on the locally available hydrogen node
+# alpha is the share of hydrogen that is supplied by the steam methane reformer
+# beta is the share of hydrogen that is supplied by the central hydrogen network
+# the IF statement is added to assign a share in case all ammonia is source centrally
+
+- query =
+    x = DIVIDE(INPUT_VALUE(industry_chemicals_fertilizers_local_ammonia_local_hydrogen_share),100);
+    y = DIVIDE(USER_INPUT(),100);
+    
+    beta = IF(
+      INPUT_VALUE(industry_chemicals_fertilizers_central_ammonia_share) == 100.0,
+      -> { 0.0 },
+      -> { DIVIDE(y, x + y) }
+    );
+    
+    UPDATE(
+      EDGE(industry_chemicals_fertilizers_locally_available_hydrogen, industry_final_demand_for_chemical_fertilizers_hydrogen_non_energetic),
+      share,
+      beta
+    )
+- share_group = fertilizer_production_route
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = 
+    present:(
+      V(industry_chemicals_fertilizers_haber_bosch_process_hydrogen,share_of_industry_chemicals_fertilizers_locally_available_ammonia) *
+      V(industry_final_demand_for_chemical_fertilizers_hydrogen_non_energetic,share_of_industry_chemicals_fertilizers_locally_available_hydrogen) * 100
+    )
+- step_value = 0.1
+- unit = %
+- update_period = future
+- disabled_by = external_coupling_industry_chemical_fertilizers_total_excluding_electricity

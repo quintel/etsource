@@ -1,0 +1,12 @@
+# Queries the total hourly captured co2 emissions of electricity production using the primary_captured_co2_emission_curve
+# See https://github.com/quintel/etengine/blob/master/app/models/qernel/node_api/emissions_curve.rb
+
+- query = 
+    SUM_CURVES(
+      V(
+        G(electricity_production),
+        G(electricity_interconnectors_import),
+        primary_captured_co2_emission_curve
+      )
+    )
+- unit = curve

@@ -1,0 +1,15 @@
+# European Commission Taxonomy report sets a threshold value of 3 tCO2eq / tH2
+# If life-cycle emissions are below this threshold the manufacture of hydrogen
+# qualifies as contributing substaintially to climate change mitigation
+# https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32021R2139&from=EN
+# 3 tCO2eq / tH2 is converted to kg/MWh
+
+- query =
+    PRODUCT(
+      DIVIDE(
+        3,
+        V(CARRIER(hydrogen),mj_per_kg), 
+      ),
+      MJ_PER_MWH
+    )
+- unit = kg/MWh
