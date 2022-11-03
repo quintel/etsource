@@ -1,0 +1,8 @@
+# Nodes that constitute flexible heat_network demand. Includes nodes which participate as time-resolved heat_network storage and curtailment.
+
+- query =
+    FILTER(
+      ALL(),
+      "heat_network && (heat_network.subtype == :heat_storage || heat_network.subtype == :curtailment)"
+    )
+- unit = nodes

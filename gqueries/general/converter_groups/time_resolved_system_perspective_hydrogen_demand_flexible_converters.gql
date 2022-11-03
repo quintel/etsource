@@ -1,0 +1,27 @@
+# Nodes that constitute flexible hydrogen demand. Includes nodes which participate as time-resolved dispatchable consumption and storage.
+
+- query =
+    V(
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "hydrogen && (hydrogen.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.subtype == :dispatchable)"
+        )
+      ),
+      INTERSECTION(
+        FILTER(
+          ALL(),
+          "hydrogen && (hydrogen.type == :consumer)"
+        ),
+        FILTER(
+          ALL(),
+          "heat_network && (heat_network.subtype == :dispatchable)"
+        )
+      ),
+      FILTER(ALL(),"hydrogen && (hydrogen.type == :storage)")
+    )
+- unit = nodes

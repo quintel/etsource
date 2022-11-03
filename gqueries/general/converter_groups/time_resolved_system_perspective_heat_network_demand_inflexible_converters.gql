@@ -1,0 +1,8 @@
+# Nodes that constitute inflexible heat_network demand. Includes nodes which participate as time-resolved inflexible heat_network consumers.
+
+- query =
+    FILTER(
+      ALL(),
+      "heat_network && (heat_network.type == :consumer)"
+    )
+- unit = nodes

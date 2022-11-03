@@ -1,0 +1,8 @@
+# Nodes that constitute inflexible electricity demand. Includes nodes which participate as time-resolved inflexible electricity consumers and losses.
+
+- query =
+    FILTER(
+      ALL(),
+      "merit_order && (merit_order.type == :consumer)"
+      )
+- unit = nodes
