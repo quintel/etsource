@@ -1,11 +1,15 @@
 - query =
-          SUM(
-              V(
-                transport_plane_using_bio_ethanol,
-                transport_plane_using_kerosene,
-                transport_plane_using_gasoline,
-                "demand * weighted_carrier_co2_per_mj"
-                )
-              ) / THOUSANDS
-
+    SUM(
+      V(
+        transport_plane_using_electricity,
+        transport_plane_using_hydrogen,
+        primary_co2_emission
+      ),
+      V(
+        transport_plane_using_bio_ethanol,
+        transport_plane_using_kerosene,
+        transport_plane_using_gasoline,
+        "demand * weighted_carrier_co2_per_mj"
+      )
+    ) / THOUSANDS
 - unit = T
