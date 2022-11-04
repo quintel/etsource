@@ -1,0 +1,8 @@
+# Nodes that constitute inflexible network_gas supply. Includes nodes which participate as inflexible producers in time-resolved network_gas and import.
+
+- query =
+    FILTER(
+      ALL(),
+      "network_gas && (network_gas.type == :producer || network_gas.type == :import)"
+    )
+- unit = nodes

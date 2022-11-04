@@ -1,0 +1,14 @@
+# CLAMP_CURVE is used to filter out positive values
+
+- query =
+    PRODUCT(
+      SUM(
+        CLAMP_CURVE(
+          Q(hydrogen_imbalance_inflexible_curve),
+          -INFINITY,
+          0
+        )
+      ),
+      -1
+    ) / MILLIONS
+- unit = TWh

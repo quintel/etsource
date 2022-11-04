@@ -1,0 +1,11 @@
+# CLAMP_CURVE is used to filter out negative values
+
+- query =
+    SUM(
+      CLAMP_CURVE(
+        Q(network_gas_imbalance_inflexible_smoothed_curve),
+        0,
+        INFINITY
+      )
+    ) / MILLIONS
+- unit = TWh

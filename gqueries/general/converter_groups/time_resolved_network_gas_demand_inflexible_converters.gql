@@ -1,13 +1,8 @@
-# Nodes that constitute inflexible network_gas demand. Includes nodes which participate as inflexible consumers in time-resolved network_gas and export. Excludes all flexible nodes.
+# Nodes that constitute inflexible network_gas demand. Includes nodes which participate as inflexible consumers in time-resolved network_gas and export.
 
 - query =
-    EXCLUDE(
-      FILTER(
-        ALL(),
-        "network_gas && (network_gas.type == :consumer || network_gas.type == :export)"
-      ),
-      Q(
-        time_resolved_network_gas_demand_flexible_converters
-      )
+    FILTER(
+      ALL(),
+      "network_gas && (network_gas.type == :consumer || network_gas.type == :export)"
     )
 - unit = nodes

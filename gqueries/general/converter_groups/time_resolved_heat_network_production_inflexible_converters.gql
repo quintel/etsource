@@ -1,14 +1,8 @@
-# Nodes that constitute inflexible heat_network supply. Includes nodes which participate as time-resolved volatile and must-run heat_network producers and export.
+# Nodes that constitute inflexible heat_network supply. Includes nodes which participate as time-resolved volatile and must-run heat_network producers and import.
 
 - query =
-    EXCLUDE(
-      FILTER(
-        ALL(),
-        "heat_network && (heat_network.subtype == :must_run)"
-      ),
-      FILTER(
-        ALL(),
-        "merit_order && (merit_order.subtype == :dispatchable || merit_order.type ==:flex)"
-      )
+    FILTER(
+      ALL(),
+      "heat_network && (heat_network.subtype == :must_run)"
     )
 - unit = nodes
