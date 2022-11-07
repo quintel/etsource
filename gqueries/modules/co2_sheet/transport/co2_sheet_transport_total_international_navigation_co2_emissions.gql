@@ -1,0 +1,15 @@
+- query =
+    SUM(
+      V(
+        bunkers_ship_using_lng,
+        bunkers_ship_using_hydrogen,
+        transport_truck_using_hydrogen,
+        bunkers_ship_using_ammonia,
+        primary_co2_emission
+      ),
+      V(
+        bunkers_ship_using_heavy_fuel_oil,
+        "demand * weighted_carrier_co2_per_mj"
+      )
+    ) / THOUSANDS
+- unit = T
