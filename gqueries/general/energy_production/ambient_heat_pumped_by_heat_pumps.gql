@@ -1,23 +1,10 @@
-# The total use of all ambient heat in the model 'left' of final demand.
-#
-# Here, we should build something that calculates the ambient heat that is used only 'left' of the final demand for the renewability calculation, so the ambient heat is not counted double.
-#
-# This dynamic solution is not possible yet, but should be fixed when it is.
+# The total use of all ambient heat in the model 'left' of final demand
 
-- unit = MJ
 - query =
-    V(
-    	households_water_heater_heatpump_ground_water_electricity,
-    	households_water_heater_heatpump_air_water_electricity,
-    	households_space_heater_heatpump_air_water_electricity,
-    	households_space_heater_heatpump_ground_water_electricity,
-    	agriculture_heatpump_water_water_ts_electricity,
-    	agriculture_geothermal,
-    	households_space_heater_hybrid_heatpump_air_water_electricity,
-        households_water_heater_hybrid_heatpump_air_water_electricity,
-    	buildings_space_heater_heatpump_air_water_network_gas,
-    	buildings_space_heater_collective_heatpump_water_water_ts_electricity,
-        industry_chemicals_other_heatpump_water_water_electricity,
+    SUM(
+      V(
+        FILTER(G(application_group),"ambient_heat_input_conversion > 0"),
     	input_of_ambient_heat
-    ).sum
-- deprecated_key = ambient_heat_use
+      )
+    )
+- unit = MJ
