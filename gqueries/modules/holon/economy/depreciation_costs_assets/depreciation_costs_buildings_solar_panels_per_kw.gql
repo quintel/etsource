@@ -1,0 +1,9 @@
+- query =
+  DIVIDE(
+    SUM(
+      V(buildings_solar_pv_solar_radiation, capital_expenditures_excluding_ccs_per(:node)),
+      V(buildings_solar_pv_solar_radiation, operating_expenses_excluding_ccs_per(:node))
+    ),
+    V(buildings_solar_pv_solar_radiation, installed_production_capacity_in_mw_electricity) * 1000
+  )
+- unit = euro

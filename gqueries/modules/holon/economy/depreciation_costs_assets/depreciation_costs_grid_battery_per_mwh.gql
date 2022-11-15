@@ -1,0 +1,9 @@
+- query =
+  DIVIDE(
+    SUM(
+      V(energy_flexibility_mv_batteries_electricity, capital_expenditures_excluding_ccs_per(:node)),
+      V(energy_flexibility_mv_batteries_electricity, operating_expenses_excluding_ccs_per(:node))
+    ),
+    Q(energy_flexibility_mv_batteries_electricity_volume)
+  )
+- unit = euro
