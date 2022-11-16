@@ -1,0 +1,9 @@
+- query =
+  DIVIDE(
+    SUM(
+      V(buildings_space_heater_heatpump_air_water_electricity, capital_expenditures_excluding_ccs_per(:node)),
+      V(buildings_space_heater_heatpump_air_water_electricity, operating_expenses_excluding_ccs_per(:node))
+    ),
+    V(buildings_space_heater_heatpump_air_water_electricity, "heat_output_capacity * number_of_units") * 1000
+  )
+- unit = euro
