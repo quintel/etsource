@@ -1,0 +1,6 @@
+# This query is the inverse of the "energy imports" dashboard value
+# The energy imports percentage is calculated as the total net import (last bar in the chart) divided by the primary energy consumption.
+# The inverse shows the self sufficiency / local production for primary demand
+
+- query = (1.0 - Q(dashboard_energy_import_netto)) * 100.0
+- unit = %
