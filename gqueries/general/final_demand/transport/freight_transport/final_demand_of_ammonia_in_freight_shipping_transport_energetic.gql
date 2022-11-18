@@ -1,0 +1,18 @@
+# Energetic demand of ammonia for freight shipping transport
+
+- query = 
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(freight_transport),EG(shipping_transport)
+            ),
+            energetic?
+          ),
+          ammonia?
+        ),
+        value
+      )
+    )
+- unit = MJ
