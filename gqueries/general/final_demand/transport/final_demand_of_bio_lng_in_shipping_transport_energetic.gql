@@ -1,4 +1,4 @@
-# Energetic demand of hydrogen for freight shipping transport
+# Energetic demand of bio-LNG for freight shipping transport
 
 - query = 
     SUM(
@@ -6,11 +6,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              EG(final_demand),EG(freight_transport),EG(shipping_transport)
+              EG(final_demand),EG(shipping_transport)
             ),
             energetic?
           ),
-          hydrogen?
+          bio_lng?
         ),
         value
       )
