@@ -1,0 +1,18 @@
+# Energetic demand of hydrogen for shipping transport
+
+- query = 
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(shipping_transport)
+            ),
+            energetic?
+          ),
+          hydrogen?
+        ),
+        value
+      )
+    )
+- unit = MJ

@@ -2,7 +2,10 @@
     SUM_CURVES(V(
       INTERSECTION(
         FILTER(ALL(),"hydrogen && (hydrogen.type == :consumer || hydrogen.type == :export)"),
-        EXCLUDE(INTERSECTION(SECTOR(industry), USE(energetic)),G(electricity_production))
+        FILTER(
+          INTERSECTION(SECTOR(industry), USE(energetic)),
+          "electricity_output_conversion == 0.0 && steam_hot_water_output_conversion == 0.0"
+        )
       ),
       hydrogen_input_curve
     ))

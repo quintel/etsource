@@ -1,0 +1,18 @@
+# Energetic demand of heavy fuel oil for shipping transport
+
+- query = 
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(shipping_transport)
+            ),
+            energetic?
+          ),
+          heavy_fuel_oil?
+        ),
+        value
+      )
+    )
+- unit = MJ

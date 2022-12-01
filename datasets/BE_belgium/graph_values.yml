@@ -125,6 +125,7 @@ transport_shipping_mixer_diesel:
     :bio_lng: 0.0
     :diesel: 0.9956081187062773
     :biodiesel: 0.0
+    :bio_ethanol: 0.0
     :heavy_fuel_oil: 0.004391881293722747
 transport_final_demand_bio_ethanol:
   demand: 5418.38
@@ -471,6 +472,12 @@ households_final_demand_lpg:
   demand: 4848.4
 households_final_demand_wood_pellets:
   demand: 23214.3
+industry_chp_turbine_hydrogen:
+  demand: 0.0
+  output:
+    :steam_hot_water: 0.41472000000000003
+    :electricity: 0.33445
+  full_load_hours: 8300.0
 industry_steel_scrap_hbi_eaf:
   input:
     :coal: 0.0008284430882768156
@@ -504,6 +511,11 @@ industry_refinery_transformation_crude_oil:
     :loss: 0.007662345582782559
 industry_final_demand_electricity:
   demand: 144292.32
+industry_heat_burner_hydrogen:
+  demand: 0.0
+  output:
+    :steam_hot_water: 1.0
+  full_load_hours: 7900.0
 industry_aluminium_electrolysis_current_electricity:
   input:
     :electricity: 0.940352020860495
@@ -683,6 +695,8 @@ transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@
   parent_share: 0.0
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 0.04800444323803394
+transport_final_demand_bio_ethanol-transport_final_demand_for_aviation_bio_ethanol@bio_ethanol:
+  parent_share: 0.0
 transport_final_demand_for_road_hydrogen-transport_van_using_hydrogen@hydrogen:
   parent_share: 0.20919434596909992
 transport_final_demand_for_road_lpg-transport_car_using_lpg@lpg:
@@ -733,6 +747,8 @@ transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
   parent_share: 0.01634531839556331
 transport_final_demand_bio_ethanol-transport_final_demand_for_road_bio_ethanol@bio_ethanol:
   parent_share: 1.0
+transport_final_demand_bio_ethanol-transport_final_demand_for_shipping_bio_ethanol@bio_ethanol:
+  parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
   parent_share: 0.08410307497264498
 transport_final_demand_for_rail_electricity-transport_freight_train_using_electricity@electricity:

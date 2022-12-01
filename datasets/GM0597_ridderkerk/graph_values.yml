@@ -125,6 +125,7 @@ transport_shipping_mixer_diesel:
     :bio_lng: 0.0
     :diesel: 1.0
     :biodiesel: 0.0
+    :bio_ethanol: 0.0
     :heavy_fuel_oil: 0.0
 transport_final_demand_bio_ethanol:
   demand: 40.45788012
@@ -469,6 +470,12 @@ households_final_demand_lpg:
   demand: 0.0
 households_final_demand_wood_pellets:
   demand: 28.0
+industry_chp_turbine_hydrogen:
+  demand: 0.0
+  output:
+    :steam_hot_water: 0.41472000000000003
+    :electricity: 0.33445
+  full_load_hours: 8300.0
 industry_steel_scrap_hbi_eaf:
   input:
     :coal: 0.17635
@@ -501,6 +508,11 @@ industry_refinery_transformation_crude_oil:
     :refinery_gas: 0.2
 industry_final_demand_electricity:
   demand: 74.78720000000001
+industry_heat_burner_hydrogen:
+  demand: 0.0
+  output:
+    :steam_hot_water: 1.0
+  full_load_hours: 7900.0
 industry_aluminium_electrolysis_current_electricity:
   input:
     :electricity: 0.940352020860495
@@ -680,6 +692,8 @@ transport_final_demand_for_road_electricity-transport_bicycle_using_electricity@
   parent_share: 0.0697608453770139
 transport_final_demand_for_rail_electricity-transport_tram_using_electricity@electricity:
   parent_share: 0.0
+transport_final_demand_bio_ethanol-transport_final_demand_for_aviation_bio_ethanol@bio_ethanol:
+  parent_share: 0.0
 transport_final_demand_for_road_hydrogen-transport_van_using_hydrogen@hydrogen:
   parent_share: 1.0
 transport_final_demand_for_road_lpg-transport_car_using_lpg@lpg:
@@ -730,6 +744,8 @@ transport_road_mixer_gasoline-transport_truck_using_gasoline_mix@gasoline_mix:
   parent_share: 0.0
 transport_final_demand_bio_ethanol-transport_final_demand_for_road_bio_ethanol@bio_ethanol:
   parent_share: 1.0
+transport_final_demand_bio_ethanol-transport_final_demand_for_shipping_bio_ethanol@bio_ethanol:
+  parent_share: 0.0
 transport_final_demand_for_road_electricity-transport_motorcycle_using_electricity@electricity:
   parent_share: 0.0596456516051492
 transport_final_demand_for_rail_electricity-transport_freight_train_using_electricity@electricity:

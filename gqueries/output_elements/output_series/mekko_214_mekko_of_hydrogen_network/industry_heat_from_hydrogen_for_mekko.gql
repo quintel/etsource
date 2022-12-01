@@ -1,0 +1,17 @@
+- unit = PJ
+- query =
+    DIVIDE(
+        SUM(
+            V(
+              FILTER(
+                INTERSECTION(
+                  G(heat_production),
+                  SECTOR(industry)
+                ),
+                "steam_hot_water_output_conversion > 0.0 || electricity_output_conversion > 0.0"
+              ), 
+              input_of_hydrogen
+            )
+        ),
+        BILLIONS
+    )
