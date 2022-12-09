@@ -1,0 +1,10 @@
+# This query calculates the required additional MV network as percentage of the current installed_production_capacity_in_mw_electricity
+# < 100% means no additional capacity
+# > 100% means additional capacity required
+
+- query = 
+    DIVIDE(
+        Q(mv_net_capacity_future),
+        Q(mv_net_capacity_present)
+    ) * 100.0
+- unit = %
