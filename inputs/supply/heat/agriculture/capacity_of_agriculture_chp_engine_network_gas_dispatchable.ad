@@ -1,0 +1,19 @@
+- query =
+    EACH(
+        UPDATE(
+            V(agriculture_chp_engine_network_gas_dispatchable),
+            number_of_units,
+            USER_INPUT() / V(agriculture_chp_engine_network_gas_dispatchable,electricity_output_capacity)
+        ),
+        UPDATE(
+          L(agriculture_chp_engine_network_gas_dispatchable),
+          preset_demand_by_electricity_production,
+          V(agriculture_chp_engine_network_gas_dispatchable, production_based_on_number_of_units)
+    ))
+- priority = 0
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(heat_production_agriculture) * BILLIONS, V(agriculture_chp_engine_network_gas_dispatchable,full_load_hours)), MJ_PER_MWH)
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(agriculture_chp_engine_network_gas_dispatchable,number_of_units),V(agriculture_chp_engine_network_gas_dispatchable,electricity_output_capacity))
+- step_value = 1.0
+- unit = MW
+- update_period = future
