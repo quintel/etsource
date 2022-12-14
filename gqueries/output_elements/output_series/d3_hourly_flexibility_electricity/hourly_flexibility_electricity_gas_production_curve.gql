@@ -1,7 +1,10 @@
 - query =
     SUM_CURVES(
       V(
-        Q(electricity_producing_gas_converters),
+        FILTER(
+          Q(electricity_producing_gas_converters),
+          "merit_order && (merit_order.subtype == :dispatchable)"
+        ),
         electricity_output_curve
       )
     )
