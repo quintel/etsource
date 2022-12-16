@@ -1,4 +1,9 @@
-- query = V(agriculture_useful_demand_useable_heat, primary_co2_emission) / THOUSANDS
-
-
+- query = 
+    SUM(
+      V(
+        agriculture_useful_demand_useable_heat,
+        agriculture_heat_unused_steam_hot_water,
+        primary_co2_emission
+      )
+    ) / THOUSANDS
 - unit = T
