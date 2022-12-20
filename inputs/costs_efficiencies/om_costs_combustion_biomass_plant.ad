@@ -1,7 +1,23 @@
 - query =
     EACH(
-      UPDATE(V(energy_chp_local_wood_pellets, energy_chp_local_engine_biogas, industry_chp_wood_pellets), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(energy_chp_local_wood_pellets, energy_chp_local_engine_biogas, industry_chp_wood_pellets), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
+      UPDATE(
+        V(
+          energy_chp_local_wood_pellets,
+          energy_chp_local_engine_biogas,
+          industry_chp_wood_pellets,
+          agriculture_chp_engine_biogas,
+          agriculture_chp_wood_pellets
+        ), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()
+      ),
+      UPDATE(
+        V(
+          energy_chp_local_wood_pellets,
+          energy_chp_local_engine_biogas,
+          industry_chp_wood_pellets,
+          agriculture_chp_engine_biogas,
+          agriculture_chp_wood_pellets
+        ), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()
+      )
     )
 - priority = 0
 - max_value = 300.0
