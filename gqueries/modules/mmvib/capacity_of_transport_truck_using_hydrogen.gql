@@ -1,0 +1,18 @@
+# Multiply the peak demand (= assumed to be the input capacity) of the hydrogen
+# final demand curve of the entire transport sector with the share of the hydrogen
+# demand of trucks in respect to the total hydrogen demand of the transport sector.
+#
+# A prerequisite for this calculation to be valid is that the hydrogen final
+# demand is represented by a flat curve.
+#
+# This query is used in the ESDL app.
+
+- unit = MW
+- query =
+    PRODUCT(
+      MAX(V(transport_final_demand_hydrogen, hydrogen_input_curve)),
+      DIVIDE(
+        V(transport_truck_using_hydrogen, demand),
+        V(transport_final_demand_hydrogen, demand)
+      )
+    )
