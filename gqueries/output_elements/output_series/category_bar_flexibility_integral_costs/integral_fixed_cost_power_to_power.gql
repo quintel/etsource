@@ -1,5 +1,5 @@
 # Calculates the fixed costs per MWh produced electricity for power-to-power.
-# Excludes EV batteries because these costs are already incurred by EV owners and not explicitly calculated.
+# Excludes batteries in electric vehicles (transport sector) because these costs are already incurred by vehicle owners and not explicitly calculated.
 
 - query =
     IF(
@@ -10,12 +10,7 @@
                 SUM(V(
                   EXCLUDE(
                     G(p2p),
-                    V(
-                      transport_car_flexibility_p2p_electricity,
-                      transport_bus_flexibility_p2p_electricity,
-                      transport_truck_flexibility_p2p_electricity,
-                      transport_van_flexibility_p2p_electricity
-                    )
+                    SECTOR(transport)
                   ), fixed_costs_per(:node))
                 ),
                 DIVIDE(
