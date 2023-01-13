@@ -10,6 +10,18 @@ agriculture_final_demand_crude_oil:
     :crude_oil: 0.0
 agriculture_final_demand_other_bio_oil:
   demand: 0.0
+agriculture_chp_wood_pellets:
+  demand: 0.0
+  full_load_hours: 6500.0
+  output:
+    :steam_hot_water: 0.47
+    :electricity: 0.43
+agriculture_chp_engine_network_gas_dispatchable:
+  demand: 0.0
+  full_load_hours: 3920.0
+  output:
+    :steam_hot_water: 0.47
+    :electricity: 0.43
 agriculture_final_demand_wood_pellets:
   demand: 336.0
 agriculture_final_demand_steam_hot_water:
@@ -18,6 +30,12 @@ agriculture_final_demand_diesel:
   demand: 2358.272
 agriculture_final_demand_kerosene:
   demand: 0.0
+agriculture_chp_engine_biogas:
+  demand: 0.0
+  full_load_hours: 4200.0
+  output:
+    :steam_hot_water: 0.835
+    :electricity: 0.289
 agriculture_final_demand_other_oil:
   demand: 0.0
 agriculture_final_demand_network_gas:
@@ -321,11 +339,11 @@ energy_power_supercritical_waste_mix:
   output:
     :electricity: 0.16593186372745491
 energy_chp_local_engine_biogas:
-  demand: 3507.9069767441865
+  demand: 3671.0000000000005
   full_load_hours: 8500.0
   output:
-    :steam_hot_water: 0.47
-    :electricity: 0.43
+    :steam_hot_water: 0.17324979569599563
+    :electricity: 0.4108962135657859
 energy_power_ultra_supercritical_ccs_coal:
   demand: 0.0
   output:
@@ -643,12 +661,16 @@ industry_other_metals_burner_network_gas:
     :coal: 0.0
     :crude_oil: 0.0
     :network_gas: 1.0
+agriculture_final_demand_central_steam_hot_water-agriculture_final_demand_steam_hot_water@steam_hot_water:
+  child_share: 1.0
 agriculture_final_demand_electricity-agriculture_geothermal@electricity:
   parent_share: 0.0
 agriculture_final_demand_electricity-agriculture_heatpump_water_water_electricity@electricity:
   parent_share: 0.0
 agriculture_final_demand_electricity-agriculture_heatpump_water_water_ts_electricity@electricity:
   parent_share: 0.0
+agriculture_final_demand_local_steam_hot_water-agriculture_final_demand_steam_hot_water@steam_hot_water:
+  child_share: 0.0
 buildings_final_demand_coal-buildings_final_demand_for_space_heating_coal@coal:
   parent_share: 0.9118492714984299
 buildings_final_demand_electricity-buildings_final_demand_for_appliances_electricity@electricity:

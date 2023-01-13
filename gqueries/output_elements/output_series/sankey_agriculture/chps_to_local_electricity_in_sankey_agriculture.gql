@@ -1,0 +1,18 @@
+# This query calculates the electricity production of all CHPs that is used
+# as final demand in the agriculture sector
+
+- unit = MJ
+- query = 
+    SUM(
+        V(
+            EXCLUDE(
+                FILTER(
+                    ALL(),
+                    "agriculture_heat && (agriculture_heat.type == :producer)"
+                ),
+                V(agriculture_heat_backup_burner_network_gas)
+            ),
+            output_of_electricity
+        )
+    )
+    - Q(chps_to_mv_grid_in_sankey_agriculture)

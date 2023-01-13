@@ -1,0 +1,16 @@
+# This query calculates the total losses of agricultural CHPs
+
+- unit = MJ
+- query = 
+    SUM(
+        V(
+            EXCLUDE(
+                FILTER(
+                    ALL(),
+                    "agriculture_heat && (agriculture_heat.type == :producer)"
+                ),
+                V(agriculture_heat_backup_burner_network_gas)
+            ),
+            output_of_loss
+        )
+    )

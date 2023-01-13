@@ -1,0 +1,41 @@
+# x represents the share of agriculture heat demand supplied by local CHPs
+# y represents the share of agriculture heat demand supplied by central heating network
+# Because both are connected to the single steam hot water final demand node, the total share 
+# of steam hot water in agriculture useable heat is set by x + y
+# The child share on the final demand node is then set by the relative share of x in x + y
+# This child share is specified as alpha
+
+- query =
+    x = DIVIDE(USER_INPUT(),100);
+    y = DIVIDE(INPUT_VALUE(agriculture_final_demand_central_steam_hot_water_share),100);
+
+    alpha = IF(
+      (x + y) == 0.0,
+      -> { 1.0 },
+      -> { DIVIDE(x, x + y) }
+    );
+
+     EACH(
+      UPDATE(
+        EDGE(agriculture_final_demand_steam_hot_water, agriculture_useful_demand_useable_heat),
+        share,
+        (x + y)
+      ),
+      UPDATE(
+        EDGE(agriculture_final_demand_local_steam_hot_water, agriculture_final_demand_steam_hot_water),
+        share,
+        alpha
+      )
+    )
+- share_group = agri_heat
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = 
+    present:(
+      V(agriculture_final_demand_steam_hot_water,share_of_agriculture_useful_demand_useable_heat) *
+      V(agriculture_final_demand_local_steam_hot_water,share_of_agriculture_final_demand_steam_hot_water)* 100
+    )
+- step_value = 0.1
+- unit = %
+- update_period = future
