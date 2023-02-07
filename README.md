@@ -1,6 +1,6 @@
 # ETSource
 
-[![Build Status](https://quintel.semaphoreci.com/badges/etlocal/branches/master.svg?style=shields)](https://quintel.semaphoreci.com/projects/etlocal)
+[![Build Status](https://quintel.semaphoreci.com/badges/etsource/branches/master.svg)](https://quintel.semaphoreci.com/projects/etsource)
 
 ETSource contains the data used by Quintel applications for modelling energy
 transition. The files contained herein are a mixture of human-editable
