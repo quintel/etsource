@@ -104,12 +104,12 @@ rows:
     Carrier: Electricity
     Category: Solar
     Type: Output
-    Value: solar_to_electricity_prod_in_sankey
+    Value: total_primary_demand_of_solar_electricity
   - Group: Primary demand
     Carrier: Electricity
     Category: Wind
     Type: Output
-    Value: wind_to_electricity_prod_in_sankey
+    Value: total_primary_demand_of_wind_electricity
   - Group: Primary demand
     Carrier: Electricity
     Category: Import
@@ -170,6 +170,16 @@ rows:
     Category: Power-to-gas
     Type: Input
     Value: electricity_prod_to_p2g_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Direct electrolysis of wind
+    Type: Input
+    Value: wind_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Direct electrolysis of solar
+    Type: Input
+    Value: solar_to_hydrogen_prod_in_sankey
   - Group: Conversion
     Carrier: Electricity
     Category: Power-to-heat central heating
@@ -260,6 +270,16 @@ rows:
     Category: Power-to-gas
     Type: Output
     Value: p2g_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Direct electrolysis of wind
+    Type: Output
+    Value: direct_electrolysis_wind_in_source_of_hydrogen_production
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Direct electrolysis of solar
+    Type: Output
+    Value: direct_electrolysis_solar_in_source_of_hydrogen_production
   - Group: Conversion
     Carrier: Hydrogen
     Category: SMR

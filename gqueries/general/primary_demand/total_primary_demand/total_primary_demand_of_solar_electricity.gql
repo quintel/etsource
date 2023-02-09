@@ -1,0 +1,11 @@
+- query =
+    SUM(
+      V(
+        FILTER(
+          G(primary_energy_demand),
+          "solar_radiation_input_conversion > 0.0 || solar_thermal_input_conversion > 0.0"
+        ),
+        primary_demand_of_electricity
+      )
+    ) / BILLIONS
+- unit = PJ
