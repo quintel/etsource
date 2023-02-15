@@ -1,0 +1,12 @@
+# Final demand of the 'ambient' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "ambient_heat? || ambient_cold?"
+        ),
+        value
+      )
+    ) / BILLIONS

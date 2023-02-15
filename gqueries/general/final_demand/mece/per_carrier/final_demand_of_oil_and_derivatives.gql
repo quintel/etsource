@@ -1,0 +1,12 @@
+# Final demand of the 'oil_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil?"
+        ),
+        value
+      )
+    ) / BILLIONS

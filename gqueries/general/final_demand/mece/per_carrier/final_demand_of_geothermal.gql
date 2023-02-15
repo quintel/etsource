@@ -1,0 +1,12 @@
+# Final demand of the 'geothermal' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "geothermal?"
+        ),
+        value
+      )
+    ) / BILLIONS

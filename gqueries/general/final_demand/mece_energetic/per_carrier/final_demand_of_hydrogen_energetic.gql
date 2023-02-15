@@ -1,0 +1,15 @@
+# Energetic final demand of the 'hydrogen' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand), "hydrogen?"
+          ),
+          energetic?
+        ),
+        value
+      )
+    ) / BILLIONS
