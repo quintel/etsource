@@ -1,0 +1,16 @@
+# Note: biomass_products in general final_demand queries does not include greengas
+# In the Sankey queries biomass_products does include greengas
+
+- query =
+    SUM(
+      PRODUCT(
+        Q(turk_sankey_final_demand_of_network_gas_nodes),
+        Q(share_of_greengas_in_gas_network)
+      ),
+      PRODUCT(
+        Q(turk_sankey_final_demand_of_compressed_network_gas_nodes),
+        Q(share_of_greengas_in_gas_network)
+      ),
+      Q(final_demand_of_biomass_products)
+    )
+- unit = PJ

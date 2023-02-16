@@ -1,0 +1,12 @@
+# Final demand of the 'natural_gas' carrier
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "natural_gas?"
+        ),
+        value
+      )
+    ) / BILLIONS
