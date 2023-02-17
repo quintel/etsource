@@ -1,0 +1,9 @@
+# Returns the electricity produced from waste mix per hour
+# Multiplies that curve with the share of biogenic waste in waste mix
+
+- query =
+    PRODUCT_CURVES(
+      COALESCE_CURVE(nil,Q(share_of_non_biogenic_waste_in_waste_mix)),
+      Q(hourly_supply_electricity_from_waste)
+    )
+- unit = curve
