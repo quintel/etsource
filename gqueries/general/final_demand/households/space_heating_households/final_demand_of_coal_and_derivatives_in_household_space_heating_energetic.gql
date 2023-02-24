@@ -1,0 +1,15 @@
+# Energetic final demand of the 'coal' carrier group in households space_heating
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(space_heating_households)), "coal? || coal_gas? || cokes? || lignite?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

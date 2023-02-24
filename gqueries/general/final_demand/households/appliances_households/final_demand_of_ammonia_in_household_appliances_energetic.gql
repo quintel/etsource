@@ -1,0 +1,15 @@
+# Energetic final demand of the 'ammonia' carrier group in households appliances
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(appliances_households)), "ammonia?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS
