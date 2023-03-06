@@ -1,0 +1,18 @@
+# Energetic final demand of the 'greengas' carrier group in industry
+
+- unit = PJ
+- query =
+    PRODUCT(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand),"sector == :industry"), "network_gas? || compressed_network_gas?"
+            ),
+            "energetic?"
+          ),
+          value
+        ),
+      ),
+      Q(share_of_greengas_in_gas_network)
+    ) / BILLIONS

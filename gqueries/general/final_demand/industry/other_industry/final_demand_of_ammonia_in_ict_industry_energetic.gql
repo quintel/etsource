@@ -1,0 +1,15 @@
+# Energetic final demand of the 'ammonia' carrier group in industry ict
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(ict_industry)), "ammonia?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS
