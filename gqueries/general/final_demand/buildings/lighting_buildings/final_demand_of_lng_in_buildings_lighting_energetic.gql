@@ -1,0 +1,15 @@
+# Energetic final demand of the 'lng' carrier group in buildings lighting
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(lighting_buildings)), "lng?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

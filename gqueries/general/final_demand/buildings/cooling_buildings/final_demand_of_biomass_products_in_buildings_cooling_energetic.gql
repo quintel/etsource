@@ -1,0 +1,15 @@
+# Energetic final demand of the 'biomass' carrier group in buildings cooling
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(cooling_buildings)), "biodiesel? || bio_ethanol? || wood_pellets? || bio_lng?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

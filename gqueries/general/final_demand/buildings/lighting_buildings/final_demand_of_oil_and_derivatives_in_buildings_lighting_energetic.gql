@@ -1,0 +1,15 @@
+# Energetic final demand of the 'oil_and_derivatives' carrier group in buildings lighting
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(lighting_buildings)), "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

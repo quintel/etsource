@@ -1,0 +1,15 @@
+# Energetic final demand of the 'heat' carrier group in buildings space_heating
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(space_heating_buildings)), "steam_hot_water? || useable_heat?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS
