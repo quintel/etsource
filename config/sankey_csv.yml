@@ -257,6 +257,11 @@ rows:
     Value: electricity_prod_to_transport_in_sankey
   - Group: Final demand
     Carrier: Electricity
+    Category: International transport
+    Type: Input
+    Value: electricity_prod_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Electricity
     Category: Export
     Type: Input
     Value: electricity_prod_to_export_in_sankey
@@ -272,14 +277,10 @@ rows:
     Value: electricity_prod_to_energy_in_sankey
   - Group: Final demand
     Carrier: Electricity
-    Category: International transport
-    Type: Input
-    Value: electricity_prod_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Electricity
     Category: Feedstock
     Type: Input
     Value: electricity_prod_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Hydrogen
     Category: Import
@@ -387,6 +388,11 @@ rows:
     Value: hydrogen_prod_to_transport_in_sankey
   - Group: Final demand
     Carrier: Hydrogen
+    Category: International transport
+    Type: Input
+    Value: hydrogen_prod_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Hydrogen
     Category: Export
     Type: Input
     Value: hydrogen_prod_to_export_in_sankey
@@ -402,14 +408,10 @@ rows:
     Value: hydrogen_prod_to_energy_in_sankey
   - Group: Final demand
     Carrier: Hydrogen
-    Category: International transport
-    Type: Input
-    Value: hydrogen_prod_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Hydrogen
     Category: Feedstock
     Type: Input
     Value: hydrogen_prod_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Uranium
     Category: Import
@@ -426,15 +428,11 @@ rows:
     Type: Input
     Value: uranium_for_electricity_conversion
   - Group: Primary demand
+
     Carrier: Steam hot water
     Category: Import
     Type: Output
     Value: import_for_central_heat_conversion
-  - Group: Primary demand
-    Carrier: Steam hot water
-    Category: Geothermal
-    Type: Output
-    Value: geothermal_for_central_heat_conversion
   - Group: Primary demand
     Carrier: Steam hot water
     Category: Ambient
@@ -485,6 +483,11 @@ rows:
     Category: Solar thermal central heating
     Type: Output
     Value: solar_thermal_in_source_of_central_heat_production
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Geothermal central heating
+    Type: Output
+    Value: geothermal_in_source_of_central_heat_production
   - Group: Conversion
     Carrier: Loss
     Category: Steam hot water transport losses
@@ -537,6 +540,11 @@ rows:
     Value: final_demand_of_heat_in_transport_energetic
   - Group: Final demand
     Carrier: Steam hot water
+    Category: International transport
+    Type: Input
+    Value: final_demand_of_heat_in_bunkers_energetic
+  - Group: Final demand
+    Carrier: Steam hot water
     Category: Other
     Type: Input
     Value: final_demand_of_heat_in_other_energetic
@@ -550,6 +558,7 @@ rows:
     Category: Feedstock
     Type: Input
     Value: final_demand_of_steam_hot_water_from_feedstock
+
   - Group: Primary demand
     Carrier: Solar thermal
     Category: Production
@@ -620,6 +629,78 @@ rows:
     Category: Feedstock
     Type: Input
     Value: final_demand_of_solar_non_energetic
+
+  - Group: Primary demand
+    Carrier: Geothermal
+    Category: Production
+    Type: Output
+    Value: sankey_total_primary_demand_of_geothermal
+  - Group: Conversion
+    Carrier: Geothermal
+    Category: Geothermal central heating
+    Type: Input
+    Value: geothermal_for_central_heat_conversion
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Households space heating and hot water
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_households_space_heating_and_hot_water_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Households excl. space heating and hot water
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_buildings_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Agriculture
+    Type: Input
+    Value: final_demand_of_geothermal_in_agriculture_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Industry excl. ICT
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_industry_ict_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: National transport
+    Type: Input
+    Value: final_demand_of_geothermal_in_transport_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: International transport
+    Type: Input
+    Value: final_demand_of_geothermal_in_bunkers_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Other
+    Type: Input
+    Value: final_demand_of_geothermal_in_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Energy
+    Type: Input
+    Value: final_demand_of_geothermal_in_energy_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Feedstock
+    Type: Input
+    Value: final_demand_of_geothermal_non_energetic
+
   - Group: Primary demand
     Carrier: Coal
     Category: Import
@@ -687,6 +768,11 @@ rows:
     Value: coal_and_derivatives_to_transport_in_sankey
   - Group: Final demand
     Carrier: Coal
+    Category: International transport
+    Type: Input
+    Value: coal_and_derivatives_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Coal
     Category: Export
     Type: Input
     Value: coal_and_derivatives_to_export_in_sankey
@@ -702,14 +788,10 @@ rows:
     Value: coal_and_derivatives_to_energy_in_sankey
   - Group: Final demand
     Carrier: Coal
-    Category: International transport
-    Type: Input
-    Value: coal_and_derivatives_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Coal
     Category: Feedstock
     Type: Input
     Value: coal_and_derivatives_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Oil
     Category: Import
@@ -777,6 +859,11 @@ rows:
     Value: oil_and_derivatives_to_transport_in_sankey
   - Group: Final demand
     Carrier: Oil
+    Category: International transport
+    Type: Input
+    Value: oil_and_derivatives_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Oil
     Category: Export
     Type: Input
     Value: oil_and_derivatives_to_export_in_sankey
@@ -792,14 +879,10 @@ rows:
     Value: oil_and_derivatives_to_energy_in_sankey
   - Group: Final demand
     Carrier: Oil
-    Category: International transport
-    Type: Input
-    Value: oil_and_derivatives_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Oil
     Category: Feedstock
     Type: Input
     Value: oil_and_derivatives_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Natural gas
     Category: Import
@@ -887,6 +970,11 @@ rows:
     Value: natural_gas_to_transport_in_sankey
   - Group: Final demand
     Carrier: Natural gas
+    Category: International transport
+    Type: Input
+    Value: natural_gas_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Natural gas
     Category: Export
     Type: Input
     Value: natural_gas_to_export_in_sankey
@@ -902,14 +990,10 @@ rows:
     Value: natural_gas_to_energy_in_sankey
   - Group: Final demand
     Carrier: Natural gas
-    Category: International transport
-    Type: Input
-    Value: natural_gas_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Natural gas
     Category: Feedstock
     Type: Input
     Value: natural_gas_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Biomass
     Category: Wood pellets
@@ -1032,6 +1116,11 @@ rows:
     Value: biomass_products_to_transport_in_sankey
   - Group: Final demand
     Carrier: Biomass
+    Category: International transport
+    Type: Input
+    Value: biomass_products_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Biomass
     Category: Export
     Type: Input
     Value: biomass_products_to_export_in_sankey
@@ -1047,14 +1136,10 @@ rows:
     Value: biomass_products_to_energy_in_sankey
   - Group: Final demand
     Carrier: Biomass
-    Category: International transport
-    Type: Input
-    Value: biomass_products_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Biomass
     Category: Feedstock
     Type: Input
     Value: biomass_products_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Ammonia
     Category: Import
@@ -1107,6 +1192,11 @@ rows:
     Value: imported_ammonia_to_transport_in_sankey
   - Group: Final demand
     Carrier: Ammonia
+    Category: International transport
+    Type: Input
+    Value: imported_ammonia_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Ammonia
     Category: Export
     Type: Input
     Value: imported_ammonia_to_export_in_sankey
@@ -1120,11 +1210,6 @@ rows:
     Category: Energy
     Type: Input
     Value: imported_ammonia_to_energy_in_sankey
-  - Group: Final demand
-    Carrier: Ammonia
-    Category: International transport
-    Type: Input
-    Value: imported_ammonia_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Ammonia
     Category: Feedstock

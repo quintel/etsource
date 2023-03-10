@@ -1,0 +1,10 @@
+# Geothermal is not included in primary demand see quintel/etmodel#3641
+# For the energy flows export the flows have to match, which is done using this dedicated 'primary' demand query
+
+- query =
+    SUM(
+      V(agriculture_geothermal, input_of_geothermal),
+      V(energy_heat_well_geothermal, input_of_geothermal),
+      V(industry_heat_well_geothermal, input_of_geothermal)
+    ) / BILLIONS
+- unit = PJ
