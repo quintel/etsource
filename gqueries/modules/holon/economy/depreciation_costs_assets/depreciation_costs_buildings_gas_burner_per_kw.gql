@@ -1,9 +1,9 @@
 - query =
   DIVIDE(
     SUM(
-      V(buildings_space_heater_network_gas, capital_expenditures_excluding_ccs_per(:node)),
-      V(buildings_space_heater_network_gas, operating_expenses_excluding_ccs_per(:node))
+      V(buildings_space_heater_network_gas, capital_expenditures_excluding_ccs_per(:mw_heat)),
+      V(buildings_space_heater_network_gas, operating_expenses_excluding_ccs_per(:mw_heat))
     ),
-    V(buildings_space_heater_network_gas, "heat_output_capacity * number_of_units") * 1000
+    1000
   )
 - unit = euro
