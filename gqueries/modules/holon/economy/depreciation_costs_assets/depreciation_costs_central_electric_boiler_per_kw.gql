@@ -1,0 +1,9 @@
+- query =
+  DIVIDE(
+    SUM(
+      V(buildings_space_heater_electricity, capital_expenditures_excluding_ccs_per(:mw_heat)),
+      V(buildings_space_heater_electricity, operating_expenses_excluding_ccs_per(:mw_heat))
+    ),
+    1000
+  )
+- unit = euro
