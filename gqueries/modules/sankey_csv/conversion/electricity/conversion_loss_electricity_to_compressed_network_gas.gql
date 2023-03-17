@@ -1,0 +1,11 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(G(sankey_conversion_group),"compressed_network_gas_output_conversion > 0.0 && electricity_input_conversion > 0.0"),
+          "compressed_network_gas_output_conversion * electricity_input_conversion / (1 - loss_output_conversion) * output_of_loss"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ

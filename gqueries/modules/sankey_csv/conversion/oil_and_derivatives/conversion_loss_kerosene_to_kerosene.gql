@@ -1,0 +1,11 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(G(sankey_conversion_group),"kerosene_output_conversion > 0.0 && kerosene_input_conversion > 0.0"),
+          "kerosene_output_conversion * kerosene_input_conversion / (1 - loss_output_conversion) * output_of_loss"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ

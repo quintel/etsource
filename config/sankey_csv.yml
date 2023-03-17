@@ -201,15 +201,35 @@ rows:
     Type: Input
     Value: electricity_prod_to_central_heat_prod_excl_p2h_in_sankey
   - Group: Conversion
-    Carrier: Loss
-    Category: Electricity transport losses
+    Carrier: Electricity
+    Category: Synthetic kerosene production
     Type: Input
-    Value: electricity_prod_to_transport_loss_in_sankey
+    Value: electricity_for_synthetic_kerosene_conversion
   - Group: Conversion
     Carrier: Loss
-    Category: Electricity conversion losses
-    Type: Input
-    Value: electricity_prod_to_conversion_loss_in_sankey
+    Category: Electricity to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to heat conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to oil conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to gas conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_biomass_products
   - Group: Final demand
     Carrier: Electricity
     Category: Households space heating and hot water
@@ -293,6 +313,16 @@ rows:
     Value: hydrogen_for_electricity_conversion
   - Group: Conversion
     Carrier: Hydrogen
+    Category: Hydrogen central heating
+    Type: Input
+    Value: hydrogen_for_central_heat_conversion
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Synthetic kerosene production
+    Type: Input
+    Value: hydrogen_for_synthetic_kerosene_conversion
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Power-to-gas
     Type: Output
     Value: p2g_to_hydrogen_prod_in_sankey
@@ -338,14 +368,24 @@ rows:
     Value: hydrogen_prod_to_central_heat_prod_in_sankey
   - Group: Conversion
     Carrier: Loss
-    Category: Hydrogen transport losses
-    Type: Input
-    Value: hydrogen_prod_to_transport_loss_in_sankey
+    Category: Hydrogen to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_electricity
   - Group: Conversion
     Carrier: Loss
-    Category: Hydrogen conversion losses
-    Type: Input
-    Value: hydrogen_prod_to_conversion_loss_in_sankey
+    Category: Hydrogen to heat conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to oil conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_hydrogen
   - Group: Final demand
     Carrier: Hydrogen
     Category: Households space heating and hot water
@@ -427,8 +467,13 @@ rows:
     Category: Nuclear power plants
     Type: Input
     Value: uranium_for_electricity_conversion
-  - Group: Primary demand
+  - Group: Conversion
+    Carrier: Loss
+    Category: Uranium to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_uranium_to_electricity
 
+  - Group: Primary demand
     Carrier: Steam hot water
     Category: Import
     Type: Output
@@ -722,19 +767,19 @@ rows:
     Type: Input
     Value: coal_and_derivatives_to_central_heat_prod_in_sankey
   - Group: Conversion
-    Carrier: Coal
+    Carrier: Loss
     Category: Coal to electricity conversion losses
-    Type: Input
+    Type: Output
     Value: conversion_loss_coal_and_derivatives_to_electricity
   - Group: Conversion
-    Carrier: Coal
+    Carrier: Loss
     Category: Coal to heat conversion losses
-    Type: Input
+    Type: Output
     Value: conversion_loss_coal_and_derivatives_to_steam_hot_water
   - Group: Conversion
-    Carrier: Coal
+    Carrier: Loss
     Category: Coal to coal conversion losses
-    Type: Input
+    Type: Output
     Value: conversion_loss_coal_and_derivatives_to_coal_and_derivatives
   - Group: Final demand
     Carrier: Coal
@@ -814,6 +859,11 @@ rows:
     Value: extraction_of_oil_and_derivatives
   - Group: Conversion
     Carrier: Oil
+    Category: Synthetic kerosene production
+    Type: Output
+    Value: kerosene_synthetic_to_distribution_in_sankey
+  - Group: Conversion
+    Carrier: Oil
     Category: Oil power plants
     Type: Input
     Value: oil_for_electricity_conversion
@@ -824,9 +874,19 @@ rows:
     Value: oil_and_derivatives_to_central_heat_prod_in_sankey
   - Group: Conversion
     Carrier: Loss
-    Category: Oil transport losses
-    Type: Input
-    Value: oil_and_derivatives_to_transport_losses_in_sankey
+    Category: Oil to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to heat conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to oil conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_oil_and_derivatives
   - Group: Final demand
     Carrier: Oil
     Category: Households space heating and hot water
@@ -1160,6 +1220,11 @@ rows:
     Category: Ammonia reformer
     Type: Input
     Value: imported_ammonia_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_hydrogen
   - Group: Final demand
     Carrier: Ammonia
     Category: Households space heating and hot water

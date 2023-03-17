@@ -1,0 +1,10 @@
+- query =
+    SUM(
+      Q(conversion_loss_crude_oil_to_electricity),
+      Q(conversion_loss_diesel_to_electricity),
+      PRODUCT(
+        Q(conversion_loss_gas_power_fuelmix_to_electricity),
+        V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+      )
+    )
+- unit = PJ
