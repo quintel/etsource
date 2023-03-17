@@ -1,11 +1,11 @@
-- use = undefined
-- energy_balance_group = distribution primary carriers
 - output.greengas = 1.0
-- groups = []
-- network_gas.type = producer
-- network_gas.profile = flat
-- network_gas.demand_carrier = greengas
+- groups = [sankey_conversion_group]
+- use = undefined
 - graph_methods = [demand]
+- energy_balance_group = distribution primary carriers
+- network_gas.demand_carrier = greengas
+- network_gas.profile = flat
+- network_gas.type = producer
 - free_co2_factor = 0.0
 
 ~ demand = PRIMARY_PRODUCTION(energy_distribution_greengas, demand)

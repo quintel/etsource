@@ -1,6 +1,6 @@
-- use = energetic
-- groups = [must_run_electricity_production, central_production, electricity_production, heat_production, costs_production_chp_plants]
 - output.loss = elastic
+- groups = [must_run_electricity_production, central_production, electricity_production, heat_production, costs_production_chp_plants, sankey_conversion_group]
+- use = energetic
 - graph_methods = [output, full_load_hours]
 - availability = 0.9
 - typical_input_capacity = 350.0
@@ -24,7 +24,5 @@
 - takes_part_in_ets = 1.0
 
 ~ output.electricity = CENTRAL_PRODUCTION(industry_chp_coal_gas, electricity_output_conversion)
-
 ~ output.steam_hot_water = CENTRAL_PRODUCTION(industry_chp_coal_gas, steam_hot_water_output_conversion)
-
 ~ full_load_hours = CENTRAL_PRODUCTION(industry_chp_coal_gas, full_load_hours)

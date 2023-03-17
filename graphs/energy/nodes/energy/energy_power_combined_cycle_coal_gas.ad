@@ -1,7 +1,7 @@
-- use = energetic
-- groups = [must_run_electricity_production, central_production, electricity_production, costs_production_power_plants]
-- presentation_group = electricity_production
 - output.loss = elastic
+- groups = [must_run_electricity_production, central_production, electricity_production, costs_production_power_plants, sankey_conversion_group]
+- use = energetic
+- presentation_group = electricity_production
 - graph_methods = [output, full_load_hours]
 - availability = 0.9
 - ccs_investment = 0.0
@@ -25,5 +25,4 @@
 - takes_part_in_ets = 1.0
 
 ~ output.electricity = CENTRAL_PRODUCTION(energy_power_combined_cycle_coal_gas, electricity_output_conversion)
-
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_power_combined_cycle_coal_gas, full_load_hours)

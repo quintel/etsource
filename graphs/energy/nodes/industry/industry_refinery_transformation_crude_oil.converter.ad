@@ -1,20 +1,14 @@
-- use = energetic
-- energy_balance_group = refinery
 - output.loss = elastic
-- groups = [chemical_industry]
+- groups = [chemical_industry, sankey_conversion_group]
+- use = energetic
 - graph_methods = [output]
+- energy_balance_group = refinery
 - free_co2_factor = 0.0
 
 ~ output.refinery_gas = EFFICIENCY(industry_refinery_transformation_crude_oil, output, refinery_gas)
-
 ~ output.lpg = EFFICIENCY(industry_refinery_transformation_crude_oil, output, lpg)
-
 ~ output.gasoline = EFFICIENCY(industry_refinery_transformation_crude_oil, output, gasoline)
-
 ~ output.kerosene = EFFICIENCY(industry_refinery_transformation_crude_oil, output, kerosene)
-
 ~ output.diesel = EFFICIENCY(industry_refinery_transformation_crude_oil, output, diesel)
-
 ~ output.heavy_fuel_oil = EFFICIENCY(industry_refinery_transformation_crude_oil, output, heavy_fuel_oil)
-
 ~ output.crude_oil = EFFICIENCY(industry_refinery_transformation_crude_oil, output, crude_oil)
