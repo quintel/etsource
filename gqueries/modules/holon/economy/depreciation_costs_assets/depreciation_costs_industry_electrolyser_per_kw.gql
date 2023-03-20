@@ -1,9 +1,9 @@
 - query =
-  DIVIDE(
-    SUM(
-      V(energy_hydrogen_flexibility_p2g_electricity, capital_expenditures_excluding_ccs_per(:node)),
-      V(energy_hydrogen_flexibility_p2g_electricity, operating_expenses_excluding_ccs_per(:node))
-    ),
-    V(energy_hydrogen_flexibility_p2g_electricity, "typical_input_capacity * number_of_units") * 1000
-  )
+    DIVIDE(
+      SUM(
+        V(energy_hydrogen_flexibility_p2g_electricity, capital_expenditures_excluding_ccs_per(:plant)),
+        V(energy_hydrogen_flexibility_p2g_electricity, operating_expenses_excluding_ccs_per(:plant))
+      ),
+      V(energy_hydrogen_flexibility_p2g_electricity, typical_input_capacity) * 1000
+    )
 - unit = euro

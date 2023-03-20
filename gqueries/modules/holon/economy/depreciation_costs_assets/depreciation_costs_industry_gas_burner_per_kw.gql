@@ -1,9 +1,9 @@
 - query =
-  DIVIDE(
-    SUM(
-      V(industry_other_paper_burner_network_gas, capital_expenditures_excluding_ccs_per(:node)),
-      V(industry_other_paper_burner_network_gas, operating_expenses_excluding_ccs_per(:node))
-    ),
-    V(industry_other_paper_burner_network_gas, "heat_output_capacity * number_of_units") * 1000
-  )
+    DIVIDE(
+      SUM(
+        V(industry_other_paper_burner_network_gas, capital_expenditures_excluding_ccs_per(:mw_heat)),
+        V(industry_other_paper_burner_network_gas, operating_expenses_excluding_ccs_per(:mw_heat))
+      ),
+      1000
+    )
 - unit = euro

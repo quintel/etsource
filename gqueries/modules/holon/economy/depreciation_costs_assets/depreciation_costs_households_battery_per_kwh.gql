@@ -1,9 +1,9 @@
 - query =
-  DIVIDE(
-    SUM(
-      V(households_flexibility_p2p_electricity, capital_expenditures_excluding_ccs_per(:node)),
-      V(households_flexibility_p2p_electricity, operating_expenses_excluding_ccs_per(:node))
-    ),
-    Q(households_flexibility_p2p_electricity_volume) * 1000
-  )
+    DIVIDE(
+      SUM(
+        V(households_flexibility_p2p_electricity, capital_expenditures_excluding_ccs_per(:plant)),
+        V(households_flexibility_p2p_electricity, operating_expenses_excluding_ccs_per(:plant))
+      ),
+      V(households_flexibility_p2p_electricity, "storage.volume") * 1000
+    )
 - unit = euro
