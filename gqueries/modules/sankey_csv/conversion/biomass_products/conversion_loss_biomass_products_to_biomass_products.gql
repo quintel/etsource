@@ -1,0 +1,16 @@
+- query =
+    SUM(
+      PRODUCT(
+        Q(conversion_loss_network_gas_to_biomass_products),
+        Q(share_of_greengas_in_gas_network)
+      ),
+      PRODUCT(
+        Q(conversion_loss_greengas_to_network_gas),
+        Q(share_of_greengas_in_gas_network)
+      ),
+      Q(conversion_loss_bio_kerosene_to_bio_kerosene),
+      Q(conversion_loss_bio_ethanol_to_bio_ethanol),
+      Q(conversion_loss_biodiesel_to_biodiesel),
+      Q(conversion_loss_biogas_to_greengas)
+    )
+- unit = PJ
