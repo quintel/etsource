@@ -1,10 +1,15 @@
 # This gquery includes all losses in electricity storage technologies
 # This includes conversion losses, unused electricity and decayed electricity
+# Excluded are the energy_flexibility_wind_batteries_electricity and energy_flexibility_solar_batteries_electricity
+# This is because these nodes are only shown as the resulting output to the grid 
 
 - query =
     SUM(
       Q(households_flexibility_p2p_electricity_losses),
       Q(transport_car_flexibility_p2p_electricity_losses),
+      Q(transport_van_flexibility_p2p_electricity_losses),
+      Q(transport_bus_flexibility_p2p_electricity_losses),
+      Q(transport_truck_flexibility_p2p_electricity_losses),
       Q(energy_flexibility_mv_batteries_electricity_losses),
       Q(energy_flexibility_hv_opac_electricity_losses),
       Q(energy_flexibility_pumped_storage_electricity_losses),

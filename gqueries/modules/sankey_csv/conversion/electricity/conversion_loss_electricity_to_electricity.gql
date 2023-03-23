@@ -1,0 +1,24 @@
+# Standard query format for conversion losses is not used due to issue https://github.com/quintel/etengine/issues/1330
+# Instead, storage losses, network loss and curtailment losses are summed manually
+
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          Q(households_flexibility_p2p_electricity_losses),
+          Q(transport_car_flexibility_p2p_electricity_losses),
+          Q(transport_van_flexibility_p2p_electricity_losses),
+          Q(transport_bus_flexibility_p2p_electricity_losses),
+          Q(transport_truck_flexibility_p2p_electricity_losses),
+          Q(energy_flexibility_mv_batteries_electricity_losses),
+          Q(energy_flexibility_hv_opac_electricity_losses),
+          Q(energy_flexibility_pumped_storage_electricity_losses),
+          Q(energy_flexibility_flow_batteries_electricity_losses),
+          Q(energy_flexibility_solar_batteries_electricity_losses),
+          Q(energy_flexibility_wind_batteries_electricity_losses),
+          V(energy_power_hv_network_loss, demand)
+        ), BILLIONS
+      ),
+      Q(primary_demand_of_electricity_from_curtailment)
+    )
+- unit = PJ
