@@ -104,12 +104,22 @@ rows:
     Carrier: Electricity
     Category: Solar
     Type: Output
-    Value: solar_to_electricity_prod_in_sankey
+    Value: total_primary_demand_of_solar_electricity
   - Group: Primary demand
     Carrier: Electricity
-    Category: Wind
+    Category: Wind offshore
     Type: Output
-    Value: wind_to_electricity_prod_in_sankey
+    Value: total_primary_demand_of_wind_offshore_electricity
+  - Group: Primary demand
+    Carrier: Electricity
+    Category: Wind inland
+    Type: Output
+    Value: total_primary_demand_of_wind_inland_electricity
+  - Group: Primary demand
+    Carrier: Electricity
+    Category: Wind coastal
+    Type: Output
+    Value: total_primary_demand_of_wind_coastal_electricity
   - Group: Primary demand
     Carrier: Electricity
     Category: Import
@@ -147,7 +157,7 @@ rows:
     Value: biomass_products_in_source_of_electricity_production
   - Group: Conversion
     Carrier: Electricity
-    Category: Gas power plants
+    Category: Natural gas power plants
     Type: Output
     Value: gas_in_source_of_electricity_production
   - Group: Conversion
@@ -172,6 +182,16 @@ rows:
     Value: electricity_prod_to_p2g_in_sankey
   - Group: Conversion
     Carrier: Electricity
+    Category: Direct electrolysis of wind
+    Type: Input
+    Value: wind_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Direct electrolysis of solar
+    Type: Input
+    Value: solar_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
     Category: Power-to-heat central heating
     Type: Input
     Value: electricity_prod_to_p2h_central_heat_in_sankey
@@ -181,25 +201,60 @@ rows:
     Type: Input
     Value: electricity_prod_to_central_heat_prod_excl_p2h_in_sankey
   - Group: Conversion
-    Carrier: Loss
-    Category: Electricity transport losses
+    Carrier: Electricity
+    Category: Synthetic kerosene production
     Type: Input
-    Value: electricity_prod_to_transport_loss_in_sankey
+    Value: electricity_for_synthetic_kerosene_conversion
   - Group: Conversion
     Carrier: Loss
-    Category: Electricity conversion losses
-    Type: Input
-    Value: electricity_prod_to_conversion_loss_in_sankey
+    Category: Electricity to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to oil conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_electricity
   - Group: Final demand
     Carrier: Electricity
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: electricity_prod_to_households_in_sankey
+    Value: sankey_final_demand_of_electricity_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Electricity
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: electricity_prod_to_buildings_in_sankey
+    Value: sankey_final_demand_of_electricity_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Electricity
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_electricity_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Electricity
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_electricity_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Electricity
     Category: Agriculture
@@ -207,19 +262,29 @@ rows:
     Value: electricity_prod_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Electricity
-    Category: Industry
+    Category: Industry excl. ICT and power-to-heat
     Type: Input
-    Value: electricity_prod_to_industry_excl_p2h_in_sankey
+    Value: sankey_final_demand_of_electricity_in_industry_other_excl_p2h_energetic
   - Group: Final demand
     Carrier: Electricity
-    Category: Power-to-heat industry
+    Category: Industry ICT
     Type: Input
-    Value: electricity_prod_to_p2h_industry_in_sankey
+    Value: sankey_final_demand_of_electricity_in_industry_ict_energetic
+  - Group: Final demand
+    Carrier: Electricity
+    Category: Industry power-to-heat
+    Type: Input
+    Value: sankey_final_demand_of_electricity_in_industry_p2h_energetic
   - Group: Final demand
     Carrier: Electricity
     Category: National transport
     Type: Input
     Value: electricity_prod_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Electricity
+    Category: International transport
+    Type: Input
+    Value: electricity_prod_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Electricity
     Category: Export
@@ -237,14 +302,10 @@ rows:
     Value: electricity_prod_to_energy_in_sankey
   - Group: Final demand
     Carrier: Electricity
-    Category: International transport
-    Type: Input
-    Value: electricity_prod_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Electricity
     Category: Feedstock
     Type: Input
     Value: electricity_prod_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Hydrogen
     Category: Import
@@ -257,9 +318,29 @@ rows:
     Value: hydrogen_for_electricity_conversion
   - Group: Conversion
     Carrier: Hydrogen
+    Category: Hydrogen central heating
+    Type: Input
+    Value: hydrogen_for_central_heat_conversion
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Synthetic kerosene production
+    Type: Input
+    Value: hydrogen_for_synthetic_kerosene_conversion
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Power-to-gas
     Type: Output
     Value: p2g_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Direct electrolysis of wind
+    Type: Output
+    Value: direct_electrolysis_wind_in_source_of_hydrogen_production
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Direct electrolysis of solar
+    Type: Output
+    Value: direct_electrolysis_solar_in_source_of_hydrogen_production
   - Group: Conversion
     Carrier: Hydrogen
     Category: SMR
@@ -287,29 +368,49 @@ rows:
     Value: biomass_gasification_ccs_in_source_of_hydrogen_production
   - Group: Conversion
     Carrier: Hydrogen
-    Category: Hydrogen central heating
-    Type: Input
-    Value: hydrogen_prod_to_central_heat_prod_in_sankey
+    Category: Residual hydrogen from industry
+    Type: Output
+    Value: conversion_industry_residual_hydrogen
   - Group: Conversion
     Carrier: Loss
-    Category: Hydrogen transport losses
-    Type: Input
-    Value: hydrogen_prod_to_transport_loss_in_sankey
+    Category: Hydrogen to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_electricity
   - Group: Conversion
     Carrier: Loss
-    Category: Hydrogen conversion losses
-    Type: Input
-    Value: hydrogen_prod_to_conversion_loss_in_sankey
+    Category: Hydrogen to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to oil conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_hydrogen
   - Group: Final demand
     Carrier: Hydrogen
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: hydrogen_prod_to_households_in_sankey
+    Value: sankey_final_demand_of_hydrogen_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Hydrogen
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: hydrogen_prod_to_buildings_in_sankey
+    Value: sankey_final_demand_of_hydrogen_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Hydrogen
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_hydrogen_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Hydrogen
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_hydrogen_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Hydrogen
     Category: Agriculture
@@ -317,14 +418,24 @@ rows:
     Value: hydrogen_prod_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Hydrogen
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: hydrogen_prod_to_industry_in_sankey
+    Value: sankey_final_demand_of_hydrogen_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Hydrogen
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_hydrogen_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Hydrogen
     Category: National transport
     Type: Input
     Value: hydrogen_prod_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Hydrogen
+    Category: International transport
+    Type: Input
+    Value: hydrogen_prod_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Hydrogen
     Category: Export
@@ -342,14 +453,10 @@ rows:
     Value: hydrogen_prod_to_energy_in_sankey
   - Group: Final demand
     Carrier: Hydrogen
-    Category: International transport
-    Type: Input
-    Value: hydrogen_prod_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Hydrogen
     Category: Feedstock
     Type: Input
     Value: hydrogen_prod_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Uranium
     Category: Import
@@ -365,6 +472,12 @@ rows:
     Category: Nuclear power plants
     Type: Input
     Value: uranium_for_electricity_conversion
+  - Group: Conversion
+    Carrier: Loss
+    Category: Uranium to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_uranium_to_electricity
+
   - Group: Primary demand
     Carrier: Steam hot water
     Category: Import
@@ -372,19 +485,9 @@ rows:
     Value: import_for_central_heat_conversion
   - Group: Primary demand
     Carrier: Steam hot water
-    Category: Geothermal
-    Type: Output
-    Value: geothermal_for_central_heat_conversion
-  - Group: Primary demand
-    Carrier: Steam hot water
     Category: Ambient
     Type: Output
     Value: ambient_for_central_heat_conversion
-  - Group: Primary demand
-    Carrier: Steam hot water
-    Category: Solar
-    Type: Output
-    Value: solar_for_central_heat_conversion
   - Group: Conversion
     Carrier: Steam hot water
     Category: Power-to-heat central heating
@@ -417,7 +520,7 @@ rows:
     Value: oil_and_derivatives_in_source_of_central_heat_production
   - Group: Conversion
     Carrier: Steam hot water
-    Category: Gas central heating
+    Category: Natural gas central heating
     Type: Output
     Value: natural_gas_in_source_of_central_heat_production
   - Group: Conversion
@@ -426,25 +529,45 @@ rows:
     Type: Output
     Value: biomass_products_in_source_of_central_heat_production
   - Group: Conversion
-    Carrier: Loss
-    Category: Steam hot water transport losses
-    Type: Input
-    Value: central_heat_prod_to_transport_loss_in_sankey
+    Carrier: Steam hot water
+    Category: Solar thermal central heating
+    Type: Output
+    Value: solar_thermal_in_source_of_central_heat_production
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Geothermal central heating
+    Type: Output
+    Value: geothermal_in_source_of_central_heat_production
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Residual heat from industry
+    Type: Output
+    Value: residual_heat_for_central_heat_conversion
   - Group: Conversion
     Carrier: Loss
-    Category: Steam hot water conversion losses
+    Category: Steam hot water to steam hot water conversion losses
     Type: Input
-    Value: central_heat_prod_to_conversion_loss_in_sankey
+    Value: conversion_loss_steam_hot_water_to_steam_hot_water
   - Group: Final demand
     Carrier: Steam hot water
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: final_demand_of_heat_in_households_energetic
+    Value: sankey_final_demand_of_heat_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Steam hot water
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: final_demand_of_heat_in_buildings_energetic
+    Value: sankey_final_demand_of_heat_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Steam hot water
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_heat_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Steam hot water
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_heat_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Steam hot water
     Category: Agriculture
@@ -452,14 +575,24 @@ rows:
     Value: final_demand_of_heat_in_agriculture_energetic
   - Group: Final demand
     Carrier: Steam hot water
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: final_demand_of_heat_in_industry_energetic
+    Value: sankey_final_demand_of_heat_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Steam hot water
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_heat_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Steam hot water
     Category: National transport
     Type: Input
     Value: final_demand_of_heat_in_transport_energetic
+  - Group: Final demand
+    Carrier: Steam hot water
+    Category: International transport
+    Type: Input
+    Value: final_demand_of_heat_in_bunkers_energetic
   - Group: Final demand
     Carrier: Steam hot water
     Category: Other
@@ -474,7 +607,150 @@ rows:
     Carrier: Steam hot water
     Category: Feedstock
     Type: Input
-    Value: final_demand_of_steam_hot_water_from_feedstock
+    Value: final_demand_of_heat_non_energetic
+
+  - Group: Primary demand
+    Carrier: Solar thermal
+    Category: Production
+    Type: Output
+    Value: total_primary_demand_of_renewable_heat
+  - Group: Conversion
+    Carrier: Solar thermal
+    Category: Solar thermal central heating
+    Type: Input
+    Value: solar_for_central_heat_conversion
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Households space heating and hot water
+    Type: Input
+    Value: sankey_final_demand_of_solar_in_households_space_heating_and_hot_water_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Households excl. space heating and hot water
+    Type: Input
+    Value: sankey_final_demand_of_solar_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_solar_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_solar_in_buildings_other_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Agriculture
+    Type: Input
+    Value: final_demand_of_solar_in_agriculture_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Industry excl. ICT
+    Type: Input
+    Value: sankey_final_demand_of_solar_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_solar_in_industry_ict_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: National transport
+    Type: Input
+    Value: final_demand_of_solar_in_transport_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: International transport
+    Type: Input
+    Value: final_demand_of_solar_in_bunkers_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Other
+    Type: Input
+    Value: final_demand_of_solar_in_other_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Energy
+    Type: Input
+    Value: final_demand_of_solar_in_energy_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Feedstock
+    Type: Input
+    Value: final_demand_of_solar_non_energetic
+
+  - Group: Primary demand
+    Carrier: Geothermal
+    Category: Production
+    Type: Output
+    Value: sankey_total_primary_demand_of_geothermal
+  - Group: Conversion
+    Carrier: Geothermal
+    Category: Geothermal central heating
+    Type: Input
+    Value: geothermal_for_central_heat_conversion
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Households space heating and hot water
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_households_space_heating_and_hot_water_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Households excl. space heating and hot water
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_buildings_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Agriculture
+    Type: Input
+    Value: final_demand_of_geothermal_in_agriculture_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Industry excl. ICT
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_geothermal_in_industry_ict_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: National transport
+    Type: Input
+    Value: final_demand_of_geothermal_in_transport_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: International transport
+    Type: Input
+    Value: final_demand_of_geothermal_in_bunkers_energetic
+  - Group: Final demand
+    Carrier: Solar thermal
+    Category: Other
+    Type: Input
+    Value: final_demand_of_geothermal_in_other_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Energy
+    Type: Input
+    Value: final_demand_of_geothermal_in_energy_energetic
+  - Group: Final demand
+    Carrier: Geothermal
+    Category: Feedstock
+    Type: Input
+    Value: final_demand_of_geothermal_non_energetic
+
   - Group: Primary demand
     Carrier: Coal
     Category: Import
@@ -497,19 +773,39 @@ rows:
     Value: coal_and_derivatives_to_central_heat_prod_in_sankey
   - Group: Conversion
     Carrier: Loss
-    Category: Coal transport losses
-    Type: Input
-    Value: coal_and_derivatives_to_transport_losses_in_sankey
+    Category: Coal to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_coal_and_derivatives_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Coal to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_coal_and_derivatives_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Coal to coal conversion losses
+    Type: Output
+    Value: conversion_loss_coal_and_derivatives_to_coal_and_derivatives
   - Group: Final demand
     Carrier: Coal
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: coal_and_derivatives_to_households_in_sankey
+    Value: sankey_final_demand_of_coal_and_derivatives_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Coal
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: coal_and_derivatives_to_buildings_in_sankey
+    Value: sankey_final_demand_of_coal_and_derivatives_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Coal
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_coal_and_derivatives_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Coal
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_coal_and_derivatives_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Coal
     Category: Agriculture
@@ -517,14 +813,24 @@ rows:
     Value: coal_and_derivatives_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Coal
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: coal_and_derivatives_to_industry_in_sankey
+    Value: sankey_final_demand_of_coal_and_derivatives_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Coal
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_coal_and_derivatives_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Coal
     Category: National transport
     Type: Input
     Value: coal_and_derivatives_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Coal
+    Category: International transport
+    Type: Input
+    Value: coal_and_derivatives_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Coal
     Category: Export
@@ -542,14 +848,10 @@ rows:
     Value: coal_and_derivatives_to_energy_in_sankey
   - Group: Final demand
     Carrier: Coal
-    Category: International transport
-    Type: Input
-    Value: coal_and_derivatives_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Coal
     Category: Feedstock
     Type: Input
     Value: coal_and_derivatives_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Oil
     Category: Import
@@ -562,6 +864,11 @@ rows:
     Value: extraction_of_oil_and_derivatives
   - Group: Conversion
     Carrier: Oil
+    Category: Synthetic kerosene production
+    Type: Output
+    Value: kerosene_synthetic_to_distribution_in_sankey
+  - Group: Conversion
+    Carrier: Oil
     Category: Oil power plants
     Type: Input
     Value: oil_for_electricity_conversion
@@ -572,19 +879,39 @@ rows:
     Value: oil_and_derivatives_to_central_heat_prod_in_sankey
   - Group: Conversion
     Carrier: Loss
-    Category: Oil transport losses
-    Type: Input
-    Value: oil_and_derivatives_to_transport_losses_in_sankey
+    Category: Oil to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to oil conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_oil_and_derivatives
   - Group: Final demand
     Carrier: Oil
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: oil_and_derivatives_to_households_in_sankey
+    Value: sankey_final_demand_of_oil_and_derivatives_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Oil
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: oil_and_derivatives_to_buildings_in_sankey
+    Value: sankey_final_demand_of_oil_and_derivatives_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Oil
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_oil_and_derivatives_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Oil
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_oil_and_derivatives_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Oil
     Category: Agriculture
@@ -592,14 +919,24 @@ rows:
     Value: oil_and_derivatives_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Oil
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: oil_and_derivatives_to_industry_in_sankey
+    Value: sankey_final_demand_of_oil_and_derivatives_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Oil
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_oil_and_derivatives_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Oil
     Category: National transport
     Type: Input
     Value: oil_and_derivatives_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Oil
+    Category: International transport
+    Type: Input
+    Value: oil_and_derivatives_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Oil
     Category: Export
@@ -617,14 +954,10 @@ rows:
     Value: oil_and_derivatives_to_energy_in_sankey
   - Group: Final demand
     Carrier: Oil
-    Category: International transport
-    Type: Input
-    Value: oil_and_derivatives_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Oil
     Category: Feedstock
     Type: Input
     Value: oil_and_derivatives_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Natural gas
     Category: Import
@@ -637,12 +970,12 @@ rows:
     Value: extraction_of_natural_gas
   - Group: Conversion
     Carrier: Natural gas
-    Category: Gas power plants
+    Category: Natural gas power plants
     Type: Input
     Value: gas_for_electricity_conversion
   - Group: Conversion
     Carrier: Natural gas
-    Category: Gas central heating
+    Category: Natural gas central heating
     Type: Input
     Value: natural_gas_to_central_heat_prod_in_sankey
   - Group: Conversion
@@ -666,20 +999,55 @@ rows:
     Type: Input
     Value: natural_gas_for_biomass_gasification_ccs_conversion
   - Group: Conversion
+    Carrier: Natural gas
+    Category: Residual natural gas from industry
+    Type: Output
+    Value: conversion_industry_residual_natural_gas
+  - Group: Conversion
     Carrier: Loss
-    Category: Natural gas transport losses
-    Type: Input
-    Value: natural_gas_to_transport_losses_in_sankey
+    Category: Natural gas to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_natural_gas_and_derivatives
   - Group: Final demand
     Carrier: Natural gas
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: natural_gas_to_households_in_sankey
+    Value: sankey_final_demand_of_natural_gas_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Natural gas
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: natural_gas_to_buildings_in_sankey
+    Value: sankey_final_demand_of_natural_gas_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Natural gas
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_natural_gas_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Natural gas
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_natural_gas_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Natural gas
     Category: Agriculture
@@ -687,14 +1055,24 @@ rows:
     Value: natural_gas_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Natural gas
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: natural_gas_to_industry_in_sankey
+    Value: sankey_final_demand_of_natural_gas_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Natural gas
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_natural_gas_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Natural gas
     Category: National transport
     Type: Input
     Value: natural_gas_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Natural gas
+    Category: International transport
+    Type: Input
+    Value: natural_gas_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Natural gas
     Category: Export
@@ -712,24 +1090,65 @@ rows:
     Value: natural_gas_to_energy_in_sankey
   - Group: Final demand
     Carrier: Natural gas
-    Category: International transport
-    Type: Input
-    Value: natural_gas_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Natural gas
     Category: Feedstock
     Type: Input
     Value: natural_gas_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Biomass
-    Category: Import
+    Category: Wood pellets
     Type: Output
-    Value: import_of_biomass_products
+    Value: total_primary_demand_of_wood_pellets
   - Group: Primary demand
     Carrier: Biomass
-    Category: Production
+    Category: Torrefied biomass pellets
     Type: Output
-    Value: production_of_biomass_products
+    Value: total_primary_demand_of_torrefied_biomass_pellets
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Biogas
+    Type: Output
+    Value: total_primary_demand_of_biogas
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Biodiesel
+    Type: Output
+    Value: total_primary_demand_of_biodiesel
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Bio-ethanol
+    Type: Output
+    Value: total_primary_demand_of_bio_ethanol
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Bio-kerosene
+    Type: Output
+    Value: total_primary_demand_of_bio_kerosene
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Bio-LNG
+    Type: Output
+    Value: total_primary_demand_of_bio_lng
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Bio-oil
+    Type: Output
+    Value: total_primary_demand_of_bio_oil
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Green gas
+    Type: Output
+    Value: total_primary_demand_of_greengas
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Biogenic waste
+    Type: Output
+    Value: total_primary_demand_of_biogenic_waste
+  - Group: Primary demand
+    Carrier: Biomass
+    Category: Non-biogenic waste
+    Type: Output
+    Value: total_primary_demand_of_non_biogenic_waste
   - Group: Conversion
     Carrier: Biomass
     Category: Biomass gasification
@@ -751,20 +1170,55 @@ rows:
     Type: Input
     Value: biomass_products_to_central_heat_prod_in_sankey
   - Group: Conversion
+    Carrier: Green gas
+    Category: Residual green gas from industry
+    Type: Output
+    Value: conversion_industry_residual_greengas
+  - Group: Conversion
     Carrier: Loss
-    Category: Biomass transport losses
-    Type: Input
-    Value: biomass_products_to_transport_losses_in_sankey
+    Category: Biomass to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_biomass_products
   - Group: Final demand
     Carrier: Biomass
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: biomass_products_to_households_in_sankey
+    Value: sankey_final_demand_of_biomass_products_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Biomass
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: biomass_products_to_buildings_in_sankey
+    Value: sankey_final_demand_of_biomass_products_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Biomass
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_biomass_products_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Biomass
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_biomass_products_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Biomass
     Category: Agriculture
@@ -772,14 +1226,24 @@ rows:
     Value: biomass_products_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Biomass
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: biomass_products_to_industry_in_sankey
+    Value: sankey_final_demand_of_biomass_products_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Biomass
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_biomass_products_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Biomass
     Category: National transport
     Type: Input
     Value: biomass_products_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Biomass
+    Category: International transport
+    Type: Input
+    Value: biomass_products_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Biomass
     Category: Export
@@ -797,14 +1261,10 @@ rows:
     Value: biomass_products_to_energy_in_sankey
   - Group: Final demand
     Carrier: Biomass
-    Category: International transport
-    Type: Input
-    Value: biomass_products_to_bunkers_in_sankey
-  - Group: Final demand
-    Carrier: Biomass
     Category: Feedstock
     Type: Input
     Value: biomass_products_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: Ammonia
     Category: Import
@@ -815,16 +1275,31 @@ rows:
     Category: Ammonia reformer
     Type: Input
     Value: imported_ammonia_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_hydrogen
   - Group: Final demand
     Carrier: Ammonia
-    Category: Households
+    Category: Households space heating and hot water
     Type: Input
-    Value: imported_ammonia_to_households_in_sankey
+    Value: sankey_final_demand_of_ammonia_in_households_space_heating_and_hot_water_energetic
   - Group: Final demand
     Carrier: Ammonia
-    Category: Buildings
+    Category: Households excl. space heating and hot water
     Type: Input
-    Value: imported_ammonia_to_buildings_in_sankey
+    Value: sankey_final_demand_of_ammonia_in_households_other_energetic
+  - Group: Final demand
+    Carrier: Ammonia
+    Category: Buildings space heating
+    Type: Input
+    Value: sankey_final_demand_of_ammonia_in_buildings_space_heating_energetic
+  - Group: Final demand
+    Carrier: Ammonia
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: sankey_final_demand_of_ammonia_in_buildings_other_energetic
   - Group: Final demand
     Carrier: Ammonia
     Category: Agriculture
@@ -832,14 +1307,24 @@ rows:
     Value: imported_ammonia_to_agriculture_in_sankey
   - Group: Final demand
     Carrier: Ammonia
-    Category: Industry
+    Category: Industry excl. ICT
     Type: Input
-    Value: imported_ammonia_to_industry_in_sankey
+    Value: sankey_final_demand_of_ammonia_in_industry_other_energetic
+  - Group: Final demand
+    Carrier: Ammonia
+    Category: Industry ICT
+    Type: Input
+    Value: sankey_final_demand_of_ammonia_in_industry_ict_energetic
   - Group: Final demand
     Carrier: Ammonia
     Category: National transport
     Type: Input
     Value: imported_ammonia_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Ammonia
+    Category: International transport
+    Type: Input
+    Value: imported_ammonia_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Ammonia
     Category: Export
@@ -855,11 +1340,6 @@ rows:
     Category: Energy
     Type: Input
     Value: imported_ammonia_to_energy_in_sankey
-  - Group: Final demand
-    Carrier: Ammonia
-    Category: International transport
-    Type: Input
-    Value: imported_ammonia_to_bunkers_in_sankey
   - Group: Final demand
     Carrier: Ammonia
     Category: Feedstock

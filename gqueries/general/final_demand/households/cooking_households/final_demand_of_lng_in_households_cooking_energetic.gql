@@ -1,0 +1,15 @@
+# Energetic final demand of the 'lng' carrier group in households cooking
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(cooking_households)), "lng?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

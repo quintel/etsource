@@ -1,0 +1,15 @@
+# Energetic final demand of the 'natural_gas_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand), "network_gas? || compressed_network_gas? || natural_gas? || lng?"
+          ),
+          energetic?
+        ),
+        value
+      )
+    ) / BILLIONS

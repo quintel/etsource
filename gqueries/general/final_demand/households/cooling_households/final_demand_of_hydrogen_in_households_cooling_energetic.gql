@@ -1,0 +1,15 @@
+# Energetic final demand of the 'hydrogen' carrier group in households cooling
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(cooling_households)), "hydrogen?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

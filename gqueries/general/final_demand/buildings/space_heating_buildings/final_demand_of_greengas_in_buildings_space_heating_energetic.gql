@@ -1,0 +1,18 @@
+# Energetic final demand of the 'greengas' carrier group in buildings space_heating
+
+- unit = PJ
+- query =
+    PRODUCT(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              INTERSECTION(EG(final_demand),EG(space_heating_buildings)), "network_gas? || compressed_network_gas?"
+            ),
+            "energetic?"
+          ),
+          value
+        ),
+      ),
+      Q(share_of_greengas_in_gas_network)
+    ) / BILLIONS

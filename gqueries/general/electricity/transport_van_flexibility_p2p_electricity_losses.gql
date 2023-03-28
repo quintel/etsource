@@ -1,0 +1,9 @@
+# Electricity output curve is queried instead of the output of electricity
+# The electricity output curve shows the actual electricity supplied to the grid
+# The output of electricity does not take unused and decayed electricity into account
+# See https://github.com/quintel/etengine/issues/1218
+
+- query =
+    V(transport_van_flexibility_p2p_electricity, input_of_electricity) -
+    PRODUCT(SUM(V(transport_van_flexibility_p2p_electricity, electricity_output_curve)),MJ_PER_MWH)
+- unit = MJ

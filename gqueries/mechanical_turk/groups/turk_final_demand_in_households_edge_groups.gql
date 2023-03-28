@@ -1,0 +1,12 @@
+- query =
+    SUM(V(
+      INTERSECTION(EG(final_demand),EG(appliances_households)),
+      INTERSECTION(EG(final_demand),EG(cooking_households)),
+      INTERSECTION(EG(final_demand),EG(cooling_households)),
+      INTERSECTION(EG(final_demand),EG(hot_water_households)),
+      INTERSECTION(EG(final_demand),EG(lighting_households)),
+      INTERSECTION(EG(final_demand),EG(space_heating_households)),
+      value
+      )
+    ) / BILLIONS
+- unit = PJ

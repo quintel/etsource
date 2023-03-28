@@ -1,0 +1,10 @@
+# Energetic final demand of the 'biomass_products' carrier group in industry excl. ict
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_demand_of_biomass_products_in_industry_energetic),
+      - Q(final_demand_of_biomass_products_in_ict_industry_energetic),
+      Q(final_demand_of_greengas_in_industry_energetic),
+      - Q(final_demand_of_greengas_in_ict_industry_energetic),
+    )

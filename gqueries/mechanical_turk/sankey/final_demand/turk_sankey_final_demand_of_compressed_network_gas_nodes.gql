@@ -1,0 +1,12 @@
+# Final demand of the 'compressed_network_gas' carrier
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "compressed_network_gas?"
+        ),
+        value
+      )
+    ) / BILLIONS

@@ -5,6 +5,6 @@
     DIVIDE(
         SUM(
             V(INTERSECTION(INTERSECTION(SECTOR(energy),G(final_demand_group)),USE(energetic)),"input_of_wood_pellets + input_of_biodiesel + input_of_bio_ethanol + input_of_bio_lng + input_of_bio_kerosene"),
-            (V(INTERSECTION(INTERSECTION(SECTOR(energy),G(final_demand_group)),USE(energetic)), input_of(network_gas, compressed_network_gas)) * Q(share_of_greengas_in_gas_network))
+            SUM(V(INTERSECTION(INTERSECTION(SECTOR(energy),G(final_demand_group)),USE(energetic)), input_of(network_gas, compressed_network_gas))) * Q(share_of_greengas_in_gas_network)
         ),
     BILLIONS)

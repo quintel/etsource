@@ -1,0 +1,12 @@
+# Final demand of the 'electricity' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "electricity?"
+        ),
+        value
+      )
+    ) / BILLIONS

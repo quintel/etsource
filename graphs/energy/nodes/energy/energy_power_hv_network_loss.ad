@@ -1,11 +1,12 @@
-- use = undefined
-- energy_balance_group = distribution losses
 - output.loss = elastic
+- groups = [sankey_conversion_group]
+- use = undefined
 - graph_methods = [demand]
+- energy_balance_group = distribution losses
 - merit_order.group = flat
-- merit_order.type = consumer
-- merit_order.subtype = electricity_loss
 - merit_order.level = hv
+- merit_order.subtype = electricity_loss
+- merit_order.type = consumer
 - free_co2_factor = 0.0
 
 ~ demand = -EB(losses, electricity)

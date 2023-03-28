@@ -1,0 +1,18 @@
+# Energetic final demand of the 'natural_gas' carrier group in households appliances
+
+- unit = PJ
+- query =
+    PRODUCT(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              INTERSECTION(EG(final_demand),EG(appliances_households)), "network_gas? || compressed_network_gas?"
+            ),
+            "energetic?"
+          ),
+          value
+        ),
+      ),
+      Q(share_of_natural_gas_in_gas_network)
+    ) / BILLIONS

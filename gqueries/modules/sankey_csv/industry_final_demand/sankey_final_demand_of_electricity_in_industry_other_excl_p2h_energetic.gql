@@ -1,0 +1,9 @@
+# Energetic final demand of the 'electricity' carrier group in industry excl. ict and p2h
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_demand_of_electricity_in_industry_energetic),
+      - Q(final_demand_of_electricity_in_ict_industry_energetic)
+      - Q(electricity_prod_to_p2h_industry_in_sankey)
+    )

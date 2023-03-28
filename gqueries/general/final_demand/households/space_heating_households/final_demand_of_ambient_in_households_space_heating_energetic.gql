@@ -1,0 +1,15 @@
+# Energetic final demand of the 'ambient' carrier group in households space_heating
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(space_heating_households)), "ambient_heat? || ambient_cold?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

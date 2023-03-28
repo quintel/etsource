@@ -1,0 +1,15 @@
+# Energetic final demand of the 'electricity' carrier group in households hot_water
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(hot_water_households)), "electricity?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

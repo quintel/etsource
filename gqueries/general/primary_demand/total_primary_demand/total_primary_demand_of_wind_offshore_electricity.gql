@@ -1,0 +1,15 @@
+# Offshore wind turbine for direct electrolysis to hydrogen is included manually
+# This is because it is included in primary demand but does not have the dynamic merit_order attribute
+
+- query =
+    SUM(
+      V(
+        FILTER(
+          G(primary_energy_demand),
+          "merit_order && (merit_order.group.to_s.gsub(/\s/, '') == 'dynamic:wind_offshore')"
+        ),
+        energy_hydrogen_wind_turbine_offshore,
+        primary_demand_of_electricity
+      )
+    ) / BILLIONS
+- unit = PJ

@@ -1,0 +1,11 @@
+- query =
+    SUM(V(
+      INTERSECTION(EG(final_demand),EG(chemical_industry)),
+      INTERSECTION(EG(final_demand),EG(metal_industry)),
+      INTERSECTION(EG(final_demand),EG(other_industry)),
+      INTERSECTION(EG(final_demand),EG(other_non_specified_industry)),
+      INTERSECTION(EG(final_demand),EG(heat_network_industry)),
+      value
+      )
+    ) / BILLIONS
+- unit = PJ

@@ -1,0 +1,15 @@
+# Energetic final demand of the 'geothermal' carrier group in buildings cooling
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(cooling_buildings)), "geothermal?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

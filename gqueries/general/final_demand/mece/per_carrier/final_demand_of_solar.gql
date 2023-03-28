@@ -1,0 +1,12 @@
+# Final demand of the 'solar' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), "solar_radiation? || solar_thermal?"
+        ),
+        value
+      )
+    ) / BILLIONS

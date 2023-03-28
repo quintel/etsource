@@ -1,0 +1,15 @@
+# Energetic final demand of the 'solar' carrier group in households lighting
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(lighting_households)), "solar_radiation? || solar_thermal?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS
