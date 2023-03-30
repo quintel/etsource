@@ -1,0 +1,14 @@
+# Divide the energy demand volume by the capacity 
+# in order to calculate the FLH
+#
+# This query is used in the ESDL app
+
+- unit = MW
+- query =
+    DIVIDE(
+      DIVIDE(
+        V(transport_truck_using_hydrogen, demand),
+        MJ_PER_MWH
+      ),
+      Q(capacity_of_transport_truck_using_hydrogen)
+    )
