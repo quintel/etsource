@@ -1,6 +1,6 @@
 - unit = PJ
 - query =
     SUM(
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_solar_thermal),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_steam_hot_water)
+       V(G(curtailment_group), primary_demand_of_solar_thermal),
+       V(G(curtailment_group), primary_demand_of_steam_hot_water)
     ) / BILLIONS

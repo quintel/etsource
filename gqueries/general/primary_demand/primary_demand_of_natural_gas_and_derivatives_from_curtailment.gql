@@ -3,7 +3,7 @@
 - unit = PJ
 - query =
     SUM(
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_natural_gas),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_compressed_network_gas),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_lng)
+       V(G(curtailment_group), primary_demand_of_natural_gas),
+       V(G(curtailment_group), primary_demand_of_compressed_network_gas),
+       V(G(curtailment_group), primary_demand_of_lng)
     ) / BILLIONS

@@ -3,9 +3,9 @@
 - unit = PJ
 - query =
     SUM(
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_biodiesel),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_bio_ethanol),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_bio_kerosene),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_bio_lng),
-       V(energy_flexibility_curtailment_electricity, primary_demand_of_bio_oil)
+       V(G(curtailment_group), primary_demand_of_biodiesel),
+       V(G(curtailment_group), primary_demand_of_bio_ethanol),
+       V(G(curtailment_group), primary_demand_of_bio_kerosene),
+       V(G(curtailment_group), primary_demand_of_bio_lng),
+       V(G(curtailment_group), primary_demand_of_bio_oil)
     ) / BILLIONS
