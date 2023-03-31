@@ -1,0 +1,8 @@
+- query =
+    IF(
+      V(energy_flexibility_pumped_storage_electricity, "merit_order.subtype") == :optimizing_storage,
+      -> { true },
+      -> { false }
+    )
+
+- unit = boolean
