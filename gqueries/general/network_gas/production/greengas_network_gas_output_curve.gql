@@ -1,2 +1,9 @@
-- query = V(energy_distribution_greengas, network_gas_output_curve)
+- query = 
+    SUM_CURVES(
+      V(energy_greengas_gasification_dry_biomass,
+        energy_greengas_gasification_wet_biomass,
+        energy_greengas_upgrade_biogas,
+        network_gas_output_curve
+      )
+    )
 - unit = curve
