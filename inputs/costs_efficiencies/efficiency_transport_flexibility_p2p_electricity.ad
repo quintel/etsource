@@ -1,0 +1,21 @@
+- query =
+    UPDATE(
+      OUTPUT_SLOTS(
+        V(
+          transport_bus_flexibility_p2p_electricity,
+          transport_car_flexibility_p2p_electricity,
+          transport_truck_flexibility_p2p_electricity,
+          transport_van_flexibility_p2p_electricity
+        ),
+        electricity
+      ),
+      conversion,
+      DIVIDE(USER_INPUT(), 100.0)
+    )
+- priority = 0
+- max_value_gql = present:MIN(V(transport_car_flexibility_p2p_electricity,electricity_output_conversion) * 100.0 + 10.0, 100.0)
+- min_value_gql = present:MAX(V(transport_car_flexibility_p2p_electricity,electricity_output_conversion) * 100.0 - 10.0, 0.0)
+- start_value_gql = present:V(transport_car_flexibility_p2p_electricity,electricity_output_conversion) * 100.0
+- step_value = 1.0
+- unit = %
+- update_period = future
