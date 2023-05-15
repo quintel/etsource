@@ -1,0 +1,13 @@
+# Direct conversion output of steam hot water from central heating through p2h for district heating
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(G(p2h),SECTOR(energy)),
+          "output_of_steam_hot_water * ambient_heat_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
