@@ -1,11 +1,9 @@
 - query = 
-    UPDATE(
-      V(
-        energy_flexibility_mv_batteries_electricity,
-        energy_flexibility_wind_batteries_electricity,
-        energy_flexibility_solar_batteries_electricity
-        ), initial_investment, USER_INPUT()
-      )
+    EACH(
+      UPDATE(V(energy_flexibility_mv_batteries_electricity, storage), "cost_per_mwh", USER_INPUT()),
+      UPDATE(V(energy_flexibility_wind_batteries_electricity, storage), "cost_per_mwh", USER_INPUT()),
+      UPDATE(V(energy_flexibility_solar_batteries_electricity, storage), "cost_per_mwh", USER_INPUT())
+    )
 - priority = 0
 - max_value = 300.0
 - min_value = -100.0
