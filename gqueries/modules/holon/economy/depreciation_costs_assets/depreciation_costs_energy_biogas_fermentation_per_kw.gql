@@ -1,0 +1,9 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(energy_biogas_fermentation_wet_biomass, capital_expenditures_excluding_ccs_per(:plant)),
+        V(energy_biogas_fermentation_wet_biomass, operating_expenses_excluding_ccs_per(:plant))
+      ),
+      V(energy_biogas_fermentation_wet_biomass, typical_input_capacity) * 1000
+    )
+- unit = euro

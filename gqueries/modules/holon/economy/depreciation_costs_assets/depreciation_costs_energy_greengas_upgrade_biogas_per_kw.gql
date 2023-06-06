@@ -1,0 +1,9 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(energy_greengas_upgrade_biogas, capital_expenditures_excluding_ccs_per(:plant)),
+        V(energy_greengas_upgrade_biogas, operating_expenses_excluding_ccs_per(:plant))
+      ),
+      V(energy_greengas_upgrade_biogas, typical_input_capacity) * 1000
+    )
+- unit = euro
