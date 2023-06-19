@@ -1,0 +1,11 @@
+# The ratio between the future peak load on the MV/HV transformer and the present capacity
+# Ratio is denoted as a percentage 
+
+- query =
+    PRODUCT(
+      DIVIDE(
+        QUERY_FUTURE(mv_hv_trafo_peak_load_future),
+        QUERY_PRESENT(mv_hv_trafo_capacity_present)
+      ), 100
+    )
+- unit = MW
