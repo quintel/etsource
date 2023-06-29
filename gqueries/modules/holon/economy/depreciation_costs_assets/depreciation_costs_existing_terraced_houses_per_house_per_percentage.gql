@@ -1,4 +1,9 @@
 # Costs to reduce the heat demand of existing terraced houses with 1%
+# Divided by assumed lifetime of 25 years to obtain depreciation costs
 
-- query = INSULATION_COST(existing_terraced_houses, 0, 1)
+- query = 
+    DIVIDE(
+      INSULATION_COST(existing_terraced_houses, 0, 1),
+      25
+    )
 - unit = euro
