@@ -4,11 +4,11 @@
     EXCLUDE(
       FILTER(
         ALL(),
-        "heat_network && (heat_network.type == :producer || heat_network.subtype == :heat_storage)"
+        "heat_network_mt && (heat_network.type == :producer || heat_network_mt.subtype == :heat_storage)"
       ),
       FILTER(
         ALL(),
-        "heat_network && (heat_network.subtype == :must_run)"
+        "heat_network_mt && (heat_network_mt.subtype == :must_run)"
       )
     )
 - unit = nodes
