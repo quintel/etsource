@@ -1,10 +1,8 @@
-# based on gas heater, adjusted efficiency to take into account condensation
-
 - output.loss = elastic
-- groups = [heat_production, central_production, preset_demand, wacc_proven_tech, costs_production_heat_plants, sankey_conversion_group]
+- groups = [preset_demand, heat_production, central_production, wacc_proven_tech, costs_production_heat_plants, sankey_conversion_group]
 - use = energetic
 - presentation_group = traditional_heat
-- graph_methods = [demand, output]
+- graph_methods = [demand, output, full_load_hours]
 - availability = 0.98
 - full_load_hours = 3942.7
 - ccs_investment = 0.0
@@ -20,16 +18,13 @@
 - energy_balance_group = technologies
 - heat_network_mt.subtype = dispatchable
 - heat_network_mt.type = producer
-- hydrogen.profile = self: steam_hot_water_output_curve
-- hydrogen.type = consumer
-- forecasting_error = 0.0
+- network_gas.profile = self: steam_hot_water_output_curve
+- network_gas.type = consumer
 - free_co2_factor = 0.0
 - heat_output_capacity = 5.0
 - land_use_per_unit = 0.005
-- part_load_efficiency_penalty = 0.0
-- part_load_operating_point = 0.0
 - takes_part_in_ets = 0.0
 
-~ demand = 0
-~ full_load_hours = CENTRAL_PRODUCTION(energy_heat_burner_hydrogen, full_load_hours)
-~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_heat_burner_hydrogen, steam_hot_water_output_conversion)
+~ demand = CENTRAL_PRODUCTION(energy_heat_burner_network_gas, demand)
+~ full_load_hours = CENTRAL_PRODUCTION(energy_heat_burner_network_gas, full_load_hours)
+~ output.steam_hot_water = CENTRAL_PRODUCTION(energy_heat_burner_network_gas, steam_hot_water_output_conversion)
