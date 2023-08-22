@@ -1,7 +1,7 @@
 - query =
     EACH(
       UPDATE(
-        V(energy_heat_network_storage),
+        V(energy_heat_network_storage_lt_steam_hot_water),
         number_of_units,
         IF(USER_INPUT() == 0.0, -> { 0.0 }, -> { 1.0 })
       )

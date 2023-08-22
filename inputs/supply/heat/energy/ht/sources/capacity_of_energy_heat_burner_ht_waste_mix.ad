@@ -1,0 +1,20 @@
+- query =
+    EACH(
+        UPDATE(
+            V(energy_heat_burner_ht_waste_mix),
+            number_of_units,
+            USER_INPUT() / V(energy_heat_burner_ht_waste_mix,heat_output_capacity)
+        ),
+        UPDATE(
+            V(energy_heat_burner_ht_waste_mix),
+            preset_demand,
+            V(energy_heat_burner_ht_waste_mix, production_based_on_number_of_heat_units)
+        )
+    )
+- priority = 0
+- max_value_gql = present:DIVIDE(DIVIDE(MAX(0.5 * Q(heat_production_total) * BILLIONS, V(energy_heat_burner_ht_waste_mix, output_of_steam_hot_water)*2), V(energy_heat_burner_ht_waste_mix,full_load_hours)), MJ_PER_MWH)
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(energy_heat_burner_ht_waste_mix,number_of_units),V(energy_heat_burner_ht_waste_mix,heat_output_capacity))
+- step_value = 1.0
+- unit = MW
+- update_period = future

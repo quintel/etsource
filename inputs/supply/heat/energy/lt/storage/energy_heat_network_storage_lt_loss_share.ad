@@ -5,12 +5,12 @@
     hourly_fraction = 1 / HOURS_PER_YEAR;
     hourly_loss = 1.0 - yearly_loss**hourly_fraction;
 
-    UPDATE(V(energy_heat_network_storage, storage), decay, hourly_loss)
+    UPDATE(V(energy_heat_network_storage_lt_steam_hot_water, storage), decay, hourly_loss)
 
 - priority = 0
 - max_value = 50.0
 - min_value = 0.0
-- start_value_gql = present:(1.0 - (1.0 - V(energy_heat_network_storage, "storage.decay"))**HOURS_PER_YEAR) * 100
+- start_value_gql = present:(1.0 - (1.0 - V(energy_heat_network_storage_lt_steam_hot_water, "storage.decay"))**HOURS_PER_YEAR) * 100
 - step_value = 0.1
 - unit = %
 - update_period = future

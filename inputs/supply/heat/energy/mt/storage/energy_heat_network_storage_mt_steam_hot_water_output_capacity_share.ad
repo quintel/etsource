@@ -3,7 +3,7 @@
 
 - query =
     UPDATE(
-      V(energy_heat_network_storage, heat_network_mt),
+      V(energy_heat_network_storage_mt_steam_hot_water, heat_network_mt),
       output_capacity_from_demand_share,
       DIVIDE(USER_INPUT(), 100)
     )
@@ -11,7 +11,7 @@
 - priority = 0
 - max_value = 300.0
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(V(energy_heat_network_storage, heat_network_mt), output_capacity_from_demand_share), 100)
+- start_value_gql = present:PRODUCT(V(V(energy_heat_network_storage_mt_steam_hot_water, heat_network_mt), output_capacity_from_demand_share), 100)
 - step_value = 0.1
 - unit = %
 - update_period = future
