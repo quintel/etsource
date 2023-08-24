@@ -4,6 +4,6 @@
       IF(
           GRAPH().present? || AREA(use_merit_order_demands) == false,
           -> { 0.0 },
-          -> { V(energy_heat_network_storage, "steam_hot_water_output_curve * storage.cost_per_mwh").sum }
+          -> { SUM(V(energy_heat_network_storage_ht_steam_hot_water, "steam_hot_water_output_curve * storage.cost_per_mwh")) }
       )
 - unit = MW
