@@ -1,0 +1,8 @@
+- query =
+    FILTER(
+      FILTER(
+        G(heat_production),"heat_network_lt"
+      ),
+      "crude_oil_input_conversion > 0.0 || gasoline_input_conversion > 0.0 || diesel_input_conversion > 0.0 || lpg_input_conversion > 0.0 || kerosene_input_conversion > 0.0 || heavy_fuel_oil_input_conversion > 0.0"
+    )
+- unit = nodes
