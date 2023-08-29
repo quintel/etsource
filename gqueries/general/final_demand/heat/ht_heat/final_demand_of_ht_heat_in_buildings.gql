@@ -1,0 +1,16 @@
+# Final demand of steam hot water and useable heat of HT temperature
+
+- unit = PJ
+- query =
+    DIVIDE(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(ht_heat)),"sector == :buildings"
+          ),
+          "steam_hot_water? || useable_heat?"
+        ),
+        value
+      ),
+      BILLIONS
+    )
