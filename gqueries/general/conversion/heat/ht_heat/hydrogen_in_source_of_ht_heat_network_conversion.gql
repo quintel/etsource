@@ -1,0 +1,13 @@
+# Direct conversion output of steam hot water on HT heat network through hydrogen
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(G(heat_production),"heat_network_ht"),
+          "output_of_steam_hot_water * hydrogen_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
