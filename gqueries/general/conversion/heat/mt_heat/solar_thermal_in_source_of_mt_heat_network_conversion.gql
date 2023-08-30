@@ -1,0 +1,13 @@
+# Direct conversion output of steam hot water on MT heat network through solar thermal
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(G(heat_production),"heat_network_mt"),
+          "output_of_steam_hot_water * solar_thermal_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
