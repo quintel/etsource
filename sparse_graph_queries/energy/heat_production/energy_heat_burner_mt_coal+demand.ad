@@ -1,0 +1,5 @@
+# User provides heat production, divide by heat output efficiency to get node demand
+
+- query =
+    DATASET_INPUT(input_energy_heat_burner_mt_coal_production) /
+    ( DATASET_INPUT(input_energy_heat_burner_coal_steam_hot_water_output_conversion) / 100.0 )

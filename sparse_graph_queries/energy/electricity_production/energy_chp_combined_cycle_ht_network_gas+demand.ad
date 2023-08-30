@@ -1,0 +1,6 @@
+# User provides electricity production, divide by electricity output efficiency to get node demand
+
+- query =
+    DATASET_INPUT(input_energy_chp_combined_cycle_ht_network_gas_production) /
+    ( DATASET_INPUT(input_energy_chp_combined_cycle_network_gas_electricity_output_conversion) / 100.0 )
+
