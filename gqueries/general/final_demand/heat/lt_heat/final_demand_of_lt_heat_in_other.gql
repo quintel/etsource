@@ -3,7 +3,7 @@
 - unit = PJ
 - query =
     DIVIDE(
-      V(
+      SUM(V(
         FILTER(
           FILTER(
             INTERSECTION(EG(final_demand),EG(lt_heat)),"sector == :other"
@@ -11,6 +11,6 @@
           "steam_hot_water? || useable_heat?"
         ),
         value
-      ),
+      )),
       BILLIONS
     )
