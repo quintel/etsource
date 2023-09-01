@@ -18,11 +18,18 @@
 - min_value = 0.0
 - start_value_gql = 
     present:PRODUCT(
-      DIVIDE(
-        V(energy_chp_ultra_supercritical_mt_coal,"number_of_units * electricity_output_capacity"),
-        SUM(
-          V(energy_chp_supercritical_ht_waste_mix,"number_of_units * electricity_output_capacity"),
-          V(energy_chp_supercritical_mt_waste_mix,"number_of_units * electricity_output_capacity")
+      (1 -
+        DIVIDE(
+          SUM(
+            V(energy_chp_supercritical_mt_waste_mix,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_supercritical_ccs_mt_waste_mix,"number_of_units * electricity_output_capacity")
+          ),
+          SUM(
+            V(energy_chp_supercritical_mt_waste_mix,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_supercritical_ccs_mt_waste_mix,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_supercritical_ht_waste_mix,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_supercritical_ccs_ht_waste_mix,"number_of_units * electricity_output_capacity")
+          )
         )
       ),
       100.0

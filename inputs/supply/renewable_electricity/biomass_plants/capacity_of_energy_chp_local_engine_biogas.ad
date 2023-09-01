@@ -1,19 +1,34 @@
 - query =
     EACH(
         UPDATE(
-            V(energy_chp_local_engine_biogas),
+            V(energy_chp_local_engine_mt_biogas),
             number_of_units,
-            USER_INPUT() / V(energy_chp_local_engine_biogas,electricity_output_capacity)
+            DIVIDE(INPUT_VALUE(share_of_energy_chp_local_engine_mt_biogas),100.0) * USER_INPUT() / V(energy_chp_local_engine_mt_biogas, electricity_output_capacity)
         ),
         UPDATE(
-          L(energy_chp_local_engine_biogas),
-          preset_demand_by_electricity_production,
-          V(energy_chp_local_engine_biogas, production_based_on_number_of_units)
-    ))
+            L(energy_chp_local_engine_mt_biogas),
+            preset_demand_by_electricity_production,
+            V(energy_chp_local_engine_mt_biogas, production_based_on_number_of_units)
+        ),
+        UPDATE(
+            V(energy_chp_local_engine_ht_biogas),
+            number_of_units,
+            DIVIDE(INPUT_VALUE(share_of_energy_chp_local_engine_ht_biogas),100.0) * USER_INPUT() / V(energy_chp_local_engine_ht_biogas, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_local_engine_ht_biogas),
+            preset_demand_by_electricity_production,
+            V(energy_chp_local_engine_ht_biogas, production_based_on_number_of_units)
+        )
+    )
 - priority = 0
-- max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_chp_local_engine_biogas,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_chp_local_engine_ht_biogas,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(energy_chp_local_engine_biogas,number_of_units),V(energy_chp_local_engine_biogas,electricity_output_capacity))
+- start_value_gql = 
+    present:SUM(
+      V(energy_chp_local_engine_mt_biogas, "number_of_units * electricity_output_capacity"),
+      V(energy_chp_local_engine_ht_biogas, "number_of_units * electricity_output_capacity")
+    )
 - step_value = 1.0
 - unit = MW
 - update_period = future
