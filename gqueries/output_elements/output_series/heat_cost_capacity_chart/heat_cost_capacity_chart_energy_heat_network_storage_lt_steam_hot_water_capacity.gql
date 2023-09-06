@@ -1,0 +1,7 @@
+- query =
+    IF(
+      GREATER(V(energy_heat_network_storage_lt_steam_hot_water, number_of_units), 0),
+      -> { V(energy_heat_network_storage_lt_steam_hot_water, heat_output_capacity) },
+      -> { 0.0 }
+  )
+- unit = MW
