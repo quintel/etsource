@@ -1,7 +1,7 @@
 # Calculates emissions associated with import of electricity, hydrogen and heat.
 
 - query =
-    imported_heat_emission_factor = V(EDGE(energy_distribution_imported_heat, energy_import_heat), co2_per_mj);
+    imported_heat_emission_factor = V(EDGE(energy_heat_import_ht_steam_hot_water, energy_import_heat), co2_per_mj);
     imported_hydrogen_emission_factor = V(EDGE(energy_imported_hydrogen_baseload, energy_import_hydrogen), co2_per_mj);
     imported_electricity_emission_factor = Q(average_co2_emissions_of_imported_electricity) / MJ_PER_MWH;
 
