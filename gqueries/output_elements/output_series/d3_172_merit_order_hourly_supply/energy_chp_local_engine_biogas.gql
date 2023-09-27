@@ -1,2 +1,6 @@
-- query = V(energy_chp_local_engine_biogas, electricity_output_curve)
+- query =
+    SUM_CURVES(
+      V(energy_chp_local_engine_ht_biogas, electricity_output_curve),
+      V(energy_chp_local_engine_mt_biogas, electricity_output_curve)
+    )
 - unit = curve
