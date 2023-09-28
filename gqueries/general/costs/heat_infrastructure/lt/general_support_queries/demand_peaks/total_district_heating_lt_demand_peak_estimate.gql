@@ -1,0 +1,11 @@
+# For the present and if time-resolved calculations are turned off
+# the hourly input curves are not available. In that case
+# we estimate peak demand by multiplying total demand (in MWh)
+# by a 'peak demand factor'. This factor is based on NL2015 dataset by
+# dividing the future demand peak in a blank scenario by the total demand
+- query =
+      estimated_peak_demand_factor = 0.000427;
+      estimated_peak_demand_factor *
+      SUM(
+        V(Q(time_resolved_heat_network_lt_demand_converters), "input_of_steam_hot_water / MJ_PER_MWH"))
+- unit = MW

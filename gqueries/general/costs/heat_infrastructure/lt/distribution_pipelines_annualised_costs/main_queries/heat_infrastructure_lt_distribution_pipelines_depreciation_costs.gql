@@ -1,0 +1,11 @@
+# Assuming linear depreciation, in line with ETM cost calculation
+
+- query =
+    DIVIDE(
+      SUM(
+        Q(heat_infrastructure_lt_distribution_pipelines_investment_costs),
+        Q(heat_infrastructure_lt_connection_pipelines_investment_costs)
+        ),
+      V(energy_distribution_lt_steam_hot_water, technical_lifetime)
+      )
+- unit = euro

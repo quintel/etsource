@@ -1,0 +1,7 @@
+# Only apartment blocks require indoor investment costs
+# These costs depend on whether an apartment block has a collective heating system ('block heating')
+# Or individual heating per apartment
+
+- query =
+    AREA(heat_yearly_indoor_infrastructure_maintenance_costs_factor) * Q(heat_infrastructure_households_lt_indoor_investment_costs)
+- unit = euro

@@ -1,0 +1,15 @@
+- query = QUERY_FUTURE(-> { SUM_CURVES(V(G(primary_heat_infrastructure), steam_hot_water_output_curve)).max })
+- unit = MW
+
+# For the present and if time-resolved calculations are turned off
+# the hourly input curves are not available. In that case
+# we estimate peak demand by multiplying total demand (in MWh)
+# by a 'peak demand factor'. This factor is based on NL2015 dataset by
+# dividing the future supply peak in a blank scenario by the yearly supply
+- query =
+      IF(
+          GRAPH().present? || AREA(use_merit_order_demands) == false,
+          -> { Q(total_district_heating_mt_primary_net_supply_peak_estimate) },
+          -> { Q(total_district_heating_mt_primary_net_supply_peak_time_resolved) }
+      )
+- unit = MW
