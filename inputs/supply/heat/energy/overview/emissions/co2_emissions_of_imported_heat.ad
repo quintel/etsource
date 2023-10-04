@@ -1,12 +1,4 @@
-- query =
-    UPDATE(
-      EDGE(
-        energy_distribution_ht_imported_heat,
-        energy_import_heat
-      ),
-      co2_per_mj,
-      DIVIDE(USER_INPUT(), THOUSANDS)
-    )
+- query = UPDATE(CARRIER(imported_heat), co2_conversion_per_mj, DIVIDE(USER_INPUT(), THOUSANDS))
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
