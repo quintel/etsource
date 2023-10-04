@@ -3,6 +3,10 @@
 - query =
     FILTER(
       ALL(),
-      "heat_network_mt && (heat_network_mt.subtype == :must_run)"
+      "
+        (heat_network_ht && (heat_network_ht.subtype == :must_run)) ||
+        (heat_network_mt && (heat_network_mt.subtype == :must_run)) ||
+        (heat_network_lt && (heat_network_lt.subtype == :must_run))
+      "
     )
 - unit = nodes

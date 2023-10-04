@@ -3,6 +3,10 @@
 - query =
     FILTER(
       ALL(),
-      "heat_network_mt && (heat_network_mt.subtype == :heat_storage || heat_network_mt.subtype == :curtailment)"
+      "
+        (heat_network_ht && (heat_network_mt.subtype == :heat_storage || heat_network_ht.subtype == :curtailment)) ||
+        (heat_network_mt && (heat_network_mt.subtype == :heat_storage || heat_network_mt.subtype == :curtailment)) ||
+        (heat_network_lt && (heat_network_lt.subtype == :heat_storage || heat_network_lt.subtype == :curtailment))
+      "
     )
 - unit = nodes
