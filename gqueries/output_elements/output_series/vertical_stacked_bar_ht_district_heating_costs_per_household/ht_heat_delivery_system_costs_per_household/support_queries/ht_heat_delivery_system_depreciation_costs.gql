@@ -1,0 +1,15 @@
+# Depreciation costs of the ht heat delivery systems for households.
+# The ht heat delivery system is assumed to have the same technical lifetime as the ht heating network.
+
+- unit = euro
+- query =
+    ht_heat_delivery_system_households_investment_costs = 
+        SUM(
+            Q(ht_heat_delivery_system_costs_ground_level_houses),
+            Q(ht_heat_delivery_system_costs_apartments)
+        );
+    
+    DIVIDE(
+        ht_heat_delivery_system_households_investment_costs,
+        V(energy_distribution_ht_steam_hot_water,technical_lifetime)
+    )

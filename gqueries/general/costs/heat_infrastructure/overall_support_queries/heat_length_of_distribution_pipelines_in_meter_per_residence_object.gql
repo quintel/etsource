@@ -1,30 +1,49 @@
 # This query calculates the (weighted average) share of residences and buildings
 # connected to a district heating network and then returns the average length of
 # the distribution pipelines per connected building (residence object)
-# depending on which 'bracket' this weighted share is in
+# depending on which 'bracket' this weighted share is in.
 # The more objects are connected to the network, the higher the bracket and the
-# higher the average pipeline length per connection
+# higher the average pipeline length per connection.
+# It is assumed that the total share of all temperature levels of district heating
+# determines the bracket.
 # See https://github.com/quintel/documentation/blob/master/general/heat_infrastructure_costs.md
 # for more info
 - query =
     share_of_residences_connected_to_heat_network = 
-    SUM(
-      V(households_space_heater_district_heating_ht_steam_hot_water_aggregator,share_of_households_useful_demand_for_space_heating_after_insulation),
-      V(households_space_heater_district_heating_mt_steam_hot_water_aggregator,share_of_households_useful_demand_for_space_heating_after_insulation)
-    );
-  residences_heat_demand = V(households_space_heater_district_heating_ht_steam_hot_water_aggregator, demand);
-  share_of_buildings_connected_to_heat_network = V(buildings_space_heater_district_heating_ht_steam_hot_water_aggregator,share_of_buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal);
-  buildings_heat_demand = V(buildings_space_heater_district_heating_ht_steam_hot_water_aggregator, demand);
-  share_of_residence_objects_connected_to_heat_network = ((share_of_residences_connected_to_heat_network * residences_heat_demand) + (share_of_buildings_connected_to_heat_network * buildings_heat_demand)) / (residences_heat_demand + buildings_heat_demand);
-  share_of_residence_objects_connected_to_heat_network = IF(share_of_residence_objects_connected_to_heat_network, share_of_residence_objects_connected_to_heat_network, 0.0);
+      SUM(
+        V(households_space_heater_district_heating_ht_steam_hot_water_aggregator,share_of_households_useful_demand_for_space_heating_after_insulation),
+        V(households_space_heater_district_heating_mt_steam_hot_water_aggregator,share_of_households_useful_demand_for_space_heating_after_insulation),
+        V(households_space_heater_district_heating_lt_steam_hot_water_aggregator,share_of_households_useful_demand_for_space_heating_after_insulation)
+      );  
+    residences_heat_demand = 
+      SUM(
+        V(households_space_heater_district_heating_ht_steam_hot_water_aggregator, demand),
+        V(households_space_heater_district_heating_mt_steam_hot_water_aggregator, demand),
+        V(households_space_heater_district_heating_lt_steam_hot_water_aggregator, demand)
+      );
+    share_of_buildings_connected_to_heat_network = 
+      SUM(
+        V(buildings_space_heater_district_heating_ht_steam_hot_water_aggregator,share_of_buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal),
+        V(buildings_space_heater_district_heating_mt_steam_hot_water_aggregator,share_of_buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal),
+        V(buildings_space_heater_district_heating_lt_steam_hot_water_aggregator,share_of_buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal)
+      );
+    buildings_heat_demand = 
+      SUM(
+        V(buildings_space_heater_district_heating_ht_steam_hot_water_aggregator, demand),
+        V(buildings_space_heater_district_heating_mt_steam_hot_water_aggregator, demand),
+        V(buildings_space_heater_district_heating_lt_steam_hot_water_aggregator, demand)
+      );
+    
+    share_of_residence_objects_connected_to_heat_network = ((share_of_residences_connected_to_heat_network * residences_heat_demand) + (share_of_buildings_connected_to_heat_network * buildings_heat_demand)) / (residences_heat_demand + buildings_heat_demand);
+    share_of_residence_objects_connected_to_heat_network = IF(share_of_residence_objects_connected_to_heat_network, share_of_residence_objects_connected_to_heat_network, 0.0);
 
-  IF(share_of_residence_objects_connected_to_heat_network <= 0.2,
-     AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_first_bracket),
-     IF(share_of_residence_objects_connected_to_heat_network <= 0.4,
-        AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_second_bracket),
-        IF(share_of_residence_objects_connected_to_heat_network <= 0.6,
-          AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_third_bracket),
-          IF(share_of_residence_objects_connected_to_heat_network <= 0.8,
-            AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_fourth_bracket),
-            AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_fifth_bracket)))))
+    IF(share_of_residence_objects_connected_to_heat_network <= 0.2,
+      AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_first_bracket),
+      IF(share_of_residence_objects_connected_to_heat_network <= 0.4,
+          AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_second_bracket),
+          IF(share_of_residence_objects_connected_to_heat_network <= 0.6,
+            AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_third_bracket),
+            IF(share_of_residence_objects_connected_to_heat_network <= 0.8,
+              AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_fourth_bracket),
+              AREA(heat_length_of_distribution_pipelines_in_meter_per_residence_object_fifth_bracket)))))
 - unit = meter
