@@ -1,0 +1,9 @@
+# Annual opex of indoor heat infrastructure per household, 
+# comprised only of the indoor maintenance costs.
+
+- unit = euro
+- query = 
+    DIVIDE(
+      Q(heat_infrastructure_households_lt_indoor_yearly_maintenance_costs),
+      V(households_space_heater_district_heating_lt_steam_hot_water, number_of_units)
+    )

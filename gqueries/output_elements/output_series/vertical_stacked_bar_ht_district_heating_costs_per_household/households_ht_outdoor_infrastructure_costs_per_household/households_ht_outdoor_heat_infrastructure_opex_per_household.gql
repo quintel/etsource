@@ -1,0 +1,16 @@
+# Annual opex of outdoor heat infrastructure per household, 
+# comprised of 
+# 1) the maintenance costs of primary pipelines and distribution stations by share of household heat demand in the total district heating network;
+# 2) the maintenance costs for distribution pipelines (used only by households and buildings) by share of household heat demand in the distribution network, and
+# 3) the maintenance costs for connection pipelines (which are used only by households)
+
+- unit = euro
+- query = 
+    DIVIDE(
+      SUM(
+        Q(households_ht_primary_pipelines_yearly_maintenance_costs),
+        Q(households_ht_distribution_stations_yearly_maintenance_costs),
+        Q(households_ht_distribution_pipelines_yearly_maintenance_costs)
+      ),
+      V(households_space_heater_district_heating_ht_steam_hot_water, number_of_units)
+    )

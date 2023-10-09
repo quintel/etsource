@@ -1,0 +1,11 @@
+# OPEX of the costs in ht heat producers ex fuels ex CCUS, per household. CHP is not in this scope.
+
+- query =
+    number_of_residences_in_ht_heating_network = V(households_space_heater_district_heating_ht_steam_hot_water,number_of_units);
+    DIVIDE(
+        SUM(
+            V(FILTER(G(costs_production_heat_plants),"heat_network_ht"), operating_expenses_excluding_ccs_per(:node))
+        ),
+        number_of_residences_in_ht_heating_network
+    )
+- unit = euro

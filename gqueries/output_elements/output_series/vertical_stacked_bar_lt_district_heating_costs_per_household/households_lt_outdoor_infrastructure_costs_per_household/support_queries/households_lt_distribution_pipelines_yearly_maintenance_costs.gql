@@ -1,0 +1,25 @@
+# Annual maintenance costs of main distribution pipelines for households, 
+# including the distribution pipelines maintenance costs by share of household heat demand in the distribution network (used by households and buildings),
+# and the connection pipelines maintenance costs (connection pipelines are used by households only).
+
+- unit = euro
+- query =
+    demand_share_of_households_in_distribution_network = 
+      DIVIDE(
+        V(households_final_demand_lt_steam_hot_water,demand),
+        SUM(
+          V(households_final_demand_lt_steam_hot_water,demand),
+          V(buildings_final_demand_lt_steam_hot_water,demand),
+        )
+      );
+
+      households_lt_distribution_pipelines_yearly_maintenance_costs =
+        PRODUCT(
+          Q(heat_infrastructure_lt_distribution_pipelines_yearly_maintenance_costs),
+          demand_share_of_households_in_distribution_network
+        );
+      
+    SUM(
+      households_lt_distribution_pipelines_yearly_maintenance_costs,
+      Q(heat_infrastructure_lt_connection_pipelines_yearly_maintenance_costs)
+    )

@@ -1,0 +1,16 @@
+# Capex of mt heat delivery systems per household
+# It is assumed that all residences in the mt heating network have mt heat delivery systems.
+
+- unit = eur
+- query =
+    number_of_residences_in_mt_heating_network = V(households_space_heater_district_heating_mt_steam_hot_water,number_of_units);
+    mt_heat_delivery_system_total_annual_costs = 
+        SUM(
+            Q(households_mt_heat_delivery_system_depreciation_costs),
+            Q(households_mt_heat_delivery_system_capital_costs)
+        );
+
+    DIVIDE(
+        mt_heat_delivery_system_total_annual_costs,
+        number_of_residences_in_mt_heating_network
+    )

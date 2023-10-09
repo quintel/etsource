@@ -1,0 +1,16 @@
+# Annual opex of outdoor heat infrastructure per household, 
+# comprised of the depreciation and capital costs of...
+# 1) primary pipelines and distribution stations by share of household heat demand in the total district heating network;
+# 2) distribution pipelines (used only by households and buildings) by share of household heat demand in the distribution network, and
+# 3) connection pipelines (which are used only by households)
+
+- unit = euro
+- query = 
+    DIVIDE(
+      SUM(
+        Q(households_lt_primary_pipelines_capex),
+        Q(households_lt_distribution_stations_capex),
+        Q(households_lt_distribution_pipelines_capex)
+      ),
+      V(households_space_heater_district_heating_lt_steam_hot_water, number_of_units)
+    )

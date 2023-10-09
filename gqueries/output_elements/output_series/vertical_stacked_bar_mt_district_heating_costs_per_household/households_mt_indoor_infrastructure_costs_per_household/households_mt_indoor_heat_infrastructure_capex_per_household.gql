@@ -1,0 +1,37 @@
+# Annual capex of indoor heat infrastructure per household, 
+# comprised of the indoor household depreciation costs
+# and indoor capital costs by demand share of households in the distribution network.
+
+- unit = euro
+- query = 
+    demand_share_of_households_in_distribution_network = 
+      DIVIDE(
+        V(households_final_demand_mt_steam_hot_water,demand),
+        SUM(
+          V(households_final_demand_mt_steam_hot_water,demand),
+          V(buildings_final_demand_mt_steam_hot_water,demand),
+        )
+      );
+    
+    households_mt_indoor_capital_costs = 
+      PRODUCT(
+        Q(heat_infrastructure_mt_indoor_capital_costs),
+        demand_share_of_households_in_distribution_network
+      );
+    
+    households_mt_indoor_depreciation_costs = 
+      DIVIDE(
+        Q(heat_infrastructure_households_mt_indoor_investment_costs),
+        V(energy_distribution_mt_steam_hot_water,technical_lifetime)
+      );
+    
+    annual_household_indoor_infrastructure_capex = 
+      SUM(
+        households_mt_indoor_capital_costs,
+        households_mt_indoor_depreciation_costs
+      );
+    
+    DIVIDE(
+      annual_household_indoor_infrastructure_capex,
+      V(households_space_heater_district_heating_mt_steam_hot_water,number_of_units)
+    )
