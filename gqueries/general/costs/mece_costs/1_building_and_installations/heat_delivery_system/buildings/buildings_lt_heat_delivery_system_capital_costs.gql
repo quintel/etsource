@@ -1,0 +1,19 @@
+# Capital costs of the lt heat delivery systems for buildings.
+# The lt heat delivery system is assumed to have the same wacc as the lt heating network.
+
+- unit = euro
+- query =
+    number_of_buildings_in_lt_heating_network = V(buildings_space_heater_district_heating_lt_steam_hot_water,number_of_units);
+    lt_heat_delivery_system_buildings_investment_costs = 
+        PRODUCT(
+            number_of_buildings_in_lt_heating_network,
+            AREA(buildings_lt_heat_delivery_system_costs_eur_per_connection)
+        );
+    
+    PRODUCT(
+        DIVIDE(
+        lt_heat_delivery_system_buildings_investment_costs,
+        2
+        ),
+        V(energy_distribution_lt_steam_hot_water,wacc)
+    )
