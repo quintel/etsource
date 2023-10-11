@@ -1,11 +1,23 @@
 - query =
     EACH(
-      UPDATE(V(energy_heat_solar_thermal), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(buildings_space_heater_solar_thermal), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(households_water_heater_solar_thermal), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(energy_heat_solar_thermal), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
-      UPDATE(V(buildings_space_heater_solar_thermal), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
-      UPDATE(V(households_water_heater_solar_thermal), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT())
+      UPDATE(
+        V(
+          buildings_space_heater_solar_thermal,
+          energy_heat_solar_ht_solar_thermal,
+          energy_heat_solar_lt_solar_thermal,
+          energy_heat_solar_mt_solar_thermal,
+          households_water_heater_solar_thermal
+        ), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()
+      ),
+      UPDATE(
+        V(
+          buildings_space_heater_solar_thermal,
+          energy_heat_solar_ht_solar_thermal,
+          energy_heat_solar_lt_solar_thermal,
+          energy_heat_solar_mt_solar_thermal,
+          households_water_heater_solar_thermal
+        ), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()
+      )
     )
 - priority = 0
 - max_value = 300.0

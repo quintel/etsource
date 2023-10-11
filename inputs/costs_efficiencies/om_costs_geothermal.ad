@@ -1,11 +1,25 @@
 - query =
     EACH(
-      UPDATE(V(energy_power_geothermal), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(energy_heat_well_geothermal), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(industry_heat_well_geothermal), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()),
-      UPDATE(V(energy_power_geothermal), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
-      UPDATE(V(energy_heat_well_geothermal), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()),
-      UPDATE(V(industry_heat_well_geothermal), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT())
+      UPDATE(
+        V(
+          agriculture_geothermal,
+          energy_heat_well_deep_ht_geothermal,
+          energy_heat_well_deep_mt_geothermal,
+          energy_heat_well_shallow_heatpump_mt_geothermal,
+          energy_heat_well_shallow_lt_geothermal,
+          industry_heat_well_geothermal
+        ), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()
+      ),
+      UPDATE(
+        V(
+          agriculture_geothermal,
+          energy_heat_well_deep_ht_geothermal,
+          energy_heat_well_deep_mt_geothermal,
+          energy_heat_well_shallow_heatpump_mt_geothermal,
+          energy_heat_well_shallow_lt_geothermal,
+          industry_heat_well_geothermal
+        ), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()
+      )
     )
 - priority = 0
 - max_value = 300.0

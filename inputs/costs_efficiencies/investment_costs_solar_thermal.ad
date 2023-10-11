@@ -1,8 +1,12 @@
 - query =
-    EACH(
-      UPDATE(V(households_water_heater_solar_thermal), initial_investment, USER_INPUT()),
-      UPDATE(V(buildings_space_heater_solar_thermal), initial_investment, USER_INPUT()),
-      UPDATE(V(energy_heat_solar_thermal), initial_investment, USER_INPUT())
+    UPDATE(
+      V(
+        buildings_space_heater_solar_thermal,
+        energy_heat_solar_ht_solar_thermal,
+        energy_heat_solar_lt_solar_thermal,
+        energy_heat_solar_mt_solar_thermal,
+        households_water_heater_solar_thermal
+      ), initial_investment, USER_INPUT()
     )
 - priority = 0
 - max_value = 300.0
