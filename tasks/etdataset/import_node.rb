@@ -18,7 +18,7 @@ namespace :import do
     end
 
     ENV['NODE'].split(',').each do |raw_node|
-
+      
       node =
         if Atlas::EnergyNode.exists?(raw_node)
           Atlas::EnergyNode.find(raw_node)
