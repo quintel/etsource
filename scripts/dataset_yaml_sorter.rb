@@ -6,11 +6,12 @@ DATASETS_DIR = 'datasets'
 GRAPH_VALUES_FILE = 'graph_values.yml'
 
 Dir.glob("#{DATASETS_DIR}/**/#{GRAPH_VALUES_FILE}") do |graph_file|
-  File.write(
-    graph_file,
-    YAML.load_file(graph_file)
-      .sort
-      .to_h
-      .to_yaml
-  )
+  yaml_contents = YAML.load_file(graph_file)
+
+  nodes = yaml_contents.reject { |k, _v| k.include?('-') }.sort.to_h
+  edges = yaml_contents.select { |k, _v| k.include?('-') }.sort.to_h
+
+  File.write(graph_file, nodes.merge(edges).to_yaml)
+
+  break
 end
