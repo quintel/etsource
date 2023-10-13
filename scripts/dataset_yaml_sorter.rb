@@ -12,6 +12,4 @@ Dir.glob("#{DATASETS_DIR}/**/#{GRAPH_VALUES_FILE}") do |graph_file|
   edges = yaml_contents.select { |k, _v| k.include?('-') }.sort.to_h
 
   File.write(graph_file, nodes.merge(edges).to_yaml)
-
-  break
 end
