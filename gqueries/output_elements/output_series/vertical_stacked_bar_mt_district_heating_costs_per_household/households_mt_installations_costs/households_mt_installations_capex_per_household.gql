@@ -1,0 +1,9 @@
+# CAPEX of the costs in mt heat producers ex fuels ex CCUS, per household. CHP is not in this scope.
+
+- query =
+    number_of_residences_in_mt_heating_network = V(households_space_heater_district_heating_mt_steam_hot_water,number_of_units);
+    DIVIDE(
+        SUM(V(FILTER(G(costs_production_heat_plants),"heat_network_mt"), capital_expenditures_excluding_ccs_per(:node))),
+        number_of_residences_in_mt_heating_network
+    )
+- unit = euro

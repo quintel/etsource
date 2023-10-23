@@ -17,48 +17,51 @@ namespace :import do
       raise "Please provide a node name. For example: bundle exec rake import:node NODE=my_node"
     end
 
-    node =
-      if Atlas::EnergyNode.exists?(ENV['NODE'])
-        Atlas::EnergyNode.find(ENV['NODE'])
-      elsif Atlas::MoleculeNode.exists?(ENV['NODE'])
-        Atlas::MoleculeNode.find(ENV['NODE'])
-      else
-        raise "No such node found in ETSource: #{ENV['NODE']}"
-      end
+    ENV['NODE'].split(',').each do |raw_node|
 
-    basename  = [node.key, node.class.subclass_suffix].compact.join('.')
-    node_path = "#{node.graph_config.name}/#{node.sector}/#{basename}"
-    xlsx      = Roo::Spreadsheet.open("#{ETDATASET_PATH}/nodes_source_analyses/#{node_path}.xlsx")
-
-    xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
-      next unless key_val[:value].is_a?(Numeric)
-
-      attribute = key_val[:attribute].strip
-
-      if attribute =~ /\./
-        attribute, subkey = attribute.split('.', 2)
-
-        begin
-          subhash = get_attribute(node, attribute, subkey)
-        rescue KeyError => e
-          warn('Ignored:' + e)
-          next
+      node =
+        if Atlas::EnergyNode.exists?(raw_node)
+          Atlas::EnergyNode.find(raw_node)
+        elsif Atlas::MoleculeNode.exists?(raw_node)
+          Atlas::MoleculeNode.find(raw_node)
+        else
+          raise "No such node found in ETSource: #{raw_node}"
         end
 
-        # Check for sub-subhashes (does not work for FeverDetails, TransformerDetails - Storage etc)
-        subhash, subkey = set_subhashes(subhash, subkey) if subhash.is_a?(Hash)
+      basename  = [node.key, node.class.subclass_suffix].compact.join('.')
+      node_path = "#{node.graph_config.name}/#{node.sector}/#{basename}"
+      xlsx      = Roo::Spreadsheet.open("#{ETDATASET_PATH}/nodes_source_analyses/#{node_path}.xlsx")
 
-        set_attribute(subhash, subkey, key_val[:value])
-      else
-        begin
-          set_attribute(node, attribute, key_val[:value])
-        rescue KeyError => e
-          warn('Ignored:' + e)
+      xlsx.sheet('Dashboard').each(attribute: 'Attribute', value: 'Value') do |key_val|
+        next unless key_val[:value].is_a?(Numeric)
+
+        attribute = key_val[:attribute].strip
+
+        if attribute =~ /\./
+          attribute, subkey = attribute.split('.', 2)
+
+          begin
+            subhash = get_attribute(node, attribute, subkey)
+          rescue KeyError => e
+            warn('Ignored:' + e)
+            next
+          end
+
+          # Check for sub-subhashes (does not work for FeverDetails, TransformerDetails - Storage etc)
+          subhash, subkey = set_subhashes(subhash, subkey) if subhash.is_a?(Hash)
+
+          set_attribute(subhash, subkey, key_val[:value])
+        else
+          begin
+            set_attribute(node, attribute, key_val[:value])
+          rescue KeyError => e
+            warn('Ignored:' + e)
+          end
         end
       end
+
+      node.save(false)
     end
-
-    node.save(false)
   end
 end
 

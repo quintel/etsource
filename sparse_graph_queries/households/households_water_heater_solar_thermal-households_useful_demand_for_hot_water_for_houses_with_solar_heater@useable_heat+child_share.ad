@@ -5,7 +5,7 @@
 # on 15% and in that case all hot water can be delivered with solar thermal.
 
 - query = 
-    total_final_demand_hh = DATASET_INPUT(households_final_demand_electricity_demand) + DATASET_INPUT(households_final_demand_network_gas_demand) + DATASET_INPUT(households_final_demand_steam_hot_water_demand) + DATASET_INPUT(households_final_demand_wood_pellets_demand) + DATASET_INPUT(households_final_demand_coal_demand) + DATASET_INPUT(input_households_final_demand_crude_oil_demand) + DATASET_INPUT(households_final_demand_solar_thermal_demand)
+    total_final_demand_hh = DATASET_INPUT(households_final_demand_electricity_demand) + DATASET_INPUT(households_final_demand_network_gas_demand) + DATASET_INPUT(input_households_final_demand_steam_hot_water_demand) + DATASET_INPUT(households_final_demand_wood_pellets_demand) + DATASET_INPUT(households_final_demand_coal_demand) + DATASET_INPUT(input_households_final_demand_crude_oil_demand) + DATASET_INPUT(households_final_demand_solar_thermal_demand)
     share_solar_thermal = DATASET_INPUT(households_final_demand_solar_thermal_demand) / total_final_demand_hh
     
     IF(share_solar_thermal < 0.15,

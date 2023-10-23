@@ -1,7 +1,13 @@
-- query =
-    EACH(
-        UPDATE(V(energy_power_supercritical_waste_mix), initial_investment, USER_INPUT()),
-        UPDATE(V(energy_chp_supercritical_waste_mix), initial_investment, USER_INPUT())
+- query = 
+    UPDATE(
+      V(
+        energy_chp_supercritical_ccs_ht_waste_mix,
+        energy_chp_supercritical_ccs_mt_waste_mix,
+        energy_chp_supercritical_ht_waste_mix,
+        energy_chp_supercritical_mt_waste_mix,
+        energy_power_supercritical_ccs_waste_mix,
+        energy_power_supercritical_waste_mix
+      ), initial_investment, USER_INPUT()
     )
 - priority = 0
 - max_value = 300.0

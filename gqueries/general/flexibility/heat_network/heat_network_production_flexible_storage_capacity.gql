@@ -1,13 +1,33 @@
 # Selects the heat output capacity of the heat storage by taking the maximum value of the hourly output curve.
 
 - query =
-    MAX(
-      V(
-        FILTER(
-          ALL(),
-          "heat_network && (heat_network.subtype == :heat_storage)"
-        ),
-        steam_hot_water_output_curve
+    SUM(
+      MAX(
+        V(
+          FILTER(
+            ALL(),
+            "heat_network_ht && (heat_network_ht.subtype == :heat_storage)"
+          ),
+          steam_hot_water_output_curve
+        )
+      ),
+      MAX(
+        V(
+          FILTER(
+            ALL(),
+            "heat_network_mt && (heat_network_mt.subtype == :heat_storage)"
+          ),
+          steam_hot_water_output_curve
+        )
+      ),
+      MAX(
+        V(
+          FILTER(
+            ALL(),
+            "heat_network_lt && (heat_network_lt.subtype == :heat_storage)"
+          ),
+          steam_hot_water_output_curve
+        )
       )
     )
 - unit = MW

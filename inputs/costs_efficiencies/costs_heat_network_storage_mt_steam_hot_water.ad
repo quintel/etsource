@@ -1,0 +1,18 @@
+# unit = euro/MWh
+
+- query =
+    EACH(
+      UPDATE(
+        V(
+          energy_heat_network_storage_mt_steam_hot_water,
+          storage
+        ), cost_per_mwh, USER_INPUT()
+      ),
+    )
+- priority = 0
+- max_value = 200.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_heat_network_storage_mt_steam_hot_water,"storage.cost_per_mwh")
+- step_value = 0.01
+- unit = euro
+- update_period = future

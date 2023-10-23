@@ -1,0 +1,6 @@
+- query =
+    agriculture_heat_demand_ht = SPARSE_GRAPH_QUERY(agriculture_final_demand_ht_steam_hot_water, demand);
+    agriculture_heat_share_ht_central = DATASET_INPUT(input_percentage_of_central_ht_steam_hot_water_agriculture_final_demand_steam_hot_water);
+    agriculture_heat_share_ht_local = DATASET_INPUT(input_percentage_of_local_steam_hot_water_agriculture_final_demand_steam_hot_water);
+
+    IF(agriculture_heat_demand_ht > 0.0, (agriculture_heat_share_ht_central / (agriculture_heat_share_ht_central + agriculture_heat_share_ht_local)), 1.0)

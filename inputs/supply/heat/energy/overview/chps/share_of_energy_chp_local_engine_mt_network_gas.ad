@@ -1,0 +1,32 @@
+- query =
+    EACH(
+        UPDATE(
+            V(energy_chp_local_engine_mt_network_gas),
+            number_of_units,
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_local_engine_network_gas) / V(energy_chp_local_engine_mt_network_gas, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_local_engine_mt_network_gas),
+            preset_demand_by_electricity_production,
+            V(energy_chp_local_engine_mt_network_gas, production_based_on_number_of_units)
+        )
+    )
+
+- share_group = chp_network_gas_heat
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = 
+    present:PRODUCT(
+      DIVIDE(
+        V(energy_chp_local_engine_mt_network_gas,"number_of_units * electricity_output_capacity"),
+        SUM(
+          V(energy_chp_local_engine_ht_network_gas,"number_of_units * electricity_output_capacity"),
+          V(energy_chp_local_engine_mt_network_gas,"number_of_units * electricity_output_capacity")
+        )
+      ),
+      100.0
+    )
+- step_value = 1.0
+- unit = %
+- update_period = future

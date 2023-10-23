@@ -1,0 +1,8 @@
+# Apartment blocks and ground level houses require indoor investment costs
+# These costs differ for ground level houses and apartment blocks,
+# and for apartment blocks the costs depend on whether it has a collective heating system ('block heating')
+# Or individual heating per apartment
+
+- query =
+    AREA(heat_yearly_indoor_infrastructure_maintenance_costs_factor) * Q(heat_infrastructure_households_ht_indoor_investment_costs)
+- unit = euro

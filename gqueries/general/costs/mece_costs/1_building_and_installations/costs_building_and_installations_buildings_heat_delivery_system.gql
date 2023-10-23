@@ -1,0 +1,18 @@
+# Total heat delivery system costs for buildings in ht, mt and lt heat networks
+# It is assumed that heat delivery systems do not require maintenance.
+- query =
+    SUM(
+      SUM(
+        Q(buildings_ht_heat_delivery_system_depreciation_costs),
+        Q(buildings_ht_heat_delivery_system_capital_costs)
+      ),
+      SUM(
+        Q(buildings_mt_heat_delivery_system_depreciation_costs),
+        Q(buildings_mt_heat_delivery_system_capital_costs)
+      ),
+      SUM(
+        Q(buildings_lt_heat_delivery_system_depreciation_costs),
+        Q(buildings_lt_heat_delivery_system_capital_costs)
+      )
+    )
+- unit = euro

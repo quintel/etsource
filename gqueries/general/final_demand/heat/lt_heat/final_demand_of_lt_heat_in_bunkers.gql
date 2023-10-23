@@ -1,0 +1,16 @@
+# Final demand of steam hot water and useable heat of LT temperature
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(lt_heat)),"sector == :bunkers"
+          ),
+          "steam_hot_water? || useable_heat?"
+        ),
+        value
+      )),
+      BILLIONS
+    )

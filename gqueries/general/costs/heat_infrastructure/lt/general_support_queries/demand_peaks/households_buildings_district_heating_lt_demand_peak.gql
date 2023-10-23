@@ -1,0 +1,12 @@
+# For the present and if time-resolved calculations are turned off
+# the hourly input curves are not available. In that case
+# we estimate peak demand by multiplying total demand (in MWh)
+# by a 'peak demand factor'. This factor is based on NL2015 dataset by
+# dividing the future demand peak in a blank scenario by the total demand
+- query =
+      IF(
+          GRAPH().present? || AREA(use_merit_order_demands) == false,
+          -> { Q(households_buildings_district_heating_lt_demand_peak_estimate) },
+          -> { Q(households_buildings_district_heating_lt_demand_peak_time_resolved) }
+      )
+- unit = MW

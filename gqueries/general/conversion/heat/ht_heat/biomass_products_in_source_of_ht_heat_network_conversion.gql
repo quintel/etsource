@@ -1,0 +1,18 @@
+# Direct conversion output of steam hot water on HT heat network through biomass products
+
+- query =
+    SUM(
+      Q(biogas_in_source_of_ht_heat_network_conversion),
+      Q(wood_pellets_in_source_of_ht_heat_network_conversion),
+      Q(torrefied_biomass_pellets_in_source_of_ht_heat_network_conversion),
+      Q(greengas_in_source_of_ht_heat_network_conversion),
+      PRODUCT(
+        Q(waste_mix_in_source_of_ht_heat_network_conversion),
+        Q(share_of_biogenic_waste_in_waste_mix)
+      ),
+      PRODUCT(
+        Q(network_gas_in_source_of_ht_heat_network_conversion),
+        Q(share_of_greengas_in_gas_network)
+      )
+    )
+- unit = PJ

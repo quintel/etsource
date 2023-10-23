@@ -1,0 +1,11 @@
+# Direct conversion output of steam hot water on LT heat network through natural gas and derivatives
+
+- query =
+    SUM(
+      Q(natural_gas_in_source_of_lt_heat_network_conversion),
+      PRODUCT(
+        Q(network_gas_in_source_of_lt_heat_network_conversion),
+        Q(share_of_natural_gas_in_gas_network)
+      )
+    )
+- unit = PJ

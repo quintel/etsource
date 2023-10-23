@@ -1,0 +1,15 @@
+# Depreciation costs of the mt heat delivery systems for households.
+# The mt heat delivery system is assumed to have the same technical lifetime as the mt heating network.
+
+- unit = euro
+- query =
+    mt_heat_delivery_system_households_investment_costs = 
+        SUM(
+            Q(households_mt_heat_delivery_system_costs_ground_level_houses),
+            Q(households_mt_heat_delivery_system_costs_apartments)
+        );
+    
+    DIVIDE(
+        mt_heat_delivery_system_households_investment_costs,
+        V(energy_distribution_mt_steam_hot_water,technical_lifetime)
+    )

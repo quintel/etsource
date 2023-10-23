@@ -1,0 +1,20 @@
+# Steam hot water supplied by central MT heat in agriculture
+
+- unit = PJ
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              INTERSECTION(EG(final_demand),EG(mt_heat)
+            ),
+            "sector == :agriculture"
+          ),
+          "steam_hot_water? || useable_heat?"
+        ),
+        value
+        )
+      ),
+      BILLIONS
+    )

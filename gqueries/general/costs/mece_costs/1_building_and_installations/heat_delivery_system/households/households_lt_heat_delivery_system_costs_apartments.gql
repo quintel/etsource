@@ -1,0 +1,21 @@
+# Total investment costs of lt heat delivery systems in apartments.
+# It is assumed that all residences in the lt heating network have lt heat delivery systems.
+
+- unit = euro
+- query =
+    number_of_residences_in_lt_heating_network = V(households_space_heater_district_heating_lt_steam_hot_water,number_of_units);
+    share_of_apartments_in_residences = 
+        DIVIDE(
+            AREA(number_of_apartments),
+            AREA(number_of_residences)
+        );
+    number_of_apartments_with_lt_heat_delivery_systems =
+        PRODUCT(
+            number_of_residences_in_lt_heating_network,
+            share_of_apartments_in_residences
+        );
+
+    PRODUCT(
+        number_of_apartments_with_lt_heat_delivery_systems,
+        AREA(households_lt_heat_delivery_system_costs_apartments_eur_per_connection)
+    );

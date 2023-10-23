@@ -1,9 +1,0 @@
-# For the present and if time-resolved calculations are turned off
-# there is no storage, so costs are zero
-- query =
-      IF(
-          GRAPH().present? || AREA(use_merit_order_demands) == false,
-          -> { 0.0 },
-          -> { V(energy_heat_network_storage, "steam_hot_water_output_curve * storage.cost_per_mwh").sum }
-      )
-- unit = MW

@@ -1,0 +1,27 @@
+- query =
+    UPDATE(
+      V(energy_heat_flexibility_p2h_heatpump_ht_electricity),
+      number_of_units,
+      DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_heat_flexibility_p2h_heatpump_electricity) / V(energy_heat_flexibility_p2h_heatpump_ht_electricity, heat_output_capacity)
+    )
+
+- share_group = p2h_heatpump_heat
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = 
+    present:PRODUCT(
+      (1 -
+        DIVIDE(
+          V(energy_heat_flexibility_p2h_heatpump_ht_electricity,"number_of_units * heat_output_capacity"),
+          SUM(
+            V(energy_heat_flexibility_p2h_heatpump_mt_electricity,"number_of_units * heat_output_capacity"),
+            V(energy_heat_flexibility_p2h_heatpump_ht_electricity,"number_of_units * heat_output_capacity")
+          )
+        )
+      ),
+      100.0
+    )
+- step_value = 1.0
+- unit = %
+- update_period = future

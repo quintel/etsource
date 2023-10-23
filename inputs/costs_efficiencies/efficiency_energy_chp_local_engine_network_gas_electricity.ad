@@ -1,8 +1,12 @@
-- query = UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_network_gas), electricity), conversion, DIVIDE(USER_INPUT(), 100.0))
+- query = 
+    EACH(
+        UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_ht_network_gas), electricity), conversion, DIVIDE(USER_INPUT(), 100.0)),
+        UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_mt_network_gas), electricity), conversion, DIVIDE(USER_INPUT(), 100.0))
+    )
 - priority = 0
-- max_value_gql = present:(V(energy_chp_local_engine_network_gas, electricity_output_conversion) * 100.0) + 10.0
-- min_value_gql = present:(V(energy_chp_local_engine_network_gas, electricity_output_conversion) * 100.0) - 10.0
-- start_value_gql = present:V(energy_chp_local_engine_network_gas, electricity_output_conversion) * 100.0
+- max_value_gql = present:(V(energy_chp_local_engine_ht_network_gas, electricity_output_conversion) * 100.0) + 10.0
+- min_value_gql = present:(V(energy_chp_local_engine_ht_network_gas, electricity_output_conversion) * 100.0) - 10.0
+- start_value_gql = present:V(energy_chp_local_engine_ht_network_gas, electricity_output_conversion) * 100.0
 - step_value = 1.0
 - unit = %
 - update_period = future

@@ -1,8 +1,22 @@
 - query =
     SUM(
-      Q(heat_infrastructure_distribution_pipelines_annualised_costs),
-      Q(heat_infrastructure_primary_pipelines_annualised_costs),
-      Q(heat_infrastructure_distribution_stations_annualised_costs),
-      Q(heat_infrastructure_indoor_annualised_costs)
+      SUM(
+        Q(heat_infrastructure_ht_distribution_pipelines_annualised_costs),
+        Q(heat_infrastructure_ht_primary_pipelines_annualised_costs),
+        Q(heat_infrastructure_ht_distribution_stations_annualised_costs),
+        Q(heat_infrastructure_ht_indoor_annualised_costs)
+      ),
+      SUM(
+        Q(heat_infrastructure_mt_distribution_pipelines_annualised_costs),
+        Q(heat_infrastructure_mt_primary_pipelines_annualised_costs),
+        Q(heat_infrastructure_mt_distribution_stations_annualised_costs),
+        Q(heat_infrastructure_mt_indoor_annualised_costs)
+      ),
+      SUM(
+        Q(heat_infrastructure_lt_distribution_pipelines_annualised_costs),
+        Q(heat_infrastructure_lt_primary_pipelines_annualised_costs),
+        Q(heat_infrastructure_lt_distribution_stations_annualised_costs),
+        Q(heat_infrastructure_lt_indoor_annualised_costs)
+      )
     )
 - unit = euro

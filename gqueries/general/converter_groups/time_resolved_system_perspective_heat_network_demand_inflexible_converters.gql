@@ -3,6 +3,10 @@
 - query =
     FILTER(
       ALL(),
-      "heat_network && (heat_network.type == :consumer)"
+      "
+        (heat_network_ht && (heat_network_ht.type == :consumer)) ||
+        (heat_network_mt && (heat_network_mt.type == :consumer)) ||
+        (heat_network_lt && (heat_network_lt.type == :consumer))
+      "
     )
 - unit = nodes
