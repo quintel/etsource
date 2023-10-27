@@ -1,0 +1,25 @@
+- query =
+    EACH(
+      UPDATE(
+        OUTPUT_SLOTS(
+          V(industry_useful_demand_for_chemical_other_useable_heat), 
+          residual_heat
+        ), 
+        conversion, DIVIDE(USER_INPUT(), 100.0)
+      ),
+      UPDATE(
+        OUTPUT_SLOTS(
+          V(industry_useful_demand_for_chemical_other_useable_heat), 
+          useable_heat
+        ), 
+        conversion, (1.0 - DIVIDE(USER_INPUT(), 100.0))
+      )
+    )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_useful_demand_for_chemical_other_useable_heat,share_of_industry_chemicals_other_potential_residual_heat) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
+- coupling_groups = [ctm]
