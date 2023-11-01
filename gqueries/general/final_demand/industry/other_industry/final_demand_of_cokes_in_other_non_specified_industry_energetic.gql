@@ -1,0 +1,16 @@
+# Energetic final demand of cokes from the 'coal_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_non_specified_industry)
+            ),
+            energetic?
+          ),
+          cokes?
+        ),
+        value
+      ) / BILLIONS

@@ -1,0 +1,11 @@
+- query =
+    useful_demand_cokes = (USER_INPUT() / 100.0) * Q(final_demand_of_other_non_specified_industry_energetic) * BILLIONS;
+    UPDATE(V(industry_useful_demand_for_other_non_specified_cokes), preset_demand, useful_demand_cokes)
+- share_group = other_industry_energetic
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:Q(share_of_cokes_in_other_non_specified_industry) * 100.0
+- step_value = 0.1
+- unit = %
+- update_period = future
