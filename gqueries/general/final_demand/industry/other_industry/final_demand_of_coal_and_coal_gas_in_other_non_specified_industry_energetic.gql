@@ -1,0 +1,30 @@
+# Energetic final demand of coal and coal gas from the 'coal_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_non_specified_industry)
+            ),
+            energetic?
+          ),
+          coal?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_non_specified_industry)
+            ),
+            energetic?
+          ),
+          coal_gas?
+        ),
+        value
+      ),
+    ) / BILLIONS
