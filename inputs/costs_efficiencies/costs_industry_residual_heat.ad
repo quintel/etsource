@@ -1,7 +1,19 @@
 - query =
   EACH(
-    UPDATE(V(energy_heat_industry_chemicals_other_residual_heat,energy_heat_industry_chemicals_fertilizers_residual_heat,energy_heat_industry_chemicals_refineries_residual_heat,energy_heat_industry_other_ict_residual_heat), initial_investment, USER_INPUT()),
-    UPDATE(V(energy_heat_industry_chemicals_other_residual_heat,energy_heat_industry_chemicals_fertilizers_residual_heat,energy_heat_industry_chemicals_refineries_residual_heat,energy_heat_industry_other_ict_residual_heat), fixed_operation_and_maintenance_costs_per_year, USER_INPUT())
+    UPDATE(
+      V(
+        energy_heat_production_lt_residual_heat,
+        energy_heat_production_mt_residual_heat,
+        energy_heat_production_ht_residual_heat
+      ), initial_investment, USER_INPUT()
+    ),
+    UPDATE(
+      V(
+        energy_heat_production_lt_residual_heat,
+        energy_heat_production_mt_residual_heat,
+        energy_heat_production_ht_residual_heat
+      ), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()
+    )
   )
 - priority = 0
 - max_value = 300.0
@@ -11,3 +23,4 @@
 - unit = %
 - update_period = future
 - update_type = %
+- disabled_by = external_coupling_energy_heat_production_ht_residual_heat_investment_costs
