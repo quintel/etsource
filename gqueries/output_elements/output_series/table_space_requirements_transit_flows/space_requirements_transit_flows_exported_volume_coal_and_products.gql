@@ -1,0 +1,13 @@
+### Exported volume of coal and products (transit flow)
+# Returns user-defined exported volume of coal and products in PJ. This export and correspondingly forced import make up the transit flow of this group of carriers.
+
+- query = 
+    DIVIDE(
+        SUM(
+            V(energy_export_coal_baseload, demand),
+            V(energy_export_cokes_baseload, demand),
+            V(energy_export_lignite_baseload, demand),
+        ),
+        BILLIONS
+    )
+- unit = PJ

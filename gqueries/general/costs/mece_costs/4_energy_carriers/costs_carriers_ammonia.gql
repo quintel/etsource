@@ -1,6 +1,8 @@
 - query =
     SUM(
-      PRODUCT(V(CARRIER(imported_ammonia), cost_per_mj), V(energy_import_ammonia, demand))
+      PRODUCT(V(CARRIER(imported_ammonia), cost_per_mj), V(energy_import_ammonia, demand)),
+      Q(costs_carriers_export_ammonia_baseload)
     )
+    -PRODUCT(V(CARRIER(ammonia), cost_per_mj), V(energy_export_ammonia_backup, demand))
 
 - unit = euro

@@ -1,0 +1,16 @@
+### Exported volume of oil and products (transit flow)
+# Returns user-defined exported volume of oil and products in PJ. This export and correspondingly forced import make up the transit flow of this group of carriers.
+
+- query = 
+    DIVIDE(
+        SUM(
+            V(energy_export_crude_oil_baseload, demand),
+            V(energy_export_diesel_baseload, demand),
+            V(energy_export_gasoline_baseload, demand),
+            V(energy_export_heavy_fuel_oil_baseload, demand),
+            V(energy_export_kerosene_baseload, demand),
+            V(energy_export_lpg_baseload, demand),
+        ),
+        BILLIONS
+    )
+- unit = PJ

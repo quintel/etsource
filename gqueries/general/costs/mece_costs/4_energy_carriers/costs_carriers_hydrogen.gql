@@ -1,9 +1,10 @@
 - query =
     SUM(
-      PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_import_hydrogen, demand))
+      PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_import_hydrogen, demand)),
+      Q(costs_carriers_export_hydrogen_baseload)
     )-
     SUM(
-      PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_export_hydrogen, demand))
+      PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_export_hydrogen_backup, demand))
     )
 
 - unit = euro
