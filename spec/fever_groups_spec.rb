@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec::Matchers.define :be_fever_group do |*|
   def valid_groups
-    Atlas::Config.read('fever').map(&:to_sym)
+    Atlas::Config.read('fever.groups').map(&:to_sym)
   end
 
   match do |actual|
@@ -15,9 +15,9 @@ RSpec::Matchers.define :be_fever_group do |*|
   end
 end
 
-RSpec.describe 'config/fever.yml' do
+RSpec.describe 'config/fever/groups.yml' do
   it 'does not contain any duplicate keys' do
-    config = Atlas::Config.read('fever').map(&:to_sym)
+    config = Atlas::Config.read('fever.groups').map(&:to_sym)
     counts = config.group_by { |group| group }
 
     expect(counts.all? { |_, count| count.one? }).to be(true)
