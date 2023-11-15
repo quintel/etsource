@@ -1,21 +1,22 @@
+# Carrier costs based on net flows (imports - backup export - baseload export) of all related carriers
 - query =
     SUM(
-      SUM(
-        PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_extraction_coal, demand)),
-        PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_import_coal, demand)),
-        PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_extraction_lignite, demand)),
-        PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_import_lignite, demand)),
-        PRODUCT(V(CARRIER(cokes), cost_per_mj), V(energy_import_cokes, demand))
-      ),
-      SUM(
-        Q(costs_carriers_export_coal_baseload),
-        Q(costs_carriers_export_cokes_baseload),
-        Q(costs_carriers_export_lignite_baseload)
-      )
-    )-
+      PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_extraction_coal, demand)),
+      PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_import_coal, demand)),
+      PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_extraction_lignite, demand)),
+      PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_import_lignite, demand)),
+      PRODUCT(V(CARRIER(cokes), cost_per_mj), V(energy_import_cokes, demand))
+    )
+    -
     SUM(
       PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_export_coal_backup, demand)),
       PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_export_lignite_backup, demand)),
       PRODUCT(V(CARRIER(cokes), cost_per_mj), V(energy_export_cokes_backup, demand))
+    )
+    -
+    SUM(
+      PRODUCT(V(CARRIER(coal), cost_per_mj), V(energy_export_coal_baseload, demand)),
+      PRODUCT(V(CARRIER(lignite), cost_per_mj), V(energy_export_lignite_baseload, demand)),
+      PRODUCT(V(CARRIER(cokes), cost_per_mj), V(energy_export_cokes_baseload, demand))
     )
 - unit = euro
