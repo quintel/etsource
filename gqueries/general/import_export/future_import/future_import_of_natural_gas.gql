@@ -1,0 +1,16 @@
+# Import of coal and derivatives
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_import),
+          output_of(
+            natural_gas,
+            compressed_natural_gas
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

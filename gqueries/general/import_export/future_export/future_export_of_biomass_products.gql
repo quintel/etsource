@@ -1,0 +1,18 @@
+# Import of coal and derivatives
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            biogenic_waste,
+            oily_biomass,
+            wet_biomass,
+            dry_biomass
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

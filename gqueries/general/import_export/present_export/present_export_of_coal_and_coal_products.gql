@@ -1,0 +1,18 @@
+# Import of coal and derivatives
+
+- query =
+    present:DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            coal,
+            coal_gas,
+            lignite,
+            cokes
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
