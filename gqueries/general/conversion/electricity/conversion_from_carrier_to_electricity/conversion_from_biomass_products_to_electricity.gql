@@ -1,0 +1,13 @@
+# Direct conversion input of biomass products for central electricity production
+
+- query = 
+    SUM(
+      Q(conversion_from_biogenic_waste_to_electricity),
+      Q(conversion_from_biodiesel_to_electricity),
+      Q(conversion_from_bio_ethanol_to_electricity),
+      Q(conversion_from_wood_pellets_to_electricity),
+      Q(conversion_from_bio_lng_to_electricity),
+      PRODUCT(Q(conversion_from_network_gas_to_electricity),Q(share_of_greengas_in_gas_network)),
+      PRODUCT(Q(conversion_from_compressed_network_gas_to_electricity),Q(share_of_greengas_in_gas_network)),      
+    )
+- unit = PJ

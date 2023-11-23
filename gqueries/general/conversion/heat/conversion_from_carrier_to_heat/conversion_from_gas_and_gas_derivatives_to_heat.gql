@@ -1,0 +1,10 @@
+# Direct conversion input of gas and gas derivatives for central heat production
+
+- query = 
+    SUM(
+      Q(conversion_from_natural_gas_to_heat),
+      Q(conversion_from_lng_to_heat),
+      PRODUCT(Q(conversion_from_network_gas_to_heat),Q(share_of_natural_gas_in_gas_network)),
+      PRODUCT(Q(conversion_from_compressed_network_gas_to_heat),Q(share_of_natural_gas_in_gas_network)),
+    )
+- unit = PJ
