@@ -1,8 +1,15 @@
 - query =
-      UPDATE(V(industry_final_demand_for_other_dsr_load_shifting_electricity), electricity_input_capacity, (USER_INPUT() / 100.0))
+      UPDATE(
+             V(industry_final_demand_for_other_dsr_load_shifting_electricity),
+             typical_input_capacity, 
+             PRODUCT(
+                     (USER_INPUT() / 100.0),
+                     V(industry_final_demand_for_other_dsr_load_shifting_electricity,electricity_output_capacity)
+            )
+      )
 
 
-- priority = 0
+- priority = 2
 - max_value = 50.0
 - min_value = 0.0
 - start_value = 0.0
