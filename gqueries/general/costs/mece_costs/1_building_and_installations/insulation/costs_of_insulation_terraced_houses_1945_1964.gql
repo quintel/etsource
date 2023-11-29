@@ -1,0 +1,35 @@
+# This query calculates the insulation costs for terraced_houses_1945_1964
+# The calculated costs are only updated for the future year, in the present year 
+# the insulation costs are assumed to be zero. This is done with IF-statements.
+# See https://docs.energytransitionmodel.com/main/insulation/#insulation-costs
+
+- query =
+    insulation_value_present =               QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_terraced_houses_1945_1964) });
+    insulation_value_future =                QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_terraced_houses_1945_1964) });
+    insulation_value_threshold_costs =       220.0;
+
+    terraced_houses_insulaton_costs_low =    DIVIDE(7200.0,(403.0 - insulation_value_treshold);
+    terraced_houses_insulaton_costs_high =   DIVIDE(16000.0,(insulation_value_treshold - 118.0);
+
+    number_of_terraced_houses_1945_1964 =    V(households_useful_demand_for_space_heating_terraced_houses_1945_1964, number_of_units);
+
+    IF(
+      GRAPH().future?,
+      -> {
+        PRODUCT(
+          SUM(
+            PRODUCT(
+              terraced_houses_insulaton_costs_low,
+              MAX(MIN((insulation_value_present - insulation_value_threshold),(insulation_value_present - insulation_value_future)),0)
+            ),
+            PRODUCT(
+              terraced_houses_insulaton_costs_high,
+              MAX((insulation_value_threshold - insulation_value_future),0)
+            )
+          ),
+          number_of_terraced_houses_1945_1964
+        )
+      },
+      0.0
+    )
+- unit = euro

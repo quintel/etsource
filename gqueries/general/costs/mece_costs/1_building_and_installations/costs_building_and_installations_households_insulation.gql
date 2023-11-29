@@ -1,16 +1,30 @@
-# Costs of the insulation in households and buildings
+# Costs of insulation in households
 
 - query =
-    DIVIDE(
-      SUM(
-        Q(costs_of_insulation_corner_houses),
-        Q(costs_of_insulation_detached_houses),
-        Q(costs_of_insulation_semi_detached_houses),
-        Q(costs_of_insulation_terraced_houses),
-        Q(costs_of_insulation_apartments)
-      ),
-      V(households_space_heating_savings_from_insulation,technical_lifetime)
+    SUM(
+      DIVIDE(Q(costs_of_insulation_apartments_before_1945),            V(households_useful_demand_for_space_heating_apartments_before_1945,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_apartments_1945_1964),              V(households_useful_demand_for_space_heating_apartments_1945_1964,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_apartments_1965_1984),              V(households_useful_demand_for_space_heating_apartments_1965_1984,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_apartments_1985_2004),              V(households_useful_demand_for_space_heating_apartments_1985_2004,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_apartments_2005_present),           V(households_useful_demand_for_space_heating_apartments_2005_present,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_apartments_future),                 V(households_useful_demand_for_space_heating_apartments_future,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_detached_houses_before_1945),       V(households_useful_demand_for_space_heating_detached_houses_before_1945,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_detached_houses_1945_1964),         V(households_useful_demand_for_space_heating_detached_houses_1945_1964,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_detached_houses_1965_1984),         V(households_useful_demand_for_space_heating_detached_houses_1965_1984,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_detached_houses_1985_2004),         V(households_useful_demand_for_space_heating_detached_houses_1985_2004,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_detached_houses_2005_present),      V(households_useful_demand_for_space_heating_detached_houses_2005_present,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_detached_houses_future),            V(households_useful_demand_for_space_heating_detached_houses_future,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_semi_detached_houses_before_1945),  V(households_useful_demand_for_space_heating_semi_detached_houses_before_1945,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_semi_detached_houses_1945_1964),    V(households_useful_demand_for_space_heating_semi_detached_houses_1945_1964,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_semi_detached_houses_1965_1984),    V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_semi_detached_houses_1985_2004),    V(households_useful_demand_for_space_heating_semi_detached_houses_1985_2004,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_semi_detached_houses_2005_present), V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_semi_detached_houses_future),       V(households_useful_demand_for_space_heating_semi_detached_houses_future,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_terraced_houses_before_1945),       V(households_useful_demand_for_space_heating_terraced_houses_before_1945,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_terraced_houses_1945_1964),         V(households_useful_demand_for_space_heating_terraced_houses_1945_1964,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_terraced_houses_1965_1984),         V(households_useful_demand_for_space_heating_terraced_houses_1965_1984,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_terraced_houses_1985_2004),         V(households_useful_demand_for_space_heating_terraced_houses_1985_2004,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_terraced_houses_2005_present),      V(households_useful_demand_for_space_heating_terraced_houses_2005_present,technical_lifetime)),
+      DIVIDE(Q(costs_of_insulation_terraced_houses_future),            V(households_useful_demand_for_space_heating_terraced_houses_future,technical_lifetime))
     )
-
 - unit = euro
-- deprecated_key = insulation_costs
