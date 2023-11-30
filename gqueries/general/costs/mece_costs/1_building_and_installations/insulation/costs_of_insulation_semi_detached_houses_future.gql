@@ -6,10 +6,8 @@
 - query =
     insulation_value_present =                    QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_future) });
     insulation_value_future =                     QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_future) });
-    insulation_value_threshold_costs =            220.0;
 
-    semi_detached_houses_insulaton_costs_low =    DIVIDE(19000.0,(403.0 - insulation_value_treshold);
-    semi_detached_houses_insulaton_costs_high =   DIVIDE(19000.0,(insulation_value_treshold - 118.0);
+    semi_detached_houses_insulaton_costs_high =   DIVIDE(24800.0,(220.0 - 118.0);
 
     number_of_semi_detached_houses_future =       V(households_useful_demand_for_space_heating_semi_detached_houses_future, number_of_units);
 
@@ -17,15 +15,9 @@
       GRAPH().future?,
       -> {
         PRODUCT(
-          SUM(
-            PRODUCT(
-              semi_detached_houses_insulaton_costs_low,
-              MAX(MIN((insulation_value_present - insulation_value_threshold),(insulation_value_present - insulation_value_future)),0)
-            ),
-            PRODUCT(
-              semi_detached_houses_insulaton_costs_high,
-              MAX((insulation_value_threshold - insulation_value_future),0)
-            )
+          PRODUCT(
+            semi_detached_houses_insulaton_costs_high,
+            MAX((insulation_value_present - insulation_value_future),0)
           ),
           number_of_semi_detached_houses_future
         )
