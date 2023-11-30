@@ -2,14 +2,14 @@
 
 - query =
     EACH(
-      UPDATE(EDGE(buildings_space_heater_solar_thermal, buildings_useful_demand_for_space_heating), share, (USER_INPUT()*0.13)/100.0),
-      UPDATE(EDGE(buildings_useful_demand_for_space_heating_after_solar_thermal, buildings_useful_demand_for_space_heating), share, (100.0 - (USER_INPUT()*0.13))/100.0)
+      UPDATE(EDGE(buildings_space_heater_solar_thermal, buildings_useful_demand_for_space_heating_buildings_present), share, (USER_INPUT()*0.13)/100.0),
+      UPDATE(EDGE(buildings_space_heater_solar_thermal, buildings_useful_demand_for_space_heating_buildings_future), share, (USER_INPUT()*0.13)/100.0)
       )
 
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(buildings_space_heater_solar_thermal,share_of_buildings_useful_demand_for_space_heating) * 100
+- start_value_gql = present:V(buildings_space_heater_solar_thermal,share_of_buildings_useful_demand_for_space_heating_buildings_present) * 100
 - step_value = 0.1
 - unit = %
 - update_period = future
