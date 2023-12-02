@@ -1,0 +1,31 @@
+# This input:
+# - calculates the relative decrease in demand through insulation
+# - calculates the relative decrease in demand through demolition
+# - updates the demand using the combined relative change in demand
+# - updates the insulation value
+# - updates the insulation costs
+
+- query =
+    insulation_value_present = QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_detached_houses_1945_1964) });
+    insulation_value_future =  USER_INPUT();
+    insulation_relative_change = DIVIDE(insulation_value_future,insulation_value_present);
+
+    number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_detached_houses_1945_1964) });
+    number_of_units_future = INPUT_VALUE(households_number_of_detached_houses_1945_1964);
+    number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
+
+    combined_relative_change = PRODUCT(insulation_relative_change,number_of_units_relative_change);
+
+    EACH(
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), preset_demand, combined_relative_change),
+      UPDATE(AREA(), typical_useful_demand_for_space_heating_detached_houses_1945_1964, USER_INPUT()),
+      UPDATE(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_detached_houses_1945_1964)}))
+    )
+- priority = 0
+- max_value_gql = 500.0
+- min_value = 25.0
+- start_value_gql = present:AREA(typical_useful_demand_for_space_heating_detached_houses_1945_1964)
+- step_value = 0.1
+- unit = kWh/m2
+- update_period = future
+- update_type = mixed

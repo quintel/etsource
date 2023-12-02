@@ -1,0 +1,28 @@
+# This input:
+# - calculates the total future demand through changes in insulation and construction
+# - updates the demand using the total future demand
+# - updates the insulation value
+# - updates the insulation costs
+
+- query =
+    insulation_value_future = USER_INPUT();
+    number_of_units_future = INPUT_VALUE(buildings_number_of_buildings_future);
+    typical_surface_area_per_unit = 70.0;
+
+    heating_demand_per_unit_kwh = insulation_value_future * typical_surface_area_per_unit;
+    heating_demand_total_kwh = heating_demand_per_unit_kwh * number_of_units_future;
+    heating_demand_total_mj = heating_demand_total_kwh * MJ_PER_KWH;
+
+    EACH(
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, heating_demand_total_mj),
+      UPDATE(AREA(), typical_useful_demand_for_space_heating_buildings_future, USER_INPUT()),
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_future)}))
+    )
+- priority = 0
+- max_value_gql = 500.0
+- min_value = 25.0
+- start_value_gql = present:AREA(typical_useful_demand_for_space_heating_buildings_future)
+- step_value = 0.1
+- unit = kWh/m2
+- update_period = future
+- update_type = mixed
