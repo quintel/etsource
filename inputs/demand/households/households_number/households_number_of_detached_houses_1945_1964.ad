@@ -2,7 +2,7 @@
 # - calculates the relative decrease in demand through insulation
 # - calculates the relative decrease in demand through demolition
 # - updates the demand using the combined relative change in demand
-# - updates the number of apartments_1945_1964
+# - updates the number of detached_houses_1945_1964
 # - updates the insulation costs
 # - updates the number of units of P2P based on the total number of residences
 # - the roof surface available for solar PV on houses based on the changed total number of residences
@@ -10,20 +10,20 @@
 # - the electricity production of households solar PV, because user sets a share of the potential
 
 - query =
-    insulation_value_present = QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_apartments_1945_1964) });
-    insulation_value_future = INPUT_VALUE(households_insulation_level_apartments_1945_1964);
+    insulation_value_present = QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_detached_houses_1945_1964) });
+    insulation_value_future = INPUT_VALUE(households_insulation_level_detached_houses_1945_1964);
     insulation_relative_change = DIVIDE(insulation_value_future,insulation_value_present);
 
-    number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_apartments_1945_1964) });
+    number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_detached_houses_1945_1964) });
     number_of_units_future = USER_INPUT();
     number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
 
     combined_relative_change = PRODUCT(insulation_relative_change,number_of_units_relative_change);
 
     EACH(
-      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1945_1964), preset_demand, combined_relative_change),
-      UPDATE(V(households_useful_demand_for_space_heating_apartments_1945_1964), number_of_units, USER_INPUT()),
-      UPDATE(V(households_useful_demand_for_space_heating_apartments_1945_1964), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_apartments_1945_1964)})),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), preset_demand, combined_relative_change),
+      UPDATE(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), number_of_units, USER_INPUT()),
+      UPDATE(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_detached_houses_1945_1964)})),
       UPDATE(V(households_flexibility_p2p_electricity), number_of_units, PRODUCT(QUERY_FUTURE(-> { Q(number_of_residences)}), DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))),
       UPDATE_WITH_FACTOR(AREA(), residences_roof_surface_available_for_pv, DIVIDE(QUERY_FUTURE(-> { Q(number_of_residences)}), QUERY_PRESENT(-> { AREA(present_number_of_residences)}))),
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, DIVIDE(QUERY_FUTURE(-> { Q(number_of_residences)}), QUERY_PRESENT(-> { AREA(present_number_of_residences)}))),
@@ -38,9 +38,9 @@
       )
     )
 - priority = 0
-- max_value_gql = present:AREA(present_number_of_apartments_1945_1964)
+- max_value_gql = present:AREA(present_number_of_detached_houses_1945_1964)
 - min_value = 0.0
-- start_value_gql = present:AREA(present_number_of_apartments_1945_1964)
+- start_value_gql = present:AREA(present_number_of_detached_houses_1945_1964)
 - step_value = 1.0
 - unit = #
 - update_period = future
