@@ -3,7 +3,7 @@
 # and costs depending on demand (indoor distribution costs and variable costs for the heat meter)
 - query =
     buildings_peak_demand_in_kw = Q(buildings_district_heating_lt_demand_peak) * 1000.0;
-    buildings_with_district_heating = AREA(number_of_buildings) * V(buildings_space_heater_district_heating_lt_steam_hot_water_aggregator,share_of_buildings_useful_demand_for_space_heating_after_insulation_and_solar_thermal);
+    buildings_with_district_heating = Q(number_of_buildings) * DIVIDE(INPUT_VALUE(buildings_space_heater_district_heating_lt_steam_hot_water_share),100.0);
     
     buildings_peak_demand_in_kw * AREA(heat_buildings_indoor_investment_costs_eur_per_kw) + buildings_with_district_heating * AREA(heat_buildings_indoor_investment_costs_eur_per_connection)
 - unit = euro
