@@ -8,11 +8,12 @@
 # - the roof surface available for solar PV on houses based on the changed total number of residences
 # - the total useful demand for cooling based on the changed total number of residences
 # - the electricity production of households solar PV, because user sets a share of the potential
+# Typical surface area per buildings is based on nl2019 value for detached houses from 2005 to present
 
 - query =
     insulation_value_future = INPUT_VALUE(households_insulation_level_detached_houses_future);
     number_of_units_future = USER_INPUT();
-    typical_surface_area_per_unit = 70.0;
+    typical_surface_area_per_unit = 224.001485938283;
 
     heating_demand_per_unit_kwh = insulation_value_future * typical_surface_area_per_unit;
     heating_demand_total_kwh = heating_demand_per_unit_kwh * number_of_units_future;
