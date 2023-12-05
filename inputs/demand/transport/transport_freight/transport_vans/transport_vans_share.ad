@@ -1,11 +1,28 @@
 - query =
-    UPDATE(
-      EDGE(transport_useful_demand_vans, transport_useful_demand_freight_tonne_kms),
-      share,
-      DIVIDE(USER_INPUT(), 100)
-    )
+      EACH(
+        UPDATE(
+         EDGE(transport_useful_demand_vans, transport_useful_demand_freight_tonne_kms),
+          share,
+          DIVIDE(USER_INPUT(), 100))
+      ,
+        UPDATE(
+          V(transport_useful_demand_vans),
+          number_of_units
+          ,
+            DIVIDE(
+              PRODUCT(
+                DIVIDE(USER_INPUT(),100),
+                AREA(number_of_vans)
+              ),
+              QUERY_PRESENT(-> {V(transport_useful_demand_vans,share_of_transport_useful_demand_freight_tonne_kms) } 
+              )
+            )
+          )
+        )
+      
+
 - share_group = freight_transport
-- priority = 0
+- priority = 2
 - max_value = 100.0
 - min_value = 0.0
 - start_value_gql = present:V(transport_useful_demand_vans,share_of_transport_useful_demand_freight_tonne_kms) * 100
