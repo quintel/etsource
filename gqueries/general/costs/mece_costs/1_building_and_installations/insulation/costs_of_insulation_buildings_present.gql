@@ -24,7 +24,7 @@
             ),
             PRODUCT(
               buildings_insulation_costs_high,
-              MAX((insulation_value_threshold - insulation_value_future),0)
+              MAX(MIN((insulation_value_threshold - insulation_value_future),(insulation_value_present - insulation_value_future)),0)
             )
           ),
           number_of_buildings_present
