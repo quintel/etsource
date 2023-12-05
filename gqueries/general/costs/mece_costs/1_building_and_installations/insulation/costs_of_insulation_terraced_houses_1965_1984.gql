@@ -6,7 +6,7 @@
 - query =
     insulation_value_present =               QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_terraced_houses_1965_1984) });
     insulation_value_future =                QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_terraced_houses_1965_1984) });
-    insulation_value_threshold =       220.0;
+    insulation_value_threshold =             220.0;
 
     terraced_houses_insulaton_costs_low =    DIVIDE(7200.0,(403.0 - insulation_value_threshold));
     terraced_houses_insulaton_costs_high =   DIVIDE(16000.0,(insulation_value_threshold - 118.0));
@@ -24,7 +24,7 @@
             ),
             PRODUCT(
               terraced_houses_insulaton_costs_high,
-              MAX((insulation_value_threshold - insulation_value_future),0)
+              MAX(MIN((insulation_value_threshold - insulation_value_future),(insulation_value_present - insulation_value_future)),0)
             )
           ),
           number_of_terraced_houses_1965_1984
