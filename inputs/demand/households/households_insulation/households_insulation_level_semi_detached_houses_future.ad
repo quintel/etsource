@@ -3,11 +3,12 @@
 # - updates the demand using the total future demand
 # - updates the insulation value
 # - updates the insulation costs
+# Typical surface area per buildings is based on nl2019 value for semi detached houses from 2005 to present
 
 - query =
     insulation_value_future = USER_INPUT();
     number_of_units_future = INPUT_VALUE(households_number_of_semi_detached_houses_future);
-    typical_surface_area_per_unit = 70.0;
+    typical_surface_area_per_unit = 147.709471392282;
 
     heating_demand_per_unit_kwh = insulation_value_future * typical_surface_area_per_unit;
     heating_demand_total_kwh = heating_demand_per_unit_kwh * number_of_units_future;
