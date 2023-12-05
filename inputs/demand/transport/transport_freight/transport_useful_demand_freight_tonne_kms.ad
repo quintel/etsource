@@ -1,5 +1,9 @@
 - query =
-      UPDATE(V(transport_useful_demand_freight_tonne_kms), preset_demand, USER_INPUT())
+      EACH(
+            UPDATE(V(transport_useful_demand_freight_tonne_kms), preset_demand, USER_INPUT()),
+            UPDATE(V(transport_useful_demand_trucks), number_of_units, USER_INPUT()),
+            UPDATE(V(transport_useful_demand_vans), number_of_units, USER_INPUT())
+            )
 - priority = 1
 - max_value = 5.0
 - min_value = -5.0

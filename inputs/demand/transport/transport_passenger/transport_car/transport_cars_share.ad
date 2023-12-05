@@ -1,11 +1,31 @@
+# Updates the share of the cars in useful demand passenger kilometers and updates the amount of cars that needs to be in the country corresponding that amount of passenger kilometers. This should have priority 0, since this updates the shares of energy in the transport_useful_demand_passenger_kms node.
+# The 2nd update is done by taking the amount of cars in the current data, divided by the corresponding share of cars in the demand for passenger transport. This is than multiplied by the user input. This should have priority 2, since it needs to be done before the transport_useful_demand_passenger_kms is set. 
+# The result is that the energy balance of the transport_useful_demand_passenger_kms
 - query =
-    UPDATE(
-      EDGE(transport_useful_demand_cars, transport_useful_demand_passenger_kms),
-      share,
-      DIVIDE(USER_INPUT(), 100)
-    )
+      EACH(
+        UPDATE(
+         EDGE(transport_useful_demand_cars, transport_useful_demand_passenger_kms),
+          share,
+          DIVIDE(USER_INPUT(), 100))
+      ,
+        UPDATE(
+          V(transport_useful_demand_cars),
+          number_of_units
+          ,
+            DIVIDE(
+              PRODUCT(
+                DIVIDE(USER_INPUT(),100),
+                AREA(number_of_cars)
+              ),
+              QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms) } 
+              )
+            )
+          )
+        )
+      
+
 - share_group = passenger_transport
-- priority = 0
+- priority = 2
 - max_value = 100.0
 - min_value = 0.0
 - start_value_gql = present:V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms) * 100
