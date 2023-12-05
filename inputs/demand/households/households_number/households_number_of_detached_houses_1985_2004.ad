@@ -5,6 +5,7 @@
 # - updates the number of detached_houses_1985_2004
 # - updates the insulation costs
 # - updates the number of units of P2P based on the total number of residences
+# - updates the number of residences for hot water demand
 # - the roof surface available for solar PV on houses based on the changed total number of residences
 # - the total useful demand for cooling based on the changed total number of residences
 # - the electricity production of households solar PV, because user sets a share of the potential
@@ -25,6 +26,7 @@
       UPDATE(V(households_useful_demand_for_space_heating_detached_houses_1985_2004), number_of_units, USER_INPUT()),
       UPDATE(V(households_useful_demand_for_space_heating_detached_houses_1985_2004), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_detached_houses_1985_2004)})),
       UPDATE(V(households_flexibility_p2p_electricity), number_of_units, PRODUCT(QUERY_FUTURE(-> { Q(number_of_residences)}), DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))),
+      UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, QUERY_FUTURE(-> { Q(number_of_residences)})),
       UPDATE_WITH_FACTOR(AREA(), residences_roof_surface_available_for_pv, DIVIDE(QUERY_FUTURE(-> { Q(number_of_residences)}), QUERY_PRESENT(-> { AREA(present_number_of_residences)}))),
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, DIVIDE(QUERY_FUTURE(-> { Q(number_of_residences)}), QUERY_PRESENT(-> { AREA(present_number_of_residences)}))),
       UPDATE(
