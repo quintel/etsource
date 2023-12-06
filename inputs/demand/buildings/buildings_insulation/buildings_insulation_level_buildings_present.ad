@@ -15,9 +15,11 @@
     number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
 
     combined_relative_change = PRODUCT(insulation_relative_change,number_of_units_relative_change);
+    useful_demand_present = QUERY_PRESENT(-> { V(buildings_useful_demand_for_space_heating_buildings_present,demand) });
+    useful_demand_future = combined_relative_change * useful_demand_present;
 
     EACH(
-      UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_present), preset_demand, combined_relative_change),
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_present), preset_demand, useful_demand_future),
       UPDATE(AREA(), typical_useful_demand_for_space_heating_buildings_present, USER_INPUT()),
       UPDATE(V(buildings_useful_demand_for_space_heating_buildings_present_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_present)}))
     )
@@ -28,4 +30,3 @@
 - step_value = 0.1
 - unit = kWh/m2
 - update_period = future
-- update_type = mixed
