@@ -1,6 +1,11 @@
-- unit = PJ
 - query =
-          SUM(V(buildings_final_demand_for_lighting_electricity,
-    		demand
-            ))
-            / BILLIONS
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(EG(final_demand),EG(lighting_buildings)),
+          demand
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
