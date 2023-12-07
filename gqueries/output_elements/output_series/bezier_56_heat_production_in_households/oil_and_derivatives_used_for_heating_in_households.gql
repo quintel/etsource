@@ -1,12 +1,4 @@
 # Use of carrier group 'oil_and_derivatives' in housholds heat
 
 - unit = PJ
-- query =
-    SUM(
-      V(Q(individual_heating_converters_in_households), input_of_crude_oil),
-      V(Q(individual_heating_converters_in_households), input_of_gasoline),
-      V(Q(individual_heating_converters_in_households), input_of_diesel),
-      V(Q(individual_heating_converters_in_households), input_of_lpg),
-      V(Q(individual_heating_converters_in_households), input_of_kerosene),
-      V(Q(individual_heating_converters_in_households), input_of_heavy_fuel_oil)
-    ) / BILLIONS
+- query = Q(final_demand_of_oil_and_derivatives_in_households_space_heating_energetic)
