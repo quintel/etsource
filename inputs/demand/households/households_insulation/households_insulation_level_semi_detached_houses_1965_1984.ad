@@ -14,10 +14,10 @@
     number_of_units_future = INPUT_VALUE(households_number_of_semi_detached_houses_1965_1984);
     number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
 
-    combined_relative_change = PRODUCT(insulation_relative_change,number_of_units_relative_change);
+    useful_heat_demand_future = insulation_relative_change * number_of_units_relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984, preset_demand)});
 
     EACH(
-      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984), preset_demand, combined_relative_change),
+      UPDATE(V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984), preset_demand, useful_heat_demand_future),
       UPDATE(AREA(), typical_useful_demand_for_space_heating_semi_detached_houses_1965_1984, USER_INPUT()),
       UPDATE(V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_semi_detached_houses_1965_1984)}))
     )

@@ -14,10 +14,10 @@
     number_of_units_future = INPUT_VALUE(households_number_of_detached_houses_2005_present);
     number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
 
-    combined_relative_change = PRODUCT(insulation_relative_change,number_of_units_relative_change);
+    useful_heat_demand_future = insulation_relative_change * number_of_units_relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_space_heating_detached_houses_2005_present, preset_demand)});
 
     EACH(
-      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_2005_present), preset_demand, combined_relative_change),
+      UPDATE(V(households_useful_demand_for_space_heating_detached_houses_2005_present), preset_demand, useful_heat_demand_future),
       UPDATE(AREA(), typical_useful_demand_for_space_heating_detached_houses_2005_present, USER_INPUT()),
       UPDATE(V(households_useful_demand_for_space_heating_detached_houses_2005_present), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_detached_houses_2005_present)}))
     )

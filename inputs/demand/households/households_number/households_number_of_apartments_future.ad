@@ -15,18 +15,47 @@
     number_of_units_future = USER_INPUT();
     typical_surface_area_per_unit = 84.0916691776263;
 
-    heating_demand_per_unit_kwh = insulation_value_future * typical_surface_area_per_unit;
-    heating_demand_total_kwh = heating_demand_per_unit_kwh * number_of_units_future;
-    heating_demand_total_mj = heating_demand_total_kwh * MJ_PER_KWH;
+    total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_residences)});
+    total_number_of_units_future = 
+      INPUT_VALUE(households_number_of_apartments_before_1945) +
+      INPUT_VALUE(households_number_of_apartments_1945_1964) +
+      INPUT_VALUE(households_number_of_apartments_1965_1984) +
+      INPUT_VALUE(households_number_of_apartments_1985_2004) +
+      INPUT_VALUE(households_number_of_apartments_2005_present) +
+      USER_INPUT() +
+      INPUT_VALUE(households_number_of_detached_houses_before_1945) +
+      INPUT_VALUE(households_number_of_detached_houses_1945_1964) +
+      INPUT_VALUE(households_number_of_detached_houses_1965_1984) +
+      INPUT_VALUE(households_number_of_detached_houses_1985_2004) +
+      INPUT_VALUE(households_number_of_detached_houses_2005_present) +
+      INPUT_VALUE(households_number_of_detached_houses_future) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_before_1945) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_1945_1964) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_1965_1984) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_1985_2004) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_2005_present) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_future) +
+      INPUT_VALUE(households_number_of_terraced_houses_before_1945) +
+      INPUT_VALUE(households_number_of_terraced_houses_1945_1964) +
+      INPUT_VALUE(households_number_of_terraced_houses_1965_1984) +
+      INPUT_VALUE(households_number_of_terraced_houses_1985_2004) +
+      INPUT_VALUE(households_number_of_terraced_houses_2005_present) +
+      INPUT_VALUE(households_number_of_terraced_houses_future);
+    total_number_of_units_relative_change = DIVIDE(total_number_of_units_future,total_number_of_units_present);
+
+    useful_heat_demand_future = insulation_value_future * number_of_units_future * typical_surface_area_per_unit * MJ_PER_KWH;
+    useful_cooling_demand_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_cooling, preset_demand)});
+    roof_surface_for_pv_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {AREA(residences_roof_surface_available_for_pv)});
 
     EACH(
-      UPDATE(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, heating_demand_total_mj),
+      UPDATE(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, useful_heat_demand_future),
+      UPDATE(V(households_useful_demand_for_cooling), preset_demand, useful_cooling_demand_future),
+      UPDATE(AREA(), residences_roof_surface_available_for_pv, roof_surface_for_pv_future),
+
       UPDATE(V(households_useful_demand_for_space_heating_apartments_future), number_of_units, USER_INPUT()),
       UPDATE(V(households_useful_demand_for_space_heating_apartments_future), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_apartments_future)})),
       UPDATE(V(households_flexibility_p2p_electricity), number_of_units, PRODUCT(QUERY_FUTURE(-> { Q(number_of_residences)}), DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))),
       UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, QUERY_FUTURE(-> { Q(number_of_residences)})),
-      UPDATE_WITH_FACTOR(AREA(), residences_roof_surface_available_for_pv, DIVIDE(QUERY_FUTURE(-> { Q(number_of_residences)}), QUERY_PRESENT(-> { AREA(present_number_of_residences)}))),
-      UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, DIVIDE(QUERY_FUTURE(-> { Q(number_of_residences)}), QUERY_PRESENT(-> { AREA(present_number_of_residences)}))),
       UPDATE(
         V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "edges.detect{|l| !l.flexible? }"),
         share,
