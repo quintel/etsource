@@ -19,8 +19,8 @@
     number_of_units_future = USER_INPUT();
     number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
 
-    combined_relative_change = PRODUCT(insulation_relative_change,number_of_units_relative_change);
-    useful_demand_present = QUERY_PRESENT(-> { V(buildings_useful_demand_for_space_heating_buildings_present,demand) });
+    combined_relative_change = insulation_relative_change * number_of_units_relative_change;
+    useful_demand_present = QUERY_PRESENT(-> {V(buildings_useful_demand_for_space_heating_buildings_present, preset_demand)});
     useful_demand_future = combined_relative_change * useful_demand_present;
 
     number_of_buildings_total = USER_INPUT() + INPUT_VALUE(buildings_number_of_buildings_future);
