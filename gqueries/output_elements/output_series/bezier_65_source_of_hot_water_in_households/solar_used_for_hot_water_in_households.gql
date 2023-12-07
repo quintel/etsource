@@ -1,9 +1,4 @@
 # Use of carrier group 'solar' in housholds hot water
 
 - unit = PJ
-- query =
-    SUM(
-      V(Q(hot_water_converters_in_households), input_of_solar_radiation),
-      V(Q(hot_water_converters_in_households), input_of_solar_thermal),
-      V(EDGE(households_water_heater_solar_thermal,households_useful_demand_for_hot_water_for_houses_with_solar_heater),demand)
-    ) / BILLIONS
+- query = Q(final_demand_of_solar_in_households_hot_water_energetic)
