@@ -1,4 +1,8 @@
 # Query for refinery sankey: connection between distribution and export of diesel
 
 - unit = PJ
-- query = DIVIDE(V(energy_export_diesel, demand), BILLIONS)
+- query = 
+        SUM(
+            DIVIDE(V(energy_export_diesel_baseload, demand), BILLIONS),
+            DIVIDE(V(energy_export_diesel_backup, demand), BILLIONS)
+            )

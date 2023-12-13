@@ -1,0 +1,15 @@
+# Export of crude oil
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            crude_oil
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

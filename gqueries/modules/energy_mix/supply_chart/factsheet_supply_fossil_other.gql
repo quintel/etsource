@@ -1,15 +1,15 @@
 - query =
     SUM(
-        V(energy_distribution_crude_oil, demand) - V(energy_export_crude_oil, demand) - V(energy_export_oil_products, demand),
-        V(energy_distribution_coal, demand) - V(energy_export_coal, demand),
-        V(energy_distribution_lignite, demand) - V(energy_export_lignite, demand),
+        V(energy_distribution_crude_oil, demand) - V(energy_export_crude_oil_baseload, demand),V(energy_export_crude_oil_backup, demand) - V(energy_export_oil_products, demand),
+        V(energy_distribution_coal, demand) - V(energy_export_coal_baseload, demand) - V(energy_export_coal_backup,demand),
+        V(energy_distribution_lignite, demand) - V(energy_export_lignite_baseload, demand),- V(energy_export_lignite_backup, demand),
         V(energy_distribution_uranium_oxide, demand) - V(energy_export_uranium_oxide, demand),
         V(energy_distribution_non_biogenic_waste, demand) - V(energy_export_non_biogenic_waste, demand),
-        V(energy_import_gasoline, demand) - V(energy_export_gasoline, demand),
-        V(energy_import_kerosene, demand) - V(energy_export_kerosene, demand),
-        V(energy_import_diesel, demand) - V(energy_export_diesel, demand),
-        V(energy_import_heavy_fuel_oil, demand) - V(energy_export_heavy_fuel_oil, demand),
-        V(energy_import_lpg, demand) - V(energy_export_lpg, demand),
+        V(energy_import_gasoline, demand) - V(energy_export_gasoline_baseload, demand),- V(energy_export_gasoline_backup, demand),
+        V(energy_import_kerosene, demand) - V(energy_export_kerosene_baseload, demand),- V(energy_export_kerosene_backup, demand),
+        V(energy_import_diesel, demand) - V(energy_export_diesel_baseload, demand),- V(energy_export_diesel_backup, demand),
+        V(energy_import_heavy_fuel_oil, demand) - V(energy_export_heavy_fuel_oil_baseload, demand),- V(energy_export_heavy_fuel_oil_backup, demand),
+        V(energy_import_lpg, demand) - V(energy_export_lpg_baseload, demand),- V(energy_export_lpg_backup, demand),
         Q(factsheet_supply_electricity_from_import_except_imbalance)
     ) -
     SUM(

@@ -1,0 +1,24 @@
+# Direct conversion input of biomass for central heat production
+
+- query = 
+    SUM(
+      Q(conversion_from_biogenic_waste_to_heat),
+      Q(conversion_from_biodiesel_to_heat),
+      Q(conversion_from_bio_ethanol_to_heat),
+      Q(conversion_from_wood_pellets_to_heat),
+      Q(conversion_from_bio_lng_to_heat),
+      PRODUCT(Q(conversion_from_network_gas_to_heat),Q(share_of_greengas_in_gas_network)),
+      PRODUCT(Q(conversion_from_compressed_network_gas_to_heat),Q(share_of_greengas_in_gas_network)),
+      PRODUCT(
+        PRODUCT(
+          Q(conversion_from_gas_power_fuelmix_to_heat),
+          V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+        ),
+        Q(share_of_greengas_in_gas_network)
+      ),
+      PRODUCT(
+        Q(conversion_from_gas_power_fuelmix_to_heat),
+        V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion)
+      )
+    )
+- unit = PJ

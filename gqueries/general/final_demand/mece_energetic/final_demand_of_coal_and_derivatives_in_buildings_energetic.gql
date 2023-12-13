@@ -4,39 +4,14 @@
 - query =
     SUM(
       V(
-        FILTER(
           FILTER(
             FILTER(
-              EG(final_demand),"sector == :buildings"
-            ),
-            energetic?
+              FILTER(
+            EG(final_demand),"sector == :buildings"), "coal? || coal_gas? || cokes? || lignite?"
           ),
-          coal?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :buildings"
-            ),
-            energetic?
-          ),
-          coal_gas?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :buildings"
-            ),
-            energetic?
-          ),
-          cokes?
+          "energetic?"
         ),
         value
       )
-    ) / BILLIONS
+    )
+     / BILLIONS
