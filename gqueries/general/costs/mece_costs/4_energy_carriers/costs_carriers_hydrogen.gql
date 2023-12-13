@@ -1,9 +1,9 @@
 # Carrier costs based on net flows (imports - backup export - baseload export)
+
 - query =
     PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_import_hydrogen, demand))
     -
     PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_export_hydrogen_backup, demand))
     -
     PRODUCT(V(CARRIER(hydrogen), cost_per_mj), V(energy_export_hydrogen_baseload, demand))
-
 - unit = euro

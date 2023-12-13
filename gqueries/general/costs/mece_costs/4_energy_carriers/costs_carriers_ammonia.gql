@@ -1,7 +1,7 @@
 # Carrier costs based on net flows (imports - backup export - baseload export)
+
 - query =
-    PRODUCT(V(CARRIER(imported_ammonia), cost_per_mj), V(energy_import_ammonia, demand))
+    PRODUCT(V(CARRIER(ammonia), cost_per_mj), V(energy_import_ammonia, demand))
     -
     PRODUCT(V(CARRIER(ammonia), cost_per_mj), V(energy_export_ammonia_backup, energy_export_ammonia_baseload, demand))
-
 - unit = euro
