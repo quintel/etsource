@@ -1,2 +1,7 @@
-- query = V(energy_heat_burner_hydrogen, hydrogen_input_curve)
+- query = 
+    SUM_CURVES(
+      V(energy_heat_burner_ht_hydrogen, hydrogen_input_curve),
+      V(energy_heat_burner_mt_hydrogen, hydrogen_input_curve),
+      V(energy_heat_burner_lt_hydrogen, hydrogen_input_curve)
+    )
 - unit = curve
