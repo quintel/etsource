@@ -1,0 +1,13 @@
+### Imported volume of coal and products
+# Returns total imported volume of coal, cokes and lignite in PJ
+
+- query = 
+    DIVIDE(
+        SUM(
+            V(energy_import_coal, demand),
+            V(energy_import_cokes, demand),
+            V(energy_import_lignite, demand),
+        ),
+        BILLIONS
+    )
+- unit = PJ

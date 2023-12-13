@@ -1,0 +1,10 @@
+### Future space requirements of LNG
+# Returns future space requirements of imported LNG that is part of the transit flow in ha
+
+- query = 
+    space_requirement_costs_lng_ha_per_mj = 0.00001;
+    PRODUCT(
+        V(energy_export_lng_baseload, demand), 
+        space_requirement_costs_lng_ha_per_mj
+    )
+- unit = ha
