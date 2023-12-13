@@ -5,6 +5,13 @@
       Q(conversion_from_natural_gas_to_heat),
       Q(conversion_from_lng_to_heat),
       PRODUCT(Q(conversion_from_network_gas_to_heat),Q(share_of_natural_gas_in_gas_network)),
+      PRODUCT(
+        PRODUCT(
+          Q(conversion_from_gas_power_fuelmix_to_heat),
+          V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+        ),
+        Q(share_of_natural_gas_in_gas_network)
+      ),
       PRODUCT(Q(conversion_from_compressed_network_gas_to_heat),Q(share_of_natural_gas_in_gas_network)),
     )
 - unit = PJ
