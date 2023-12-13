@@ -1,0 +1,13 @@
+### Future space requirements of coal and products
+# Returns future space requirements of imported coal, cokes and lignite that are part of the transit flows in ha
+
+- query = 
+    space_requirement_costs_coal_ha_per_mj = 0.00001;
+    space_requirement_costs_cokes_ha_per_mj = 0.00002;
+    space_requirement_costs_lignite_ha_per_mj = 0.00003;
+    SUM(
+        PRODUCT(V(energy_export_coal_baseload, demand), space_requirement_costs_coal_ha_per_mj),
+        PRODUCT(V(energy_export_cokes_baseload, demand), space_requirement_costs_cokes_ha_per_mj),
+        PRODUCT(V(energy_export_lignite_baseload, demand), space_requirement_costs_lignite_ha_per_mj)
+    )
+- unit = ha
