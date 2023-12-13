@@ -1,0 +1,12 @@
+# Capital costs of the lt heat delivery systems for buildings.
+# The lt heat delivery system is assumed to have the same wacc as the lt heating network.
+
+- unit = euro
+- query =
+    PRODUCT(
+        DIVIDE(
+        Q(buildings_lt_heat_delivery_system_investment_costs),
+        2
+        ),
+        V(energy_distribution_lt_steam_hot_water,wacc)
+    )

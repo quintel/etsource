@@ -1,0 +1,10 @@
+# Investment costs of the ht heat delivery systems for buildings.
+# Investment costs are currently calculated only for buildings connected to a heat network
+
+- unit = euro
+- query =
+    number_of_buildings_in_ht_heating_network = V(buildings_space_heater_district_heating_ht_steam_hot_water,number_of_units);
+    PRODUCT(
+        number_of_buildings_in_ht_heating_network,
+        AREA(buildings_ht_heat_delivery_system_costs_eur_per_connection)
+    )
