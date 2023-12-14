@@ -1,0 +1,14 @@
+# Final demand of the 'ambient' carrier group
+
+- unit = PJ
+- query =
+      V(
+        FILTER(
+          FILTER(
+            EG(number_of_units),"sector == :energy"
+          ),
+          biogas?
+        ),
+        value
+      )
+
