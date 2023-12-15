@@ -4,39 +4,14 @@
 - query =
     SUM(
       V(
-        FILTER(
           FILTER(
             FILTER(
-              EG(final_demand),"sector == :other"
-            ),
-            energetic?
+              FILTER(
+            EG(final_demand),"sector == :other"), "network_gas? || compressed_network_gas? || natural_gas? || lng?"
           ),
-          network_gas?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :other"
-            ),
-            energetic?
-          ),
-          compressed_network_gas?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :other"
-            ),
-            energetic?
-          ),
-          lng?
+          "energetic?"
         ),
         value
       )
-    ) / BILLIONS
+    )
+     / BILLIONS

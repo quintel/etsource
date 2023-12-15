@@ -1,0 +1,17 @@
+- query =
+    SUM(
+    DIVIDE(
+      SUM(
+        V(
+          G(hydrogen_production),
+          input_of(
+            natural_gas,
+            lng
+          )
+        )
+      ),
+      BILLIONS
+    ),
+    Q(network_gas_for_hydrogen_conversion) * Q(share_of_natural_gas_in_gas_network)
+    )
+- unit = PJ

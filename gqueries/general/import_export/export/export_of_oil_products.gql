@@ -1,0 +1,19 @@
+# Export of oil products
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            diesel,
+            gasoline,
+            lpg,
+            kerosene,
+            heavy_fuel_oil
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

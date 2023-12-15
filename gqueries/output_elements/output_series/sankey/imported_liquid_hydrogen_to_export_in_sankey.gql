@@ -1,0 +1,11 @@
+# Query for Sankey diagram: connection between imported liquid hydrogen and export
+
+- query =
+    DIVIDE(
+      SUM(
+        V(energy_export_liquid_hydrogen_backup,demand),
+        V(energy_export_liquid_hydrogen_baseload,demand)
+      ),
+      BILLIONS
+    )
+- unit = PJ

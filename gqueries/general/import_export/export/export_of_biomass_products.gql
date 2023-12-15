@@ -1,0 +1,15 @@
+# Export of biomass products
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            greengas
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

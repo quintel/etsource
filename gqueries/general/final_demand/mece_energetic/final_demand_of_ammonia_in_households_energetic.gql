@@ -1,0 +1,18 @@
+# Final demand of the 'ammonia' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :households"
+            ),
+            energetic?
+          ),
+          ammonia?
+        ),
+        value
+      )
+    ) / BILLIONS
