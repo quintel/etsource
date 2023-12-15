@@ -1,4 +1,12 @@
 # Query for Sankey diagram: connection between hydrogen_production and export
 
+- query =
+    DIVIDE(
+      SUM(
+        V(energy_export_hydrogen_backup,demand),
+        V(energy_export_hydrogen_baseload,demand)
+      ),
+      BILLIONS
+    )
 - unit = PJ
-- query = DIVIDE(V(energy_export_hydrogen, demand),BILLIONS)
+

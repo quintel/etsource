@@ -2,41 +2,16 @@
 
 - unit = PJ
 - query =
-    SUM(
+     SUM(
       V(
-        FILTER(
           FILTER(
             FILTER(
-              EG(final_demand),"sector == :transport"
-            ),
-            energetic?
+              FILTER(
+            EG(final_demand),"sector == :transport"), "coal? || coal_gas? || cokes? || lignite?"
           ),
-          coal?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :transport"
-            ),
-            energetic?
-          ),
-          coal_gas?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :transport"
-            ),
-            energetic?
-          ),
-          cokes?
+          "energetic?"
         ),
         value
       )
-    ) / BILLIONS
+    )
+     / BILLIONS

@@ -1,0 +1,29 @@
+- query = 
+    EACH(
+      UPDATE(V(energy_export_natural_gas_baseload), preset_demand, 
+      PRODUCT(
+        (USER_INPUT() * BILLIONS),
+        DIVIDE(INPUT_VALUE(natural_gas_total_share), 100.0)
+      )
+      ),
+      UPDATE(V(energy_export_greengas_baseload), preset_demand, 
+      PRODUCT(
+        (USER_INPUT() * BILLIONS),
+        DIVIDE(INPUT_VALUE(green_gas_total_share), 100.0)
+      )
+      )
+    )
+- priority = 0
+- max_value_gql = present:PRODUCT(2,DIVIDE(Q(total_gas_consumed),BILLIONS))
+- min_value = 0.0
+- start_value_gql = 
+    present:DIVIDE(
+      SUM(
+        V(energy_export_natural_gas_baseload, demand),
+        V(energy_export_greengas_baseload, demand)
+      ),
+      BILLIONS
+    )
+- step_value = 0.1
+- unit = PJ
+- update_period = future

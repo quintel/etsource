@@ -26,6 +26,27 @@
             G(co2_emissions_primary),
             primary_demand_of_imported_electricity)
             ),
-          imported_electricity_emission_factor)
+          imported_electricity_emission_factor),
+      PRODUCT(
+        SUM(
+          V(
+            G(co2_emissions_primary),
+            primary_demand_of_imported_lohc)
+            ),
+          imported_electricity_emission_factor),
+      PRODUCT(
+        SUM(
+          V(
+            G(co2_emissions_primary),
+            primary_demand_of_imported_liquid_hydrogen)
+            ),
+          imported_electricity_emission_factor),
+      PRODUCT(
+        SUM(
+          V(
+            G(co2_emissions_primary),
+            primary_demand_of_imported_ammonia)
+            ),
+          imported_electricity_emission_factor)          
       )
 - unit = kg

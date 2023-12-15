@@ -1,0 +1,8 @@
+- query = UPDATE(MV(molecules_import_co2_baseload), preset_demand, (USER_INPUT() * BILLIONS))
+- priority = 0
+- max_value_gql = present:AREA(co2_emission_1990)
+- min_value = 0.0
+- start_value_gql = present:MV(molecules_import_co2_baseload, demand) / BILLIONS
+- step_value = 0.1
+- unit = MT
+- update_period = future

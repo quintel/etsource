@@ -1,0 +1,15 @@
+# Export of non-biogenic waste
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            non_biogenic_waste
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

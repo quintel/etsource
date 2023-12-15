@@ -1,9 +1,16 @@
+# Refinery gas is not consumed see https://github.com/quintel/etsource/issues/1156
+# To ensure a equal inputs and outputs in the oil balance, refinery gas use is allocated as a loss
+
 - query =
     DIVIDE(
       SUM(
         V(
           FILTER(G(sankey_conversion_group),"refinery_gas_output_conversion > 0.0 && crude_oil_input_conversion > 0.0"),
           "refinery_gas_output_conversion * crude_oil_input_conversion / (1 - loss_output_conversion) * output_of_loss"
+        ),
+        V(
+          industry_locally_available_refinery_gas_for_chemical,
+          demand
         )
       ), 
       BILLIONS

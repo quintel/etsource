@@ -1,0 +1,16 @@
+# Direct conversion input of oil and oil products for central heat production
+
+- query = 
+    SUM(
+      Q(conversion_from_crude_oil_to_heat),
+      Q(conversion_from_gasoline_to_heat),
+      Q(conversion_from_diesel_to_heat),
+      Q(conversion_from_lpg_to_heat),
+      Q(conversion_from_kerosene_to_heat),
+      Q(conversion_from_heavy_fuel_oil_to_heat),
+      PRODUCT(
+        Q(conversion_from_gas_power_fuelmix_to_heat),
+        V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+      )
+    )
+- unit = PJ

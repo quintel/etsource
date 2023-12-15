@@ -1,0 +1,6 @@
+# Carrier costs based on net flows (imports - baseload export)
+- query =
+    PRODUCT(V(CARRIER(lohc), cost_per_mj), V(energy_imported_lohc, demand))
+    - 
+    PRODUCT(V(CARRIER(lohc), cost_per_mj), V(energy_export_lohc_baseload,demand))
+- unit = euro

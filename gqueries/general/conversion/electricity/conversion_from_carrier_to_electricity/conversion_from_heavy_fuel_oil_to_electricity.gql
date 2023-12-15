@@ -1,0 +1,13 @@
+# Direct conversion input of heavy fuel oil for central electricity production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(electricity_production),
+          "electricity_output_conversion / (1 - loss_output_conversion) * input_of_heavy_fuel_oil"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ
