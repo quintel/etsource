@@ -1,7 +1,22 @@
+# This input first checks if either of the capacities are set to 0
+# If this is the case, load shifting is not enabled
+
 - query =
-    UPDATE(
-      V(industry_final_demand_for_metal_dsr_load_shifting_electricity, merit_order), input_capacity_from_share,
-      DIVIDE(USER_INPUT(), 100.0)
+    load_shifting_enabled = IF(
+      MIN(
+        INPUT_VALUE(capacity_of_industry_metal_flexibility_load_shifting_electricity),
+        USER_INPUT()
+      ) == 0.0,
+      -> { 0.0 },
+      -> { 1.0 }
+    );
+
+    EACH(
+      UPDATE(
+        V(industry_final_demand_for_metal_dsr_load_shifting_electricity, merit_order), input_capacity_from_share,
+        DIVIDE(USER_INPUT(), 100.0)
+      ),
+      UPDATE(V(industry_final_demand_for_metal_dsr_load_shifting_electricity), number_of_units, load_shifting_enabled),
     )
 
 - priority = 0
