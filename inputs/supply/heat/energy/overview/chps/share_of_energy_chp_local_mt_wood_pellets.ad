@@ -3,7 +3,7 @@
         UPDATE(
             V(energy_chp_local_mt_wood_pellets),
             number_of_units,
-            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_local_engine_biogas) / V(energy_chp_local_mt_wood_pellets, electricity_output_capacity)
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_local_wood_pellets) / V(energy_chp_local_mt_wood_pellets, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_chp_local_mt_wood_pellets),
@@ -18,12 +18,16 @@
 - min_value = 0.0
 - start_value_gql = 
     present:PRODUCT(
-      DIVIDE(
-        V(energy_chp_local_mt_wood_pellets,"number_of_units * electricity_output_capacity"),
+        DIVIDE(
+            SUM(
+                V(energy_chp_local_mt_wood_pellets,"number_of_units * electricity_output_capacity"),
+                V(energy_chp_local_mt_wood_pellets_ccs,"number_of_units * electricity_output_capacity")
+        ),    
         SUM(
             V(energy_chp_local_mt_wood_pellets,"number_of_units * electricity_output_capacity"),
             V(energy_chp_local_ht_wood_pellets,"number_of_units * electricity_output_capacity"),
-            V(energy_power_wood_pellets,"number_of_units * electricity_output_capacity")
+            V(energy_chp_local_mt_wood_pellets_ccs,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_ht_wood_pellets_ccs,"number_of_units * electricity_output_capacity")
         )
       ),
       100.0
