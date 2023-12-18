@@ -2,13 +2,26 @@
 # For renewable energy carriers the output of electricity is taken by convention
 
 - query = 
-    DIVIDE(
-      SUM(
-        V(
-          FILTER(G(electricity_production),"solar_radiation_input_conversion > 0.0"),
-          output_of_electricity
-        )
-      ), 
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            FILTER(G(electricity_production),"solar_radiation_input_conversion > 0.0"),
+            output_of_electricity
+          ),
+        ),
       BILLIONS
-    )
+      ),
+        DIVIDE(
+          SUM(
+          V(
+            FILTER(G(costs_production_dedicated_hydrogen_production),"solar_radiation_input_conversion > 0.0"),
+            output_of_electricity
+          )
+        ), 
+        BILLIONS
+        )
+      )
+    
+    
 - unit = PJ
