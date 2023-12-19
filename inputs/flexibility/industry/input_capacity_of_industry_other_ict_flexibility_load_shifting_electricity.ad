@@ -1,5 +1,8 @@
-# This input first checks if either of the capacities are set to 0
-# If this is the case, load shifting is not enabled
+# Load shifting is disabled is either the input (increased load) or the output (decreased load) capacity is set to 0.0%
+# Load shifting output capacity = availability * peak capacity
+# Load shifting input capacity = availablity * input share * peak capacity
+# Users specify the combined effect of availablity * input share, which is used to update the input share
+# For more information see https://docs.energytransitionmodel.com/contrib/load-shifting
 
 - query =
     load_shifting_enabled = IF(
@@ -11,16 +14,19 @@
       -> { 1.0 }
     );
 
+    availability = INPUT_VALUE(capacity_of_industry_other_ict_flexibility_load_shifting_electricity);
+    input_share = DIVIDE(USER_INPUT(), availability);
+
     EACH(
       UPDATE(
         V(industry_final_demand_for_other_ict_dsr_load_shifting_electricity, merit_order), input_capacity_from_share,
-        DIVIDE(USER_INPUT(), 100.0)
+        input_share
       ),
       UPDATE(V(industry_final_demand_for_other_ict_dsr_load_shifting_electricity), number_of_units, load_shifting_enabled),
     )
 
 - priority = 0
-- max_value = 100.0
+- max_value = 50.0
 - min_value = 0.0
 - start_value_gql = present:V(industry_final_demand_for_other_ict_dsr_load_shifting_electricity,"merit_order.input_capacity_from_share") * 100.0
 - step_value = 1.0

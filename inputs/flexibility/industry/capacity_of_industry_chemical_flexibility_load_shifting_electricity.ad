@@ -1,11 +1,13 @@
-# This input first checks if either of the capacities are set to 0
-# If this is the case, load shifting is not enabled
+# Load shifting is disabled is either the input (increased load) or the output (decreased load) capacity is set to 0.0%
+# Load shifting output capacity = availability * peak capacity
+# Load shifting input capacity = availablity * input share * peak capacity
+# For more information see https://docs.energytransitionmodel.com/contrib/load-shifting
 
 - query =
     load_shifting_on = IF(
       MIN(
         USER_INPUT(),
-        INPUT_VALUE(input_capacity_of_industry_chemical_flexibility_load_shifting_electricity_share)
+        INPUT_VALUE(input_capacity_of_industry_chemical_flexibility_load_shifting_electricity)
       ) == 0.0,
       -> { 0.0 },
       -> { 1.0 }
