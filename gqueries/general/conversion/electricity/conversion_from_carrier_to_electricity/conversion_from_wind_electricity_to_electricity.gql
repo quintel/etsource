@@ -2,7 +2,6 @@
 # For renewable energy carriers the output of electricity is taken by convention
 
 - query = 
-    SUM(
       DIVIDE(
         SUM(
           V(
@@ -11,15 +10,6 @@
           )
         ), 
         BILLIONS
-      ),
-      DIVIDE(
-        SUM(
-          V(
-            FILTER(G(costs_production_dedicated_hydrogen_production),"wind_input_conversion > 0.0"),
-            output_of_electricity
-          )
-        ), 
-        BILLIONS
       )
-    )
+    
 - unit = PJ
