@@ -1,11 +1,13 @@
-# Investment costs of the mt heat delivery systems for buildings.
-# Investment costs are currently calculated only for buildings connected to a heat network
+# Investment costs of the mt heat delivery systems for buildings
 
 - unit = euro
 - query =
-    number_of_buildings_in_mt_heating_network = V(buildings_space_heater_district_heating_mt_steam_hot_water,number_of_units);
+    number_of_buildings_with_mt_heat_delivery_system = 
+        SUM(
+            V(G(mt_delivery_system_buildings), number_of_units)
+        );
     
     PRODUCT(
-        number_of_buildings_in_mt_heating_network,
+        number_of_buildings_with_mt_heat_delivery_system,
         AREA(buildings_mt_heat_delivery_system_costs_eur_per_connection)
     )
