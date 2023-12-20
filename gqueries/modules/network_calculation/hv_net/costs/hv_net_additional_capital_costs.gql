@@ -1,8 +1,7 @@
-# The costs of the future hv net
+# The capital costs of the future hv net
 
 - query =
           SUM(
-              QUERY_FUTURE(hv_net_total_investment_costs) / V(energy_power_hv_network_electricity,technical_lifetime),
               (QUERY_FUTURE(hv_net_total_investment_costs) / 2.0) * V(energy_power_hv_network_electricity,wacc)
           )
 
