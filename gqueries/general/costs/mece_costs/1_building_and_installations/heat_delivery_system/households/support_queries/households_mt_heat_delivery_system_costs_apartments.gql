@@ -1,9 +1,11 @@
-# Total investment costs of mt heat delivery systems in apartments.
-# It is assumed that all residences in the mt heating network have mt heat delivery systems.
+# Total investment costs of mt heat delivery systems in apartments
 
 - unit = euro
 - query =
-    number_of_residences_in_mt_heating_network = V(households_space_heater_district_heating_mt_steam_hot_water,number_of_units);
+    number_of_residences_with_mt_heat_delivery_system = 
+        SUM(
+            V(G(mt_delivery_system_households), number_of_units)
+        );
     share_of_apartments_in_residences = 
         DIVIDE(
             Q(number_of_apartments),
@@ -11,7 +13,7 @@
         );
     number_of_apartments_with_mt_heat_delivery_systems =
         PRODUCT(
-            number_of_residences_in_mt_heating_network,
+            number_of_residences_with_mt_heat_delivery_system,
             share_of_apartments_in_residences
         );
 

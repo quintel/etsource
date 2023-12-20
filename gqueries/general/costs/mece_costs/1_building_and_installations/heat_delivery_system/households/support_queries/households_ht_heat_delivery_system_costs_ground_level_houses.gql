@@ -1,9 +1,11 @@
-# Total investment costs of ht heat delivery systems in ground level houses.
-# It is assumed that all residences in the ht heating network have ht heat delivery systems.
+# Total investment costs of ht heat delivery systems in ground level houses
 
 - unit = euro
 - query =
-    number_of_residences_in_ht_heating_network = V(households_space_heater_district_heating_ht_steam_hot_water,number_of_units);
+    number_of_residences_with_ht_heat_delivery_system = 
+        SUM(
+            V(G(ht_delivery_system_households), number_of_units)
+        );
     number_of_ground_level_houses = Q(number_of_detached_houses) + Q(number_of_semi_detached_houses) + Q(number_of_terraced_houses);
     share_of_ground_level_houses_in_residences = 
         DIVIDE(
@@ -12,7 +14,7 @@
         );
     number_of_ground_level_houses_with_ht_heat_delivery_systems =
         PRODUCT(
-            number_of_residences_in_ht_heating_network,
+            number_of_residences_with_ht_heat_delivery_system,
             share_of_ground_level_houses_in_residences
         );
     
