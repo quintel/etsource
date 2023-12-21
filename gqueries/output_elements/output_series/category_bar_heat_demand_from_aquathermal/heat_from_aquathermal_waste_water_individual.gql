@@ -1,0 +1,13 @@
+# Calculates the heat extracted from waste water by individual households or buildings.
+
+- query =
+    DIVIDE(
+        SUM(
+            V(
+                Q(individual_heat_producing_aquathermal_waste_water_heat_converters),
+                input_of_ambient_heat
+            )
+        ),
+        BILLIONS
+    )
+- unit = PJ

@@ -1,8 +1,11 @@
 - query =
-    SUM_CURVES(V(
-      energy_heat_well_geothermal,
-      energy_heat_heatpump_water_water_electricity,
-      energy_heat_boiler_electricity,
-      electricity_input_curve
-    ))
+    SUM_CURVES(
+      V(
+        EXCLUDE(
+          INTERSECTION(SECTOR(energy),G(heat_production)),
+          FILTER(ALL(),"merit_order && (merit_order.type == :flex)")
+        ),
+        electricity_input_curve
+      )
+    )
 - unit = curve

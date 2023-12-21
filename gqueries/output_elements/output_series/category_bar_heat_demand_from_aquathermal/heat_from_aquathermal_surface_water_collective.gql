@@ -1,0 +1,13 @@
+# Calculates the heat extracted from surface water by individual households or buildings.
+
+- query =
+    DIVIDE(
+        SUM(
+            V(
+                Q(collective_heat_producing_aquathermal_surface_water_heat_converters),
+                input_of_ambient_heat
+            )
+        ),
+        BILLIONS
+    )
+- unit = PJ
