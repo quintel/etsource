@@ -1,0 +1,11 @@
+# Land use per unit is calculated based on a rotor diameter of 12 m 
+# and a separating distance of 3x the rotor diameter (circular area)
+# Source: https://www.rvo.nl/sites/default/files/bijlagen/Praktische%20toepassing%20van%20mini-windturbines.pdf
+
+- query = 
+    PRODUCT(
+        (12.0/2 * 3)**2,
+        3.1416,
+        10**-6
+    )
+- unit = km2
