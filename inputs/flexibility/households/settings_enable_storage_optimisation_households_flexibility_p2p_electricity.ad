@@ -1,16 +1,14 @@
 - query =
   IF(
-    EQUALS(USER_INPUT(), 1.0),
+    EQUALS(USER_INPUT(), "default"),
+    -> {},
     -> {
       UPDATE(V(households_flexibility_p2p_electricity, storage), decay, 0.0);
-      UPDATE(V(households_flexibility_p2p_electricity, merit_order), subtype, optimizing_storage);
-    },
-    -> {}
+      UPDATE(V(households_flexibility_p2p_electricity, merit_order), subtype, USER_INPUT());
+    }
   )
 - priority = 0
-- max_value = 1.0
-- min_value = 0.0
-- start_value = 0.0
-- step_value = 1.0
-- unit = bool
+- min_value = [default, optimizing_storage, optimizing_storage_households]
+- start_value = default
+- unit = enum
 - update_period = future

@@ -1,0 +1,12 @@
+- query =
+    SUM_CURVES(
+      SUM_CURVES(
+        V(FILTER(SECTOR(households),"merit_order && (merit_order.type == :consumer)"),electricity_input_curve)
+      ),
+      INVERT_CURVE(
+        SUM_CURVES(
+          V(FILTER(SECTOR(households),"merit_order && (merit_order.type == :producer)"),electricity_output_curve)
+        )
+      )
+    )
+- unit = curve
