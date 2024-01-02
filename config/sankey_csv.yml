@@ -358,6 +358,16 @@ rows:
     Value: ammonia_reformer_in_source_of_hydrogen_production
   - Group: Conversion
     Carrier: Hydrogen
+    Category: LOHC reformer
+    Type: Output
+    Value: lohc_reformer_in_source_of_hydrogen_production
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: LH2 regasifier
+    Type: Output
+    Value: liquid_hydrogen_regasifier_in_source_of_hydrogen_production        
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Biomass gasification
     Type: Output
     Value: biomass_gasification_in_source_of_hydrogen_production
@@ -1345,3 +1355,48 @@ rows:
     Category: Feedstock
     Type: Input
     Value: imported_ammonia_to_feedstock_in_sankey
+  
+  - Group: Primary demand
+    Carrier: LOHC
+    Category: Import
+    Type: Output
+    Value: import_of_lohc
+  - Group: Conversion
+    Carrier: LOHC
+    Category: LOHC reformer
+    Type: Input
+    Value: conversion_from_imported_lohc_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: LOHC to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_lohc_to_hydrogen
+  - Group: Final demand
+    Carrier: LOHC
+    Category: Export
+    Type: Input
+    Value: imported_lohc_to_export_in_sankey  
+
+  - Group: Primary demand
+    Carrier: Liquid Hydrogen
+    Category: Import
+    Type: Output
+    Value: import_of_liquid_hydrogen
+  - Group: Conversion
+    Carrier: Liquid Hydrogen
+    Category: LH2 regasifier
+    Type: Input
+    Value: conversion_from_imported_liquid_hydrogen_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: LH2 to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_liquid_hydrogen_to_hydrogen
+  - Group: Final demand
+    Carrier: Liquid Hydrogen
+    Category: Export
+    Type: Input
+    Value: imported_liquid_hydrogen_to_export_in_sankey  
+
+
+
