@@ -4,7 +4,25 @@
           V(
             FILTER(
             ALL(),
-            "heat_network && (heat_network.group == :industry_fertilizers_heat)"
+            "heat_network_lt && (heat_network_lt.group == :industry_fertilizers_heat)"
+            ), 
+            steam_hot_water_input_curve
+           )
+        ),
+        SUM_CURVES(
+          V(
+            FILTER(
+            ALL(),
+            "heat_network_mt && (heat_network_mt.group == :industry_fertilizers_heat)"
+            ), 
+            steam_hot_water_input_curve
+           )
+        ),
+        SUM_CURVES(
+          V(
+            FILTER(
+            ALL(),
+            "heat_network_ht && (heat_network_ht.group == :industry_fertilizers_heat)"
             ), 
             steam_hot_water_input_curve
            )
