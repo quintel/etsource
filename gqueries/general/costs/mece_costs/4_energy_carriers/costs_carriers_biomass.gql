@@ -1,16 +1,7 @@
+# Carrier costs based on net flows (imports - baseload export)
+
 - query =
-    SUM(
-      PRODUCT(V(CARRIER(torrefied_biomass_pellets), cost_per_mj), V(energy_torrefaction_wood, demand)),
-      PRODUCT(V(CARRIER(wood_pellets), cost_per_mj), V(energy_production_wood_pellets, demand)),
-      PRODUCT(V(CARRIER(bio_kerosene), cost_per_mj), V(energy_production_bio_kerosene, demand)),
-      PRODUCT(V(CARRIER(bio_ethanol), cost_per_mj), V(energy_production_bio_ethanol, demand)),
-      PRODUCT(V(CARRIER(bio_lng), cost_per_mj), V(energy_production_bio_lng, demand)),
-      PRODUCT(V(CARRIER(biodiesel), cost_per_mj), V(energy_production_biodiesel, demand)),
-      PRODUCT(V(CARRIER(bio_oil), cost_per_mj), V(energy_production_bio_oil, demand)),
-      PRODUCT(V(CARRIER(biogas), cost_per_mj), V(energy_biogas_fermentation_wet_biomass, demand)),
-      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_greengas_gasification_wet_biomass, demand)),
-      PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_greengas_gasification_dry_biomass, demand))
-    )
+      PRODUCT(V(CARRIER(dry_biomass), cost_per_mj), V(energy_import_dry_biomass, demand))
     - PRODUCT(V(CARRIER(greengas), cost_per_mj), V(energy_export_greengas_baseload, demand))
 
 - unit = euro
