@@ -1,10 +1,9 @@
 ### Future space requirements of LOHC
-# Returns future space requirements of imported LOHC that is part of the transit flow in ha
+# Returns future space requirements of imported LOHC that is part of the transit flows in kn^2. 
+# Query relies on land_use_per_unit which is km^2 per PJ for this node.
 
 - query = 
-    space_requirement_costs_lohc_ha_per_mj = 0.00001;
-    PRODUCT(
-        V(energy_export_lohc_baseload, demand), 
-        space_requirement_costs_lohc_ha_per_mj
-    )
-- unit = ha
+        PRODUCT(
+                V(energy_import_lohc,land_use_per_unit),
+                DIVIDE(V(energy_import_lohc,demand),BILLIONS))
+- unit = km^2

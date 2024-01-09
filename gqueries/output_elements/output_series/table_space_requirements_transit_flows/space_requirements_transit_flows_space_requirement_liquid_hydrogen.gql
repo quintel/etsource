@@ -1,10 +1,9 @@
 ### Future space requirements of liquid hydrogen
-# Returns future space requirements of imported liquid hydrogen that is part of the transit flow in ha
+# Returns future space requirements of imported liquid hydrogen that is part of the transit flows in kn^2. 
+# Query relies on land_use_per_unit which is km^2 per PJ for this node.
 
 - query = 
-    space_requirement_costs_liquid_hydrogen_ha_per_mj = 0.00001;
-    PRODUCT(
-        V(energy_export_liquid_hydrogen_baseload, demand), 
-        space_requirement_costs_liquid_hydrogen_ha_per_mj
-    )
-- unit = ha
+        PRODUCT(
+                V(energy_import_liquid_hydrogen,land_use_per_unit),
+                DIVIDE(V(energy_import_liquid_hydrogen,demand),BILLIONS))
+- unit = km^2
