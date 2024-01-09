@@ -1,4 +1,11 @@
-# Use of carrier group 'ambient' in housholds heat
+# Use of carrier group 'ambient' in households heat
 
+- query =
+    DIVIDE(
+      SUM(
+        V(Q(individual_heating_converters_in_households), input_of_ambient_cold),
+        V(Q(individual_heating_converters_in_households), input_of_ambient_heat)
+      ),
+      BILLIONS
+    )
 - unit = PJ
-- query = Q(final_demand_of_ambient_in_households_space_heating_energetic)

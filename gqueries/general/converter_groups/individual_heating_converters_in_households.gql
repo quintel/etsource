@@ -1,7 +1,6 @@
 - query =
-    EXCLUDE(
-      CHILDREN(CHILDREN(V(households_useful_demand_for_space_heating_after_insulation))),
-      V(households_space_heater_deficit)
+    FILTER(
+      ALL(),
+      "fever && (fever.group == :space_heating && fever.type == :producer)"
     )
 - unit = nodes
-- deprecated_key = households_heating_converters
