@@ -1,0 +1,8 @@
+# Outputs the nodes that generate heat from waste water for individual households or buildings.
+
+- query =
+    EXCLUDE(
+        PARENTS(V(energy_production_waste_water_ambient_heat)),
+        SECTOR(energy)
+    )
+- unit = nodes

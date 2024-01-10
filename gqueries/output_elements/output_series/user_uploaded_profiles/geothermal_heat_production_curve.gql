@@ -1,12 +1,31 @@
-- query = 
+- query =
     SUM_CURVES(
-      V(
-        FILTER(
-        ALL(),
-        "heat_network && (heat_network.group == :geothermal_heat)"
-        ), 
-        steam_hot_water_output_curve
-       )
-     )
-
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "heat_network_lt && (heat_network_lt.group == :geothermal_heat)"
+          ), 
+          steam_hot_water_output_curve
+        )
+      ),
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "heat_network_mt && (heat_network_mt.group == :geothermal_heat)"
+          ), 
+          steam_hot_water_output_curve
+        )
+      ),
+      SUM_CURVES(
+        V(
+          FILTER(
+          ALL(),
+          "heat_network_ht && (heat_network_ht.group == :geothermal_heat)"
+          ), 
+          steam_hot_water_output_curve
+        )
+      )
+    )
 - unit = curve

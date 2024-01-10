@@ -2,13 +2,14 @@
 # For renewable energy carriers the output of electricity is taken by convention
 
 - query = 
-    DIVIDE(
-      SUM(
-        V(
-          FILTER(G(electricity_production),"wind_input_conversion > 0.0"),
-          output_of_electricity
-        )
-      ), 
-      BILLIONS
-    )
+      DIVIDE(
+        SUM(
+          V(
+            FILTER(G(electricity_production),"wind_input_conversion > 0.0"),
+            output_of_electricity
+          )
+        ), 
+        BILLIONS
+      )
+    
 - unit = PJ

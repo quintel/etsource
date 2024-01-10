@@ -1,2 +1,8 @@
 - unit = PJ
-- query = Q(primary_demand_of_imported_hydrogen_from_other_sector)
+- query = 
+            SUM(
+                Q(primary_demand_of_imported_hydrogen_from_other_sector),
+                Q(primary_demand_of_imported_liquid_hydrogen_from_other_sector),
+                Q(primary_demand_of_imported_lohc_from_other_sector)
+            )
+
