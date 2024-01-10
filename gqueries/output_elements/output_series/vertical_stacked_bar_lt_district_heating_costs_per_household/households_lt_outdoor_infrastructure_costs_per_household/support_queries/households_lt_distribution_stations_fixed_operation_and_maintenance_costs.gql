@@ -9,13 +9,13 @@
       V(energy_distribution_lt_steam_hot_water,demand)
     );
 
-    lt_distribution_station_yearly_maintenance_costs =
+    lt_distribution_station_fixed_operation_and_maintenance_costs =
       SUM(
-        Q(heat_infrastructure_lt_exchanger_station_yearly_maintenance_costs),
-        Q(heat_infrastructure_lt_sub_station_yearly_maintenance_costs),
+        Q(heat_infrastructure_lt_exchanger_station_fixed_operation_and_maintenance_costs),
+        Q(heat_infrastructure_lt_sub_station_fixed_operation_and_maintenance_costs),
       );
     
     PRODUCT(
-      lt_distribution_station_yearly_maintenance_costs,
+      lt_distribution_station_fixed_operation_and_maintenance_costs,
       share_of_households_in_district_heating_demand
     )

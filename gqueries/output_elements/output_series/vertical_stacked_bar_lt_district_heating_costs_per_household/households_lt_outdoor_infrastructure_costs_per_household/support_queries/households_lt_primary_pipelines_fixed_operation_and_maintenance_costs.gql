@@ -5,11 +5,11 @@
 - query =
   share_of_households_in_district_heating_demand = 
     DIVIDE(
-      V(households_final_demand_mt_steam_hot_water,demand),
-      V(energy_distribution_mt_steam_hot_water,demand)
+      V(households_final_demand_lt_steam_hot_water,demand),
+      V(energy_distribution_lt_steam_hot_water,demand)
     );
     
     PRODUCT(
-      Q(heat_infrastructure_mt_primary_pipelines_yearly_maintenance_costs),
+      Q(heat_infrastructure_lt_primary_pipelines_fixed_operation_and_maintenance_costs),
       share_of_households_in_district_heating_demand
     )
