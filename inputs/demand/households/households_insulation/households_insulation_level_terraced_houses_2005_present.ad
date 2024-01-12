@@ -22,8 +22,8 @@
       UPDATE(V(households_useful_demand_for_space_heating_terraced_houses_2005_present), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_terraced_houses_2005_present)}))
     )
 - priority = 0
-- max_value = 500.0
-- min_value = 25.0
+- max_value_gql = present:MAX(AREA(typical_useful_demand_for_space_heating_terraced_houses_2005_present),500.0)
+- min_value_gql = present:MIN(AREA(typical_useful_demand_for_space_heating_terraced_houses_2005_present),25.0)
 - start_value_gql = present:AREA(typical_useful_demand_for_space_heating_terraced_houses_2005_present)
 - step_value = 0.1
 - unit = kWh/m2
