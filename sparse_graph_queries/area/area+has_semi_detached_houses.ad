@@ -1,0 +1,12 @@
+- query = 
+    IF(
+        SUM(
+            AREA(present_number_of_semi_detached_houses_before_1945),
+            AREA(present_number_of_semi_detached_houses_1945_1964),
+            AREA(present_number_of_semi_detached_houses_1965_1984),
+            AREA(present_number_of_semi_detached_houses_1985_2004),
+            AREA(present_number_of_semi_detached_houses_2005_present)
+        ) > 0.0,
+        true,
+        false
+    )

@@ -1,9 +1,0 @@
-# this query caps the input heat demand reduction to the heat demand reduction
-# corresponding to high insulation
-
-- query =
-    IF(
-      (100 * DATASET_INPUT(input_households_terraced_houses_heat_demand_reduction)) > AREA(heat_demand_reduction_high_insulation_terraced_house),
-      AREA(heat_demand_reduction_high_insulation_terraced_house),
-      100 * DATASET_INPUT(input_households_terraced_houses_heat_demand_reduction)
-    )
