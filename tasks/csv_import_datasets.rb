@@ -34,7 +34,7 @@ namespace :import do
     rescue Atlas::DocumentNotFoundError => e
       puts "Scaling new region #{ region }"
       Atlas::Scaler.new(
-        full_dataset, region, row.fetch('number_of_residences')
+        full_dataset, region, row.fetch('number_of_inhabitants')
       ).create_scaled_dataset
 
       Atlas::Dataset::Derived.find(region)
