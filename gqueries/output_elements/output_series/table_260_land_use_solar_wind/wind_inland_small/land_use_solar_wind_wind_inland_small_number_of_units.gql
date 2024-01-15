@@ -1,6 +1,9 @@
 - query =  
     DIVIDE(
         Q(land_use_solar_wind_wind_inland_small_installed_capacity),
-        Q(land_use_solar_wind_wind_inland_small_capacity_per_unit)
+        DIVIDE(
+            Q(land_use_solar_wind_wind_inland_small_capacity_per_unit),
+            THOUSANDS
+        )
     )
 - unit = number
