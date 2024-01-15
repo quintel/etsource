@@ -1,6 +1,9 @@
 - query = 
     PRODUCT(
-        Q(land_use_solar_wind_solar_pv_households_land_use_per_unit),
+        DIVIDE(
+            Q(land_use_solar_wind_solar_pv_households_land_use_per_unit),
+            MILLIONS
+        ),
         Q(land_use_solar_wind_solar_pv_households_number_of_units)
     )
 - unit = km2
