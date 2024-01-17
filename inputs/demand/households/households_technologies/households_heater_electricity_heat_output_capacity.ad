@@ -3,7 +3,7 @@
 - query =
     EACH(
       UPDATE(V(households_space_heater_electricity), heat_output_capacity, DIVIDE(USER_INPUT(),1000.0)),
-      UPDATE(V(households_water_heater_electricity), heat_output_capacity, DIVIDE(USER_INPUT(),1000.0))
+      UPDATE(V(households_water_heater_resistive_electricity), heat_output_capacity, DIVIDE(USER_INPUT(),1000.0))
     )
 - priority = 0
 - max_value_gql = present:MAX(V(households_space_heater_electricity,heat_output_capacity) * 1000.0,25.0)
