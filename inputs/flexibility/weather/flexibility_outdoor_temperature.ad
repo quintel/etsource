@@ -1,3 +1,6 @@
+# Priority is set to 0, while insulation and number of residences and buildings has priority at 1
+# This ensures that preset heat demand changes through temperature are applied last
+
 - query =
     IF(
       EQUALS(AREA(weather_curve_set), "default"),
@@ -8,13 +11,33 @@
         cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
 
         EACH(
-          UPDATE_WITH_FACTOR(V(households_terraced_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-          UPDATE_WITH_FACTOR(V(households_detached_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-          UPDATE_WITH_FACTOR(V(households_semi_detached_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-          UPDATE_WITH_FACTOR(V(households_corner_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-          UPDATE_WITH_FACTOR(V(households_apartments_useful_demand_for_space_heating), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_future), preset_demand, heat_factor),
           UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, cool_factor),
-          UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, heat_factor),
           UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor),
           UPDATE_WITH_FACTOR(V(agriculture_useful_demand_useable_heat), preset_demand, heat_factor)
         )
