@@ -1,0 +1,11 @@
+# Use of carrier group 'deficit' in households heat
+
+- query =
+    DIVIDE(
+      SUM(
+        V(households_space_heater_deficit,demand),
+        V(households_water_heater_deficit,demand)
+      ),
+      BILLIONS
+    )
+- unit = PJ
