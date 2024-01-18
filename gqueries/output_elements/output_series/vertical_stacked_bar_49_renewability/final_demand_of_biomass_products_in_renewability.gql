@@ -3,12 +3,12 @@
 - unit = %
 - query =
     100 * SUM(
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_biodiesel"),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_bio_ethanol"),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_wood_pellets"),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_bio_lng"),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_bio_oil"),
-        V(INTERSECTION(G(final_demand_group),USE(energetic)), "sustainability_share * supply_of_bio_kerosene")
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_biodiesel),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_bio_ethanol),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_wood_pellets),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_bio_lng),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_bio_oil),
+        V(INTERSECTION(G(final_demand_group),USE(energetic)), supply_of_bio_kerosene)
     ) / 
     SUM(
         V(INTERSECTION(G(final_demand_group),USE(energetic)), demand),
