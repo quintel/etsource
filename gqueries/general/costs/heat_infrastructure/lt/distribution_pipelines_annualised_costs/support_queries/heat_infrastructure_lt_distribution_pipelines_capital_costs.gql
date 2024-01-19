@@ -3,11 +3,8 @@
 - query =
     PRODUCT(
       DIVIDE(
-        SUM(
-          Q(heat_infrastructure_lt_distribution_pipelines_investment_costs),
-          Q(heat_infrastructure_lt_connection_pipelines_investment_costs)
-          ),
+        Q(heat_infrastructure_lt_distribution_pipelines_investment_costs),
         2.0),
-      V(energy_distribution_lt_steam_hot_water, wacc)
+      Q(heat_infrastructure_lt_distribution_pipelines_wacc)
     )
 - unit = euro
