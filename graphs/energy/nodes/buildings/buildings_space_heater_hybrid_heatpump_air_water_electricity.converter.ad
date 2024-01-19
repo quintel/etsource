@@ -17,6 +17,7 @@
 - fever.efficiency_based_on = electricity
 - fever.group = buildings_space_heating
 - fever.type = producer
+- fever.technology_curve_type = tech_constant
 - storage.cost_per_mwh = 154736.8
 - storage.decay = 0.0
 - storage.volume = 0.0
@@ -25,9 +26,7 @@
 - graph_methods = [input]
 - availability = 0.0
 - free_co2_factor = 0.0
-- forecasting_error = 0.0
 - full_load_hours = 0.0
-- land_use_per_unit = 0.0
 - takes_part_in_ets = 0.0
 - electricity_output_capacity = 0.0
 - heat_output_capacity = 0.004900000000000001
@@ -44,7 +43,6 @@
 - households_supplied_per_unit = 1.0
 
 ~ input.electricity = EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, electricity)
-
 ~ input.network_gas = EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, network_gas)
-
 ~ input.ambient_heat = EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)
+- fever.share_in_group = 0.0

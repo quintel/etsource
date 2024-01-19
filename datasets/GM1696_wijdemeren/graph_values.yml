@@ -101,9 +101,11 @@ buildings_solar_pv_solar_radiation:
   full_load_hours: 867.0
 buildings_space_heater_hybrid_heatpump_air_water_electricity:
   input:
-    :electricity: 0.152950529141685
-    :network_gas: 0.158772089720734
-    :ambient_heat: 0.688277381137581
+    :electricity: 0.152947645728501
+    :network_gas: 0.158787948493244
+    :ambient_heat: 0.688264405778255
+buildings_useful_demand_for_space_heating_buildings_present_after_solar_thermal:
+  number_of_units: 2414.0
 bunkers_total_useful_demand_planes:
   demand: 166290.19
 bunkers_total_useful_demand_ships:
@@ -531,14 +533,56 @@ households_solar_pvt_solar_radiation:
   full_load_hours: 867.0
 households_space_heater_hybrid_heatpump_air_water_electricity:
   input:
-    :electricity: 0.1467661311872401
-    :network_gas: 0.19278627847018087
-    :ambient_heat: 0.660447590342579
+    :electricity: 0.14676613118723983
+    :network_gas: 0.19278627847018048
+    :ambient_heat: 0.6604475903425796
+households_useful_demand_for_hot_water_after_solar_heater:
+  number_of_units: 10677.0
+households_useful_demand_for_space_heating_apartments_1945_1964:
+  number_of_units: 75.0
+households_useful_demand_for_space_heating_apartments_1965_1984:
+  number_of_units: 454.0
+households_useful_demand_for_space_heating_apartments_1985_2004:
+  number_of_units: 421.0
+households_useful_demand_for_space_heating_apartments_2005_present:
+  number_of_units: 475.0
+households_useful_demand_for_space_heating_apartments_before_1945:
+  number_of_units: 243.0
+households_useful_demand_for_space_heating_detached_houses_1945_1964:
+  number_of_units: 253.0
+households_useful_demand_for_space_heating_detached_houses_1965_1984:
+  number_of_units: 354.0
+households_useful_demand_for_space_heating_detached_houses_1985_2004:
+  number_of_units: 461.0
+households_useful_demand_for_space_heating_detached_houses_2005_present:
+  number_of_units: 237.0
+households_useful_demand_for_space_heating_detached_houses_before_1945:
+  number_of_units: 654.0
+households_useful_demand_for_space_heating_semi_detached_houses_1945_1964:
+  number_of_units: 928.0
+households_useful_demand_for_space_heating_semi_detached_houses_1965_1984:
+  number_of_units: 1016.0
+households_useful_demand_for_space_heating_semi_detached_houses_1985_2004:
+  number_of_units: 584.0
+households_useful_demand_for_space_heating_semi_detached_houses_2005_present:
+  number_of_units: 175.0
+households_useful_demand_for_space_heating_semi_detached_houses_before_1945:
+  number_of_units: 632.0
+households_useful_demand_for_space_heating_terraced_houses_1945_1964:
+  number_of_units: 988.0
+households_useful_demand_for_space_heating_terraced_houses_1965_1984:
+  number_of_units: 1634.0
+households_useful_demand_for_space_heating_terraced_houses_1985_2004:
+  number_of_units: 587.0
+households_useful_demand_for_space_heating_terraced_houses_2005_present:
+  number_of_units: 238.0
+households_useful_demand_for_space_heating_terraced_houses_before_1945:
+  number_of_units: 268.0
 households_water_heater_hybrid_heatpump_air_water_electricity:
   input:
-    :electricity: 0.22060534581681063
-    :network_gas: 0.11757861673275889
-    :ambient_heat: 0.6618160374504306
+    :electricity: 0.22060534581681057
+    :network_gas: 0.11757861673275885
+    :ambient_heat: 0.6618160374504307
 industry_aluminium_electrolysis_current_electricity:
   input:
     :electricity: 0.940352020860495
@@ -939,20 +983,6 @@ households_final_demand_wood_pellets-households_final_demand_for_hot_water_wood_
   parent_share: 0.0
 households_final_demand_wood_pellets-households_final_demand_for_space_heating_wood_pellets@wood_pellets:
   parent_share: 1.0
-? households_useful_demand_for_hot_water_after_solar_heater-households_useful_demand_for_hot_water_for_houses_with_solar_heater@useable_heat
-: child_share: 0.5
-? households_useful_demand_for_space_heating_after_insulation-households_apartments_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.0889169178603798
-? households_useful_demand_for_space_heating_after_insulation-households_corner_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.19330261662539117
-? households_useful_demand_for_space_heating_after_insulation-households_detached_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.30943140193089597
-? households_useful_demand_for_space_heating_after_insulation-households_semi_detached_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.14149538973584222
-? households_useful_demand_for_space_heating_after_insulation-households_terraced_houses_useful_demand_for_space_heating_after_insulation@useable_heat
-: parent_share: 0.2668536738474909
-households_water_heater_solar_thermal-households_useful_demand_for_hot_water_for_houses_with_solar_heater@useable_heat:
-  child_share: 0.5
 buildings_local_production_electricity-industry_final_demand_for_other_ict_dsr_electricity@electricity:
   parent_share: 0.047423393228414816
 energy_distribution_coal_gas-industry_final_demand_coal_gas@coal_gas:

@@ -1,0 +1,35 @@
+# This query calculates the insulation costs for buildings_present
+# The calculated costs are only updated for the future year, in the present year 
+# the insulation costs are assumed to be zero. This is done with IF-statements.
+# See https://docs.energytransitionmodel.com/main/insulation/#insulation-costs
+
+- query =
+    insulation_value_present =          QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_buildings_present) });
+    insulation_value_future =           QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_buildings_present) });
+    insulation_value_threshold =        220.0;
+
+    buildings_insulation_costs_low =    DIVIDE(7200.0,(403.0 - insulation_value_threshold));
+    buildings_insulation_costs_high =   DIVIDE(16000.0,(insulation_value_threshold - 118.0));
+
+    number_of_buildings_present = V(buildings_useful_demand_for_space_heating_buildings_present_after_solar_thermal, number_of_units);
+
+    IF(
+      GRAPH().future?,
+      -> {
+        PRODUCT(
+          SUM(
+            PRODUCT(
+              buildings_insulation_costs_low,
+              MAX(MIN((insulation_value_present - insulation_value_threshold),(insulation_value_present - insulation_value_future)),0)
+            ),
+            PRODUCT(
+              buildings_insulation_costs_high,
+              MAX(MIN((insulation_value_threshold - insulation_value_future),(insulation_value_present - insulation_value_future)),0)
+            )
+          ),
+          number_of_buildings_present
+        )
+      },
+      0.0
+    )
+- unit = euro

@@ -1,0 +1,15 @@
+# Updates both space heating and hot water shares
+
+- query =
+    EACH(
+      UPDATE(V(households_space_heater_district_heating_mt_steam_hot_water, fever), share_in_group, DIVIDE(USER_INPUT(),100.0)),
+      UPDATE(V(households_water_heater_district_heating_mt_steam_hot_water, fever), share_in_group, DIVIDE(USER_INPUT(),100.0))
+    )
+- share_group = heating_households
+- priority = 10
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(households_space_heater_district_heating_mt_steam_hot_water,"fever.share_in_group") * 100.0
+- step_value = 0.1
+- unit = %
+- update_period = future

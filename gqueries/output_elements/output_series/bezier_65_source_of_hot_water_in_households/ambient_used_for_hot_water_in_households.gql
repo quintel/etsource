@@ -1,8 +1,11 @@
-# Use of carrier group 'ambient' in households hot water
+# Use of carrier group 'ambient' in households heat
 
-- unit = PJ
 - query =
-    SUM(
-      V(Q(hot_water_converters_in_households), input_of_ambient_heat),
-      V(Q(hot_water_converters_in_households), input_of_ambient_cold)
-    ) / BILLIONS
+    DIVIDE(
+      SUM(
+        V(Q(hot_water_converters_in_households), input_of_ambient_cold),
+        V(Q(hot_water_converters_in_households), input_of_ambient_heat)
+      ),
+      BILLIONS
+    )
+- unit = PJ

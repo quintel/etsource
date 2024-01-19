@@ -1,0 +1,15 @@
+# Solar thermal panels can provide a maximum of 13% of year heat demand. Setting slider at 100% means that 13% of heat demand comes from solar thermal and 87% from the main heating technologies in buildings.
+
+- query =
+    EACH(
+      UPDATE(EDGE(buildings_space_heater_solar_thermal, buildings_useful_demand_for_space_heating_buildings_present), share, (USER_INPUT()*0.13)/100.0),
+      UPDATE(EDGE(buildings_space_heater_solar_thermal, buildings_useful_demand_for_space_heating_buildings_future), share, (USER_INPUT()*0.13)/100.0)
+      )
+
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(buildings_space_heater_solar_thermal,share_of_buildings_useful_demand_for_space_heating_buildings_present) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future

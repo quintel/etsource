@@ -1,0 +1,80 @@
+# This input:
+# - calculates the relative decrease in demand through insulation
+# - calculates the relative decrease in demand through demolition
+# - updates the demand using the combined relative change in demand
+# - updates the number of semi_detached_houses_2005_present
+# - updates the insulation costs
+# - updates the number of units of P2P based on the total number of residences
+# - updates the number of residences for hot water demand
+# - the roof surface available for solar PV on houses based on the changed total number of residences
+# - the total useful demand for cooling based on the changed total number of residences
+# - the electricity production of households solar PV, because user sets a share of the potential
+
+- query =
+    insulation_value_present = QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_2005_present) });
+    insulation_value_future = INPUT_VALUE(households_insulation_level_semi_detached_houses_2005_present);
+    insulation_relative_change = DIVIDE(insulation_value_future,insulation_value_present);
+
+    number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_semi_detached_houses_2005_present) });
+    number_of_units_future = USER_INPUT();
+    number_of_units_relative_change = DIVIDE(number_of_units_future,number_of_units_present);
+
+    total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_residences)});
+    total_number_of_units_future = 
+      INPUT_VALUE(households_number_of_apartments_before_1945) +
+      INPUT_VALUE(households_number_of_apartments_1945_1964) +
+      INPUT_VALUE(households_number_of_apartments_1965_1984) +
+      INPUT_VALUE(households_number_of_apartments_1985_2004) +
+      INPUT_VALUE(households_number_of_apartments_2005_present) +
+      INPUT_VALUE(households_number_of_apartments_future) +
+      INPUT_VALUE(households_number_of_detached_houses_before_1945) +
+      INPUT_VALUE(households_number_of_detached_houses_1945_1964) +
+      INPUT_VALUE(households_number_of_detached_houses_1965_1984) +
+      INPUT_VALUE(households_number_of_detached_houses_1985_2004) +
+      INPUT_VALUE(households_number_of_detached_houses_2005_present) +
+      INPUT_VALUE(households_number_of_detached_houses_future) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_before_1945) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_1945_1964) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_1965_1984) +
+      INPUT_VALUE(households_number_of_semi_detached_houses_1985_2004) +
+      USER_INPUT() +
+      INPUT_VALUE(households_number_of_semi_detached_houses_future) +
+      INPUT_VALUE(households_number_of_terraced_houses_before_1945) +
+      INPUT_VALUE(households_number_of_terraced_houses_1945_1964) +
+      INPUT_VALUE(households_number_of_terraced_houses_1965_1984) +
+      INPUT_VALUE(households_number_of_terraced_houses_1985_2004) +
+      INPUT_VALUE(households_number_of_terraced_houses_2005_present) +
+      INPUT_VALUE(households_number_of_terraced_houses_future);
+    total_number_of_units_relative_change = DIVIDE(total_number_of_units_future,total_number_of_units_present);
+
+    useful_heat_demand_future = insulation_relative_change * number_of_units_relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present, preset_demand)});
+    useful_cooling_demand_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_cooling, preset_demand)});
+    roof_surface_for_pv_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {AREA(residences_roof_surface_available_for_pv)});
+
+    EACH(
+      UPDATE(V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present), preset_demand, useful_heat_demand_future),
+      UPDATE(V(households_useful_demand_for_cooling), preset_demand, useful_cooling_demand_future),
+      UPDATE(AREA(), residences_roof_surface_available_for_pv, roof_surface_for_pv_future),
+
+      UPDATE(V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present), number_of_units, USER_INPUT()),
+      UPDATE(V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_semi_detached_houses_2005_present)})),
+      UPDATE(V(households_flexibility_p2p_electricity), number_of_units, PRODUCT(total_number_of_units_future, DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))),
+      UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_units_future),
+      UPDATE(
+        V(OUTPUT_SLOTS(LOOKUP(households_solar_pv_solar_radiation),electricity), "edges.detect{|l| !l.flexible? }"),
+        share,
+        (
+          (INPUT_VALUE(households_solar_pv_solar_radiation_market_penetration) / 100.0) *
+          (QUERY_FUTURE(-> { AREA(residences_roof_surface_available_for_pv) }) / V(households_solar_pv_solar_radiation, land_use_per_unit)) *
+          V(households_solar_pv_solar_radiation, typical_electricity_production_per_unit)
+        )
+      )
+    )
+- priority = 1
+- max_value_gql = present:AREA(present_number_of_semi_detached_houses_2005_present)
+- min_value = 0.0
+- start_value_gql = present:AREA(present_number_of_semi_detached_houses_2005_present)
+- step_value = 1.0
+- unit = #
+- update_period = future
+- update_type = mixed

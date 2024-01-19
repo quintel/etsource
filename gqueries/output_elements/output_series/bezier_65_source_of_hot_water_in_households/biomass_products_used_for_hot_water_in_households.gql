@@ -1,11 +1,4 @@
-# Use of carrier group 'biomass_products' in housholds hot water
+# Use of carrier group 'biomass_products' in households hot water
 
 - unit = PJ
-- query =
-    SUM(
-      V(Q(hot_water_converters_in_households), input_of_biodiesel),
-      V(Q(hot_water_converters_in_households), input_of_bio_ethanol),
-      V(Q(hot_water_converters_in_households), input_of_wood_pellets),
-      V(Q(hot_water_converters_in_households), input_of_bio_lng)
-    ) / BILLIONS
-
+- query = Q(final_demand_of_biomass_products_in_households_hot_water_energetic)

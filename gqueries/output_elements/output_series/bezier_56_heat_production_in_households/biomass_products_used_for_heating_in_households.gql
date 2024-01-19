@@ -1,10 +1,4 @@
-# Use of carrier group 'biomass_products' in housholds heat
+# Use of carrier group 'biomass_products' in households heat
 
+- query = Q(final_demand_of_biomass_products_in_households_space_heating_energetic)
 - unit = PJ
-- query =
-    SUM(
-      V(Q(individual_heating_converters_in_households), input_of_biodiesel),
-      V(Q(individual_heating_converters_in_households), input_of_bio_ethanol),
-      V(Q(individual_heating_converters_in_households), input_of_wood_pellets),
-      V(Q(individual_heating_converters_in_households), input_of_bio_lng)
-    ) / BILLIONS

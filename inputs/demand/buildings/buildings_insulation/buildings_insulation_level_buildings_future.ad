@@ -1,0 +1,27 @@
+# This input:
+# - calculates the total future demand through changes in insulation and construction
+# - updates the demand using the total future demand
+# - updates the insulation value
+# - updates the insulation costs
+# Typical surface area per buildings is based on nl2019 value
+
+- query =
+    insulation_value_future = USER_INPUT();
+    number_of_units_future = INPUT_VALUE(buildings_number_of_buildings_future);
+    typical_surface_area_per_unit = 293.627703981492;
+
+    useful_heat_demand_future = insulation_value_future * number_of_units_future * typical_surface_area_per_unit * MJ_PER_KWH;
+
+    EACH(
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, useful_heat_demand_future),
+      UPDATE(AREA(), typical_useful_demand_for_space_heating_buildings_future, USER_INPUT()),
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_future)}))
+    )
+- priority = 1
+- max_value_gql = present:MAX(AREA(typical_useful_demand_for_space_heating_buildings_future),500.0)
+- min_value_gql = present:MIN(AREA(typical_useful_demand_for_space_heating_buildings_future),25.0)
+- start_value_gql = present:AREA(typical_useful_demand_for_space_heating_buildings_future)
+- step_value = 0.1
+- unit = kWh/m2
+- update_period = future
+- update_type = mixed

@@ -1,0 +1,18 @@
+- use = energetic
+- groups = [preset_demand, households_1945_1964, semi_detached_houses, useful_demand]
+- graph_methods = [number_of_units]
+- fever.curve.tech_day_night = weather/insulation_semi_detached_houses_low
+- fever.curve.tech_constant = weather/insulation_semi_detached_houses_low
+- fever.group = space_heating
+- fever.type = consumer
+- free_co2_factor = 0.0
+- initial_investment = 0.0
+- technical_lifetime = 40.0
+# - decommissioning_costs = 0.0
+# - ccs_investment = 0.0
+# - cost_of_installing = 0.0
+# - storage_costs = 0.0
+# - construction_time = 0.0
+
+~ number_of_units = AREA(present_number_of_semi_detached_houses_1945_1964)
+~ fever.present_share_in_demand = AREA(present_share_of_semi_detached_houses_1945_1964_in_useful_demand_for_space_heating)

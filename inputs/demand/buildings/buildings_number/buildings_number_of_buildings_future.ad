@@ -1,0 +1,54 @@
+# This input:
+# - calculates the total future demand through changes in insulation and construction
+# - updates the demand using the total future demand
+# - updates the number of buildings_future
+# - updates the insulation costs
+# - the roof surface available for solar PV on buildings based on the changed total number of buildings
+# - the total useful demand for cooling based on the changed total number of buildings
+# - the total useful demand for lighting based on the changed total number of buildings
+# - the total useful demand for appliances based on the changed total number of buildings
+# - the electricity production of buildings solar PV, because user sets a share of the potential
+# Typical surface area per buildings is based on nl2019 value
+
+- query =
+    insulation_value_future = INPUT_VALUE(buildings_insulation_level_buildings_future);
+    number_of_units_future = USER_INPUT();
+    typical_surface_area_per_unit = 293.627703981492;
+
+    total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_buildings)});
+    total_number_of_units_future = USER_INPUT() + INPUT_VALUE(buildings_number_of_buildings_present);
+    total_number_of_units_relative_change = DIVIDE(total_number_of_units_future,total_number_of_units_present);
+
+    useful_heat_demand_future = insulation_value_future * number_of_units_future * typical_surface_area_per_unit * MJ_PER_KWH;
+    useful_cooling_demand_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {V(buildings_useful_demand_cooling, preset_demand)});
+    useful_lighting_demand_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {V(buildings_useful_demand_light, preset_demand)});
+    useful_appliances_demand_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {V(buildings_useful_demand_for_appliances, preset_demand)});
+    roof_surface_for_pv_future = total_number_of_units_relative_change * QUERY_PRESENT(-> {AREA(buildings_roof_surface_available_for_pv)});
+
+    EACH(
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, useful_heat_demand_future),
+      UPDATE(V(buildings_useful_demand_cooling), preset_demand, useful_cooling_demand_future),
+      UPDATE(V(buildings_useful_demand_light), preset_demand, useful_lighting_demand_future),
+      UPDATE(V(buildings_useful_demand_for_appliances), preset_demand, useful_appliances_demand_future),
+      UPDATE(AREA(), buildings_roof_surface_available_for_pv, roof_surface_for_pv_future),
+
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), number_of_units, USER_INPUT()),
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_future)})),
+      UPDATE_ABSOLUTE(
+        V(OUTPUT_SLOTS(LOOKUP(buildings_solar_pv_solar_radiation), electricity), "edges.detect{|l| !l.flexible? }"),
+        share,
+        (
+          ((INPUT_VALUE(buildings_solar_pv_solar_radiation_market_penetration) / 100.0) *
+          (QUERY_FUTURE(-> { AREA(buildings_roof_surface_available_for_pv) }) / V(buildings_solar_pv_solar_radiation, land_use_per_unit)) *
+          V(buildings_solar_pv_solar_radiation, typical_electricity_production_per_unit))
+        )
+      )
+    )
+- priority = 1
+- max_value_gql = present:AREA(present_number_of_buildings)
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = #
+- update_period = future
+- update_type = mixed

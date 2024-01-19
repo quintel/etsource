@@ -1,0 +1,27 @@
+# This query calculates the insulation costs for semi_detached_houses_future
+# The calculated costs are only updated for the future year, in the present year 
+# the insulation costs are assumed to be zero. This is done with IF-statements.
+# See https://docs.energytransitionmodel.com/main/insulation/#insulation-costs
+
+- query =
+    insulation_value_present =                    QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_future) });
+    insulation_value_future =                     QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_future) });
+
+    semi_detached_houses_insulaton_costs_high =   DIVIDE(24800.0,(220.0 - 118.0));
+
+    number_of_semi_detached_houses_future =       V(households_useful_demand_for_space_heating_semi_detached_houses_future, number_of_units);
+
+    IF(
+      GRAPH().future?,
+      -> {
+        PRODUCT(
+          PRODUCT(
+            semi_detached_houses_insulaton_costs_high,
+            MAX((insulation_value_present - insulation_value_future),0)
+          ),
+          number_of_semi_detached_houses_future
+        )
+      },
+      0.0
+    )
+- unit = euro
