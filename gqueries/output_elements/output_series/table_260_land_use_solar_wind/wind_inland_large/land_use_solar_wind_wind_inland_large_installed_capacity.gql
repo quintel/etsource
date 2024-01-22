@@ -1,9 +1,9 @@
 - query = 
-    PRODUCT(
-        V(energy_power_wind_turbine_inland, 'electricity_output_capacity * number_of_units'),
-        DIVIDE(
-            Q(land_use_solar_wind_wind_inland_large_capacity_share),
-            100
-        )
+    DIVIDE(
+      PRODUCT(
+        Q(land_use_solar_wind_wind_inland_large_electricity_output),
+        THOUSANDS
+      ),
+      Q(land_use_solar_wind_wind_inland_large_full_load_hours)
     )
 - unit = MW
