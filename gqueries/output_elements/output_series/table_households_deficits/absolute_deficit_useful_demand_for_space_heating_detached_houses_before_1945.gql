@@ -1,7 +1,10 @@
 - query =
-    DIVIDE(
-      SUM(Q(hourly_demand_for_space_heating_detached_houses_before_1945)) -
-      SUM(Q(hourly_production_for_space_heating_detached_houses_before_1945)),
-      THOUSANDS
+    PRODUCT(
+      DIVIDE(
+        SUM(Q(hourly_demand_for_space_heating_detached_houses_before_1945)) -
+        SUM(Q(hourly_production_for_space_heating_detached_houses_before_1945)),
+        THOUSANDS
+      ),
+      MJ_PER_MWH
     )
 - unit = GJ

@@ -1,7 +1,10 @@
 - query =
-    DIVIDE(
-      SUM(Q(hourly_demand_for_space_heating_apartments_future)) -
-      SUM(Q(hourly_production_for_space_heating_apartments_future)),
-      THOUSANDS
+    PRODUCT(
+      DIVIDE(
+        SUM(Q(hourly_demand_for_space_heating_apartments_future)) -
+        SUM(Q(hourly_production_for_space_heating_apartments_future)),
+        THOUSANDS
+      ),
+      MJ_PER_MWH
     )
 - unit = GJ
