@@ -1,0 +1,21 @@
+# CO2 emissions costs of all costs groups in the energy graph
+
+- query =
+    SUM(
+      V(G(costs_building_and_installations_agriculture), co2_emissions_costs_per(:node)),
+      V(G(costs_building_and_installations_buildings), co2_emissions_costs_per(:node)),
+      V(G(costs_building_and_installations_households), co2_emissions_costs_per(:node)),
+      V(G(costs_building_and_installations_industry), co2_emissions_costs_per(:node)),
+      V(G(costs_production_power_plants), co2_emissions_costs_per(:node)),
+      V(G(costs_production_chp_plants), co2_emissions_costs_per(:node)),
+      V(G(costs_production_heat_plants), co2_emissions_costs_per(:node)),
+      V(G(costs_production_dedicated_hydrogen_production), co2_emissions_costs_per(:node)),
+      V(G(costs_production_biomass), co2_emissions_costs_per(:node)),
+      V(G(costs_production_other), co2_emissions_costs_per(:node)),
+      V(G(costs_storage_and_conversion_p2p), co2_emissions_costs_per(:node)),
+      V(G(costs_storage_and_conversion_p2g), co2_emissions_costs_per(:node)),
+      V(G(costs_storage_and_conversion_p2h), co2_emissions_costs_per(:node)),
+      V(G(costs_infrastructure_hydrogen), co2_emissions_costs_per(:node)),
+      V(G(costs_co2_ccus), co2_emissions_costs_per(:node))
+    )
+- unit = euro

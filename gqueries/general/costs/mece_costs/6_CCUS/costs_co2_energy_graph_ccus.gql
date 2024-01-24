@@ -1,0 +1,18 @@
+# Total cost of all carbon capture, carbon sequestration and carbon utilisation technologies in the energy graph and the production of synthetic methanol and kerosene
+
+- query =
+    SUM(
+      V(G(costs_building_and_installations_industry), capital_expenditures_ccs_per(:node)),
+      V(G(costs_building_and_installations_industry), operating_expenses_ccs_per(:node)),
+      V(G(costs_production_power_plants), capital_expenditures_ccs_per(:node)),
+      V(G(costs_production_power_plants), operating_expenses_ccs_per(:node)),
+      V(G(costs_production_chp_plants), capital_expenditures_ccs_per(:node)),
+      V(G(costs_production_chp_plants), operating_expenses_ccs_per(:node)),
+      V(G(costs_production_dedicated_hydrogen_production), capital_expenditures_ccs_per(:node)),
+      V(G(costs_production_dedicated_hydrogen_production), operating_expenses_ccs_per(:node)),
+      V(G(costs_co2_ccus), capital_expenditures_excluding_ccs_per(:node)),
+      V(G(costs_co2_ccus), capital_expenditures_ccs_per(:node)),
+      V(G(costs_co2_ccus), operating_expenses_excluding_ccs_per(:node)),
+      V(G(costs_co2_ccus), operating_expenses_ccs_per(:node))
+    )
+- unit = euro
