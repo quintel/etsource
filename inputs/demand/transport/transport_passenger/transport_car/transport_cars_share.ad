@@ -2,27 +2,25 @@
 # The 2nd update is done by taking the amount of cars in the current data, divided by the corresponding share of cars in the demand for passenger transport. This is than multiplied by the user input. 
 
 - query =
-      EACH(
-        UPDATE(
-         EDGE(transport_useful_demand_cars, transport_useful_demand_passenger_kms),
-          share,
-          DIVIDE(USER_INPUT(), 100))
-      ,
-        UPDATE(
-          V(transport_useful_demand_cars),
-          number_of_units
-          ,
-            DIVIDE(
-              PRODUCT(
-                DIVIDE(USER_INPUT(),100),
-                AREA(number_of_cars)
-              ),
-              QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms) } 
-              )
-            )
+    EACH(
+      UPDATE(
+        EDGE(transport_useful_demand_cars, transport_useful_demand_passenger_kms),
+        share,
+        DIVIDE(USER_INPUT(), 100)
+      ),
+      UPDATE(
+        V(transport_useful_demand_cars),
+        number_of_units,
+        DIVIDE(
+          PRODUCT(
+            DIVIDE(USER_INPUT(),100),
+            AREA(number_of_cars)
+          ),
+          QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms) } 
           )
         )
-      
+      )
+    )
 
 - share_group = passenger_transport
 - priority = 2
