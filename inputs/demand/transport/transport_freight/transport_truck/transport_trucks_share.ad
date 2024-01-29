@@ -2,29 +2,25 @@
 # The 2nd update is done by taking the amount of trucks in the current data, divided by the corresponding share of trucks in the demand for freight transport. This is than multiplied by the user input. 
 
 - query =
-      EACH(
-        UPDATE(
-         EDGE(transport_useful_demand_trucks, transport_useful_demand_freight_tonne_kms),
-          share,
-          DIVIDE(USER_INPUT(), 100))
-      ,
-        UPDATE(
-          V(transport_useful_demand_trucks),
-          number_of_units
-          ,
-            DIVIDE(
-              PRODUCT(
-                DIVIDE(USER_INPUT(),100),
-                AREA(number_of_trucks)
-              ),
-              QUERY_PRESENT(-> {V(transport_useful_demand_trucks,share_of_transport_useful_demand_freight_tonne_kms) } 
-              )
-            )
+    EACH(
+      UPDATE(
+        EDGE(transport_useful_demand_trucks, transport_useful_demand_freight_tonne_kms),
+        share,
+        DIVIDE(USER_INPUT(), 100)
+      ),
+      UPDATE(
+        V(transport_useful_demand_trucks),
+        number_of_units,
+        DIVIDE(
+          PRODUCT(
+            DIVIDE(USER_INPUT(),100),
+            AREA(number_of_trucks)
+          ),
+          QUERY_PRESENT(-> {V(transport_useful_demand_trucks,share_of_transport_useful_demand_freight_tonne_kms) } 
           )
         )
-      
-
-
+      )
+    )
 
 - share_group = freight_transport
 - priority = 2
