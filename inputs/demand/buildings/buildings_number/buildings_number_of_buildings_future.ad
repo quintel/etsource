@@ -33,16 +33,7 @@
       UPDATE(AREA(), buildings_roof_surface_available_for_pv, roof_surface_for_pv_future),
 
       UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), number_of_units, USER_INPUT()),
-      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_future)})),
-      UPDATE_ABSOLUTE(
-        V(OUTPUT_SLOTS(LOOKUP(buildings_solar_pv_solar_radiation), electricity), "edges.detect{|l| !l.flexible? }"),
-        share,
-        (
-          ((INPUT_VALUE(buildings_solar_pv_solar_radiation_market_penetration) / 100.0) *
-          (QUERY_FUTURE(-> { AREA(buildings_roof_surface_available_for_pv) }) / V(buildings_solar_pv_solar_radiation, land_use_per_unit)) *
-          V(buildings_solar_pv_solar_radiation, typical_electricity_production_per_unit))
-        )
-      )
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_future)}))
     )
 - priority = 1
 - max_value_gql = present:AREA(present_number_of_buildings)

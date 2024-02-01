@@ -1,0 +1,12 @@
+- query = 
+    DIVIDE(
+      PRODUCT(
+        V(energy_power_wind_turbine_inland, output_of_electricity),
+        DIVIDE(
+          Q(land_use_solar_wind_wind_inland_large_electricity_output_share),
+          100.0
+        )
+      ),
+      MJ_PER_MWH * THOUSANDS
+    )
+- unit = GWh
