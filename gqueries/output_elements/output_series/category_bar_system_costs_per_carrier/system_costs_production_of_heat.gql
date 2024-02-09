@@ -1,0 +1,24 @@
+# Calculates annualised costs of all heat producing plants
+# For CHPs the allocated share of annualised costs is based on 
+# the share of heat output conversion in total useful output conversion, i.e disregarding losses
+
+- query = 
+    chp_plants_annualised_costs = 
+      V(G(costs_production_chp_plants), "capital_expenditures_excluding_ccs + operating_expenses_excluding_ccs");
+
+    chp_plants_heat_output_share_in_useful_output = 
+      V(G(costs_production_chp_plants), "heat_output_conversion / (electricity_output_conversion + heat_output_conversion)");
+
+    chp_plants_heat_share_of_annualised_costs = 
+      SUM(
+        chp_plants_annualised_costs.zip(
+        chp_plants_heat_output_share_in_useful_output
+      ).map{ |x, y| x * y}
+      );
+
+    SUM(
+        Q(costs_production_power_plants),
+        chp_plants_heat_share_of_annualised_costs
+    )
+    
+- unit = euro

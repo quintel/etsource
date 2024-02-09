@@ -1,0 +1,10 @@
+# Production costs of network gas include production of greengas and regasification of lng
+
+- query = 
+    SUM(
+      Q(costs_production_biomass),
+      V(energy_regasification_lng, capital_expenditures_excluding_ccs),
+      V(energy_regasification_lng, operating_expenses_excluding_ccs)
+    )
+    
+- unit = euro
