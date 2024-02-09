@@ -2,15 +2,8 @@
 
 - query =
     SUM(
-      SUM(
-        Q(heat_infrastructure_ht_storage_annualised_costs),
-        Q(heat_infrastructure_mt_storage_annualised_costs),
-        Q(heat_infrastructure_lt_storage_annualised_costs)
-      ),
-      PRODUCT(
-          V(energy_hydrogen_storage, "storage.cost_per_mwh"),
-          V(energy_hydrogen_storage, "storage.volume")
-      )
+      Q(costs_storage_and_conversion_storage_heat),
+      Q(costs_storage_and_conversion_storage_hydrogen)
     )
 
 - unit = euro
