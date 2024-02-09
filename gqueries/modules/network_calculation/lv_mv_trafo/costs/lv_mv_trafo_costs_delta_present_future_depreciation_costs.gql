@@ -1,0 +1,8 @@
+# The depreciation costs of the future lv-mv transformers
+
+- query =
+          SUM(
+              QUERY_FUTURE(lv_mv_trafo_costs_delta_present_future_investment_costs) / Q(lv_mv_trafo_costs_delta_present_future_technical_lifetime)
+          )
+
+- unit = euro

@@ -1,0 +1,21 @@
+# Annual maintenance costs of heat exchanger stations and substations for households,
+# by share of household heat demand in the total district heating network.
+
+- unit = euro
+- query =
+  share_of_households_in_district_heating_demand = 
+    DIVIDE(
+      V(households_final_demand_lt_steam_hot_water,demand),
+      V(energy_distribution_lt_steam_hot_water,demand)
+    );
+
+    lt_distribution_station_fixed_operation_and_maintenance_costs =
+      SUM(
+        Q(heat_infrastructure_lt_exchanger_station_fixed_operation_and_maintenance_costs),
+        Q(heat_infrastructure_lt_sub_station_fixed_operation_and_maintenance_costs),
+      );
+    
+    PRODUCT(
+      lt_distribution_station_fixed_operation_and_maintenance_costs,
+      share_of_households_in_district_heating_demand
+    )

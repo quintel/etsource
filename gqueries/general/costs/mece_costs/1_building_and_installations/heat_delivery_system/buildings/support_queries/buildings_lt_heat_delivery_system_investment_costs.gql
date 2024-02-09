@@ -1,0 +1,13 @@
+# Investment costs of the lt heat delivery systems for buildings
+
+- unit = euro
+- query =
+    number_of_buildings_with_lt_heat_delivery_system = 
+        SUM(
+            V(G(lt_delivery_system_buildings), number_of_units)
+        );
+    
+    PRODUCT(
+        number_of_buildings_with_lt_heat_delivery_system,
+        AREA(buildings_lt_heat_delivery_system_costs_eur_per_connection)
+    )

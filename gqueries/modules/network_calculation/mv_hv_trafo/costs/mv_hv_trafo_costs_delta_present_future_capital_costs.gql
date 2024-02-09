@@ -1,0 +1,8 @@
+# The capital costs of the future mv-hv transformers
+
+- query =
+          SUM(
+              QUERY_FUTURE(mv_hv_trafo_costs_delta_present_future_investment_costs) / 2.0 * Q(mv_hv_trafo_costs_delta_present_future_wacc)
+          )
+
+- unit = euro

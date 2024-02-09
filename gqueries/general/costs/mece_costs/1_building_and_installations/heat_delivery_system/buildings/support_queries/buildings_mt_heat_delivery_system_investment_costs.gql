@@ -1,0 +1,13 @@
+# Investment costs of the mt heat delivery systems for buildings
+
+- unit = euro
+- query =
+    number_of_buildings_with_mt_heat_delivery_system = 
+        SUM(
+            V(G(mt_delivery_system_buildings), number_of_units)
+        );
+    
+    PRODUCT(
+        number_of_buildings_with_mt_heat_delivery_system,
+        AREA(buildings_mt_heat_delivery_system_costs_eur_per_connection)
+    )

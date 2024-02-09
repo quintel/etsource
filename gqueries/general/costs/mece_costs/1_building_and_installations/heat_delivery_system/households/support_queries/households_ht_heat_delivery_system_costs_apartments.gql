@@ -1,0 +1,23 @@
+# Total investment costs of ht heat delivery systems in apartments
+
+- unit = euro
+- query =
+    number_of_residences_with_ht_heat_delivery_system = 
+        SUM(
+            V(G(ht_delivery_system_households), number_of_units)
+        );
+    share_of_apartments_in_residences = 
+        DIVIDE(
+            Q(number_of_apartments),
+            Q(number_of_residences)
+        );
+    number_of_apartments_with_ht_heat_delivery_systems =
+        PRODUCT(
+            number_of_residences_with_ht_heat_delivery_system,
+            share_of_apartments_in_residences
+        );
+
+    PRODUCT(
+        number_of_apartments_with_ht_heat_delivery_systems,
+        AREA(households_ht_heat_delivery_system_costs_apartments_eur_per_connection)
+    );
