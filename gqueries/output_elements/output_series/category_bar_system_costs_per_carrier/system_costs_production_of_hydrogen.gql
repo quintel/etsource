@@ -1,6 +1,11 @@
-# Production costs of hydrogen 
+# Production costs of hydrogen including CCUS costs
 
 - query = 
-      Q(costs_production_dedicated_hydrogen_production)
+      SUM(
+        V(G(costs_production_dedicated_hydrogen_production), capital_expenditures_excluding_ccs_per(:node)),
+        V(G(costs_production_dedicated_hydrogen_production), capital_expenditures_ccs_per(:node)),
+        V(G(costs_production_dedicated_hydrogen_production), operating_expenses_excluding_ccs_per(:node)),
+        V(G(costs_production_dedicated_hydrogen_production), operating_expenses_ccs_per(:node))
+      )
     
 - unit = euro

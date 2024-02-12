@@ -1,10 +1,12 @@
-# Calculates annualised costs of all electricity producing plants
+# Calculates annualised costs of all electricity producing plants including CCUS costs
 # For CHPs the allocated share of annualised costs is based on 
 # the share of electricity output conversion in total useful output conversion, i.e disregarding losses
 
 - query = 
     chp_plants_annualised_costs = 
-      V(G(costs_production_chp_plants), "capital_expenditures_excluding_ccs + operating_expenses_excluding_ccs");
+      V(G(costs_production_chp_plants), 
+      "capital_expenditures_excluding_ccs_per(:node) + operating_expenses_excluding_ccs_per(:node)
+      + capital_expenditures_ccs_per(:node) + operating_expenses_ccs_per(:node)");
 
     chp_plants_electricity_output_share_in_useful_output = 
       V(G(costs_production_chp_plants), "electricity_output_conversion / (electricity_output_conversion + heat_output_conversion)");

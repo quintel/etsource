@@ -1,8 +1,11 @@
-# Flexibility costs for heat consist of p2h and heat storage installations
+# Flexibility costs for heat consist of p2h and heat storage installations, including CCUS costs
 
 - query = 
     SUM(
-      Q(costs_storage_and_conversion_p2h),
+      V(G(costs_storage_and_conversion_p2h), capital_expenditures_excluding_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2h), capital_expenditures_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2h), operating_expenses_excluding_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2h), operating_expenses_ccs_per(:node)),
       Q(costs_storage_and_conversion_storage_heat)
     )
 - unit = euro

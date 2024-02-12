@@ -2,7 +2,10 @@
 
 - query = 
     SUM(
-      Q(costs_storage_and_conversion_p2g),
+      V(G(costs_storage_and_conversion_p2g), capital_expenditures_excluding_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2g), capital_expenditures_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2g), operating_expenses_excluding_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2g), operating_expenses_ccs_per(:node)),
       Q(costs_storage_and_conversion_storage_hydrogen)
     )
 - unit = euro

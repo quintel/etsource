@@ -1,5 +1,10 @@
 # Flexibility costs for electricity consist of p2p installations
 
 - query = 
-    Q(costs_storage_and_conversion_p2p)
+    SUM(
+      V(G(costs_storage_and_conversion_p2p), capital_expenditures_excluding_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2p), capital_expenditures_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2p), operating_expenses_excluding_ccs_per(:node)),
+      V(G(costs_storage_and_conversion_p2p), operating_expenses_ccs_per(:node))
+    )
 - unit = euro
