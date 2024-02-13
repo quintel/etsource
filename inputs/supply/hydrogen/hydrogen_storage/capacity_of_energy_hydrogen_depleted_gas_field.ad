@@ -1,0 +1,13 @@
+- query =
+    UPDATE(
+      V(energy_hydrogen_storage_depleted_gas_field),
+      number_of_units,
+      USER_INPUT() / V(energy_hydrogen_storage_depleted_gas_field, typical_input_capacity)
+    )
+- priority = 0
+- max_value_gql = present:MAX(1.0, PRODUCT(DIVIDE(Q(total_gas_consumed), SECS_PER_YEAR), 6))
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = MW
+- update_period = future
