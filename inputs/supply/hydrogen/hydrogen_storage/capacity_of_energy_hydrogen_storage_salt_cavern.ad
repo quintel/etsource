@@ -1,16 +1,9 @@
 - query =
-      EACH(
         UPDATE(
             V(energy_hydrogen_storage_salt_cavern),
-            number_of_units,
-            USER_INPUT() / V(energy_hydrogen_storage_salt_cavern, typical_input_capacity)
-        ),
-        UPDATE(
-            L(energy_hydrogen_storage_salt_cavern),
-            preset_demand_by_hydrogen_production,
-            V(energy_hydrogen_storage_salt_cavern, hydrogen_production_based_on_number_of_units)
-        )
-    )
+            hydrogen_output_capacity,
+            USER_INPUT()
+          )
 - priority = 0
 - max_value = 50000.0
 - min_value = 0.0
