@@ -1,6 +1,5 @@
 - query =
-    EACH(
-      UPDATE(
+    UPDATE(
         V(energy_hydrogen_storage_salt_cavern),
         number_of_units,
         DIVIDE(
@@ -8,18 +7,9 @@
             USER_INPUT(),
             MILLIONS
           ),
-          QUERY_PRESENT(-> {V(energy_hydrogen_storage_salt_cavern,"storage.volume")})
+          V(energy_hydrogen_storage_salt_cavern,"storage.volume")
           )
-        ),
-    UPDATE(
-      V(energy_hydrogen_storage_salt_cavern,storage),
-      "volume",
-      PRODUCT(
-        USER_INPUT(),
-        MILLIONS
         )
-      )
-    )
 - priority = 0
 - max_value = 5.0
 - min_value = 0.0
