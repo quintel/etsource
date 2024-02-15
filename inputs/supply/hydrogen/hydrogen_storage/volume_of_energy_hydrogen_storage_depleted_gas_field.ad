@@ -1,5 +1,4 @@
 - query =
-    EACH(
       UPDATE(
         V(energy_hydrogen_storage_depleted_gas_field),
         number_of_units,
@@ -8,18 +7,10 @@
             USER_INPUT(),
             MILLIONS
           ),
-          QUERY_PRESENT(-> {V(energy_hydrogen_storage_depleted_gas_field,"storage.volume")})
+          V(energy_hydrogen_storage_depleted_gas_field,"storage.volume")
           )
-        ),
-    UPDATE(
-      V(energy_hydrogen_storage_depleted_gas_field,storage),
-      "volume",
-      PRODUCT(
-        USER_INPUT(),
-        MILLIONS
         )
-      )
-    )
+
 - priority = 0
 - max_value = 40.0
 - min_value = 0.0
