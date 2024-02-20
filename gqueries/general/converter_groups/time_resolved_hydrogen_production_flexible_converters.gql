@@ -2,6 +2,9 @@
 
 - query =
     FILTER(
-      ALL(),"hydrogen && (hydrogen.type == :storage || hydrogen.subtype == :dispatchable)"
+      ALL(),
+      "hydrogen && (hydrogen.subtype == :storage || 
+      hydrogen.subtype == :dispatchable || 
+      (hydrogen.type == :producer && hydrogen.subtype == :backup))"
     )
 - unit = nodes
