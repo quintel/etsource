@@ -2,6 +2,8 @@
 
 - query =
     FILTER(
-      ALL(),"hydrogen && (hydrogen.type == :flex)"
+      ALL(),
+      "hydrogen && (hydrogen.type == :flex || 
+      (hydrogen.type == :consumer && hydrogen.subtype == :backup))"
     )
 - unit = nodes

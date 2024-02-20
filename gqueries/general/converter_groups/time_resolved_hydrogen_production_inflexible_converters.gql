@@ -3,6 +3,6 @@
 - query =
     FILTER(
       ALL(),
-      "hydrogen && (hydrogen.type == :producer && hydrogen.subtype == :must_run)"
+      "hydrogen && (hydrogen.type == :producer && (hydrogen.subtype == :must_run || hydrogen.subtype == :volatile))"
     )
 - unit = nodes
