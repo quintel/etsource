@@ -1,8 +1,12 @@
-- query = UPDATE(AREA(), co2_removal_price, DIVIDE(USER_INPUT(),100) * co2_price)
+- query = 
+  present_value = QUERY_PRESENT(-> {Q(price_of_co2)});
+  relative_value = USER_INPUT() / present_value;
+    UPDATE_WITH_FACTOR(
+      AREA(), co2_removal_price, relative_value)
 - priority = 0
-- max_value = 500.0
-- min_value = 100.0
-- start_value = 100.0
+- max_value = 3500.0
+- min_value = 0.0
+- start_value_gql = present:Q(price_of_co2)
 - step_value = 1.0
-- unit = %
+- unit = euro
 - update_period = future
