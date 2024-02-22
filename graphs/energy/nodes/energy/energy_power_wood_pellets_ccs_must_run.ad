@@ -1,7 +1,14 @@
+# energy_power_wood_pellets_ccs has two variants, must_run and dispatchable
+# both have the same specs, 
+# the only difference is their behaviour in merit, specified by merit_order.subtype
+
+# full_load_hours and output.electricity are defined manually for testing
+# this should be changed later
+
 - output.loss = elastic
-- groups = [preset_demand, electricity_production, dispatchable_production, wacc_proven_tech, costs_production_chp_plants, sankey_conversion_group]
+- groups = [preset_demand, electricity_production, dispatchable_production, wacc_proven_tech, costs_production_power_plants, sankey_conversion_group]
 - use = energetic
-- presentation_group = electricity_production_ccs, chps
+- presentation_group = electricity_production_ccs
 - graph_methods = [demand, full_load_hours, output]
 - availability = 0.91
 - typical_input_capacity = 80.0
@@ -15,15 +22,15 @@
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
 - variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
 - wacc = 0.04
-- merit_order.level = mv
-- merit_order.subtype = dispatchable
+- merit_order.group = flat
+- merit_order.level = hv
+- merit_order.subtype = must_run
 - merit_order.type = producer
 - free_co2_factor = 0.85
 - ccs_capture_rate = 0.85
 - takes_part_in_ets = 0.0
 - sustainability_share = 1.0
 
-
-~ demand = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, demand)
-~ full_load_hours = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, full_load_hours)
-~ output.electricity = CENTRAL_PRODUCTION(energy_chp_local_wood_pellets, electricity_output_conversion)
+~ demand = 0.0
+- full_load_hours = 6000
+- output.electricity = 0.35
