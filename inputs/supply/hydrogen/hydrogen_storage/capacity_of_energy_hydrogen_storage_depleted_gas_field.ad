@@ -1,10 +1,20 @@
 - query =
-      UPDATE(
-        V(energy_hydrogen_storage_depleted_gas_field),
-        hydrogen_output_capacity,
-        DIVIDE(
-          V(energy_hydrogen_storage_depleted_gas_field,"storage.volume"),
-          PRODUCT( USER_INPUT(), 24)
+      EACH(
+        UPDATE(
+          V(energy_hydrogen_storage_depleted_gas_field),
+          typical_input_capacity,
+          DIVIDE(
+            V(energy_hydrogen_storage_depleted_gas_field,"storage.volume"),
+            PRODUCT( USER_INPUT(), 24)
+          )
+        ),
+        UPDATE(
+          V(energy_hydrogen_storage_depleted_gas_field),
+          hydrogen_output_capacity,
+          DIVIDE(
+            V(energy_hydrogen_storage_depleted_gas_field,"storage.volume"),
+            PRODUCT( USER_INPUT(), 24)
+          )
         )
       )
 - priority = 0
