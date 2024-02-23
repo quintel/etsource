@@ -1,14 +1,24 @@
 - query =
     EACH(
         UPDATE(
-            V(energy_chp_local_mt_wood_pellets),
+            V(energy_chp_local_mt_wood_pellets_must_run),
             number_of_units,
-            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_local_wood_pellets) / V(energy_chp_local_mt_wood_pellets, electricity_output_capacity)
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_local_wood_pellets_must_run) / V(energy_chp_local_mt_wood_pellets_must_run, electricity_output_capacity)
         ),
         UPDATE(
-            L(energy_chp_local_mt_wood_pellets),
+            L(energy_chp_local_mt_wood_pellets_must_run),
             preset_demand_by_electricity_production,
-            V(energy_chp_local_mt_wood_pellets, production_based_on_number_of_units)
+            V(energy_chp_local_mt_wood_pellets_must_run, production_based_on_number_of_units)
+        )
+        UPDATE(
+            V(energy_chp_local_mt_wood_pellets_dispatchable),
+            number_of_units,
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_local_wood_pellets_dispatchable) / V(energy_chp_local_mt_wood_pellets_dispatchable, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_local_mt_wood_pellets_dispatchable),
+            preset_demand_by_electricity_production,
+            V(energy_chp_local_mt_wood_pellets_dispatchable, production_based_on_number_of_units)
         )
     )
 
@@ -20,14 +30,20 @@
     present:PRODUCT(
         DIVIDE(
             SUM(
-                V(energy_chp_local_mt_wood_pellets,"number_of_units * electricity_output_capacity"),
-                V(energy_chp_local_mt_wood_pellets_ccs,"number_of_units * electricity_output_capacity")
+                V(energy_chp_local_mt_wood_pellets_must_run,"number_of_units * electricity_output_capacity"),
+                V(energy_chp_local_mt_wood_pellets_ccs_must_run,"number_of_units * electricity_output_capacity")
+                V(energy_chp_local_mt_wood_pellets_dispatchable,"number_of_units * electricity_output_capacity"),
+                V(energy_chp_local_mt_wood_pellets_ccs_dispatchable,"number_of_units * electricity_output_capacity")
         ),    
         SUM(
-            V(energy_chp_local_mt_wood_pellets,"number_of_units * electricity_output_capacity"),
-            V(energy_chp_local_ht_wood_pellets,"number_of_units * electricity_output_capacity"),
-            V(energy_chp_local_mt_wood_pellets_ccs,"number_of_units * electricity_output_capacity"),
-            V(energy_chp_local_ht_wood_pellets_ccs,"number_of_units * electricity_output_capacity")
+            V(energy_chp_local_mt_wood_pellets_must_run,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_ht_wood_pellets_must_run,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_mt_wood_pellets_ccs_must_run,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_ht_wood_pellets_ccs_must_run,"number_of_units * electricity_output_capacity")
+            V(energy_chp_local_mt_wood_pellets_dispatchable,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_ht_wood_pellets_dispatchable,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_mt_wood_pellets_ccs_dispatchable,"number_of_units * electricity_output_capacity"),
+            V(energy_chp_local_ht_wood_pellets_ccs_dispatchable,"number_of_units * electricity_output_capacity")
         )
       ),
       100.0
