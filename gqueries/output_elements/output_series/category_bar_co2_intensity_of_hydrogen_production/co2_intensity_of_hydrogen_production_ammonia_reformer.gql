@@ -2,12 +2,14 @@
     DIVIDE(
       SUM(
         V(
-          energy_hydrogen_ammonia_reformer,
+          energy_hydrogen_ammonia_reformer_must_run,
+          energy_hydrgogen_ammonia_reformer_dispatchable,
           primary_co2_emission
         )
       ),
       SUM(
-        Q(energy_hydrogen_ammonia_reformer_hydrogen_output_curve)
+        Q(energy_hydrogen_ammonia_reformer_must_run_hydrogen_output_curve),
+        Q(energy_hydrogen_ammonia_reformer_dispatchable_hydrogen_output_curve)
       )
     )
 - unit = kg/MWh
