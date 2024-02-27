@@ -4,7 +4,8 @@
         V(
           FILTER(G(sankey_conversion_group),"hydrogen_output_conversion > 0.0 && hydrogen_input_conversion > 0.0"),
           "hydrogen_output_conversion * hydrogen_input_conversion / (1 - loss_output_conversion) * output_of_loss"
-        )
+        ),
+        V(energy_hydrogen_storage_unused, demand)
       ), 
       BILLIONS
     )
