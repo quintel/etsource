@@ -2,33 +2,31 @@
 # both have the same specs, 
 # the only difference is their behaviour in merit, specified by merit_order.subtype
 
-# full_load_hours and output.electricity are defined manually for testing
-# this should be changed later
-
+- input.wood_pellets = 1.0
+- output.electricity = 0.361
 - output.loss = elastic
-- groups = [preset_demand, electricity_production, dispatchable_production, wacc_proven_tech, costs_production_power_plants, sankey_conversion_group]
+- groups = [preset_demand, central_production, electricity_production, dispatchable_production, hv_net_supply, wacc_unproven_tech, costs_production_power_plants, sankey_conversion_group]
 - use = energetic
 - presentation_group = electricity_production_ccs
-- availability = 0.91
-- typical_input_capacity = 80.0
-- ccs_investment = 63894000
-- construction_time = 2.5
+- availability = 0.9
+- full_load_hours = 7500.0
+- ccs_investment = 1092720000.0
+- construction_time = 4.0
 - cost_of_installing = 0.0
 - decommissioning_costs = 0.0
-- fixed_operation_and_maintenance_costs_per_year = 1025811.28
-- initial_investment = 83232000.0
-- technical_lifetime = 25.0
-- variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
-- variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
-- wacc = 0.04
+- fixed_operation_and_maintenance_costs_per_year = 33584000.0
+- initial_investment = 1120000000.0
+- technical_lifetime = 40.0
+- variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 1256.0
+- variable_operation_and_maintenance_costs_per_full_load_hour = 800.0
+- wacc = 0.07
 - merit_order.level = hv
 - merit_order.subtype = dispatchable
 - merit_order.type = producer
-- free_co2_factor = 0.85
-- ccs_capture_rate = 0.85
-- takes_part_in_ets = 1.0
+- electricity_output_capacity = 628.0
+- free_co2_factor = 0.9
+- ccs_capture_rate = 0.9
 - sustainability_share = 1.0
+- takes_part_in_ets = 1.0
 
 ~ demand = 0.0
-- full_load_hours = 6000.0
-- output.electricity = 0.35
