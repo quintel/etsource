@@ -1,53 +1,18 @@
-- query =
+# This input sets the total installed electrical output capacity of Biomass CHPs (must-run)
+# It distributes this total capacity according to temperature level (MT/HT) and CCS (with/without)
 
-    wood_pellets_ht_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_ccs_must_run),100.0)));
-    wood_pellets_ht_with_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_ccs_must_run),100.0));
-    wood_pellets_mt_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_ccs_must_run),100.0)));
-    wood_pellets_mt_with_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_ccs_must_run),100.0));
+- query =
+    mt_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_must_run),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_ccs_must_run),100.0)));
+    mt_with_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_must_run),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_ccs_must_run),100.0));
+    ht_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_must_run),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_ccs_must_run),100.0)));
+    ht_with_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_must_run),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_ccs_must_run),100.0));
+
 
     EACH(
         UPDATE(
-            V(energy_chp_local_ht_wood_pellets_must_run),
-            number_of_units,
-            DIVIDE(
-                PRODUCT(
-                    wood_pellets_ht_without_ccs_share,
-                    USER_INPUT()
-                    ),
-                V(energy_chp_local_ht_wood_pellets_must_run, electricity_output_capacity)
-                )
-            ),
-        UPDATE(
-            L(energy_chp_local_ht_wood_pellets_must_run),
-            preset_demand_by_electricity_production,
-            V(energy_chp_local_ht_wood_pellets_must_run, production_based_on_number_of_units)
-         ),
-        UPDATE(
-            V(energy_chp_local_ht_wood_pellets_ccs_must_run),
-            number_of_units,
-            DIVIDE(
-                PRODUCT(
-                    wood_pellets_ht_with_ccs_share,
-                    USER_INPUT(),
-                    ),
-                V(energy_chp_local_ht_wood_pellets_ccs_must_run, electricity_output_capacity)
-                )
-            ),
-        UPDATE(
-            L(energy_chp_local_ht_wood_pellets_ccs_must_run),
-            preset_demand_by_electricity_production,
-            V(energy_chp_local_ht_wood_pellets_ccs_must_run, production_based_on_number_of_units)
-        ),
-        UPDATE(
             V(energy_chp_local_mt_wood_pellets_must_run),
             number_of_units,
-            DIVIDE( 
-                PRODUCT(
-                    wood_pellets_mt_without_ccs_share,
-                    USER_INPUT()
-                    ),
-                V(energy_chp_local_mt_wood_pellets_must_run, electricity_output_capacity)
-                )
+            mt_without_ccs_share * USER_INPUT() / V(energy_chp_local_mt_wood_pellets_must_run, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_chp_local_mt_wood_pellets_must_run),
@@ -57,29 +22,42 @@
         UPDATE(
             V(energy_chp_local_mt_wood_pellets_ccs_must_run),
             number_of_units,
-            DIVIDE(
-                PRODUCT(
-                wood_pellets_mt_with_ccs_share,
-                USER_INPUT(),
-                ),
-            V(energy_chp_local_mt_wood_pellets_ccs_must_run, electricity_output_capacity)
-            )
+            mt_with_ccs_share * USER_INPUT() / V(energy_chp_local_mt_wood_pellets_ccs_must_run, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_chp_local_mt_wood_pellets_ccs_must_run),
             preset_demand_by_electricity_production,
             V(energy_chp_local_mt_wood_pellets_ccs_must_run, production_based_on_number_of_units)
         ),
+        UPDATE(
+            V(energy_chp_local_ht_wood_pellets_must_run),
+            number_of_units,
+            ht_without_ccs_share * USER_INPUT() / V(energy_chp_local_ht_wood_pellets_must_run, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_local_ht_wood_pellets_must_run),
+            preset_demand_by_electricity_production,
+            V(energy_chp_local_ht_wood_pellets_must_run, production_based_on_number_of_units)
+        ),
+        UPDATE(
+            V(energy_chp_local_ht_wood_pellets_ccs_must_run),
+            number_of_units,
+            ht_with_ccs_share * USER_INPUT() / V(energy_chp_local_ht_wood_pellets_ccs_must_run, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_local_ht_wood_pellets_ccs_must_run),
+            preset_demand_by_electricity_production,
+            V(energy_chp_local_ht_wood_pellets_ccs_must_run, production_based_on_number_of_units)
+        )
     )
-
 
 - priority = 0
 - max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_chp_local_ht_wood_pellets_must_run,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
 - start_value_gql = 
     present:SUM(
-      V(energy_chp_local_ht_wood_pellets_must_run, "number_of_units * electricity_output_capacity"),
-      V(energy_chp_local_mt_wood_pellets_must_run, "number_of_units * electricity_output_capacity")
+      PRODUCT(V(energy_chp_local_mt_wood_pellets_must_run,number_of_units),V(energy_chp_local_mt_wood_pellets_must_run,electricity_output_capacity)),
+      PRODUCT(V(energy_chp_local_ht_wood_pellets_must_run,number_of_units),V(energy_chp_local_ht_wood_pellets_must_run,electricity_output_capacity))
     )
 - step_value = 1.0
 - unit = MW

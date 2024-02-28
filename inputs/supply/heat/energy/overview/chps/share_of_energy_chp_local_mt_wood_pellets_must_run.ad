@@ -2,8 +2,8 @@
 # It distributes this total capacity according to temperature level (MT/HT) and CCS (with/without)
 
 - query =
-    mt_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_must_run),100.0),(1.0 - DIVIDE(USER_INPUT(),100.0)));
-    mt_with_ccs_share =    PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_must_run),100.0),DIVIDE(USER_INPUT(),100.0));
+    mt_without_ccs_share = PRODUCT(DIVIDE(USER_INPUT(),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_ccs_must_run),100.0)));
+    mt_with_ccs_share =    PRODUCT(DIVIDE(USER_INPUT(),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_local_mt_wood_pellets_ccs_must_run),100.0));
     ht_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_must_run),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_ccs_must_run),100.0)));
     ht_with_ccs_share =    PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_must_run),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_local_ht_wood_pellets_ccs_must_run),100.0));
 
@@ -30,17 +30,26 @@
             V(energy_chp_local_mt_wood_pellets_ccs_must_run, production_based_on_number_of_units)
         )
     )
-    
-- priority = 2
+
+- share_group = chp_waste_heat
+- priority = 1
 - max_value = 100.0
 - min_value = 0.0
 - start_value_gql = 
-    present:DIVIDE(
-      V(energy_chp_local_mt_wood_pellets_ccs_must_run,"number_of_units*electricity_output_capacity"),
-      SUM(
-        V(energy_chp_local_mt_wood_pellets_ccs_must_run,"number_of_units*electricity_output_capacity"),
-        V(energy_chp_local_mt_wood_pellets_must_run, "number_of_units*electricity_output_capacity")
-      )
+    present:PRODUCT(
+      DIVIDE(
+        SUM(
+          V(energy_chp_local_mt_wood_pellets_must_run,"number_of_units * electricity_output_capacity"),
+          V(energy_chp_local_mt_wood_pellets_ccs_must_run,"number_of_units * electricity_output_capacity")
+        ),
+        SUM(
+          V(energy_chp_local_mt_wood_pellets_must_run,"number_of_units * electricity_output_capacity"),
+          V(energy_chp_local_mt_wood_pellets_ccs_must_run,"number_of_units * electricity_output_capacity"),
+          V(energy_chp_local_ht_wood_pellets_must_run,"number_of_units * electricity_output_capacity"),
+          V(energy_chp_local_ht_wood_pellets_ccs_must_run,"number_of_units * electricity_output_capacity")
+        )
+      ),
+      100.0
     )
 - step_value = 1.0
 - unit = %
