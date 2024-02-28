@@ -1,9 +1,12 @@
-# This input determines the shares of Waste CHP MT without CCS and Waste CHP MT with CCS in the total installed electrical output capacity of Waste CHPs
-# It then allocates capacity to both types of CHPs
+# This input sets the total installed electrical output capacity of Waste CHPs
+# It distributes this total capacity according to temperature level (MT/HT) and CCS (with/without)
 
 - query =
     mt_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_mt_waste_mix),100.0),(1.0 - DIVIDE(USER_INPUT(),100.0)));
-    mt_with_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_mt_waste_mix),100.0),DIVIDE(USER_INPUT(),100.0));
+    mt_with_ccs_share =    PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_mt_waste_mix),100.0),DIVIDE(USER_INPUT(),100.0));
+    ht_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ht_waste_mix),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_ht_waste_mix),100.0)));
+    ht_with_ccs_share =    PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ht_waste_mix),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_ht_waste_mix),100.0));
+
 
     EACH(
         UPDATE(

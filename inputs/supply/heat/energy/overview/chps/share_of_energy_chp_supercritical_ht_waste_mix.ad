@@ -1,14 +1,33 @@
+# This input sets the total installed electrical output capacity of Waste CHPs
+# It distributes this total capacity according to temperature level (MT/HT) and CCS (with/without)
+
 - query =
+    mt_without_ccs_share = PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_mt_waste_mix),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_mt_waste_mix),100.0)));
+    mt_with_ccs_share =    PRODUCT(DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_mt_waste_mix),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_mt_waste_mix),100.0));
+    ht_without_ccs_share = PRODUCT(DIVIDE(USER_INPUT(),100.0),(1.0 - DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_ht_waste_mix),100.0)));
+    ht_with_ccs_share =    PRODUCT(DIVIDE(USER_INPUT(),100.0),DIVIDE(INPUT_VALUE(share_of_energy_chp_supercritical_ccs_ht_waste_mix),100.0));
+
+
     EACH(
         UPDATE(
             V(energy_chp_supercritical_ht_waste_mix),
             number_of_units,
-            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_supercritical_waste_mix) / V(energy_chp_supercritical_ht_waste_mix, electricity_output_capacity)
+            ht_without_ccs_share * INPUT_VALUE(capacity_of_energy_chp_supercritical_waste_mix) / V(energy_chp_supercritical_ht_waste_mix, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_chp_supercritical_ht_waste_mix),
             preset_demand_by_electricity_production,
             V(energy_chp_supercritical_ht_waste_mix, production_based_on_number_of_units)
+        ),
+        UPDATE(
+            V(energy_chp_supercritical_ccs_ht_waste_mix),
+            number_of_units,
+            ht_with_ccs_share * INPUT_VALUE(capacity_of_energy_chp_supercritical_waste_mix) / V(energy_chp_supercritical_ccs_ht_waste_mix, electricity_output_capacity)
+        ),
+        UPDATE(
+            L(energy_chp_supercritical_ccs_ht_waste_mix),
+            preset_demand_by_electricity_production,
+            V(energy_chp_supercritical_ccs_ht_waste_mix, production_based_on_number_of_units)
         )
     )
 
