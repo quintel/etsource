@@ -17,8 +17,26 @@
           INTERSECTION(
             EG(final_demand),EG(metal_industry)
           ),
+          compressed_network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            EG(final_demand),EG(metal_industry)
+          ),
           lng?
         ),
         value
-      )
+      ),
+      V(
+        FILTER(
+          INTERSECTION(
+            EG(final_demand),EG(metal_industry)
+          ),
+          propane?
+        ),
+        value
+      ),
     ) / BILLIONS
