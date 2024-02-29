@@ -7,12 +7,26 @@
         SUM(
             V(CHILDREN(V(energy_power_hv_network_electricity)), input_of_wood_pellets).sum,
             V(
-                energy_heat_burner_wood_pellets,
-                energy_chp_local_wood_pellets,
+                energy_heat_burner_ht_wood_pellets,
+                energy_heat_burner_mt_wood_pellets,
+                energy_chp_local_ht_wood_pellets_must_run,
+                energy_chp_local_ht_wood_pellets_dispatchable,
+                energy_chp_local_ht_wood_pellets_ccs_must_run,
+                energy_chp_local_ht_wood_pellets_ccs_dispatchable,
+                energy_chp_local_mt_wood_pellets_must_run,
+                energy_chp_local_mt_wood_pellets_dispatchable,
+                energy_chp_local_mt_wood_pellets_ccs_must_run,
+                energy_chp_local_mt_wood_pellets_ccs_dispatchable,
                 input_of_wood_pellets
             )
         ) * V(CARRIER(wood_pellets), potential_co2_conversion_per_mj),
-        V(energy_chp_local_engine_biogas, input_of_biogas) *  V(CARRIER(biogas), potential_co2_conversion_per_mj),
+        SUM(
+            V(
+                energy_chp_local_engine_ht_biogas,
+                energy_chp_local_engine_mt_biogas,
+                input_of_biogas
+            )
+        ) *  V(CARRIER(biogas), potential_co2_conversion_per_mj),
         V(energy_distribution_biogenic_waste, demand) * V(CARRIER(biogenic_waste), potential_co2_conversion_per_mj)
     ) / THOUSANDS
     + PRODUCT(
