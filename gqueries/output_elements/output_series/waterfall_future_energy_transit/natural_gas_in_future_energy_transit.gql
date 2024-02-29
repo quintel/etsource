@@ -1,3 +1,13 @@
-- query = MIN(Q(import_of_natural_gas),Q(export_of_natural_gas))
+- query = 
+        MIN(
+            SUM(
+                Q(import_of_natural_gas),
+                Q(import_of_propane)
+            ),
+            SUM(
+                Q(export_of_natural_gas),
+                Q(export_of_propane)
+            )
+        )
 - unit = PJ
 

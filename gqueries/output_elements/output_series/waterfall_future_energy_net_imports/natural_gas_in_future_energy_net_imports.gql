@@ -1,2 +1,12 @@
 - unit = PJ
-- query = SUM(Q(import_of_natural_gas)- Q(export_of_natural_gas))
+- query = 
+        SUM(
+            Q(import_of_natural_gas),
+            Q(import_of_propane),    
+            NEG(
+                Q(export_of_natural_gas)
+            ),
+            NEG(
+                Q(export_of_propane)
+            )   
+        )
