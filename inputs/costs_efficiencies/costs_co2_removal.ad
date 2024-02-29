@@ -1,12 +1,16 @@
 - query = 
-  present_value = QUERY_PRESENT(-> {Q(price_of_co2)});
-  relative_value = USER_INPUT() / present_value;
-    UPDATE_WITH_FACTOR(
-      AREA(), captured_biogenic_co2_price, relative_value)
+  UPDATE(
+    AREA(), 
+    captured_biogenic_co2_price, 
+    DIVIDE(
+      USER_INPUT(),
+      1000
+    )
+  )
 - priority = 0
 - max_value = 3500.0
 - min_value = 0.0
-- start_value_gql = present:Q(price_of_co2)
+- start_value_gql = present:Q(price_of_co2_removal)
 - step_value = 1.0
 - unit = euro
 - update_period = future
