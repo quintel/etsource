@@ -1,0 +1,13 @@
+- query = 
+    SUM_CURVES(
+      Q(hydrogen_demand_inflexible_curve),
+      INVERT_CURVE(
+        Q(hydrogen_production_inflexible_curve)
+      ),
+        Q(energy_hydrogen_transport_loss_input_curve)
+      ,
+        Q(energy_hydrogen_distribution_loss_input_curve)
+    )
+      
+
+- unit = curve
