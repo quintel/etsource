@@ -12,7 +12,7 @@
         )
 
 - priority = 0
-- max_value_gql = present:MAX(1.0, PRODUCT(DIVIDE(Q(total_electricity_consumed), SECS_PER_YEAR), 0.006))
+- max_value_gql = present:MAX(1.0, PRODUCT(PRODUCT(DIVIDE(Q(total_electricity_consumed), MJ_PER_KWH), 10**-9),6))
 - min_value = 0.0
 - start_value_gql = present:DIVIDE(V(energy_hydrogen_storage_depleted_gas_field,"storage.volume * number_of_units"),MILLIONS)
 - step_value = 0.01
