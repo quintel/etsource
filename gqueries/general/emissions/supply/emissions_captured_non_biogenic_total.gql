@@ -1,0 +1,11 @@
+- query = 
+        SUM(
+            Q(emissions_captured_total),
+            NEG(
+                SUM(
+                Q(emissions_captured_biogenic_total),
+                Q(emissions_captured_import_co2_total)
+                )
+            )
+        )
+- unit = tonne
