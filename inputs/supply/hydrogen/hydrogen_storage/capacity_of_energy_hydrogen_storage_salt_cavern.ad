@@ -1,4 +1,13 @@
 - query =
+      EACH(
+        UPDATE(
+          V(energy_hydrogen_storage_salt_cavern),
+          hydrogen_output_capacity,
+          DIVIDE(
+            V(energy_hydrogen_storage_salt_cavern,"storage.volume"),
+            USER_INPUT()
+          )
+        ),
         UPDATE(
           V(energy_hydrogen_storage_salt_cavern),
           hydrogen_output_capacity,
@@ -7,10 +16,11 @@
             USER_INPUT()
           )
         )
+      )
        
 - priority = 0
 - max_value = 8760.0
-- min_value = 0.0
+- min_value = 1.0
 - start_value = 240.0
 - step_value = 0.1
 - unit = hours
