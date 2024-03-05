@@ -11,9 +11,10 @@
             V(energy_hydrogen_steam_methane_reformer_dispatchable, hydrogen_production_based_on_number_of_units)
         )
     )
+
 - priority = 0
 - max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),PRODUCT(V(energy_hydrogen_steam_methane_reformer_dispatchable,full_load_hours),MJ_PER_MWH)))
 - min_value = 0.0
-- start_value_gql = present:V(energy_hydrogen_steam_methane_reformer_dispatchable,number_of_units)
+- start_value_gql = present:V(energy_hydrogen_steam_methane_reformer_dispatchable, "number_of_units * hydrogen_output_capacity")
 - unit = MW
 - update_period = future
