@@ -23,8 +23,32 @@
             ),
             "! energetic?"
           ),
+          compressed_network_gas?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(metal_industry)
+            ),
+            "! energetic?"
+          ),
           lng?
         ),
         value
-      )
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(metal_industry)
+            ),
+            "! energetic?"
+          ),
+          propane?
+        ),
+        value
+      ),
     ) / BILLIONS

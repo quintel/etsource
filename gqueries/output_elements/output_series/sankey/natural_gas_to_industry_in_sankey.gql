@@ -5,11 +5,11 @@
     DIVIDE(
       SUM(
         SUM(
-          V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng")
+          V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng + input_of_propane")
         ),
         SUM( 
           V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_group)),USE(energetic)),"input_of_compressed_network_gas + input_of_network_gas")
-        ) * Q(share_of_natural_gas_in_gas_network)
+        ) * Q(share_of_fossil_gas_in_gas_network)
       ),
       BILLIONS
     )
