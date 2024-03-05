@@ -1,9 +1,16 @@
+# Priority is set to 0, priority of the efficiency input is set to 1
+# Future value is taken after efficiency input has been processed
+
 - query =
+    electrolyser_efficiency = QUERY_FUTURE(-> { V(energy_hydrogen_electrolysis_solar_electricity,hydrogen_output_conversion)});
+    electrolyser_input_capacity = DIVIDE(USER_INPUT(),electrolyser_efficiency);
+    solar_output_capacity = DIVIDE(electrolyser_input_capacity,AREA(hydrogen_electrolysis_solar_pv_capacity_ratio));
+
     EACH(
         UPDATE(
             V(energy_hydrogen_solar_pv_solar_radiation),
             number_of_units,
-            USER_INPUT() / V(energy_hydrogen_solar_pv_solar_radiation, electricity_output_capacity)
+            solar_output_capacity / V(energy_hydrogen_solar_pv_solar_radiation, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_hydrogen_solar_pv_solar_radiation),
@@ -13,7 +20,7 @@
         UPDATE(
             V(energy_hydrogen_electrolysis_solar_electricity),
             number_of_units,
-            DIVIDE(PRODUCT(USER_INPUT(),AREA(hydrogen_electrolysis_solar_pv_capacity_ratio)),V(energy_hydrogen_electrolysis_solar_electricity, typical_input_capacity))
+            DIVIDE(electrolyser_input_capacity,V(energy_hydrogen_electrolysis_solar_electricity, typical_input_capacity))
         )
     )
 - priority = 0
