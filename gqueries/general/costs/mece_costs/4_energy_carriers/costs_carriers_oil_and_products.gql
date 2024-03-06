@@ -11,22 +11,22 @@
     )
     - 
     SUM(
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_crude_oil_backup, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_kerosene_backup, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_oil_products, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_gasoline_backup, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_diesel_backup, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_lpg_backup, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_heavy_fuel_oil_backup, primary_demand_of_crude_oil))
+        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_crude_oil_backup, demand)),
+        PRODUCT(V(CARRIER(kerosene), cost_per_mj),V(energy_export_kerosene_backup, demand)),
+        PRODUCT(V(CARRIER(oil_products), cost_per_mj),V(energy_export_oil_products, demand)),
+        PRODUCT(V(CARRIER(gasoline), cost_per_mj),V(energy_export_gasoline_backup, demand)),
+        PRODUCT(V(CARRIER(diesel), cost_per_mj),V(energy_export_diesel_backup, demand)),
+        PRODUCT(V(CARRIER(lpg), cost_per_mj),V(energy_export_lpg_backup, demand)),
+        PRODUCT(V(CARRIER(heavy_fuel_oil), cost_per_mj),V(energy_export_heavy_fuel_oil_backup, demand))
     )
     -
     SUM(
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_crude_oil_baseload, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_kerosene_baseload, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_gasoline_baseload, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_diesel_baseload, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_lpg_baseload, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_heavy_fuel_oil_baseload, primary_demand_of_crude_oil))
+        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_crude_oil_baseload, demand)),
+        PRODUCT(V(CARRIER(kerosene), cost_per_mj),V(energy_export_kerosene_baseload, demand)),
+        PRODUCT(V(CARRIER(gasoline), cost_per_mj),V(energy_export_gasoline_baseload, demand)),
+        PRODUCT(V(CARRIER(diesel), cost_per_mj),V(energy_export_diesel_baseload, demand)),
+        PRODUCT(V(CARRIER(lpg), cost_per_mj),V(energy_export_lpg_baseload, demand)),
+        PRODUCT(V(CARRIER(heavy_fuel_oil), cost_per_mj),V(energy_export_heavy_fuel_oil_baseload, demand))
     )
 
 - unit = euro
