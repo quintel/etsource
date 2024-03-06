@@ -1,8 +1,6 @@
-# Nodes that constitute inflexible hydrogen demand. Includes nodes which participate as time-resolved hydrogen consumption and export.
-
 - query =
     FILTER(
       ALL(),
-      "hydrogen && (hydrogen.type == :consumer && (hydrogen.subtype == :generic || hydrogen.subtype == :consumption_loss))"
+      "hydrogen && (hydrogen.type == :consumer)"
     )
 - unit = nodes
