@@ -1,8 +1,6 @@
-# Nodes that constitute hydrogen supply. Includes nodes which participate as producers in time-resolved hydrogen and import.
-
 - query =
     FILTER(
       ALL(),
-      "hydrogen && (hydrogen.type == :producer || hydrogen.type == :flex)"
+      "hydrogen && (hydrogen.type == :producer || hydrogen.subtype == :storage)"
     )
 - unit = nodes
