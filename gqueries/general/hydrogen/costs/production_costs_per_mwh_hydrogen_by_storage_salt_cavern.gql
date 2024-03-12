@@ -1,0 +1,10 @@
+# Total cost of hydrogen production by ammonia reforming per MWh produced hydrogen
+
+- query =
+    DIVIDE(
+        V(energy_hydrogen_storage_salt_cavern, total_costs_per(:node)),
+        DIVIDE(
+            V(energy_hydrogen_storage_salt_cavern, output_of_hydrogen),
+            MJ_PER_MWH
+        )
+    )
