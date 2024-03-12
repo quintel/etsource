@@ -1,0 +1,7 @@
+
+- unit = curve
+- query = 
+    PRODUCT_CURVES(
+        Q(energy_hydrogen_flexibility_p2g_electricity_hydrogen_output_curve),
+        COALESCE_CURVE(nil,default=Q(production_costs_per_mwh_hydrogen_by_p2g),length = 8760)
+            )
