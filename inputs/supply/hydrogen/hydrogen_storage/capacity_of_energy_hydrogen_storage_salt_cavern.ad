@@ -19,9 +19,17 @@
       )
        
 - priority = 0
-- max_value = 8760.0
+- max_value_gql =
+    present:DIVIDE(
+      V(energy_hydrogen_storage_salt_cavern,"storage.volume"),
+      V(energy_hydrogen_storage_salt_cavern,"hydrogen_output_capacity")
+    ) * 2.0
 - min_value = 1.0
-- start_value = 240.0
+- start_value_gql = 
+    present:DIVIDE(
+      V(energy_hydrogen_storage_salt_cavern,"storage.volume"),
+      V(energy_hydrogen_storage_salt_cavern,"hydrogen_output_capacity")
+    )
 - step_value = 0.1
 - unit = hours
 - update_period = future
