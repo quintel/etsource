@@ -3,7 +3,7 @@
 # CCS node gives the additional energy required
 - unit = MJ
 - query =
-    relative_input_without_ccs = V(energy_chp_supercritical_waste_mix, typical_input_capacity);
-    relative_input_with_ccs = V(energy_chp_supercritical_ccs_waste_mix, typical_input_capacity);
+    relative_input_without_ccs = V(energy_power_wood_pellets_must_run, "electricity_output_capacity / electricity_output_conversion");
+    relative_input_with_ccs = V(energy_power_wood_pellets_ccs_must_run, "electricity_output_capacity / electricity_output_conversion");
     diff_eff = 1- (relative_input_without_ccs/relative_input_with_ccs);
-    V(energy_chp_supercritical_ccs_waste_mix, demand) * diff_eff
+    V(energy_power_wood_pellets_ccs_must_run, demand) * diff_eff
