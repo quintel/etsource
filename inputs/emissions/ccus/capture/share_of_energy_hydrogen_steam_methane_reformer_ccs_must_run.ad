@@ -3,7 +3,7 @@
         UPDATE(
             V(energy_hydrogen_steam_methane_reformer_must_run),
             number_of_units,
-            (1.0 - DIVIDE(USER_INPUT(),100.0)) * INPUT_VALUE(capacity_of_energy_hydrogen_steam_methane_reformer_must_run) / V(energy_hydrogen_steam_methane_reformer_must_run, typical_input_capacity)
+            (1.0 - DIVIDE(USER_INPUT(),100.0)) * INPUT_VALUE(capacity_of_energy_hydrogen_steam_methane_reformer_must_run) / V(energy_hydrogen_steam_methane_reformer_must_run, hydrogen_output_capacity)
         ),
         UPDATE(
             L(energy_hydrogen_steam_methane_reformer_must_run),
@@ -13,7 +13,7 @@
         UPDATE(
             V(energy_hydrogen_steam_methane_reformer_ccs_must_run),
             number_of_units,
-            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_hydrogen_steam_methane_reformer_must_run) / V(energy_hydrogen_steam_methane_reformer_ccs_must_run, typical_input_capacity)
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_hydrogen_steam_methane_reformer_must_run) / V(energy_hydrogen_steam_methane_reformer_ccs_must_run, hydrogen_output_capacity)
         ),
         UPDATE(
             L(energy_hydrogen_steam_methane_reformer_ccs_must_run),
@@ -24,7 +24,7 @@
 - priority = 1
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:DIVIDE(V(energy_hydrogen_steam_methane_reformer_ccs_must_run,"number_of_units*typical_input_capacity"),SUM(V(energy_hydrogen_steam_methane_reformer_ccs_must_run,"number_of_units*typical_input_capacity"),V(energy_hydrogen_steam_methane_reformer_must_run, "number_of_units*typical_input_capacity")))
+- start_value_gql = present:DIVIDE(V(energy_hydrogen_steam_methane_reformer_ccs_must_run,"number_of_units*hydrogen_output_capacity"),SUM(V(energy_hydrogen_steam_methane_reformer_ccs_must_run,"number_of_units*hydrogen_output_capacity"),V(energy_hydrogen_steam_methane_reformer_must_run, "number_of_units*hydrogen_output_capacity")))
 - step_value = 1.0
 - unit = %
 - update_period = future
