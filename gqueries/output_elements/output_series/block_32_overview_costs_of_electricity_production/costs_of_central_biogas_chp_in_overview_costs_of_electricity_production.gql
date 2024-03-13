@@ -1,2 +1,5 @@
-- query = future:PRODUCT(SUM(V(energy_chp_local_engine_biogas,total_costs_per(:mwh_electricity))),1)
+# Electricity production costs per MWh electricity is the same for CHP HT and MT
+# For convenience, only the HT node is used to determine electricity production costs per MWh
+
+- query = future:PRODUCT(SUM(V(energy_chp_local_engine_ht_biogas,total_costs_per(:mwh_electricity))),1)
 - unit = euro

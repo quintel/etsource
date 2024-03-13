@@ -1,3 +1,6 @@
-- query = future:PRODUCT(SUM(V(energy_chp_ultra_supercritical_coal,total_costs_per(:mwh_electricity))),1)
+# Electricity production costs per MWh electricity is the same for CHP HT and MT
+# For convenience, only the HT node is used to determine electricity production costs per MWh
+
+- query = future:PRODUCT(SUM(V(energy_chp_ultra_supercritical_ht_coal,total_costs_per(:mwh_electricity))),1)
 - unit = euro
 - deprecated_key = cost_chart_coal_chp_cost
