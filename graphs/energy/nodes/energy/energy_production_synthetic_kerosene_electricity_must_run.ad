@@ -1,0 +1,12 @@
+# Electricity is not final demand as it is used to produce kerosene. This node is in the
+# co2_emissions_primary group. The reason for this is that kerosene demand is in the
+# co2_emissions_refinery_products group, i.e. only on-the-spot emissions are accounted for.
+# Inclusion in the co2_emissions_primary ensures that production emissions of synthetic
+# kerosene are not omitted.
+
+- groups = [non_final_electricity_demand_converters, co2_emissions_primary, sankey_conversion_group]
+- merit_order.group = flat
+- merit_order.level = mv
+- merit_order.subtype = generic
+- merit_order.type = consumer
+- max_consumption_price = 22.0
