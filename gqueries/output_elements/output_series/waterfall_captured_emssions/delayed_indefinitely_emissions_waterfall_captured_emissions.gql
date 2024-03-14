@@ -1,5 +1,11 @@
 - query = 
-       NEG(
+       SUM(
+              NEG(
         Q(emissions_molecules_other_utilisation_delayed_indefinitely)
+              ),
+              NEG(
+       Q(emissions_production_synthetic_methanol_utilised)
+              )
        )
+
 - unit = tonne
