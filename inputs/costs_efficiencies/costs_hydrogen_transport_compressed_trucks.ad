@@ -4,8 +4,8 @@
   present_value = QUERY_PRESENT(-> {Q(costs_of_transport_hydrogen_compressed_trucks)});
   relative_value = USER_INPUT() / present_value;
       EACH(
-      UPDATE_WITH_FACTOR(V(energy_transport_hydrogen_compressed_trucks), initial_investment, relative_value),
-      UPDATE_WITH_FACTOR(V(energy_transport_hydrogen_compressed_trucks), fixed_operation_and_maintenance_costs_per_year, relative_value)
+      UPDATE_WITH_FACTOR(V(energy_hydrogen_distribution_compressed_trucks), initial_investment, relative_value),
+      UPDATE_WITH_FACTOR(V(energy_hydrogen_distribution_compressed_trucks), fixed_operation_and_maintenance_costs_per_year, relative_value)
       )
 - priority = 0
 - max_value = 100.0
