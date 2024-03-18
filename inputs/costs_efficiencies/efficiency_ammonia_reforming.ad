@@ -1,9 +1,12 @@
 - query =
     UPDATE(
         OUTPUT_SLOTS(
-            V(energy_hydrogen_ammonia_reformer_must_run
-            energy_hydrogen_ammonia_reformer_dispatchable),
-        hydrogen),
+            V(
+                energy_hydrogen_ammonia_reformer_must_run,
+                energy_hydrogen_ammonia_reformer_dispatchable
+            ),
+            hydrogen
+        ),
         conversion,
         DIVIDE(USER_INPUT(), 100.0)
     )
