@@ -1,0 +1,21 @@
+# captured biogenic co2 emissions costs of all costs groups in the energy graph
+
+- query =
+    SUM(
+      V(G(costs_building_and_installations_agriculture), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_building_and_installations_buildings), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_building_and_installations_households), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_building_and_installations_industry), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_production_power_plants), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_production_chp_plants), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_production_heat_plants), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_production_dedicated_hydrogen_production), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_production_biomass), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_production_other), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_storage_and_conversion_p2p), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_storage_and_conversion_p2g), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_storage_and_conversion_p2h), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_infrastructure_hydrogen), captured_biogenic_co2_emissions_costs_per(:node)),
+      V(G(costs_co2_ccus), captured_biogenic_co2_emissions_costs_per(:node))
+    )
+- unit = euro
