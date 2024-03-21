@@ -1,0 +1,20 @@
+- unit = #
+- query = 
+    SUM(
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_terraced_houses_1945_1964, households_space_heater_crude_oil_aggregator),share),
+        V(households_useful_demand_for_space_heating_terraced_houses_1945_1964,number_of_units)
+      ),
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_semi_detached_houses_1945_1964, households_space_heater_crude_oil_aggregator),share),
+        V(households_useful_demand_for_space_heating_semi_detached_houses_1945_1964,number_of_units)
+      ),
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_detached_houses_1945_1964, households_space_heater_crude_oil_aggregator),share),
+        V(households_useful_demand_for_space_heating_detached_houses_1945_1964,number_of_units)
+      ),
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_apartments_1945_1964, households_space_heater_crude_oil_aggregator),share),
+        V(households_useful_demand_for_space_heating_apartments_1945_1964,number_of_units)
+      )
+    )

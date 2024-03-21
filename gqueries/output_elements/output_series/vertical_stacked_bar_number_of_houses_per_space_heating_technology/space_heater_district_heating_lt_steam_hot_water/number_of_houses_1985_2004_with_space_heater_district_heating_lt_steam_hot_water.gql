@@ -1,0 +1,20 @@
+- unit = #
+- query = 
+    SUM(
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_terraced_houses_1985_2004, households_space_heater_district_heating_lt_steam_hot_water_aggregator),share),
+        V(households_useful_demand_for_space_heating_terraced_houses_1985_2004,number_of_units)
+      ),
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_semi_detached_houses_1985_2004, households_space_heater_district_heating_lt_steam_hot_water_aggregator),share),
+        V(households_useful_demand_for_space_heating_semi_detached_houses_1985_2004,number_of_units)
+      ),
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_detached_houses_1985_2004, households_space_heater_district_heating_lt_steam_hot_water_aggregator),share),
+        V(households_useful_demand_for_space_heating_detached_houses_1985_2004,number_of_units)
+      ),
+      PRODUCT(
+        V(EDGE(households_useful_demand_for_space_heating_apartments_1985_2004, households_space_heater_district_heating_lt_steam_hot_water_aggregator),share),
+        V(households_useful_demand_for_space_heating_apartments_1985_2004,number_of_units)
+      )
+    )
