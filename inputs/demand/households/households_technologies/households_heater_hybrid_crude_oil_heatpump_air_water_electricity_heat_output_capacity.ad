@@ -1,0 +1,22 @@
+# Updates both space heating and hot water capacity
+# For heat pumps with fever defined input capacities, these capacities need to updated as well
+
+- query =
+    heat_capacity_present = QUERY_PRESENT(-> { V(households_space_heater_hybrid_crude_oil_heatpump_air_water_electricity,heat_output_capacity) });
+    heat_capacity_future = DIVIDE(USER_INPUT(),1000.0);
+    heat_capacity_relative_change = DIVIDE(heat_capacity_future,heat_capacity_present);
+
+    EACH(
+      UPDATE(V(households_space_heater_hybrid_crude_oil_heatpump_air_water_electricity), heat_output_capacity, DIVIDE(USER_INPUT(),1000.0)),
+      UPDATE(V(households_water_heater_hybrid_crude_oil_heatpump_air_water_electricity), heat_output_capacity, DIVIDE(USER_INPUT(),1000.0)),
+
+      UPDATE_WITH_FACTOR(V(V(households_space_heater_hybrid_crude_oil_heatpump_air_water_electricity, fever), capacity), "electricity", heat_capacity_relative_change),
+      UPDATE_WITH_FACTOR(V(V(households_water_heater_hybrid_crude_oil_heatpump_air_water_electricity, fever), capacity), "electricity", heat_capacity_relative_change),
+    )
+- priority = 0
+- max_value_gql = present:MAX(V(households_space_heater_hybrid_crude_oil_heatpump_air_water_electricity,heat_output_capacity) * 1000.0,25.0)
+- min_value = 0.1
+- start_value_gql = present:V(households_space_heater_hybrid_crude_oil_heatpump_air_water_electricity,heat_output_capacity) * 1000.0
+- step_value = 0.1
+- unit = kW
+- update_period = future
