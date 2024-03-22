@@ -1,0 +1,10 @@
+# Total cost of hydrogen production by liquid hydrogen regasifier per MWh produced hydrogen
+
+- query =
+    DIVIDE(
+        V(energy_hydrogen_liquid_hydrogen_regasifier, total_costs_per(:node)),
+        DIVIDE(
+            V(energy_hydrogen_liquid_hydrogen_regasifier, output_of_hydrogen),
+            MJ_PER_MWH
+        )
+    )
