@@ -1,13 +1,12 @@
 - query = 
-        DIVIDE(
-            SUM(
-                    V(
-                        G(electricity_production),
-                        "demand * weighted_carrier_potential_co2_per_mj * free_co2_factor"
-                    )
-                ),
-            1000
-            )
-            
-
+    DIVIDE(
+      SUM(
+        V(
+          G(electricity_production),
+          G(hydrogen_production),
+          "demand * weighted_carrier_potential_co2_per_mj * free_co2_factor"
+        )
+      ),
+      1000.0
+    )
 - unit = tonne
