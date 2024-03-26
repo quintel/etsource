@@ -2,7 +2,9 @@
 - unit = curve
 - query = 
     PRODUCT_CURVES(
-        Q(energy_hydrogen_electrolysis_wind_electricity_hydrogen_output_curve),
-        COALESCE_CURVE(nil,default=Q(production_costs_per_mwh_hydrogen_by_offshore_wind_turbine),length = 8760)
-            )
-    
+        Q(production_costs_per_mwh_curve_hydrogen_offshore_wind_turbine),
+        DIVIDE_CURVES(
+            Q(energy_hydrogen_electrolysis_wind_electricity_hydrogen_output_curve),
+            Q(hydrogen_production_curve)    
+        )
+    )
