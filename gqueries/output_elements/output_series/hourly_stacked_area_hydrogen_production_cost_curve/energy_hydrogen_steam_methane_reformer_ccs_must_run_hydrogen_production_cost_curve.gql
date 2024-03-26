@@ -2,7 +2,10 @@
 - unit = curve
 - query = 
     PRODUCT_CURVES(
-        Q(energy_hydrogen_steam_methane_reformer_ccs_must_run_hydrogen_output_curve),
-        COALESCE_CURVE(nil,default=Q(production_costs_per_mwh_hydrogen_by_steam_methane_reformer_ccs_must_run),length = 8760)
-            )
-    
+        Q(production_costs_per_mwh_curve_hydrogen_steam_methane_reformer_ccs_must_run),
+        DIVIDE_CURVES(
+            Q(energy_hydrogen_steam_methane_reformer_ccs_must_run_hydrogen_output_curve),
+            Q(hydrogen_production_curve)    
+        )
+    )
+

@@ -2,7 +2,10 @@
 
 - query =
     DIVIDE(
-        V(energy_hydrogen_storage_salt_cavern, total_costs_per(:node)),
+        SUM(
+            V(energy_hydrogen_storage_salt_cavern, capital_expenditures_excluding_ccs_per(:node)),
+            V(energy_hydrogen_storage_salt_cavern, operating_expenses_excluding_ccs_per(:node))
+        ),
         DIVIDE(
             V(energy_hydrogen_storage_salt_cavern, output_of_hydrogen),
             MJ_PER_MWH
