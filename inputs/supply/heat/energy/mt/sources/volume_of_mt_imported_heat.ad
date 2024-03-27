@@ -1,6 +1,6 @@
 - query = UPDATE(V(energy_heat_import_mt_steam_hot_water), preset_demand, (USER_INPUT() * BILLIONS))
 - priority = 0
-- max_value_gql = present:DIVIDE(Q(heat_production_total), 2)
+- max_value_gql = present:Q(heat_production_total)
 - min_value = 0.0
 - start_value_gql = present:DIVIDE(V(energy_heat_import_mt_steam_hot_water, demand),BILLIONS)
 - step_value = 0.1
