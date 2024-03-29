@@ -1,4 +1,2 @@
-- query = 
-    Q(total_biogenic_co2_emissions_of_produced_electricity_from_waste_mix) -
-    Q(captured_biogenic_co2_emissions_of_produced_electricity_from_waste_mix)
+- query = SUM(V(FILTER(G(electricity_production),"waste_mix_input_conversion > 0.0"),"(1 - free_co2_factor) * demand * weighted_carrier_potential_co2_per_mj"))
 - unit = kg
