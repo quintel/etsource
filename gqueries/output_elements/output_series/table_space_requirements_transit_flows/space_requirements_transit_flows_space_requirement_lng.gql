@@ -2,8 +2,10 @@
 # Returns future space requirements of imported LNG that is part of the transit flows in kn^2. 
 # Query relies on land_use_per_unit which is km^2 per PJ for this node.
 
+
 - query = 
         PRODUCT(
                 V(energy_import_lng,land_use_per_unit),
-                DIVIDE(V(energy_import_lng,demand),BILLIONS))
+                V(energy_import_lng,number_of_units)
+        )
 - unit = km^2
