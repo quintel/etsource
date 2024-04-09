@@ -1,16 +1,16 @@
-### Imported volume of coal and products
+# Imported volume of oil and products
 # Returns total imported volume of all oil-related products in PJ
 
 - query = 
     DIVIDE(
-        SUM(
-            V(energy_import_crude_oil, demand),
-            V(energy_import_diesel, demand),
-            V(energy_import_gasoline, demand),
-            V(energy_import_heavy_fuel_oil, demand),
-            V(energy_import_kerosene, demand),
-            V(energy_import_lpg, demand),
-        ),
-        BILLIONS
+      SUM(
+        V(energy_import_crude_oil, demand),
+        V(energy_import_diesel, demand),
+        V(energy_import_gasoline, demand),
+        V(energy_import_heavy_fuel_oil, demand),
+        V(energy_import_kerosene, demand),
+        V(energy_import_lpg, demand),
+      ),
+      BILLIONS
     )
 - unit = PJ
