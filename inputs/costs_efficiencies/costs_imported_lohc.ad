@@ -1,0 +1,10 @@
+#User input is in euro/MWh, ETengine is in euro per MJ.
+
+- query = UPDATE(CARRIER(lohc, imported_lohc), cost_per_mj, USER_INPUT() / MJ_PER_MWH )
+- priority = 0
+- max_value = 200.0
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(CARRIER(imported_lohc), "cost_per_mj"),MJ_PER_MWH)
+- step_value = 0.1
+- unit = euro
+- update_period = future

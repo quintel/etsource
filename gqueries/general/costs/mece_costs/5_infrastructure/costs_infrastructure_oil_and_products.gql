@@ -1,0 +1,8 @@
+# Cost query of infrastructure oil and products currently only exists of diesel
+
+- query =
+    SUM(
+      V(G(costs_infrastructure_diesel), capital_expenditures_excluding_ccs_per(:node)),
+      V(G(costs_infrastructure_diesel), operating_expenses_excluding_ccs_per(:node))
+    )
+- unit = euro
