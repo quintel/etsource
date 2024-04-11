@@ -1,9 +1,9 @@
 # Future space requirements of ammonia
-# Returns future space requirements of imported ammonia that is part of the transit flows in km^2. 
+# Returns future space requirements of imported ammonia that is part of the transit flows in m2.
 
 - query = 
     PRODUCT(
       V(energy_import_ammonia,land_use_per_unit),
       V(energy_import_ammonia,number_of_units)
-    )
-- unit = km2
+    ) * MILLIONS
+- unit = m2
