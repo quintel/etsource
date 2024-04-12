@@ -1,3 +1,5 @@
+- input.coal = 1.0
+- input.torrefied_biomass_pellets = 0.0
 - output.loss = elastic
 - groups = [preset_demand, central_production, electricity_production, dispatchable_production, hv_net_supply, wacc_proven_tech, costs_production_power_plants, sankey_conversion_group]
 - use = energetic
@@ -5,14 +7,14 @@
 - graph_methods = [demand, output, full_load_hours]
 - availability = 0.9
 - ccs_investment = 0.0
-- construction_time = 3.5
+- construction_time = 4.0
 - cost_of_installing = 0.0
 - decommissioning_costs = 0.0
 - fixed_operation_and_maintenance_costs_per_year = 16000000.0
 - initial_investment = 1120000000.0
 - technical_lifetime = 40.0
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
-- variable_operation_and_maintenance_costs_per_full_load_hour = 1382.49955528184
+- variable_operation_and_maintenance_costs_per_full_load_hour = 800.0
 - wacc = 0.04
 - energy_balance_group = central power generation
 - merit_order.level = hv
@@ -25,6 +27,4 @@
 
 ~ demand = CENTRAL_PRODUCTION(energy_power_ultra_supercritical_coal, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_power_ultra_supercritical_coal, full_load_hours)
-~ input.coal = 1.0
-~ input.torrefied_biomass_pellets = 0.0
 ~ output.electricity = CENTRAL_PRODUCTION(energy_power_ultra_supercritical_coal, electricity_output_conversion)
