@@ -1,6 +1,6 @@
 ---
 agriculture_chp_engine_biogas:
-  demand: 0.130260854
+  demand: 35.8974359
   full_load_hours: 8500.0
   output:
     :steam_hot_water: 0.39
@@ -40,7 +40,7 @@ agriculture_final_demand_diesel:
 agriculture_final_demand_electricity:
   demand: 3.87899184
 agriculture_final_demand_ht_steam_hot_water:
-  demand: 1.690298319
+  demand: 1.5322398
 agriculture_final_demand_hydrogen:
   demand: 0.0
 agriculture_final_demand_kerosene:
@@ -75,7 +75,7 @@ buildings_final_demand_crude_oil:
 buildings_final_demand_diesel:
   demand: 0.0
 buildings_final_demand_ht_steam_hot_water:
-  demand: 20.94919827
+  demand: 7.0
 buildings_final_demand_kerosene:
   demand: 0.0
 buildings_final_demand_lpg:
@@ -95,7 +95,7 @@ buildings_final_demand_solar_thermal:
 buildings_final_demand_wood_pellets:
   demand: 0.0
 buildings_local_production_electricity:
-  demand: 219.069512
+  demand: 220.509512
 buildings_solar_pv_solar_radiation:
   demand: 36.94117647058823
   full_load_hours: 867.0
@@ -122,8 +122,8 @@ energy_blastfurnace_transformation_cokes:
     :coal_gas: 0.400028846858287
 energy_chp_coal_gas:
   output:
-    :steam_hot_water: 0.0279415045177848
-    :electricity: 0.423469024025095
+    :steam_hot_water: 0.027941505
+    :electricity: 0.423469024
   full_load_hours: 6354.3
 energy_chp_combined_cycle_ht_network_gas:
   demand: 0.0
@@ -138,13 +138,13 @@ energy_chp_combined_cycle_mt_network_gas:
     :steam_hot_water: 0.305
     :electricity: 0.433
 energy_chp_local_engine_ht_biogas:
-  demand: 36.63954517073171
+  demand: 0.0
   full_load_hours: 8500.0
   output:
     :steam_hot_water: 0.4
     :electricity: 0.41
 energy_chp_local_engine_ht_network_gas:
-  demand: 0.0
+  demand: 3.0644796
   full_load_hours: 4530.0
   output:
     :steam_hot_water: 0.5
@@ -253,8 +253,8 @@ energy_chp_ultra_supercritical_mt_lignite:
   demand: 0.0
 energy_cokesoven_transformation_coal:
   output:
-    :coal_gas: 0.201181414633627
-    :cokes: 0.710233550857932
+    :coal_gas: 0.201181415
+    :cokes: 0.710233551
 energy_distribution_crude_oil_loss:
   demand: 0.0
 energy_distribution_greengas:
@@ -268,6 +268,8 @@ energy_distribution_lt_steam_hot_water:
 energy_distribution_mt_steam_hot_water:
   output:
     :steam_hot_water: 0.7571885722
+energy_distribution_network_gas_loss:
+  demand: 0.0
 energy_extraction_coal:
   demand: 0.0
 energy_extraction_crude_oil:
@@ -403,7 +405,7 @@ energy_power_combined_cycle_coal:
     :electricity: 0.45299999999999996
 energy_power_combined_cycle_coal_gas:
   output:
-    :electricity: 0.379281273174552
+    :electricity: 0.379281273
   full_load_hours: 2188.0
 energy_power_combined_cycle_network_gas:
   demand: 0.0
@@ -512,11 +514,11 @@ energy_power_wind_turbine_offshore:
   demand: 0.0
   full_load_hours: 3733.54232
 energy_production_dry_biomass:
-  max_demand: 107.8293792
+  max_demand: 0.107829379
 energy_production_oily_biomass:
-  max_demand: 25.01700742
+  max_demand: 0.025017007
 energy_production_wet_biomass:
-  max_demand: 76.21906977
+  max_demand: 0.07621907
 households_final_demand_bio_kerosene:
   demand: 0.0
 households_final_demand_biodiesel:
@@ -557,7 +559,7 @@ households_final_demand_solar_thermal:
 households_final_demand_wood_pellets:
   demand: 19.0
 households_solar_pv_solar_radiation:
-  demand: 98.35294117647058
+  demand: 0.0
   full_load_hours: 867.0
 households_solar_pvt_solar_radiation:
   full_load_hours: 867.0
@@ -876,9 +878,9 @@ agriculture_final_demand_electricity-agriculture_heatpump_water_water_electricit
 agriculture_final_demand_electricity-agriculture_heatpump_water_water_ts_electricity@electricity:
   parent_share: 0.0
 agriculture_final_demand_ht_central_steam_hot_water-agriculture_final_demand_ht_steam_hot_water@steam_hot_water:
-  child_share: 0.0
-agriculture_final_demand_local_steam_hot_water-agriculture_final_demand_ht_steam_hot_water@steam_hot_water:
   child_share: 1.0
+agriculture_final_demand_local_steam_hot_water-agriculture_final_demand_ht_steam_hot_water@steam_hot_water:
+  child_share: 0.0
 buildings_final_demand_coal-buildings_final_demand_for_space_heating_coal@coal:
   parent_share: 0.0
 buildings_final_demand_crude_oil-buildings_final_demand_for_space_heating_crude_oil@crude_oil:
@@ -914,7 +916,7 @@ buildings_final_demand_network_gas-buildings_final_demand_for_space_heating_netw
 buildings_final_demand_wood_pellets-buildings_final_demand_for_space_heating_wood_pellets@wood_pellets:
   parent_share: 1.0
 buildings_local_production_electricity-buildings_final_demand_electricity@electricity:
-  parent_share: 0.9681361411897426
+  parent_share: 0.9683442227199704
 energy_blastfurnace_transformation_cokes-energy_distribution_coal_gas@coal_gas:
   child_share: 0.6907
 energy_cokesoven_transformation_coal-energy_distribution_coal_gas@coal_gas:
@@ -1014,11 +1016,11 @@ households_final_demand_wood_pellets-households_final_demand_for_hot_water_wood_
 households_final_demand_wood_pellets-households_final_demand_for_space_heating_wood_pellets@wood_pellets:
   parent_share: 0.947368421
 buildings_local_production_electricity-industry_final_demand_for_other_ict_dsr_electricity@electricity:
-  parent_share: 0.03186385881025745
+  parent_share: 0.03165577728002954
 energy_distribution_coal_gas-industry_final_demand_coal_gas@coal_gas:
   parent_share: 0.84
 industry_aluminium_burner_network_gas-industry_aluminium_electrolysis_current_electricity@useable_heat:
-  parent_share: 0.800000000000001
+  parent_share: 0.8
 industry_final_demand_coal-industry_final_demand_for_chemical_coal@coal:
   parent_share: 0.0
 industry_final_demand_coal-industry_final_demand_for_metal_coal@coal:
@@ -1100,7 +1102,7 @@ industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemic
 ? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_refineries_wood_pellets_non_energetic@wood_pellets
 : parent_share: 0.0
 industry_final_demand_for_metal_aluminium_electricity-industry_aluminium_electrolysis_current_electricity@electricity:
-  parent_share: 0.9814594318761695
+  parent_share: 0.981459432
 industry_final_demand_for_metal_coal-industry_final_demand_for_metal_steel_coal@coal:
   parent_share: 0.0
 industry_final_demand_for_metal_crude_oil-industry_final_demand_for_metal_steel_crude_oil@crude_oil:
