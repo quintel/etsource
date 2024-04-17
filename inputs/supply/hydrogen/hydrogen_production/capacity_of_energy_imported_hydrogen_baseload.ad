@@ -1,22 +1,21 @@
 - query =
     EACH(
-        UPDATE(
-            V(energy_imported_hydrogen_baseload),
-            number_of_units,
-            USER_INPUT() / V(energy_imported_hydrogen_baseload, typical_input_capacity)
-        ),
-        UPDATE(
-            L(energy_imported_hydrogen_baseload),
-            preset_demand_by_hydrogen_production,
-            V(energy_imported_hydrogen_baseload, hydrogen_production_based_on_number_of_units)
-        )
+      UPDATE(
+        V(energy_imported_hydrogen_baseload),
+        number_of_units,
+        USER_INPUT() / V(energy_imported_hydrogen_baseload, hydrogen_output_capacity)
+    ),
+      UPDATE(
+        L(energy_imported_hydrogen_baseload),
+        preset_demand_by_hydrogen_production,
+        V(energy_imported_hydrogen_baseload, hydrogen_production_based_on_number_of_units)
+      )
     )
+
 - priority = 0
 - max_value_gql = present:MAX(500,DIVIDE(Q(total_gas_consumed),PRODUCT(V(energy_imported_hydrogen_baseload,full_load_hours),MJ_PER_MWH)))
 - min_value = 0.0
-- start_value_gql = present:V(energy_imported_hydrogen_baseload, "number_of_units * typical_input_capacity")
+- start_value_gql = present:V(energy_imported_hydrogen_baseload, "number_of_units * hydrogen_output_capacity")
 - step_value = 0.1
 - unit = MW
 - update_period = future
-
-# max_value should be updated

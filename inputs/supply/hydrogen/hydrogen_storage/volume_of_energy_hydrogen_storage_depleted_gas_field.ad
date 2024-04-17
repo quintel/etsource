@@ -1,15 +1,15 @@
 - query =
-      UPDATE(
-        V(energy_hydrogen_storage_depleted_gas_field),
-        number_of_units,
-        DIVIDE(
-          PRODUCT(
-            USER_INPUT(),
-            MILLIONS
-          ),
-          V(energy_hydrogen_storage_depleted_gas_field,"storage.volume")
-          )
-        )
+    UPDATE(
+      V(energy_hydrogen_storage_depleted_gas_field),
+      number_of_units,
+      DIVIDE(
+        PRODUCT(
+          USER_INPUT(),
+          MILLIONS
+        ),
+        V(energy_hydrogen_storage_depleted_gas_field,"storage.volume")
+      )
+    )
 
 - priority = 0
 - max_value_gql = present:DIVIDE(Q(total_electricity_consumed), PRODUCT(MJ_PER_KWH, 10**9))

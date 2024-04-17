@@ -26,7 +26,7 @@
 - priority = 0
 - max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(offshore_suitable_for_wind),V(energy_hydrogen_wind_turbine_offshore, land_use_per_unit)),V(energy_hydrogen_wind_turbine_offshore, electricity_output_capacity)))
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(energy_hydrogen_wind_turbine_offshore,number_of_units),V(energy_hydrogen_wind_turbine_offshore,electricity_output_capacity))
+- start_value_gql = present:V(energy_hydrogen_wind_turbine_offshore,"number_of_units * electricity_output_capacity")
 - step_value = 0.1
 - unit = MW
 - update_period = future
