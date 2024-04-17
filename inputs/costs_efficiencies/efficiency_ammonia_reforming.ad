@@ -1,14 +1,14 @@
 - query =
     UPDATE(
-        OUTPUT_SLOTS(
-            V(
-                energy_hydrogen_ammonia_reformer_must_run,
-                energy_hydrogen_ammonia_reformer_dispatchable
-            ),
-            hydrogen
+      OUTPUT_SLOTS(
+        V(
+          energy_hydrogen_ammonia_reformer_must_run,
+          energy_hydrogen_ammonia_reformer_dispatchable
         ),
-        conversion,
-        DIVIDE(USER_INPUT(), 100.0)
+        hydrogen
+      ),
+      conversion,
+      DIVIDE(USER_INPUT(), 100.0)
     )
 - priority = 0
 - max_value_gql = present:(V(energy_hydrogen_ammonia_reformer_must_run,hydrogen_output_conversion) * 100.0) + 10.0
