@@ -7,26 +7,27 @@
     solar_output_capacity = DIVIDE(electrolyser_input_capacity,AREA(hydrogen_electrolysis_solar_pv_capacity_ratio));
 
     EACH(
-        UPDATE(
-            V(energy_hydrogen_solar_pv_solar_radiation),
-            number_of_units,
-            solar_output_capacity / V(energy_hydrogen_solar_pv_solar_radiation, electricity_output_capacity)
-        ),
-        UPDATE(
-            L(energy_hydrogen_solar_pv_solar_radiation),
-            preset_demand_by_electricity_production,
-            V(energy_hydrogen_solar_pv_solar_radiation, production_based_on_number_of_units)
-        ),
-        UPDATE(
-            V(energy_hydrogen_electrolysis_solar_electricity),
-            number_of_units,
-            DIVIDE(electrolyser_input_capacity,V(energy_hydrogen_electrolysis_solar_electricity, typical_input_capacity))
-        )
+      UPDATE(
+        V(energy_hydrogen_solar_pv_solar_radiation),
+        number_of_units,
+        solar_output_capacity / V(energy_hydrogen_solar_pv_solar_radiation, electricity_output_capacity)
+      ),
+      UPDATE(
+        L(energy_hydrogen_solar_pv_solar_radiation),
+        preset_demand_by_electricity_production,
+        V(energy_hydrogen_solar_pv_solar_radiation, production_based_on_number_of_units)
+      ),
+      UPDATE(
+        V(energy_hydrogen_electrolysis_solar_electricity),
+        number_of_units,
+        DIVIDE(electrolyser_input_capacity,V(energy_hydrogen_electrolysis_solar_electricity, typical_input_capacity))
+      )
     )
+
 - priority = 0
 - max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(total_land_area),V(energy_hydrogen_solar_pv_solar_radiation,land_use_per_unit)),V(energy_hydrogen_solar_pv_solar_radiation, electricity_output_capacity)))
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(energy_hydrogen_solar_pv_solar_radiation,number_of_units),V(energy_hydrogen_solar_pv_solar_radiation,electricity_output_capacity))
+- start_value_gql = present:V(energy_hydrogen_solar_pv_solar_radiation,"number_of_units * electricity_output_capacity")
 - step_value = 0.1
 - unit = MW
 - update_period = future
