@@ -1,16 +1,11 @@
 - query =
-      EACH(
-        UPDATE(
-          V(energy_hydrogen_ammonia_reformer_must_run),
-          initial_investment,
-          USER_INPUT()
-          ),
-        UPDATE(
-          V(energy_hydrogen_ammonia_reformer_dispatchable),
-          initial_investment,
-          USER_INPUT()
-          )
-      )
+    UPDATE(
+      V(energy_hydrogen_ammonia_reformer_must_run,
+        energy_hydrogen_ammonia_reformer_dispatchable
+      ),
+      initial_investment,
+      USER_INPUT()
+    )
 - priority = 0
 - max_value = 300.0
 - min_value = -100.0
