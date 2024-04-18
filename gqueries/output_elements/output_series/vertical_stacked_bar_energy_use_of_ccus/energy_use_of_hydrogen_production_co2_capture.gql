@@ -2,5 +2,5 @@
 - query =
     eff_with_ccs = V(FILTER(G(hydrogen_production_ccs_technoloy),"free_co2_factor > 0.0"), hydrogen_output_conversion);
   	eff_without_ccs = V(FILTER(G(hydrogen_production_ccs_technoloy), "free_co2_factor == 0.0"), hydrogen_output_conversion);
-	  diff_eff = SUM_CURVES(eff_without_ccs, INVERT_CURVE(eff_with_ccs));
-	  SUM(PRODUCT_CURVES(V(FILTER(G(hydrogen_production_ccs_technoloy),"free_co2_factor > 0.0"), demand), diff_eff))
+	diff_eff = SUM_CURVES(eff_without_ccs, INVERT_CURVE(eff_with_ccs));
+	SUM(PRODUCT_CURVES(V(FILTER(G(hydrogen_production_ccs_technoloy),"free_co2_factor > 0.0"), demand), diff_eff))
