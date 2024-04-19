@@ -1,17 +1,37 @@
+# This query follows 5 steps:
+# 1. Effective Efficiency for Non-CHP Plants
+# Calculates the effective efficiency of non-CHP (Combined Heat and Power) plants with and without Carbon Capture and Storage (CCS) technologies.
+# These calculations exclude the costs associated with CHP plants and are based on the CO2 emission factor.
+
+# 2. Difference in Efficiency for Non-CHP Plants
+# Determines the difference in effective efficiency between non-CHP plants with CCS and without CCS.
+
+# 3. Relative Input for CHP Plants
+# Calculates the typical input capacity for CHP plants equipped with CCS technology and those without, filtering by CO2 emission factor.
+# The efficiency can't be used since these are equal for chp plants with and without CCS.
+
+# 4. Difference in Efficiency for CHP Plants
+# Computes the difference in performance for CHP plants by comparing the curves of input capacities for plants with and without CCS technologies.
+
+# 5. Total Difference in Demand
+# Summarizes the total impact on demand due to differences in efficiency for both CHP and non-CHP plants when equipped with CCS technologies.
+
+# This query uses 'CURVE' functions however does not use actual CURVES. It uses arrays instead, since these arrays can be viewed as curves in GQL it still operates.
+
 - unit = MJ
 - query =
-    SUM(
-      Q(energy_use_of_energy_power_ultra_supercritical_oxyfuel_ccs_lignite_co2_capture),
-      Q(energy_use_of_energy_power_ultra_supercritical_ccs_coal_co2_capture),
-      Q(energy_use_of_energy_power_combined_cycle_ccs_network_gas_co2_capture),
-      Q(energy_use_of_energy_power_combined_cycle_ccs_coal_co2_capture),
-      Q(energy_use_of_energy_chp_supercritical_ht_ccs_waste_mix_co2_capture),
-      Q(energy_use_of_energy_chp_supercritical_mt_ccs_waste_mix_co2_capture),
-      Q(energy_use_of_energy_power_supercritical_ccs_waste_mix_co2_capture),
-      Q(energy_use_of_energy_chp_local_ht_wood_pellets_ccs_must_run_co2_capture),
-      Q(energy_use_of_energy_chp_local_ht_wood_pellets_ccs_dispatchable_co2_capture),
-      Q(energy_use_of_energy_chp_local_mt_wood_pellets_ccs_must_run_co2_capture),
-      Q(energy_use_of_energy_chp_local_mt_wood_pellets_ccs_dispatchable_co2_capture),
-      Q(energy_use_of_energy_power_wood_pellets_ccs_must_run_co2_capture),
-      Q(energy_use_of_energy_power_wood_pellets_ccs_dispatchable_co2_capture)
-    )
+    eff_non_chp_with_ccs = V(FILTER(EXCLUDE(INTERSECTION(G(electricity_production),G(ccs_technology_pair)),G(costs_production_chp_plants)),"free_co2_factor > 0.0"), electricity_output_conversion);
+  	eff_non_chp_without_ccs = V(FILTER(EXCLUDE(INTERSECTION(G(electricity_production),G(ccs_technology_pair)),G(costs_production_chp_plants)), "free_co2_factor == 0.0"), electricity_output_conversion);
+	    diff_eff_non_chp = SUM_CURVES(eff_non_chp_without_ccs, INVERT_CURVE(eff_non_chp_with_ccs));
+
+    relative_input_chp_with_ccs = V(FILTER(INTERSECTION(INTERSECTION(G(electricity_production),G(ccs_technology_pair)),G(costs_production_chp_plants)),"free_co2_factor > 0.0"), typical_input_capacity);
+  	relative_input_chp_without_ccs = V(FILTER(INTERSECTION(INTERSECTION(G(electricity_production),G(ccs_technology_pair)),G(costs_production_chp_plants)), "free_co2_factor == 0.0"), typical_input_capacity);
+	    diff_eff_chp = SUM_CURVES(COALESCE_CURVE(nil,1.0,COUNT(relative_input_chp_with_ccs)), INVERT_CURVE(DIVIDE_CURVES(relative_input_chp_without_ccs,relative_input_chp_with_ccs)));
+
+
+	    SUM(
+        SUM(PRODUCT_CURVES(V(FILTER(EXCLUDE(INTERSECTION(G(electricity_production),G(ccs_technology_pair)),G(costs_production_chp_plants)),"free_co2_factor > 0.0"), demand), diff_eff_non_chp)),
+        SUM(PRODUCT_CURVES(V(FILTER(INTERSECTION(INTERSECTION(G(electricity_production),G(ccs_technology_pair)),G(costs_production_chp_plants)),"free_co2_factor > 0.0"), demand), diff_eff_chp))
+      )
+
+      
