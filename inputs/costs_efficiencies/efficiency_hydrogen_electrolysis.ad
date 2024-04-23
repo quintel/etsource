@@ -1,9 +1,13 @@
+# Priority is set to 1, which is higher than the capacity priority of 0
+# This means that first the efficiency is updated, then the capacity is set
+
 - query =
     UPDATE(
         OUTPUT_SLOTS(
-            V(energy_hydrogen_electrolysis_solar_electricity,
-            energy_hydrogen_electrolysis_wind_electricity,
-            energy_hydrogen_flexibility_p2g_electricity
+            V(
+              energy_hydrogen_electrolysis_solar_electricity,
+              energy_hydrogen_electrolysis_wind_electricity,
+              energy_hydrogen_flexibility_p2g_electricity
             ),
         hydrogen),
         conversion,
