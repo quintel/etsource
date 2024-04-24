@@ -1,11 +1,45 @@
-# This query updates the change in useful demand per year for the passenger kms. It also changes the amount of cars and busses necessary to fulfill this change in demand.
+# This query updates the following attributes based on the change in passenger kms:
+# - future preset demand of useful demand of passenger kms
+# - number_of_units of both cars and busses
+# - AREA attribute number_of_cars and number_of_busses
 
 - query =
-      EACH(
-            UPDATE(V(transport_useful_demand_passenger_kms), preset_demand, USER_INPUT()),
-            UPDATE(V(transport_useful_demand_cars), number_of_units, USER_INPUT()),
-            UPDATE(V(transport_useful_demand_busses), number_of_units, USER_INPUT())
+    EACH(
+      UPDATE(
+        V(transport_useful_demand_passenger_kms), 
+        preset_demand, 
+        PRODUCT(
+          SUM(1, DIVIDE(USER_INPUT(), 100)),
+          V(transport_useful_demand_passenger_kms, preset_demand)
+        ),
+      ),
+      UPDATE(
+        V(transport_useful_demand_cars), 
+        number_of_units, 
+        PRODUCT(
+          SUM(1, DIVIDE(USER_INPUT(), 100)),
+          V(transport_useful_demand_cars, number_of_units)
+        ),
+      ),
+      UPDATE(
+        V(transport_useful_demand_busses), 
+        number_of_units, 
+        PRODUCT(
+          SUM(1, DIVIDE(USER_INPUT(), 100)),
+          V(transport_useful_demand_busses, number_of_units)
+        ),
+      ),
+      UPDATE(
+        AREA(),
+        number_of_cars, 
+        V(transport_useful_demand_cars, number_of_units)
+      ),
+      UPDATE(
+        AREA(),
+        number_of_busses, 
+        V(transport_useful_demand_busses, number_of_units)
       )
+    )
 - priority = 1
 - max_value = 5.0
 - min_value = -5.0
@@ -13,4 +47,3 @@
 - step_value = 0.1
 - unit = %
 - update_period = future
-- update_type = %y

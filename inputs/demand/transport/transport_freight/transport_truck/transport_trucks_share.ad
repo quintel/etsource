@@ -1,5 +1,7 @@
-# Updates the share of the trucks in useful demand freight tonnes and updates the amount of trucks corresponding that amount of the freight tonne kilometers.
-# The 2nd update is done by taking the amount of trucks in the current data, divided by the corresponding share of trucks in the demand for freight transport. This is than multiplied by the user input. 
+# Firstly, the share of the trucks in useful demand of freight tonne kms is updated with the user input
+# Secondly, number_of_units of trucks are updated with user input
+# Thirdly, the AREA attribute of number_of_trucks is updated with the new number_of_units of trucks
+# Priority is set to 2 since this query goes before transport_useful_demand_freight_tonne_kms
 
 - query =
     EACH(
@@ -19,7 +21,8 @@
           QUERY_PRESENT(-> {V(transport_useful_demand_trucks,share_of_transport_useful_demand_freight_tonne_kms) } 
           )
         )
-      )
+      ),
+      UPDATE(AREA(), number_of_trucks, V(transport_useful_demand_trucks, number_of_units))
     )
 
 - share_group = freight_transport

@@ -1,11 +1,45 @@
-# This query updates the change in useful demand per year for the freight tonnes. It also changes the amount of trucks and vans necessary to fulfill this change in demand.
+# This query updates the following attributes based on the change in feight tonne kms:
+# - future preset demand of useful demand of freight tonne kms
+# - number_of_units of both trucks and vans
+# - AREA attribute number_of_trucks and number_of_vans
 
 - query =
-      EACH(
-            UPDATE(V(transport_useful_demand_freight_tonne_kms), preset_demand, USER_INPUT()),
-            UPDATE(V(transport_useful_demand_trucks), number_of_units, USER_INPUT()),
-            UPDATE(V(transport_useful_demand_vans), number_of_units, USER_INPUT())
-            )
+    EACH(
+      UPDATE(
+        V(transport_useful_demand_freight_tonne_kms), 
+        preset_demand, 
+        PRODUCT(
+          SUM(1, DIVIDE(USER_INPUT(), 100)),
+          V(transport_useful_demand_freight_tonne_kms, preset_demand)
+        ),
+      ),
+      UPDATE(
+        V(transport_useful_demand_trucks), 
+        number_of_units, 
+        PRODUCT(
+          SUM(1, DIVIDE(USER_INPUT(), 100)),
+          V(transport_useful_demand_trucks, number_of_units)
+        ),
+      ),
+      UPDATE(
+        V(transport_useful_demand_vans), 
+        number_of_units, 
+        PRODUCT(
+          SUM(1, DIVIDE(USER_INPUT(), 100)),
+          V(transport_useful_demand_vans, number_of_units)
+        ),
+      ),
+      UPDATE(
+        AREA(),
+        number_of_trucks, 
+        V(transport_useful_demand_trucks, number_of_units)
+      ),
+      UPDATE(
+        AREA(),
+        number_of_vans, 
+        V(transport_useful_demand_vans, number_of_units)
+      )
+    )
 - priority = 1
 - max_value = 5.0
 - min_value = -5.0
@@ -13,4 +47,3 @@
 - step_value = 0.1
 - unit = %
 - update_period = future
-- update_type = %y

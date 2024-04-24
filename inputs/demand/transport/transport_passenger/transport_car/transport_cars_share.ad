@@ -1,5 +1,7 @@
-# Updates the share of the cars in useful demand passenger kilometers and updates the amount of cars corresponding that amount of passenger kilometers.
-# The 2nd update is done by taking the amount of cars in the current data, divided by the corresponding share of cars in the demand for passenger transport. This is than multiplied by the user input. 
+# Firstly, the share of the cars in useful demand of passenger kms is updated with the user input
+# Secondly, number_of_units of cars are updated with user input
+# Thirdly, the AREA attribute of number_of_cars is updated with the new number_of_units of cars
+# Priority is set to 2 since this query goes before transport_useful_demand_passenger_kms
 
 - query =
     EACH(
@@ -19,7 +21,8 @@
           QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms) } 
           )
         )
-      )
+      ),
+      UPDATE(AREA(), number_of_cars, V(transport_useful_demand_cars, number_of_units)),
     )
 
 - share_group = passenger_transport
