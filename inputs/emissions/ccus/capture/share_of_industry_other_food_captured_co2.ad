@@ -1,7 +1,15 @@
 - query =
   EACH(
     UPDATE(MEDGE(industry_other_food_captured_co2, industry_other_food_capture_potential_co2), share, DIVIDE(USER_INPUT(),100.0)),
-    UPDATE(MEDGE(industry_other_food_emitted_co2, industry_other_food_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0))
+    UPDATE(MEDGE(industry_other_food_emitted_co2, industry_other_food_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0)),
+    UPDATE(
+      V(industry_other_food_burner_network_gas), 
+      free_co2_factor, 
+      PRODUCT(
+        DIVIDE(USER_INPUT(),100.0),
+        0.85
+      )
+    )
   )
 - priority = 0
 - max_value = 100.0
