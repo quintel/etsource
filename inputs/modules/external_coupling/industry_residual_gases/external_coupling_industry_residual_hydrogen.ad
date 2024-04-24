@@ -1,4 +1,19 @@
-- query = UPDATE(V(industry_residual_hydrogen), demand, (USER_INPUT() * BILLIONS))
+# Input in PJ is converted to number_of_units using capacity in MW and full load hours in h
+
+- query =
+    EACH(
+      UPDATE(
+        V(industry_residual_hydrogen),
+        number_of_units,
+        USER_INPUT() * BILLIONS / V(industry_residual_hydrogen, "hydrogen_output_capacity * full_load_hours") / MJ_PER_MWH
+    ),
+      UPDATE(
+        L(industry_residual_hydrogen),
+        preset_demand_by_hydrogen_production,
+        V(industry_residual_hydrogen, hydrogen_production_based_on_number_of_units)
+      )
+    )
+
 - priority = 0
 - max_value_gql = present:Q(primary_demand_of_natural_gas_and_derivatives) / BILLIONS
 - min_value = 0.0
