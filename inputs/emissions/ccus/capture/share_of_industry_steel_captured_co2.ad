@@ -1,3 +1,8 @@
+# The share of captured and emitted CO2 is updated in the molucle graph for the relevant nodes
+# Also, the free_co2_factor of CCS related technologies in steel industry are updated accordingly
+# Currently, this is done with the same hard-coded value of 0.85, whereas the dataset value should
+# be applied (the carbon capture potential also varies between these technologies)
+
 - query =
   EACH(
     UPDATE(MEDGE(industry_steel_blastfurnace_bof_captured_co2, industry_steel_blastfurnace_bof_capture_potential_co2), share, DIVIDE(USER_INPUT(),100.0)),
@@ -7,7 +12,20 @@
     UPDATE(MEDGE(industry_steel_dri_network_gas_captured_co2, industry_steel_dri_network_gas_capture_potential_co2), share, DIVIDE(USER_INPUT(),100.0)),
     UPDATE(MEDGE(industry_steel_emitted_co2, industry_steel_dri_network_gas_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0)),
     UPDATE(MEDGE(industry_steel_external_coupling_node_captured_co2, industry_steel_external_coupling_node_capture_potential_co2), share, DIVIDE(USER_INPUT(),100.0)),
-    UPDATE(MEDGE(industry_steel_emitted_co2, industry_steel_external_coupling_node_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0))
+    UPDATE(MEDGE(industry_steel_emitted_co2, industry_steel_external_coupling_node_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0)),
+    UPDATE(
+      V(
+        industry_steel_blastfurnace_bof,
+        industry_steel_cyclonefurnace_bof,
+        industry_steel_dri_network_gas,
+        industry_steel_external_coupling_node
+      ),
+      free_co2_factor,
+      PRODUCT(
+        DIVIDE(USER_INPUT(),100.0),
+        0.85
+      )
+    )
   )
 - priority = 0
 - max_value = 100.0

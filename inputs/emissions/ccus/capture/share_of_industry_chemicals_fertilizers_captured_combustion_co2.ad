@@ -1,9 +1,14 @@
+# The share of captured and emitted CO2 is updated in the molucle graph
+# Also, the free_co2_factor of heat provision technologies in fertilizer industry are updated accordingly
+# The free_co2_factor of the H2-fired heater, steam network and p2h are excluded since these do not induce on-site CO2 emissions 
+# and are thus not relevant for CCS
+
 - query =
     EACH(
       UPDATE(MEDGE(industry_chemicals_fertilizers_captured_combustion_co2, industry_chemicals_fertilizers_capture_potential_combustion_co2), share, DIVIDE(USER_INPUT(),100.0)),
       UPDATE(MEDGE(industry_chemicals_fertilizers_emitted_co2, industry_chemicals_fertilizers_capture_potential_combustion_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0)),
       UPDATE(
-        V(INTERSECTION(G(heat_production), G(fertilizers_industry))),
+        V(EXCLUDE(INTERSECTION(G(heat_production), G(fertilizers_industry)), G(p2h))),
         free_co2_factor, 
         PRODUCT(
           DIVIDE(USER_INPUT(),100.0),

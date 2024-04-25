@@ -1,9 +1,19 @@
+# The share of captured and emitted CO2 is updated in the molucle graph
+# Also, the free_co2_factor of heat provision technologies in food industry are updated accordingly
+# The free_co2_factor of the H2-fired heater, steam network, p2h and electric boiler are excluded since these do not induce on-site CO2 emissions 
+# and are thus not relevant for CCS
+
 - query =
   EACH(
     UPDATE(MEDGE(industry_other_food_captured_co2, industry_other_food_capture_potential_co2), share, DIVIDE(USER_INPUT(),100.0)),
     UPDATE(MEDGE(industry_other_food_emitted_co2, industry_other_food_capture_potential_co2), share, 1.0 - DIVIDE(USER_INPUT(),100.0)),
     UPDATE(
-      V(industry_other_food_burner_network_gas), 
+      V(
+        FILTER(
+          INTERSECTION(G(heat_production), G(food_industry)), 
+          "hydrogen_input_conversion == 0.0 && electricity_input_conversion == 0.0"
+        )
+      ),
       free_co2_factor, 
       PRODUCT(
         DIVIDE(USER_INPUT(),100.0),
