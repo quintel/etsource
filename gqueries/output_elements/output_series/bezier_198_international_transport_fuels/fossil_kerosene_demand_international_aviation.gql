@@ -3,7 +3,8 @@
     DIVIDE(
       PRODUCT(
         V(bunkers_final_demand_for_aviation_kerosene,demand),
-        1-V(EDGE(energy_distribution_kerosene, energy_production_synthetic_kerosene), share)
+        1- V(EDGE(energy_distribution_kerosene, energy_production_synthetic_kerosene_dispatchable), share)
+        - V(EDGE(energy_distribution_kerosene, energy_production_synthetic_kerosene_must_run), share)
       ),
       BILLIONS
     )

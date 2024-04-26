@@ -2,7 +2,10 @@
 
 - query =
     DIVIDE(
-      V(energy_production_synthetic_kerosene, input_of_electricity),
+      SUM(
+        V(energy_production_synthetic_kerosene_dispatchable, input_of_electricity),
+        V(energy_production_synthetic_kerosene_must_run,input_of_electricity)
+      ),
       BILLIONS
     )
 - unit = PJ
