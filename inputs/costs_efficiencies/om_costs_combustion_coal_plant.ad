@@ -1,42 +1,16 @@
 - query =
     EACH(
       UPDATE(
-        V(
-          energy_chp_ultra_supercritical_cofiring_ht_coal,
-          energy_chp_ultra_supercritical_cofiring_mt_coal,
-          energy_chp_ultra_supercritical_ht_coal,
-          energy_chp_ultra_supercritical_ht_lignite,
-          energy_chp_ultra_supercritical_mt_coal,
-          energy_chp_ultra_supercritical_mt_lignite,
-          energy_power_combined_cycle_ccs_coal,
-          energy_power_combined_cycle_coal,
-          energy_power_supercritical_coal,
-          energy_power_ultra_supercritical_ccs_coal,
-          energy_power_ultra_supercritical_coal,
-          energy_power_ultra_supercritical_cofiring_coal,
-          energy_power_ultra_supercritical_lignite,
-          energy_power_ultra_supercritical_oxyfuel_ccs_lignite,
-          industry_chp_ultra_supercritical_coal
-        ), fixed_operation_and_maintenance_costs_per_year, USER_INPUT()
-      ),
-      UPDATE(
-        V(
-          energy_chp_ultra_supercritical_cofiring_ht_coal,
-          energy_chp_ultra_supercritical_cofiring_mt_coal,
-          energy_chp_ultra_supercritical_ht_coal,
-          energy_chp_ultra_supercritical_ht_lignite,
-          energy_chp_ultra_supercritical_mt_coal,
-          energy_chp_ultra_supercritical_mt_lignite,
-          energy_power_combined_cycle_ccs_coal,
-          energy_power_combined_cycle_coal,
-          energy_power_supercritical_coal,
-          energy_power_ultra_supercritical_ccs_coal,
-          energy_power_ultra_supercritical_coal,
-          energy_power_ultra_supercritical_cofiring_coal,
-          energy_power_ultra_supercritical_lignite,
-          energy_power_ultra_supercritical_oxyfuel_ccs_lignite,
-          industry_chp_ultra_supercritical_coal
-        ), variable_operation_and_maintenance_costs_per_full_load_hour, USER_INPUT()
+        V(Q(electricity_producing_coal_converters)),
+        V(Q(electricity_producing_lignite_converters)),
+        fixed_operation_and_maintenance_costs_per_year, 
+        USER_INPUT()
+     ),
+     UPDATE(
+        V(Q(electricity_producing_coal_converters)),
+        V(Q(electricity_producing_lignite_converters)),
+        variable_operation_and_maintenance_costs_per_full_load_hour, 
+        USER_INPUT()
       )
     )
 - priority = 0

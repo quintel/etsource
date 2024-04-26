@@ -1,22 +1,9 @@
 - query = 
     UPDATE(
-      V(
-        energy_chp_ultra_supercritical_cofiring_ht_coal,
-        energy_chp_ultra_supercritical_cofiring_mt_coal,
-        energy_chp_ultra_supercritical_ht_coal,
-        energy_chp_ultra_supercritical_ht_lignite,
-        energy_chp_ultra_supercritical_mt_coal,
-        energy_chp_ultra_supercritical_mt_lignite,
-        energy_power_combined_cycle_ccs_coal,
-        energy_power_combined_cycle_coal,
-        energy_power_supercritical_coal,
-        energy_power_ultra_supercritical_ccs_coal,
-        energy_power_ultra_supercritical_coal,
-        energy_power_ultra_supercritical_cofiring_coal,
-        energy_power_ultra_supercritical_lignite,
-        energy_power_ultra_supercritical_oxyfuel_ccs_lignite,
-        industry_chp_ultra_supercritical_coal
-      ), initial_investment, USER_INPUT()
+      V(Q(electricity_producing_coal_converters)),
+      V(Q(electricity_producing_lignite_converters)),
+      initial_investment, 
+      USER_INPUT()
     )
 - priority = 0
 - max_value = 300.0
