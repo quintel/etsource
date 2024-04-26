@@ -1,0 +1,14 @@
+# Direct conversion output of hydrogen from hydrogen production through SMR without CCS
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_hydrogen_autothermal_reformer_must_run,
+          energy_hydrogen_autothermal_reformer_dispatchable,
+          output_of_hydrogen
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

@@ -1,9 +1,18 @@
 # All series of the mekko_of_primary_demand chart
 - query =
     SUM(
-        Q(energy_import_hydrogen_for_mekko),
-        Q(energy_hydrogen_steam_methane_reformer_for_mekko),
-        Q(energy_hydrogen_steam_methane_reformer_ccs_for_mekko),
+        Q(energy_import_hydrogen_backup_for_mekko),
+        Q(energy_import_hydrogen_baseload_for_mekko),
+        Q(energy_import_liquid_hydrogen_for_mekko),
+        Q(energy_import_lohc_for_mekko),
+        Q(energy_hydrogen_steam_methane_reformer_must_run_for_mekko),
+        Q(energy_hydrogen_steam_methane_reformer_ccs_must_run_for_mekko),
+        Q(energy_hydrogen_steam_methane_reformer_dispatchable_for_mekko),
+        Q(energy_hydrogen_autothermal_reformer_must_run_for_mekko),
+        Q(energy_hydrogen_autothermal_reformer_ccs_must_run_for_mekko),
+        Q(energy_hydrogen_autothermal_reformer_dispatchable_for_mekko),
+        Q(energy_hydrogen_ammonia_reformer_must_run_for_mekko),
+        Q(energy_hydrogen_ammonia_reformer_dispatchable_for_mekko),
         Q(energy_hydrogen_flexibility_p2g_electricity_for_mekko),
         Q(energy_hydrogen_electrolysis_solar_electricity_for_mekko),
         Q(energy_hydrogen_electrolysis_wind_electricity_for_mekko),

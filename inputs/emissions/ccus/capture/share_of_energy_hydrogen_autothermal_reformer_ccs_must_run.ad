@@ -1,0 +1,30 @@
+- query =
+    EACH(
+        UPDATE(
+            V(energy_hydrogen_autothermal_reformer_must_run),
+            number_of_units,
+            (1.0 - DIVIDE(USER_INPUT(),100.0)) * INPUT_VALUE(capacity_of_energy_hydrogen_autothermal_reformer_must_run) / V(energy_hydrogen_autothermal_reformer_must_run, hydrogen_output_capacity)
+        ),
+        UPDATE(
+            L(energy_hydrogen_autothermal_reformer_must_run),
+            preset_demand_by_hydrogen_production,
+            V(energy_hydrogen_autothermal_reformer_must_run, production_based_on_number_of_units)
+        ),
+        UPDATE(
+            V(energy_hydrogen_autothermal_reformer_ccs_must_run),
+            number_of_units,
+            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_hydrogen_autothermal_reformer_must_run) / V(energy_hydrogen_autothermal_reformer_ccs_must_run, hydrogen_output_capacity)
+        ),
+        UPDATE(
+            L(energy_hydrogen_autothermal_reformer_ccs_must_run),
+            preset_demand_by_hydrogen_production,
+            V(energy_hydrogen_autothermal_reformer_ccs_must_run, production_based_on_number_of_units)
+        )
+    )
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(V(energy_hydrogen_autothermal_reformer_ccs_must_run,"number_of_units*hydrogen_output_capacity"),SUM(V(energy_hydrogen_autothermal_reformer_ccs_must_run,"number_of_units*hydrogen_output_capacity"),V(energy_hydrogen_autothermal_reformer_must_run, "number_of_units*hydrogen_output_capacity")))
+- step_value = 1.0
+- unit = %
+- update_period = future

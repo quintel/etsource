@@ -1,7 +1,6 @@
-# Nodes that constitute flexible hydrogen supply. Includes nodes which participate as time-resolved flexible storage.
-
 - query =
     FILTER(
-      ALL(),"hydrogen && (hydrogen.type == :storage)"
+      ALL(),
+      "hydrogen && (hydrogen.subtype == :storage || hydrogen.subtype == :dispatchable || hydrogen.subtype == :backup)"
     )
 - unit = nodes

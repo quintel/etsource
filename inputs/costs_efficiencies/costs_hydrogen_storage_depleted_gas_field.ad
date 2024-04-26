@@ -1,0 +1,18 @@
+# unit = euro/MWh
+
+- query =
+      UPDATE(
+        V(
+          energy_hydrogen_storage_depleted_gas_field,
+          storage
+        ),
+        cost_per_mwh,
+        USER_INPUT()
+      )
+- priority = 0
+- max_value = 3000.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_hydrogen_storage_depleted_gas_field,"storage.cost_per_mwh")
+- step_value = 0.01
+- unit = euro
+- update_period = future

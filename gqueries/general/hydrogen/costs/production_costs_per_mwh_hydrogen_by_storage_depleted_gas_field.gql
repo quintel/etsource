@@ -1,0 +1,13 @@
+# Total cost of hydrogen production from stored hydrogen in depleted gas field per MWh produced hydrogen
+
+- query =
+    DIVIDE(
+        SUM(
+            V(energy_hydrogen_storage_depleted_gas_field, capital_expenditures_excluding_ccs_per(:node)),
+            V(energy_hydrogen_storage_depleted_gas_field, operating_expenses_excluding_ccs_per(:node))
+        ),
+        DIVIDE(
+            V(energy_hydrogen_storage_depleted_gas_field, output_of_hydrogen),
+            MJ_PER_MWH
+        )
+    )

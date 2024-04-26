@@ -1,0 +1,20 @@
+- query =
+    UPDATE(
+      V(energy_hydrogen_storage_salt_cavern),
+      number_of_units,
+      DIVIDE(
+        PRODUCT(
+          USER_INPUT(),
+          MILLIONS
+        ),
+        V(energy_hydrogen_storage_salt_cavern,"storage.volume")
+      )
+    )
+
+- priority = 0
+- max_value_gql = present:MAX(1.0, DIVIDE(Q(total_electricity_consumed), PRODUCT(MJ_PER_KWH, 10**9)))
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(V(energy_hydrogen_storage_salt_cavern,"storage.volume * number_of_units" ),MILLIONS)
+- step_value = 0.01
+- unit = TWh
+- update_period = future

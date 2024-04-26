@@ -1,0 +1,11 @@
+# Total cost of hydrogen production by steam methane reforming + ccs per kg produced hydrogen
+# Energy density of h2 is 120.1 MJ per kg
+
+- query =
+    DIVIDE(
+        V(energy_hydrogen_steam_methane_reformer_ccs_must_run, total_costs_per(:node)),
+        DIVIDE(
+            V(energy_hydrogen_steam_methane_reformer_ccs_must_run, output_of_hydrogen),
+            MJ_PER_MWH
+        )
+    )

@@ -1,9 +1,15 @@
+# Priority is set to 0, priority of the electrolysis efficiency input is set to 1
+# Future value is taken after electrolyser efficiency input has been processed
+
 - query =
+    electrolyser_efficiency = QUERY_FUTURE(-> { V(energy_hydrogen_electrolysis_wind_electricity, hydrogen_output_conversion)});
+    electrolyser_input_capacity = DIVIDE(USER_INPUT(), electrolyser_efficiency);
+
     EACH(
         UPDATE(
             V(energy_hydrogen_wind_turbine_offshore),
             number_of_units,
-            USER_INPUT() / V(energy_hydrogen_wind_turbine_offshore, electricity_output_capacity)
+            electrolyser_input_capacity / V(energy_hydrogen_wind_turbine_offshore, electricity_output_capacity)
         ),
         UPDATE(
             L(energy_hydrogen_wind_turbine_offshore),
@@ -13,12 +19,14 @@
         UPDATE(
             V(energy_hydrogen_electrolysis_wind_electricity),
             number_of_units,
-            DIVIDE(USER_INPUT(),V(energy_hydrogen_electrolysis_wind_electricity, typical_input_capacity))
-    ))
+            DIVIDE(electrolyser_input_capacity,V(energy_hydrogen_electrolysis_wind_electricity, typical_input_capacity))
+        )
+    )
+
 - priority = 0
 - max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(offshore_suitable_for_wind),V(energy_hydrogen_wind_turbine_offshore, land_use_per_unit)),V(energy_hydrogen_wind_turbine_offshore, electricity_output_capacity)))
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(V(energy_hydrogen_wind_turbine_offshore,number_of_units),V(energy_hydrogen_wind_turbine_offshore,electricity_output_capacity))
+- start_value_gql = present:V(energy_hydrogen_wind_turbine_offshore,"number_of_units * electricity_output_capacity")
 - step_value = 0.1
 - unit = MW
 - update_period = future

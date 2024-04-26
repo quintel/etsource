@@ -2,10 +2,13 @@
 
 - query =
     DIVIDE(
-      V(
-        energy_hydrogen_steam_methane_reformer_ccs,
-        output_of_hydrogen
+      SUM(
+        V(
+          energy_hydrogen_steam_methane_reformer_ccs_must_run,
+          output_of_hydrogen
+        )
       ),
       BILLIONS
     )
 - unit = PJ
+
