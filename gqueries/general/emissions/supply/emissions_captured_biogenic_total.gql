@@ -1,9 +1,20 @@
+# The captured biogenic CO2 emissions are obtained from electricity production, hydrogen production and the industry sector
+# The use of groups for obtaining relevant is used as much as possible
+# Only for carbon capture in the fertilizer sector processeses and steel sector the relevant nodes are specified 
+
 - query = 
     DIVIDE(
       SUM(
         V(
           G(electricity_production),
           G(hydrogen_production),
+          INTERSECTION(G(chemical_industry), G(heat_production)),
+          INTERSECTION(G(other_industry), G(heat_production)),
+          V(industry_chemicals_fertilizers_steam_methane_reformer_hydrogen),
+          V(industry_steel_blastfurnace_bof),
+          V(industry_steel_cyclonefurnace_bof),
+          V(industry_steel_dri_network_gas),
+          V(industry_steel_external_coupling_node),
           "demand * weighted_carrier_potential_co2_per_mj * free_co2_factor"
         )
       ),
