@@ -3,7 +3,15 @@
 - unit = PJ
 - query =
     DIVIDE(
-      SUM(V(Q(synthetic_fuels_kerosene_converters), output_of_kerosene)), 
+      SUM(
+        V(
+          FILTER(
+            Q(synthetic_fuels_from_hydrogen_converters),
+            "kerosene_output_conversion > 0"
+          ),
+        output_of_kerosene
+        )
+      ), 
       BILLIONS
     )
 
