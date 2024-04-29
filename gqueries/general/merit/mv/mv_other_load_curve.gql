@@ -1,8 +1,10 @@
+# The first query retrieves the electricity_input_curve of methanol and kerosene production nodes
+
 - query =
     SUM_CURVES(V(
+      Q(synthetic_fuels_from_hydrogen_converters)
       energy_compressor_network_gas,
       energy_offshore_sequestration_co2_electricity,
-      energy_synthetic_products_electricity,
       electricity_input_curve
     ))
 - unit = curve
