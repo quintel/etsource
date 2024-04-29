@@ -5,12 +5,12 @@
         DIVIDE(
             USER_INPUT(),
             V(energy_production_synthetic_kerosene_dispatchable, typical_input_capacity)
-            )
+        )
     )
 - priority = 0
 - max_value_gql = present:DIVIDE(SUM(V(bunkers_total_useful_demand_planes, demand), V(transport_final_demand_kerosene, demand)),PRODUCT(HOURS_PER_YEAR,MJ_PER_MWH))
 - min_value = 0.0
-- start_value_gql = present:V(energy_production_synthetic_kerosene_dispatchable, typical_input_capacity)
+- start_value = 0.0
 - step_value = 0.1
 - unit = MW
 - update_period = future
