@@ -3,8 +3,9 @@
 - query =
     DIVIDE(
       SUM(
-        V(energy_production_synthetic_kerosene_dispatchable, input_of_hydrogen),
-        V(energy_production_synthetic_kerosene_must_run, input_of_hydrogen)
+        V(Q(synthetic_fuels_kerosene_converters),
+        input_of_hydrogen
+        )
       ),
       BILLIONS
     )
