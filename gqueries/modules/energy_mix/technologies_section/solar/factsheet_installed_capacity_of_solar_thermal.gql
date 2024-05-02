@@ -1,9 +1,7 @@
 - query =
     SUM(
       V(
-        households_water_heater_solar_thermal,
-        buildings_space_heater_solar_thermal,
-        energy_heat_solar_thermal,
+        FILTER(G(heat_production), "solar_thermal_input_conversion > 0"),
         "heat_output_capacity * number_of_units"
       )
     )

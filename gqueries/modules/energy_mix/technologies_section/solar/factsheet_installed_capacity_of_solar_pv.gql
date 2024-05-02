@@ -1,10 +1,14 @@
 - query =
     SUM(
-        V(
-            households_solar_pv_solar_radiation,
-            buildings_solar_pv_solar_radiation,
-            energy_power_solar_pv_solar_radiation,
-            energy_hydrogen_solar_pv_solar_radiation, "electricity_output_capacity * number_of_units"
-        )
+      V(
+        households_solar_pv_solar_radiation,
+        buildings_solar_pv_solar_radiation,
+        energy_power_solar_pv_offshore,
+        energy_power_solar_pv_solar_radiation,
+        energy_power_solar_csp_solar_radiation,
+        energy_battery_solar_pv_solar_radiation,
+        energy_hydrogen_solar_pv_solar_radiation,
+        "electricity_output_capacity * number_of_units"
+      )
     )
 - unit = MW

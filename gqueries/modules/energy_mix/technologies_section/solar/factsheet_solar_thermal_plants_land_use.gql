@@ -1,3 +1,10 @@
+# Queries the solar thermal plants HT, MT and LT
 # times 100 to convert km2 to hectare
-- query = SUM(V(energy_heat_solar_thermal, "number_of_units * land_use_per_unit")) * 100
+- query = 
+    SUM(
+      V(
+        FILTER(G(costs_production_heat_plants), "solar_thermal_input_conversion >0"),
+        "number_of_units * land_use_per_unit"
+      )
+    ) * 100
 - unit = #

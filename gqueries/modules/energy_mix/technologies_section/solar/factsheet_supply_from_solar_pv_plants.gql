@@ -1,6 +1,13 @@
 - query =
     SUM(
-        V(energy_hydrogen_solar_pv_solar_radiation, energy_power_solar_pv_solar_radiation, output_of_electricity)
+      V(
+        energy_power_solar_pv_solar_radiation, 
+        energy_power_solar_pv_offshore,
+        energy_hydrogen_solar_pv_solar_radiation, 
+        energy_power_solar_csp_solar_radiation,
+        energy_battery_solar_pv_solar_radiation,
+        output_of_electricity
+      )
     )
 
 - unit = MJ

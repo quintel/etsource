@@ -1,9 +1,19 @@
 - query =
-          PRODUCT(SUM(
-            V(
-              households_water_heater_solar_thermal,
-              buildings_space_heater_solar_thermal,
-              number_of_units)
-              ),
-              Q(factsheet_OM_solar_thermal_number_of_units_correction))
+    SUM(
+      PRODUCT(
+        SUM(
+          V(
+            households_water_heater_solar_thermal,
+            buildings_space_heater_solar_thermal,
+            number_of_units
+          )
+        ),
+        Q(factsheet_OM_solar_thermal_number_of_units_correction)
+      ),
+      V(
+        households_space_heater_heatpump_pvt_electricity,
+        households_water_heater_heatpump_pvt_electricity,   
+        number_of_units
+      )
+    )
 - unit = #
