@@ -4,7 +4,9 @@
         number_of_units,
         DIVIDE(
             USER_INPUT(),
-            V(energy_production_synthetic_kerosene_dispatchable, typical_input_capacity)
+            V(energy_production_synthetic_kerosene_dispatchable, 
+            "typical_input_capacity * electricity_input_conversion"
+            )
         )
     )
 - priority = 0
