@@ -1,16 +1,34 @@
+# The 'other' heat sources consist of heat burners and boilers
 - query =
     SUM(
-        V(energy_heat_burner_hydrogen,
-          energy_heat_burner_network_gas,
-          energy_heat_burner_wood_pellets,
-          energy_heat_burner_crude_oil,
-          energy_heat_burner_coal,
-          energy_heat_burner_waste_mix,
-          energy_heat_backup_burner_network_gas,
+        V(
+          energy_heat_burner_ht_hydrogen,
+          energy_heat_burner_mt_hydrogen,
+          energy_heat_burner_lt_hydrogen,
+          energy_heat_burner_ht_network_gas,
+          energy_heat_burner_mt_network_gas,
+          energy_heat_burner_ht_wood_pellets,
+          energy_heat_burner_mt_wood_pellets,
+          energy_heat_burner_ht_crude_oil,
+          energy_heat_burner_mt_crude_oil,
+          energy_heat_burner_ht_coal,
+          energy_heat_burner_mt_coal,
+          energy_heat_burner_ht_waste_mix,
+          energy_heat_burner_mt_waste_mix,
+          energy_heat_backup_burner_ht_network_gas,
+          energy_heat_backup_burner_mt_network_gas,
+          energy_heat_backup_burner_lt_network_gas,
           industry_heat_burner_lignite,
           industry_heat_burner_coal,
+          industry_heat_burner_hydrogen,
           industry_heat_burner_crude_oil,
           industry_heat_backup_burner_network_gas,
+          agriculture_heat_backup_burner_network_gas,
+          energy_heat_boiler_ht_electricity,
+          energy_heat_boiler_mt_electricity,
+          energy_heat_boiler_lt_electricity,
+          energy_heat_flexibility_p2h_boiler_ht_electricity,
+          energy_heat_flexibility_p2h_boiler_mt_electricity,
           output_of_steam_hot_water)
     ) / Q(factsheet_supply_heat_collective) * 100.0
 
