@@ -1,2 +1,10 @@
 - unit = MT
-- query = MV(molecules_production_synthetic_kerosene_co2, demand) / BILLIONS
+- query =
+    DIVIDE(
+        SUM(
+            MV(molecules_production_synthetic_kerosene_must_run_co2, demand),
+            MV(molecules_production_synthetic_kerosene_dispatchable_co2, demand)
+        ),
+        BILLIONS
+    )
+    

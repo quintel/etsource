@@ -1,4 +1,17 @@
 # Query for refinery sankey: connection between synthetic production and distribution of kerosene
 
 - unit = PJ
-- query = DIVIDE(V(energy_production_synthetic_kerosene, output_of_kerosene), BILLIONS)
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            Q(synthetic_fuels_from_hydrogen_converters),
+            "kerosene_output_conversion > 0"
+          ),
+        output_of_kerosene
+        )
+      ), 
+      BILLIONS
+    )
+
