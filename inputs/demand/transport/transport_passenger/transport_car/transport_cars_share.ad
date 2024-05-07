@@ -1,29 +1,33 @@
-# Firstly, the share of the cars in useful demand of passenger kms is updated with the user input
-# Secondly, number_of_units of cars are updated with user input
-# Thirdly, the AREA attribute of number_of_cars is updated with the new number_of_units of cars
+# This query updates the following attributes:
+# - edge value of share of cars in total demand passenger kms
+# - number_of_units of cars, based on total passenger demand % change per year and modal split
+# - AREA attribute number_of_cars, based on total passenger demand % change per year and modal split
 # Priority is set to 2 since this query goes before transport_useful_demand_passenger_kms
 
 - query =
+    annual_change_demand_passenger_kms = DIVIDE(INPUT_VALUE(transport_useful_demand_passenger_kms), 100);
+    number_of_cars_present = QUERY_PRESENT(-> { AREA(number_of_cars)});   
+    share_cars_in_demand_passenger_kms_present = QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms)});
+    share_cars_in_demand_passenger_kms_future = DIVIDE(USER_INPUT(),100);
+    number_of_cars_future = PRODUCT(RELATIVE_CHANGE_PER_YEAR(DIVIDE(number_of_cars_present,share_cars_in_demand_passenger_kms_present), annual_change_demand_passenger_kms),share_cars_in_demand_passenger_kms_future);
+
     EACH(
       UPDATE(
         EDGE(transport_useful_demand_cars, transport_useful_demand_passenger_kms),
         share,
-        DIVIDE(USER_INPUT(), 100)
+        share_cars_in_demand_passenger_kms_future
       ),
       UPDATE(
-        V(transport_useful_demand_cars),
-        number_of_units,
-        DIVIDE(
-          PRODUCT(
-            DIVIDE(USER_INPUT(),100),
-            AREA(number_of_cars)
-          ),
-          QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms) } 
-          )
-        )
+        V(transport_useful_demand_cars), 
+        number_of_units, 
+        number_of_cars_future,
       ),
-      UPDATE(AREA(), number_of_cars, V(transport_useful_demand_cars, number_of_units)),
-    )
+      UPDATE(
+        AREA(),
+        number_of_cars, 
+        V(transport_useful_demand_cars, number_of_units)
+      )
+    )  
 
 - share_group = passenger_transport
 - priority = 2

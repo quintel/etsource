@@ -1,34 +1,38 @@
 # This query updates the following attributes based on the change in passenger kms:
-# - future preset demand of useful demand of passenger kms
-# - number_of_units of both cars and busses
-# - AREA attribute number_of_cars and number_of_busses
+# - future demand of useful demand of passenger kms with % change per year (user input)
+# - number_of_units of both cars and busses, based on % change per year and modal split
+# - AREA attribute number_of_cars and number_of_busses, based on % change per year and modal split
 
 - query =
+    annual_change_demand_passenger_kms = DIVIDE(USER_INPUT(), 100);
+    
+    number_of_cars_present = QUERY_PRESENT(-> { AREA(number_of_cars)});
+    number_of_busses_present = QUERY_PRESENT(-> { AREA(number_of_busses)});
+    
+    share_cars_in_demand_passenger_kms_present = QUERY_PRESENT(-> {V(transport_useful_demand_cars,share_of_transport_useful_demand_passenger_kms)});
+    share_busses_in_demand_passenger_kms_present = QUERY_PRESENT(-> {V(transport_useful_demand_busses,share_of_transport_useful_demand_passenger_kms)});
+    share_cars_in_demand_passenger_kms_future = DIVIDE(INPUT_VALUE(transport_cars_share),100);
+    share_busses_in_demand_passenger_kms_future = DIVIDE(INPUT_VALUE(transport_busses_share),100);
+
+    number_of_cars_future = PRODUCT(RELATIVE_CHANGE_PER_YEAR(DIVIDE(number_of_cars_present,share_cars_in_demand_passenger_kms_present), annual_change_demand_passenger_kms),share_cars_in_demand_passenger_kms_future);
+    number_of_busses_future = PRODUCT(RELATIVE_CHANGE_PER_YEAR(DIVIDE(number_of_busses_present,share_busses_in_demand_passenger_kms_present), annual_change_demand_passenger_kms),share_busses_in_demand_passenger_kms_future);
+
     EACH(
-      UPDATE(
+      UPDATE_RELATIVE_PER_YEAR(
         V(transport_useful_demand_passenger_kms), 
         preset_demand, 
-        PRODUCT(
-          SUM(1, DIVIDE(USER_INPUT(), 100)),
-          V(transport_useful_demand_passenger_kms, preset_demand)
-        ),
+        annual_change_demand_passenger_kms,
       ),
       UPDATE(
         V(transport_useful_demand_cars), 
         number_of_units, 
-        PRODUCT(
-          SUM(1, DIVIDE(USER_INPUT(), 100)),
-          V(transport_useful_demand_cars, number_of_units)
-        ),
+        number_of_cars_future,
       ),
       UPDATE(
         V(transport_useful_demand_busses), 
         number_of_units, 
-        PRODUCT(
-          SUM(1, DIVIDE(USER_INPUT(), 100)),
-          V(transport_useful_demand_busses, number_of_units)
+        number_of_busses_future
         ),
-      ),
       UPDATE(
         AREA(),
         number_of_cars, 
