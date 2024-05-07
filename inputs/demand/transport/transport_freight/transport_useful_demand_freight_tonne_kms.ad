@@ -1,34 +1,38 @@
-# This query updates the following attributes based on the change in feight tonne kms:
-# - future preset demand of useful demand of freight tonne kms
-# - number_of_units of both trucks and vans
-# - AREA attribute number_of_trucks and number_of_vans
+# This query updates the following attributes based on the change in passenger kms:
+# - future demand of useful demand of freight tonne kms with % change per year (user input)
+# - number_of_units of both trucks and vans, based on % change per year and modal split
+# - AREA attribute number_of_trucks and number_of_vans, based on % change per year and modal split
 
 - query =
+    annual_change_demand_freight_tonne_kms = DIVIDE(USER_INPUT(), 100);
+    
+    number_of_trucks_present = QUERY_PRESENT(-> { AREA(number_of_trucks)});
+    number_of_vans_present = QUERY_PRESENT(-> { AREA(number_of_vans)});
+    
+    share_trucks_in_demand_passenger_kms_present = QUERY_PRESENT(-> {V(transport_useful_demand_trucks,share_of_transport_useful_demand_freight_tonne_kms)});
+    share_vans_in_demand_passenger_kms_present = QUERY_PRESENT(-> {V(transport_useful_demand_vans,share_of_transport_useful_demand_freight_tonne_kms)});
+    share_trucks_in_demand_passenger_kms_future = DIVIDE(INPUT_VALUE(transport_trucks_share),100);
+    share_vans_in_demand_passenger_kms_future = DIVIDE(INPUT_VALUE(transport_vans_share),100);
+
+    number_of_trucks_future = PRODUCT(RELATIVE_CHANGE_PER_YEAR(DIVIDE(number_of_trucks_present,share_trucks_in_demand_passenger_kms_present), annual_change_demand_freight_tonne_kms),share_trucks_in_demand_passenger_kms_future);
+    number_of_vans_future = PRODUCT(RELATIVE_CHANGE_PER_YEAR(DIVIDE(number_of_vans_present,share_vans_in_demand_passenger_kms_present), annual_change_demand_freight_tonne_kms),share_vans_in_demand_passenger_kms_future);
+
     EACH(
-      UPDATE(
+      UPDATE_RELATIVE_PER_YEAR(
         V(transport_useful_demand_freight_tonne_kms), 
         preset_demand, 
-        PRODUCT(
-          SUM(1, DIVIDE(USER_INPUT(), 100)),
-          V(transport_useful_demand_freight_tonne_kms, preset_demand)
-        ),
+        annual_change_demand_freight_tonne_kms,
       ),
       UPDATE(
         V(transport_useful_demand_trucks), 
         number_of_units, 
-        PRODUCT(
-          SUM(1, DIVIDE(USER_INPUT(), 100)),
-          V(transport_useful_demand_trucks, number_of_units)
-        ),
+        number_of_trucks_future,
       ),
       UPDATE(
         V(transport_useful_demand_vans), 
         number_of_units, 
-        PRODUCT(
-          SUM(1, DIVIDE(USER_INPUT(), 100)),
-          V(transport_useful_demand_vans, number_of_units)
+        number_of_vans_future
         ),
-      ),
       UPDATE(
         AREA(),
         number_of_trucks, 

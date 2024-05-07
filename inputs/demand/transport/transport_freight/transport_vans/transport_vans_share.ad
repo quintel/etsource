@@ -1,28 +1,32 @@
-# Firstly, the share of the vans in useful demand of feight tonne kms is updated with the user input
-# Secondly, number_of_units of vans are updated with user input
-# Thirdly, the AREA attribute of number_of_vans is updated with the new number_of_units of vans
+# This query updates the following attributes:
+# - edge value of share of vans in total demand freight tonne kms
+# - number_of_units of vans, based on % change per year in demand of total freight tonne kms demand and modal split
+# - AREA attribute number_of_vans, based on % change per year in demand of total freight tonne kms demand and modal split
 # Priority is set to 2 since this query goes before transport_useful_demand_freight_tonne_kms
 
 - query =
+    annual_change_demand_freight_tonne_kms = DIVIDE(INPUT_VALUE(transport_useful_demand_freight_tonne_kms), 100);
+    number_of_vans_present = QUERY_PRESENT(-> { AREA(number_of_vans)});
+    share_vans_in_demand_freight_tonne_kms_present = QUERY_PRESENT(-> {V(transport_useful_demand_vans,share_of_transport_useful_demand_freight_tonne_kms)});
+    share_vans_in_demand_freight_tonne_kms_future = DIVIDE(USER_INPUT(),100);
+    number_of_vans_future = PRODUCT(RELATIVE_CHANGE_PER_YEAR(DIVIDE(number_of_vans_present,share_vans_in_demand_freight_tonne_kms_present), annual_change_demand_freight_tonne_kms),share_vans_in_demand_freight_tonne_kms_future);
+
     EACH(
       UPDATE(
         EDGE(transport_useful_demand_vans, transport_useful_demand_freight_tonne_kms),
         share,
-        DIVIDE(USER_INPUT(), 100)
+        share_vans_in_demand_freight_tonne_kms_future
       ),
       UPDATE(
-        V(transport_useful_demand_vans),
-        number_of_units,
-        DIVIDE(
-          PRODUCT(
-            DIVIDE(USER_INPUT(),100),
-            AREA(number_of_vans)
-          ),
-          QUERY_PRESENT(-> {V(transport_useful_demand_vans,share_of_transport_useful_demand_freight_tonne_kms) } 
-          )
-        )
+        V(transport_useful_demand_vans), 
+        number_of_units, 
+        number_of_vans_future,
       ),
-      UPDATE(AREA(), number_of_vans, V(transport_useful_demand_vans, number_of_units))
+      UPDATE(
+        AREA(),
+        number_of_vans, 
+        V(transport_useful_demand_vans, number_of_units)
+      )
     )
 
 - share_group = freight_transport
