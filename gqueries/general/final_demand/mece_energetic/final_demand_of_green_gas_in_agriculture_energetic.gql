@@ -1,0 +1,19 @@
+- unit = PJ
+- query =
+    PRODUCT(
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                FILTER(
+                  EG(final_demand),"sector == :agriculture"
+                ),
+                energetic?
+              ),
+              "compressed_network_gas? || network_gas?"
+            ), 
+          value
+          )
+        ),
+        Q(share_of_sustainable_gas_in_gas_network)
+      ) / BILLIONS

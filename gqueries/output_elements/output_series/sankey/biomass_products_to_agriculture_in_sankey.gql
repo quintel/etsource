@@ -1,11 +1,8 @@
-# Query for Sankey diagram: connection between biomass_products and agriculture
+# Query for Sankey download: connection between biomass_products and agriculture
 
 - unit = PJ
-- query =
-    DIVIDE(
-        SUM(
-            V(INTERSECTION(INTERSECTION(SECTOR(agriculture),G(final_demand_group)),USE(energetic)),"input_of_wood_pellets + input_of_biodiesel + input_of_bio_ethanol + input_of_bio_lng + input_of_bio_kerosene"),
-            SUM(V(INTERSECTION(INTERSECTION(SECTOR(agriculture),G(final_demand_group)),USE(energetic)), input_of(network_gas, compressed_network_gas))) * Q(share_of_sustainable_gas_in_gas_network)
-        ),
-    BILLIONS)
-
+- query = 
+    SUM(
+      Q(final_demand_of_biomass_products_in_agriculture_energetic),
+      Q(final_demand_of_green_gas_in_agriculture_energetic)
+    )
