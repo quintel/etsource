@@ -50,5 +50,29 @@
           bio_lng?
         ),
         value
-      )
+      ),
+      V(
+          FILTER(
+            FILTER(
+              FILTER(
+                EG(final_demand),"sector == :agriculture"
+              ),
+              energetic?
+            ),
+            bio_kerosene?
+          ),
+          value
+        ),
+        V(
+          FILTER(
+            FILTER(
+              FILTER(
+                EG(final_demand),"sector == :agriculture"
+              ),
+              energetic?
+            ),
+            bio_oil?
+          ),
+          value
+        )
     ) / BILLIONS
