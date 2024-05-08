@@ -1,17 +1,28 @@
 - query =
-      SUM(
-          V(buildings_final_demand_for_appliances_wood_pellets, input_of_wood_pellets),
-          V(energy_chp_ultra_supercritical_cofiring_coal, input_of_wood_pellets),
-          V(energy_heat_burner_wood_pellets, input_of_wood_pellets),
-          V(energy_power_ultra_supercritical_cofiring_coal, input_of_wood_pellets),
-          V(energy_chp_local_wood_pellets, input_of_wood_pellets),
-          V(households_final_demand_for_cooking_wood_pellets, input_of_wood_pellets),
-          V(industry_final_demand_for_metal_wood_pellets, input_of_wood_pellets),
-          V(industry_final_demand_for_other_non_specified_wood_pellets, input_of_wood_pellets),
-          V(other_final_demand_wood_pellets, input_of_wood_pellets),
-          V(industry_chp_wood_pellets, input_of_wood_pellets),
-          V(energy_distribution_torrefied_biomass_pellets, demand),
-          - V(energy_export_torrefied_biomass_pellets, demand)
-          )
+    SUM(
+      V(
+        buildings_final_demand_for_appliances_wood_pellets,
+        energy_chp_ultra_supercritical_cofiring_ht_coal,
+        energy_chp_ultra_supercritical_cofiring_mt_coal,
+        energy_heat_burner_ht_wood_pellets,
+        energy_heat_burner_mt_wood_pellets,
+        energy_power_ultra_supercritical_cofiring_coal,
+        energy_chp_local_ht_wood_pellets_must_run,
+        energy_chp_local_ht_wood_pellets_dispatchable,
+        energy_chp_local_ht_wood_pellets_ccs_must_run,
+        energy_chp_local_ht_wood_pellets_ccs_dispatchable,
+        energy_chp_local_mt_wood_pellets_must_run,
+        energy_chp_local_mt_wood_pellets_dispatchable,
+        energy_chp_local_mt_wood_pellets_ccs_must_run,
+        energy_chp_local_mt_wood_pellets_ccs_dispatchable,
+        households_final_demand_for_cooking_wood_pellets,
+        industry_final_demand_for_metal_wood_pellets,
+        industry_final_demand_for_other_non_specified_wood_pellets,
+        other_final_demand_wood_pellets, 
+        industry_chp_wood_pellets, 
+        input_of_wood_pellets
+      ),
+      V(energy_distribution_torrefied_biomass_pellets, demand)
+    )
 
 - unit = MJ

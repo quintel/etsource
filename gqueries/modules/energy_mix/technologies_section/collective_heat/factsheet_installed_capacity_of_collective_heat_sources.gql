@@ -1,35 +1,9 @@
 - query =
     SUM(
-      V(agriculture_geothermal,
-        energy_chp_combined_cycle_network_gas,
-        energy_chp_local_wood_pellets,
-        energy_chp_supercritical_waste_mix,
-        energy_chp_ultra_supercritical_coal,
-        energy_chp_ultra_supercritical_cofiring_coal,
-        energy_chp_ultra_supercritical_lignite,
-        energy_heat_burner_crude_oil,
-        energy_heat_burner_waste_mix,
-        energy_chp_local_wood_pellets,
-        energy_chp_local_engine_biogas,
-        energy_chp_local_engine_network_gas,
-        energy_heat_burner_hydrogen,
-        energy_heat_burner_network_gas,
-        energy_heat_burner_coal,
-        energy_heat_heatpump_water_water_electricity,
-        energy_heat_well_geothermal,
-        energy_heat_burner_wood_pellets,
-        energy_heat_backup_burner_network_gas,
-        energy_heat_solar_thermal,
-        industry_chp_engine_gas_power_fuelmix,
-        industry_chp_turbine_gas_power_fuelmix,
-        industry_chp_ultra_supercritical_coal,
-        industry_chp_combined_cycle_gas_power_fuelmix,
-        industry_chp_wood_pellets,
-        industry_heat_burner_lignite,
-        industry_heat_burner_coal,
-        industry_heat_well_geothermal,
-        industry_heat_backup_burner_network_gas,
+      V(
+        Q(heating_converters_connected_to_heat_networks),
+        agriculture_geothermal, 
         "heat_output_capacity*number_of_units"
-        ))
-
+      )
+    )
 - unit = MW
