@@ -50,5 +50,21 @@
           bio_lng?
         ),
         value
+      ),
+      PRODUCT(
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                FILTER(
+                  EG(final_demand),"sector == :agriculture"),"network_gas? || compressed_network_gas?"
+                ),
+              "energetic?"
+              ),
+            "value"
+            )
+          ) 
+            ,
+          Q(share_of_sustainable_gas_in_gas_network)
       )
     ) / BILLIONS

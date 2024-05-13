@@ -1,17 +1,36 @@
 # Final demand of the 'natural_gas_and_derivatives' carrier group
-
 - unit = PJ
 - query =
-    SUM(
-      V(
-          FILTER(
-            FILTER(
+    DIVIDE(  
+      SUM(
+        SUM(
+          V(
               FILTER(
-            EG(final_demand),"sector == :agriculture"), "network_gas? || compressed_network_gas? || natural_gas? || lng? || propane?"
-          ),
-          "energetic?"
+                FILTER(
+                  FILTER(
+                EG(final_demand),"sector == :agriculture"), "natural_gas? || lng? || propane?"
+              ),
+              "energetic?"
+            ),
+            value
+          )
         ),
-        value
-      )
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(
+                    EG(final_demand),"sector == :agriculture"),"network_gas? || compressed_network_gas?"
+                  ),
+                "energetic?"
+                ),
+              "value"
+              )
+            ) ,
+            (1 - Q(share_of_sustainable_gas_in_gas_network))
+        )
+      ),
+      BILLIONS
     )
-     / BILLIONS
+    
