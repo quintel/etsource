@@ -7,9 +7,9 @@
         V(
           FILTER(
             FILTER(
-              FILTER(EG(final_demand),"sector == :industry"), "network_gas? || compressed_network_gas?"
+              EG(final_demand), "network_gas? || compressed_network_gas?"
             ),
-            "energetic?"
+            "!energetic?"
           ),
           value
         ),
