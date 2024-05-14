@@ -3,76 +3,10 @@
 - unit = PJ
 - query =
     SUM(
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :households"
-            ),
-            energetic?
-          ),
-          biodiesel?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :households"
-            ),
-            energetic?
-          ),
-          bio_ethanol?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :households"
-            ),
-            energetic?
-          ),
-          wood_pellets?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :households"
-            ),
-            energetic?
-          ),
-          bio_lng?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :agriculture"
-            ),
-            energetic?
-          ),
-          bio_kerosene?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :agriculture"
-            ),
-            energetic?
-          ),
-          bio_oil?
-        ),
-        value
-      )
-    ) / BILLIONS
+      Q(final_demand_of_biomass_products_in_households_space_heating_energetic),
+      Q(final_demand_of_biomass_products_in_households_hot_water_energetic),
+      Q(final_demand_of_biomass_products_in_households_lighting_energetic),
+      Q(final_demand_of_biomass_products_in_households_cooling_energetic),
+      Q(final_demand_of_biomass_products_in_households_cooking_energetic),
+      Q(final_demand_of_biomass_products_in_households_appliances_energetic)
+    )
