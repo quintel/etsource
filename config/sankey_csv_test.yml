@@ -1,0 +1,117 @@
+  # The configuration should have two keys:
+#
+# - schema: An array of hashes describing each column in the CSV. Each hash should contain a `name`
+#           key and optionally a `type` key.
+# - rows:   An array of hashes, each matching the schema. Any keys contained in a hash which are not
+#           present in the schema are ignored.
+#
+# Column types
+# ------------
+#
+# Schema column types may be:
+#
+# - (blank):   The from each row will be included exactly as in the config.
+# - "literal": The from each row will be included exactly as in the config.
+# - "present": The value will be the result of evaluating the query in the present.
+# - "future":  The value will be the result of evaluating the query in the future.
+# - "unit":    The value will be the unit of the specified query.
+# - "query":   This expands into three columns: `present`, `future` and `unit` for specified query.
+#
+# "query" types may also optionally define custom label for the present, future, and unit columns.
+#
+# Examples
+# --------
+#
+# ### Simple example with a "query" column
+#
+# ```
+# schema:
+#   - name: Group
+#   - name: Value
+#     type: query
+#
+# rows:
+#   - Group: Group 1
+#     Value: my_query
+# ```
+#
+# This produces a CSV with four columns and one data row:
+#
+# ```
+# Group,Present Value,Future Value,Value Unit
+# Group 1,some_value_from_present,some_value_from_future,some_unit
+# ```
+#
+# ### Example with a query for just one period
+#
+# ```
+# schema:
+#   - name: Group
+#   - name: Category
+#   - name: Now
+#     type: present
+# rows:
+#   - Group: Group 1
+#     Category: Cat 1
+#     Now: some_query
+#   - Group: Group 1
+#     Category Cat 2
+#     Now: another_query
+# ```
+#
+# Produces a CSV with three columns and two data rows:
+#
+# ```
+# Group,Category,Now
+# Group 1,Cat 1,some_query_value
+# Group 1,Cat 2,another_query_value
+# ```
+#
+# ### Example with custom labels on a "query" field
+#
+# ```
+# schema:
+#   - name: Value
+#     type: query
+#     present_label: Before
+#     future_label: After
+#     unit_name: Unit
+#
+# rows:
+#   - Group: Group 1
+#     Value: my_query
+# ```
+#
+# This produces a CSV with three columns and one data row:
+#
+# ```
+# Before,After,Unit
+# some_value_from_present,some_value_from_future,some_unit
+# ```
+schema:
+  - name: Group
+  - name: Carrier
+  - name: Category
+  - name: Type
+  - name: Value
+    type: query
+    present_label: present_year
+    future_label: future_year
+    unit: PJ
+
+rows:
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to oil conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_oil_and_derivatives    
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_steam_hot_water  
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_natural_gas_and_derivatives     
