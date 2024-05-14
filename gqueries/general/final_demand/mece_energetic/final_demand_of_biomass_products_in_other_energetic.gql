@@ -11,68 +11,9 @@
             ),
             energetic?
           ),
-          biodiesel?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :other"
-            ),
-            energetic?
-          ),
-          bio_ethanol?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :other"
-            ),
-            energetic?
-          ),
-          wood_pellets?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :other"
-            ),
-            energetic?
-          ),
-          bio_lng?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :agriculture"
-            ),
-            energetic?
-          ),
-          bio_kerosene?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :agriculture"
-            ),
-            energetic?
-          ),
-          bio_oil?
+          "biodiesel? || bio_ethanol? || wood_pellets? || bio_lng? || bio_kerosene? || bio_oil?"
         ),
         value
       )
     ) / BILLIONS
+    
