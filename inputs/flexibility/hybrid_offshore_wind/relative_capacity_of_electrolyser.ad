@@ -1,0 +1,20 @@
+# Priority set to 1 so this query is calculated before capacity_of_energy_power_hybrid_wind_turbine_offshore
+# where total number of units of electrolyser is calculated based on input of electrolyser relative capacity
+
+- query =
+    UPDATE(
+      V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
+      typical_input_capacity,
+      PRODUCT(
+        DIVIDE(USER_INPUT(), 100),
+        V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
+      )
+    )
+
+- priority = 1
+- max_value = 200.0
+- min_value = 20.0
+- start_value = 50.0
+- step_value = 0.1
+- unit = %
+- update_period = future

@@ -1,17 +1,27 @@
-# Capacity of electrolyzer, E-cable and H2 pipeline should be updated as well
+# Number of units E-cable and H2 pipeline should be updated as well
 
 - query =
     EACH(
-        UPDATE(
-            V(energy_power_hybrid_wind_turbine_offshore),
-            number_of_units,
-            USER_INPUT() / V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
-        ),
-        UPDATE(
-            L(energy_power_hybrid_wind_turbine_offshore),
-            preset_demand_by_electricity_production,
-            V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units)
-    ))
+      UPDATE(
+        V(energy_power_hybrid_wind_turbine_offshore),
+        number_of_units,
+        USER_INPUT() / V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
+      ),
+      UPDATE(
+        L(energy_power_hybrid_wind_turbine_offshore),
+        preset_demand_by_electricity_production,
+        V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units)
+      ),
+      UPDATE(
+        V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
+        number_of_units,
+        DIVIDE(
+          DIVIDE(INPUT_VALUE(relative_capacity_of_electrolyser), 100) * USER_INPUT(),
+          V(energy_hydrogen_electrolysis_hybrid_wind_electricity, typical_input_capacity)
+        )
+      )
+    )
+
 - priority = 0
 - max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(offshore_suitable_for_wind),V(energy_power_hybrid_wind_turbine_offshore, land_use_per_unit)),V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)))
 - min_value = 0.0
