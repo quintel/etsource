@@ -1,4 +1,5 @@
 # Query for Sankey diagram: connection between natural_gas and transport
+# The last query accounts for share of network gas in compressed network gas
 
 - unit = PJ
 - query =
@@ -8,7 +9,13 @@
           V(INTERSECTION(INTERSECTION(SECTOR(transport),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng + input_of_propane")
         ),
         SUM( 
-          V(INTERSECTION(INTERSECTION(SECTOR(transport),G(final_demand_group)),USE(energetic)),"input_of_compressed_network_gas + input_of_network_gas")
+          V(INTERSECTION(INTERSECTION(SECTOR(transport),G(final_demand_group)),USE(energetic)),input_of_network_gas)
+        ) * Q(share_of_fossil_gas_in_gas_network),
+        PRODUCT(
+          SUM(
+            V(INTERSECTION(INTERSECTION(SECTOR(transport),G(final_demand_group)),USE(energetic)),input_of_compressed_network_gas)
+          ),
+          V(energy_compressor_network_gas, network_gas_input_conversion)
         ) * Q(share_of_fossil_gas_in_gas_network)
       ),
       BILLIONS
