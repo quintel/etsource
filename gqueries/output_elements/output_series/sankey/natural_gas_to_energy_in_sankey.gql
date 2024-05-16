@@ -1,15 +1,4 @@
 # Query for Sankey diagram: connection between natural_gas and energy
 
 - unit = PJ
-- query =
-    DIVIDE(
-      SUM(
-        SUM(
-          V(INTERSECTION(INTERSECTION(SECTOR(energy),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng + input_of_propane")
-        ),
-        SUM( 
-          V(INTERSECTION(INTERSECTION(SECTOR(energy),G(final_demand_group)),USE(energetic)),"input_of_compressed_network_gas + input_of_network_gas")
-        ) * Q(share_of_fossil_gas_in_gas_network)
-      ),
-      BILLIONS
-    )
+- query = Q(final_demand_of_natural_gas_and_derivatives_in_energy_energetic)

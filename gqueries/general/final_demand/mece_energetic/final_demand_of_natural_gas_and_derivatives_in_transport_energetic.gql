@@ -1,4 +1,5 @@
 # Final demand of the 'natural_gas_and_derivatives' carrier group
+# The last query accounts for the share of network gas in compressed network gas
 
 - unit = PJ
 - query =
@@ -17,15 +18,32 @@
       ),
       PRODUCT(
         SUM(
-          V(
-            FILTER(
+          SUM(
+            V(
               FILTER(
                 FILTER(
-                  EG(final_demand),"sector == :transport"), "network_gas? || compressed_network_gas?"
+                  FILTER(
+                    EG(final_demand),"sector == :transport"), "network_gas?"
+                ),
+                "energetic?"
               ),
-              "energetic?"
+              value
+            )
+          ),
+          PRODUCT(
+            SUM(
+              V(
+                FILTER(
+                  FILTER(
+                    FILTER(
+                      EG(final_demand),"sector == :transport"), "compressed_network_gas?"
+                  ),
+                  "energetic?"
+                ),
+                value
+              )
             ),
-            value
+            Q(share_of_network_gas_in_compressed_network_gas)
           )
         ),
         Q(share_of_fossil_gas_in_gas_network)
