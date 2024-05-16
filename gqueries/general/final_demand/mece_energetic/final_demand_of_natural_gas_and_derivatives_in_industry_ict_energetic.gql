@@ -1,0 +1,48 @@
+# Final demand of the 'natural_gas_and_derivatives' carrier group
+# Final demand in industry ICT
+
+- unit = PJ
+- query =
+    SUM(
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                INTERSECTION(EG(final_demand),EG(ict_industry)), "natural_gas? || lng? || propane?"
+              ),
+              "energetic?"
+            ),
+            value
+          )
+        ),
+        PRODUCT(
+          SUM(
+            SUM(
+              V(
+                FILTER(
+                  FILTER(
+                    INTERSECTION(EG(final_demand),EG(ict_industry)), "network_gas?"
+                  ),
+                  "energetic?"
+                ),
+                value
+              )
+            ),
+            PRODUCT(
+              SUM(
+                V(
+                  FILTER(
+                    FILTER(
+                      INTERSECTION(EG(final_demand),EG(ict_industry)), "compressed_network_gas?"
+                    ),
+                    "energetic?"
+                  ),
+                  value
+                )
+              ),
+              Q(share_of_network_gas_in_compressed_network_gas)
+            )
+          ),
+          Q(share_of_fossil_gas_in_gas_network)
+        )
+      ) / BILLIONS
