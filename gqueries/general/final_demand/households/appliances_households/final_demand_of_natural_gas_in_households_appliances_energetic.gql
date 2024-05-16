@@ -4,15 +4,31 @@
 - query =
     PRODUCT(
       SUM(
-        V(
-          FILTER(
+        SUM(
+          V(
             FILTER(
-              INTERSECTION(EG(final_demand),EG(appliances_households)), "network_gas? || compressed_network_gas?"
+              FILTER(
+                INTERSECTION(EG(final_demand),EG(appliances_households)), "network_gas?"
+              ),
+              "energetic?"
             ),
-            "energetic?"
-          ),
-          value
+            value
+          )
         ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  INTERSECTION(EG(final_demand),EG(appliances_households)), "compressed_network_gas?"
+                ),
+                "energetic?"
+              ),
+              value
+            )
+          ),
+          Q(share_of_network_gas_in_compressed_network_gas)
+        )
       ),
       Q(share_of_fossil_gas_in_gas_network)
     ) / BILLIONS

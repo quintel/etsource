@@ -1,32 +1,13 @@
 # Final demand of the 'natural_gas_and_derivatives' carrier group
 - unit = PJ
 - query =
-    SSUM(
-      SUM(
-        V(
-          FILTER(
-            FILTER(
-              FILTER(
-                EG(final_demand),"sector == :buildings"), "natural_gas? || lng? || propane?"
-            ),
-            "energetic?"
-          ),
-          value
-        )
-      ),
-      PRODUCT(
-        SUM(
-          V(
-            FILTER(
-              FILTER(
-                FILTER(
-                  EG(final_demand),"sector == :buildings"), "network_gas? || compressed_network_gas?"
-              ),
-              "energetic?"
-            ),
-            value
-          )
-        ),
-        Q(share_of_fossil_gas_in_gas_network)
-      )
-    ) / BILLIONS
+    SUM(
+      Q(final_demand_of_natural_gas_in_buildings_space_heating_energetic),
+      Q(final_demand_of_natural_gas_in_buildings_appliances_energetic),
+      Q(final_demand_of_natural_gas_in_buildings_cooling_energetic),
+      Q(final_demand_of_natural_gas_in_buildings_lighting_energetic),
+      Q(final_demand_of_lng_in_buildings_space_heating_energetic),
+      Q(final_demand_of_lng_in_buildings_appliances_energetic),
+      Q(final_demand_of_lng_in_buildings_cooling_energetic),
+      Q(final_demand_of_lng_in_buildings_lighting_energetic)
+    )
