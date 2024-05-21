@@ -2,33 +2,17 @@
 
 - unit = PJ
 - query =
-    PRODUCT(
+    PPRODUCT(
       SUM(
-        SUM(
-          V(
+        V(
+          FILTER(
             FILTER(
-              FILTER(
-                INTERSECTION(EG(final_demand),EG(appliances_buildings)), "network_gas?"
-              ),
-              "energetic?"
+              INTERSECTION(EG(final_demand),EG(appliances_buildings)), "network_gas? || compressed_network_gas?"
             ),
-            value
-          )
-        ),
-        PRODUCT(
-          SUM(
-            V(
-              FILTER(
-                FILTER(
-                  INTERSECTION(EG(final_demand),EG(appliances_buildings)), "compressed_network_gas?"
-                ),
-                "energetic?"
-              ),
-              value
-            )
+            "energetic?"
           ),
-          Q(share_of_network_gas_in_compressed_network_gas)
-        )
+          value
+        ),
       ),
       Q(share_of_fossil_gas_in_gas_network)
     ) / BILLIONS

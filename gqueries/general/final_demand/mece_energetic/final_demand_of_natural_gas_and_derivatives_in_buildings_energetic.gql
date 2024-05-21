@@ -2,12 +2,14 @@
 - unit = PJ
 - query =
     SUM(
-      Q(final_demand_of_natural_gas_in_buildings_space_heating_energetic),
-      Q(final_demand_of_natural_gas_in_buildings_appliances_energetic),
-      Q(final_demand_of_natural_gas_in_buildings_cooling_energetic),
-      Q(final_demand_of_natural_gas_in_buildings_lighting_energetic),
-      Q(final_demand_of_lng_in_buildings_space_heating_energetic),
-      Q(final_demand_of_lng_in_buildings_appliances_energetic),
-      Q(final_demand_of_lng_in_buildings_cooling_energetic),
-      Q(final_demand_of_lng_in_buildings_lighting_energetic)
-    )
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :buildings"), "network_gas? || compressed_network_gas? || natural_gas? || lng? || propane?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS

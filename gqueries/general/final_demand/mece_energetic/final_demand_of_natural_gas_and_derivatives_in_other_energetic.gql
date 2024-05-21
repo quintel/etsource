@@ -3,49 +3,14 @@
 - unit = PJ
 - query =
     SUM(
-      SUM(
-        V(
+      V(
+        FILTER(
           FILTER(
             FILTER(
-              FILTER(
-                EG(final_demand),"sector == :other"), "natural_gas? || lng? || propane?"
-            ),
-            "energetic?"
+              EG(final_demand),"sector == :other"), "network_gas? || compressed_network_gas? || natural_gas? || lng? || propane?"
           ),
-          value
-        )
-      ),
-      PRODUCT(
-        SUM(
-          SUM(
-            V(
-              FILTER(
-                FILTER( 
-                  FILTER(
-                    EG(final_demand),"sector == :other"), "network_gas?"
-                ),
-                "energetic?"
-              ),
-              value
-            )
-          ),
-          PRODUCT(
-            SUM(
-              V(
-                FILTER(
-                  FILTER(
-                    FILTER(
-                      EG(final_demand),"sector == :other"), "compressed_network_gas?"
-                  ),
-                  "energetic?"
-                ),
-                value
-              )
-            ),
-            Q(share_of_network_gas_in_compressed_network_gas)
-          )
+          "energetic?"
         ),
-        Q(share_of_fossil_gas_in_gas_network)
+        value
       )
     ) / BILLIONS
-    
