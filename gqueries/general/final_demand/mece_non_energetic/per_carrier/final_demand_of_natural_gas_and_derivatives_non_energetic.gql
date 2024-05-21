@@ -1,48 +1,15 @@
 # Non-energetic final demand of the 'natural_gas_and_derivatives' carrier group
-# The last query accounts for the share of network gas in compressed network gas
 
 - unit = PJ
 - query =
     SUM(
-      SUM(
-        V(
+      V(
+        FILTER(
           FILTER(
-            FILTER(
-              EG(final_demand), "natural_gas? || lng? || propane?"
-            ),
-            "!energetic?"
+            EG(final_demand), "network_gas? || compressed_network_gas? || natural_gas? || lng? || propane?"
           ),
-          value
-        )
-      ),
-      PRODUCT(
-        SUM(
-          SUM(
-            V(
-              FILTER(
-                FILTER(
-                  EG(final_demand), "network_gas?"
-                ),
-                "!energetic?"
-              ),
-              value
-            )
-          ),
-          PRODUCT(
-            SUM(
-              V(
-                FILTER(
-                  FILTER(
-                    EG(final_demand), "compressed_network_gas?"
-                  ),
-                  "!energetic?"
-                ),
-                value
-              )
-            ),
-            Q(share_of_network_gas_in_compressed_network_gas)
-          )
+          "!energetic?"
         ),
-        Q(share_of_fossil_gas_in_gas_network)
+        value
       )
-    )/ BILLIONS
+    ) / BILLIONS
