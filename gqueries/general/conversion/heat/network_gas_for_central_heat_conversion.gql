@@ -1,5 +1,4 @@
 # Direct conversion input of network gas for central heat production
-# The last query calculates network gas input required for producing torrefied wood pellets used for central heat production
 
 - query =
     SUM(
@@ -14,13 +13,6 @@
         ),
         BILLIONS
       ),
-      Q(gas_power_fuelmix_for_central_heat_conversion) * V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion),
-      PRODUCT(
-        DIVIDE(
-          Q(torrefied_biomass_pellets_for_central_heat_production),
-          1 - V(energy_torrefaction_wood, loss_output_conversion)
-        ),
-        V(energy_torrefaction_wood, network_gas_input_conversion)
-      )
+      Q(gas_power_fuelmix_for_central_heat_conversion) * V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
     )
 - unit = PJ
