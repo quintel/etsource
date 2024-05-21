@@ -1,15 +1,14 @@
-# Query for Sankey diagram: connection between natural_gas and transport
-# The last query accounts for share of network gas in compressed network gas
+# Energetic final demand of the 'natural_gas' carrier group in industry excl. ict
 
 - unit = PJ
-- query = 
+- query =
     SUM(
       SUM(
         V(
           FILTER(
             FILTER(
               FILTER(
-                EG(final_demand),"sector == :transport"), "natural_gas? || lng? || propane?"
+                EG(final_demand),"sector == :industry"), "natural_gas? || lng? || propane?"
             ),
             "energetic?"
           ),
@@ -21,9 +20,9 @@
           SUM(
             V(
               FILTER(
-                FILTER(
+                FILTER( 
                   FILTER(
-                    EG(final_demand),"sector == :transport"), "network_gas?"
+                    EG(final_demand),"sector == :industry"), "network_gas?"
                 ),
                 "energetic?"
               ),
@@ -36,7 +35,7 @@
                 FILTER(
                   FILTER(
                     FILTER(
-                      EG(final_demand),"sector == :transport"), "compressed_network_gas?"
+                      EG(final_demand),"sector == :industry"), "compressed_network_gas?"
                   ),
                   "energetic?"
                 ),

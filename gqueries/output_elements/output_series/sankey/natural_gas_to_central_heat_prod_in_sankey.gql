@@ -1,4 +1,15 @@
-# Query for Sankey diagram: connection between natural_gas and central heat
+# Query for Sankey download: connection between natural_gas and central heat
+# Second query accounts for share of fossil network gas in torrefied wood pellets
 
-- query = Q(natural_gas_for_central_heat_conversion)
 - unit = PJ
+- query = 
+    SUM(
+      Q(natural_gas_for_central_heat_conversion),
+      PRODUCT(
+        DIVIDE(
+          Q(torrefied_biomass_pellets_for_central_heat_production),
+          1 - V(energy_torrefaction_wood, loss_output_conversion)
+        ),
+        V(energy_torrefaction_wood, network_gas_input_conversion)
+      ) * Q(share_of_fossil_gas_in_gas_network)
+    )

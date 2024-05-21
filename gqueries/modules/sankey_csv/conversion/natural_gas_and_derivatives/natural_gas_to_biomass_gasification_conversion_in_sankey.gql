@@ -1,0 +1,22 @@
+# Direct conversion input of natural gas for biomass gasification without CCS
+# The second query calculates network gas input required for producing torrefied wood pellets used for biomass fassification
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_hydrogen_biomass_gasification,
+          input_of_network_gas
+        ),
+        PRODUCT(
+          DIVIDE(
+            V(energy_hydrogen_biomass_gasification, input_of_torrefied_biomass_pellets),
+            1 - V(energy_torrefaction_wood, loss_output_conversion)
+          ),
+        V(energy_torrefaction_wood, network_gas_input_conversion)
+        )
+      ),
+      BILLIONS
+    ) * Q(share_of_fossil_gas_in_gas_network)
+

@@ -1,4 +1,47 @@
 # Energetic final demand of the 'natural_gas' carrier group in industry ict
 
 - unit = PJ
-- query = Q(final_demand_of_natural_gas_and_derivatives_in_industry_ict_energetic)
+- query = 
+    SUM(
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                INTERSECTION(EG(final_demand),EG(ict_industry)), "natural_gas? || lng? || propane?"
+              ),
+              "energetic?"
+            ),
+            value
+          )
+        ),
+        PRODUCT(
+          SUM(
+            SUM(
+              V(
+                FILTER(
+                  FILTER(
+                    INTERSECTION(EG(final_demand),EG(ict_industry)), "network_gas?"
+                  ),
+                  "energetic?"
+                ),
+                value
+              )
+            ),
+            PRODUCT(
+              SUM(
+                V(
+                  FILTER(
+                    FILTER(
+                      INTERSECTION(EG(final_demand),EG(ict_industry)), "compressed_network_gas?"
+                    ),
+                    "energetic?"
+                  ),
+                  value
+                )
+              ),
+              Q(share_of_network_gas_in_compressed_network_gas)
+            )
+          ),
+          Q(share_of_fossil_gas_in_gas_network)
+        )
+      ) / BILLIONS

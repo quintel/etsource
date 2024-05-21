@@ -1,4 +1,47 @@
-# Query for Sankey diagram: connection between natural_gas and feedstock
+# Query for Sankey download: connection between natural_gas and feedstock
 
 - unit = PJ
-- query = Q(final_demand_of_natural_gas_and_derivatives_non_energetic)
+- query = 
+    SUM(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              EG(final_demand), "natural_gas? || lng? || propane?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      PRODUCT(
+        SUM(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  EG(final_demand), "network_gas?"
+                ),
+                "!energetic?"
+              ),
+              value
+            )
+          ),
+          PRODUCT(
+            SUM(
+              V(
+                FILTER(
+                  FILTER(
+                    EG(final_demand), "compressed_network_gas?"
+                  ),
+                  "!energetic?"
+                ),
+                value
+              )
+            ),
+            Q(share_of_network_gas_in_compressed_network_gas)
+          )
+        ),
+        Q(share_of_fossil_gas_in_gas_network)
+      )
+    )/ BILLIONS
