@@ -2,13 +2,30 @@
 # where total number of units of electrolyser is calculated based on input of electrolyser relative capacity
 
 - query =
-    UPDATE(
-      V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
-      typical_input_capacity,
-      PRODUCT(
-        DIVIDE(USER_INPUT(), 100),
-        V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
-      )
+    EACH(
+      UPDATE(
+        V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
+        hydrogen_output_capacity,
+        PRODUCT(
+          DIVIDE(USER_INPUT(), 100),
+          V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity),
+          V(energy_hydrogen_electrolysis_hybrid_wind_electricity,"hydrogen.output")
+          )
+      ),
+      UPDATE(
+        V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
+        number_of_units,
+        DIVIDE(
+          PRODUCT(
+            DIVIDE(
+              USER_INPUT(),
+              100
+              ),
+            V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
+            ),
+          V(energy_hydrogen_electrolysis_hybrid_wind_electricity,typical_input_capacity)
+          )
+        )
     )
 
 - priority = 1
