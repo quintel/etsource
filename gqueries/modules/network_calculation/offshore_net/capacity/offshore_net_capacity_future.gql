@@ -1,9 +1,11 @@
 # The future capacity of the offshore network
+# Using typical_input_capacity of offshore network since this is the power that can be transmitted from offshore hybrid wind
 
 - query = 
     future:SUM(
       V(energy_power_wind_turbine_offshore, "electricity_output_capacity * number_of_units"),
-      V(energy_power_solar_pv_offshore, "electricity_output_capacity * number_of_units")
+      V(energy_power_solar_pv_offshore, "electricity_output_capacity * number_of_units"),
+      V(energy_power_from_offshore_network_electricity, "typical_input_capacity * number_of_units")
     )
 
 - unit = MW
