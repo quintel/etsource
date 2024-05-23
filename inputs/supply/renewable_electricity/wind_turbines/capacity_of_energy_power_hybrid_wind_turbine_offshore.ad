@@ -19,6 +19,22 @@
           DIVIDE(INPUT_VALUE(relative_capacity_of_electrolyser), 100) * USER_INPUT(),
           V(energy_hydrogen_electrolysis_hybrid_wind_electricity, typical_input_capacity)
         )
+      ),
+      UPDATE(
+        V(energy_power_from_offshore_network_electricity),
+        number_of_units,
+        DIVIDE(
+          DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
+          V(energy_power_from_offshore_network_electricity, typical_input_capacity)
+        )
+      ),
+      UPDATE(
+        V(energy_power_to_offshore_network_electricity),
+        number_of_units,
+        DIVIDE(
+          DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
+          V(energy_power_to_offshore_network_electricity, typical_input_capacity)
+        )
       )
     )
 
