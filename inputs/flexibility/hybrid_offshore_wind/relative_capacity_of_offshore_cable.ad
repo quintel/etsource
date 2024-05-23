@@ -1,58 +1,33 @@
+# Updates number_of_units of both cable from offshore network and cable to offshore network
 # Priority set to 1 so this query is calculated before capacity_of_energy_power_hybrid_wind_turbine_offshore
-# where total number of units of electrolyser is calculated based on input of electrolyser relative capacity
 
 - query =
-    EACH(
-      UPDATE(
-        V(energy_power_from_offshore_network_electricity),
-        electricity_output_capacity,
-        PRODUCT(
-          DIVIDE(USER_INPUT(), 100),
-          V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity),
-          V(energy_power_from_offshore_network_electricity,"electricity.output")
-          )
-      ),
-      UPDATE(
-        V(energy_power_from_offshore_network_electricity),
-        number_of_units,
-        DIVIDE(
-          PRODUCT(
-            DIVIDE(
-              USER_INPUT(),
-              100
-              ),
-            V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
+    relative_capacity_offshore_cable = DIVIDE(USER_INPUT(), 100);
+    installed_electricity_output_hybrid_offshore_wind = INPUT_VALUE(capacity_of_energy_power_hybrid_wind_turbine_offshore);
+      EACH(
+        UPDATE(
+          V(energy_power_from_offshore_network_electricity),
+          number_of_units,
+          DIVIDE(
+            PRODUCT(
+              relative_capacity_offshore_cable,
+              installed_electricity_output_hybrid_offshore_wind
             ),
-          V(energy_power_from_offshore_network_electricity,typical_input_capacity)
+            V(energy_power_from_offshore_network_electricity, typical_input_capacity)
           )
         ),
-      UPDATE(
-        V(energy_power_to_offshore_network_electricity),
-        electricity_output_capacity,
-        PRODUCT(
-          DIVIDE(USER_INPUT(), 100),
-          V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity),
-          V(energy_power_to_offshore_network_electricity,"electricity.output")
-          )
-      ),
-      UPDATE(
-        V(energy_power_to_offshore_network_electricity),
-        number_of_units,
-        DIVIDE(
-          PRODUCT(
-            DIVIDE(
-              USER_INPUT(),
-              100
-              ),
-            V(energy_power_hybrid_wind_turbine_offshore, electricity_output_capacity)
+        UPDATE(
+          V(energy_power_to_offshore_network_electricity),
+          number_of_units,
+          DIVIDE(
+            PRODUCT(
+              relative_capacity_offshore_cable,
+              installed_electricity_output_hybrid_offshore_wind
             ),
-          V(energy_power_to_offshore_network_electricity,typical_input_capacity)
+            V(energy_power_to_offshore_network_electricity, typical_input_capacity)
           )
-        )  
-    )
-
-
-
+        )
+      )      
 
 - priority = 1
 - max_value = 200.0
