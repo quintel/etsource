@@ -1,2 +1,9 @@
 - unit = PJ
-- query = V(energy_heat_flexibility_p2h_boiler_electricity, "steam_hot_water_output_conversion * demand") / BILLIONS
+- query = 
+  DIVIDE(
+    SUM(
+      V(energy_heat_flexibility_p2h_ht_boiler_electricity, "steam_hot_water_output_conversion * demand"),
+      V(energy_heat_flexibility_p2h_mt_boiler_electricity, "steam_hot_water_output_conversion * demand")
+    ),
+    BILLIONS
+    )
