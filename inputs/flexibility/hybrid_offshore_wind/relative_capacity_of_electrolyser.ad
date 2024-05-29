@@ -3,6 +3,7 @@
 - query =
     relative_capacity_electrolyser = DIVIDE(USER_INPUT(), 100);
     installed_electricity_output_hybrid_offshore_wind = INPUT_VALUE(capacity_of_energy_power_hybrid_wind_turbine_offshore);
+    EACH(
       UPDATE(
         V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
         number_of_units,
@@ -13,7 +14,16 @@
           ),
           V(energy_hydrogen_electrolysis_hybrid_wind_electricity, typical_input_capacity)
         )
+      ),
+      UPDATE(
+        V(energy_hydrogen_transport_pipelines_offshore),
+        number_of_units,
+        DIVIDE(
+          V(energy_hydrogen_electrolysis_hybrid_wind_electricity,"hydrogen_output_capacity * number_of_units"),
+          V(energy_hydrogen_transport_pipelines_offshore, typical_input_capacity)
+        )
       )
+    )
 
 - priority = 1
 - max_value = 200.0
