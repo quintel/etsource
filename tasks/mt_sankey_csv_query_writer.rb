@@ -6,9 +6,9 @@ def format_filename_part(text)
 end
 
 desc "Create Sankey files from a YAML configuration"
-task :create_sankey_files, [:yaml_file, :base_path] do |t, args|
-  yaml_file = args[:yaml_file] || 'config/sankey_csv.yml'
-  base_path = args[:base_path] || 'gqueries/mechnical_turk/sankey/download'
+task :create_sankey_files do |t, args|
+  yaml_file = 'config/sankey_csv.yml'
+  base_path = 'gqueries/mechnical_turk/sankey/download'
 
   # Load YAML content from the file
   data = YAML.load_file(yaml_file)
