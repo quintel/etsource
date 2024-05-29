@@ -21,6 +21,14 @@
         )
       ),
       UPDATE(
+        V(energy_hydrogen_transport_pipelines_offshore),
+        number_of_units,
+        DIVIDE(
+          V(energy_hydrogen_electrolysis_hybrid_wind_electricity,"hydrogen_output_capacity * number_of_units"),
+          V(energy_hydrogen_transport_pipelines_offshore, typical_input_capacity)
+        )
+      ),
+      UPDATE(
         V(energy_power_from_offshore_network_electricity),
         number_of_units,
         DIVIDE(
