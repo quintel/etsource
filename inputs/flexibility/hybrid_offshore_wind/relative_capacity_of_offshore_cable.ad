@@ -6,25 +6,25 @@
     installed_electricity_output_hybrid_offshore_wind = INPUT_VALUE(capacity_of_energy_power_hybrid_wind_turbine_offshore);
       EACH(
         UPDATE(
-          V(energy_power_from_offshore_network_electricity),
+          V(energy_power_hybrid_from_offshore_network_electricity),
           number_of_units,
           DIVIDE(
             PRODUCT(
               relative_capacity_offshore_cable,
               installed_electricity_output_hybrid_offshore_wind
             ),
-            V(energy_power_from_offshore_network_electricity, typical_input_capacity)
+            V(energy_power_hybrid_from_offshore_network_electricity, typical_input_capacity)
           )
         ),
         UPDATE(
-          V(energy_power_to_offshore_network_electricity),
+          V(energy_power_hybrid_to_offshore_network_electricity),
           number_of_units,
           DIVIDE(
             PRODUCT(
               relative_capacity_offshore_cable,
               installed_electricity_output_hybrid_offshore_wind
             ),
-            V(energy_power_to_offshore_network_electricity, typical_input_capacity)
+            V(energy_power_hybrid_to_offshore_network_electricity, typical_input_capacity)
           )
         )
       )      

@@ -13,35 +13,35 @@
         V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units)
       ),
       UPDATE(
-        V(energy_hydrogen_electrolysis_hybrid_wind_electricity),
+        V(energy_hydrogen_hybrid_electrolysis_wind_electricity),
         number_of_units,
         DIVIDE(
           DIVIDE(INPUT_VALUE(relative_capacity_of_electrolyser), 100) * USER_INPUT(),
-          V(energy_hydrogen_electrolysis_hybrid_wind_electricity, typical_input_capacity)
+          V(energy_hydrogen_hybrid_electrolysis_wind_electricity, typical_input_capacity)
         )
       ),
       UPDATE(
         V(energy_hydrogen_transport_pipelines_offshore),
         number_of_units,
         DIVIDE(
-          V(energy_hydrogen_electrolysis_hybrid_wind_electricity,"hydrogen_output_capacity * number_of_units"),
+          V(energy_hydrogen_hybrid_electrolysis_wind_electricity,"hydrogen_output_capacity * number_of_units"),
           V(energy_hydrogen_transport_pipelines_offshore, typical_input_capacity)
         )
       ),
       UPDATE(
-        V(energy_power_from_offshore_network_electricity),
+        V(energy_power_hybrid_from_offshore_network_electricity),
         number_of_units,
         DIVIDE(
           DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
-          V(energy_power_from_offshore_network_electricity, typical_input_capacity)
+          V(energy_power_hybrid_from_offshore_network_electricity, typical_input_capacity)
         )
       ),
       UPDATE(
-        V(energy_power_to_offshore_network_electricity),
+        V(energy_power_hybrid_to_offshore_network_electricity),
         number_of_units,
         DIVIDE(
           DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
-          V(energy_power_to_offshore_network_electricity, typical_input_capacity)
+          V(energy_power_hybrid_to_offshore_network_electricity, typical_input_capacity)
         )
       )
     )
