@@ -1,4 +1,6 @@
 # Updates number_of_units of both cable from offshore network and cable to offshore network
+# number_of_units of cable offshore to onshore (onshore is receiving end) is updated based on typical_input_capacity
+# number_of_units of cable onshore to offshore (offshore is receiving end) is updated based on electricity_output_capacity
 # Priority set to 1 so this query is calculated before capacity_of_energy_power_hybrid_wind_turbine_offshore
 
 - query =
@@ -24,14 +26,14 @@
               relative_capacity_offshore_cable,
               installed_electricity_output_hybrid_offshore_wind
             ),
-            V(energy_power_hybrid_to_offshore_network_electricity, typical_input_capacity)
+            V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_capacity)
           )
         )
       )      
 
 - priority = 1
-- max_value = 200.0
-- min_value = 20.0
+- max_value = 100.0
+- min_value = 0.0
 - start_value = 50.0
 - step_value = 0.1
 - unit = %
