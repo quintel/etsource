@@ -1,4 +1,6 @@
-# Number of units E-cable and H2 pipeline should be updated as well
+# Updates number of units hybrid offshore wind, electrolyser and E-cables
+# number_of_units of cable offshore to onshore (onshore is receiving end) is updated based on typical_input_capacity
+# number_of_units of cable onshore to offshore (offshore is receiving end) is updated based on electricity_output_capacity
 
 - query =
     EACH(
@@ -41,7 +43,7 @@
         number_of_units,
         DIVIDE(
           DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
-          V(energy_power_hybrid_to_offshore_network_electricity, typical_input_capacity)
+          V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_capacity)
         )
       )
     )
