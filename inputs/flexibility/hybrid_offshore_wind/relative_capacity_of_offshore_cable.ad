@@ -1,6 +1,5 @@
-# Updates number_of_units of both cable from offshore network and cable to offshore network
-# number_of_units of cable offshore to onshore (onshore is receiving end) is updated based on typical_input_capacity
-# number_of_units of cable onshore to offshore (offshore is receiving end) is updated based on electricity_output_capacity
+# Updates electricity_output_capacity of both cable from offshore network and cable to offshore network
+# electricity_output_capacity of cable offshore to onshore (onshore is receiving end) is with loss
 # Priority set to 1 so this query is calculated before capacity_of_energy_power_hybrid_wind_turbine_offshore
 
 - query =
@@ -9,25 +8,16 @@
       EACH(
         UPDATE(
           V(energy_power_hybrid_from_offshore_network_electricity),
-          number_of_units,
-          DIVIDE(
-            PRODUCT(
-              relative_capacity_offshore_cable,
-              installed_electricity_output_hybrid_offshore_wind
-            ),
-            V(energy_power_hybrid_from_offshore_network_electricity, typical_input_capacity)
+          electricity_output_capacity,
+          PRODUCT(
+            relative_capacity_offshore_cable * installed_electricity_output_hybrid_offshore_wind,
+            V(energy_power_hybrid_from_offshore_network_electricity, electricity_output_conversion)
           )
         ),
         UPDATE(
           V(energy_power_hybrid_to_offshore_network_electricity),
-          number_of_units,
-          DIVIDE(
-            PRODUCT(
-              relative_capacity_offshore_cable,
-              installed_electricity_output_hybrid_offshore_wind
-            ),
-            V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_capacity)
-          )
+          electricity_output_capacity,
+          relative_capacity_offshore_cable * installed_electricity_output_hybrid_offshore_wind
         )
       )      
 

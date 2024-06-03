@@ -1,6 +1,5 @@
 # Updates number of units hybrid offshore wind, electrolyser and E-cables
-# number_of_units of cable offshore to onshore (onshore is receiving end) is updated based on typical_input_capacity
-# number_of_units of cable onshore to offshore (offshore is receiving end) is updated based on electricity_output_capacity
+# electricity_output_capacity of cable offshore to onshore (onshore is receiving end) is with loss
 
 - query =
     EACH(
@@ -32,19 +31,16 @@
       ),
       UPDATE(
         V(energy_power_hybrid_from_offshore_network_electricity),
-        number_of_units,
-        DIVIDE(
+        electricity_output_capacity,
+        PRODUCT(
           DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
-          V(energy_power_hybrid_from_offshore_network_electricity, typical_input_capacity)
+          V(energy_power_hybrid_from_offshore_network_electricity, electricity_output_conversion)
         )
       ),
       UPDATE(
         V(energy_power_hybrid_to_offshore_network_electricity),
-        number_of_units,
-        DIVIDE(
-          DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
-          V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_capacity)
-        )
+        electricity_output_capacity,
+        DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT()
       )
     )
 
