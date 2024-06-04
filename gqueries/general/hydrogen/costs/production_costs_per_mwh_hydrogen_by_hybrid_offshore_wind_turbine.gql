@@ -1,13 +1,10 @@
-# Total cost of hydrogen production from offshore hybrid wind per MWh produced hydrogen
+# Total cost of hydrogen production from offshore electrolyser per MWh produced hydrogen
 
 - query =
     DIVIDE(
-        SUM(
-            V(energy_hydrogen_hybrid_electrolysis_wind_electricity, total_costs_per(:node)),
-            V(energy_power_hybrid_wind_turbine_offshore, total_costs_per(:node))
-        ),
-        DIVIDE(
-            V(energy_hydrogen_hybrid_electrolysis_wind_electricity, output_of_hydrogen),
-            MJ_PER_MWH
-        )
+      V(energy_hydrogen_hybrid_electrolysis_wind_electricity, total_costs_per(:node)),
+      DIVIDE(
+        V(energy_hydrogen_hybrid_electrolysis_wind_electricity, output_of_hydrogen),
+        MJ_PER_MWH
+      )
     )
