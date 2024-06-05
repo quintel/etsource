@@ -1,0 +1,8 @@
+# Max peak output is based on hourly input curve corrected for losses
+
+- query = 
+    future:PRODUCT(
+      MAX(V(energy_power_hybrid_from_offshore_network_electricity, electricity_input_curve)),
+      V(energy_power_hybrid_from_offshore_network_electricity, electricity_output_conversion)
+    )
+- unit = MW
