@@ -22,7 +22,7 @@
         )
     )
 - priority = 0
-- max_value_gql = present:2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_power_combined_cycle_coal,full_load_hours)), MJ_PER_MWH)
+- max_value_gql = present:MAX(10000,2*DIVIDE(DIVIDE(Q(total_electricity_consumed), V(energy_power_combined_cycle_coal,full_load_hours)), MJ_PER_MWH))
 - min_value = 0.0
 - start_value_gql = present:SUM(V(energy_power_combined_cycle_ccs_coal, "number_of_units*electricity_output_capacity"),V(energy_power_combined_cycle_coal, "number_of_units*electricity_output_capacity"))
 - step_value = 1.0
