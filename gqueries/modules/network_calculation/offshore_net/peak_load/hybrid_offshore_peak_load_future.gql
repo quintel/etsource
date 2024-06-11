@@ -1,0 +1,9 @@
+# The future peak load of the hyrbid offshore network
+
+- query = 
+    future:MAX(
+      MAX(V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_curve)),
+      MAX(V(energy_power_hybrid_from_offshore_network_electricity, electricity_input_curve))
+    )
+
+- unit = MW
