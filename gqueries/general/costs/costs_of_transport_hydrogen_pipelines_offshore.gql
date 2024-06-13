@@ -1,0 +1,8 @@
+# unit = euro/MWh
+
+- query =
+    DIVIDE(
+        V(energy_hydrogen_transport_pipelines_offshore, fixed_costs_per(:plant)),
+        V(energy_hydrogen_transport_pipelines_offshore, "typical_input_capacity * full_load_hours")
+    )
+- unit = euro

@@ -1,0 +1,16 @@
+# unit = euro/MWh
+
+- query =
+  present_value = QUERY_PRESENT(-> {Q(costs_of_transport_hydrogen_pipelines_offshore)});
+  relative_value = USER_INPUT() / present_value;
+      EACH(
+        UPDATE_WITH_FACTOR(V(energy_hydrogen_transport_pipelines_offshore), initial_investment, relative_value),
+        UPDATE_WITH_FACTOR(V(energy_hydrogen_transport_pipelines_offshore), fixed_operation_and_maintenance_costs_per_year, relative_value)
+      )
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:Q(costs_of_transport_hydrogen_pipelines_offshore)
+- step_value = 0.01
+- unit = euro
+- update_period = future
