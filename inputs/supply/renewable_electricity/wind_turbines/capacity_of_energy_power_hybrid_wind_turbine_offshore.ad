@@ -40,7 +40,10 @@
       UPDATE(
         V(energy_power_hybrid_to_offshore_network_electricity),
         electricity_output_capacity,
-        DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT()
+        PRODUCT(
+          DIVIDE(INPUT_VALUE(relative_capacity_of_offshore_cable), 100) * USER_INPUT(),
+          V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_conversion)
+        )
       )
     )
 

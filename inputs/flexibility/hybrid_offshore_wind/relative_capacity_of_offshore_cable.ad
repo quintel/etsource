@@ -17,7 +17,10 @@
         UPDATE(
           V(energy_power_hybrid_to_offshore_network_electricity),
           electricity_output_capacity,
-          relative_capacity_offshore_cable * installed_electricity_output_hybrid_offshore_wind
+          PRODUCT(
+            relative_capacity_offshore_cable * installed_electricity_output_hybrid_offshore_wind,
+            V(energy_power_hybrid_to_offshore_network_electricity, electricity_output_conversion)
+          )
         )
       )      
 
