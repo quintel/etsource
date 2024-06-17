@@ -4,6 +4,7 @@
 - query =
     SUM(
       V(energy_hydrogen_flexibility_p2g_electricity, "loss_output_conversion * demand"),
+      V(energy_hydrogen_hybrid_electrolysis_wind_electricity, "loss_output_conversion * demand"),
       SUM(V(G(p2h), "loss_output_conversion * demand"))
     ) / BILLIONS
 - unit = PJ
