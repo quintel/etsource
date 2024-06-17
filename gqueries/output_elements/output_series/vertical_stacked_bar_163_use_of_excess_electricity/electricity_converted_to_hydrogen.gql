@@ -1,2 +1,9 @@
 - unit = PJ
-- query = V(energy_hydrogen_flexibility_p2g_electricity, "hydrogen_output_conversion * demand") / BILLIONS
+- query = 
+    SUM(
+      V(
+        energy_hydrogen_flexibility_p2g_electricity,
+        energy_hydrogen_hybrid_electrolysis_wind_electricity,
+        "hydrogen_output_conversion * demand"
+      )
+    ) / BILLIONS
