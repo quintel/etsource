@@ -5,6 +5,8 @@
 
 - query =
     original_nou = V(energy_power_wind_turbine_offshore, number_of_units);
+    original_nou_hybrid = V(energy_power_hybrid_wind_turbine_offshore, number_of_units);
+
     EACH(
       UPDATE(V(energy_power_wind_turbine_offshore), full_load_hours, USER_INPUT()),
       UPDATE(V(energy_power_wind_turbine_offshore), number_of_units, original_nou),
@@ -12,6 +14,13 @@
         V(energy_power_wind_turbine_offshore),
         preset_demand_by_electricity_production,
         V(energy_power_wind_turbine_offshore, production_based_on_number_of_units)
+      ),
+      UPDATE(V(energy_power_hyrbid_wind_turbine_offshore), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_power_hyrbid_wind_turbine_offshore), number_of_units, original_nou_hybrid),
+      UPDATE(
+        V(energy_power_hyrbid_wind_turbine_offshore),
+        preset_demand_by_electricity_production,
+        V(energy_power_hyrbid_wind_turbine_offshore, production_based_on_number_of_units)
       )
     )
 - priority = 1
