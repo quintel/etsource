@@ -1,0 +1,16 @@
+- query =
+      UPDATE(
+        INPUT_SLOTS(V(industry_heat_backup_burner),hydrogen),
+         conversion, 
+         DIVIDE(USER_INPUT(),100)
+      )
+- share_group = industry_backup_heat
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_heat_backup_burner,hydrogen_conversion) * 100
+- step_value = 0.1
+- unit = %
+- update_period = future
+# - disabled_by = external_coupling_industry_chemical_other_useable_heat
+
