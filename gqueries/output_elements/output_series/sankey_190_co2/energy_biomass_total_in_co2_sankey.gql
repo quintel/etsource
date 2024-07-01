@@ -27,6 +27,13 @@
                 input_of_biogas
             )
         ) *  V(CARRIER(biogas), potential_co2_conversion_per_mj),
+        SUM(
+            V(
+                energy_hydrogen_biomass_gasification_ccs,
+                energy_hydrogen_biomass_gasification,
+                input_of_torrefied_biomass_pellets
+            )
+        ) * V(CARRIER(torrefied_biomass_pellets), potential_co2_conversion_per_mj),
         V(energy_distribution_biogenic_waste, demand) * V(CARRIER(biogenic_waste), potential_co2_conversion_per_mj)
     ) / THOUSANDS
     + PRODUCT(
