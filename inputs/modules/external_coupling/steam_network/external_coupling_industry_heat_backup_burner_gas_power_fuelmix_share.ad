@@ -1,0 +1,15 @@
+- query =
+    UPDATE(
+      INPUT_SLOTS(V(industry_heat_backup_burner_network_gas),gas_power_fuelmix),
+      conversion, 
+      DIVIDE(USER_INPUT(),100.0)
+    )
+- share_group = external_coupling_backup_burner
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(industry_heat_backup_burner_network_gas,gas_power_fuelmix_input_conversion) * 100.0
+- step_value = 0.1
+- unit = %
+- update_period = future
+- coupling_groups = [ctm]
