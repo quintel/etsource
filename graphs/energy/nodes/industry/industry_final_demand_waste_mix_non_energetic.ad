@@ -1,7 +1,10 @@
 - use = non_energetic
 - energy_balance_group = final consumption
 - groups = [final_demand_group, non_energetic_use, co2_emissions_primary]
-- graph_methods = []
-- free_co2_factor = 0.0
+- graph_methods = [demand]
+- free_co2_factor = 1.0
 
-~ demand = 0.0
+~ demand =
+    EB("non-energy use industry/transformation/energy", "Municipal waste (non-renewable)") +
+    EB("non-energy use industry/transformation/energy", "Municipal waste (renewable)") +
+    EB("non-energy use industry/transformation/energy", "Industrial waste")
