@@ -1,0 +1,18 @@
+# Non-energetic final demand of the 'hydrogen' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_non_specified_industry)
+            ),
+            "! energetic?"
+          ),
+          waste_mix?
+        ),
+        value
+      )
+    ) / BILLIONS
