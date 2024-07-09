@@ -1,7 +1,7 @@
 - query =
     useful_demand_network_gas_energetic = (USER_INPUT() / 100.0) * Q(final_demand_of_other_non_specified_industry_energetic) * BILLIONS;
     UPDATE(V(industry_useful_demand_for_other_non_specified_network_gas), preset_demand, useful_demand_network_gas_energetic)
-- share_group = other_industry_energetic
+- share_group = external_coupling_other_industry_energetic
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
@@ -9,3 +9,4 @@
 - step_value = 0.1
 - unit = %
 - update_period = future
+- coupling_groups = [ctm]
