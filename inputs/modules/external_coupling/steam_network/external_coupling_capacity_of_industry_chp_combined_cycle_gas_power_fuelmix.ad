@@ -1,16 +1,17 @@
 - query =
     demand_per_mw = V(industry_chp_combined_cycle_gas_power_fuelmix,"full_load_hours * MJ_PER_MWH / electricity_output_conversion");
     EACH(
-        UPDATE(
-            V(industry_chp_combined_cycle_gas_power_fuelmix),
-            number_of_units,
-            USER_INPUT() / V(industry_chp_combined_cycle_gas_power_fuelmix,electricity_output_capacity)
-        ),
-        UPDATE(
-            L(industry_chp_combined_cycle_gas_power_fuelmix),
-            preset_demand,
-            USER_INPUT() * demand_per_mw
-    ))
+      UPDATE(
+        V(industry_chp_combined_cycle_gas_power_fuelmix),
+        number_of_units,
+        USER_INPUT() / V(industry_chp_combined_cycle_gas_power_fuelmix,electricity_output_capacity)
+      ),
+      UPDATE(
+        L(industry_chp_combined_cycle_gas_power_fuelmix),
+        preset_demand,
+        USER_INPUT() * demand_per_mw
+      )
+    )
 - priority = 0
 - max_value_gql = present:2*DIVIDE(DIVIDE(Q(heat_production_industry) * BILLIONS, V(industry_chp_combined_cycle_gas_power_fuelmix,full_load_hours)), MJ_PER_MWH)
 - min_value = 0.0
@@ -18,4 +19,4 @@
 - step_value = 1.0
 - unit = MW
 - update_period = future
-- disabled_by = external_coupling_capacity_of_industry_chp_combined_cycle_gas_power_fuelmix
+- coupling_groups = [ctm]
