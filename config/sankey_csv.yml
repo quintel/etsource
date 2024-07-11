@@ -221,6 +221,11 @@ rows:
     Type: Input
     Value: electricity_for_synthetic_kerosene_conversion
   - Group: Conversion
+    Carrier: Electricity
+    Category: Synthetic methanol production
+    Type: Input
+    Value: electricity_for_synthetic_methanol_conversion  
+  - Group: Conversion
     Carrier: Loss
     Category: Electricity to hydrogen conversion losses
     Type: Output
@@ -341,6 +346,11 @@ rows:
     Category: Synthetic kerosene production
     Type: Input
     Value: hydrogen_for_synthetic_kerosene_conversion
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Synthetic methanol production
+    Type: Input
+    Value: hydrogen_for_synthetic_methanol_conversion
   - Group: Conversion
     Carrier: Hydrogen
     Category: Power-to-gas
@@ -1395,6 +1405,27 @@ rows:
     Category: Feedstock
     Type: Input
     Value: imported_ammonia_to_feedstock_in_sankey
+
+  - Group: Primary demand
+    Carrier: Methanol
+    Category: Import
+    Type: Output
+    Value: import_of_methanol
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Synthetic methanol production
+    Type: Output
+    Value: conversion_to_synthetic_methanol
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Export
+    Type: Input
+    Value: methanol_to_export_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Feedstock
+    Type: Input
+    Value: methanol_to_feedstock_in_sankey
   
   - Group: Primary demand
     Carrier: LOHC
