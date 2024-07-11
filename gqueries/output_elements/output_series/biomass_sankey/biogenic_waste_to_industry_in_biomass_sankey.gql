@@ -1,8 +1,11 @@
-# Query for Biomass Sankey diagram: connection between biogenic waste and electricity (incl. chp)
+# Query for Biomass Sankey diagram: connection between biogenic waste and industry
 
 - unit = PJ
 - query =
      DIVIDE(
-      V(energy_export_biogenic_waste, demand),
-      BILLIONS
-      )
+          SUM(
+               V(industry_final_demand_waste_mix_non_energetic,primary_demand_of_sustainable)
+          ),
+               BILLIONS
+     )
+
