@@ -1,2 +1,6 @@
 - unit = MJ
-- query = V(industry_final_demand_kerosene, input_of_kerosene)
+- query = 
+      SUM(
+        V(industry_final_demand_kerosene, input_of_kerosene),
+        V(industry_final_demand_kerosene_non_energetic, input_of_kerosene)
+      )
