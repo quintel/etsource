@@ -1,0 +1,7 @@
+# Carrier costs based on net flows (imports - backup export)
+
+- query =
+    PRODUCT(V(CARRIER(methanol), cost_per_mj), V(energy_import_methanol, demand))
+    -
+    PRODUCT(V(CARRIER(methanol), cost_per_mj), V(energy_export_methanol_backup, demand))
+- unit = euro
