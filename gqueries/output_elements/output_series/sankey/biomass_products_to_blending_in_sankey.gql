@@ -1,0 +1,6 @@
+# Query for Sankey diagram: connection between biomass_products and waste mix blending
+# Sustainability share of waste mix is used since input of non-biogenic and biogenic waste are
+# already specified as waste mix
+
+- query = V(energy_distribution_waste_mix, "sustainability_share * demand") / BILLIONS
+- unit = PJ
