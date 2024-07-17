@@ -1,10 +1,4 @@
-# Query for Sankey diagram: connection between ammonia and feedstock
+# Query for Sankey diagram: connection between methanol and feedstock
 
 - unit = PJ
-- query =
-    DIVIDE(
-      SUM(
-        V(INTERSECTION(G(final_demand_group),USE(non_energetic)),"input_of_methanol")
-      ),
-      BILLIONS
-    )
+- query = Q(final_demand_of_methanol_non_energetic)

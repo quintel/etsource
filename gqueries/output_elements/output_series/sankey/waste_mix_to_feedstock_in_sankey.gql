@@ -1,9 +1,4 @@
 # Query for Sankey diagram: connection between waste mix and feedstock
 
 - unit = PJ
-- query =
-    DIVIDE(
-        SUM(
-            V(INTERSECTION(G(final_demand_group),USE(non_energetic)),"input_of_waste_mix")
-        ),
-    BILLIONS)
+- query = Q(final_demand_of_waste_mix_non_energetic)
