@@ -1,0 +1,15 @@
+# Final demand of the 'waste_mix' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :energy"
+          ),
+          waste_mix?
+        ),
+        value
+      )
+    ) / BILLIONS
