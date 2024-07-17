@@ -1,6 +1,6 @@
 - query =
-    share_hydrogen = INPUT_VALUE(industry_other_paper_burner_hydrogen_share);
-    share_network_gas = INPUT_VALUE(industry_other_paper_burner_network_gas_share);
+    share_hydrogen = INPUT_VALUE(external_coupling_industry_other_paper_burner_hydrogen_share);
+    share_network_gas = INPUT_VALUE(external_coupling_industry_other_paper_burner_network_gas_share);
     share_1 = DIVIDE(share_hydrogen,SUM(share_hydrogen,share_network_gas));
     EACH(
       UPDATE(
@@ -15,10 +15,10 @@
       )
     )
 - priority = 0
-- max_value_gql = present:MAX(10000,PRODUCT(DIVIDE(V(industry_useful_demand_for_other_paper_useable_heat,demand),(8760 * MJ_PER_MWH)),2.0))
+- max_value = 10000.0
 - min_value = 0.0
-- start_value = 0.0
+- start_value_gql = present:0.0
 - step_value = 1.0
 - unit = MW
 - update_period = future
-- disabled_by = external_coupling_industry_other_paper_p2h_capacity
+- coupling_groups = [ctm]
