@@ -1,4 +1,15 @@
 # Demand of export of biogenic waste
 
 - unit = PJ
-- query = DIVIDE(V(energy_export_biogenic_waste, demand), BILLIONS)
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            biogenic_waste
+          )
+        )
+      ),
+      BILLIONS
+    )
