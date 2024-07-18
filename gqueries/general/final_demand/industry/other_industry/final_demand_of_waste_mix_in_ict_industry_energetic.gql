@@ -1,0 +1,15 @@
+# Energetic final demand of the 'waste_mix' carrier group in industry ict
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(ict_industry)), "waste_mix?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS
