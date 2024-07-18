@@ -1,6 +1,7 @@
-# This node can be used for external coupling of the steel sector by API users.
-# Node attributes are taken from the electrolysis current process, correcting for the conversion
+# This node can be used for external coupling of the aluminium sector by API users
+# Technical attributes are taken from the electrolysis current process, correcting for the conversion
 # loss of the network gas burner and normalizing and rounding the resulting values.
+# Cost attributes are taken from network gas burner, heat_output_capacity converted to typical_input_capacity
 
 - use = energetic
 - input.electricity = 0.934161
@@ -8,5 +9,18 @@
 - input.hydrogen = 0.0
 - output.loss = elastic
 - output.not_defined = 0.016190
-- groups = [application_group, mv_net_demand]
+- groups = [application_group, mv_net_demand, costs_building_and_installations_industry, wacc_proven_tech]
 - free_co2_factor = 0.0
+- full_load_hours = 2190.0
+- takes_part_in_ets = 1.0
+- typical_input_capacity = 111.11
+- initial_investment = 6000000.0
+- ccs_investment = 0.0
+- cost_of_installing = 0.0
+- decommissioning_costs = 0.0
+- fixed_operation_and_maintenance_costs_per_year = 100000.0
+- variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
+- variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
+- construction_time = 0.0
+- technical_lifetime = 15.0
+- wacc = 0.04
