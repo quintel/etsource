@@ -1,0 +1,15 @@
+# Energetic final demand of the 'waste_mix' carrier group in buildings cooling
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(EG(final_demand),EG(cooling_buildings)), "waste_mix?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    ) / BILLIONS
