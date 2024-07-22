@@ -1,0 +1,12 @@
+# Final demand of renewable waste in the 'waste_mix' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), waste_mix?
+        ),
+        "sustainability_share * value"
+      )
+    ) / BILLIONS

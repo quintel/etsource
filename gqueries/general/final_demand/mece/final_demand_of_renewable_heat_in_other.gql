@@ -1,0 +1,24 @@
+# Final demand of renewable heat in the 'heat' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          steam_hot_water?
+        ),
+        "sustainability_share * value"
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          useable_heat?
+        ),
+        "sustainability_share * value"
+      )
+    ) / BILLIONS
