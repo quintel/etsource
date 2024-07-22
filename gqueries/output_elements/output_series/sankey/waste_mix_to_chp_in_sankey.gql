@@ -1,6 +1,6 @@
 # Query for Sankey diagram: connection between waste mix and CHP
 
-- query = V(INTERSECTION(G(heat_production),G(electricity_production)), input_of_waste_mix).sum / BILLIONS
+- query = SUM(V(INTERSECTION(G(heat_production),G(electricity_production)), input_of_waste_mix)) / BILLIONS
 - unit = PJ
 
 
