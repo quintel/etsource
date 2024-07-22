@@ -1,0 +1,15 @@
+# Final demand of fossil electricity in the 'electricity' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :transport"
+          ),
+          electricity?
+        ),
+        "(1.0 - sustainability_share) * value"
+      )
+    ) / BILLIONS

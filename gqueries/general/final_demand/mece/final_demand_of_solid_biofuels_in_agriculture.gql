@@ -1,0 +1,24 @@
+# Final demand of the 'solid_biofuels' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :agriculture"
+          ),
+          wood_pellets?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :agriculture"
+          ),
+          torrefied_biomass_pellets?
+        ),
+        value
+      )
+    ) / BILLIONS
