@@ -1,18 +1,4 @@
 # Energetic final demand of the 'fossil electricity' carrier group
 
 - unit = MJ
-- query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :industry"
-            ),
-            energetic?
-          ),
-          electricity?
-        ),
-        "(1.0 - sustainability_share) * value"
-      )
-    )
+- query = Q(final_demand_of_fossil_electricity_in_industry) * BILLIONS

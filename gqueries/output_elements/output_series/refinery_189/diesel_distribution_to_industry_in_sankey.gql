@@ -1,4 +1,10 @@
 # Query for refinery sankey: connection between distribution and use of diesel in the industry sector
 
+- query = 
+    DIVIDE(
+      SUM(
+        V(industry_final_demand_diesel, demand),
+        V(industry_final_demand_diesel_non_energetic, demand)
+      )
+    )
 - unit = PJ
-- query = DIVIDE(V(industry_final_demand_diesel, demand), BILLIONS)

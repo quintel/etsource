@@ -157,6 +157,11 @@ rows:
     Value: biomass_products_in_source_of_electricity_production
   - Group: Conversion
     Carrier: Electricity
+    Category: Waste mix power plants
+    Type: Output
+    Value: electricity_prod_from_waste_mix_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
     Category: Natural gas power plants
     Type: Output
     Value: gas_in_source_of_electricity_production
@@ -221,6 +226,11 @@ rows:
     Type: Input
     Value: electricity_for_synthetic_kerosene_conversion
   - Group: Conversion
+    Carrier: Electricity
+    Category: Synthetic methanol production
+    Type: Input
+    Value: electricity_for_synthetic_methanol_conversion  
+  - Group: Conversion
     Carrier: Loss
     Category: Electricity to hydrogen conversion losses
     Type: Output
@@ -250,6 +260,11 @@ rows:
     Category: Electricity to electricity conversion losses
     Type: Output
     Value: conversion_loss_electricity_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_synthetic_methanol
   - Group: Final demand
     Carrier: Electricity
     Category: Households space heating and hot water
@@ -343,6 +358,11 @@ rows:
     Value: hydrogen_for_synthetic_kerosene_conversion
   - Group: Conversion
     Carrier: Hydrogen
+    Category: Synthetic methanol production
+    Type: Input
+    Value: hydrogen_for_synthetic_methanol_conversion
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Power-to-gas
     Type: Output
     Value: p2g_to_hydrogen_prod_in_sankey
@@ -431,6 +451,11 @@ rows:
     Category: Hydrogen to hydrogen conversion losses
     Type: Output
     Value: conversion_loss_hydrogen_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_synthetic_methanol
   - Group: Final demand
     Carrier: Hydrogen
     Category: Households space heating and hot water
@@ -563,6 +588,11 @@ rows:
     Category: Biomass central heating
     Type: Output
     Value: biomass_products_in_source_of_central_heat_production
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Waste mix central heating
+    Type: Output
+    Value: steam_hot_water_prod_from_waste_mix_in_sankey
   - Group: Conversion
     Carrier: Steam hot water
     Category: Solar thermal central heating
@@ -918,6 +948,11 @@ rows:
     Type: Input
     Value: oil_and_derivatives_to_central_heat_prod_in_sankey
   - Group: Conversion
+    Carrier: Oil
+    Category: Oil for blending in oil mix
+    Type: Output
+    Value: biomass_products_to_oil_and_derivatives_in_sankey
+  - Group: Conversion
     Carrier: Loss
     Category: Oil to electricity conversion losses
     Type: Output
@@ -1194,11 +1229,6 @@ rows:
     Category: Biogenic waste
     Type: Output
     Value: total_primary_demand_of_biogenic_waste
-  - Group: Primary demand
-    Carrier: Biomass
-    Category: Non-biogenic waste
-    Type: Output
-    Value: total_primary_demand_of_non_biogenic_waste
   - Group: Conversion
     Carrier: Biomass
     Category: Biomass gasification
@@ -1219,6 +1249,16 @@ rows:
     Category: Biomass central heating
     Type: Input
     Value: biomass_products_to_central_heat_prod_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biogenic waste for blending in waste mix
+    Type: Input
+    Value: biomass_products_to_blending_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Liquid biofuels for blending in oil mix
+    Type: Input
+    Value: biomass_products_to_oil_and_derivatives_in_sankey
   - Group: Conversion
     Carrier: Biomass
     Category: Residual green gas from industry
@@ -1395,7 +1435,83 @@ rows:
     Category: Feedstock
     Type: Input
     Value: imported_ammonia_to_feedstock_in_sankey
-  
+
+  - Group: Primary demand
+    Carrier: Methanol
+    Category: Import
+    Type: Output
+    Value: import_of_methanol
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Synthetic methanol production
+    Type: Output
+    Value: conversion_to_synthetic_methanol
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Households space heating and hot water
+    Type: Input
+    Value: methanol_to_households_space_heating_and_hot_water_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Households excl. space heating and hot water
+    Type: Input
+    Value: methanol_to_households_other_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Buildings space heating
+    Type: Input
+    Value: methanol_to_buildings_space_heating_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: methanol_to_buildings_other_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Agriculture
+    Type: Input
+    Value: methanol_to_agriculture_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Industry excl. ICT
+    Type: Input
+    Value: methanol_to_industry_other_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Industry ICT
+    Type: Input
+    Value: methanol_to_industry_ict_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: National transport
+    Type: Input
+    Value: methanol_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: International transport
+    Type: Input
+    Value: methanol_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Export
+    Type: Input
+    Value: methanol_to_export_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Other
+    Type: Input
+    Value: methanol_to_other_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Energy
+    Type: Input
+    Value: methanol_to_energy_in_sankey
+  - Group: Final demand
+    Carrier: Methanol
+    Category: Feedstock
+    Type: Input
+    Value: methanol_to_feedstock_in_sankey
+
   - Group: Primary demand
     Carrier: LOHC
     Category: Import
@@ -1436,7 +1552,106 @@ rows:
     Carrier: Liquid hydrogen
     Category: Export
     Type: Input
-    Value: imported_liquid_hydrogen_to_export_in_sankey  
+    Value: imported_liquid_hydrogen_to_export_in_sankey
 
+  - Group: Primary demand
+    Carrier: Non-biogenic waste
+    Category: Non-biogenic waste
+    Type: Output
+    Value: total_primary_demand_of_non_biogenic_waste
+  - Group: Conversion
+    Carrier: Non-biogenic waste
+    Category: Non-biogenic waste for blending in waste mix
+    Type: Input
+    Value: non_biogenic_waste_to_blending_in_sankey
 
-
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix power plants
+    Type: Input
+    Value: waste_mix_to_chp_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix central heating
+    Type: Input
+    Value: waste_mix_to_central_heat_prod_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Blended waste mix
+    Type: Output
+    Value: waste_mix_from_blending_in_sankey
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to electricity conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_electricity
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to steam hot water conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_steam_hot_water
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Households space heating and hot water
+    Type: Input
+    Value: waste_mix_to_households_space_heating_and_hot_water_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Households excl. space heating and hot water
+    Type: Input
+    Value: waste_mix_to_households_other_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Buildings space heating
+    Type: Input
+    Value: waste_mix_to_buildings_space_heating_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Buildings excl. space heating
+    Type: Input
+    Value: waste_mix_to_buildings_other_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Agriculture
+    Type: Input
+    Value: waste_mix_to_agriculture_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Industry excl. ICT
+    Type: Input
+    Value: waste_mix_to_industry_other_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Industry ICT
+    Type: Input
+    Value: waste_mix_to_industry_ict_energetic_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: National transport
+    Type: Input
+    Value: waste_mix_to_transport_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: International transport
+    Type: Input
+    Value: waste_mix_to_bunkers_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Export
+    Type: Input
+    Value: waste_mix_to_export_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Other
+    Type: Input
+    Value: waste_mix_to_other_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Energy
+    Type: Input
+    Value: waste_mix_to_energy_in_sankey
+  - Group: Final demand
+    Carrier: Waste mix
+    Category: Feedstock
+    Type: Input
+    Value: waste_mix_to_feedstock_in_sankey

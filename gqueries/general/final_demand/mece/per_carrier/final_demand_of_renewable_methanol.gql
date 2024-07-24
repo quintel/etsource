@@ -1,0 +1,12 @@
+# Final demand of renewable methanol in the 'methanol' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          EG(final_demand), methanol?
+        ),
+        "sustainability_share * value"
+      )
+    ) / BILLIONS

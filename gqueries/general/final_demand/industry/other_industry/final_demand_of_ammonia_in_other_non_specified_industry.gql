@@ -1,0 +1,15 @@
+# Energetic and non-energetic final demand of the 'ammonia' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            EG(final_demand),EG(other_non_specified_industry)
+          ),
+          ammonia?
+        ),
+        value
+      )
+    ) / BILLIONS

@@ -1,18 +1,4 @@
 # Energetic final demand of the 'solid_biofuels' carrier group
 
 - unit = MJ
-- query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :bunkers"
-            ),
-            energetic?
-          ),
-          wood_pellets?
-        ),
-        value
-      )
-    )
+- query = Q(final_demand_of_solid_biofuels_in_bunkers) * BILLIONS

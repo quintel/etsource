@@ -1,4 +1,10 @@
 # Query for refinery sankey: connection between distribution and use of lpg in industry
 
+- query = 
+    DIVIDE(
+      SUM(
+        V(industry_final_demand_lpg, demand),
+        V(industry_final_demand_lpg_non_energetic, demand)
+      )
+    )
 - unit = PJ
-- query = DIVIDE(V(industry_final_demand_lpg, demand), BILLIONS)
