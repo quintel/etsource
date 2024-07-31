@@ -1,0 +1,14 @@
+# Direct conversion output of steam hot water from central heating through gas power fuelmix heaters
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(central_heat_producing_converters_sankey),
+          "output_of_steam_hot_water * gas_power_fuelmix_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+
+- unit = PJ

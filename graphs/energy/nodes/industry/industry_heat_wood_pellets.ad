@@ -1,0 +1,28 @@
+# this node is activated once input for external_coupling_capacity_of_industry_chp_wood_pellets is set
+# this node provides the heat output of the connected CHP
+# full_load_hours are an estimation for the must-run characteristic of heat supply from industrial CHPs
+# steam hot water efficiency is a generic value which will be updated when external coupling is activated
+# cost attributes are set to 0 since these are allocated to the connected CHP
+
+- output.loss = elastic
+- output.steam_hot_water = 0.9
+- groups = [preset_demand, heat_production, wacc_proven_tech, costs_production_heat_plants, sankey_conversion_group]
+- use = energetic
+- presentation_group = traditional_heat
+- availability = 0.9
+- typical_input_capacity = 632.6
+- ccs_investment = 0.0
+- construction_time = 1.0
+- cost_of_installing = 0.0
+- decommissioning_costs = 0.0
+- fixed_operation_and_maintenance_costs_per_year = 0.0
+- initial_investment = 0.0
+- technical_lifetime = 25.0
+- variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
+- variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
+- wacc = 0.04
+- free_co2_factor = 0.0
+- takes_part_in_ets = 0.0
+
+~ demand = 0.0
+~ full_load_hours = 8300.0
