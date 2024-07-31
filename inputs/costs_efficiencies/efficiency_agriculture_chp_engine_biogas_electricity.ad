@@ -1,12 +1,14 @@
-- query = 
+# Priority set to 1 to set prior to input for capacity
+
+- query =
     UPDATE(
       OUTPUT_SLOTS(
-        V(agriculture_chp_engine_biogas), 
+        V(agriculture_chp_engine_biogas),
         electricity
-      ), 
+      ),
       conversion, DIVIDE(USER_INPUT(), 100.0)
     )
-- priority = 0
+- priority = 1
 - max_value_gql = present:MIN(V(agriculture_chp_engine_biogas, electricity_output_conversion) * 100.0 + 10.0, 100.0)
 - min_value_gql = present:MAX(V(agriculture_chp_engine_biogas, electricity_output_conversion) * 100.0 - 10.0, 0.0)
 - start_value_gql = present:V(agriculture_chp_engine_biogas, electricity_output_conversion) * 100.0

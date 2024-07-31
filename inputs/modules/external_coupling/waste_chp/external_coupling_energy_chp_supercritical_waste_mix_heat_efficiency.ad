@@ -1,5 +1,7 @@
+# Priority set to 2 to set prior to external coupling input for share in ccs and external coupling input for capacity
+
 - query = UPDATE(OUTPUT_SLOTS(V(energy_chp_supercritical_ht_waste_mix), steam_hot_water), conversion, DIVIDE(USER_INPUT(), 100.0))
-- priority = 0
+- priority = 2
 - max_value = 100.0
 - min_value = 0.0
 - start_value_gql = present:V(energy_chp_supercritical_ht_waste_mix, steam_hot_water_output_conversion) * 100.0
