@@ -16,6 +16,6 @@ group :test do
   gem 'rspec'
   gem 'rspec_junit_formatter'
 
-  gem 'refinery', ref: 'f3ba2fb', github: 'quintel/refinery'
+  gem 'refinery', ref: '2878111', github: 'quintel/refinery'
   gem 'rubel',    ref: 'e36554a', github: 'quintel/rubel'
 end
