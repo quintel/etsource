@@ -1,15 +1,50 @@
-# Query for Sankey diagram: connection between natural_gas and other
+# Query for Sankey download: connection between natural_gas and other
 
 - unit = PJ
-- query =
-    DIVIDE(
+- query = 
+    SUM(
       SUM(
-        SUM(
-          V(INTERSECTION(INTERSECTION(SECTOR(other),G(final_demand_group)),USE(energetic)),"input_of_natural_gas + input_of_lng + input_of_propane")
-        ),
-        SUM( 
-          V(INTERSECTION(INTERSECTION(SECTOR(other),G(final_demand_group)),USE(energetic)),"input_of_compressed_network_gas + input_of_network_gas")
-        ) * Q(share_of_fossil_gas_in_gas_network)
+        V(
+          FILTER(
+            FILTER(
+              FILTER(
+                EG(final_demand),"sector == :other"), "natural_gas? || lng? || propane?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
       ),
-      BILLIONS
-    )
+      PRODUCT(
+        SUM(
+          SUM(
+            V(
+              FILTER(
+                FILTER( 
+                  FILTER(
+                    EG(final_demand),"sector == :other"), "network_gas?"
+                ),
+                "energetic?"
+              ),
+              value
+            )
+          ),
+          PRODUCT(
+            SUM(
+              V(
+                FILTER(
+                  FILTER(
+                    FILTER(
+                      EG(final_demand),"sector == :other"), "compressed_network_gas?"
+                  ),
+                  "energetic?"
+                ),
+                value
+              )
+            ),
+            Q(share_of_network_gas_in_compressed_network_gas)
+          )
+        ),
+        Q(share_of_fossil_gas_in_gas_network)
+      )
+    ) / BILLIONS
