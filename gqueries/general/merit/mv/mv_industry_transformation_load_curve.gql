@@ -1,0 +1,10 @@
+# Retrieves the electricity_input_curve of industry transformation nodes
+
+- query =
+    SUM_CURVES(
+      V(
+        G(industry_transformation),
+        electricity_input_curve
+      )
+    )
+- unit = curve
