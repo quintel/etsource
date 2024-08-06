@@ -2,7 +2,18 @@
 
 - unit = PJ
 - query =
-     DIVIDE(
-      SUM(V(INTERSECTION(G(final_demand_group), SECTOR(industry)), input_of(wood_pellets, torrefied_biomass_pellets))),
+    DIVIDE(
+    	SUM(
+        V(
+          INTERSECTION(
+						G(final_demand_group),
+						SECTOR(industry)),
+					input_of(wood_pellets, torrefied_biomass_pellets)
+					),
+        V(
+          G(industry_transformation),
+          input_of(wood_pellets, torrefied_biomass_pellets)
+          )
+      	),
       BILLIONS
-      )
+    )

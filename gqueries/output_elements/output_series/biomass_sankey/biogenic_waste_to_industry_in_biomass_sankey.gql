@@ -2,9 +2,16 @@
 
 - query =
     DIVIDE(
-      SUM(
-        V(industry_final_demand_waste_mix_non_energetic,primary_demand_of_sustainable)
-      ),
+      PRODUCT(
+        SUM(
+          V(industry_final_demand_waste_mix_non_energetic,primary_demand_of_sustainable),
+          V(
+            G(industry_transformation),
+            input_of_waste_mix
+            )
+          ),
+        Q(share_of_biogenic_waste_in_waste_mix)
+        ),
       BILLIONS
-    )
+      )
 - unit = PJ
