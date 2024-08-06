@@ -1,0 +1,20 @@
+- query =
+  IF(
+    EQUALS(USER_INPUT(), 1.0),
+    -> {
+      UPDATE(
+        UPDATE(V(energy_interconnector_4_exported_electricity, merit_order), type, consumer);
+        UPDATE(V(energy_interconnector_4_exported_electricity, merit_order), subtype, generic);
+        UPDATE(V(energy_interconnector_4_exported_electricity, merit_order), group, interconnector_4_export_must_run);
+      );
+    },
+    -> {}
+  )
+
+- max_value = 1.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = bool
+- update_period = future
+- coupling_groups = [plexos]
