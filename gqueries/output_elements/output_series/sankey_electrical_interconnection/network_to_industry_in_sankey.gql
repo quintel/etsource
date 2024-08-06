@@ -1,4 +1,20 @@
 # Query for Sankey diagram: connection between electricity network and industry
 
 - unit = PJ
-- query = DIVIDE(SUM(V(INTERSECTION(INTERSECTION(SECTOR(industry),G(final_demand_group)), USE(energetic)),"input_of_electricity")),BILLIONS)
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
+            INTERSECTION(
+              SECTOR(industry),
+              G(final_demand_group)
+            ),
+            USE(energetic)
+          ),
+          G(industry_transformation),
+          input_of_electricity
+        )
+      ),
+      BILLIONS
+    )
