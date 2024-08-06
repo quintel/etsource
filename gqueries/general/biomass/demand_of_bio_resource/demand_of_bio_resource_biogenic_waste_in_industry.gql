@@ -2,6 +2,19 @@
 
 - unit = PJ
 - query =
-    V(
-        INTERSECTION(G(final_demand_group),SECTOR(industry)), demand_of_bio_resources_including_abroad_of(biogenic_waste)
-    ).sum / BILLIONS
+    DIVIDE(
+        SUM(
+            V(
+                INTERSECTION(
+                    G(final_demand_group),
+                    SECTOR(industry)
+                        ),
+                    demand_of_bio_resources_including_abroad_of(biogenic_waste)
+            ),
+            V(
+                G(industry_transformation),
+                demand_of_bio_resources_including_abroad_of(biogenic_waste)
+                )
+        ),
+        BILLIONS
+    )
