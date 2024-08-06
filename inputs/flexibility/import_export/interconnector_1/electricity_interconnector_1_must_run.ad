@@ -1,0 +1,16 @@
+- query =
+  IF(
+    EQUALS(USER_INPUT(), 1.0),
+    -> {
+      UPDATE(V(energy_interconnector_1_exported_electricity, merit_order), subtype, pseudo);
+      UPDATE(V(energy_interconnector_1_imported_electricity, merit_order), subtype, must_run);
+    },
+    -> {}
+  )
+- priority = 0
+- max_value = 1.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = bool
+- update_period = future
