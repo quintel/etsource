@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between imported ammonia and industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          input_of_ammonia
+        )
+      ),
+      BILLIONS
+    )

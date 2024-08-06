@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between transformation nodes and natural gas
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          output_of_natural_gas
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
