@@ -229,7 +229,12 @@ rows:
     Carrier: Electricity
     Category: Synthetic methanol production
     Type: Input
-    Value: electricity_for_synthetic_methanol_conversion  
+    Value: electricity_for_synthetic_methanol_conversion
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Industry transformation
+    Type: Input
+    Value: electricity_prod_to_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Electricity to hydrogen conversion losses
@@ -363,6 +368,16 @@ rows:
     Value: hydrogen_for_synthetic_methanol_conversion
   - Group: Conversion
     Carrier: Hydrogen
+    Category: Industry transformation
+    Type: Input
+    Value: hydrogen_prod_to_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Industry transformation
+    Type: Output
+    Value: industry_transformation_to_hydrogen_prod_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Power-to-gas
     Type: Output
     Value: p2g_to_hydrogen_prod_in_sankey
@@ -415,7 +430,7 @@ rows:
     Carrier: Hydrogen
     Category: LH2 regasifier
     Type: Output
-    Value: liquid_hydrogen_regasifier_in_source_of_hydrogen_production        
+    Value: liquid_hydrogen_regasifier_in_source_of_hydrogen_production
   - Group: Conversion
     Carrier: Hydrogen
     Category: Biomass gasification
@@ -548,6 +563,11 @@ rows:
     Category: Import
     Type: Output
     Value: import_for_central_heat_conversion
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Industry transformation
+    Type: Input
+    Value: steam_hot_water_prod_to_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Steam hot water
     Category: Power-to-heat central heating
@@ -934,11 +954,6 @@ rows:
     Value: extraction_of_oil_and_derivatives
   - Group: Conversion
     Carrier: Oil
-    Category: Synthetic kerosene production
-    Type: Output
-    Value: kerosene_synthetic_to_distribution_in_sankey
-  - Group: Conversion
-    Carrier: Oil
     Category: Oil power plants
     Type: Input
     Value: oil_for_electricity_conversion
@@ -947,6 +962,21 @@ rows:
     Category: Oil central heating
     Type: Input
     Value: oil_and_derivatives_to_central_heat_prod_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Industry transformation
+    Type: Output
+    Value: industry_transformation_to_oil_and_derivatives_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Synthetic kerosene production
+    Type: Output
+    Value: kerosene_synthetic_to_distribution_in_sankey
   - Group: Conversion
     Carrier: Oil
     Category: Oil for blending in oil mix
@@ -1083,6 +1113,16 @@ rows:
     Category: Biomass gasification + CCS
     Type: Input
     Value: natural_gas_for_biomass_gasification_ccs_conversion
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Industry transformation
+    Type: Input
+    Value: natural_gas_to_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Industry transformation
+    Type: Output
+    Value: industry_transformation_to_natural_gas_in_sankey
   - Group: Conversion
     Carrier: Natural gas
     Category: Residual natural gas from industry
@@ -1261,6 +1301,16 @@ rows:
     Value: biomass_products_to_oil_and_derivatives_in_sankey
   - Group: Conversion
     Carrier: Biomass
+    Category: Industry transformation
+    Type: Input
+    Value: biomass_products_to_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Industry transformation
+    Type: Output
+    Value: industry_transformation_to_biomass_products_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
     Category: Residual green gas from industry
     Type: Output
     Value: conversion_industry_residual_greengas
@@ -1366,6 +1416,16 @@ rows:
     Type: Input
     Value: imported_ammonia_to_hydrogen_prod_in_sankey
   - Group: Conversion
+    Carrier: Ammonia
+    Category: Industry transformation
+    Type: Input
+    Value: imported_ammonia_to_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Industry transformation
+    Type: Output
+    Value: industry_transformation_to_ammonia_in_sankey
+  - Group: Conversion
     Carrier: Loss
     Category: Ammonia to hydrogen conversion losses
     Type: Output
@@ -1441,6 +1501,16 @@ rows:
     Category: Import
     Type: Output
     Value: import_of_methanol
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Industry transformation
+    Type: Input
+    Value: methanol_to_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Industry transformation
+    Type: Output
+    Value: industry_transformation_to_methanol_in_sankey
   - Group: Conversion
     Carrier: Methanol
     Category: Synthetic methanol production
@@ -1531,7 +1601,7 @@ rows:
     Carrier: LOHC
     Category: Export
     Type: Input
-    Value: imported_lohc_to_export_in_sankey  
+    Value: imported_lohc_to_export_in_sankey
 
   - Group: Primary demand
     Carrier: Liquid hydrogen
@@ -1575,6 +1645,11 @@ rows:
     Category: Waste mix central heating
     Type: Input
     Value: waste_mix_to_central_heat_prod_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Industry transformation
+    Type: Input
+    Value: waste_mix_to_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Waste mix
     Category: Blended waste mix

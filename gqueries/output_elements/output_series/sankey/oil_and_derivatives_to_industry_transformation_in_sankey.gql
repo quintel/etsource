@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between oil_and_derivatives and industry transformation
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          input_of_crude_oil
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
