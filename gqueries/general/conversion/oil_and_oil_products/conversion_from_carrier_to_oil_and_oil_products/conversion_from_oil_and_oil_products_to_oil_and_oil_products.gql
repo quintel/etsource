@@ -1,0 +1,12 @@
+# Special conversion for oil_and_oil_products to oil_and_oil_products
+
+- query = 
+    SUM(
+      Q(conversion_from_diesel_to_oil_and_oil_products),
+      Q(conversion_from_kerosene_to_oil_and_oil_products),
+      Q(conversion_from_heavy_fuel_oil_to_oil_and_oil_products),
+      Q(conversion_from_lpg_to_oil_and_oil_products),
+      Q(conversion_from_gasoline_to_oil_and_oil_products),
+      Q(conversion_from_crude_oil_to_oil_and_oil_products)
+    )
+- unit = PJ

@@ -1,0 +1,12 @@
+# Special conversion for oil_and_oil_products to network_gas
+
+- query = 
+    SUM(
+      Q(conversion_from_diesel_to_network_gas),
+      Q(conversion_from_kerosene_to_network_gas),
+      Q(conversion_from_heavy_fuel_oil_to_network_gas),
+      Q(conversion_from_lpg_to_network_gas),
+      Q(conversion_from_gasoline_to_network_gas),
+      Q(conversion_from_crude_oil_to_network_gas)
+    )
+- unit = PJ

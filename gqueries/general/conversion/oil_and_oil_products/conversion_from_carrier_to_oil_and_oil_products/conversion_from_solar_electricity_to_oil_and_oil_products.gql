@@ -1,0 +1,13 @@
+# Direct conversion input of solar_electricity for central heat production
+
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          G(oil_and_oil_products_production),
+          "diesel_output_conversion + kerosene_output_conversion + heavy_fuel_oil_output_conversion + lpg_output_conversion + gasoline_output_conversion + crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_solar_electricity"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ
