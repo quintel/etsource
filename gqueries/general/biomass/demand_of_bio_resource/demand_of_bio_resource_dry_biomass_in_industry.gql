@@ -2,16 +2,6 @@
 
 - unit = PJ
 - query =
-    DIVIDE(
-      SUM(
-        V(
-          INTERSECTION(
-            G(final_demand_group),
-            SECTOR(industry)
-          ),
-          G(industry_transformation),
-          demand_of_bio_resources_including_abroad_of(dry_biomass)
-        )
-      ),
-      BILLIONS
-    )
+    V(
+        INTERSECTION(G(final_demand_group),SECTOR(industry)), demand_of_bio_resources_including_abroad_of(dry_biomass)
+    ).sum / BILLIONS
