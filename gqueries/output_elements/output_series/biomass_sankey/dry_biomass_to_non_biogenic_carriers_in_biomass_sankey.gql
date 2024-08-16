@@ -1,0 +1,10 @@
+# Query for Biomass Sankey diagram: connection between biogenic waste and electricity (incl. chp)
+
+- unit = PJ
+- query =
+    SUM(
+      Q(dry_biomass_to_central_heat_prod_in_biomass_sankey),
+      Q(dry_biomass_to_electricity_prod_in_biomass_sankey),
+      Q(dry_biomass_to_hydrogen_prod_in_biomass_sankey),
+      Q(dry_biomass_to_industry_transformation_in_biomass_sankey)
+    )
