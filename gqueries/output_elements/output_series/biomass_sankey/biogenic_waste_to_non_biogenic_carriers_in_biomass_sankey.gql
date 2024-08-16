@@ -3,13 +3,6 @@
 - unit = PJ
 - query =
     DIVIDE(
-      SUM(
-        V(
-          G(energy_export),
-          input_of(
-            biogenic_waste
-          )
-        )
-      ),
+      V(energy_distribution_biogenic_waste,demand),
       BILLIONS
     )
