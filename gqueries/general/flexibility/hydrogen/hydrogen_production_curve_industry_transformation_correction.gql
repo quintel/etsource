@@ -1,0 +1,12 @@
+# Query is used for levelised cost of hydrogen chart. Since industry transformation has no costs attributed, it would affect the levelised costs of the other hydrogen producers. This query removes their production from the calculations.
+
+- unit = curve
+- query =
+    SUM_CURVES(
+      SUM_CURVES(
+      Q(hydrogen_production_inflexible_curve),
+      Q(hydrogen_production_flexible_curve)
+    ),
+      INVERT_CURVE(Q(industry_transformation_hydrogen_output_curve))
+     )
+
