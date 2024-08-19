@@ -2,11 +2,23 @@
 
 - unit = PJ
 - query =
-    MAX(DIVIDE(
-      SUM(
-       V(energy_production_wood_pellets,
-         output_of_loss),
-      V(energy_torrefaction_wood,
-        "input_of_dry_biomass - output_of_torrefied_biomass_pellets")),
-       BILLIONS),
-       0)
+    MAX(
+      DIVIDE(
+        SUM(
+          V(
+            energy_production_wood_pellets,
+            output_of_loss
+          ),
+          V(
+            energy_torrefaction_wood,
+            "input_of_dry_biomass - output_of_torrefied_biomass_pellets"
+          ),
+          V(
+            G(industry_transformation),
+            "input_of_wood_pellets * loss_output_conversion"
+          )
+        ),
+        BILLIONS
+      ),
+      0
+    )
