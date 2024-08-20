@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between lpg from wood_pellets in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_lpg * wood_pellets_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

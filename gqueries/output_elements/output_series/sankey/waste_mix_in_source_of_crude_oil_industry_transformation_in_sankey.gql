@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between crude_oil from waste_mix in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_crude_oil * waste_mix_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

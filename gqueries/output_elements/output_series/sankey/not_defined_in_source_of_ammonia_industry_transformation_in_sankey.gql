@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between ammonia from not_defined in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_ammonia * not_defined_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

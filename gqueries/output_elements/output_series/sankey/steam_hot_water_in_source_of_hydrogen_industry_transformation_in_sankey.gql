@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between hydrogen from steam_hot_water in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_hydrogen * steam_hot_water_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

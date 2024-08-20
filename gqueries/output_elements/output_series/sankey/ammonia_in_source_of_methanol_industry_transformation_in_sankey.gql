@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between methanol from ammonia in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_methanol * ammonia_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
