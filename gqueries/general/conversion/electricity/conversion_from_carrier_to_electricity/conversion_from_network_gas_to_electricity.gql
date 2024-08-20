@@ -1,13 +1,20 @@
-# Direct conversion input of network gas for central electricity production
+# Direct conversion input of network gas for central heat production
 
 - query =
-    DIVIDE(
-      SUM(
-        V(
-          G(electricity_production),
-          "electricity_output_conversion / (1 - loss_output_conversion) * input_of_network_gas"
-        )
-      ), 
-      BILLIONS
-    )
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            G(electricity_production),
+            "electricity_output_conversion / (1 - loss_output_conversion) * input_of_network_gas"
+          ),
+        ),
+        BILLIONS
+      ),
+        PRODUCT(
+            Q(conversion_from_gas_power_fuelmix_to_electricity),
+            V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+          ),
+        Q(conversion_from_compressed_network_gas_to_electricity)
+      )
 - unit = PJ
