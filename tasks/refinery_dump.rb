@@ -5,10 +5,6 @@ DESC
 task refinery_dump: :environment do
   require 'json'
   NODE_DEMANDS = %i[
-  #   industry_useful_demand_for_other_ict_electricity
-  #   industry_useful_demand_for_chemical_refineries_useable_heat
-  #   industry_useful_demand_for_chemical_other_useable_heat
-  #   industry_chemicals_fertilizers_production
     industry_refinery_transformation_crude_oil
   ].freeze
 
@@ -106,7 +102,6 @@ task refinery_dump: :environment do
     # result[dataset.key]['households_useful_demand_heat_per_person'] = 0.0
     # result[dataset.key]['buildings_useful_demand_for_space_heating'] = 0.0
 
-    puts(dataset.key)
     graph = Atlas::Runner.new(dataset).calculate
 
     NODE_DEMANDS.each do |node|
