@@ -1,0 +1,11 @@
+- query =
+    SUM(
+      V(
+        FILTER(
+          G(primary_energy_demand),
+          "geothermal_input_conversion > 0.0"
+        ),
+        primary_demand_of_electricity
+      )
+    ) / BILLIONS
+- unit = PJ
