@@ -30,11 +30,11 @@
             V(energy_chp_supercritical_ccs_mt_waste_mix, production_based_on_number_of_units)
         )
     )
-    
+
 - priority = 2
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = 
+- start_value_gql =
     present:DIVIDE(
       V(energy_chp_supercritical_ccs_mt_waste_mix,"number_of_units*electricity_output_capacity"),
       SUM(
@@ -45,4 +45,4 @@
 - step_value = 1.0
 - unit = %
 - update_period = future
-- disabled_by_couplings = [waste_chp]
+- disabled_by_couplings = [ctm, waste_chp]

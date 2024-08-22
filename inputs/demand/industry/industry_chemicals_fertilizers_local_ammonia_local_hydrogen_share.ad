@@ -8,13 +8,13 @@
 - query =
     x = DIVIDE(USER_INPUT(),100);
     y = DIVIDE(INPUT_VALUE(industry_chemicals_fertilizers_local_ammonia_central_hydrogen_share),100);
-    
+
     alpha = IF(
       INPUT_VALUE(industry_chemicals_fertilizers_central_ammonia_share) == 100.0,
       -> { 1.0 },
       -> { DIVIDE(x, x + y) }
     );
-    
+
     UPDATE(
       EDGE(industry_chemicals_fertilizers_locally_available_hydrogen, industry_chemicals_fertilizers_steam_methane_reformer_hydrogen),
       share,
@@ -24,7 +24,7 @@
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = 
+- start_value_gql =
     present:(
       V(industry_chemicals_fertilizers_haber_bosch_process_hydrogen,share_of_industry_chemicals_fertilizers_locally_available_ammonia) *
       V(industry_chemicals_fertilizers_steam_methane_reformer_hydrogen,share_of_industry_chemicals_fertilizers_locally_available_hydrogen) * 100
@@ -32,4 +32,4 @@
 - step_value = 0.1
 - unit = %
 - update_period = future
-- disabled_by_couplings = [industry_chemical_fertilizers]
+- disabled_by_couplings = [ctm, industry_chemical_fertilizers]
