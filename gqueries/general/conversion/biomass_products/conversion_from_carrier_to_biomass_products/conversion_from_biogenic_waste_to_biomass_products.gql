@@ -1,0 +1,13 @@
+# Direct conversion input of biogenic_waste for central heat production
+
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          G(greengas_production),
+          "greengas_output_conversion +  wood_pellets_output_conversion + biodiesel_output_conversion + bio_ethanol_output_conversion + bio_lng_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_biogenic_waste"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ

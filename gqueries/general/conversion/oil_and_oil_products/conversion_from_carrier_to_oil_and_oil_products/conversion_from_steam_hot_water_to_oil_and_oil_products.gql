@@ -1,11 +1,31 @@
-# Direct conversion input of steam_hot_water for central heat production
+# Direct conversion input of steam_hot_water for oil production
 
 - query = 
     DIVIDE(
       SUM(
         V(
           G(oil_and_oil_products_production),
-          "diesel_output_conversion + kerosene_output_conversion + heavy_fuel_oil_output_conversion + lpg_output_conversion + gasoline_output_conversion + crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+          "diesel_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "kerosene_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "heavy_fuel_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "lpg_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "gasoline_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
         )
       ), 
       BILLIONS
