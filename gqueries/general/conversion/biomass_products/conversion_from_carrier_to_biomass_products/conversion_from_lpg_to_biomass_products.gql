@@ -1,11 +1,27 @@
-# Direct conversion input of lpg for central heat production
+# Direct conversion input of lpg for biomass products production
 
 - query = 
     DIVIDE(
       SUM(
         V(
-          G(greengas_production),
-          "greengas_output_conversion +  wood_pellets_output_conversion + biodiesel_output_conversion + bio_ethanol_output_conversion + bio_lng_output_conversion   / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_lpg"
+          G(biomass_products_production),
+          "greengas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_lpg"
+        ),
+        V(
+          G(biomass_products_production),
+          "wood_pellets_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_lpg"
+        ),
+        V(
+          G(biomass_products_production),
+          "biodiesel_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_lpg"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_ethanol_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_lpg"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_lng_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_lpg"
         )
       ), 
       BILLIONS
