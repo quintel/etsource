@@ -1,13 +1,22 @@
-# Direct conversion input of hydrogen for central heat production
+# Direct conversion input of hydrogen for biomass_products
+# The function is broken down due to limited allowed inputs in V() function
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
-          G(greengas_production),
-          "greengas_output_conversion +  wood_pellets_output_conversion + biodiesel_output_conversion + bio_ethanol_output_conversion + bio_lng_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_hydrogen"
+          G(biomass_products_production),
+          "(greengas_output_conversion + wood_pellets_output_conversion + torrefied_biomass_pellets_output_conversion) / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          G(biomass_products_production),
+          "(biodiesel_output_conversion + bio_ethanol_output_conversion + bio_lng_output_conversion) / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_kerosene_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
         )
-      ), 
+      ),
       BILLIONS
     )
 - unit = PJ
