@@ -1,13 +1,13 @@
 # Direct conversion input of wood_pellets for central heat production
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
           G(network_gas_production),
-          "natural_gas_output_conversion + greengas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_wood_pellets"
+          "network_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_wood_pellets"
         )
-      ), 
+      ),
       BILLIONS
     )
 - unit = PJ
