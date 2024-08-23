@@ -1,27 +1,11 @@
-# Direct conversion input of natural_gas for biomass products production
+# Direct conversion input of natural_gas for central heat production
 
 - query = 
     DIVIDE(
       SUM(
         V(
-          G(biomass_products_production),
-          "greengas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_natural_gas"
-        ),
-        V(
-          G(biomass_products_production),
-          "wood_pellets_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_natural_gas"
-        ),
-        V(
-          G(biomass_products_production),
-          "biodiesel_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_natural_gas"
-        ),
-        V(
-          G(biomass_products_production),
-          "bio_ethanol_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_natural_gas"
-        ),
-        V(
-          G(biomass_products_production),
-          "bio_lng_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_natural_gas"
+          G(greengas_production),
+          "greengas_output_conversion +  wood_pellets_output_conversion + biodiesel_output_conversion + bio_ethanol_output_conversion + bio_lng_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_natural_gas"
         )
       ), 
       BILLIONS
