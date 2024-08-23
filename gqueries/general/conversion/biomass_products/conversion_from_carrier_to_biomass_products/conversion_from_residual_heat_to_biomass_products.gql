@@ -6,11 +6,27 @@
       SUM(
         V(
           G(biomass_products_production),
-          "(greengas_output_conversion + wood_pellets_output_conversion + torrefied_biomass_pellets_output_conversion) / (1 - loss_output_conversion) * input_of_residual_heat"
+          "greengas_output_conversion / (1 - loss_output_conversion) * input_of_residual_heat"
         ),
         V(
           G(biomass_products_production),
-          "(biodiesel_output_conversion + bio_ethanol_output_conversion + bio_lng_output_conversion) / (1 - loss_output_conversion) * input_of_residual_heat"
+          "wood_pellets_output_conversion / (1 - loss_output_conversion) * input_of_residual_heat"
+        ),
+        V(
+          G(biomass_products_production),
+          "torrefied_biomass_pellets_output_conversion / (1 - loss_output_conversion) * input_of_residual_heat"
+        ),
+        V(
+          G(biomass_products_production),
+          "biodiesel_output_conversion / (1 - loss_output_conversion) * input_of_residual_heat"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_ethanol_output_conversion / (1 - loss_output_conversion) * input_of_residual_heat"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_lng_output_conversion / (1 - loss_output_conversion) * input_of_residual_heat"
         ),
         V(
           G(biomass_products_production),
