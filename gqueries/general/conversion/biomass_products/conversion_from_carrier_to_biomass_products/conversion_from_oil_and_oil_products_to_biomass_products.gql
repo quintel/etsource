@@ -1,0 +1,16 @@
+# Special conversion for oil_and_oil_products to biomass_products
+
+- query =
+    SUM(
+      Q(conversion_from_diesel_to_biomass_products),
+      Q(conversion_from_kerosene_to_biomass_products),
+      Q(conversion_from_heavy_fuel_oil_to_biomass_products),
+      Q(conversion_from_lpg_to_biomass_products),
+      Q(conversion_from_gasoline_to_biomass_products),
+      Q(conversion_from_crude_oil_to_biomass_products),
+      PRODUCT(
+        Q(conversion_from_gas_power_fuelmix_to_biomass_products),
+        V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+      )
+    )
+- unit = PJ

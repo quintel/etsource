@@ -1,6 +1,6 @@
 # Direct conversion input of oil and oil products for central hydrogen production
 
-- query = 
+- query =
     SUM(
       Q(conversion_from_crude_oil_to_hydrogen),
       Q(conversion_from_gasoline_to_hydrogen),
@@ -8,5 +8,9 @@
       Q(conversion_from_lpg_to_hydrogen),
       Q(conversion_from_kerosene_to_hydrogen),
       Q(conversion_from_heavy_fuel_oil_to_hydrogen),
+      PRODUCT(
+        Q(conversion_from_gas_power_fuelmix_to_hydrogen),
+        V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+      )
     )
 - unit = PJ

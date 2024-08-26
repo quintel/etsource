@@ -1,0 +1,13 @@
+# Direct conversion input of bio_lng for central heat production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(network_gas_production),
+          "network_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_bio_lng"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

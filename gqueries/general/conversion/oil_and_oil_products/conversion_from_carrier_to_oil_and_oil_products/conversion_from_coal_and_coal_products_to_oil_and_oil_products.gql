@@ -1,0 +1,10 @@
+# Special conversion for coal_and_coal_products to oil_and_oil_products
+
+- query = 
+    SUM(
+      Q(conversion_from_coal_to_oil_and_oil_products),
+      Q(conversion_from_coal_gas_to_oil_and_oil_products),
+      Q(conversion_from_cokes_to_oil_and_oil_products),
+      Q(conversion_from_lignite_to_oil_and_oil_products)
+    )
+- unit = PJ
