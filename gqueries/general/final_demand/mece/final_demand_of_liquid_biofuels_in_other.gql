@@ -1,0 +1,51 @@
+# Final demand of the 'liquid biofuels' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          biodiesel?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          bio_ethanol?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          bio_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          bio_lng?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :other"
+          ),
+          bio_kerosene?
+        ),
+        value
+      )
+    ) / BILLIONS

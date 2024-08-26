@@ -2,8 +2,11 @@
 
 - unit = PJ
 - query =
-          DIVIDE(
-          V(energy_export_greengas_baseload, demand),
+        DIVIDE(
+          SUM(
+            V(energy_export_greengas_baseload, demand),
+            V(energy_export_greengas_backup, demand)
+            ),
           BILLIONS
           )
      

@@ -1,18 +1,4 @@
-# Energetic final demand of the 'solar' carrier group
+# Energetic final demand of the 'solar_thermal' carrier group
 
 - unit = MJ
-- query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :buildings"
-            ),
-            energetic?
-          ),
-          solar_thermal?
-        ),
-        value
-      )
-    )
+- query = Q(final_demand_of_solar_thermal_in_buildings) * BILLIONS

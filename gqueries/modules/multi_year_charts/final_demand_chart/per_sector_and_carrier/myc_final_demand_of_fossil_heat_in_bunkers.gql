@@ -1,18 +1,4 @@
 # Energetic final demand of the 'fossil heat' carrier group
 
 - unit = MJ
-- query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :bunkers"
-            ),
-            energetic?
-          ),
-          "steam_hot_water? || useable_heat?"
-        ),
-        "(1 - sustainability_share) * value"
-      )
-    )
+- query = Q(final_demand_of_fossil_heat_in_bunkers) * BILLIONS

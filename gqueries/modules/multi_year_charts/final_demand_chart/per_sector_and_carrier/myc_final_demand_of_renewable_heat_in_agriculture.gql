@@ -1,18 +1,4 @@
 # Energetic final demand of the 'renewable heat' carrier group
 
 - unit = MJ
-- query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            FILTER(
-              EG(final_demand),"sector == :agriculture"
-            ),
-            energetic?
-          ),
-          "steam_hot_water? || useable_heat?"
-        ),
-        "sustainability_share * value"
-      )
-    )
+- query = Q(final_demand_of_renewable_heat_in_agriculture) * BILLIONS

@@ -1,6 +1,6 @@
 - query =
     UPDATE(
-      EDGE(energy_greengas_gasification_dry_biomass, energy_distribution_greengas),
+      EDGE(energy_greengas_gasification_dry_biomass, energy_greengas_production),
       share,
       DIVIDE(USER_INPUT(), 100.0)
     )
@@ -8,7 +8,7 @@
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(energy_greengas_gasification_dry_biomass, share_of_energy_distribution_greengas) * 100.0
+- start_value_gql = present:V(energy_greengas_gasification_dry_biomass, share_of_energy_greengas_production) * 100.0
 - step_value = 0.1
 - unit = %
 - update_period = future

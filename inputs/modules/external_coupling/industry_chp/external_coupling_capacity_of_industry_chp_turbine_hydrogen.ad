@@ -1,0 +1,81 @@
+# This input splits the industry CHP in a price-based electricity component and a must-run heat component
+# This input sets the:
+# 1. conversion efficiencies of the CHP and heater nodes with corrected efficiency
+# 2. typical input capacity of CHP and heater node based on corrected efficiency
+# 3. number of CHP and heater units, based on automatically calculated electricity / heat output capacity 
+#    (based on updated typical input capacity)
+# 4. preset demand of CHP and heater based on respective full load hours and corrected efficiency
+
+- query =
+    chp_electricity_efficiency = V(industry_chp_turbine_hydrogen, electricity_output_conversion);
+    chp_heat_efficiency = V(industry_chp_turbine_hydrogen, steam_hot_water_output_conversion);
+    chp_useful_output = chp_electricity_efficiency + chp_heat_efficiency;
+    chp_input_capacity = V(industry_chp_turbine_hydrogen, typical_input_capacity);
+
+    electricity_component_input_capacity = chp_input_capacity * chp_electricity_efficiency / chp_useful_output;
+    electricity_component_total_output_capacity = USER_INPUT();
+    electricity_component_demand_per_mw = V(industry_chp_turbine_hydrogen, full_load_hours) * MJ_PER_MWH / chp_useful_output;
+    electricity_component_efficiency_electricity = chp_useful_output;
+    electricity_component_efficiency_heat = 0.0;
+    
+    heat_component_input_capacity = chp_input_capacity * chp_heat_efficiency / chp_useful_output;
+    heat_component_total_output_capacity = electricity_component_total_output_capacity / chp_electricity_efficiency * chp_heat_efficiency;
+    heat_component_demand_per_mw = V(industry_heat_turbine_hydrogen, full_load_hours) * MJ_PER_MWH / chp_useful_output;
+    heat_component_efficiency_heat = chp_useful_output;
+
+    EACH(
+      UPDATE(
+        OUTPUT_SLOTS(V(industry_chp_turbine_hydrogen), steam_hot_water),
+        conversion,
+        electricity_component_efficiency_heat
+      ),
+      UPDATE(
+        OUTPUT_SLOTS(V(industry_chp_turbine_hydrogen), electricity),
+        conversion,
+        electricity_component_efficiency_electricity
+      ),
+      UPDATE(
+        V(industry_chp_turbine_hydrogen),
+        typical_input_capacity,
+        electricity_component_input_capacity
+      ),
+      UPDATE(
+        V(industry_chp_turbine_hydrogen),
+        number_of_units,
+        electricity_component_total_output_capacity / V(industry_chp_turbine_hydrogen, electricity_output_capacity)
+      ),  
+      UPDATE(
+        L(industry_chp_turbine_hydrogen),
+        preset_demand,
+        electricity_component_total_output_capacity * electricity_component_demand_per_mw
+      ),
+      UPDATE(
+        OUTPUT_SLOTS(V(industry_heat_turbine_hydrogen), steam_hot_water),
+        conversion,
+        heat_component_efficiency_heat
+      ),
+      UPDATE(
+        V(industry_heat_turbine_hydrogen),
+        typical_input_capacity,
+        heat_component_input_capacity
+      ),
+      UPDATE(
+        V(industry_heat_turbine_hydrogen),
+        number_of_units,
+        heat_component_total_output_capacity / V(industry_heat_turbine_hydrogen, heat_output_capacity)
+      ),  
+      UPDATE(
+        L(industry_heat_turbine_hydrogen),
+        preset_demand,
+        heat_component_total_output_capacity * heat_component_demand_per_mw
+      )
+    )
+
+- priority = 0
+- max_value_gql = present:2*DIVIDE(DIVIDE(Q(heat_production_industry) * BILLIONS, V(industry_chp_turbine_hydrogen,full_load_hours)), MJ_PER_MWH)
+- min_value = 0.0
+- start_value_gql = present:PRODUCT(V(industry_chp_turbine_hydrogen,number_of_units),V(industry_chp_turbine_hydrogen,electricity_output_capacity))
+- step_value = 1.0
+- unit = MW
+- update_period = future
+- coupling_groups = [ctm]

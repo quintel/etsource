@@ -1,9 +1,10 @@
-- query = UPDATE(INPUT_SLOTS(industry_final_demand_crude_oil,biodiesel), conversion, DIVIDE(USER_INPUT(),100))
+- query = UPDATE(INPUT_SLOTS(industry_final_demand_crude_oil,biodiesel), conversion, DIVIDE(USER_INPUT(),100.0))
 - share_group = industry_crude_oil
 - priority = 5
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(industry_final_demand_crude_oil,biodiesel_input_conversion) * 100
+- start_value_gql = present:V(industry_final_demand_crude_oil,biodiesel_input_conversion) * 100.0
 - step_value = 0.1
 - unit = %
 - update_period = future
+- disabled_by = external_coupling_industry_biodiesel_in_crude_oil_share

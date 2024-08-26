@@ -1,0 +1,13 @@
+# Direct conversion biomass products for crude oil production
+# This query is needed to account for oily biomass products that end up in final demand for crude oil in industry
+
+- query = 
+    DIVIDE(
+      SUM( 
+        V(industry_final_demand_crude_oil_non_energetic,primary_demand_of_sustainable),
+        V(industry_final_demand_crude_oil,primary_demand_of_sustainable)
+      ),
+      BILLIONS
+    )
+
+- unit = PJ

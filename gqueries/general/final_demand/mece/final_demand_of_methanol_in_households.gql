@@ -1,0 +1,15 @@
+# Final demand of the 'methanol' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :households"
+          ),
+          methanol?
+        ),
+        value
+      )
+    ) / BILLIONS

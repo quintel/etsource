@@ -1,0 +1,15 @@
+# Export of waste mix
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            waste_mix
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

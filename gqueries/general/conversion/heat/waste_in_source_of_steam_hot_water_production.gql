@@ -1,0 +1,13 @@
+# Required waste mix input for steam hot water production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(heat_producing_waste_converters),
+          "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_waste_mix"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
