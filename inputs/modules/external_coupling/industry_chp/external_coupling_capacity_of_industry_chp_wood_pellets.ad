@@ -2,7 +2,7 @@
 # This input sets the:
 # 1. conversion efficiencies of the CHP and heater nodes with corrected efficiency
 # 2. typical input capacity of CHP and heater node based on corrected efficiency
-# 3. number of CHP and heater units, based on automatically calculated electricity / heat output capacity 
+# 3. number of CHP and heater units, based on automatically calculated electricity / heat output capacity
 #    (based on updated typical input capacity)
 # 4. preset demand of CHP and heater based on respective full load hours and corrected efficiency
 
@@ -17,7 +17,7 @@
     electricity_component_demand_per_mw = V(industry_chp_wood_pellets, full_load_hours) * MJ_PER_MWH / chp_useful_output;
     electricity_component_efficiency_electricity = chp_useful_output;
     electricity_component_efficiency_heat = 0.0;
-    
+
     heat_component_input_capacity = chp_input_capacity * chp_heat_efficiency / chp_useful_output;
     heat_component_total_output_capacity = electricity_component_total_output_capacity / chp_electricity_efficiency * chp_heat_efficiency;
     heat_component_demand_per_mw = V(industry_heat_wood_pellets, full_load_hours) * MJ_PER_MWH / chp_useful_output;
@@ -43,7 +43,7 @@
         V(industry_chp_wood_pellets),
         number_of_units,
         electricity_component_total_output_capacity / V(industry_chp_wood_pellets, electricity_output_capacity)
-      ),  
+      ),
       UPDATE(
         L(industry_chp_wood_pellets),
         preset_demand,
@@ -63,7 +63,7 @@
         V(industry_heat_wood_pellets),
         number_of_units,
         heat_component_total_output_capacity / V(industry_heat_wood_pellets, heat_output_capacity)
-      ),  
+      ),
       UPDATE(
         L(industry_heat_wood_pellets),
         preset_demand,
@@ -78,4 +78,4 @@
 - step_value = 1.0
 - unit = MW
 - update_period = future
-- coupling_groups = [ctm]
+- coupling_groups = [external_model_industry, industry_chp]
