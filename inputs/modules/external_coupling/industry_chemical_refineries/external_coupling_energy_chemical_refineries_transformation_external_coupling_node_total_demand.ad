@@ -1,11 +1,11 @@
-# By setting the refinery transformation on the external coupling node, the 
+# By setting the refinery transformation on the external coupling node, the
 # demand on the regular transformation node is set to 0.0 PJ.
 
-- query = 
+- query =
     EACH(
       UPDATE(
         V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic),
-        preset_demand, 
+        preset_demand,
         0.0
       ),
       UPDATE(
@@ -20,4 +20,4 @@
 - step_value = 0.1
 - unit = PJ
 - update_period = future
-- coupling_groups = [ctm, industry_chemical_refineries]
+- coupling_groups = [external_model_industry, industry_chemical_refineries]
