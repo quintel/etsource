@@ -1,0 +1,23 @@
+# By setting the refinery transformation on the external coupling node, the 
+# demand on the regular transformation node is set to 0.0 PJ.
+
+- query = 
+    EACH(
+      UPDATE(
+        V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic),
+        preset_demand, 
+        0.0
+      ),
+      UPDATE(
+        V(energy_chemical_refineries_transformation_external_coupling_node),
+        preset_demand,(USER_INPUT() * BILLIONS)
+      )
+    )
+- priority = 0
+- max_value = 10000.0
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(V(energy_chemical_refineries_transformation_external_coupling_node, preset_demand),BILLIONS)
+- step_value = 0.1
+- unit = PJ
+- update_period = future
+- coupling_groups = [ctm]

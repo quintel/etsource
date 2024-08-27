@@ -1,0 +1,15 @@
+# This input is left empty. Explicitly setting the share to final demand produces incorrect 
+# results. Only setting the other outgoing shares allows the share to final demand to be
+# calculated correctly. However, it cannot go to 0.0, nor can all outgoing share exceed 100.0.
+# Therefore this input is added to the share_group with a min_value of 0.01.
+
+- query =
+- share_group = external_coupling_coal_gas_distribution
+- priority = 0
+- max_value = 100.0
+- min_value = 0.01
+- start_value_gql = present:V(EDGE(energy_distribution_coal_gas,industry_final_demand_coal_gas),parent_share) * 100.0
+- step_value = 0.01
+- unit = %
+- update_period = future
+- coupling_groups = [ctm]

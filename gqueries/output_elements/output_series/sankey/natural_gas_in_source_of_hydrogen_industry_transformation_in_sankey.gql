@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between hydrogen from natural_gas in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_hydrogen * natural_gas_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

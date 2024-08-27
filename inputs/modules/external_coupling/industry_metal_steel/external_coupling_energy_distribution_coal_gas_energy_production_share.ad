@@ -1,0 +1,37 @@
+# This input sets the combined share of coal gases to the power plant and CHP, while
+# maintaining the relative share between the power plant and the CHP.
+# If the share to final demand is set to 0.0, the model produces incorrect results.
+# The max_value of this input is therefore set to 99.99.
+
+- query =
+    pp_share    = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas), share)});
+    chp_share   = QUERY_PRESENT(-> {V(EDGE(energy_distribution_coal_gas, energy_chp_coal_gas), share)});
+    total_share = pp_share + chp_share;
+
+    EACH(
+      UPDATE(
+        EDGE(energy_distribution_coal_gas, energy_power_combined_cycle_coal_gas),
+        share,
+        DIVIDE(USER_INPUT(), 100.0) * DIVIDE(pp_share,total_share)
+      ),
+      UPDATE(
+        EDGE(energy_distribution_coal_gas, energy_chp_coal_gas),
+        share,
+        DIVIDE(USER_INPUT(), 100.0) * DIVIDE(chp_share,total_share)
+      )
+    )
+- share_group = external_coupling_coal_gas_distribution
+- priority = 0
+- max_value = 99.99
+- min_value = 0.0
+- start_value_gql =
+    present:(
+      SUM(
+        V(EDGE(energy_distribution_coal_gas,energy_power_combined_cycle_coal_gas),parent_share),
+        V(EDGE(energy_distribution_coal_gas,energy_chp_coal_gas),parent_share)
+      )
+    ) * 100.0
+- step_value = 0.01
+- unit = %
+- update_period = future
+- coupling_groups = [ctm]

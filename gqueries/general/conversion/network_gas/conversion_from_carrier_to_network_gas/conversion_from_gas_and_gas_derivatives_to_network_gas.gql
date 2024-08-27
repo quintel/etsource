@@ -1,0 +1,9 @@
+# Special conversion for gas_and_gas_derivatives to network_gas
+
+- query = 
+    SUM(
+      Q(conversion_from_natural_gas_to_network_gas),
+      Q(conversion_from_compressed_network_gas_to_network_gas),
+      Q(conversion_from_lng_to_network_gas)
+    )
+- unit = PJ

@@ -1,0 +1,13 @@
+# Direct conversion input of gas_power_fuelmix for natural_gas production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(natural_gas_production),
+          "natural_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_gas_power_fuelmix"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

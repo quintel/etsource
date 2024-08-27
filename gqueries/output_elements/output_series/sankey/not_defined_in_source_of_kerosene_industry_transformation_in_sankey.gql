@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between kerosene from not_defined in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_kerosene * not_defined_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

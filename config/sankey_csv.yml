@@ -229,7 +229,37 @@ rows:
     Carrier: Electricity
     Category: Synthetic methanol production
     Type: Input
-    Value: electricity_for_synthetic_methanol_conversion  
+    Value: electricity_for_synthetic_methanol_conversion
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Electricity to oil industry transformation
+    Type: Input
+    Value: electricity_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Electricity to ammonia industry transformation
+    Type: Input
+    Value: electricity_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Electricity to biomass industry transformation
+    Type: Input
+    Value: electricity_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Electricity to natural gas industry transformation
+    Type: Input
+    Value: electricity_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Electricity to methanol industry transformation
+    Type: Input
+    Value: electricity_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Electricity
+    Category: Electricity to hydrogen industry transformation
+    Type: Input
+    Value: electricity_to_hydrogen_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Electricity to hydrogen conversion losses
@@ -264,7 +294,12 @@ rows:
     Carrier: Loss
     Category: Electricity to methanol conversion losses
     Type: Output
-    Value: conversion_loss_electricity_to_synthetic_methanol
+    Value: conversion_loss_electricity_to_methanol
+  - Group: Conversion
+    Carrier: Loss
+    Category: Electricity to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_electricity_to_ammonia
   - Group: Final demand
     Carrier: Electricity
     Category: Households space heating and hot water
@@ -363,6 +398,86 @@ rows:
     Value: hydrogen_for_synthetic_methanol_conversion
   - Group: Conversion
     Carrier: Hydrogen
+    Category: Hydrogen to oil industry transformation
+    Type: Input
+    Value: hydrogen_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Hydrogen to ammonia industry transformation
+    Type: Input
+    Value: hydrogen_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Hydrogen to biomass industry transformation
+    Type: Input
+    Value: hydrogen_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Hydrogen to natural gas industry transformation
+    Type: Input
+    Value: hydrogen_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Hydrogen to methanol industry transformation
+    Type: Input
+    Value: hydrogen_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Hydrogen to hydrogen industry transformation
+    Type: Input
+    Value: hydrogen_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Ammonia to hydrogen industry transformation
+    Type: Output
+    Value: ammonia_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Biomass to hydrogen industry transformation
+    Type: Output
+    Value: biomass_products_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Not defined to hydrogen industry transformation
+    Type: Output
+    Value: not_defined_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Oil to hydrogen industry transformation
+    Type: Output
+    Value: oil_and_derivatives_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Electricity to hydrogen industry transformation
+    Type: Output
+    Value: electricity_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Methanol to hydrogen industry transformation
+    Type: Output
+    Value: methanol_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Natural gas to hydrogen industry transformation
+    Type: Output
+    Value: natural_gas_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Waste mix to hydrogen industry transformation
+    Type: Output
+    Value: waste_mix_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Hydrogen to hydrogen industry transformation
+    Type: Output
+    Value: hydrogen_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
+    Category: Steam hot water to hydrogen industry transformation
+    Type: Output
+    Value: steam_hot_water_in_source_of_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Power-to-gas
     Type: Output
     Value: p2g_to_hydrogen_prod_in_sankey
@@ -415,7 +530,7 @@ rows:
     Carrier: Hydrogen
     Category: LH2 regasifier
     Type: Output
-    Value: liquid_hydrogen_regasifier_in_source_of_hydrogen_production        
+    Value: liquid_hydrogen_regasifier_in_source_of_hydrogen_production
   - Group: Conversion
     Carrier: Hydrogen
     Category: Biomass gasification
@@ -426,11 +541,6 @@ rows:
     Category: Biomass gasification + CCS
     Type: Output
     Value: biomass_gasification_ccs_in_source_of_hydrogen_production
-  - Group: Conversion
-    Carrier: Hydrogen
-    Category: Residual hydrogen from industry
-    Type: Output
-    Value: conversion_industry_residual_hydrogen
   - Group: Conversion
     Carrier: Loss
     Category: Hydrogen to electricity conversion losses
@@ -455,7 +565,22 @@ rows:
     Carrier: Loss
     Category: Hydrogen to methanol conversion losses
     Type: Output
-    Value: conversion_loss_hydrogen_to_synthetic_methanol
+    Value: conversion_loss_hydrogen_to_methanol
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Hydrogen to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_hydrogen_to_biomass_products
   - Group: Final demand
     Carrier: Hydrogen
     Category: Households space heating and hot water
@@ -550,6 +675,36 @@ rows:
     Value: import_for_central_heat_conversion
   - Group: Conversion
     Carrier: Steam hot water
+    Category: Steam hot water to oil industry transformation
+    Type: Input
+    Value: steam_hot_water_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Steam hot water to ammonia industry transformation
+    Type: Input
+    Value: steam_hot_water_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Steam hot water to biomass industry transformation
+    Type: Input
+    Value: steam_hot_water_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Steam hot water to natural gas industry transformation
+    Type: Input
+    Value: steam_hot_water_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Steam hot water to methanol industry transformation
+    Type: Input
+    Value: steam_hot_water_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Steam hot water to hydrogen industry transformation
+    Type: Input
+    Value: steam_hot_water_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
     Category: Power-to-heat central heating
     Type: Output
     Value: p2h_central_heat_to_central_heat_in_sankey
@@ -618,6 +773,36 @@ rows:
     Category: Steam hot water to steam hot water conversion losses
     Type: Input
     Value: conversion_loss_steam_hot_water_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Steam hot water to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_steam_hot_water_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Steam hot water to oil conversion losses
+    Type: Output
+    Value: conversion_loss_steam_hot_water_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Steam hot water to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_steam_hot_water_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Steam hot water to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_steam_hot_water_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Steam hot water to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_steam_hot_water_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Steam hot water to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_steam_hot_water_to_methanol
   - Group: Final demand
     Carrier: Steam hot water
     Category: Households space heating and hot water
@@ -934,11 +1119,6 @@ rows:
     Value: extraction_of_oil_and_derivatives
   - Group: Conversion
     Carrier: Oil
-    Category: Synthetic kerosene production
-    Type: Output
-    Value: kerosene_synthetic_to_distribution_in_sankey
-  - Group: Conversion
-    Carrier: Oil
     Category: Oil power plants
     Type: Input
     Value: oil_for_electricity_conversion
@@ -947,6 +1127,91 @@ rows:
     Category: Oil central heating
     Type: Input
     Value: oil_and_derivatives_to_central_heat_prod_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to oil industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to ammonia industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to biomass industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to natural gas industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to methanol industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to hydrogen industry transformation
+    Type: Input
+    Value: oil_and_derivatives_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Ammonia to oil industry transformation
+    Type: Output
+    Value: ammonia_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Biomass to oil industry transformation
+    Type: Output
+    Value: biomass_products_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Not defined to oil industry transformation
+    Type: Output
+    Value: not_defined_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Oil to oil industry transformation
+    Type: Output
+    Value: oil_and_derivatives_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Electricity to oil industry transformation
+    Type: Output
+    Value: electricity_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Methanol to oil industry transformation
+    Type: Output
+    Value: methanol_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Natural gas to oil industry transformation
+    Type: Output
+    Value: natural_gas_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Waste mix to oil industry transformation
+    Type: Output
+    Value: waste_mix_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Hydrogen to oil industry transformation
+    Type: Output
+    Value: hydrogen_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Steam hot water to oil industry transformation
+    Type: Output
+    Value: steam_hot_water_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Synthetic kerosene production
+    Type: Output
+    Value: kerosene_synthetic_to_distribution_in_sankey
   - Group: Conversion
     Carrier: Oil
     Category: Oil for blending in oil mix
@@ -967,6 +1232,31 @@ rows:
     Category: Oil to oil conversion losses
     Type: Output
     Value: conversion_loss_oil_and_derivatives_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Oil to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_oil_and_derivatives_to_methanol
   - Group: Final demand
     Carrier: Oil
     Category: Households space heating and hot water
@@ -1085,9 +1375,84 @@ rows:
     Value: natural_gas_for_biomass_gasification_ccs_conversion
   - Group: Conversion
     Carrier: Natural gas
-    Category: Residual natural gas from industry
+    Category: Natural gas to oil industry transformation
+    Type: Input
+    Value: natural_gas_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Natural gas to ammonia industry transformation
+    Type: Input
+    Value: natural_gas_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Natural gas to biomass industry transformation
+    Type: Input
+    Value: natural_gas_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Natural gas to natural gas industry transformation
+    Type: Input
+    Value: natural_gas_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Natural gas to methanol industry transformation
+    Type: Input
+    Value: natural_gas_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Natural gas to hydrogen industry transformation
+    Type: Input
+    Value: natural_gas_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Ammonia to natural gas industry transformation
     Type: Output
-    Value: conversion_industry_residual_natural_gas
+    Value: ammonia_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Biomass to natural gas industry transformation
+    Type: Output
+    Value: biomass_products_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Not defined to natural gas industry transformation
+    Type: Output
+    Value: not_defined_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Oil to natural gas industry transformation
+    Type: Output
+    Value: oil_and_derivatives_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Electricity to natural gas industry transformation
+    Type: Output
+    Value: electricity_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Methanol to natural gas industry transformation
+    Type: Output
+    Value: methanol_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Natural gas to natural gas industry transformation
+    Type: Output
+    Value: natural_gas_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Waste mix to natural gas industry transformation
+    Type: Output
+    Value: waste_mix_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Hydrogen to natural gas industry transformation
+    Type: Output
+    Value: hydrogen_in_source_of_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Natural gas
+    Category: Steam hot water to natural gas industry transformation
+    Type: Output
+    Value: steam_hot_water_in_source_of_natural_gas_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Natural gas to electricity conversion losses
@@ -1113,6 +1478,21 @@ rows:
     Category: Natural gas to natural gas conversion losses
     Type: Output
     Value: conversion_loss_natural_gas_and_derivatives_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to oil conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Natural gas to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_natural_gas_and_derivatives_to_methanol
   - Group: Final demand
     Carrier: Natural gas
     Category: Households space heating and hot water
@@ -1261,9 +1641,84 @@ rows:
     Value: biomass_products_to_oil_and_derivatives_in_sankey
   - Group: Conversion
     Carrier: Biomass
-    Category: Residual green gas from industry
+    Category: Biomass to oil industry transformation
+    Type: Input
+    Value: biomass_products_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to ammonia industry transformation
+    Type: Input
+    Value: biomass_products_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to biomass industry transformation
+    Type: Input
+    Value: biomass_products_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to natural gas industry transformation
+    Type: Input
+    Value: biomass_products_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to methanol industry transformation
+    Type: Input
+    Value: biomass_products_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to hydrogen industry transformation
+    Type: Input
+    Value: biomass_products_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Ammonia to biomass industry transformation
     Type: Output
-    Value: conversion_industry_residual_greengas
+    Value: ammonia_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to biomass industry transformation
+    Type: Output
+    Value: biomass_products_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Not defined to biomass industry transformation
+    Type: Output
+    Value: not_defined_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Oil to biomass industry transformation
+    Type: Output
+    Value: oil_and_derivatives_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Electricity to biomass industry transformation
+    Type: Output
+    Value: electricity_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Methanol to biomass industry transformation
+    Type: Output
+    Value: methanol_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Natural gas to biomass industry transformation
+    Type: Output
+    Value: natural_gas_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Waste mix to biomass industry transformation
+    Type: Output
+    Value: waste_mix_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Hydrogen to biomass industry transformation
+    Type: Output
+    Value: hydrogen_in_source_of_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Steam hot water to biomass industry transformation
+    Type: Output
+    Value: steam_hot_water_in_source_of_biomass_products_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Biomass to electricity conversion losses
@@ -1289,6 +1744,21 @@ rows:
     Category: Biomass to biomass conversion losses
     Type: Output
     Value: conversion_loss_biomass_products_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to oil conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Biomass to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_biomass_products_to_methanol
   - Group: Final demand
     Carrier: Biomass
     Category: Households space heating and hot water
@@ -1366,10 +1836,115 @@ rows:
     Type: Input
     Value: imported_ammonia_to_hydrogen_prod_in_sankey
   - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to oil industry transformation
+    Type: Input
+    Value: ammonia_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to ammonia industry transformation
+    Type: Input
+    Value: ammonia_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to biomass industry transformation
+    Type: Input
+    Value: ammonia_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to natural gas industry transformation
+    Type: Input
+    Value: ammonia_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to methanol industry transformation
+    Type: Input
+    Value: ammonia_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to hydrogen industry transformation
+    Type: Input
+    Value: ammonia_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Ammonia to ammonia industry transformation
+    Type: Output
+    Value: ammonia_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Biomass to ammonia industry transformation
+    Type: Output
+    Value: biomass_products_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Not defined to ammonia industry transformation
+    Type: Output
+    Value: not_defined_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Oil to ammonia industry transformation
+    Type: Output
+    Value: oil_and_derivatives_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Electricity to ammonia industry transformation
+    Type: Output
+    Value: electricity_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Methanol to ammonia industry transformation
+    Type: Output
+    Value: methanol_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Natural gas to ammonia industry transformation
+    Type: Output
+    Value: natural_gas_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Waste mix to ammonia industry transformation
+    Type: Output
+    Value: waste_mix_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Hydrogen to ammonia industry transformation
+    Type: Output
+    Value: hydrogen_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Ammonia
+    Category: Steam hot water to ammonia industry transformation
+    Type: Output
+    Value: steam_hot_water_in_source_of_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
     Carrier: Loss
     Category: Ammonia to hydrogen conversion losses
     Type: Output
     Value: conversion_loss_ammonia_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to oil conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Ammonia to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_ammonia_to_methanol
   - Group: Final demand
     Carrier: Ammonia
     Category: Households space heating and hot water
@@ -1443,9 +2018,119 @@ rows:
     Value: import_of_methanol
   - Group: Conversion
     Carrier: Methanol
+    Category: Methanol to oil industry transformation
+    Type: Input
+    Value: methanol_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Methanol to ammonia industry transformation
+    Type: Input
+    Value: methanol_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Methanol to biomass industry transformation
+    Type: Input
+    Value: methanol_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Methanol to natural gas industry transformation
+    Type: Input
+    Value: methanol_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Methanol to methanol industry transformation
+    Type: Input
+    Value: methanol_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Methanol to hydrogen industry transformation
+    Type: Input
+    Value: methanol_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Ammonia to methanol industry transformation
+    Type: Output
+    Value: ammonia_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Biomass to methanol industry transformation
+    Type: Output
+    Value: biomass_products_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Not defined to methanol industry transformation
+    Type: Output
+    Value: not_defined_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Oil to methanol industry transformation
+    Type: Output
+    Value: oil_and_derivatives_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Electricity to methanol industry transformation
+    Type: Output
+    Value: electricity_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Methanol to methanol industry transformation
+    Type: Output
+    Value: methanol_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Natural gas to methanol industry transformation
+    Type: Output
+    Value: natural_gas_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Waste mix to methanol industry transformation
+    Type: Output
+    Value: waste_mix_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Hydrogen to methanol industry transformation
+    Type: Output
+    Value: hydrogen_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
+    Category: Steam hot water to methanol industry transformation
+    Type: Output
+    Value: steam_hot_water_in_source_of_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
     Category: Synthetic methanol production
     Type: Output
     Value: conversion_to_synthetic_methanol
+  - Group: Conversion
+    Carrier: Loss
+    Category: Methanol to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_methanol_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Methanol to oil conversion losses
+    Type: Output
+    Value: conversion_loss_methanol_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Methanol to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_methanol_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Methanol to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_methanol_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Methanol to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_methanol_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Methanol to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_methanol_to_methanol
   - Group: Final demand
     Carrier: Methanol
     Category: Households space heating and hot water
@@ -1531,7 +2216,7 @@ rows:
     Carrier: LOHC
     Category: Export
     Type: Input
-    Value: imported_lohc_to_export_in_sankey  
+    Value: imported_lohc_to_export_in_sankey
 
   - Group: Primary demand
     Carrier: Liquid hydrogen
@@ -1577,6 +2262,36 @@ rows:
     Value: waste_mix_to_central_heat_prod_in_sankey
   - Group: Conversion
     Carrier: Waste mix
+    Category: Waste mix to oil industry transformation
+    Type: Input
+    Value: waste_mix_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix to ammonia industry transformation
+    Type: Input
+    Value: waste_mix_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix to biomass industry transformation
+    Type: Input
+    Value: waste_mix_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix to natural gas industry transformation
+    Type: Input
+    Value: waste_mix_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix to methanol industry transformation
+    Type: Input
+    Value: waste_mix_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
+    Category: Waste mix to hydrogen industry transformation
+    Type: Input
+    Value: waste_mix_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Waste mix
     Category: Blended waste mix
     Type: Output
     Value: waste_mix_from_blending_in_sankey
@@ -1590,6 +2305,36 @@ rows:
     Category: Waste mix to steam hot water conversion losses
     Type: Output
     Value: conversion_loss_waste_mix_to_steam_hot_water
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to oil conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Waste mix to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_waste_mix_to_methanol
   - Group: Final demand
     Carrier: Waste mix
     Category: Households space heating and hot water
@@ -1655,3 +2400,64 @@ rows:
     Category: Feedstock
     Type: Input
     Value: waste_mix_to_feedstock_in_sankey
+
+  - Group: Conversion
+    Carrier: Not defined
+    Category: Not defined to oil and derivatives industry transformation
+    Type: Input
+    Value: not_defined_to_oil_and_derivatives_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Not defined
+    Category: Not defined to ammonia industry transformation
+    Type: Input
+    Value: not_defined_to_ammonia_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Not defined
+    Category: Not defined to biomass industry transformation
+    Type: Input
+    Value: not_defined_to_biomass_products_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Not defined
+    Category: Not defined to natural gas industry transformation
+    Type: Input
+    Value: not_defined_to_natural_gas_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Not defined
+    Category: Not defined to methanol industry transformation
+    Type: Input
+    Value: not_defined_to_methanol_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Not defined
+    Category: Not defined to hydrogen industry transformation
+    Type: Input
+    Value: not_defined_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Loss
+    Category: Not defined to hydrogen conversion losses
+    Type: Output
+    Value: conversion_loss_not_defined_to_hydrogen
+  - Group: Conversion
+    Carrier: Loss
+    Category: Not defined to oil conversion losses
+    Type: Output
+    Value: conversion_loss_not_defined_to_oil_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Not defined to natural gas conversion losses
+    Type: Output
+    Value: conversion_loss_not_defined_to_natural_gas_and_derivatives
+  - Group: Conversion
+    Carrier: Loss
+    Category: Not defined to ammonia conversion losses
+    Type: Output
+    Value: conversion_loss_not_defined_to_ammonia
+  - Group: Conversion
+    Carrier: Loss
+    Category: Not defined to biomass conversion losses
+    Type: Output
+    Value: conversion_loss_not_defined_to_biomass_products
+  - Group: Conversion
+    Carrier: Loss
+    Category: Not defined to methanol conversion losses
+    Type: Output
+    Value: conversion_loss_not_defined_to_methanol

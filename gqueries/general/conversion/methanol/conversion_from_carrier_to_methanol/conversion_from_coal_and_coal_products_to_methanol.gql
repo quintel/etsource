@@ -1,0 +1,10 @@
+# Special conversion for coal_and_coal_products to methanol
+
+- query = 
+    SUM(
+      Q(conversion_from_coal_to_methanol),
+      Q(conversion_from_coal_gas_to_methanol),
+      Q(conversion_from_cokes_to_methanol),
+      Q(conversion_from_lignite_to_methanol)
+    )
+- unit = PJ

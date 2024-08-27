@@ -1,0 +1,13 @@
+# Query for Biomass Sankey diagram: connection between non biogenic carriers and greengas
+
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_greengas  / (1 - loss_output_conversion - residual_heat_input_conversion)"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ

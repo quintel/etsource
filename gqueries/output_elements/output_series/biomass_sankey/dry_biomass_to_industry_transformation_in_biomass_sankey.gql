@@ -1,0 +1,8 @@
+# Query for Biomass Sankey diagram: connection between dry biomass and electricity (incl. chp)
+
+- unit = PJ
+- query =
+     DIVIDE(
+      SUM(V(G(industry_transformation), input_of(wood_pellets, torrefied_biomass_pellets))),
+      BILLIONS
+      )

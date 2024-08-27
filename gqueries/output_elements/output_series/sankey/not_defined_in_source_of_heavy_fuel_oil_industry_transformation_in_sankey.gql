@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between heavy_fuel_oil from not_defined in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_heavy_fuel_oil * not_defined_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,38 @@
+# Direct conversion input of kerosene for biomass_products
+# The function is broken down due to limited allowed inputs in V() function
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(biomass_products_production),
+          "greengas_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        ),
+        V(
+          G(biomass_products_production),
+          "wood_pellets_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        ),
+        V(
+          G(biomass_products_production),
+          "torrefied_biomass_pellets_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        ),
+        V(
+          G(biomass_products_production),
+          "biodiesel_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_ethanol_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_lng_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        ),
+        V(
+          G(biomass_products_production),
+          "bio_kerosene_output_conversion / (1 - loss_output_conversion) * input_of_kerosene"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

@@ -1,0 +1,18 @@
+# If the share to final demand is set to 0.0, the model produces incorrect results.
+# The max_value of this input is therefore set to 99.99.
+
+- query =
+    UPDATE(
+      EDGE(energy_distribution_coal_gas, energy_methanol_production_coal_gas),
+      share,
+      DIVIDE(USER_INPUT(), 100.0)
+    )
+- share_group = external_coupling_coal_gas_distribution
+- priority = 0
+- max_value = 99.99
+- min_value = 0.0
+- start_value_gql = present:V(EDGE(energy_distribution_coal_gas,energy_methanol_production_coal_gas),parent_share) * 100.0
+- step_value = 0.01
+- unit = %
+- update_period = future
+- coupling_groups = [ctm]
