@@ -1,10 +1,44 @@
-- query = UPDATE_WITH_FACTOR(V(industry_aluminium_production), preset_demand, USER_INPUT())
+# By moving demand for aluminium to the external coupling node, the demand on the
+# other production processes is set to 0.
+
+- query =
+    EACH(
+      UPDATE(
+        EDGE(industry_aluminium_production,industry_aluminium_external_coupling_node),
+        share,
+        1.0
+      ),
+      UPDATE(
+        EDGE(industry_aluminium_production,industry_aluminium_electrolysis_current_electricity),
+        share,
+        0.0
+      ),
+      UPDATE(
+        EDGE(industry_aluminium_production,industry_aluminium_electrolysis_bat_electricity),
+        share,
+        0.0
+      ),
+      UPDATE(
+        EDGE(industry_aluminium_production,industry_aluminium_smeltoven_electricity),
+        share,
+        0.0
+      ),
+      UPDATE(
+        EDGE(industry_aluminium_production,industry_aluminium_carbothermalreduction_electricity),
+        share,
+        0.0
+      ),
+      UPDATE(
+        V(industry_aluminium_production),
+        preset_demand,
+        (USER_INPUT() * BILLIONS)
+      )
+    )
 - priority = 0
-- max_value = 99900.0
+- max_value = 10000.0
 - min_value = 0.0
-- start_value = 100.0
+- start_value_gql = present:DIVIDE(V(industry_other_metals_production, preset_demand),BILLIONS)
 - step_value = 0.1
-- unit = %
+- unit = MT
 - update_period = future
-- update_type = %
 - coupling_groups = [external_model_industry, industry_metal_aluminium]
