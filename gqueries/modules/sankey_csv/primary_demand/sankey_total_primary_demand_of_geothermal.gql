@@ -2,9 +2,10 @@
 # For the energy flows export the flows have to match, which is done using this dedicated 'primary' demand query
 
 - query =
-    SUM(
-      V(agriculture_geothermal, input_of_geothermal),
-      V(energy_heat_well_geothermal, input_of_geothermal),
-      V(industry_heat_well_geothermal, input_of_geothermal)
-    ) / BILLIONS
+    DIVIDE(
+      SUM(
+        V(FILTER(G(heat_production),"geothermal_input_conversion > 0.0 "),"input_of_geothermal")
+        ),
+      BILLIONS
+    )
 - unit = PJ
