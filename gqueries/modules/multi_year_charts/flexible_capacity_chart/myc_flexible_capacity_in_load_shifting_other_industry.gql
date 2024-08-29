@@ -1,0 +1,14 @@
+# The flexible capacity in other industry load shifting 
+
+- unit = MW
+- query = 
+    PRODUCT(
+      MAX(
+        SUM_CURVES(
+          V(
+            FILTER(ALL()
+            ,"merit_order && (merit_order.group == :industry_other_electricity || merit_order.demand_profile ==:industry_other_heat || merit_order.group ==: industry_other_heat)"),electricity_input_curve)
+          )
+          ),
+       INPUT_VALUE(input_capacity_of_industry_other_flexibility_load_shifting_electricity)
+      )

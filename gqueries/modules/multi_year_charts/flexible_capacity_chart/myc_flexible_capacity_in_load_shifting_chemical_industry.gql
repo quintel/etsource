@@ -1,0 +1,17 @@
+# The flexible capacity in chemical industry load shifting 
+
+- unit = MW
+- query = 
+    PRODUCT(
+      MAX(
+        SUM_CURVES(
+          V(
+            FILTER(
+              ALL()
+            ,"merit_order && (merit_order.group == :industry_chemicals_electricity || merit_order.demand_profile ==:industry_fertilizers_heat || merit_order.demand_profile ==:industry_fertilizers_heat || merit_order.group == :industry_chemicals_heat )"
+            ),electricity_input_curve
+            )
+          )
+      ),
+       INPUT_VALUE(input_capacity_of_industry_chemical_flexibility_load_shifting_electricity)
+    )
