@@ -1,0 +1,18 @@
+- query =
+    present_value = QUERY_PRESENT(-> {SUM(V(Q(other_non_specified_industry_energetic_converters),preset_demand))});
+    future_value = PRODUCT(USER_INPUT(),BILLIONS);
+    relative_value = DIVIDE(future_value,present_value);
+
+    UPDATE_WITH_FACTOR(
+      V(Q(other_non_specified_industry_energetic_converters)),
+      preset_demand,
+      relative_value
+    )
+- priority = 1
+- max_value = 10000.0
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(SUM(V(Q(other_non_specified_industry_energetic_converters),preset_demand)),BILLIONS)
+- step_value = 0.1
+- unit = PJ
+- update_period = future
+- coupling_groups = [external_model_industry, industry_other_non_specified]

@@ -1,0 +1,14 @@
+- query =
+    UPDATE(
+      V(industry_useful_demand_for_other_paper_useable_heat),
+      preset_demand,
+      (USER_INPUT() * BILLIONS)
+    )
+- priority = 0
+- max_value = 10000.0
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(V(industry_useful_demand_for_other_paper_useable_heat, preset_demand),BILLIONS)
+- step_value = 0.1
+- unit = PJ
+- update_period = future
+- coupling_groups = [external_model_industry, industry_other_paper]

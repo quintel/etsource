@@ -1,0 +1,34 @@
+# By moving demand for other metals to the external coupling node, the demand on the
+# process nodes for useable heat and electricity is set to 0.
+
+- query =
+    EACH(
+      UPDATE(
+        EDGE(industry_other_metals_production,industry_other_metals_external_coupling_node),
+        share,
+        1.0
+      ),
+      UPDATE(
+        EDGE(industry_other_metals_production,industry_other_metals_process_heat_useable_heat),
+        share,
+        0.0
+      ),
+      UPDATE(
+        EDGE(industry_other_metals_production,industry_other_metals_process_electricity),
+        share,
+        0.0
+      ),
+      UPDATE(
+        V(industry_other_metals_production),
+        preset_demand,
+        (USER_INPUT() * BILLIONS)
+      )
+    )
+- priority = 0
+- max_value = 10000.0
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(V(industry_other_metals_production, preset_demand),BILLIONS)
+- step_value = 0.1
+- unit = PJ
+- update_period = future
+- coupling_groups = [external_model_industry, industry_metal_other]
