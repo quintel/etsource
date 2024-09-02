@@ -2,11 +2,9 @@
   IF(
     EQUALS(USER_INPUT(), 1.0),
     -> {
-      UPDATE(
-        UPDATE(V(energy_interconnector_3_imported_electricity, merit_order), type, producer)
+        UPDATE(V(energy_interconnector_3_imported_electricity, merit_order), type, producer);
         UPDATE(V(energy_interconnector_3_imported_electricity, merit_order), subtype, must_run);
         UPDATE(V(energy_interconnector_3_imported_electricity, merit_order), group, interconnector_3_import_must_run);
-      );
     },
     -> {}
   )
