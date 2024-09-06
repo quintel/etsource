@@ -3,8 +3,9 @@
     EQUALS(USER_INPUT(), 1.0),
     -> {
         UPDATE(V(energy_interconnector_7_imported_electricity, merit_order), type, producer);
-        UPDATE(V(energy_interconnector_7_imported_electricity, merit_order), subtype, must_run);
+        UPDATE(V(energy_interconnector_7_imported_electricity, merit_order), subtype, import_must_run);
         UPDATE(V(energy_interconnector_7_imported_electricity, merit_order), group, interconnector_7_import_must_run);
+        UPDATE(V(energy_interconnector_7_imported_electricity), full_load_hours, 8760.0);
     },
     -> {}
   )
