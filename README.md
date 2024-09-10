@@ -178,7 +178,7 @@ Set a slot share by adding an appropriate query in the node document:
 ##### EB(use, carrier)
 
 The `EB()` function returns the value of a cell from the energy balance data.
-This data is stored in a CSV file in "data/energy_blanace". Supply the use
+This data is stored in a CSV file in "data/energy_balance". Supply the use
 (the name of a row in the CSV) with a carrier (a column name):
 
 ```ruby
