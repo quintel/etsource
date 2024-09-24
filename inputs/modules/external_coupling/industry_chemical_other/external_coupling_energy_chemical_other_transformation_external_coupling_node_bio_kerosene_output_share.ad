@@ -1,0 +1,10 @@
+- query = UPDATE(OUTPUT_SLOTS(energy_chemical_other_transformation_external_coupling_node, bio_kerosene), conversion, DIVIDE(USER_INPUT(),100))
+- share_group = external_coupling_chemical_other_transformation_output
+- priority = 0
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_chemical_other_transformation_external_coupling_node,bio_kerosene_output_conversion) * 100.0
+- step_value = 0.1
+- unit = %
+- update_period = future
+- coupling_groups = [external_model_industry, industry_chemical_other]
