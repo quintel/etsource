@@ -1,16 +1,16 @@
 # Final demand of the 'natural_gas_and_derivatives' carrier group
+
 - unit = PJ
 - query =
     SUM(
       V(
+        FILTER(
           FILTER(
             FILTER(
-              FILTER(
-            EG(final_demand),"sector == :buildings"), "network_gas? || compressed_network_gas? || natural_gas? || lng? || propane?"
+              EG(final_demand),"sector == :buildings"), "network_gas? || compressed_network_gas? || natural_gas? || lng? || propane?"
           ),
           "energetic?"
         ),
         value
       )
-    )
-     / BILLIONS
+    ) / BILLIONS
