@@ -1,0 +1,13 @@
+# Query for Biomass Sankey diagram: connection between biofuels and households
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+       V(
+          G(energy_export),
+          input_of(bio_oil, bio_kerosene, bio_ethanol, biodiesel, bio_lng)
+         )
+        ),
+      BILLIONS
+   )
