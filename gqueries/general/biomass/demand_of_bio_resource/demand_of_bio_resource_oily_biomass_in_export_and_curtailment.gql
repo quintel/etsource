@@ -2,4 +2,7 @@
 
 - unit = PJ
 - query =
-    Q(demand_of_bio_resource_oily_biomass_from_curtailment) + Q(demand_of_bio_resource_oily_biomass_from_export)
+    SUM(
+        Q(demand_of_bio_resource_oily_biomass_from_curtailment),
+        Q(demand_of_bio_resource_oily_biomass_from_export)
+    )

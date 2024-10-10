@@ -2,4 +2,10 @@
 
 - unit = PJ
 - query =
-    V(G(energy_export), demand_of_bio_resources_including_abroad_of(oily_biomass)).sum / BILLIONS
+      DIVIDE(
+        SUM(
+          V(energy_export_oily_biomass, demand),
+          V(energy_export_bio_oil_products, demand)
+          ),
+          BILLIONS
+        )
