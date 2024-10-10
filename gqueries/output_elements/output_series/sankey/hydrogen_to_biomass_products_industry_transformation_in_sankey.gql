@@ -1,4 +1,10 @@
 # Query for Sankey diagram: connection between hydrogen and biomass products industry transformation
 
 - unit = PJ
-- query = Q(hydrogen_to_greengas_industry_transformation_in_sankey)
+- query = 
+    SUM(
+      Q(hydrogen_to_greengas_industry_transformation_in_sankey),
+      Q(hydrogen_to_biodiesel_industry_transformation_in_sankey),
+      Q(hydrogen_to_bio_kerosene_industry_transformation_in_sankey),
+      Q(hydrogen_to_bio_oil_industry_transformation_in_sankey)
+    )
