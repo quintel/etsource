@@ -1,0 +1,12 @@
+# This query must be balanced and return 0. The loss query is not created by the script, the rest of the queries rely on queries that the rake task creates.
+
+- query =
+    SUM(
+      NEG(Q(turk_sankey_conversion_oil_input)),
+      Q(turk_sankey_conversion_oil_output),
+      NEG(Q(turk_sankey_final_demand_oil_input)),
+      Q(turk_sankey_primary_demand_oil_output),
+      NEG(Q(conversion_loss_oil_and_derivatives_to_oil_and_derivatives))
+    )
+- unit = PJ
+
