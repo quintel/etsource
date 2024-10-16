@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between greengas from wood_pellets in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_biodiesel * wood_pellets_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
