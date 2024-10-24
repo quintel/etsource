@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between heavy_fuel_oil from wood_pellets in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_heavy_fuel_oil * bio_oil_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
