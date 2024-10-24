@@ -1,15 +1,7 @@
-- query =
-    SUM_CURVES(V(
-      transport_bicycle_using_electricity,
-      transport_bus_using_electricity,
-      transport_freight_train_using_electricity,
-      transport_motorcycle_using_electricity,
-      transport_passenger_train_using_electricity,
-      transport_tram_using_electricity,
-      transport_truck_using_electricity,
-      transport_plane_using_electricity,
-      transport_van_using_electricity,
-      transport_ship_using_electricity,
-      electricity_input_curve
-    ))
 - unit = curve
+- query =
+      SUM_CURVES(V(
+          FILTER(SECTOR(transport),"merit_order && (merit_order.level == :mv) && (merit_order.type == :consumer)"),
+        	FILTER(SECTOR(bunkers),"merit_order && (merit_order.level == :mv) && (merit_order.type == :consumer)"),
+        electricity_input_curve
+        ))

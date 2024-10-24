@@ -1,2 +1,13 @@
 - unit = PJ
-- query = DIVIDE(V(bunkers_final_demand_hydrogen,input_of_hydrogen),BILLIONS)
+- query = 
+      DIVIDE(
+        SUM(
+          V(
+            FILTER(
+              SECTOR(bunkers),
+              "hydrogen && (hydrogen.type == :consumer)"
+              ),
+            input_of_hydrogen)
+        ),
+        BILLIONS
+    )
