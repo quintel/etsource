@@ -1,6 +1,7 @@
-# Query for Biomass Sankey diagram: connection between non biogenic carriers and greengas
+# Query for Biomass Sankey diagram: connection between non biogenic carriers and biofuels
+# input_of_bio_oil from transformation nodes subtracted since these are accounted for in oily biomass to biofuels flow
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
@@ -15,7 +16,13 @@
           G(industry_transformation),
           "output_of_bio_oil  / (1 - loss_output_conversion - residual_heat_input_conversion)"
         )
-      ), 
+      ) -
+      SUM(
+        V(
+          G(industry_transformation),
+          input_of_bio_oil
+        )
+      ),
       BILLIONS
     )
 - unit = PJ
