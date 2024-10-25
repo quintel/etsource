@@ -1,2 +1,10 @@
-- query = V(bunkers_final_demand_hydrogen, hydrogen_input_curve)
 - unit = curve
+- query =
+    SUM_CURVES(
+      V(
+        FILTER(
+          SECTOR(bunkers),
+          "hydrogen && (hydrogen.type == :consumer)"
+        ),
+        hydrogen_input_curve)
+    )
