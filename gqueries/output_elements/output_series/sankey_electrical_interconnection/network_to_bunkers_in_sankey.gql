@@ -1,15 +1,19 @@
-# Query for Sankey diagram: connection between electricity network and transport
+# Query for Sankey diagram: connection between electricity network and bunkers
 
 - unit = PJ
-- query = 
-      DIVIDE(
-        SUM(
-          V(
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
             INTERSECTION(
-              INTERSECTION(SECTOR(bunkers),G(final_demand_group)
-              ),
-               USE(energetic)
-               ),
-               "input_of_electricity")
-               ),
-          BILLIONS)
+              SECTOR(bunkers),
+              G(final_demand_group)
+            ),
+            USE(energetic)
+          ),
+          input_of_electricity
+        )
+      ),
+      BILLIONS
+    )
