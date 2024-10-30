@@ -1,8 +1,18 @@
-# Query for Biomass Sankey diagram: connection between dry biomass and electricity (incl. chp)
+# Query for Biomass Sankey diagram: connection between greengas and industry transformation. This query is not directly used in the sankey, but used in the flows from non biogenic carriers to 
 
 - unit = PJ
 - query =
-     DIVIDE(
-      SUM(V(G(industry_transformation), input_of(greengas))),
-      BILLIONS
-      )
+     SUM(
+			DIVIDE(
+				SUM(V(G(industry_transformation), input_of(greengas))),
+				BILLIONS
+				)
+			,
+      	NEG(
+					SUM(	
+          	Q(greengas_to_biomass_products_industry_transformation_in_sankey),
+						Q(greengas_to_greengas_industry_transformation_in_sankey)
+					)
+      	)
+     	)
+     

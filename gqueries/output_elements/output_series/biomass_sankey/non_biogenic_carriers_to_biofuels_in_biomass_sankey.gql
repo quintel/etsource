@@ -1,28 +1,36 @@
 # Query for Biomass Sankey diagram: connection between non biogenic carriers and biofuels
-# input_of_bio_oil from transformation nodes subtracted since these are accounted for in oily biomass to biofuels flow
-
+# All bio to bio transformations within the transformation nodes are subtracted, since these are accounted for elsewhere.
 - query =
-    DIVIDE(
-      SUM(
-        V(
-          G(industry_transformation),
-          "output_of_bio_kerosene  / (1 - loss_output_conversion - residual_heat_input_conversion)"
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            G(industry_transformation),
+            "output_of_bio_kerosene  / (1 - loss_output_conversion - residual_heat_input_conversion)"
+          ),
+          V(
+            G(industry_transformation),
+            "output_of_biodiesel  / (1 - loss_output_conversion - residual_heat_input_conversion)"
+          ),
+          V(
+            G(industry_transformation),
+            "output_of_bio_oil  / (1 - loss_output_conversion - residual_heat_input_conversion)"
+          )
         ),
-        V(
-          G(industry_transformation),
-          "output_of_biodiesel  / (1 - loss_output_conversion - residual_heat_input_conversion)"
-        ),
-         V(
-          G(industry_transformation),
-          "output_of_bio_oil  / (1 - loss_output_conversion - residual_heat_input_conversion)"
-        )
-      ) -
-      SUM(
-        V(
-          G(industry_transformation),
-          input_of_bio_oil
-        )
+        BILLIONS
       ),
-      BILLIONS
-    )
+        NEG(
+          SUM(
+          Q(greengas_to_biodiesel_industry_transformation_in_sankey),
+          Q(greengas_to_bio_kerosene_industry_transformation_in_sankey),
+          Q(greengas_to_bio_oil_industry_transformation_in_sankey),
+          Q(wood_pellets_to_bio_oil_industry_transformation_in_sankey),
+          Q(wood_pellets_to_biodiesel_industry_transformation_in_sankey),
+          Q(wood_pellets_to_bio_kerosene_industry_transformation_in_sankey),
+          Q(bio_oil_to_bio_kerosene_industry_transformation_in_sankey),
+          Q(bio_oil_to_biodiesel_industry_transformation_in_sankey),
+          Q(bio_oil_to_bio_oil_industry_transformation_in_sankey)
+      	)
+        )
+      ) 
 - unit = PJ
