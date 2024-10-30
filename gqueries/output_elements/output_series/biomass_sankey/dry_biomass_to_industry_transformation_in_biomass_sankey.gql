@@ -1,8 +1,28 @@
-# Query for Biomass Sankey diagram: connection between dry biomass and electricity (incl. chp)
+# Query for Biomass Sankey diagram: connection between dry biomass and the industry transformation processes
 
 - unit = PJ
 - query =
-     DIVIDE(
-      SUM(V(G(industry_transformation), input_of(wood_pellets, torrefied_biomass_pellets))),
-      BILLIONS
+    SUM(
+      DIVIDE(
+        SUM(V(G(industry_transformation), input_of(wood_pellets, torrefied_biomass_pellets))),
+        BILLIONS
+        ),
+      NEG(
+        SUM(
+          DIVIDE(
+            SUM(
+              V(
+                G(industry_transformation),
+                "input_of_wood_pellets * loss_output_conversion"
+                )
+              ),
+            BILLIONS
+          ),  
+            Q(wood_pellets_to_bio_oil_industry_transformation_in_sankey),
+            Q(wood_pellets_to_biodiesel_industry_transformation_in_sankey),
+            Q(wood_pellets_to_bio_kerosene_industry_transformation_in_sankey),
+            Q(wood_pellets_to_greengas_industry_transformation_in_sankey)
+          )
+        )
       )
+      

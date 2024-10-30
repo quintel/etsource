@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between greengas from hydrogen in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_biodiesel * hydrogen_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

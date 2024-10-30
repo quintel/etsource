@@ -1,4 +1,10 @@
 # Query for Sankey diagram: connection between methanol and biomass products industry transformation
 
 - unit = PJ
-- query = Q(methanol_to_greengas_industry_transformation_in_sankey)
+- query = 
+    SUM(
+      Q(methanol_to_greengas_industry_transformation_in_sankey),
+      Q(methanol_to_biodiesel_industry_transformation_in_sankey),
+      Q(methanol_to_bio_kerosene_industry_transformation_in_sankey),
+      Q(methanol_to_bio_oil_industry_transformation_in_sankey)
+    )
