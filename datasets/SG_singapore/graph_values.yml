@@ -379,7 +379,7 @@ energy_heat_solar_mt_solar_thermal:
   demand: 0.0
   full_load_hours: 899.2
 energy_heat_well_deep_ht_geothermal:
-  demand: 0
+  demand: 0.0
 energy_heat_well_deep_mt_geothermal:
   demand: 0.0
 energy_heat_well_shallow_heatpump_mt_geothermal:
@@ -630,19 +630,19 @@ industry_chemicals_fertilizers_steam_methane_reformer_hydrogen:
     :useable_heat: 0.232
     :network_gas: 0.768
 industry_chp_combined_cycle_gas_power_fuelmix:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.42
     :electricity: 0.46
   full_load_hours: 4507.878708
 industry_chp_engine_gas_power_fuelmix:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.48
     :electricity: 0.42
   full_load_hours: 4507.878708
 industry_chp_turbine_gas_power_fuelmix:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.42
     :electricity: 0.38
@@ -654,13 +654,13 @@ industry_chp_turbine_hydrogen:
     :electricity: 0.33445
   full_load_hours: 8300.0
 industry_chp_ultra_supercritical_coal:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.15
     :electricity: 0.4
   full_load_hours: 3899.549298
 industry_chp_wood_pellets:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.835
     :electricity: 0.27899999999999997
@@ -717,12 +717,12 @@ industry_final_demand_wood_pellets:
 industry_final_demand_wood_pellets_non_energetic:
   demand: 0.0
 industry_heat_burner_coal:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.72
   full_load_hours: 6000.0
 industry_heat_burner_crude_oil:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.72
   full_load_hours: 6000.0
@@ -732,12 +732,12 @@ industry_heat_burner_hydrogen:
     :steam_hot_water: 1.0
   full_load_hours: 7900.0
 industry_heat_burner_lignite:
-  demand: 0
+  demand: 0.0
   output:
     :steam_hot_water: 0.72
   full_load_hours: 6000.0
 industry_heat_well_geothermal:
-  demand: 0
+  demand: 0.0
 industry_other_metals_burner_network_gas:
   input:
     :coal: 1.0
@@ -1094,10 +1094,10 @@ industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemic
   parent_share: 0.0
 ? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_fertilizers_wood_pellets_non_energetic@wood_pellets
 : parent_share: 0.0
-? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_other_wood_pellets_non_energetic@wood_pellets
-: parent_share: 1.0
 ? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_refineries_wood_pellets_non_energetic@wood_pellets
 : parent_share: 0.0
+? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_locally_available_wood_pellets_non_energetic_for_chemical@wood_pellets
+: parent_share: 1.0
 industry_final_demand_for_metal_aluminium_electricity-industry_aluminium_electrolysis_current_electricity@electricity:
   parent_share: 1.0
 industry_final_demand_for_metal_coal-industry_final_demand_for_metal_steel_coal@coal:

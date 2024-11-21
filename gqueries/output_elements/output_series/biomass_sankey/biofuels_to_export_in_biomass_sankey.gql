@@ -1,0 +1,17 @@
+# Query for Biomass Sankey diagram: connection between biofuels and export
+
+- unit = PJ
+- query =
+    SUM(
+      DIVIDE(
+      SUM(
+       V(
+          G(energy_export),
+          input_of(bio_oil, bio_kerosene, bio_ethanol, biodiesel, bio_lng)
+         ),
+         V(energy_export_bio_oil_products_backup, demand)
+        ),
+      BILLIONS
+      )
+    )
+    

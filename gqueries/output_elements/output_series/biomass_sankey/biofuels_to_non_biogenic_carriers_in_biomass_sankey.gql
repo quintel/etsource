@@ -1,8 +1,12 @@
-# Query for Biomass Sankey diagram: connection between biofuels and non biogenuc carrier (electricity) production
+# Query for Biomass Sankey diagram: connection between biofuels and non biogenic carriers (electricity or industry transformation) production
 
 - unit = PJ
 - query =
-    DIVIDE(
-      SUM(V(G(electricity_production), input_of_gas_power_fuelmix)) * V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion),
-      BILLIONS
-      )
+    SUM(
+      DIVIDE(
+        SUM(V(G(electricity_production), input_of_gas_power_fuelmix)) * V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion),
+        BILLIONS
+      ),
+      Q(biofuels_to_industry_transformation_in_biomass_sankey)
+    )
+    

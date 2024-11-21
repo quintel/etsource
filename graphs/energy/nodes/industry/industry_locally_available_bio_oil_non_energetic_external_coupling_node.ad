@@ -1,0 +1,11 @@
+# This node is only used for external coupling of industry models. The transformation output of bio
+# oil (mostly naphtha) is modelled in a similar way as the refinery transformation output of crude
+# oil (mostly naphtha). Because there is no explicit bio oil demand in the chemical other sector,
+# wood pellets are used instead. This solution may be improved by making naphtha an explicit carrier.
+
+- groups = [sankey_conversion_group]
+- use = undefined
+- free_co2_factor = 1.0
+
+~ input.bio_oil = 1.0
+~ output.wood_pellets = 1.0
