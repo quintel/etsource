@@ -1,8 +1,8 @@
-# Returns the future greengas import
+# Returns the future greengas import, at the moment it is not possible to import greengas.
 
 - query =
     DIVIDE(
-      V(energy_import_greengas, demand) - V(energy_export_greengas_baseload, demand)
+      - V(energy_export_greengas_baseload, demand)
       MILLIONS
     )
 - unit = TJ

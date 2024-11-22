@@ -3,7 +3,24 @@
 - unit = MJ
 - query =
     SUM(
-      V(industry_burner_wood_pellets,output_of_heat_carriers),
-      V(industry_burner_network_gas,"output_of_heat_carriers * sustainability_share")
+      V(
+        FILTER(
+          INTERSECTION(
+            G(heat_production),
+            SECTOR(industry)
+            ),
+          "input_of_network_gas > 0.0"),
+        "output_of_heat_carriers * sustainability_share"
+        ),
+       V(
+        FILTER(
+          INTERSECTION(
+            G(heat_production),
+            SECTOR(industry)
+            ),
+          "input_of_wood_pellets > 0.0"),
+        "output_of_heat_carriers"
+        )  
     )
+
 - deprecated_key = heat_from_biomass_industry

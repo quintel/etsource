@@ -3,10 +3,23 @@
 - unit = MJ
 - query =
     SUM(
-      V(industry_burner_network_gas,output_of_heat_carriers),
+      V(
+        FILTER(
+          INTERSECTION(
+            G(heat_production),
+            SECTOR(industry)
+            ),
+          "input_of_network_gas > 0.0"),
+        "output_of_heat_carriers"
+        ),
       NEG(
         V(
-          industry_burner_network_gas,
+          FILTER(
+          INTERSECTION(
+            G(heat_production),
+            SECTOR(industry)
+            ),
+          "input_of_network_gas > 0.0"),
           "output_of_heat_carriers * sustainability_share"
         )
       )
