@@ -1,0 +1,13 @@
+# This query gives the captured CO2 emissions in industry
+
+- query =
+    DIVIDE(
+      SUM(
+        MV(
+          MG(captured_energetic_emissions_industry),
+          demand
+        )
+      ),
+      BILLIONS
+    )
+- unit = mt
