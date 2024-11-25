@@ -1,12 +1,12 @@
 # Uses "loss_output_conversion * demand" instead of output_of_loss since not_defined output will then be accounted for
-# the not_defined output of transformatio nodes is however a non-refinery output product, not a loss
+# the not_defined output of transformation nodes is however a non-refinery output product, not a loss
 
 - unit = PJ
 - query =
     DIVIDE(
       SUM(
           V(
-            energy_chemical_fertilizers_transformation_external_coupling_node,
+            energy_chemical_other_transformation_external_coupling_node,
             "loss_output_conversion * demand"
           )
         ),
