@@ -1,0 +1,35 @@
+# This query gives CO2 emissions from energetic use of hydrogen carriers in industry
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            INTERSECTION(
+              INTERSECTION(
+                G(co2_emissions_primary),
+                SECTOR(industry)
+              ),
+              USE(energetic)
+            ),
+            "hydrogen_input_conversion > 0.0 || liquid_hydrogen_input_conversion > 0.0 || lohc_input_conversion > 0.0"
+          ),
+          primary_co2_emission
+        ),
+        V(
+          FILTER(
+            INTERSECTION(
+              INTERSECTION(
+                G(co2_emissions_refinery_products),
+                SECTOR(industry)
+              ),
+              USE(energetic)
+            ),
+            "hydrogen_input_conversion > 0.0 || liquid_hydrogen_input_conversion > 0.0 || lohc_input_conversion > 0.0"
+          ),
+          "demand * weighted_carrier_co2_per_mj"
+        ),
+      ),
+      BILLIONS
+    )
+- unit = mt
