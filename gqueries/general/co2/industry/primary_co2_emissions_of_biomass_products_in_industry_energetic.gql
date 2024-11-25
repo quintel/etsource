@@ -1,0 +1,36 @@
+# This query gives CO2 emissions from energetic use of biomass products in industry
+# Note: this query does not include all biomass products. Depends on etsource#2781.
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            INTERSECTION(
+              INTERSECTION(
+                G(co2_emissions_primary),
+                SECTOR(industry)
+              ),
+              USE(energetic)
+            ),
+            "wood_pellets_input_conversion > 0.0"
+          ),
+          primary_co2_emission
+        ),
+        V(
+          FILTER(
+            INTERSECTION(
+              INTERSECTION(
+                G(co2_emissions_refinery_products),
+                SECTOR(industry)
+              ),
+              USE(energetic)
+            ),
+            "wood_pellets_input_conversion > 0.0"
+          ),
+          "demand * weighted_carrier_co2_per_mj"
+        ),
+      ),
+      BILLIONS
+    )
+- unit = mt
