@@ -1,0 +1,34 @@
+# Energetic final demand of the 'natural_gas' carrier group in buildings cooling
+
+- unit = PJ
+- query =
+    PRODUCT(
+      SUM(
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                INTERSECTION(EG(final_demand),EG(cooling_buildings)), "network_gas?"
+              ),
+              "energetic?"
+            ),
+            value
+          )
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  INTERSECTION(EG(final_demand),EG(cooling_buildings)), "compressed_network_gas?"
+                ),
+                "energetic?"
+              ),
+              value
+            )
+          ),
+          Q(share_of_network_gas_in_compressed_network_gas)
+        )
+      ),
+      Q(share_of_fossil_gas_in_gas_network)
+    ) / BILLIONS
