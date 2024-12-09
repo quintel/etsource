@@ -1,0 +1,5 @@
+# Use slightly different query than other sectors to exclude cooking (as these nodes are not in the heat_production group)
+- query =
+    SUM(V(INTERSECTION(SECTOR(households), G(heat_production)), output_of_heat_and_cooling_carriers)) +
+    SUM(V(INTERSECTION(SECTOR(households), G(final_demand_group)), input_of_steam_hot_water))
+- unit = MJ
