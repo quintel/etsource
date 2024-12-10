@@ -35,18 +35,18 @@ end
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  # Use only the "expect" syntax.
-  config.expect_with(:rspec) { |c| c.syntax = :expect }
+  # Disable RSpec's output capturing, allowing `puts` to show in the terminal.
+  config.before(:suite) do
+    $stdout.sync = true # Ensure immediate flushing of output
+  end
 
-  # Tries to find examples / groups with the focus tag, and runs them. If no
-  # examples are focues, run everything. Prevents the need to specify
-  # `--tag focus` when you only want to run certain examples.
+  config.before(:each) do
+    allow($stdout).to receive(:write).and_call_original
+  end
+
+  # Existing configurations...
+  config.expect_with(:rspec) { |c| c.syntax = :expect }
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
-
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
   config.order = 'random'
 end

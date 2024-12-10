@@ -1,4 +1,10 @@
 # Returns the peak of the hydrogen storage curve
 
-- query = MAX(V(energy_hydrogen_storage, storage_curve))
+- query = 
+     MAX(
+      SUM_CURVES(
+        V(energy_hydrogen_storage_salt_cavern,storage_curve)
+        V(energy_hydrogen_storage_depleted_gas_field,storage_curve)
+        )
+      )
 - unit = MW

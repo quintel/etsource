@@ -4,5 +4,9 @@
 - query =
     DIVIDE(
       SUM(
-        V(energy_distribution_steam_hot_water, output_of_loss) * Q(fraction_of_central_heaters_in_central_heat_sankey)),
+        V(
+          energy_distribution_lt_steam_hot_water,
+          energy_distribution_mt_steam_hot_water,
+          energy_distribution_ht_steam_hot_water,
+          output_of_loss) * Q(fraction_of_central_heaters_in_central_heat_sankey)),
         BILLIONS)
