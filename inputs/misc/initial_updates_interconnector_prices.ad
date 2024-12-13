@@ -1,0 +1,29 @@
+# Sets the default prices of export interconnectors. The default price of import
+# is calculable from the cost of imported electricity, however export does not
+# use imported electricity. Therefore the price must be set manually.
+- query =
+    UPDATE(
+      V(
+        energy_interconnector_1_exported_electricity,
+        energy_interconnector_2_exported_electricity,
+        energy_interconnector_3_exported_electricity,
+        energy_interconnector_4_exported_electricity,
+        energy_interconnector_5_exported_electricity,
+        energy_interconnector_6_exported_electricity,
+        energy_interconnector_7_exported_electricity,
+        energy_interconnector_8_exported_electricity,
+        energy_interconnector_9_exported_electricity,
+        energy_interconnector_10_exported_electricity,
+        energy_interconnector_11_exported_electricity,
+        energy_interconnector_12_exported_electricity
+      ),
+      marginal_costs,
+      PRODUCT(V(CARRIER(imported_electricity), cost_per_mj), MJ_PER_MWH)
+    )
+- priority = 0
+- max_value = 0
+- min_value = 0
+- start_value = 0
+- step_value = 0.1
+- unit = #
+- update_period = before
