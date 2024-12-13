@@ -1,2 +1,8 @@
-- query = V(energy_heat_burner_hydrogen, demand)
+- query = 
+    SUM(
+      V(energy_heat_burner_lt_hydrogen, demand),
+      V(energy_heat_burner_mt_hydrogen, demand),
+      V(energy_heat_burner_ht_hydrogen, demand)
+    )
+
 - unit = MJ

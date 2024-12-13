@@ -1,11 +1,17 @@
 - unit = PJ
 - query =
-    SUM(
-      V(
-        G(costs_production_chp_plants),
-        output_of_electricity
+    DIVIDE(
+      SUM(
+        V(
+          G(costs_production_chp_plants),
+          output_of_electricity
+          ),
+        NEG(V(energy_chp_ultra_supercritical_ht_coal, output_of_electricity)),
+        NEG(V(energy_chp_ultra_supercritical_mt_coal, output_of_electricity)),
+        NEG(V(energy_chp_ultra_supercritical_cofiring_ht_coal, output_of_electricity)),
+        NEG(V(energy_chp_ultra_supercritical_cofiring_mt_coal, output_of_electricity)),
+        NEG(V(energy_chp_combined_cycle_mt_network_gas, output_of_electricity)),
+        NEG(V(energy_chp_combined_cycle_ht_network_gas, output_of_electricity))
       ),
-      - V(energy_chp_ultra_supercritical_coal, output_of_electricity),
-      - V(energy_chp_ultra_supercritical_cofiring_coal, output_of_electricity),
-      - V(energy_chp_combined_cycle_network_gas, output_of_electricity),
-    ) / BILLIONS
+    BILLIONS
+    )  

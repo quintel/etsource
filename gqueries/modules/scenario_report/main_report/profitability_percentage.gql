@@ -1,11 +1,8 @@
 - query =
-    mo_converters = GROUP(dispatchable_production);
-    profitable = FILTER(mo_converters, "profitability == :profitable");
-
     PRODUCT(
       DIVIDE(
-        SUM(V(profitable, "installed_production_capacity_in_mw_electricity")),
-        SUM(V(mo_converters, "installed_production_capacity_in_mw_electricity"))
+        SUM(V(GROUP(dispatchable_production), "installed_production_capacity_in_mw_electricity")),
+        SUM(V(FILTER(mo_converters, "profitability == :profitable"), "installed_production_capacity_in_mw_electricity"))
       ),
       100
     )
