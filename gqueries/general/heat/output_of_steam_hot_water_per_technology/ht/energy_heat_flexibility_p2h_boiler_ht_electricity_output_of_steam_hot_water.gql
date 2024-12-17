@@ -1,8 +1,8 @@
-# Output of steam_hot_water from sum of energy_chp_local_ht_wood_pellets_dispatchable and energy_chp_local_ht_wood_pellets_must_run
+# Output of steam_hot_water from energy_heat_flexibility_p2h_boiler_ht_electricity
 
 - query =
-    SUM(
-      Q(energy_chp_local_ht_wood_pellets_must_run_output_of_steam_hot_water),
-      Q(energy_chp_local_ht_wood_pellets_dispatchable_output_of_steam_hot_water)
+    DIVIDE(
+      V(energy_heat_flexibility_p2h_boiler_ht_electricity, output_of_steam_hot_water),
+      BILLIONS
     )
 - unit = PJ

@@ -1,8 +1,8 @@
-# Output of steam_hot_water from energy_chp_ultra_supercritical_ht_coal
+# Output of steam_hot_water from sum of energy_chp_local_ht_wood_pellets_ccs_dispatchable_output_of_steam_hot_water and energy_chp_local_ht_wood_pellets_ccs_must_run_output_of_steam_hot_water
 
 - query =
-    DIVIDE(
-      V(energy_chp_ultra_supercritical_ht_coal, output_of_steam_hot_water),
-      BILLIONS
+    SUM(
+      Q(energy_chp_local_ht_wood_pellets_ccs_dispatchable_output_of_steam_hot_water),
+      Q(energy_chp_local_ht_wood_pellets_ccs_must_run_output_of_steam_hot_water)
     )
 - unit = PJ
