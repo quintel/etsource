@@ -1,0 +1,12 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(converter_group_chp_per_plant_type_network_gas),
+          Q(converter_group_chp_per_plant_type_gas_power_fuelmix),
+          output_of_electricity
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
