@@ -1,6 +1,11 @@
 - query =
     DIVIDE(
-      V(energy_production_aggregator_mt_steam_hot_water, demand),
+      SUM(
+        V(
+          FILTER(G(heat_production), "heat_network_mt && heat_network_mt.type == :producer"),
+          output_of_steam_hot_water
+        )
+      ),
       BILLIONS
     )
 - unit = PJ
