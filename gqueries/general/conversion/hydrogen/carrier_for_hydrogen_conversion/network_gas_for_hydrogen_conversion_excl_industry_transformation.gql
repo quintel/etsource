@@ -1,0 +1,23 @@
+# Network gas conversion to hydrogen from hydrogen_production group
+# Industry transformation is excluded from this query
+# natural gas is queried here to also account for SMR
+# greengas is queried for completeness
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          EXCLUDE(
+            G(hydrogen_production),
+            G(industry_transformation)
+          ),
+          input_of(
+            network_gas,
+            natural_gas,
+            greengas
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
