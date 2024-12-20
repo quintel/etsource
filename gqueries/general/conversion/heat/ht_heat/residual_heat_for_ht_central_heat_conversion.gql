@@ -1,0 +1,13 @@
+# Direct conversion input of residual heat for central heat production HT network
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(Q(central_heat_producing_converters_sankey), "residual_heat_input_conversion > 0 && heat_network_ht"),
+          output_of_steam_hot_water
+        ),
+      ),
+      BILLIONS
+    )
+- unit = PJ
