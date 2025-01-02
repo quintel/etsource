@@ -1,4 +1,3 @@
-
 # Energetic final demand of electricity in agriculture heating
 
 - unit = PJ
@@ -6,13 +5,12 @@
     DIVIDE(
       SUM(
         V(
-            INTERSECTION(
-              G(heat_production),
-              SECTOR(agriculture)
-            ),
-          input_of_electricity)
+          INTERSECTION(
+            G(heat_production),
+            SECTOR(agriculture)
+          ),
+          input_of_electricity
+        )
       ),
       BILLIONS
     )
-
-
