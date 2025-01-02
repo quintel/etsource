@@ -3,13 +3,15 @@
     SUM(
       V(
         INTERSECTION(
-          G(heat_production),
-          G(central_production),
-          SECTOR(energy)
+          INTERSECTION(
+            G(heat_production),
+            G(central_production)
           ),
+          SECTOR(energy)
+        ),
         input_of_electricity
-        )
-      ),
-      BILLIONS
-    )
+      )
+    ),
+    BILLIONS
+  )
 - unit = PJ
