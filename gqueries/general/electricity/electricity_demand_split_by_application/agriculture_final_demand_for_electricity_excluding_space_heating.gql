@@ -4,12 +4,16 @@
 - query =
     SUM(
       DIVIDE(
-        V(
-          agriculture_final_demand_electricity,
-          input_of_electricity),
+        SUM(
+          V(
+            INTERSECTION(
+              G(final_demand_group),
+              SECTOR(agriculture)
+            ),
+            input_of_electricity
+          )
+        ),
         BILLIONS
       ),
-      NEG(
-        Q(agriculture_final_demand_for_electricity_in_space_heating)
-        )
+      NEG(Q(agriculture_final_demand_for_electricity_in_space_heating))
     )
