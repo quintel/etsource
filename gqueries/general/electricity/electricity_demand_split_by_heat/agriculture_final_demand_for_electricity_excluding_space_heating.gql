@@ -3,18 +3,13 @@
 
 - unit = PJ
 - query =
-    DIVIDE(
-      SUM(
-        V(
-          FILTER(
-            INTERSECTION(
-              G(heat_production),
-              SECTOR(agriculture)
-              )
-            ),
-          input_of_electricity)
+    SUM(
+      DIVIDE(
+          V(agriculture_final_demand_electricity,
+            input_of_electricity),
+        BILLIONS
       ),
-      BILLIONS
+      NEG(
+        Q(agriculture_final_demand_for_electricity_in_space_heating)
+        )
     )
-
-

@@ -1,6 +1,11 @@
 - query =
-      V(
-        energy_synthetic_products_electricity,
-        demand
-        )
+    DIVIDE(
+      SUM(
+        V(
+          energy_synthetic_products_electricity,
+          demand
+          )
+      ),
+      BILLIONS
+      )
 - unit = PJ
