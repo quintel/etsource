@@ -1,0 +1,23 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(electricity_producing_converters_sankey),
+          "input_of_network_gas"
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              Q(electricity_producing_converters_sankey)
+              ,
+            "input_of_gas_power_fuelmix"
+            )
+          ),
+          V(energy_mixer_for_gas_power_fuel,
+            'network_gas_input_conversion'
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
