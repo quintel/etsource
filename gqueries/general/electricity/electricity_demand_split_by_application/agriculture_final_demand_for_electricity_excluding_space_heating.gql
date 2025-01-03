@@ -1,0 +1,19 @@
+# Energetic final demand of electricity in agriculture excluding heating
+
+- unit = PJ
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            INTERSECTION(
+              G(final_demand_group),
+              SECTOR(agriculture)
+            ),
+            input_of_electricity
+          )
+        ),
+        BILLIONS
+      ),
+      NEG(Q(agriculture_final_demand_for_electricity_in_space_heating))
+    )

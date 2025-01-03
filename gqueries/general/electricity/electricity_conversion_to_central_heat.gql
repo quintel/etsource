@@ -1,0 +1,14 @@
+- query =
+  DIVIDE(
+    SUM(
+      V(
+        INTERSECTION(
+          Q(central_heat_producing_converters_sankey),
+          SECTOR(energy)
+        ),
+        input_of_electricity
+      )
+    ),
+    BILLIONS
+  )
+- unit = PJ
