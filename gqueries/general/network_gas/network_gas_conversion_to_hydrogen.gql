@@ -1,0 +1,14 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          EXCLUDE(
+            G(hydrogen_production),
+            G(industry_transformation)
+            ),
+          input_of_network_gas
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
