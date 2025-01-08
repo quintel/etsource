@@ -3,7 +3,7 @@
 - unit = MJ
 - query =
     SUM(
-        V(FILTER(G(electricity_production), "geothermal_input_conversion > 0"),"output_of_steam_hot_water"),
-        V(FILTER(G(electricity_production), "ambient_cold_input_conversion > 0"),"output_of_steam_hot_water"),
-        V(FILTER(G(electricity_production), "ambient_heat_input_conversion > 0"),"output_of_steam_hot_water")
+        V(FILTER(G(electricity_production), "geothermal_input_conversion > 0.0"),"output_of_steam_hot_water"),
+        V(FILTER(G(electricity_production), "ambient_cold_input_conversion > 0.0"),"output_of_steam_hot_water"),
+        V(FILTER(G(electricity_production), "ambient_heat_input_conversion > 0.0"),"output_of_steam_hot_water")
     )

@@ -1,10 +1,10 @@
 # The output node of the inland wind turbine with battery system, energy_battery_wind_electricity, is communicated to the merit order but does not have input of wind, therefore it is added separately here.
 
-- query = 
+- query =
     V(
       FILTER(
         G(electricity_production),
-        "wind_input_conversion > 0"
+        "wind_input_conversion > 0.0"
       ),
       energy_battery_wind_electricity
     )

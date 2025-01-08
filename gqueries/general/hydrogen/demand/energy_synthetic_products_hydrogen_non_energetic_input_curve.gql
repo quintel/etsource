@@ -1,12 +1,12 @@
 # This query obtains the methanol and kerosene (must-run and dispatchable) production nodes and retrieves
 # the hydrogen input curve
 
-- query = 
+- query =
     SUM_CURVES(
       V(
         FILTER(
           Q(time_resolved_hydrogen_demand_converters),
-          "methanol_output_conversion > 0 || kerosene_output_conversion > 0"
+          "methanol_output_conversion > 0 || kerosene_output_conversion > 0.0"
           ),
         hydrogen_input_curve
       )
