@@ -1,15 +1,17 @@
+# This gquery includes curtailment of electricity production technologies
+# Excluded are the energy_battery_curtailed_wind_electricity and energy_battery_curtailed_solar_electricity
+# This is because these nodes are only shown as the resulting output to the grid
+
 - query =
-  DIVIDE(
-    SUM(
-      V(
-        energy_flexibility_curtailment_electricity,
-        energy_hydrogen_curtailed_electricity,
-        energy_power_hybrid_curtailed_electricity,
-        energy_battery_curtailed_solar_electricity,
-        energy_battery_curtailed_wind_electricity,
-        demand
-      )
-    ),
-    BILLIONS
-  )
+    DIVIDE(
+      SUM(
+        V(
+          energy_flexibility_curtailment_electricity,
+          energy_hydrogen_curtailed_electricity,
+          energy_power_hybrid_curtailed_electricity,
+          demand
+        )
+      ),
+      BILLIONS
+    )
 - unit = PJ

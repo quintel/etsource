@@ -1,0 +1,11 @@
+# Nodes that convert electricity to hydrogen (electrolysis)
+
+- query =
+    FILTER(
+      FILTER(
+        ALL(),
+        "hydrogen && (hydrogen.type == :producer)"
+      ),
+      "electricity_input_conversion > 0.0"
+    )
+- unit = nodes
