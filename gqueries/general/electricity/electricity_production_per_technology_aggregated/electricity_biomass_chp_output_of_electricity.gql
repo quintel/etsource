@@ -1,0 +1,12 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(converter_group_chp_per_plant_type_biogas),
+          Q(converter_group_chp_per_plant_type_wood_pellets),
+          output_of_electricity
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

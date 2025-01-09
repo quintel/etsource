@@ -1,0 +1,8 @@
+# Returns the converters which produce electricity using wood_pellets. The cofired power_plants are filtered out.
+
+- query =
+    FILTER(
+      G(electricity_production),
+     "wood_pellets_input_conversion > 0 && coal_input_conversion == 0.0"
+     )
+- unit = nodes
