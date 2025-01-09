@@ -4,8 +4,8 @@
 
 - unit = tonne
 - query = 
-    PRODUCT(
-      Q(primary_co2_in_non_energetic_and_delayed_emissions),
-      MILLIONS
-    )
+      SUM(
+        Q(primary_co2_of_non_energetic),
+        Q(primary_co2_of_delayed_emissions)
+      )
 
