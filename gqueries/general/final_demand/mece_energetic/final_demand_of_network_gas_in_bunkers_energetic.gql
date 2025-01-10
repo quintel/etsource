@@ -1,0 +1,17 @@
+# Final demand of the 'network_gas' and 'compressed_network_gas' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+          FILTER(
+            FILTER(
+              FILTER(
+            EG(final_demand),"sector == :bunkers"), "network_gas? || compressed_network_gas?"
+          ),
+          "energetic?"
+        ),
+        value
+      )
+    )
+     / BILLIONS
