@@ -1,0 +1,11 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER( ALL(), "hydrogen && (hydrogen.type == :producer || hydrogen.subtype == :transformation)"),
+          output_of_hydrogen
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
