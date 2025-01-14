@@ -1,8 +1,10 @@
 - query =
     IF(
       EQUALS(AREA(weather_curve_set), "default"),
-      ->{
-        UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT())
+      ->{EACH(
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), full_load_hours, USER_INPUT())
+      )
       },
       -> {},
     )
