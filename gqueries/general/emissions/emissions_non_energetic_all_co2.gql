@@ -1,11 +1,14 @@
+# All non energetic CO2 emissions
+# The first 5 queries contain of non-energetic emissions from area attributes
+# The final query contains modelled non-energetic primary CO2 emissions in the industry sector
+
 - query =
-  SUM(
+    SUM(
       Q(emissions_non_energetic_industry_chemical_co2),
       Q(emissions_non_energetic_industry_waste_management_co2),
-      Q(emissions_non_energetic_agriculture_manure_co2),
       Q(emissions_non_energetic_other_industry_co2),
+      Q(emissions_non_energetic_agriculture_manure_co2),
       Q(emissions_non_energetic_agriculture_soil_cultivation_co2),
-      Q(industry_chemical_non_energetic_co2_emissions)
-  )
-
+      PRODUCT(Q(primary_co2_of_non_energetic), MILLIONS)
+    )
 - unit = T
