@@ -1,8 +1,13 @@
 - query =
     DIVIDE(
-      PRODUCT(
-        SUM(Q(network_gas_production_output_curve)),
-        MJ_PER_MWH
+      SUM(
+        V(
+          FILTER(
+            ALL(),
+             "network_gas && (network_gas.type == :producer || network_gas.type == :transformation || network_gas.type == :import) "
+             ),
+           "output_of_natural_gas + output_of_greengas"
+        )
       ),
       BILLIONS
     )

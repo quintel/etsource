@@ -1,0 +1,10 @@
+# This query functions both as the total demand and supply query. 
+# This is due to the fact that the co2 mekko is based around the node molecules_distribution_before_transport_co2.
+# All demand and supply is routed via this node.
+- unit = MT
+- query = 
+    DIVIDE(
+      MV(molecules_distribution_before_transport_co2, demand),
+      BILLIONS
+    )
+
