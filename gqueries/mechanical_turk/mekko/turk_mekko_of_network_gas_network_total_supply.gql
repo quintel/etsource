@@ -2,11 +2,8 @@
     DIVIDE(
       SUM(
         V(
-          FILTER(
-            ALL(),
-             "network_gas && (network_gas.type == :producer || network_gas.type == :transformation || network_gas.type == :import)"
-             ),
-           "output_of_natural_gas + output_of_greengas"
+          Q(time_resolved_network_gas_production_converters),
+           "output_of_natural_gas + output_of_greengas + output_of_propane"
         )
       ),
       BILLIONS

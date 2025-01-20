@@ -2,7 +2,7 @@
     DIVIDE(
       SUM(
         V(
-          FILTER( ALL(), "hydrogen && (hydrogen.type == :producer || hydrogen.subtype == :transformation)"),
+          Q(time_resolved_hydrogen_producers_excl_storage),
           output_of_hydrogen
         )
       ),
