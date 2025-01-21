@@ -1,7 +1,7 @@
-# This query takes the demand side of network gas. 
+# This query takes the demand side of network gas.
 # The carrier gas_power_fuelmix can't be queried robustly since this carrier is mixed with crude oil.
-# This crude oil is not in the network gas demand calculations. 
-# The losses of the energy_treatment_natural_gas are also taken into account, since these 
+# This crude oil is not in the network gas demand calculations.
+# The losses of the energy_treatment_natural_gas are also taken into account, since these
 # losses are not in the consumer group.
 
 - unit = PJ
@@ -17,11 +17,9 @@
           input_of_network_gas
         ),
         V(
-          energy_treatment_natural_gas, 
-          energy_national_gas_network_natural_gas,
+          energy_treatment_natural_gas,
           output_of_loss
         )
       ),
     BILLIONS
    )
-   
