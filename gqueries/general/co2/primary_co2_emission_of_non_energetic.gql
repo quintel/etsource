@@ -5,4 +5,24 @@
 # demand. Since its free_co2_factor is 1.0, this doesn't affect the results.
 
 - unit = mt
-- query = Q(primary_co2_emission_of_non_energetic)
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
+            INTERSECTION(
+              G(co2_emissions_primary),
+              SECTOR(industry)),
+            USE(non_energetic)),
+          primary_co2_emission),
+        NEG(
+          SUM(
+            MV(
+              MG(captured_non_energetic_emissions_industry),
+              demand
+            )
+          )
+        )
+      ),
+      BILLIONS
+    )

@@ -6,28 +6,4 @@
 # refnery products for which the primary CO2 emissions should be taken into account.
 
 - unit = mt
-- query =
-    DIVIDE(
-      SUM(
-        V(
-          INTERSECTION(
-            INTERSECTION(
-              G(co2_emissions_primary),
-              SECTOR(industry)),
-            USE(energetic)),
-          primary_co2_emission),
-        V(
-          INTERSECTION(
-            G(co2_emissions_refinery_products),
-            SECTOR(industry)),
-          "demand * weighted_carrier_co2_per_mj"),
-        NEG(
-          SUM(
-            MV(
-              MG(captured_energetic_emissions_industry),
-              demand)
-            )
-          )
-        ),
-      BILLIONS
-    )
+- query = Q(primary_co2_emission_of_industry)
