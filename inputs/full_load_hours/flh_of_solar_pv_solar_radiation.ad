@@ -7,7 +7,11 @@
     IF(
       EQUALS(AREA(weather_curve_set), "default"),
       ->{
-        original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
+        solar_original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
+        solar_households_nou = V(households_solar_pv_solar_radiation, number_of_units);
+        solar_buildings_nou = V(buildings_solar_pv_solar_radiation, number_of_units);
+        solar_offshore_nou = V(energy_power_solar_pv_offshore, number_of_units);
+        solar_battery_nou = V(energy_battery_solar_pv_solar_radiation,number_of_units);
 
         share_2 =
             DIVIDE(
@@ -16,17 +20,47 @@
             );
 
         EACH(
-            UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_battery_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou),
             UPDATE(
-            V(energy_power_solar_pv_solar_radiation),
-            preset_demand_by_electricity_production,
-            V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
+              V(
+                energy_power_solar_pv_solar_radiation,
+                energy_hydrogen_solar_pv_solar_radiation,
+                energy_power_solar_pv_offshore,
+                energy_battery_solar_pv_solar_radiation,
+                buildings_solar_pv_solar_radiation,
+                households_solar_pv_solar_radiation
+                ),
+                full_load_hours,
+                USER_INPUT()
+              ),
+            UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, solar_original_nou),
+            UPDATE(
+              V(energy_power_solar_pv_solar_radiation),
+              preset_demand_by_electricity_production,
+              V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
+            ),
+            UPDATE(V(households_solar_pv_solar_radiation), number_of_units, solar_households_nou),
+            UPDATE(
+              V(households_solar_pv_solar_radiation),
+              preset_demand_by_electricity_production,
+              V(households_solar_pv_solar_radiation, production_based_on_number_of_units)
+            ),
+            UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, solar_buildings_nou),
+            UPDATE(
+              V(buildings_solar_pv_solar_radiation),
+              preset_demand_by_electricity_production,
+              V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)
+            ),
+            UPDATE(V(energy_power_solar_pv_offshore), number_of_units, solar_offshore_nou),
+            UPDATE(
+              V(energy_power_solar_pv_offshore),
+              preset_demand_by_electricity_production,
+              V(energy_power_solar_pv_offshore, production_based_on_number_of_units)
+            ),
+            UPDATE(V(energy_battery_solar_pv_solar_radiation), number_of_units, solar_battery_nou),
+            UPDATE(
+              V(energy_battery_solar_pv_solar_radiation),
+              preset_demand_by_electricity_production,
+              V(energy_battery_solar_pv_solar_radiation, production_based_on_number_of_units)
             ),
             UPDATE(AREA(), solar_pv_profile_1_share, (1 - share_2)),
             UPDATE(AREA(), solar_pv_profile_2_share, share_2)
