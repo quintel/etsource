@@ -32,11 +32,11 @@
       cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
       original_number_of_solar_parks = V(energy_power_solar_pv_solar_radiation, number_of_units);
 
-      solar_original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
-      solar_households_nou = V(households_solar_pv_solar_radiation, number_of_units);
-      solar_buildings_nou = V(buildings_solar_pv_solar_radiation, number_of_units);
-      solar_offshore_nou = V(energy_power_solar_pv_offshore, number_of_units);
-      solar_battery_nou = V(energy_battery_solar_pv_solar_radiation,number_of_units);
+      orginal_number_of_power_solar_pv = V(energy_power_solar_pv_solar_radiation, number_of_units);
+      orginal_number_of_households_solar_pv = V(households_solar_pv_solar_radiation, number_of_units);
+      orginal_number_of_buildings_solar_pv = V(buildings_solar_pv_solar_radiation, number_of_units);
+      orginal_number_of_power_solar_pv_offshore = V(energy_power_solar_pv_offshore, number_of_units);
+      orginal_number_of_battery_solar_pv = V(energy_battery_solar_pv_solar_radiation,number_of_units);
       original_number_of_wind_turbine_coastal = V(energy_power_wind_turbine_coastal, number_of_units);
       original_number_of_wind_turbine_inland = V(energy_power_wind_turbine_inland, number_of_units);
       original_number_of_wind_turbine_offshore = V(energy_power_wind_turbine_offshore, number_of_units);
@@ -93,31 +93,31 @@
           preset_demand_by_electricity_production,
           V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units)
         ),
-        UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, solar_original_nou),
+        UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, orginal_number_of_power_solar_pv),
         UPDATE(
           V(energy_power_solar_pv_solar_radiation),
             preset_demand_by_electricity_production,
           V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
            ),
-        UPDATE(V(households_solar_pv_solar_radiation), number_of_units, solar_households_nou),
+        UPDATE(V(households_solar_pv_solar_radiation), number_of_units, orginal_number_of_households_solar_pv),
         UPDATE(
           V(households_solar_pv_solar_radiation),
             preset_demand_by_electricity_production,
           V(households_solar_pv_solar_radiation, production_based_on_number_of_units)
           ),
-        UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, solar_buildings_nou),
+        UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, orginal_number_of_buildings_solar_pv),
         UPDATE(
           V(buildings_solar_pv_solar_radiation),
             preset_demand_by_electricity_production,
           V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)
           ),
-        UPDATE(V(energy_power_solar_pv_offshore), number_of_units, solar_offshore_nou),
+        UPDATE(V(energy_power_solar_pv_offshore), number_of_units, orginal_number_of_power_solar_pv_offshore),
         UPDATE(
           V(energy_power_solar_pv_offshore),
             preset_demand_by_electricity_production,
           V(energy_power_solar_pv_offshore, production_based_on_number_of_units)
           ),
-        UPDATE(V(energy_battery_solar_pv_solar_radiation), number_of_units, solar_battery_nou),
+        UPDATE(V(energy_battery_solar_pv_solar_radiation), number_of_units, orginal_number_of_battery_solar_pv),
         UPDATE(
           V(energy_battery_solar_pv_solar_radiation),
             preset_demand_by_electricity_production,
