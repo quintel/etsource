@@ -41,6 +41,12 @@
         original_nou_of_wind_offshore =        V(energy_power_wind_turbine_offshore,        number_of_units);
         original_nou_of_wind_offshore_hybrid = V(energy_power_hybrid_wind_turbine_offshore, number_of_units);
 
+        electrolyser_pv_flh_ratio =
+          DIVIDE(
+            V(energy_hydrogen_electrolysis_solar_electricity, full_load_hours),
+            V(energy_hydrogen_solar_pv_solar_radiation, full_load_hours)
+          );
+
         EACH(
           UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1945_1964), preset_demand, heat_factor),
           UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1965_1984), preset_demand, heat_factor),
@@ -73,6 +79,7 @@
           UPDATE_WITH_FACTOR(V(agriculture_useful_demand_useable_heat), preset_demand, heat_factor),
 
           UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), full_load_hours, PRODUCT(WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation), electrolyser_pv_flh_ratio)),
 
           UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
           UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou_power_solar_pv),
