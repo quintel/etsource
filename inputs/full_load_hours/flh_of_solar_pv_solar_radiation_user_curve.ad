@@ -11,8 +11,15 @@
     original_nou_power_solar_pv_offshore = V(energy_power_solar_pv_offshore,          number_of_units);
     original_nou_battery_solar_pv =        V(energy_battery_solar_pv_solar_radiation, number_of_units);
 
+    electrolyser_pv_flh_ratio =
+      DIVIDE(
+        V(energy_hydrogen_electrolysis_solar_electricity, full_load_hours),
+        V(energy_hydrogen_solar_pv_solar_radiation, full_load_hours)
+      );
+
     EACH(
       UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), full_load_hours, PRODUCT(USER_INPUT(), electrolyser_pv_flh_ratio)),
 
       UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
       UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou_power_solar_pv),
