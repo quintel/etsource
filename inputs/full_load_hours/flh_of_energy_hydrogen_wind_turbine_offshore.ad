@@ -1,11 +1,17 @@
+# Full load hours of both the offshore wind turbines and electrolyser are updated
+
 - query =
     IF(
       EQUALS(AREA(weather_curve_set), "default"),
-      ->{
-        UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT())
+      -> {
+        EACH(
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), full_load_hours, USER_INPUT())
+        )
       },
       -> {},
     )
+
 - priority = 1
 - max_value = 6500.0
 - min_value_gql = present:V(energy_hydrogen_wind_turbine_offshore, full_load_hours)
