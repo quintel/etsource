@@ -21,6 +21,11 @@
         V(energy_hydrogen_electrolysis_solar_electricity),
         number_of_units,
         DIVIDE(electrolyser_input_capacity,V(energy_hydrogen_electrolysis_solar_electricity, typical_input_capacity))
+      ),
+      UPDATE(
+        L(energy_hydrogen_electrolysis_solar_electricity),
+        preset_demand_by_hydrogen_production,
+        V(energy_hydrogen_electrolysis_solar_electricity, hydrogen_production_based_on_number_of_units)
       )
     )
 
