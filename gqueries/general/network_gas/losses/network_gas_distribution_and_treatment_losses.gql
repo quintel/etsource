@@ -1,13 +1,9 @@
 # Losses from network gas distribution and natural gas treatment
-
-- unit = PJ
 - query =
     DIVIDE(
       SUM(
-        V(
-          Q(time_resolved_network_gas_demand_converters),
-          input_of_loss
-        )
+        V(energy_distribution_network_gas_loss, demand),
+        V(energy_treatment_natural_gas, output_of_loss)
       ),
       BILLIONS
     )
