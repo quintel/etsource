@@ -6,15 +6,20 @@
 
 - unit = PJ
 - query =
-   DIVIDE(
-      SUM(
+      DIVIDE(
+        SUM(
         V(
           Q(time_resolved_network_gas_demand_converters),
-          "input_of_natural_gas + input_of_greengas + input_of_network_gas + input_of_loss"
+          "input_of_natural_gas + input_of_greengas + input_of_network_gas"
         ),
         V(
           energy_mixer_for_gas_power_fuel,
           input_of_network_gas
+        ),
+        V(
+          energy_treatment_natural_gas,
+          energy_national_gas_network_natural_gas,
+          output_of_loss
         )
       ),
     BILLIONS
