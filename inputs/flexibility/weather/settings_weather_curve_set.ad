@@ -8,88 +8,134 @@
 #    a curve set which no longer exists. This is done by checking the intersection of allowed
 #    values and the value provided by the user. If the intersection length is 0, the value is not
 #    valid.
-#
+
 - query =
-  IF(
-    OR(
-      EQUALS(USER_INPUT(), "default"),
-      EQUALS(
-        COUNT(
-          INTERSECTION(
-            CURVE_SET_VARIANTS(weather),
-            [USER_INPUT()]
-          )
-        ),
-        0
-      )
-    ),
-    -> {},
-    -> {
-      UPDATE(AREA(), weather_curve_set, USER_INPUT());
-
-      x = WEATHER_PROPERTY(average_difference_in_air_temperature);
-      heat_factor = 1.0 - 0.1507409694 * x;
-      cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
-      original_number_of_solar_parks = V(energy_power_solar_pv_solar_radiation, number_of_units);
-      original_number_of_wind_turbine_coastal = V(energy_power_wind_turbine_coastal, number_of_units);
-      original_number_of_wind_turbine_inland = V(energy_power_wind_turbine_inland, number_of_units);
-      original_number_of_wind_turbine_offshore = V(energy_power_wind_turbine_offshore, number_of_units);
-      original_number_of_wind_turbine_offshore_hybrid = V(energy_power_hybrid_wind_turbine_offshore, number_of_units);
-
-      EACH(
-        UPDATE_WITH_FACTOR(V(households_terraced_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-        UPDATE_WITH_FACTOR(V(households_detached_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-        UPDATE_WITH_FACTOR(V(households_semi_detached_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-        UPDATE_WITH_FACTOR(V(households_corner_houses_useful_demand_for_space_heating), preset_demand, heat_factor),
-        UPDATE_WITH_FACTOR(V(households_apartments_useful_demand_for_space_heating), preset_demand, heat_factor),
-        UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, cool_factor),
-        UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating), preset_demand, heat_factor),
-        UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor),
-        UPDATE_WITH_FACTOR(V(agriculture_useful_demand_useable_heat), preset_demand, heat_factor),
-        UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
-        UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
-        UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
-        UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
-        UPDATE(V(energy_heat_solar_thermal), full_load_hours, WEATHER_PROPERTY(flh_of_energy_heat_solar_thermal)),
-        UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_number_of_solar_parks),
-        UPDATE(
-          V(energy_power_solar_pv_solar_radiation),
-          preset_demand_by_electricity_production,
-          V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
-        ),
-        UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_offshore)),
-        UPDATE(V(energy_power_wind_turbine_inland), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_inland)),
-        UPDATE(V(energy_power_wind_turbine_inland), number_of_units, original_number_of_wind_turbine_inland),
-        UPDATE(
-          V(energy_power_wind_turbine_inland),
-          preset_demand_by_electricity_production,
-          V(energy_power_wind_turbine_inland, production_based_on_number_of_units)
-        ),
-        UPDATE(V(energy_power_wind_turbine_coastal), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_coastal)),
-        UPDATE(V(energy_power_wind_turbine_coastal), number_of_units, original_number_of_wind_turbine_coastal),
-        UPDATE(
-          V(energy_power_wind_turbine_coastal),
-          preset_demand_by_electricity_production,
-          V(energy_power_wind_turbine_coastal, production_based_on_number_of_units)
-        ),
-        UPDATE(V(energy_power_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
-        UPDATE(V(energy_power_hybrid_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
-        UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
-        UPDATE(V(energy_power_wind_turbine_offshore), number_of_units, original_number_of_wind_turbine_offshore),
-        UPDATE(
-          V(energy_power_wind_turbine_offshore),
-          preset_demand_by_electricity_production,
-          V(energy_power_wind_turbine_offshore, production_based_on_number_of_units)
-        ),
-        UPDATE(V(energy_power_hybrid_wind_turbine_offshore), number_of_units, original_number_of_wind_turbine_offshore_hybrid),
-        UPDATE(
-          V(energy_power_hybrid_wind_turbine_offshore),
-          preset_demand_by_electricity_production,
-          V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units)
+    IF(
+      OR(
+        EQUALS(USER_INPUT(), "default"),
+        EQUALS(
+          COUNT(
+            INTERSECTION(
+              CURVE_SET_VARIANTS(weather),
+              [USER_INPUT()]
+            )
+          ),
+          0
         )
-      )
-    }
-  )
+      ),
+      -> {},
+      -> {
+        UPDATE(AREA(), weather_curve_set, USER_INPUT());
+
+        x = WEATHER_PROPERTY(average_difference_in_air_temperature);
+        heat_factor = 1.0 - 0.1507409694 * x;
+        cool_factor = 1.0 + 0.5669449 * x + 0.1598105 * x**2 + 0.0253755 * x**3 + 0.00163210 * x**4;
+
+        original_nou_power_solar_pv =                   V(energy_power_solar_pv_solar_radiation,           number_of_units);
+        original_nou_households_solar_pv =              V(households_solar_pv_solar_radiation,             number_of_units);
+        original_nou_buildings_solar_pv =               V(buildings_solar_pv_solar_radiation,              number_of_units);
+        original_nou_power_solar_pv_offshore =          V(energy_power_solar_pv_offshore,                  number_of_units);
+        original_nou_battery_solar_pv =                 V(energy_battery_solar_pv_solar_radiation,         number_of_units);
+        original_nou_hydrogen_solar_pv =                V(energy_hydrogen_solar_pv_solar_radiation,        number_of_units);
+        original_nou_hydrogen_electrolysis_solar_pv =   V(energy_hydrogen_electrolysis_solar_electricity,  number_of_units);
+        original_nou_of_wind_coastal =                  V(energy_power_wind_turbine_coastal,               number_of_units);
+        original_nou_of_wind_inland =                   V(energy_power_wind_turbine_inland,                number_of_units);
+        original_nou_of_wind_offshore =                 V(energy_power_wind_turbine_offshore,              number_of_units);
+        original_nou_of_wind_offshore_hybrid =          V(energy_power_hybrid_wind_turbine_offshore,       number_of_units);
+        original_nou_of_hydrogen_wind_offshore =        V(energy_hydrogen_wind_turbine_offshore,           number_of_units);
+        original_nou_of_hydrogen_electrolysis_wind =    V(energy_hydrogen_electrolysis_wind_electricity,   number_of_units);
+
+        electrolyser_pv_flh_ratio =
+          DIVIDE(
+            V(energy_hydrogen_electrolysis_solar_electricity, full_load_hours),
+            V(energy_hydrogen_solar_pv_solar_radiation, full_load_hours)
+          );
+
+        EACH(
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1945_1964), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1965_1984), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1985_2004), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_2005_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_before_1945), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(households_useful_demand_for_cooling), preset_demand, cool_factor),
+          UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_present), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, heat_factor),
+          UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor),
+          UPDATE_WITH_FACTOR(V(agriculture_useful_demand_useable_heat), preset_demand, heat_factor),
+
+          UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
+          UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou_power_solar_pv),
+          UPDATE(V(energy_power_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
+          UPDATE(V(households_solar_pv_solar_radiation), number_of_units, original_nou_households_solar_pv),
+          UPDATE(V(households_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(households_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
+          UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, original_nou_buildings_solar_pv),
+          UPDATE(V(buildings_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_offshore)),
+          UPDATE(V(energy_power_solar_pv_offshore), number_of_units, original_nou_power_solar_pv_offshore),
+          UPDATE(V(energy_power_solar_pv_offshore), preset_demand_by_electricity_production, V(energy_power_solar_pv_offshore, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_battery_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
+          UPDATE(V(energy_battery_solar_pv_solar_radiation), number_of_units, original_nou_battery_solar_pv),
+          UPDATE(V(energy_battery_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_battery_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_heat_solar_thermal), full_load_hours, WEATHER_PROPERTY(flh_of_energy_heat_solar_thermal)),
+
+          UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
+          UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), number_of_units, original_nou_hydrogen_solar_pv),
+          UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_hydrogen_solar_pv_solar_radiation, production_based_on_number_of_units)),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), full_load_hours, PRODUCT(WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation), electrolyser_pv_flh_ratio)),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), number_of_units, original_nou_hydrogen_electrolysis_solar_pv),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), preset_demand_by_hydrogen_production, V(energy_hydrogen_electrolysis_solar_electricity, hydrogen_production_based_on_number_of_units)),
+
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), number_of_units, original_nou_of_hydrogen_wind_offshore),
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), preset_demand_by_electricity_production, V(energy_hydrogen_wind_turbine_offshore, production_based_on_number_of_units)),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), number_of_units, original_nou_of_hydrogen_electrolysis_wind),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), preset_demand_by_hydrogen_production, V(energy_hydrogen_electrolysis_wind_electricity, hydrogen_production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_wind_turbine_coastal), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_coastal)),
+          UPDATE(V(energy_power_wind_turbine_coastal), number_of_units, original_nou_of_wind_coastal),
+          UPDATE(V(energy_power_wind_turbine_coastal), preset_demand_by_electricity_production, V(energy_power_wind_turbine_coastal, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_wind_turbine_inland), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_inland)),
+          UPDATE(V(energy_power_wind_turbine_inland), number_of_units, original_nou_of_wind_inland),
+          UPDATE(V(energy_power_wind_turbine_inland), preset_demand_by_electricity_production, V(energy_power_wind_turbine_inland, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
+          UPDATE(V(energy_power_wind_turbine_offshore), number_of_units, original_nou_of_wind_offshore),
+          UPDATE(V(energy_power_wind_turbine_offshore), preset_demand_by_electricity_production, V(energy_power_wind_turbine_offshore, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_hybrid_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
+          UPDATE(V(energy_power_hybrid_wind_turbine_offshore), number_of_units, original_nou_of_wind_offshore_hybrid),
+          UPDATE(V(energy_power_hybrid_wind_turbine_offshore), preset_demand_by_electricity_production, V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units))
+        )
+      }
+    )
 
 - priority = 2
 - min_value_gql = present:CURVE_SET_VARIANTS(weather)

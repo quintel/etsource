@@ -1,11 +1,28 @@
+# This query changes the FLH of dedicated hydrogen offshore wind. If only the FLH is changed, the production
+# is not changed by ETEngine. Instead, the NoU decreases, effectively decreasing total installed
+# capacity. Therefore, first the original NoU is fetched, then the FLH is changed, the NoU is set
+# to the original value and, finally, the preset demand by electricity production is updated.
+# Full load hours of both the offshore wind turbines and electrolyser are updated
+
 - query =
     IF(
       EQUALS(AREA(weather_curve_set), "default"),
-      ->{
-        UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT())
+      -> {
+        original_nou_of_hydrogen_wind_offshore =        V(energy_hydrogen_wind_turbine_offshore,           number_of_units);
+        original_nou_of_hydrogen_electrolysis_wind =    V(energy_hydrogen_electrolysis_wind_electricity,   number_of_units);
+
+        EACH(
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), number_of_units, original_nou_of_hydrogen_wind_offshore),
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), preset_demand_by_electricity_production, V(energy_hydrogen_wind_turbine_offshore, production_based_on_number_of_units)),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), number_of_units, original_nou_of_hydrogen_electrolysis_wind),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), preset_demand_by_hydrogen_production, V(energy_hydrogen_electrolysis_wind_electricity, hydrogen_production_based_on_number_of_units))
+        )
       },
       -> {},
     )
+
 - priority = 1
 - max_value = 6500.0
 - min_value_gql = present:V(energy_hydrogen_wind_turbine_offshore, full_load_hours)

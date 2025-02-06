@@ -1,5 +1,6 @@
-# Set the total output capacity of PV installations on buildings
-# Maximum value is set at twice the maximum amount of solar panels that can fit on the total roof surface area
+# Set the total output capacity of small-scale PV installations on household rooftops. Maximum value
+# is set at 8 times the maximum amount of solar panels that can fit on the total roof surface area.
+
 - query =
     EACH(
       UPDATE(
@@ -9,12 +10,13 @@
       ),
       UPDATE(
         V(buildings_solar_pv_solar_radiation),
-        preset_demand,
+        preset_demand_by_electricity_production,
         V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)
       )
     )
+
 - priority = 0
-- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(buildings_roof_surface_available_for_pv)*8,V(buildings_solar_pv_solar_radiation, land_use_per_unit)),V(buildings_solar_pv_solar_radiation, electricity_output_capacity)))
+- max_value_gql = present:MAX(1.0,PRODUCT(DIVIDE(AREA(buildings_roof_surface_available_for_pv)*8.0,V(buildings_solar_pv_solar_radiation, land_use_per_unit)),V(buildings_solar_pv_solar_radiation, electricity_output_capacity)))
 - min_value = 0.0
 - start_value_gql = present:PRODUCT(V(buildings_solar_pv_solar_radiation, number_of_units), V(buildings_solar_pv_solar_radiation, electricity_output_capacity))
 - step_value = 1.0
