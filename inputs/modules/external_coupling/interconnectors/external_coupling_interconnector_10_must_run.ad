@@ -1,15 +1,15 @@
 - query =
     IF(
-        EQUALS(USER_INPUT(), 1.0),
-        -> {
-                UPDATE(V(energy_interconnector_10_exported_electricity, merit_order), type, consumer);
-                UPDATE(V(energy_interconnector_10_exported_electricity, merit_order), subtype, export_must_run);
-                UPDATE(V(energy_interconnector_10_exported_electricity, merit_order), group, interconnector_10_export_must_run);
-                UPDATE(V(energy_interconnector_10_imported_electricity, merit_order), type, producer);
-                UPDATE(V(energy_interconnector_10_imported_electricity, merit_order), subtype, import_must_run);
-                UPDATE(V(energy_interconnector_10_imported_electricity, merit_order), group, interconnector_10_import_must_run);
-        },
-        -> {}
+      EQUALS(USER_INPUT(), 1.0),
+      -> {
+        UPDATE(V(energy_interconnector_10_exported_electricity, merit_order), type, consumer);
+        UPDATE(V(energy_interconnector_10_exported_electricity, merit_order), subtype, export_must_run);
+        UPDATE(V(energy_interconnector_10_exported_electricity, merit_order), group, interconnector_10_export_must_run);
+        UPDATE(V(energy_interconnector_10_imported_electricity, merit_order), type, producer);
+        UPDATE(V(energy_interconnector_10_imported_electricity, merit_order), subtype, import_must_run);
+        UPDATE(V(energy_interconnector_10_imported_electricity, merit_order), group, interconnector_10_import_must_run);
+      },
+      -> {}
     )
 
 - priority = 0
