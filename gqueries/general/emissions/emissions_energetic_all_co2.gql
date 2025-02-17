@@ -1,9 +1,17 @@
-- query =
-  SUM(
-      Q(co2_sheet_agriculture_total_co2_emissions_energetic),
-      Q(co2_sheet_buildings_households_total_co2_emissions_energetic),
-      Q(co2_sheet_industry_energy_total_co2_emissions_energetic),
-      Q(co2_sheet_transport_total_co2_emissions_energetic)
-  )
+# Total energetic CO2 emissions
 
+- query =
+    PRODUCT(
+      SUM(
+        Q(primary_co2_emission_of_agriculture),
+        Q(primary_co2_emission_of_buildings),
+        Q(primary_co2_emission_of_bunkers),
+        Q(primary_co2_emission_of_energy),
+        Q(primary_co2_emission_of_households),
+        Q(primary_co2_emission_of_industry),
+        Q(primary_co2_emission_of_other),
+        Q(primary_co2_emission_of_transport)
+      ),
+      MILLIONS
+    )
 - unit = T
