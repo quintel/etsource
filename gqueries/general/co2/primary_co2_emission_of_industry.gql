@@ -1,0 +1,33 @@
+# Within the co2_emissions_refinery_products the node industry_final_demand_methanol_non_energetic
+# is queried. This node should actually be in the query "primary_co2_of_non_energetic" and
+# non-energetic nodes should be filtered out of the co2_emissions_refinery_products group for the
+# energy CO2 emission queries. This is not required for now, since the
+# industry_final_demand_methanol_non_energetic free_co2_factor is 1.0 and there are no other
+# refnery products for which the primary CO2 emissions should be taken into account.
+
+- unit = mt
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
+            INTERSECTION(
+              G(co2_emissions_primary),
+              SECTOR(industry)),
+            USE(energetic)),
+          primary_co2_emission),
+        V(
+          INTERSECTION(
+            G(co2_emissions_refinery_products),
+            SECTOR(industry)),
+          "demand * weighted_carrier_co2_per_mj"),
+        NEG(
+          SUM(
+            MV(
+              MG(captured_energetic_emissions_industry),
+              demand)
+            )
+          )
+        ),
+      BILLIONS
+    )
