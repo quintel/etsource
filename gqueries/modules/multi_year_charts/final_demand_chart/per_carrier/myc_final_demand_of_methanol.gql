@@ -1,4 +1,8 @@
-# Final demand of the methanol carrier group
+# Final demand of methanol in myc
 
 - unit = MJ
-- query = SUM(V(G(final_demand_group), input_of_methanol))
+- query =
+    PRODUCT(
+      Q(final_demand_of_methanol),
+      BILLIONS
+    )

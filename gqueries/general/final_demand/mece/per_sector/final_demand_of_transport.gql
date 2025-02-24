@@ -1,0 +1,15 @@
+# Final demand of the 'transport' sector
+
+- unit = MJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            EG(final_demand),"sector == :transport"
+          ),
+          value
+        )
+      ),
+    BILLIONS
+    )

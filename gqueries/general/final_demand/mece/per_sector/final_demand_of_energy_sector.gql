@@ -1,0 +1,15 @@
+# Final demand of the 'energy' sector
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            EG(final_demand),"sector == :energy"
+          ),
+          value
+        )
+      ),
+    BILLIONS
+    )

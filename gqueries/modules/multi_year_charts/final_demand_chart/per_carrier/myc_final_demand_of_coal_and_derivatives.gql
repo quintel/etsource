@@ -2,8 +2,7 @@
 
 - unit = MJ
 - query =
-    SUM(
-      V(G(final_demand_group), input_of_coal),
-      V(G(final_demand_group), input_of_coal_gas),
-      V(G(final_demand_group), input_of_cokes)
+    PRODUCT(
+      Q(final_demand_of_coal_and_derivatives),
+      BILLIONS
     )

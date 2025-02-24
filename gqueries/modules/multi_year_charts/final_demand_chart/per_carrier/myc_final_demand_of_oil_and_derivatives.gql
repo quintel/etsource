@@ -1,12 +1,8 @@
-# Final demand of the 'oil_and_derivatives' carrier group
+# Final demand of oil and derivatives in myc
 
 - unit = MJ
 - query =
-    SUM(
-      V(G(final_demand_group), input_of_heavy_fuel_oil),
-      V(G(final_demand_group), input_of_kerosene),
-      V(G(final_demand_group), input_of_lpg),
-      V(G(final_demand_group), input_of_diesel),
-      V(G(final_demand_group), input_of_gasoline),
-      V(G(final_demand_group), input_of_crude_oil)
+    PRODUCT(
+      Q(final_demand_of_oil_and_derivatives),
+      BILLIONS
     )
