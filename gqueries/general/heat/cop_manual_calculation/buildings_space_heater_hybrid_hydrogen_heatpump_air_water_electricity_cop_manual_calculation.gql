@@ -1,0 +1,13 @@
+- query =
+    IF(
+      V(buildings_space_heater_hybrid_hydrogen_heatpump_air_water_electricity, electricity_input_conversion) == 0.0,
+      1.0,
+      DIVIDE(
+        V(
+          buildings_space_heater_hybrid_hydrogen_heatpump_air_water_electricity,
+          "ambient_heat_input_conversion + electricity_input_conversion"
+        ),
+        V(buildings_space_heater_hybrid_hydrogen_heatpump_air_water_electricity, electricity_input_conversion)
+      )
+    )
+- unit = COP
