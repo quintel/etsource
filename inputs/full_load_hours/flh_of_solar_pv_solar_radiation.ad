@@ -1,39 +1,68 @@
-# The query starts by fetching the original number of units (nou): we want the new FLH
-# to increase the preset demand, so we have to set this value after updating FLH
-# to prevent ETEngine from calculating a new (lower) NoU.
-#
-# See https://github.com/quintel/etmodel/issues/2906
+# This query changes the FLH of all solar PV technologies. If only the FLH is changed, the production
+# is not changed by ETEngine. Instead, the NoU decreases, effectively decreasing total installed
+# capacity. Therefore, first the original NoU is fetched, then the FLH is changed, the NoU is set
+# to the original value and, finally, the preset demand by electricity production is updated.
+# Both the FLH of dedicated hydrogen solar PV and the electrolyser are updated.
+
 - query =
     IF(
       EQUALS(AREA(weather_curve_set), "default"),
-      ->{
-        original_nou = V(energy_power_solar_pv_solar_radiation, number_of_units);
+      -> {
+        original_nou_power_solar_pv =                   V(energy_power_solar_pv_solar_radiation,           number_of_units);
+        original_nou_households_solar_pv =              V(households_solar_pv_solar_radiation,             number_of_units);
+        original_nou_buildings_solar_pv =               V(buildings_solar_pv_solar_radiation,              number_of_units);
+        original_nou_power_solar_pv_offshore =          V(energy_power_solar_pv_offshore,                  number_of_units);
+        original_nou_battery_solar_pv =                 V(energy_battery_solar_pv_solar_radiation,         number_of_units);
+        original_nou_hydrogen_solar_pv =                V(energy_hydrogen_solar_pv_solar_radiation,        number_of_units);
+        original_nou_hydrogen_electrolysis_solar_pv =   V(energy_hydrogen_electrolysis_solar_electricity,  number_of_units);
+
+        electrolyser_pv_flh_ratio =
+          DIVIDE(
+            V(energy_hydrogen_electrolysis_solar_electricity, full_load_hours),
+            V(energy_hydrogen_solar_pv_solar_radiation, full_load_hours)
+          );
 
         share_2 =
-            DIVIDE(
-                (USER_INPUT() - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) })),
-                (1500 - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) }))
-            );
+          DIVIDE(
+            (USER_INPUT() - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) })),
+            (1500 - QUERY_PRESENT(->{ V(energy_power_solar_pv_solar_radiation, full_load_hours) }))
+          );
 
         EACH(
-            UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_battery_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
-            UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou),
-            UPDATE(
-            V(energy_power_solar_pv_solar_radiation),
-            preset_demand_by_electricity_production,
-            V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)
-            ),
-            UPDATE(AREA(), solar_pv_profile_1_share, (1 - share_2)),
-            UPDATE(AREA(), solar_pv_profile_2_share, share_2)
+          UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou_power_solar_pv),
+          UPDATE(V(energy_power_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+          UPDATE(V(households_solar_pv_solar_radiation), number_of_units, original_nou_households_solar_pv),
+          UPDATE(V(households_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(households_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+          UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, original_nou_buildings_solar_pv),
+          UPDATE(V(buildings_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_power_solar_pv_offshore), number_of_units, original_nou_power_solar_pv_offshore),
+          UPDATE(V(energy_power_solar_pv_offshore), preset_demand_by_electricity_production, V(energy_power_solar_pv_offshore, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_battery_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_battery_solar_pv_solar_radiation), number_of_units, original_nou_battery_solar_pv),
+          UPDATE(V(energy_battery_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_battery_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), number_of_units, original_nou_hydrogen_solar_pv),
+          UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_hydrogen_solar_pv_solar_radiation, production_based_on_number_of_units)),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), full_load_hours, PRODUCT(USER_INPUT(), electrolyser_pv_flh_ratio)),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), number_of_units, original_nou_hydrogen_electrolysis_solar_pv),
+          UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), preset_demand_by_hydrogen_production, V(energy_hydrogen_electrolysis_solar_electricity, hydrogen_production_based_on_number_of_units)),
+
+          UPDATE(AREA(), solar_pv_profile_1_share, (1 - share_2)),
+          UPDATE(AREA(), solar_pv_profile_2_share, share_2)
         )
       },
       -> {}
     )
+
 - priority = 3
 - max_value_gql = present:AREA(flh_solar_pv_solar_radiation_max)
 - min_value_gql = present:V(energy_power_solar_pv_solar_radiation, full_load_hours)
