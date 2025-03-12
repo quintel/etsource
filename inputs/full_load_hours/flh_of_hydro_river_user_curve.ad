@@ -1,9 +1,10 @@
-# This input updates the FLH's of hydro river.
-# These FLH inputs are not listed in the front-end, but is automatically triggered when a user uploads the corresponding custom curve. 
-# You can see this in the user_curves.yml.
+# This input updates the FLHs of hydro river
+# These FLH inputs are not listed in the front-end, but is automatically triggered when a user uploads the corresponding custom curve
+# You can see this in the user_curves.yml
 
-- query = 
+- query =
     original_nou = V(energy_power_hydro_river, number_of_units);
+
     EACH(
       UPDATE(V(energy_power_hydro_river), full_load_hours, USER_INPUT()),
       UPDATE(V(energy_power_hydro_river), number_of_units, original_nou),
