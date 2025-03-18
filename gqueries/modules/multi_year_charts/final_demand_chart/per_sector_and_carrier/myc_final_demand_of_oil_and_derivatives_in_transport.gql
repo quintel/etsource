@@ -1,4 +1,19 @@
 # Energetic final demand of the 'oil_and_derivatives' carrier group
+# The applied query differs from the other per sector per carrier queries
+# This is a quick fix to align total final demand of oil and derivatives in the per sector per carrier queries
+# with the per carrier queries
 
 - unit = MJ
-- query = Q(final_demand_of_oil_and_derivatives_in_transport) * BILLIONS
+- query =
+    SUM(
+      V(
+        INTERSECTION(G(final_demand_group), SECTOR(transport)),
+        input_of(
+          kerosene,
+          lpg,
+          diesel,
+          gasoline,
+          crude_oil
+        )
+      )
+    )
