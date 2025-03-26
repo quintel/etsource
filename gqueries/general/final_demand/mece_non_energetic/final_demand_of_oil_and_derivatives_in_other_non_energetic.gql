@@ -1,4 +1,4 @@
-# Energetic final demand of the 'oil_and_derivatives' carrier group 
+# Non-nergetic final demand of the 'oil_and_derivatives' carrier group
 
 - unit = PJ
 - query =
@@ -10,7 +10,7 @@
               FILTER(
                 EG(final_demand),"sector == :other"
               ),
-              energetic?
+              "!energetic?"
             ),
             "crude_oil? ||  gasoline? ||  diesel? ||  lpg? || kerosene? || heavy_fuel_oil? || bio_oil? || bio_kerosene?"
           ),
@@ -19,4 +19,3 @@
       ),
       BILLIONS
     )
-      
