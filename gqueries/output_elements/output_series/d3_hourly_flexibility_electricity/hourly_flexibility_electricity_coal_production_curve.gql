@@ -1,10 +1,15 @@
 - query =
     SUM_CURVES(
       V(
-        Q(electricity_producing_coal_incl_coal_gas_converters),
-        Q(electricity_producing_torrefied_biomass_pellets_converters),
-        Q(electricity_producing_lignite_converters),
+        FILTER(
+          V(
+            Q(electricity_producing_coal_incl_coal_gas_converters),
+            Q(electricity_producing_torrefied_biomass_pellets_converters),
+            Q(electricity_producing_lignite_converters)
+          ),
+          "merit_order && (merit_order.subtype == :dispatchable)"
+        ),
         electricity_output_curve
+        )
       )
-    )
 - unit = curve
