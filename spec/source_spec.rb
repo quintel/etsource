@@ -26,11 +26,11 @@ describe Source do
     end
 
     context 'with unavailible country' do
-      let(:danish_source) { Source.new(etdata_small_path, "dk", default_year) }
+      let(:nl_source) { Source.new(etdata_small_path, "nl", default_year) }
 
       it 'be falsey' do
-        danish_source
-        expect(danish_source.etdata_path).to eq(false)
+        nl_source
+        expect(nl_source.etdata_path).to eq(false)
       end
     end
 
