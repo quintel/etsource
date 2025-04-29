@@ -1,0 +1,17 @@
+# The "volume_of_blackout_hours" method returns the blackout energy in MWh. 
+# This needs to be refactored to PJ.
+
+- query =
+    DIVIDE(
+      PRODUCT(
+        IF(
+          GRAPH().future?,
+          -> { V(GRAPH(), volume_of_blackout_hours) },
+          -> { 0 }
+        ),
+        MWH_TO_MJ
+      ),
+      BILLIONS
+    )
+
+- unit = PJ
