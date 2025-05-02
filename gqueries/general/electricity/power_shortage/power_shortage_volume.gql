@@ -1,4 +1,4 @@
-# The "volume_of_blackout_hours" method returns the blackout energy in MWh. 
+# The "volume_of_blackout_hours" method returns the blackouts in MWh.
 # This needs to be refactored to PJ.
 
 - query =
@@ -9,9 +9,8 @@
           -> { V(GRAPH(), volume_of_blackout_hours) },
           -> { 0 }
         ),
-        MWH_TO_MJ
+        MWH_TO_GJ
       ),
-      BILLIONS
+      MILLIONS
     )
-
 - unit = PJ
