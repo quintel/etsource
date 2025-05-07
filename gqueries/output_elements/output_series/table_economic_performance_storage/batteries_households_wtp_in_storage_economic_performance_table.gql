@@ -1,0 +1,7 @@
+- query =
+    IF(
+      V(households_flexibility_p2p_electricity, "merit_order.subtype") == :optimizing_storage || :optimizing_storage_households,
+      -> {0.0},
+      -> { V(households_flexibility_p2p_electricity, max_consumption_price) }
+    )
+- unit = euro
