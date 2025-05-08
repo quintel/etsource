@@ -1,7 +1,8 @@
 - query =
     IF(
-      V(energy_flexibility_pumped_storage_electricity, "merit_order.subtype") == :optimizing_storage || :optimizing_storage_households,
-      -> {0.0},
+      V(energy_flexibility_pumped_storage_electricity, "merit_order.subtype") == :optimizing_storage ||
+      V(energy_flexibility_pumped_storage_electricity, "merit_order.subtype") == :optimizing_storage_households,
+      -> { 0.0 },
       -> { V(energy_flexibility_pumped_storage_electricity, max_consumption_price) }
     )
-- unit = euro
+- unit = EUR/MWh
