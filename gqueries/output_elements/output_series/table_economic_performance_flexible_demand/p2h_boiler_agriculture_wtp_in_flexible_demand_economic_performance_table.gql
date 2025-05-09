@@ -1,2 +1,11 @@
-- query = V(agriculture_flexibility_p2h_network_gas_electricity,agriculture_flexibility_p2h_hydrogen_electricity, max_consumption_price)
-- unit = number
+# WTP of P2H gas and hydrogen boiler should be the same, average is taken for completeness
+
+- query =
+    AVG(
+      V(
+        agriculture_flexibility_p2h_network_gas_electricity,
+        agriculture_flexibility_p2h_hydrogen_electricity,
+        max_consumption_price
+      )
+    )
+- unit = EUR/MWh
