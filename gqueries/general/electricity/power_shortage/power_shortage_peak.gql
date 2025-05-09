@@ -1,0 +1,7 @@
+- query =
+    IF(
+      GRAPH().future?,
+      -> { V(GRAPH(), peak_of_blackout_hours) },
+      -> { 0 }
+    )
+- unit = MW
