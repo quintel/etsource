@@ -1,2 +1,20 @@
-- query = V(industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity, operating_expenses_hourly_electricity_per_mwh)
+# This gquery calculates the weighted average of opex based on heat production of P2H technologies
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
+          industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
+          "output_of_useable_heat * operating_expenses_hourly_electricity_per_mwh"
+        )
+      ),
+      SUM(
+        V(
+          industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
+          industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
+          output_of_useable_heat
+        )
+      )
+    )
 - unit = EUR/MWh
