@@ -1,0 +1,25 @@
+# This input updates the FLHs of geothermal heat
+# These FLH inputs are not listed in the front-end, but is automatically triggered when a user uploads the corresponding custom curve
+# You can see this in the user_curves.yml
+
+- query =
+    original_nou_energy_heat_well_shallow_lt_geothermal =                   V(energy_heat_well_shallow_lt_geothermal,      number_of_units);
+    original_nou_energy_heat_well_shallow_heatpump_mt_geothermal =          V(energy_heat_well_shallow_heatpump_mt_geothermal,    number_of_units);
+
+    EACH(
+      UPDATE(V(energy_heat_well_shallow_lt_geothermal), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_heat_well_shallow_lt_geothermal), number_of_units, original_nou_energy_heat_well_shallow_lt_geothermal),
+      UPDATE(V(energy_heat_well_shallow_lt_geothermal), preset_demand_by_steam_hot_water_production, V(energy_heat_well_shallow_lt_geothermal, steam_hot_water_production_based_on_number_of_units)),
+
+      UPDATE(V(energy_heat_well_shallow_heatpump_mt_geothermal), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_heat_well_shallow_heatpump_mt_geothermal), number_of_units, original_nou_energy_heat_well_shallow_heatpump_mt_geothermal),
+      UPDATE(V(energy_heat_well_shallow_heatpump_mt_geothermal), preset_demand_by_steam_hot_water_production, V(energy_heat_well_shallow_heatpump_mt_geothermal, steam_hot_water_production_based_on_number_of_units)),
+    )
+
+- priority = 1
+- max_value = 8760.0
+- min_value = 0.0
+- start_value_gql = present:V(agriculture_geothermal, full_load_hours)
+- step_value = 1.0
+- unit = hours
+- update_period = future

@@ -655,13 +655,23 @@ weather/solar_thermal:
     sets:
       - flh_of_solar_thermal_user_curve
 
-geothermal_heat:
+geothermal_heat_shallow:
   type: capacity_profile
   display_group: heat_production
   reduce:
     as: full_load_hours
     sets:
-      - flh_of_geothermal_heat_user_curve
+      - flh_of_geothermal_heat_shallow_user_curve
+
+
+geothermal_heat_deep:
+  type: capacity_profile
+  display_group: heat_production
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_geothermal_heat_deep_user_curve
+
 
 river:
   type: capacity_profile
