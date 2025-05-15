@@ -1,6 +1,10 @@
-# This input updates the FLHs of geothermal heat
+# This input updates the FLHs of deep geothermal heat technologies.
 # These FLH inputs are not listed in the front-end, but is automatically triggered when a user uploads the corresponding custom curve
 # You can see this in the user_curves.yml
+# The agrciulture geothermal technology is updated in a different manner.
+# For this technology the user does not set the output capacity but assigns a share of the heat demand to the technology.
+# Therefore we don't correct the output of the node when a different amount of full load hours is set. 
+# The node corrects this by setting a different amount of units.
 
 - query =
     original_nou_energy_heat_well_deep_ht_geothermal =                      V(energy_heat_well_deep_ht_geothermal,      number_of_units);
