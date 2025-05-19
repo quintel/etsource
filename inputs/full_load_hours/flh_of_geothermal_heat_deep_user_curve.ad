@@ -1,18 +1,17 @@
-# This input updates the FLHs of deep geothermal heat technologies.
-# These FLH inputs are not listed in the front-end, but is automatically triggered when a user uploads the corresponding custom curve
-# You can see this in the user_curves.yml
-# The agrciulture geothermal technology is updated in a different manner.
-# For this technology the user does not set the output capacity but assigns a share of the heat demand to the technology.
-# Therefore we don't correct the output of the node when a different amount of full load hours is set. 
-# The node corrects this by setting a different amount of units.
+# This input updates the FLHs of deep geothermal heat technologies when a custom curve is uploaded,
+# see configuration in user_curves.yml.
+# FLH of agriculture_geothermal are updated in a different manner since users
+# set the share of this technology in heat demand, whereas for the other technologies the
+# output capacity can be set. Therefore, the method for changing the FLHs of agricultural geothermal
+# will change the number of units and generates the same heat output, whereas for the other technologies
+# the number of units stay fixed and the heat output changes as result of changed FLHs.
 
 - query =
     original_nou_energy_heat_well_deep_ht_geothermal =                      V(energy_heat_well_deep_ht_geothermal,      number_of_units);
     original_nou_energy_heat_well_deep_mt_geothermal =                      V(energy_heat_well_deep_mt_geothermal,      number_of_units);
-    original_nou_industry_heat_well_geothermal =                            V(industry_heat_well_geothermal,   number_of_units);
+    original_nou_industry_heat_well_geothermal =                            V(industry_heat_well_geothermal,            number_of_units);
 
     EACH(
-
       UPDATE(V(energy_heat_well_deep_ht_geothermal), full_load_hours, USER_INPUT()),
       UPDATE(V(energy_heat_well_deep_ht_geothermal), number_of_units, original_nou_energy_heat_well_deep_ht_geothermal),
       UPDATE(V(energy_heat_well_deep_ht_geothermal), preset_demand_by_steam_hot_water_production, V(energy_heat_well_deep_ht_geothermal, steam_hot_water_production_based_on_number_of_units)),

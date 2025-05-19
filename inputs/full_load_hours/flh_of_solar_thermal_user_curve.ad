@@ -1,16 +1,17 @@
-# This input updates the FLHs of solar thermal
-# These FLH inputs are not listed in the front-end, but is automatically triggered when a user uploads the corresponding custom curve
-# You can see this in the user_curves.yml
-# The solar thermal technologis are updated in differently.
-# For these technologies the user does not set the output capacity but assigns a share of the heat demand to the technology.
-# Therefore we don't correct the output of the original_nou_industry_heat_well_geothermal when a different amount of full load hours is set. 
-# The nodes correct this by setting a different amount of units.
+# This input updates the FLHs of solar thermal technologies when a custom curve is uploaded,
+# see configuration in user_curves.yml.
+# FLH of solar thermal in buildings and households are updated in a different manner since users
+# set shares of this technology, whereas for the other technologies the
+# output capacity can be set. Therefore, the method for changing the FLHs of solar thermal in
+# buildings and households will change the number of units and generates the same heat output,
+# whereas for the other technologies the number of units stay fixed and the heat output changes
+# as result of changed FLHs.
 
 - query =
     original_nou_energy_heat_solar_ht_solar_thermal =             V(energy_heat_solar_ht_solar_thermal,      number_of_units);
     original_nou_energy_heat_solar_lt_solar_thermal =             V(energy_heat_solar_lt_solar_thermal,      number_of_units);
     original_nou_energy_heat_solar_mt_solar_thermal =             V(energy_heat_solar_mt_solar_thermal,      number_of_units);
-    
+
     EACH(
       UPDATE(V(energy_heat_solar_ht_solar_thermal), full_load_hours, USER_INPUT()),
       UPDATE(V(energy_heat_solar_ht_solar_thermal), number_of_units, original_nou_energy_heat_solar_ht_solar_thermal),
