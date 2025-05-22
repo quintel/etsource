@@ -1,0 +1,16 @@
+# The "volume_of_power_shortage_hours" method returns the blackouts in MWh.
+# This needs to be refactored to PJ.
+
+- query =
+    DIVIDE(
+      PRODUCT(
+        IF(
+          GRAPH().future?,
+          -> { V(GRAPH(), volume_of_power_shortage_hours) },
+          -> { 0 }
+        ),
+        MWH_TO_GJ
+      ),
+      MILLIONS
+    )
+- unit = PJ
