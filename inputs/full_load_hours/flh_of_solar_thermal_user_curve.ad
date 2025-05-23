@@ -1,0 +1,38 @@
+# This input updates the FLHs of solar thermal technologies when a custom curve is uploaded,
+# see configuration in user_curves.yml.
+# FLH of solar thermal in buildings and households are updated in a different manner since users
+# set shares of this technology, whereas for the other technologies the
+# output capacity can be set. Therefore, the method for changing the FLHs of solar thermal in
+# buildings and households will change the number of units and generates the same heat output,
+# whereas for the other technologies the number of units stay fixed and the heat output changes
+# as result of changed FLHs.
+
+- query =
+    original_nou_energy_heat_solar_ht_solar_thermal =             V(energy_heat_solar_ht_solar_thermal,      number_of_units);
+    original_nou_energy_heat_solar_lt_solar_thermal =             V(energy_heat_solar_lt_solar_thermal,      number_of_units);
+    original_nou_energy_heat_solar_mt_solar_thermal =             V(energy_heat_solar_mt_solar_thermal,      number_of_units);
+
+    EACH(
+      UPDATE(V(energy_heat_solar_ht_solar_thermal), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_heat_solar_ht_solar_thermal), number_of_units, original_nou_energy_heat_solar_ht_solar_thermal),
+      UPDATE(V(energy_heat_solar_ht_solar_thermal), preset_demand_by_steam_hot_water_production, V(energy_heat_solar_ht_solar_thermal, steam_hot_water_production_based_on_number_of_units)),
+
+      UPDATE(V(energy_heat_solar_lt_solar_thermal), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_heat_solar_lt_solar_thermal), number_of_units, original_nou_energy_heat_solar_lt_solar_thermal),
+      UPDATE(V(energy_heat_solar_lt_solar_thermal), preset_demand_by_steam_hot_water_production, V(energy_heat_solar_lt_solar_thermal, steam_hot_water_production_based_on_number_of_units)),
+
+      UPDATE(V(energy_heat_solar_mt_solar_thermal), full_load_hours, USER_INPUT()),
+      UPDATE(V(energy_heat_solar_mt_solar_thermal), number_of_units, original_nou_energy_heat_solar_mt_solar_thermal),
+      UPDATE(V(energy_heat_solar_mt_solar_thermal), preset_demand_by_steam_hot_water_production, V(energy_heat_solar_mt_solar_thermal, steam_hot_water_production_based_on_number_of_units)),
+
+      UPDATE(V(buildings_space_heater_solar_thermal), full_load_hours, USER_INPUT()),
+      UPDATE(V(households_water_heater_solar_thermal), full_load_hours, USER_INPUT()),
+    )
+
+- priority = 1
+- max_value = 8760.0
+- min_value = 0.0
+- start_value_gql = present:V(households_water_heater_solar_thermal, full_load_hours)
+- step_value = 1.0
+- unit = hours
+- update_period = future

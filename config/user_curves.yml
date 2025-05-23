@@ -133,7 +133,7 @@ interconnector_1_export_must_run:
   display_group: must_run_interconnectors
   reduce:
     as: full_load_hours
-    sets: 
+    sets:
      - external_coupling_interconnector_1_flh_of_export_user_curve
 
 interconnector_2_price:
@@ -653,15 +653,23 @@ weather/solar_thermal:
   reduce:
     as: full_load_hours
     sets:
-      - flh_of_solar_thermal
+      - flh_of_solar_thermal_user_curve
 
-geothermal_heat:
+geothermal_heat_shallow:
   type: capacity_profile
   display_group: heat_production
   reduce:
     as: full_load_hours
     sets:
-      - flh_of_geothermal_heat
+      - flh_of_geothermal_heat_shallow_user_curve
+
+geothermal_heat_deep:
+  type: capacity_profile
+  display_group: heat_production
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_geothermal_heat_deep_user_curve
 
 river:
   type: capacity_profile
@@ -669,7 +677,7 @@ river:
   reduce:
     as: full_load_hours
     sets:
-      - flh_of_hydro_river
+      - flh_of_hydro_river_user_curve
 
 weather/air_temperature:
   type: temperature
