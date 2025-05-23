@@ -1,6 +1,6 @@
 - query =
     UPDATE(
-      EDGE(buildings_lighting_led_electricity, buildings_useful_demand_after_motion_detection_daylight_control_light),
+      EDGE(buildings_lighting_led_electricity, buildings_useful_demand_light),
       share,
       DIVIDE(USER_INPUT(), 100)
     )
@@ -8,7 +8,7 @@
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
-- start_value_gql = present:V(buildings_lighting_led_electricity,share_of_buildings_useful_demand_after_motion_detection_daylight_control_light) * 100
+- start_value_gql = present:V(buildings_lighting_led_electricity,share_of_buildings_useful_demand_light) * 100
 - step_value = 0.1
 - unit = %
 - update_period = future
