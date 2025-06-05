@@ -1,2 +1,15 @@
-- query = V(transport_bus_flexibility_p2p_electricity, revenue_per(:mwh_electricity))
-- unit = EUR/MWh
+# The OPEX of storage in electric vehicles is calculated manually due to a different
+# node setup. Revenue is defined here as the hourly electricity output multiplied
+# with the hourly electricity price, and expressed in € per MWh output.
+
+- query =
+    DIVIDE(
+      SUM(
+        PRODUCT_CURVES(
+          Q(merit_order_price_curve),
+          V(transport_bus_flexibility_p2p_electricity, electricity_output_curve)
+        )
+      ),
+      DIVIDE(V(transport_bus_flexibility_p2p_electricity, output_of_electricity), MJ_PER_MWH)
+    )
+- unit = €/MWh
