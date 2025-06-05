@@ -1,0 +1,8 @@
+# Deployable capacity for storage is determined with the availability of the p2p node
+
+- query =
+    PRODUCT(
+      V(transport_car_using_electricity, "electricity_output_capacity * number_of_units"),
+      V(transport_car_flexibility_p2p_electricity, availability)
+    )
+- unit = MW
