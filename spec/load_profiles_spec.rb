@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'bigdecimal'
 
 describe 'Load profiles' do
   CURVE_GLOB = '{,weather/default}/*.csv'
@@ -34,7 +35,7 @@ describe 'Load profiles' do
           # Skip any curves which are symlinks to curves in other datasets.
           next unless file.exist?
 
-          it "#{file.basename} does not permit CR (\\r) line endings" do
+          it "#{file.basename} does not permit CR (\r) line endings" do
             message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \
                       "to not have CR line endings"
 
@@ -42,15 +43,17 @@ describe 'Load profiles' do
           end
 
           if file.basename.to_s != 'air_temperature.csv'
-            let(:values) { File.foreach(file).map(&:to_f) }
+            let(:values) do
+              File.foreach(file, encoding: 'bom|utf-8').map { |line| BigDecimal(line.strip.scrub) }
+            end
 
             it "#{file.basename} should have values summing to 1/3600" do
-              in_joules = values.reduce(:+) * 3600
+              in_joules = values.reduce(BigDecimal('0'), :+) * BigDecimal('3600')
 
               # The sum of the values in the load profile ought to equal
               # 1.0 / 3600 since the load profile will implicitly convert values
               # from ETEngine, which are in Joules, into watthours.
-              expect(in_joules).to be_within(1e-7).of(1.0)
+              expect(in_joules).to be_within(BigDecimal('1e-7')).of(BigDecimal('1'))
             end
 
             it "#{file.basename} should have 8760 lines" do
