@@ -6,14 +6,14 @@
         V(
           industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
           industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
-          "output_of_useable_heat * operating_expenses_hourly_electricity_per_mwh"
+          operating_expenses_including_fuel_per(:node)
         )
       ),
       SUM(
         V(
           industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
           industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
-          output_of_useable_heat
+          "output_of_useable_heat / 3600"
         )
       )
     )

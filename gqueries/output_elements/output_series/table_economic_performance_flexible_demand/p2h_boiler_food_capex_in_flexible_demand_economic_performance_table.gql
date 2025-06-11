@@ -6,14 +6,14 @@
         V(
           industry_other_food_flexibility_p2h_network_gas_electricity,
           industry_other_food_flexibility_p2h_hydrogen_electricity,
-          "output_of_useable_heat * capital_expenditures_per_mwh"
+          capital_expenditures_per(:node)
         )
       ),
       SUM(
         V(
           industry_other_food_flexibility_p2h_network_gas_electricity,
           industry_other_food_flexibility_p2h_hydrogen_electricity,
-          output_of_useable_heat
+          "output_of_useable_heat / 3600"
         )
       )
     )
