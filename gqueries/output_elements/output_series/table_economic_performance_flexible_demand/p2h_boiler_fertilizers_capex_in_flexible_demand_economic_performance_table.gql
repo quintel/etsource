@@ -1,4 +1,4 @@
-# This gquery calculates the weighted average of capex based on heat production of P2H technologies
+# This gquery calculates capex of P2H technologies per MWh output
 
 - query =
      DIVIDE(
@@ -13,9 +13,8 @@
         V(
           industry_chemicals_fertilizers_flexibility_p2h_network_gas_electricity,
           industry_chemicals_fertilizers_flexibility_p2h_hydrogen_electricity,
-          "output_of_useable_heat / 3600"
+          "output_of_useable_heat / MJ_PER_MWH"
         )
       )
     )
 - unit = EUR/MWh
-
