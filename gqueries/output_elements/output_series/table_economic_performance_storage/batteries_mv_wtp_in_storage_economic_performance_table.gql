@@ -1,0 +1,8 @@
+- query =
+    IF(
+      V(energy_flexibility_mv_batteries_electricity, "merit_order.subtype") == :optimizing_storage ||
+      V(energy_flexibility_mv_batteries_electricity, "merit_order.subtype") == :optimizing_storage_households,
+      -> { '-' },
+      -> { V(energy_flexibility_mv_batteries_electricity, max_consumption_price) }
+    )
+- unit = EUR/MWh
