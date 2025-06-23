@@ -1,4 +1,9 @@
 # CAPEX of power plant, based on annual CAPEX calculations
 
-- query = V(energy_power_ultra_supercritical_coal, capital_expenditures_per(:mwh_electricity))
+- query =
+   IF(
+       V(energy_power_ultra_supercritical_coal, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_power_ultra_supercritical_coal, capital_expenditures_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

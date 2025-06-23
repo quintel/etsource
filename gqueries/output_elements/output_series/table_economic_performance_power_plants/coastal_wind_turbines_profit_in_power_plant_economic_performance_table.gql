@@ -1,7 +1,9 @@
 # Profit of power plant, defined as revenue minus CAPEX and OPEX
 
 - query =
-    Q(coastal_wind_turbines_revenue_in_power_plant_economic_performance_table)
-    - Q(coastal_wind_turbines_capex_in_power_plant_economic_performance_table)
-    - Q(coastal_wind_turbines_opex_in_power_plant_economic_performance_table)
+  IF(
+       V(energy_power_wind_turbine_coastal, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(coastal_wind_turbines_revenue_in_power_plant_economic_performance_table) -  Q(coastal_wind_turbines_capex_in_power_plant_economic_performance_table)  -  Q(coastal_wind_turbines_opex_in_power_plant_economic_performance_table) } 
+  )
 - unit = EUR/MWh

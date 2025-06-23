@@ -1,4 +1,9 @@
 # CAPEX of power plant, based on annual CAPEX calculations
 
-- query = V(agriculture_chp_engine_network_gas_must_run, capital_expenditures_per(:mwh_electricity))
+- query =
+   IF(
+       V(agriculture_chp_engine_network_gas_must_run, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(agriculture_chp_engine_network_gas_must_run, capital_expenditures_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

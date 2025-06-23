@@ -1,4 +1,9 @@
 # Revenue of power plant, based on hourly revenue calculations
 
-- query = V(energy_power_ultra_supercritical_lignite, revenue_per(:mwh_electricity))
+- query =
+   IF(
+       V(energy_power_ultra_supercritical_lignite, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_power_ultra_supercritical_lignite, revenue_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

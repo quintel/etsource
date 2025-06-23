@@ -1,7 +1,9 @@
 # Profit of power plant, defined as revenue minus CAPEX and OPEX
 
 - query =
-    Q(geothermal_revenue_in_power_plant_economic_performance_table)
-    - Q(geothermal_capex_in_power_plant_economic_performance_table)
-    - Q(geothermal_opex_in_power_plant_economic_performance_table)
+  IF(
+       V(energy_power_geothermal, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(geothermal_revenue_in_power_plant_economic_performance_table) -  Q(geothermal_capex_in_power_plant_economic_performance_table)  -  Q(geothermal_opex_in_power_plant_economic_performance_table) } 
+  )
 - unit = EUR/MWh

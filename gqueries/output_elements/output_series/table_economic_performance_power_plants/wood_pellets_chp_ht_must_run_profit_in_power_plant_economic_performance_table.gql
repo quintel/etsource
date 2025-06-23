@@ -1,7 +1,9 @@
 # Profit of power plant, defined as revenue minus CAPEX and OPEX
 
 - query =
-    Q(wood_pellets_chp_ht_must_run_revenue_in_power_plant_economic_performance_table)
-    - Q(wood_pellets_chp_ht_must_run_capex_in_power_plant_economic_performance_table)
-    - Q(wood_pellets_chp_ht_must_run_opex_in_power_plant_economic_performance_table)
+  IF(
+       V(energy_chp_local_ht_wood_pellets_must_run, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(wood_pellets_chp_ht_must_run_revenue_in_power_plant_economic_performance_table) -  Q(wood_pellets_chp_ht_must_run_capex_in_power_plant_economic_performance_table)  -  Q(wood_pellets_chp_ht_must_run_opex_in_power_plant_economic_performance_table) } 
+  )
 - unit = EUR/MWh

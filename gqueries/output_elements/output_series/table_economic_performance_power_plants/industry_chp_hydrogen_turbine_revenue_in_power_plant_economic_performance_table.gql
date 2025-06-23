@@ -1,4 +1,9 @@
 # Revenue of power plant, based on hourly revenue calculations
 
-- query = V(industry_chp_turbine_hydrogen, revenue_per(:mwh_electricity))
+- query =
+   IF(
+       V(industry_chp_turbine_hydrogen, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(industry_chp_turbine_hydrogen, revenue_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

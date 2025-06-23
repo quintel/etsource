@@ -1,4 +1,9 @@
 # OPEX of power plant, based on annual OPEX calculations
 
-- query = V(energy_power_hydro_river, operating_expenses_including_fuel_per(:mwh_electricity))
+- query =
+   IF(
+       V(energy_power_hydro_river, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_power_hydro_river, operating_expenses_including_fuel_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

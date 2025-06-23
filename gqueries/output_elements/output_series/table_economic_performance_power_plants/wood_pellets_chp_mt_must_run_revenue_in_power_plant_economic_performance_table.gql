@@ -1,4 +1,9 @@
 # Revenue of power plant, based on hourly revenue calculations
 
-- query = V(energy_chp_local_mt_wood_pellets_must_run, revenue_per(:mwh_electricity))
+- query =
+   IF(
+       V(energy_chp_local_mt_wood_pellets_must_run, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_chp_local_mt_wood_pellets_must_run, revenue_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

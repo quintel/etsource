@@ -1,4 +1,9 @@
 # Revenue of power plant, based on hourly revenue calculations
 
-- query = V(households_solar_pv_solar_radiation, revenue_per(:mwh_electricity))
+- query =
+   IF(
+       V(households_solar_pv_solar_radiation, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(households_solar_pv_solar_radiation, revenue_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh

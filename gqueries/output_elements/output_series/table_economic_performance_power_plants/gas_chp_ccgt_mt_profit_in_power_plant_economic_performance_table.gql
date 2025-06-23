@@ -1,7 +1,9 @@
 # Profit of power plant, defined as revenue minus CAPEX and OPEX
 
 - query =
-    Q(gas_chp_ccgt_mt_revenue_in_power_plant_economic_performance_table)
-    - Q(gas_chp_ccgt_mt_capex_in_power_plant_economic_performance_table)
-    - Q(gas_chp_ccgt_mt_opex_in_power_plant_economic_performance_table)
+  IF(
+       V(energy_chp_combined_cycle_mt_network_gas, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(gas_chp_ccgt_mt_revenue_in_power_plant_economic_performance_table) -  Q(gas_chp_ccgt_mt_capex_in_power_plant_economic_performance_table)  -  Q(gas_chp_ccgt_mt_opex_in_power_plant_economic_performance_table) } 
+  )
 - unit = EUR/MWh

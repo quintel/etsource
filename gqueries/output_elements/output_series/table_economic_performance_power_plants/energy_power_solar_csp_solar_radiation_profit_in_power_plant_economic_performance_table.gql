@@ -1,7 +1,9 @@
 # Profit of power plant, defined as revenue minus CAPEX and OPEX
 
 - query =
-    Q(energy_power_solar_csp_solar_radiation_revenue_in_power_plant_economic_performance_table)
-    - Q(energy_power_solar_csp_solar_radiation_capex_in_power_plant_economic_performance_table)
-    - Q(energy_power_solar_csp_solar_radiation_opex_in_power_plant_economic_performance_table)
+  IF(
+       V(energy_power_solar_csp_solar_radiation, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(energy_power_solar_csp_solar_radiation_revenue_in_power_plant_economic_performance_table) -  Q(energy_power_solar_csp_solar_radiation_capex_in_power_plant_economic_performance_table)  -  Q(energy_power_solar_csp_solar_radiation_opex_in_power_plant_economic_performance_table) } 
+  )
 - unit = EUR/MWh

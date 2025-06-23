@@ -1,4 +1,9 @@
 # OPEX of power plant, based on annual OPEX calculations
 
-- query = V(agriculture_chp_engine_biogas, operating_expenses_including_fuel_per(:mwh_electricity))
+- query =
+   IF(
+       V(agriculture_chp_engine_biogas, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(agriculture_chp_engine_biogas, operating_expenses_including_fuel_per(:mwh_electricity)) }
+   )
 - unit = EUR/MWh
