@@ -1,0 +1,9 @@
+# OPEX of power plant, based on annual OPEX calculations
+
+- query =
+   IF(
+       V(energy_power_combined_cycle_network_gas, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_power_combined_cycle_network_gas, operating_expenses_including_fuel_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh

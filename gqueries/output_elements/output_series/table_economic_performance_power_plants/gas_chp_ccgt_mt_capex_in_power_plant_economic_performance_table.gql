@@ -1,0 +1,9 @@
+# CAPEX of power plant, based on annual CAPEX calculations
+
+- query =
+   IF(
+       V(energy_chp_combined_cycle_mt_network_gas, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_chp_combined_cycle_mt_network_gas, capital_expenditures_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh

@@ -1,0 +1,9 @@
+# Revenue of power plant, based on hourly revenue calculations
+
+- query =
+   IF(
+       V(energy_chp_coal_gas, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_chp_coal_gas, revenue_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh

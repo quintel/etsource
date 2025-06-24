@@ -1,0 +1,9 @@
+# Profit of power plant, defined as revenue minus CAPEX and OPEX
+
+- query =
+  IF(
+       V(energy_power_supercritical_waste_mix, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(waste_power_revenue_in_power_plant_economic_performance_table) -  Q(waste_power_capex_in_power_plant_economic_performance_table)  -  Q(waste_power_opex_in_power_plant_economic_performance_table) } 
+  )
+- unit = EUR/MWh

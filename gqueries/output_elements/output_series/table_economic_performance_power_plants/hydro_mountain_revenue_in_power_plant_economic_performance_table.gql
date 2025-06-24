@@ -1,0 +1,9 @@
+# Revenue of power plant, based on hourly revenue calculations
+
+- query =
+   IF(
+       V(energy_power_hydro_mountain, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_power_hydro_mountain, revenue_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh

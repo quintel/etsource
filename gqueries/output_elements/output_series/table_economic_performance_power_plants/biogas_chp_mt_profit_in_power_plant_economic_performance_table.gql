@@ -1,0 +1,9 @@
+# Profit of power plant, defined as revenue minus CAPEX and OPEX
+
+- query =
+  IF(
+       V(energy_chp_local_engine_mt_biogas, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(biogas_chp_mt_revenue_in_power_plant_economic_performance_table) -  Q(biogas_chp_mt_capex_in_power_plant_economic_performance_table)  -  Q(biogas_chp_mt_opex_in_power_plant_economic_performance_table) } 
+  )
+- unit = EUR/MWh

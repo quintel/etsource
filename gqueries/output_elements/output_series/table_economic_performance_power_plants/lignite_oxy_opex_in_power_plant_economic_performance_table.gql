@@ -1,0 +1,9 @@
+# OPEX of power plant, based on annual OPEX calculations
+
+- query =
+   IF(
+       V(energy_power_ultra_supercritical_oxyfuel_ccs_lignite, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_power_ultra_supercritical_oxyfuel_ccs_lignite, operating_expenses_including_fuel_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh

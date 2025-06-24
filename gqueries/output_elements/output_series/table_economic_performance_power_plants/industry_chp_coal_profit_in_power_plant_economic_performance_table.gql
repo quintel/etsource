@@ -1,0 +1,9 @@
+# Profit of power plant, defined as revenue minus CAPEX and OPEX
+
+- query =
+  IF(
+       V(industry_chp_ultra_supercritical_coal, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(industry_chp_coal_revenue_in_power_plant_economic_performance_table) -  Q(industry_chp_coal_capex_in_power_plant_economic_performance_table)  -  Q(industry_chp_coal_opex_in_power_plant_economic_performance_table) } 
+  )
+- unit = EUR/MWh

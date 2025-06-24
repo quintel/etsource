@@ -1,0 +1,20 @@
+# This gquery calculates opex of P2H technologies per MWh output
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
+          industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
+          operating_expenses_including_fuel_per(:node)
+        )
+      ),
+      SUM(
+        V(
+          industry_chemicals_refineries_flexibility_p2h_network_gas_electricity,
+          industry_chemicals_refineries_flexibility_p2h_hydrogen_electricity,
+          "output_of_useable_heat / MJ_PER_MWH"
+        )
+      )
+    )
+- unit = EUR/MWh

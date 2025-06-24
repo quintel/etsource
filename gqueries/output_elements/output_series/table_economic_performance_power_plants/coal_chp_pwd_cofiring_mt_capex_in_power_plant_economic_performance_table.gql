@@ -1,0 +1,9 @@
+# CAPEX of power plant, based on annual CAPEX calculations
+
+- query =
+   IF(
+       V(energy_chp_ultra_supercritical_cofiring_mt_coal, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(energy_chp_ultra_supercritical_cofiring_mt_coal, capital_expenditures_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh

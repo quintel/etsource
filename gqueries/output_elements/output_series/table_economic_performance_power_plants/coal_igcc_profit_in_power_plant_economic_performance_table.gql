@@ -1,0 +1,9 @@
+# Profit of power plant, defined as revenue minus CAPEX and OPEX
+
+- query =
+  IF(
+       V(energy_power_combined_cycle_coal, output_of_electricity) == 0,
+       -> { '-' },
+       -> { Q(coal_igcc_revenue_in_power_plant_economic_performance_table) -  Q(coal_igcc_capex_in_power_plant_economic_performance_table)  -  Q(coal_igcc_opex_in_power_plant_economic_performance_table) } 
+  )
+- unit = EUR/MWh

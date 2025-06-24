@@ -1,0 +1,9 @@
+# CAPEX of power plant, based on annual CAPEX calculations
+
+- query =
+   IF(
+       V(industry_chp_wood_pellets, output_of_electricity) == 0,
+       -> { '-' },
+       -> { V(industry_chp_wood_pellets, capital_expenditures_per(:mwh_electricity)) }
+   )
+- unit = EUR/MWh
