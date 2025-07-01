@@ -1,5 +1,5 @@
 def encrypt_balance(directory)
-  if File.exists?('.password')
+  if File.exist?('.password')
     password = File.read('.password').strip
   else
     puts "File .password not found in root. Cannot encrypt energy balance CSV"
