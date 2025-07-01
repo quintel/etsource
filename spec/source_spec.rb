@@ -25,16 +25,16 @@ describe Source do
       end
     end
 
-    context 'with unavailible country' do
-      let(:nl_source) { Source.new(etdata_small_path, "nl", default_year) }
+    context 'with unavailable country' do
+      let(:european_source) { Source.new(etdata_small_path, "eu", default_year) }
 
       it 'be falsey' do
-        nl_source
-        expect(nl_source.etdata_path).to eq(false)
+        european_source
+        expect(european_source.etdata_path).to eq(false)
       end
     end
 
-    context 'with unavailible year' do
+    context 'with unavailable year' do
       let(:unvalid_source) { Source.new(etdata_small_path, "nl", (default_year - 1)) }
 
       it 'creates a valid path' do
