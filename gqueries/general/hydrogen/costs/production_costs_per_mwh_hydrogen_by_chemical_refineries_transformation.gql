@@ -1,0 +1,11 @@
+# Total cost of hydrogen production by industry chemical refineries transformation. 
+# This is measured by taking the costs of each of the industry transformation nodes
+# and multiplying this by the output share of hydrogen.
+- query =
+		DIVIDE(
+			V(energy_chemical_refineries_transformation_external_coupling_node, "variable_costs_per(:node) * hydrogen_output_conversion / (1.0 - loss_output_conversion )"),
+			DIVIDE(
+				V(energy_chemical_refineries_transformation_external_coupling_node, output_of_hydrogen),
+				MJ_PER_MWH
+				)
+			)
