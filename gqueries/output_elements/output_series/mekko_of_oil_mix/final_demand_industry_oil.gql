@@ -1,4 +1,11 @@
 # Final demand for all oil in industry
 
 - unit = MJ
-- query = V(industry_final_demand_crude_oil, output_of_crude_oil)
+- query =
+   SUM(
+      V(
+        industry_final_demand_crude_oil,
+        industry_final_demand_naphtha,
+        demand
+      )
+    )
