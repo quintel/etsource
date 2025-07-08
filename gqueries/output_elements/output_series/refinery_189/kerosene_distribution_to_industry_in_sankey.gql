@@ -1,10 +1,11 @@
 # Query for refinery sankey: connection between distribution and use of kerosene in industry
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(industry_final_demand_kerosene, demand),
         V(industry_final_demand_kerosene_non_energetic, demand)
-      )
+      ),
+      BILLIONS
     )
 - unit = PJ
