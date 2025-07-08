@@ -1,0 +1,18 @@
+# Final demand of the 'naphtha' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :industry"
+            ),
+            energetic?
+          ),
+          naphtha?
+        ),
+        value
+      )
+    ) / BILLIONS
