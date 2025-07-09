@@ -2,77 +2,20 @@
 
 - unit = PJ
 - query =
-    SUM(
-      V(
-        FILTER(
+    DIVIDE(
+      SUM(
+        V(
           FILTER(
-            INTERSECTION(
-              EG(final_demand),EG(paper_industry)
+            FILTER(
+              INTERSECTION(
+                EG(final_demand),EG(paper_industry)
+              ),
+              "! energetic?"
             ),
-            "! energetic?"
+            "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha?"
           ),
-          crude_oil?
-        ),
-        value
+          value
+        )
       ),
-      V(
-        FILTER(
-          FILTER(
-            INTERSECTION(
-              EG(final_demand),EG(paper_industry)
-            ),
-            "! energetic?"
-          ),
-          gasoline?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            INTERSECTION(
-              EG(final_demand),EG(paper_industry)
-            ),
-            "! energetic?"
-          ),
-          diesel?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            INTERSECTION(
-              EG(final_demand),EG(paper_industry)
-            ),
-            "! energetic?"
-          ),
-          lpg?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            INTERSECTION(
-              EG(final_demand),EG(paper_industry)
-            ),
-            "! energetic?"
-          ),
-          kerosene?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            INTERSECTION(
-              EG(final_demand),EG(paper_industry)
-            ),
-            "! energetic?"
-          ),
-          heavy_fuel_oil?
-        ),
-        value
-      )
-    ) / BILLIONS
+      BILLIONS
+    )
