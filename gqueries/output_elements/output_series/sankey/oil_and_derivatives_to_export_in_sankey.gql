@@ -2,4 +2,20 @@
 
 - unit = PJ
 - query =
-    DIVIDE(SUM(V(G(energy_export), "input_of_crude_oil + input_of_gasoline + input_of_diesel + input_of_lpg + input_of_kerosene + input_of_heavy_fuel_oil + input_of_naphtha")),BILLIONS)
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+            crude_oil,
+            gasoline,
+            diesel,
+            lng,
+            kerosene,
+            heavy_fuel_oil,
+            naphtha
+          )
+        )
+      ),
+      BILLIONS
+    )
