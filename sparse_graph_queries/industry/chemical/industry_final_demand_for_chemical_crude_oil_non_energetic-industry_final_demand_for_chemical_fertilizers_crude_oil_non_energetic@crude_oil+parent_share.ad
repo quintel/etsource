@@ -1,14 +1,9 @@
-# chemical crude oil non energetic demand is determined by fertilizers non-energetic oil demand and by 'locally available' crude oil non energetic
-# locally available oil depends on how large the refinery sector is in a region
-# if the refinery sector produces more non energetic oil than the demand of the chemical other sector the surplus gets exported (energy_export_oil_products)
-# if the refinery sector produces less non energetic oil than the demand of the chemical other sector the deficit is imported (that is, the deficit is passed on to 'industry_final_demand_for_chemical_crude_oil_non_energetic' -> 'industry_final_demand_crude_oil_non_energetic' -> 'energy_distribution_crude_oil' and eventually imported)
-# if the refinery sector produces more than the demand of the chemical other sector, 'industry_final_demand_for_chemical_crude_oil_non_energetic' can be 0 (if fertilizers crude oil demand is 0 as well), while 'industry_final_demand_for_chemical_other_crude_oil_non_energetic' is NOT zero. In other words, 'industry_final_demand_for_chemical_crude_oil_non_energetic' is not simply the sum of the demands of chemical fertilizers, refineries and chemical other
+# chemical crude oil non energetic demand is determined by fertilizers non-energetic oil demand and by chemical other non energetic demand
 
 - query =
     chemical_fertilizers_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_fertilizers_crude_oil_non_energetic_demand);
-    chemical_locally_available_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_other_oil_demand);
     chemical_other_crude_oil_non_energetic_demand = DATASET_INPUT(input_industry_chemical_other_crude_oil_non_energetic_demand);
-    chemical_final_demand_crude_oil_non_energetic = chemical_fertilizers_crude_oil_non_energetic_demand + MAX(0, chemical_other_crude_oil_non_energetic_demand - chemical_locally_available_crude_oil_non_energetic_demand);
-    chemical_final_demand_crude_oil_non_energetic = IF(chemical_final_demand_crude_oil_non_energetic > 0.0, chemical_final_demand_crude_oil_non_energetic, 1.0);
+
+    chemical_final_demand_crude_oil_non_energetic = chemical_fertilizers_crude_oil_non_energetic_demand + chemical_other_crude_oil_non_energetic_demand ;
 
     chemical_fertilizers_crude_oil_non_energetic_demand / chemical_final_demand_crude_oil_non_energetic
