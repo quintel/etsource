@@ -1,6 +1,6 @@
 # Direct conversion input of gas_power_fuelmix for oil production
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
@@ -26,8 +26,16 @@
         V(
           G(oil_and_oil_products_production),
           "crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_gas_power_fuelmix"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "naphtha_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_gas_power_fuelmix"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "refinery_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_gas_power_fuelmix"
         )
-      ), 
+      ),
       BILLIONS
     )
 - unit = PJ
