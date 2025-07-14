@@ -1,6 +1,6 @@
 # Direct conversion input of steam_hot_water for oil production
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
@@ -26,8 +26,16 @@
         V(
           G(oil_and_oil_products_production),
           "crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "naphtha_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
+        ),
+        V(
+          G(oil_and_oil_products_production),
+          "refinery_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_steam_hot_water"
         )
-      ), 
+      ),
       BILLIONS
     )
 - unit = PJ
