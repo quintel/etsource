@@ -1,10 +1,12 @@
-# This is based on the energy_production_bio_oil node since for the sankey it is asssumed all oil to go in the oil mix, similar to the network gas mix.
-# This is not explicitly modelled in the ETM this way, since all oil flows come together after the final demand nodes. 
-# Therefore, we simply use the production node of bio kerosene to calculate the flows from bio kerosene to crude oil
-- query =
-    DIVIDE(
-        V(energy_production_bio_kerosene, output_of_loss
-      ), 
-      BILLIONS
-    )
 - unit = PJ
+- query =
+    SUM(
+      Q(conversion_loss_bio_kerosene_to_crude_oil),
+      Q(conversion_loss_bio_kerosene_to_diesel),
+      Q(conversion_loss_bio_kerosene_to_gasoline),
+      Q(conversion_loss_bio_kerosene_to_heavy_fuel_oil),
+      Q(conversion_loss_bio_kerosene_to_kerosene),
+      Q(conversion_loss_bio_kerosene_to_lpg),
+      Q(conversion_loss_bio_kerosene_to_naphtha),
+      Q(conversion_loss_bio_kerosene_to_refinery_gas)
+    )

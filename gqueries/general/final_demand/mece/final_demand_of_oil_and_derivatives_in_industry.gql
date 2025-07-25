@@ -2,59 +2,17 @@
 
 - unit = PJ
 - query =
-    SUM(
-      V(
-        FILTER(
+    DIVIDE(
+      SUM(
+        V(
           FILTER(
-            EG(final_demand),"sector == :industry"
+            FILTER(
+              EG(final_demand),"sector == :industry"
+            ),
+            "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha?"
           ),
-          crude_oil?
-        ),
-        value
+          value
+        )
       ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :industry"
-          ),
-          gasoline?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :industry"
-          ),
-          diesel?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :industry"
-          ),
-          lpg?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :industry"
-          ),
-          kerosene?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :industry"
-          ),
-          heavy_fuel_oil?
-        ),
-        value
-      )
-    ) / BILLIONS
+      BILLIONS
+    )

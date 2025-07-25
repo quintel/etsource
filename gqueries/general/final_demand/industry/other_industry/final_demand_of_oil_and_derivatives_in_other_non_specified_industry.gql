@@ -2,59 +2,17 @@
 
 - unit = PJ
 - query =
-    SUM(
-      V(
-        FILTER(
-          INTERSECTION(
-            EG(final_demand),EG(other_non_specified_industry)
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_non_specified_industry)
+            ),
+            "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha?"
           ),
-          crude_oil?
-        ),
-        value
+          value
+        )
       ),
-      V(
-        FILTER(
-          INTERSECTION(
-            EG(final_demand),EG(other_non_specified_industry)
-          ),
-          gasoline?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          INTERSECTION(
-            EG(final_demand),EG(other_non_specified_industry)
-          ),
-          diesel?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          INTERSECTION(
-            EG(final_demand),EG(other_non_specified_industry)
-          ),
-          lpg?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          INTERSECTION(
-            EG(final_demand),EG(other_non_specified_industry)
-          ),
-          kerosene?
-        ),
-        value
-      ),
-      V(
-        FILTER(
-          INTERSECTION(
-            EG(final_demand),EG(other_non_specified_industry)
-          ),
-          heavy_fuel_oil?
-        ),
-        value
-      )
-    ) / BILLIONS
+      BILLIONS
+    )
