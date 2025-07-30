@@ -673,8 +673,12 @@ industry_chp_wood_pellets:
   full_load_hours: 4501.033963
 industry_final_demand_bio_kerosene:
   demand: 0.0
+industry_final_demand_bio_kerosene_non_energetic:
+  demand: 0.0
 industry_final_demand_biodiesel:
-  demand: 104.67847505800287
+  demand: 169.66340632219843
+industry_final_demand_biodiesel_non_energetic:
+  demand: 0.0
 industry_final_demand_coal:
   demand: 16089.212000000003
 industry_final_demand_coal_gas:
@@ -687,35 +691,54 @@ industry_final_demand_cokes_non_energetic:
   demand: 0.0
 industry_final_demand_crude_oil:
   input:
-    :diesel: 0.1369136751207002
-    :biodiesel: 0.0010389230845393187
-    :kerosene: 0.0025912359287808577
+    :diesel: 0.32310677576576796
+    :biodiesel: 0.002451786410803702
+    :kerosene: 0.006115137041341559
     :bio_kerosene: 0.0
-    :lpg: 0.19740141219253748
-    :bio_oil: 0.0011015035322343998
-    :crude_oil: 0.6609532501412076
+    :lpg: 0.4658536393016367
+    :bio_oil: 0.0025994719262418804
+    :crude_oil: 0.19987318955420824
+industry_final_demand_crude_oil_non_energetic:
+  input:
+    :diesel: 0.0
+    :biodiesel: 0.0
+    :kerosene: 0.0
+    :bio_kerosene: 0.0
+    :lpg: 0.6324290273377163
+    :bio_oil: 0.0
+    :crude_oil: 0.36757097266228356
 industry_final_demand_diesel:
-  demand: 13794.971869911633
+  demand: 22358.960772701652
+industry_final_demand_diesel_non_energetic:
+  demand: 0.0
 industry_final_demand_electricity:
   demand: 144292.32
-industry_final_demand_for_chemical_other_crude_oil_non_energetic:
-  demand: 236422.02873786408
-industry_final_demand_for_other_crude_oil_non_energetic:
-  demand: 12587.991262135922
 industry_final_demand_hydrogen_non_energetic:
   demand: 0.0
 industry_final_demand_kerosene:
-  demand: 261.0844147914613
+  demand: 423.1669512439133
+industry_final_demand_kerosene_non_energetic:
+  demand: 0.0
 industry_final_demand_lpg:
-  demand: 19889.5174340782
+  demand: 32237.03131040664
+industry_final_demand_lpg_non_energetic:
+  demand: 90368.3023080887
+industry_final_demand_naphtha:
+  demand: 31556.8
+industry_final_demand_naphtha_non_energetic:
+  demand: 106119.2
 industry_final_demand_network_gas:
   demand: 202621.495
 industry_final_demand_network_gas_non_energetic:
   demand: 42649.292
 industry_final_demand_other_bio_oil:
-  demand: 110.98387526582766
+  demand: 179.88323114188054
+industry_final_demand_other_bio_oil_non_energetic:
+  demand: 0.0
 industry_final_demand_other_oil:
-  demand: 66595.47693089487
+  demand: 13831.207328183718
+industry_final_demand_other_oil_non_energetic:
+  demand: 52522.517691911286
 industry_final_demand_steam_hot_water:
   demand: 17634.2
 industry_final_demand_wood_pellets:
@@ -756,8 +779,9 @@ industry_refinery_transformation_crude_oil:
     :heavy_fuel_oil: 0.12266648390438815
     :kerosene: 0.06386378834512645
     :lpg: 0.0328950964367371
-    :crude_oil: 0.2063508343967371
+    :crude_oil: 0.12487061175223943
     :refinery_gas: 0.02266384827530377
+    :naphtha: 0.08148022264449767
     :loss: 0.007662345582782559
 industry_steel_blastfurnace_bof:
   input:
@@ -1035,15 +1059,15 @@ industry_final_demand_coal_non_energetic-industry_final_demand_for_chemical_coal
 industry_final_demand_cokes-industry_final_demand_for_metal_cokes@cokes:
   parent_share: 0.3571433126570385
 industry_final_demand_crude_oil-industry_final_demand_for_chemical_crude_oil@crude_oil:
-  parent_share: 0.8904956536245878
+  parent_share: 0.8405590770034639
 industry_final_demand_crude_oil-industry_final_demand_for_metal_crude_oil@crude_oil:
-  parent_share: 0.006196708699697259
+  parent_share: 0.009022554695986394
 industry_final_demand_crude_oil-industry_final_demand_for_other_crude_oil@crude_oil:
-  parent_share: 0.10330763767571492
+  parent_share: 0.15041836830054972
 industry_final_demand_crude_oil_non_energetic-industry_final_demand_for_chemical_crude_oil_non_energetic@crude_oil:
-  parent_share: 0.0
+  parent_share: 0.9119048287207259
 industry_final_demand_crude_oil_non_energetic-industry_final_demand_for_other_crude_oil_non_energetic@crude_oil:
-  parent_share: 1.0
+  parent_share: 0.08809517127927413
 industry_final_demand_electricity-industry_final_demand_for_chemical_dsr_electricity@electricity:
   parent_share: 0.408580581419718
 industry_final_demand_electricity-industry_final_demand_for_metal_dsr_electricity@electricity:
@@ -1065,9 +1089,9 @@ industry_final_demand_for_chemical_coal_non_energetic-industry_final_demand_for_
 industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_fertilizers_crude_oil@crude_oil:
   parent_share: 0.0
 industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_other_crude_oil@crude_oil:
-  parent_share: 0.487601313436409
+  parent_share: 0.20961259306562707
 industry_final_demand_for_chemical_crude_oil-industry_final_demand_for_chemical_refineries_crude_oil@crude_oil:
-  parent_share: 0.512398686563591
+  parent_share: 0.7903874069343729
 ? industry_final_demand_for_chemical_crude_oil_non_energetic-industry_final_demand_for_chemical_fertilizers_crude_oil_non_energetic@crude_oil
 : parent_share: 0.0
 industry_final_demand_for_chemical_electricity-industry_final_demand_for_chemical_fertilizers_electricity@electricity:

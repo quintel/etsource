@@ -10,6 +10,7 @@
         V(energy_import_diesel, demand) - V(energy_export_diesel_baseload, demand),- V(energy_export_diesel_backup, demand),
         V(energy_import_heavy_fuel_oil, demand) - V(energy_export_heavy_fuel_oil_baseload, demand),- V(energy_export_heavy_fuel_oil_backup, demand),
         V(energy_import_lpg, demand) - V(energy_export_lpg_baseload, demand),- V(energy_export_lpg_backup, demand),
+        V(energy_import_naphtha, demand) - V(energy_export_naphtha_baseload, demand),- V(energy_export_naphtha_backup, demand),
         Q(factsheet_supply_electricity_from_import_except_imbalance)
     ) -
     SUM(
@@ -22,7 +23,8 @@
         input_of_gasoline +
         input_of_kerosene +
         input_of_diesel +
-        input_of_heavy_fuel_oil")
+        input_of_heavy_fuel_oil +
+        input_of_naphtha")
     )
 
 - unit = MJ

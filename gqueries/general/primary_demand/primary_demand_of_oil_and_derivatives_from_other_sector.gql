@@ -1,0 +1,10 @@
+- unit = PJ
+- query =
+    DIVIDE(
+      V(
+        INTERSECTION(SECTOR(other),G(final_demand_group)),
+        "primary_demand_of_crude_oil + primary_demand_of_diesel + primary_demand_of_heavy_fuel_oil + primary_demand_of_gasoline + primary_demand_of_lpg + primary_demand_of_kerosene + primary_demand_of_naphtha"
+      ).sum,
+      BILLIONS
+    )
+- deprecated_key = other_oil_primary_demand
