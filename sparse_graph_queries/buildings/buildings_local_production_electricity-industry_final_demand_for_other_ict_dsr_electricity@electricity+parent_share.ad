@@ -1,6 +1,6 @@
 
 - query =
-    buildings_electricity = SPARSE_GRAPH_QUERY(buildings_local_production_electricity, demand);
+    buildings_electricity = SPARSE_GRAPH_QUERY(industry_final_demand_for_other_ict_dsr_electricity, demand) + SPARSE_GRAPH_QUERY(buildings_final_demand_electricity, demand)
     buildings_electricity = IF(buildings_electricity > 0.0, buildings_electricity, 1.0);
 
     DATASET_INPUT(input_industry_ict_electricity_demand) /
