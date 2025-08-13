@@ -3,3 +3,9 @@
 - graph_methods = [demand]
 - availability = 0.0
 - free_co2_factor = 0.0
+
+~ demand =
+    PRODUCT(
+      SHARE("energy/buildings_local_production_electricity_parent_share", buildings_final_demand_electricity),
+      EB(commercial_and_public_services, electricity)
+    )
