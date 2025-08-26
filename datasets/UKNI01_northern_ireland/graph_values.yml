@@ -268,6 +268,10 @@ energy_distribution_lt_steam_hot_water:
 energy_distribution_mt_steam_hot_water:
   output:
     :steam_hot_water: 1.0
+energy_distribution_waste_mix:
+  input:
+    :biogenic_waste: 0.5
+    :non_biogenic_waste: 0.5
 energy_extraction_coal:
   demand: 0.0
 energy_extraction_crude_oil:
@@ -947,14 +951,10 @@ energy_blastfurnace_transformation_cokes-energy_distribution_coal_gas@coal_gas:
   child_share: 0.6907
 energy_cokesoven_transformation_coal-energy_distribution_coal_gas@coal_gas:
   child_share: 0.3093
-energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
-  child_share: 0.5
 energy_distribution_coal_gas-energy_chp_coal_gas@coal_gas:
   parent_share: 0.16
 energy_distribution_coal_gas-energy_power_combined_cycle_coal_gas@coal_gas:
   parent_share: 0.0
-energy_distribution_non_biogenic_waste-energy_distribution_waste_mix@waste_mix:
-  child_share: 0.5
 energy_greengas_gasification_dry_biomass-energy_greengas_production@greengas:
   child_share: 0.0
 energy_greengas_gasification_wet_biomass-energy_greengas_production@greengas:
