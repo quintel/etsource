@@ -1,0 +1,45 @@
+- query =
+    total_production = USER_INPUT() * BILLIONS;
+
+    share_synthetic = 0.5;
+    share_non_biogenic_waste = 0.5;
+
+    efficiency_synthetic = 1 - V(energy_production_fischer_tropsch_synthetic_must_run, loss_output_conversion);
+    efficiency_non_biogenic_waste = 1 - V(energy_production_fischer_tropsch_non_biogenic_waste_ccs, loss_output_conversion);
+    efficiency_biogenic_waste = 1 - V(energy_production_fischer_tropsch_biogenic_waste_ccs, loss_output_conversion);
+    efficiency_dry_biomass = 1 - V(energy_production_fischer_tropsch_dry_biomass_ccs, loss_output_conversion);
+
+    demand_synthetic = total_production * share_synthetic / efficiency_synthetic;
+    demand_non_biogenic_waste = total_production * share_non_biogenic_waste / efficiency_non_biogenic_waste;
+    demand_biogenic_waste = total_production * share_biogenic_waste / efficiency_biogenic_waste;
+    demand_dry_biomass = total_production * share_dry_biomass / efficiency_dry_biomass;
+
+    EACH(
+      UPDATE(
+        V(energy_production_fischer_tropsch_synthetic_must_run),
+        demand,
+        demand_synthetic
+      ),
+      UPDATE(
+        V(energy_production_fischer_tropsch_non_biogenic_waste_ccs),
+        demand,
+        demand_non_biogenic_waste
+      ),
+      UPDATE(
+        V(energy_production_fischer_tropsch_biogenic_waste_ccs),
+        demand,
+        demand_biogenic_waste
+      ),
+      UPDATE(
+        V(energy_production_fischer_tropsch_dry_biomass_ccs),
+        demand,
+        demand_dry_biomass
+      )
+    )
+- priority = 0
+- max_value = 1000000000000.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_production_fischer_tropsch_synthetic_must_run, output_of_kerosene) / BILLIONS
+- step_value = 0.1
+- unit = PJ
+- update_period = future
