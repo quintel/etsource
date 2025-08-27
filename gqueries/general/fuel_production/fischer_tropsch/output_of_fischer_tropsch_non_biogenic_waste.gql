@@ -1,9 +1,10 @@
 
 - unit = PJ
-- query = 
-    SUM(
+- query =
+    DIVIDE(
       V(
         energy_production_fischer_tropsch_non_biogenic_waste_ccs,
         "demand * (1 - loss_output_conversion)"
-      )
+      ),
+      BILLIONS
     )
