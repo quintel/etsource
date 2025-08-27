@@ -1,9 +1,10 @@
 
 - unit = PJ
-- query = 
-    SUM(
+- query =
+    DIVIDE(
       V(
         energy_production_methanol_synthesis_synthetic,
         "demand * (1 - loss_output_conversion)"
-      )
-    ) 
+      ),
+      BILLIONS
+    )
