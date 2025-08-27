@@ -1,10 +1,10 @@
 - query =
     total_production = USER_INPUT() * BILLIONS;
 
-    share_synthetic = INPUT_VALUE(energy_production_fischer_tropsch_synthetic_share);
-    share_non_biogenic_waste = INPUT_VALUE(energy_production_fischer_tropsch_non_biogenic_waste_ccs_share);
-    share_biogenic_waste = INPUT_VALUE(energy_production_fischer_tropsch_biogenic_waste_ccs_share);
-    share_dry_biomass = INPUT_VALUE(energy_production_fischer_tropsch_dry_biomass_ccs_share);
+    share_synthetic = DIVIDE(INPUT_VALUE(energy_production_fischer_tropsch_synthetic_share),100.0);
+    share_non_biogenic_waste = DIVIDE(INPUT_VALUE(energy_production_fischer_tropsch_non_biogenic_waste_ccs_share),100.0);
+    share_biogenic_waste = DIVIDE(INPUT_VALUE(energy_production_fischer_tropsch_biogenic_waste_ccs_share),100.0);
+    share_dry_biomass = DIVIDE(INPUT_VALUE(energy_production_fischer_tropsch_dry_biomass_ccs_share),100.0);
 
     efficiency_synthetic = 1 - V(energy_production_fischer_tropsch_synthetic_must_run, loss_output_conversion);
     efficiency_non_biogenic_waste = 1 - V(energy_production_fischer_tropsch_non_biogenic_waste_ccs, loss_output_conversion);
