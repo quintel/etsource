@@ -3,8 +3,8 @@
 
     share_synthetic = INPUT_VALUE("energy_production_fischer_tropsch_synthetic_share");
     share_non_biogenic_waste = INPUT_VALUE("energy_production_fischer_tropsch_non_biogenic_waste_ccs_share");
-    share_biogenic_waste = INPUT_VALUE("energy_production_fischer_tropsch_non_biogenic_waste_ccs_share");
-    share_dry_biomass = INPUT_VALUE("energy_production_fischer_dry_biomass_ccs_share");
+    share_biogenic_waste = INPUT_VALUE("energy_production_fischer_tropsch_biogenic_waste_ccs_share");
+    share_dry_biomass = INPUT_VALUE("energy_production_fischer_tropsch_dry_biomass_ccs_share");
 
     efficiency_synthetic = 1 - V(energy_production_fischer_tropsch_synthetic_must_run, loss_output_conversion);
     efficiency_non_biogenic_waste = 1 - V(energy_production_fischer_tropsch_non_biogenic_waste_ccs, loss_output_conversion);
@@ -39,9 +39,9 @@
       )
     )
 - priority = 0
-- max_value = 1000000000000.0
+- max_value_gql = present: PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
 - min_value = 0.0
-- start_value_gql = present: PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
+- start_value = present: Q(output_of_fischer_tropsch)
 - step_value = 0.1
 - unit = PJ
 - update_period = future
