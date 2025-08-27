@@ -1,10 +1,10 @@
 - query =
     total_production = USER_INPUT() * BILLIONS;
 
-    share_synthetic = INPUT_VALUE("energy_production_methanol_synthesis_synthetic_share");
-    share_non_biogenic_waste = INPUT_VALUE("energy_production_methanol_synthesis_non_biogenic_waste_ccs_share");
-    share_biogenic_waste = INPUT_VALUE("energy_production_methanol_synthesis_biogenic_waste_ccs_share");
-    share_dry_biomass = INPUT_VALUE("energy_production_methanol_synthesis_dry_biomass_ccs_share");
+    share_synthetic = INPUT_VALUE(energy_production_methanol_synthesis_synthetic_share);
+    share_non_biogenic_waste = INPUT_VALUE(energy_production_methanol_synthesis_non_biogenic_waste_ccs_share);
+    share_biogenic_waste = INPUT_VALUE(energy_production_methanol_synthesis_biogenic_waste_ccs_share);
+    share_dry_biomass = INPUT_VALUE(energy_production_methanol_synthesis_dry_biomass_ccs_share);
 
     efficiency_synthetic = 1 - V(energy_production_methanol_synthesis_synthetic, loss_output_conversion);
     efficiency_non_biogenic_waste = 1 - V(energy_production_methanol_synthesis_non_biogenic_waste_ccs, loss_output_conversion);
@@ -39,9 +39,9 @@
       )
     )
 - priority = 0
-- max_value_gql = present: PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
+- max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
 - min_value = 0.0
-- start_value_gql = present: Q(output_of_methanol_synthesis)
+- start_value_gql = present:Q(output_of_methanol_synthesis)
 - step_value = 0.1
 - unit = PJ
 - update_period = future
