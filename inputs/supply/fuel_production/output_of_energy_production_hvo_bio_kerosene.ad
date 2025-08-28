@@ -1,13 +1,13 @@
 - query =
     UPDATE(
-        V(energy_production_methanol_synthesis_synthetic),
+        V(energy_production_hvo_bio_kerosene),
         demand,
-        DIVIDE((USER_INPUT() * BILLIONS), V(energy_production_methanol_synthesis_synthetic, methanol_output_conversion))
+        DIVIDE((USER_INPUT() * BILLIONS), V(energy_production_hvo_bio_kerosene, "bio_kerosene_output_conversion + bionaphtha_output_conversion"))
     )
 - priority = 0
-- max_value = 1000000000000.0
+- max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
 - min_value = 0.0
-- start_value_gql = present:V(energy_production_methanol_synthesis_synthetic, output_of_methanol) / BILLIONS
+- start_value_gql = present: Q(output_of_hvo_bio_kerosene)
 - step_value = 0.1
 - unit = PJ
 - update_period = future
