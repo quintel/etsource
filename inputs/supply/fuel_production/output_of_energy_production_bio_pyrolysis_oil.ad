@@ -1,0 +1,31 @@
+- query =
+    total_production = USER_INPUT() * BILLIONS;
+
+    share_biogenic_waste = DIVIDE(INPUT_VALUE(energy_production_pyrolysis_biogenic_waste_share),100);
+    share_dry_biomass = DIVIDE(INPUT_VALUE(energy_production_pyrolysis_dry_biomass_share),100);
+
+    efficiency_biogenic_waste = V(energy_production_pyrolysis_biogenic_waste, bio_pyrolysis_oil_output_conversion);
+    efficiency_dry_biomass = V(energy_production_pyrolysis_dry_biomass, bio_pyrolysis_oil_output_conversion);
+
+    demand_biogenic_waste = total_production * share_biogenic_waste / efficiency_biogenic_waste;
+    demand_dry_biomass = total_production * share_dry_biomass / efficiency_dry_biomass;
+
+    EACH(
+      UPDATE(
+        V(energy_production_pyrolysis_biogenic_waste),
+        demand,
+        demand_biogenic_waste
+      ),
+      UPDATE(
+        V(energy_production_pyrolysis_dry_biomass),
+        demand,
+        demand_dry_biomass
+      )
+    )
+- priority = 0
+- max_value_gql = present: PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = PJ
+- update_period = future
