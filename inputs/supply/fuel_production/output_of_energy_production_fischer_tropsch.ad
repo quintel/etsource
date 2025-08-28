@@ -1,3 +1,6 @@
+# This input uses the carrier output conversions to calculate the efficiencies instead of the loss output conversion.
+# When using the loss output conversion, the primary demand is not calculated correctly. 
+# This can lead to a great overestmation of the primary demand.
 - query =
     total_production = USER_INPUT() * BILLIONS;
 
@@ -6,10 +9,10 @@
     share_biogenic_waste = DIVIDE(INPUT_VALUE(energy_production_fischer_tropsch_biogenic_waste_ccs_share),100.0);
     share_dry_biomass = DIVIDE(INPUT_VALUE(energy_production_fischer_tropsch_dry_biomass_ccs_share),100.0);
 
-    efficiency_synthetic = 1 - V(energy_production_fischer_tropsch_synthetic_must_run, loss_output_conversion);
-    efficiency_non_biogenic_waste = 1 - V(energy_production_fischer_tropsch_non_biogenic_waste_ccs, loss_output_conversion);
-    efficiency_biogenic_waste = 1 - V(energy_production_fischer_tropsch_biogenic_waste_ccs, loss_output_conversion);
-    efficiency_dry_biomass = 1 - V(energy_production_fischer_tropsch_dry_biomass_ccs, loss_output_conversion);
+    efficiency_synthetic = V(energy_production_fischer_tropsch_synthetic_must_run, "kerosene_output_conversion + naphtha_output_conversion");
+    efficiency_non_biogenic_waste = V(energy_production_fischer_tropsch_non_biogenic_waste_ccs, "kerosene_output_conversion + diesel_output_conversion + naphtha_output_conversion");
+    efficiency_biogenic_waste = V(energy_production_fischer_tropsch_biogenic_waste_ccs, "bio_kerosene_output_conversion + biodiesel_output_conversion + bionaphtha_output_conversion");
+    efficiency_dry_biomass = V(energy_production_fischer_tropsch_dry_biomass_ccs, "bio_kerosene_output_conversion + biodiesel_output_conversion + bionaphtha_output_conversion");
 
     demand_synthetic = total_production * share_synthetic / efficiency_synthetic;
     demand_non_biogenic_waste = total_production * share_non_biogenic_waste / efficiency_non_biogenic_waste;
@@ -41,7 +44,7 @@
 - priority = 0
 - max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
 - min_value = 0.0
-- start_value_gql = present:Q(output_of_fischer_tropsch)
+- start_value = 0.0
 - step_value = 0.1
 - unit = PJ
 - update_period = future
