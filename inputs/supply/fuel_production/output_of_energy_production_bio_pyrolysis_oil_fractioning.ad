@@ -1,0 +1,16 @@
+- query = 
+    UPDATE(
+      V(energy_production_pyrolysis_oil_fractionation_bio_pyrolysis_oil),
+      demand,
+      DIVIDE(
+        USER_INPUT() * BILLIONS,  
+        V(energy_production_pyrolysis_oil_fractionation_bio_pyrolysis_oil, "biodiesel_output_conversion + bionaphtha_output_conversion")
+      )
+    )
+- priority = 0
+- max_value_gql = present: PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = PJ
+- update_period = future
