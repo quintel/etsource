@@ -1,0 +1,14 @@
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(
+            G(useful_demand),
+            G(refineries_industry),
+          ),
+          preset_demand
+          )
+        ),
+      BILLIONS
+    )
+- unit = PJ
