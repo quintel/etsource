@@ -1,0 +1,9 @@
+- query = UPDATE(V(energy_production_non_biogenic_waste), max_demand, (USER_INPUT() * BILLIONS))
+- priority = 0
+- max_value_gql = present:PRODUCT(Q(total_biomass_potential),2)
+- min_value = 0.0
+- start_value_gql = present:Q(max_demand_non_biogenic_waste)
+- step_value = 0.1
+- unit = PJ
+- update_period = future
+- disabled_by_couplings = [external_model_industry, waste_chp]
