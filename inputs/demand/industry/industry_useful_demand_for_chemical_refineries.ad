@@ -1,3 +1,21 @@
+# This input statement updates the useful refinery output.
+# 
+# ## Important Remarks:
+# 
+# 1. **Present Value Calculation**: The 'present_value' takes the preset_demand of the 
+#    non-energetic crude oil demand of the refinery sector. Ideally we would take the 
+#    useful output of node `industry_refinery_transformation_crude_oil`. This is not 
+#    possible at the moment (see [https://github.com/quintel/etsource/issues/3298]).
+# 
+# 2. **Two Operation Modes**:
+#    - **With refinery output in dataset**: This input will update the values with the 
+#      relative value to update the heat and electricity input accordingly.
+#    - **Without refinery output in dataset**: This input will assume that the input 
+#      and output values of a 'typical refinery' are taken. 
+# 
+# For more information, please view: 
+# `etdataset/inputs_source_analyses/demand/industry`
+
 - query =
     present_value = QUERY_PRESENT(-> {Q(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic)});
     relative_value = USER_INPUT() / present_value;
@@ -13,7 +31,7 @@
     crude_oil_output_conversion_typical_refinery       = 0.09023;
 
     IF(
-      present_value != 0.0,
+      present_value > 0.0,
     -> 
       {
         EACH(
@@ -116,7 +134,7 @@
           ) 
         } 
       )
-- priority = 0
+- priority = 1
 - max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),10)
 - min_value = 0.0
 - start_value_gql = present:Q(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic)
