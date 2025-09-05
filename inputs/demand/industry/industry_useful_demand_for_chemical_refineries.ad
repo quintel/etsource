@@ -9,7 +9,7 @@
 # dataset), see etdataset/inputs_source_analyses/demand/industry.
 
 - query =
-    present_value = QUERY_PRESENT(-> {Q(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic)});
+    present_value = QUERY_PRESENT(-> {Q(industry_useful_output_industry_refinery_transofrmation_crude_oil)});
     relative_value = USER_INPUT() / present_value;
 
     electricity_input_conversion_typical_refinery      = 0.00514;
@@ -22,6 +22,7 @@
     naphtha_output_conversion_typical_refinery         = 0.07404;
     heavy_fuel_oil_output_conversion_typical_refinery  = 0.10234;
     crude_oil_output_conversion_typical_refinery       = 0.09023;
+    loss_output_conversion_typical_refinery            = 0.00758;
 
     IF(
       present_value > 0.0,
@@ -46,7 +47,7 @@
           UPDATE(
             V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic),
             preset_demand,
-            USER_INPUT() * BILLIONS
+            (USER_INPUT() * BILLIONS) / (1-loss_output_conversion_typical_refinery)
           ),
           UPDATE(
             V(industry_useful_demand_for_chemical_refineries_useable_heat),
@@ -104,7 +105,7 @@
 - priority = 1
 - max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),10)
 - min_value = 0.0
-- start_value_gql = present:Q(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic)
+- start_value_gql = present:Q(industry_useful_output_industry_refinery_transofrmation_crude_oil)
 - step_value = 0.1
 - unit = PJ
 - update_period = future
