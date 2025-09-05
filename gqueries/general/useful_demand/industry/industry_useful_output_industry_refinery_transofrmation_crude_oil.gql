@@ -1,0 +1,16 @@
+- query = 
+    DIVIDE(
+      V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic, preset_demand),
+      BILLIONS
+    ) *
+    SUM(
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, crude_oil), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, diesel), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, gasoline), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, heavy_fuel_oil), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, kerosene), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, lpg), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, naphtha), conversion),
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, refinery_gas), conversion)
+    )
+- unit = PJ
