@@ -1,0 +1,15 @@
+# Biokerosene to Bunkers
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :bunkers"
+          ),
+          bio_kerosene?
+        ),
+        value
+      )
+    ) / BILLIONS

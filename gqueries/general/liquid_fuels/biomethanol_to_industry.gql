@@ -1,0 +1,15 @@
+# Biomethanol to Industry
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          biomethanol?
+        ),
+        value
+      )
+    ) / BILLIONS
