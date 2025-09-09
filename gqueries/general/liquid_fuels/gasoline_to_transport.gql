@@ -1,0 +1,15 @@
+# Gasoline to Transport
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :transport"
+          ),
+          gasoline?
+        ),
+        value
+      )
+    ) / BILLIONS

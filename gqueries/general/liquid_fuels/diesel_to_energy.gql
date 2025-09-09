@@ -1,0 +1,15 @@
+# Diesel to Energy
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :energy"
+          ),
+          diesel?
+        ),
+        value
+      )
+    ) / BILLIONS
