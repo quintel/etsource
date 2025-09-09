@@ -23,6 +23,12 @@
     heavy_fuel_oil_output_conversion_typical_refinery  = 0.10234;
     crude_oil_output_conversion_typical_refinery       = 0.09023;
     loss_output_conversion_typical_refinery            = 0.00758;
+    network_gas_burner_share_typical_refinery          = 0.28676;
+    crude_oil_burner_share_typical_refinery            = 0.65964;
+    biomass_burner_share_typical_refinery              = 0.00008;
+    coal_burner_share_typical_refinery                 = 0.00043;
+    hydrogen_burner_share_typical_refinery             = 0.00000;
+    steam_network_share_typical_refinery               = 0.05308;
 
     IF(
       present_value > 0.0,
@@ -98,7 +104,37 @@
             OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),crude_oil),
             conversion,
             crude_oil_output_conversion_typical_refinery
-          )
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_network_gas_hybrid_heat, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            network_gas_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_burner_crude_oil, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            crude_oil_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_burner_wood_pellets, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            biomass_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_burner_coal, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            coal_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_hydrogen_hybrid_heat, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            hydrogen_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_final_demand_for_chemical_refineries_steam_hot_water, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            steam_network_share_typical_refinery
+          ),                                        
         )
       }
     )
