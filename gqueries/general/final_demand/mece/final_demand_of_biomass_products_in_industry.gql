@@ -44,7 +44,16 @@
           FILTER(
             EG(final_demand),"sector == :industry"
           ),
-          biomethanol?
+          bio_kerosene?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          bio_oil?
         ),
         value
       ),
@@ -54,6 +63,24 @@
             EG(final_demand),"sector == :industry"
           ),
           bionaphtha?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          bio_pyrolysis_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          biomethanol?
         ),
         value
       )
