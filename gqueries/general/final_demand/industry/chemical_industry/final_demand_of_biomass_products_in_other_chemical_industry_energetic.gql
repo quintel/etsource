@@ -50,5 +50,29 @@
           bio_lng?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(chemical_industry)
+            ),
+            energetic?
+          ),
+          biomethanol?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(chemical_industry)
+            ),
+            energetic?
+          ),
+          bionaphtha?
+        ),
+        value
       )
     ) / BILLIONS
