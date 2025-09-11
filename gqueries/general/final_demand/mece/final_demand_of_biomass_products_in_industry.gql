@@ -38,5 +38,23 @@
           bio_lng?
         ),
         value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          biomethanol?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          bionaphtha?
+        ),
+        value
       )
     ) / BILLIONS
