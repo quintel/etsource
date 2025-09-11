@@ -1,0 +1,15 @@
+# Final demand of the 'methanol' carrier group
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          INTERSECTION(
+            EG(final_demand),EG(other_chemical_industry)
+          ),
+          methanol?
+        ),
+        value
+      )
+    ) / BILLIONS
