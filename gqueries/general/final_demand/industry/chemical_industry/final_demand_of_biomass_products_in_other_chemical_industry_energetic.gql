@@ -55,11 +55,11 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              EG(final_demand),EG(chemical_industry)
+              EG(final_demand),EG(other_chemical_industry)
             ),
             energetic?
           ),
-          biomethanol?
+          bio_kerosene?
         ),
         value
       ),
@@ -67,11 +67,47 @@
         FILTER(
           FILTER(
             INTERSECTION(
-              EG(final_demand),EG(chemical_industry)
+              EG(final_demand),EG(other_chemical_industry)
+            ),
+            energetic?
+          ),
+          bio_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_chemical_industry)
             ),
             energetic?
           ),
           bionaphtha?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_chemical_industry)
+            ),
+            energetic?
+          ),
+          bio_pyrolysis_oil?
+        ),
+        value
+      ),
+      V(
+        FILTER(
+          FILTER(
+            INTERSECTION(
+              EG(final_demand),EG(other_chemical_industry)
+            ),
+            energetic?
+          ),
+          biomethanol?
         ),
         value
       )
