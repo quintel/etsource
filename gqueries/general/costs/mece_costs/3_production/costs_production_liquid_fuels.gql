@@ -1,0 +1,10 @@
+# CAPEX and OPEX of the costs of producing liquid fuels ex CCUS.
+
+- query =
+    SUM(
+      V(G(costs_production_liquid_fuels), capital_expenditures_excluding_ccs_per(:node)),
+      V(G(costs_production_liquid_fuels), operating_expenses_excluding_ccs_per(:node))
+      )
+
+
+- unit = euro
