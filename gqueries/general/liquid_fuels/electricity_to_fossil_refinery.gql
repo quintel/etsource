@@ -1,17 +1,13 @@
 # Input of crude oil to fossil refinery transformation
-
 - unit = PJ
 - query = 
     DIVIDE(
       SUM(
         V(
-          industry_refinery_transformation_crude_oil,
-          industry_chemicals_refineries_burner_crude_oil,
+          industry_final_demand_for_chemical_refineries_electricity,
           energy_chemical_refineries_transformation_external_coupling_node,
-          input_of_crude_oil
+          input_of_electricity
           )
         ),
         BILLIONS
-    )
-
-
+      )      
