@@ -1,4 +1,26 @@
 - query =
-    V(INTERSECTION(USE(energetic),G(final_demand_group)),"input_of_bio_ethanol + input_of_biodiesel + input_of_bio_kerosene + input_of_bio_lng").sum
+    SUM(
+      V(energy_import_bio_kerosene, demand) - V(energy_export_bio_kerosene_baseload, demand) - V(energy_export_bio_kerosene_backup, demand),
+      V(energy_import_bio_ethanol, demand) - V(energy_export_bio_ethanol_baseload, demand) - V(energy_export_bio_ethanol_backup, demand),
+      V(energy_import_biodiesel, demand) - V(energy_export_biodiesel_baseload, demand) - V(energy_export_biodiesel_backup, demand),
+      V(energy_import_bionaphtha, demand) - V(energy_export_bionaphtha_baseload, demand) - V(energy_export_bionaphtha_backup, demand),
+      V(energy_import_biomethanol, demand) - V(energy_export_biomethanol_baseload, demand) - V(energy_export_biomethanol_backup, demand),
+      V(energy_import_bio_pyrolysis_oil, demand) - V(energy_export_bio_pyrolysis_oil_baseload, demand) - V(energy_export_bio_pyrolysis_oil_backup, demand),
+    ) -
+    SUM(
+      V(
+        INTERSECTION(G(final_demand_group), USE(non_energetic)),
+        input_of(
+          bio_kerosene,
+          bio_ethanol,
+          biodiesel,
+          bionaphtha,
+          biomethanol,
+          bio_pyrolysis_oil,
+          bio_lng,
+          bio_oil
+        )
+      )
+    )
 
 - unit = MJ
