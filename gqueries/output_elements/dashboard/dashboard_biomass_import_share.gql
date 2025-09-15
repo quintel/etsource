@@ -1,28 +1,17 @@
 # Share of foreign and imported biomass demand (in total biomass demand)
 #
-# (import of biomass - export of biomass) / distribution of biomass
+# (import of biomass - export of biomass) / final demand of biomass
 
 - unit = factor
 - query =
     DIVIDE(
       SUM(
-        SUM(
-          V(energy_import_wet_biomass, demand),
-          V(energy_import_dry_biomass, demand),
-          V(energy_import_oily_biomass, demand),
-          V(energy_import_biogenic_waste, demand)
-        ),
-        NEG(SUM(
-          V(energy_export_wet_biomass, demand),
-          V(energy_export_dry_biomass, demand),
-          V(energy_export_bio_oil_products_backup, demand),
-          V(energy_export_biogenic_waste, demand)
-        ))
+        Q(import_of_biomass_products),
+        NEG(
+          Q(export_of_biomass_products)
+        )
       ),
       SUM(
-        V(energy_distribution_wet_biomass, demand),
-        V(energy_distribution_dry_biomass, demand),
-        V(energy_distribution_oily_biomass, demand),
-        V(energy_distribution_biogenic_waste, demand)
+        Q(final_demand_of_biomass_products)
       )
     )
