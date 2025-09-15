@@ -1,4 +1,12 @@
 # Demand of export of wet biomass
 
 - unit = PJ
-- query = DIVIDE(V(energy_export_wet_biomass, demand), BILLIONS)
+- query =
+    DIVIDE(
+      SUM(
+        V(FILTER(
+          G(energy_export),
+          "input_of_bio_fuels > 0"),
+        demand_of_bio_resources_including_abroad_of(wet_biomass))),
+      BILLIONS
+    )
