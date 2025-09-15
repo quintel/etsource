@@ -1,0 +1,42 @@
+# Input of steam hot water from pyrolysis fractioning processes to locally available industry heat
+# This query corrects for the steam hot water production by the hydrogen burners in pyrolysis oil.
+# That energy flow is accounted for in the hydrogen to pyrolysis fractioning flow.
+- unit = PJ
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          EDGE(
+          energy_production_pyrolysis_locally_available_steam_hot_water,
+          energy_production_fractionation_pyrolysis_oil
+          ),
+          demand
+          ),
+        V(
+          EDGE(
+          energy_production_bio_pyrolysis_locally_available_steam_hot_water,
+          energy_production_fractionation_bio_pyrolysis_oil
+          ),
+          demand
+          ),
+        NEG(
+          V(
+            EDGE(
+            energy_production_fractionation_pyrolysis_oil_burner_hydrogen,
+            energy_production_pyrolysis_locally_available_steam_hot_water
+            ),
+            demand
+            )
+        ),
+        NEG(
+          V(
+            EDGE(
+            energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen,
+            energy_production_bio_pyrolysis_locally_available_steam_hot_water
+            ),
+            demand
+            )
+          )
+        ),
+        BILLIONS
+      )
