@@ -1,0 +1,20 @@
+# Import of biomass products
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_import),
+          output_of(
+            bio_kerosene,
+            bio_ethanol,
+            biodiesel,
+            bionaphtha,
+            biomethanol,
+            bio_pyrolysis_oil
+          )
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
