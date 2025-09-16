@@ -5,24 +5,21 @@
       DIVIDE(
         SUM(
           V(
-            energy_production_bio_ethanol,
-            energy_production_bio_oil,
-            energy_production_hvo_bio_kerosene,
-            energy_production_hvo_biodiesel,
-            energy_production_bio_lng,
-            output_of_loss),
-            V(
-              G(industry_transformation),
-              "output_of_bio_oil / (1 - loss_output_conversion) * loss_output_conversion"
-            ),
-            V(
-              G(industry_transformation),
-              "output_of_bio_kerosene / (1 - loss_output_conversion) * loss_output_conversion"
-            ),
-            V(
-              G(industry_transformation),
-              "output_of_biodiesel / (1 - loss_output_conversion) * loss_output_conversion"
-            )
+            Q(liquid_biofuels_producers),
+            output_of_loss
           ),
-        BILLIONS
-        )
+          V(
+            G(industry_transformation),
+            "output_of_bio_oil / (1 - loss_output_conversion) * loss_output_conversion"
+          ),
+          V(
+            G(industry_transformation),
+            "output_of_bio_kerosene / (1 - loss_output_conversion) * loss_output_conversion"
+          ),
+          V(
+            G(industry_transformation),
+            "output_of_biodiesel / (1 - loss_output_conversion) * loss_output_conversion"
+          )
+        ),
+      BILLIONS
+    )
