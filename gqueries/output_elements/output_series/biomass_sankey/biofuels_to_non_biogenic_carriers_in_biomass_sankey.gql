@@ -4,9 +4,17 @@
 - query =
     SUM(
       DIVIDE(
-        SUM(V(G(electricity_production), input_of_gas_power_fuelmix)) * V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion),
+        SUM(
+          SUM(
+            V(
+              G(electricity_production),
+              input_of_gas_power_fuelmix
+            ) * V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion)
+          ),
+          V(energy_production_pyrolysis_biogenic_waste, output_of_steam_hot_water),
+          V(energy_production_pyrolysis_dry_biomass, output_of_steam_hot_water)
+        ),
         BILLIONS
       ),
-      Q(biofuels_to_industry_transformation_in_biomass_sankey)
+      Q(biofuels_to_industry_transformation_in_biomass_sankey),
     )
-    
