@@ -8,10 +8,13 @@
       SUM(
         Q(import_of_biomass_products),
         NEG(
-          Q(export_of_biomass_products)
+          Q(export_of_biomass_products),
+          Q(export_of_greengas)
         )
       ),
       SUM(
-        Q(final_demand_of_biomass_products)
+        Q(final_demand_of_biomass_products),
+        Q(final_demand_of_renewable_waste),
+        Q(final_demand_of_natural_gas_and_derivatives) * Q(share_of_sustainable_gas_in_gas_network)
       )
     )
