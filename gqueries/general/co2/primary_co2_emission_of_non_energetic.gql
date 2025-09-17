@@ -1,8 +1,7 @@
 # Includes non_energetic emissions from the fertilizer industry (SMR), non-energetic hydrogen final
-# demand and non-energetic ammonia final demand. More non_energetic emissions may be added in the
-# future. Non-energetic final demand of group co2_emissions_refinery_products in the industry sector
-# is not (yet) included in this query, which currently only consists of non-energetic methanol final
-# demand. Since its free_co2_factor is 1.0, this doesn't affect the results.
+# demand and non-energetic ammonia final demand via co2_emissions_primary group.
+# Included non-energetic final demand of industry sector with group co2_emissions_refinery_products, corrected with free_co2_factor
+# which is required with the co2_emissions_refinery_products method.
 
 - unit = mt
 - query =
@@ -14,7 +13,17 @@
               G(co2_emissions_primary),
               SECTOR(industry)),
             USE(non_energetic)),
-          primary_co2_emission),
+          primary_co2_emission
+        ),
+        V(
+          INTERSECTION(
+            INTERSECTION(
+              G(co2_emissions_refinery_products),
+              SECTOR(industry)
+            ),
+            USE(non_energetic)),
+          "demand * weighted_carrier_co2_per_mj * (1 - free_co2_factor)"
+        ),
         NEG(
           SUM(
             MV(
