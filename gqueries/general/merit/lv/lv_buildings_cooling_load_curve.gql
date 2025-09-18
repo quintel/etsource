@@ -1,7 +1,11 @@
 - query =
-    SUM_CURVES(V(
-      buildings_cooling_airconditioning_electricity,
-      buildings_cooling_collective_heatpump_water_water_ts_electricity,
-      electricity_input_curve
-    ))
+    SUM_CURVES(
+      V(
+        FILTER(
+          ALL(),
+          "merit_order && (merit_order.group == :buildings_cooling && merit_order.level == :lv)"
+        ),
+        electricity_input_curve
+      )
+    )
 - unit = curve
