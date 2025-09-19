@@ -1,6 +1,7 @@
-# Share of foreign and imported biomass demand (in total biomass demand)
-#
-# (import of biomass - export of biomass) / final demand of biomass
+# This query calculates the share of foreign and imported biomass demand (in total biomass demand)
+# It does so by subtracting the export from the import, and dividing this by the demand of the distribution nodes 
+# of the primary biomass carriers + the import of biomass fuels.
+# This ensures there is no double counting.
 
 - unit = factor
 - query =
@@ -12,9 +13,27 @@
           Q(export_of_greengas)
         )
       ),
-      SUM(
-        Q(final_demand_of_biomass_products),
-        Q(final_demand_of_renewable_waste),
-        Q(final_demand_of_natural_gas_and_derivatives) * Q(share_of_sustainable_gas_in_gas_network)
-      )
+      DIVIDE(
+        SUM(
+          V(
+            energy_distribution_biogenic_waste,
+            energy_distribution_dry_biomass, 
+            energy_distribution_oily_biomass,
+            energy_distribution_wet_biomass,
+            demand
+          ),
+          V(
+            G(energy_import),
+            output_of(
+            bio_kerosene,
+            bionaphtha,
+            bio_pyrolysis_oil,
+            bio_ethanol,
+            biodiesel, 
+            biomethanol,         
+            )
+          )
+        ),
+        BILLIONS
+      ) 
     )
