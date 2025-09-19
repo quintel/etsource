@@ -398,6 +398,11 @@ rows:
     Value: hydrogen_for_synthetic_methanol_conversion
   - Group: Conversion
     Carrier: Hydrogen
+    Category: Biofuels production
+    Type: Input
+    Value: conversion_from_hydrogen_to_biomass_products
+  - Group: Conversion
+    Carrier: Hydrogen
     Category: Hydrogen to oil industry transformation
     Type: Input
     Value: hydrogen_to_oil_and_derivatives_industry_transformation_in_sankey
@@ -703,6 +708,11 @@ rows:
     Category: Steam hot water to hydrogen industry transformation
     Type: Input
     Value: steam_hot_water_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Biomass to locally available steam hot water in industry
+    Type: Output
+    Value: biomass_products_in_source_of_industry_locally_available_steam_hot_water_in_sankey
   - Group: Conversion
     Carrier: Steam hot water
     Category: Power-to-heat central heating
@@ -1211,7 +1221,7 @@ rows:
     Carrier: Oil
     Category: Synthetic kerosene production
     Type: Output
-    Value: kerosene_synthetic_to_distribution_in_sankey
+    Value: fischer_tropsch_to_kerosene
   - Group: Conversion
     Carrier: Oil
     Category: Oil for blending in oil mix
@@ -1559,16 +1569,7 @@ rows:
     Type: Input
     Value: natural_gas_to_feedstock_in_sankey
 
-  - Group: Primary demand
-    Carrier: Biomass
-    Category: Wood pellets
-    Type: Output
-    Value: total_primary_demand_of_wood_pellets
-  - Group: Primary demand
-    Carrier: Biomass
-    Category: Torrefied biomass pellets
-    Type: Output
-    Value: total_primary_demand_of_torrefied_biomass_pellets
+
   - Group: Primary demand
     Carrier: Biomass
     Category: Biogas
@@ -1589,16 +1590,6 @@ rows:
     Category: Bio-kerosene
     Type: Output
     Value: total_primary_demand_of_bio_kerosene
-  - Group: Primary demand
-    Carrier: Biomass
-    Category: Bio-LNG
-    Type: Output
-    Value: total_primary_demand_of_bio_lng
-  - Group: Primary demand
-    Carrier: Biomass
-    Category: Bio-oil
-    Type: Output
-    Value: total_primary_demand_of_bio_oil
   - Group: Primary demand
     Carrier: Biomass
     Category: Green gas
@@ -1641,6 +1632,11 @@ rows:
     Value: biomass_products_to_oil_and_derivatives_in_sankey
   - Group: Conversion
     Carrier: Biomass
+    Category: Biomass to steam hot water
+    Type: Input
+    Value: biomass_products_in_source_of_industry_locally_available_steam_hot_water_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
     Category: Biomass to oil industry transformation
     Type: Input
     Value: biomass_products_to_oil_and_derivatives_industry_transformation_in_sankey
@@ -1669,6 +1665,11 @@ rows:
     Category: Biomass to hydrogen industry transformation
     Type: Input
     Value: biomass_products_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Hydrogen to biomass products production
+    Type: Output
+    Value: hydrogen_in_source_of_biomass_products_in_sankey
   - Group: Conversion
     Carrier: Biomass
     Category: Ammonia to biomass industry transformation
@@ -2102,6 +2103,11 @@ rows:
     Type: Output
     Value: conversion_to_synthetic_methanol
   - Group: Conversion
+    Carrier: Methanol
+    Category: Non-biogenic waste to synthetic methanol production
+    Type: Output
+    Value: conversion_to_synthetic_methanol   
+  - Group: Conversion
     Carrier: Loss
     Category: Methanol to hydrogen conversion losses
     Type: Output
@@ -2249,6 +2255,16 @@ rows:
     Category: Non-biogenic waste for blending in waste mix
     Type: Input
     Value: non_biogenic_waste_to_blending_in_sankey
+  - Group: Conversion
+    Carrier: Non-biogenic waste
+    Category: Non-biogenic waste for methanol production
+    Type: Input
+    Value: non_biogenic_waste_to_methanol_production_in_sankey
+  - Group: Conversion
+    Carrier: Non-biogenic waste
+    Category: Non-biogenic waste for oil production
+    Type: Input
+    Value: non_biogenic_waste_to_oil_products_in_sankey
 
   - Group: Conversion
     Carrier: Waste mix
