@@ -1,9 +1,13 @@
+# co2_emissions_primary is defined on this note to include primary CO2 emissions of
+# hydrogen and electricity required for kerosene production. CO2 emissions of kerosene
+# final demand are queried with co2_emissions_refinery_products group
+
 - input.electricity = 0.55
 - input.hydrogen = 0.45
 - output.kerosene = 0.5
 - output.loss = elastic
 - output.naphtha = 0.25
-- groups = [preset_demand, wacc_unproven_tech, costs_production_liquid_fuels, sankey_conversion_group, application_group, synthetic_products_production, oil_and_oil_products_production]
+- groups = [preset_demand, wacc_unproven_tech, costs_production_liquid_fuels, sankey_conversion_group, application_group, synthetic_products_production, oil_and_oil_products_production, non_final_electricity_demand_converters, co2_emissions_primary]
 - use = energetic
 - presentation_group = liquid_fuels
 - availability = 1.0
