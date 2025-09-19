@@ -1,0 +1,15 @@
+# Query for Sankey diagram: connection between non-biogenic waste and waste mix blending
+# Sustainability share of waste mix is used since input of non-biogenic and biogenic waste are
+# already specified as waste mix
+
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          G(methanol_production),
+          "methanol_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
+        )
+      ),
+        BILLIONS
+      )
+- unit = PJ

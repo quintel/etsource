@@ -1,0 +1,54 @@
+# Direct conversion input of hydrogen for biomass_products
+# The function is broken down due to limited allowed inputs in V() function
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(liquid_biofuels_producers),
+          "greengas_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "wood_pellets_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "torrefied_biomass_pellets_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "biodiesel_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "bio_ethanol_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "bio_lng_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "bio_kerosene_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "bio_oil_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "biomethanol_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "bionaphtha_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "bio_pyrolysis_oil_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        )  
+      ),
+      BILLIONS
+    )
+- unit = PJ

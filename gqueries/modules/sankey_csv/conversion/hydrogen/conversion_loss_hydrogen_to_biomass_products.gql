@@ -1,2 +1,7 @@
 - unit = PJ
-- query = Q(conversion_loss_hydrogen_to_greengas)
+- query = 
+    SUM(
+      Q(conversion_loss_hydrogen_to_greengas),
+      Q(conversion_loss_hydrogen_to_biodiesel),
+      Q(conversion_loss_hydrogen_to_bionaphtha)
+    )
