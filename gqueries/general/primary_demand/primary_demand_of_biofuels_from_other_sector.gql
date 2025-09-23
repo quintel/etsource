@@ -1,12 +1,24 @@
+# Primary demand of liquid biomass products
+# Includes biogenic carriers for final demand and primary feedstock oily biomass
+
 - unit = PJ
 - query =
     DIVIDE(
       SUM(
-        V(INTERSECTION(SECTOR(other),G(final_demand_group)),primary_demand_of_biodiesel),
-        V(INTERSECTION(SECTOR(other),G(final_demand_group)),primary_demand_of_bio_ethanol),
-        V(INTERSECTION(SECTOR(other),G(final_demand_group)),primary_demand_of_bio_kerosene),
-        V(INTERSECTION(SECTOR(other),G(final_demand_group)),primary_demand_of_bio_lng),
-        V(INTERSECTION(SECTOR(other),G(final_demand_group)),primary_demand_of_bio_oil)
+        V(
+          INTERSECTION(SECTOR(other),G(final_demand_group)),
+          primary_demand_of(
+            biodiesel,
+            bio_ethanol,
+            bio_kerosene,
+            bio_lng,
+            bio_oil,
+            bionaphtha,
+            biomethanol,
+            bio_pyrolysis_oil,
+            oily_biomass
+          )
+        )
       ),
       BILLIONS
     )

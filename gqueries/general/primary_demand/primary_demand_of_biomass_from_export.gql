@@ -1,8 +1,19 @@
-# Primary demand of carrier group 'biomass_products' for the export converter group
+# Primary demand of solid biomass products
+# Includes biogenic carriers for final demand and primary feedstock dry and wet biomass
 
 - unit = PJ
 - query =
-    SUM(
-       V(G(energy_export), primary_demand_of_torrefied_biomass_pellets),
-       V(G(energy_export), primary_demand_of_wood_pellets)
-    ) / BILLIONS
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          primary_demand_of(
+            torrefied_biomass_pellets,
+            wood_pellets,
+            dry_biomass,
+            wet_biomass
+          )
+        )
+      ),
+      BILLIONS
+    )
