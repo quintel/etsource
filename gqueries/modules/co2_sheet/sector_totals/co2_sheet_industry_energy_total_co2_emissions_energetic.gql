@@ -1,11 +1,9 @@
 - query =
-  SUM(
-      Q(co2_sheet_industry_metal_co2_emissions),
-      Q(co2_sheet_industry_chemical_energetic_co2_emissions),
-      Q(co2_sheet_industry_food_co2_emissions),
-      Q(co2_sheet_industry_paper_co2_emissions),
-      Q(co2_sheet_energy_sector_total_co2_emissions),
-      Q(co2_sheet_industry_other_co2_emissions)
-  )
-
+    PRODUCT(
+      SUM(
+        Q(primary_co2_emission_of_energy),
+        Q(primary_co2_emission_of_industry)
+      ),
+      MILLIONS
+    )
 - unit = T
