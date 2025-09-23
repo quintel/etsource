@@ -1,9 +1,20 @@
 - unit = PJ
 - query =
     DIVIDE(
-      V(
-        INTERSECTION(SECTOR(agriculture),G(final_demand_group)),
-        "primary_demand_of_crude_oil + primary_demand_of_diesel + primary_demand_of_heavy_fuel_oil + primary_demand_of_gasoline + primary_demand_of_lpg + primary_demand_of_kerosene + primary_demand_of_naphtha"
-      ).sum,
+      SUM(
+        V(
+          INTERSECTION(SECTOR(agriculture),G(final_demand_group)),
+          primary_demand_of(
+            crude_oil,
+            diesel,
+            heavy_fuel_oil,
+            gasoline,
+            lpg,
+            kerosene,
+            naphtha,
+            pyrolysis_oil
+          )
+        )
+      ),
       BILLIONS
     )
