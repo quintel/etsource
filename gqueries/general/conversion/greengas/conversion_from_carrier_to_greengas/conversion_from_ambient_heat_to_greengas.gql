@@ -1,0 +1,12 @@
+# Direct conversion input of ambient_heat for greengas
+# The function is broken down due to limited allowed inputs in V() function
+
+- query =
+    DIVIDE(
+      V(
+        G(biomass_products_production),
+        "greengas_output_conversion / (1 - loss_output_conversion) * input_of_ambient_heat"
+      ),
+      BILLIONS
+    )
+- unit = PJ
