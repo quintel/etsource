@@ -1,7 +1,9 @@
 # Output of loss from pyrolysis fractionation transformation
+# Includes losses of required hydrogen heater and
+# losses of locally available steam hot water node if unused
 
 - unit = PJ
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
@@ -9,6 +11,8 @@
           energy_production_fractionation_bio_pyrolysis_oil,
           energy_production_fractionation_pyrolysis_oil_burner_hydrogen,
           energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen,
+          energy_production_pyrolysis_locally_available_steam_hot_water,
+          energy_production_bio_pyrolysis_locally_available_steam_hot_water,
           output_of_loss
         )
       ),
