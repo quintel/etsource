@@ -8,12 +8,14 @@
 - unit = PJ
 - query =
     SUM(
-      V(G(final_demand_group), key, primary_demand_of_bio_lng).sum *
-        V(CARRIER(bio_lng), potential_co2_conversion_per_mj),
-      V(G(final_demand_group), key, primary_demand_of_greengas).sum *
-        V(CARRIER(greengas), potential_co2_conversion_per_mj),
-      V(G(final_demand_group), key, primary_demand_of_biogas).sum *
+      PRODUCT(
+        SUM(V(G(final_demand_group), key, primary_demand_of_greengas)),
+        V(CARRIER(greengas), potential_co2_conversion_per_mj)
+      ),
+      PRODUCT(
+        SUM(V(G(final_demand_group), key, primary_demand_of_biogas)),
         V(CARRIER(biogas), potential_co2_conversion_per_mj)
+      )
     ) *
     INPUT_VALUE(
       IF(
