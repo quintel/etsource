@@ -1,2 +1,11 @@
-- query = Q(biofuel_import_to_bio_pyrolysis_oil)
+# Import of bio pyrolysis oil directly to export of bio pyrolysis oil
+
+- query =
+    MAX(
+      SUM(
+        Q(biofuel_import_to_bio_pyrolysis_oil),
+        NEG(Q(biofuel_import_to_pyrolysis_fractionation_in_liquid_fuels_sankey))
+      ),
+      0.0
+    )
 - unit = PJ
