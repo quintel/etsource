@@ -1,0 +1,17 @@
+# Special conversion for oil_and_oil_products to greengas
+
+- query =
+    SUM(
+      Q(conversion_from_diesel_to_greengas),
+      Q(conversion_from_kerosene_to_greengas),
+      Q(conversion_from_heavy_fuel_oil_to_greengas),
+      Q(conversion_from_lpg_to_greengas),
+      Q(conversion_from_gasoline_to_greengas),
+      Q(conversion_from_crude_oil_to_greengas),
+      Q(conversion_from_naphtha_to_greengas),
+      PRODUCT(
+        Q(conversion_from_gas_power_fuelmix_to_greengas),
+        V(energy_mixer_for_gas_power_fuel, crude_oil_input_conversion)
+      )
+    )
+- unit = PJ

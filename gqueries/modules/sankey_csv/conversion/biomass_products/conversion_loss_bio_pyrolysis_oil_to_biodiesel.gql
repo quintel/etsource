@@ -2,8 +2,8 @@
     DIVIDE(
       SUM(
         V(
-          FILTER(G(sankey_conversion_group),"bio_pyrolysis_oil_output_conversion > 0.0 && biodiesel_input_conversion > 0.0"),
-          "bio_pyrolysis_oil_output_conversion * biodiesel_input_conversion / (1 - loss_output_conversion) * output_of_loss"
+          FILTER(G(sankey_conversion_group),"bio_pyrolysis_oil_input_conversion > 0.0 && biodiesel_output_conversion > 0.0"),
+          "bio_pyrolysis_oil_input_conversion * biodiesel_output_conversion / (1 - loss_output_conversion) * output_of_loss"
         )
       ), 
       BILLIONS

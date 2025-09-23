@@ -1,0 +1,50 @@
+# Direct conversion input of lpg for biofuels
+# The function is broken down due to limited allowed inputs in V() function
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "bio_kerosene_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "bio_ethanol_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "biodiesel_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "bionaphtha_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "biomethanol_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "bio_pyrolysis_oil_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "wood_pellets_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "torrefied_biomass_pellets_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "bio_lng_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        ),
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "bio_oil_output_conversion / (1 - loss_output_conversion) * input_of_lpg"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
