@@ -1,16 +1,14 @@
-# Input of crude oil to fossil refinery transformation
+# Input of wood pellets to fossil refinery transformation
 
 - unit = PJ
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
           industry_chemicals_refineries_burner_wood_pellets,
           energy_chemical_refineries_transformation_external_coupling_node,
-          input_of_crude_oil
-          )
-        ),
-        BILLIONS
+          input_of_wood_pellets
+        )
+      ),
+      BILLIONS
     )
-
-
