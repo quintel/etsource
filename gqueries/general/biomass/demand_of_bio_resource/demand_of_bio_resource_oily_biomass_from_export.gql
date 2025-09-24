@@ -1,0 +1,15 @@
+# Primary demand of carrier group 'oily_biomass' for the export converter group
+
+- unit = PJ
+- query =
+    SUM(
+      DIVIDE(
+      SUM(
+       V(
+          G(energy_export),
+          input_of(bio_oil, bio_kerosene, biodiesel)
+         )
+        ),
+      BILLIONS
+      )
+    )
