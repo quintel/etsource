@@ -1,0 +1,12 @@
+# This query obtains the HVO input nodes.
+# From this it queries the hydrogen input curve
+
+- query =
+    SUM_CURVES(
+      V(
+        energy_production_hvo_biodiesel,
+        energy_production_hvo_bio_kerosene,
+        hydrogen_input_curve
+      )
+    )
+- unit = curve
