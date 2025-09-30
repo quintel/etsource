@@ -1,0 +1,13 @@
+# Direct conversion input of biogenic waste for local usage
+
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          G(biomass_products_production),
+          "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_dry_biomass"
+        )
+      ), 
+      BILLIONS
+    )
+- unit = PJ
