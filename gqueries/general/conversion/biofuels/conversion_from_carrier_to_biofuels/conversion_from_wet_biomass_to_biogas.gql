@@ -1,0 +1,14 @@
+# Direct conversion input of wet_biomass for biofuels
+# The function is broken down due to limited allowed inputs in V() function
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(biofuels_producers), G(industry_transformation),
+          "biogas_output_conversion / (1 - loss_output_conversion) * input_of_wet_biomass"
+        )    
+      ),
+      BILLIONS
+    )
+- unit = PJ
