@@ -1,0 +1,17 @@
+# Direct conversion input of hydrogen for oil production
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_production_fractionation_pyrolysis_oil),
+          "diesel_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_hydrogen"
+        ),
+        V(
+          G(energy_production_fractionation_pyrolysis_oil),
+          "naphtha_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_hydrogen"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
