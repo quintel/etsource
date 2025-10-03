@@ -1,0 +1,18 @@
+# Input of crude oil to fossil refinery transformation
+
+- unit = PJ
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          industry_chemicals_refineries_hydrogen_hybrid_heat,
+          industry_chemicals_refineries_burner_hydrogen,
+          energy_chemical_refineries_transformation_external_coupling_node,
+          input_of_hydrogen
+          )
+        ),
+        BILLIONS
+    )
+
+
+

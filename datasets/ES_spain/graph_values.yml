@@ -270,6 +270,10 @@ energy_distribution_mt_steam_hot_water:
     :steam_hot_water: 1.0
 energy_distribution_network_gas_loss:
   demand: 4833.9
+energy_distribution_waste_mix:
+  input:
+    :biogenic_waste: 0.44850994791221926
+    :non_biogenic_waste: 0.5514900520877807
 energy_extraction_coal:
   demand: 0.0
 energy_extraction_crude_oil:
@@ -950,14 +954,10 @@ energy_blastfurnace_transformation_cokes-energy_distribution_coal_gas@coal_gas:
   child_share: 0.67066351888668
 energy_cokesoven_transformation_coal-energy_distribution_coal_gas@coal_gas:
   child_share: 0.32933648111332003
-energy_distribution_biogenic_waste-energy_distribution_waste_mix@waste_mix:
-  child_share: 0.44850994791221926
 energy_distribution_coal_gas-energy_chp_coal_gas@coal_gas:
   parent_share: 0.0
 energy_distribution_coal_gas-energy_power_combined_cycle_coal_gas@coal_gas:
   parent_share: 0.44808452696873174
-energy_distribution_non_biogenic_waste-energy_distribution_waste_mix@waste_mix:
-  child_share: 0.5514900520877807
 energy_greengas_gasification_dry_biomass-energy_greengas_production@greengas:
   child_share: 0.0
 energy_greengas_gasification_wet_biomass-energy_greengas_production@greengas:
@@ -1124,10 +1124,10 @@ industry_final_demand_for_chemical_wood_pellets-industry_final_demand_for_chemic
   parent_share: 0.0
 ? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_fertilizers_wood_pellets_non_energetic@wood_pellets
 : parent_share: 0.0
+? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_other_wood_pellets_non_energetic@wood_pellets
+: parent_share: 1.0
 ? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_final_demand_for_chemical_refineries_wood_pellets_non_energetic@wood_pellets
 : parent_share: 0.0
-? industry_final_demand_for_chemical_wood_pellets_non_energetic-industry_locally_available_wood_pellets_non_energetic_for_chemical@wood_pellets
-: parent_share: 1.0
 industry_final_demand_for_metal_aluminium_electricity-industry_aluminium_electrolysis_current_electricity@electricity:
   parent_share: 1.0
 industry_final_demand_for_metal_coal-industry_final_demand_for_metal_steel_coal@coal:

@@ -1,11 +1,20 @@
-- unit = MJ
+# Primary demand of solid biomass products
+# Includes biogenic carriers for final demand and primary feedstock dry and wet biomass
+
+- unit = PJ
 - query =
     DIVIDE(
       SUM(
         V(
-          INTERSECTION(SECTOR(industry,energy),G(final_demand_group)),
-          "primary_demand_of_wood_pellets + primary_demand_of_torrefied_biomass_pellets")
-        ),
+          INTERSECTION(SECTOR(industry),G(final_demand_group)),
+          primary_demand_of(
+            wood_pellets,
+            torrefied_biomass_pellets,
+            dry_biomass,
+            wet_biomass
+          )
+        )
+      ),
       BILLIONS
     )
 - deprecated_key = industry_biomass_primary_demand

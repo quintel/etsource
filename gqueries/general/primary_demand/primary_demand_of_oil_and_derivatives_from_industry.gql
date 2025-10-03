@@ -1,0 +1,21 @@
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(SECTOR(industry),G(final_demand_group)),
+          primary_demand_of(
+            crude_oil,
+            diesel,
+            heavy_fuel_oil,
+            gasoline,
+            lpg,
+            kerosene,
+            naphtha,
+            pyrolysis_oil
+          )
+        )
+      ),
+      BILLIONS
+    )
+- deprecated_key = industry_oil_primary_demand

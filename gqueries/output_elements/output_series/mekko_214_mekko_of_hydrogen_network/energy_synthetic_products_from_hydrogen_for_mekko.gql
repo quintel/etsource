@@ -1,6 +1,11 @@
 - unit = PJ
 - query =
     DIVIDE(
-        V(energy_synthetic_products_hydrogen_non_energetic, input_of_hydrogen),
-        BILLIONS
+      SUM(
+        V(
+          G(synthetic_products_production),
+          input_of_hydrogen
+        )
+      ),
+      BILLIONS
     )

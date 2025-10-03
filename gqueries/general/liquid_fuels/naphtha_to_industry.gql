@@ -1,0 +1,15 @@
+# Naphtha to Industry
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          naphtha?
+        ),
+        value
+      )
+    ) / BILLIONS

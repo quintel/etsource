@@ -1,4 +1,12 @@
 # Demand of export of dry biomass
 
 - unit = PJ
-- query = DIVIDE(V(energy_export_dry_biomass, demand), BILLIONS)
+- query =
+    DIVIDE(
+      SUM(
+        V(FILTER(
+          G(energy_export),
+          "input_of_bio_fuels > 0"),
+        demand_of_bio_resources_including_abroad_of(dry_biomass))),
+      BILLIONS
+    )

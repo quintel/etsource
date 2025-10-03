@@ -1,0 +1,16 @@
+# This query obtains the bio pyrolsis fractionation input node, and the 
+# hydrogen bio pyrolysis fractionation burner. 
+# From this it queries the hydrogen input curve
+
+- query =
+    SUM_CURVES(
+      V(
+        FILTER(
+          Q(time_resolved_hydrogen_demand_converters),
+          "bio_pyrolysis_oil_input_conversion > 0 "
+          ),
+        energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen,
+        hydrogen_input_curve
+      )
+    )
+- unit = curve

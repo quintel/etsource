@@ -1,0 +1,47 @@
+- query =
+    total_production = USER_INPUT() * BILLIONS;
+
+    share_synthetic = DIVIDE(INPUT_VALUE(energy_production_methanol_synthesis_synthetic_share),100);
+    share_non_biogenic_waste = DIVIDE(INPUT_VALUE(energy_production_methanol_synthesis_non_biogenic_waste_ccs_share),100);
+    share_biogenic_waste = DIVIDE(INPUT_VALUE(energy_production_methanol_synthesis_biogenic_waste_ccs_share),100);
+    share_dry_biomass = DIVIDE(INPUT_VALUE(energy_production_methanol_synthesis_dry_biomass_ccs_share),100);
+
+    efficiency_synthetic = V(energy_production_methanol_synthesis_synthetic, methanol_output_conversion);
+    efficiency_non_biogenic_waste = V(energy_production_methanol_synthesis_non_biogenic_waste_ccs, methanol_output_conversion);
+    efficiency_biogenic_waste = V(energy_production_methanol_synthesis_biogenic_waste_ccs, biomethanol_output_conversion);
+    efficiency_dry_biomass = V(energy_production_methanol_synthesis_dry_biomass_ccs, biomethanol_output_conversion);
+
+    demand_synthetic = total_production * share_synthetic / efficiency_synthetic;
+    demand_non_biogenic_waste = total_production * share_non_biogenic_waste / efficiency_non_biogenic_waste;
+    demand_biogenic_waste = total_production * share_biogenic_waste / efficiency_biogenic_waste;
+    demand_dry_biomass = total_production * share_dry_biomass / efficiency_dry_biomass;
+
+    EACH(
+      UPDATE(
+        V(energy_production_methanol_synthesis_synthetic),
+        demand,
+        demand_synthetic
+      ),
+      UPDATE(
+        V(energy_production_methanol_synthesis_non_biogenic_waste_ccs),
+        demand,
+        demand_non_biogenic_waste
+      ),
+      UPDATE(
+        V(energy_production_methanol_synthesis_biogenic_waste_ccs),
+        demand,
+        demand_biogenic_waste
+      ),
+      UPDATE(
+        V(energy_production_methanol_synthesis_dry_biomass_ccs),
+        demand,
+        demand_dry_biomass
+      )
+    )
+- priority = 0
+- max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
+- min_value = 0.0
+- start_value_gql = present:Q(output_of_methanol_synthesis)
+- step_value = 0.1
+- unit = PJ
+- update_period = future

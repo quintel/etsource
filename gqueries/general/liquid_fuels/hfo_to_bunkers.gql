@@ -1,0 +1,15 @@
+# HFO to Bunkers
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+          FILTER(
+            EG(final_demand),"sector == :bunkers"
+          ),
+          heavy_fuel_oil?
+        ),
+        value
+      )
+    ) / BILLIONS

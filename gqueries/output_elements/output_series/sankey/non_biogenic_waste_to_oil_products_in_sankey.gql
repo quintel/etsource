@@ -1,0 +1,31 @@
+# Query for Sankey diagram: connection between non-biogenic waste and oil products
+# Note that steam hot water output from pyrolysis is included here, since this flow
+# is internally modelled in pyrolysis and fractionation process
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(liquid_fuels_producers),
+          "pyrolysis_oil_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "kerosene_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "diesel_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "naphtha_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
+        )
+      ),
+        BILLIONS
+      )
+- unit = PJ

@@ -2,11 +2,14 @@
 
 - unit = PJ
 - query =
-    DIVIDE(
+    SUM(
+      DIVIDE(
       SUM(
-        V(energy_export_bio_oil_products_backup, demand),
-        V(energy_export_bio_kerosene_backup, demand),
-        V(energy_ecport_biodiesel_backup,demand)
-      ),
+       V(
+          G(energy_export),
+          input_of(bio_oil, bio_kerosene, biodiesel)
+         )
+        ),
       BILLIONS
+      )
     )

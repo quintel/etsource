@@ -1,9 +1,15 @@
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
           G(electricity_production),
           G(hydrogen_production),
+          V(energy_production_fischer_tropsch_non_biogenic_waste_ccs),
+          V(energy_production_fischer_tropsch_biogenic_waste_ccs),
+          V(energy_production_fischer_tropsch_dry_biomass_ccs),
+          V(energy_production_methanol_synthesis_non_biogenic_waste_ccs),
+          V(energy_production_methanol_synthesis_biogenic_waste_ccs),
+          V(energy_production_methanol_synthesis_dry_biomass_ccs),
           "demand * weighted_carrier_potential_co2_per_mj * free_co2_factor"
         )
       ),

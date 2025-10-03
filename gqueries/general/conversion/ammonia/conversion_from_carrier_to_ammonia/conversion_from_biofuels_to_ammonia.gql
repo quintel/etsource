@@ -1,0 +1,13 @@
+# Special conversion for biomass_products to ammonia
+
+- query = 
+    SUM(
+      Q(conversion_from_biodiesel_to_ammonia),
+      Q(conversion_from_bio_ethanol_to_ammonia),
+      Q(conversion_from_wood_pellets_to_ammonia),
+      Q(conversion_from_bio_kerosene_to_electricity),
+      Q(conversion_from_bio_lng_to_ammonia),
+      Q(conversion_from_bio_oil_to_ammonia),
+      Q(conversion_from_torrefied_biomass_pellets_to_ammonia),
+    )
+- unit = PJ

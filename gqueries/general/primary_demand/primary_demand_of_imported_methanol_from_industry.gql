@@ -2,8 +2,10 @@
 - query =
     DIVIDE(
       SUM(
-        V(INTERSECTION(SECTOR(industry),G(final_demand_group)),primary_demand_of_methanol),
-        V(INTERSECTION(SECTOR(energy),G(final_demand_group)),primary_demand_of_methanol)
+        V(
+          INTERSECTION(SECTOR(industry),G(final_demand_group)),
+          primary_demand_of_methanol
+        )
       ),
       BILLIONS
     )

@@ -4,11 +4,10 @@
 - query =
     DIVIDE(
       SUM(
-       V(energy_production_bio_kerosene,
-       energy_production_bio_oil,
-       energy_production_bio_ethanol,
-       energy_production_biodiesel,
-       energy_production_bio_lng,
-       input_of_oily_biomass)),
-       BILLIONS
-       )
+        V(
+          Q(liquid_biofuels_producers),
+          input_of_oily_biomass
+        )
+      ),
+      BILLIONS
+    )

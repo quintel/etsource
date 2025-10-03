@@ -1,0 +1,15 @@
+# Import of pyrolysis oil to fractionation of pyrolysis oil
+# Zero if output of pyrolysis oil to from pyrolysis is higher than required input
+
+- query =
+    MAX(
+      DIVIDE(
+        SUM(
+          V(energy_production_fractionation_pyrolysis_oil, input_of_pyrolysis_oil),
+          NEG(V(energy_production_pyrolysis_non_biogenic_waste, output_of_pyrolysis_oil))
+        ),
+        BILLIONS
+      ),
+      0.0
+    )
+- unit = PJ
