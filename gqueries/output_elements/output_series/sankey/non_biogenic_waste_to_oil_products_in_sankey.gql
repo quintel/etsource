@@ -1,8 +1,8 @@
-# Query for Sankey diagram: connection between non-biogenic waste and waste mix blending
-# Sustainability share of waste mix is used since input of non-biogenic and biogenic waste are
-# already specified as waste mix
+# Query for Sankey diagram: connection between non-biogenic waste and oil products
+# Note that steam hot water output from pyrolysis is included here, since this flow
+# is internally modelled in pyrolysis and fractionation process
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
@@ -21,7 +21,7 @@
           Q(liquid_fuels_producers),
           "naphtha_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
         ),
-        V(     
+        V(
           Q(liquid_fuels_producers),
           "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_non_biogenic_waste"
         )
