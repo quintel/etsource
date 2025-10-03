@@ -403,7 +403,7 @@ rows:
     Value: conversion_from_hydrogen_to_biomass_products
   - Group: Conversion
     Carrier: Hydrogen
-    Category: Oil products
+    Category: Oil products production
     Type: Input
     Value: conversion_from_hydrogen_to_pyrolysis_oil_fractionation_products
   - Group: Conversion
@@ -778,6 +778,16 @@ rows:
     Category: Residual heat from industry
     Type: Output
     Value: residual_heat_for_central_heat_conversion
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Unused steam hot water from pyrolysis
+    Type: Output
+    Value: oil_and_derivatives_to_unused_steam_hot_water_pyrolysis_in_sankey
+  - Group: Conversion
+    Carrier: Steam hot water
+    Category: Unused steam hot water from bio pyrolysis
+    Type: Output
+    Value: biomass_products_to_unused_steam_hot_water_bio_pyrolysis_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Steam hot water to steam hot water conversion losses
@@ -1164,6 +1174,11 @@ rows:
     Value: oil_and_derivatives_to_methanol_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Oil
+    Category: Oil to unused steam hot water pyrolysis
+    Type: Input
+    Value: oil_and_derivatives_to_unused_steam_hot_water_pyrolysis_in_sankey
+  - Group: Conversion
+    Carrier: Oil
     Category: Oil to hydrogen industry transformation
     Type: Input
     Value: oil_and_derivatives_to_hydrogen_industry_transformation_in_sankey
@@ -1224,9 +1239,19 @@ rows:
     Value: fischer_tropsch_to_kerosene
   - Group: Conversion
     Carrier: Oil
+    Category: Oil production from non-biogenic waste
+    Type: Output
+    Value: non_biogenic_waste_in_source_of_oil_production
+  - Group: Conversion
+    Carrier: Oil
     Category: Oil for blending in oil mix
     Type: Output
     Value: biomass_products_to_oil_and_derivatives_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Hydrogen to oil products production
+    Type: Output
+    Value: hydrogen_in_source_of_oil_products_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Oil to electricity conversion losses
@@ -1655,6 +1680,11 @@ rows:
     Category: Biomass to hydrogen industry transformation
     Type: Input
     Value: biomass_products_to_hydrogen_industry_transformation_in_sankey
+  - Group: Conversion
+    Carrier: Biomass
+    Category: Biomass to unused steam hot water bio pyrolysis
+    Type: Input
+    Value: biomass_products_to_unused_steam_hot_water_bio_pyrolysis_in_sankey
   - Group: Conversion
     Carrier: Biomass
     Category: Hydrogen to biomass products production
@@ -2259,7 +2289,7 @@ rows:
     Carrier: Loss
     Category: Non-biogenic waste to oil products conversion losses
     Type: Output
-    Value: conversion_loss_non_biogenic_waste_to_oil_and_derivatives  
+    Value: conversion_loss_non_biogenic_waste_to_oil_and_derivatives
   - Group: Conversion
     Carrier: Loss
     Category: Non-biogenic waste to methanol conversion losses

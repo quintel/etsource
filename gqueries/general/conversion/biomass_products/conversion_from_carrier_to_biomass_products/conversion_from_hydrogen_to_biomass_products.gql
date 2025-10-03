@@ -1,5 +1,7 @@
 # Direct conversion input of hydrogen for biomass_products
 # The function is broken down due to limited allowed inputs in V() function
+# Input of hydrogen in hydrogen heater for bio_pyrolysis_oil fractionation process
+# is queried manually, otherwise this flow is ignored
 
 - query =
     DIVIDE(
@@ -37,17 +39,18 @@
           "bio_oil_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
         ),
         V(
-          Q(liquid_biofuels_producers),
-          "biomethanol_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
-        ),
-        V(
-          Q(liquid_biofuels_producers),
+          G(biomass_products_production),
           "bionaphtha_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
         ),
         V(
-          Q(liquid_biofuels_producers),
+          G(biomass_products_production),
+          "biomethanol_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        ),
+        V(
+          G(biomass_products_production),
           "bio_pyrolysis_oil_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
-        )  
+        ),
+        V(energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen, input_of_hydrogen)
       ),
       BILLIONS
     )
