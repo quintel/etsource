@@ -7,15 +7,11 @@ TO_VALIDATE = {
   gqueries:             Atlas::Gquery,
   inputs:               Atlas::Input,
   nodes:                Atlas::Node,
-  presets:              Atlas::Preset,
-  initializer_inputs:   Atlas::InitializerInput,
   sparse_graph_queries: Atlas::SparseGraphQuery
 }
 
 PERMITTED_VALIDATION_ERRORS = {
-  Atlas::Input            => [:query],
-  Atlas::InitializerInput => [:query],
-  Atlas::Preset           => [:user_values, :flexibility_order]
+  Atlas::Input            => [:query]
 }
 
 TO_VALIDATE.each do |name, klass|
