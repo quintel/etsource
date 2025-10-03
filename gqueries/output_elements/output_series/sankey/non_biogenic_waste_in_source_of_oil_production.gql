@@ -1,0 +1,28 @@
+# Query for Sankey diagram: connection between non-biogenic waste and oil production
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_pyrolysis_oil * non_biogenic_waste_input_conversion"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_kerosene * non_biogenic_waste_input_conversion"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_diesel * non_biogenic_waste_input_conversion"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_naphtha * non_biogenic_waste_input_conversion"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_steam_hot_water * non_biogenic_waste_input_conversion"
+        )
+      ),
+        BILLIONS
+      )
+- unit = PJ
