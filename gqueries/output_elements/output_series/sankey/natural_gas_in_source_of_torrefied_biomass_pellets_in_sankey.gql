@@ -1,0 +1,14 @@
+# Query for Sankey diagram: connection between torrefied biomass pellets from natural gas
+
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(
+          energy_torrefaction_wood,
+          "output_of_torrefied_biomass_pellets * network_gas_input_conversion"
+        ),
+        Q(share_of_fossil_gas_in_gas_network)
+      ),
+      BILLIONS
+    )
