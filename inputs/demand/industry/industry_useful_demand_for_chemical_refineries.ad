@@ -53,17 +53,17 @@
           UPDATE(
             V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic),
             preset_demand,
-            (USER_INPUT() * BILLIONS) / (1-loss_output_conversion_typical_refinery)
+            (USER_INPUT() * BILLIONS) / (1.0 - loss_output_conversion_typical_refinery)
           ),
           UPDATE(
             V(industry_useful_demand_for_chemical_refineries_useable_heat),
             preset_demand,
-            USER_INPUT() * heat_input_conversion_typical_refinery * BILLIONS
+            (USER_INPUT() * BILLIONS) * heat_input_conversion_typical_refinery
           ),
           UPDATE(
             V(industry_useful_demand_for_chemical_refineries_electricity),
             preset_demand,
-            USER_INPUT() * electricity_input_conversion_typical_refinery * BILLIONS
+            (USER_INPUT() * BILLIONS) * electricity_input_conversion_typical_refinery
           ),
           UPDATE(
             OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),refinery_gas),
