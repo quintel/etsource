@@ -1,0 +1,14 @@
+# Query for Sankey diagram: connection between bio_kerosene from natural gas
+
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(
+          energy_production_hvo_bio_kerosene,
+          "output_of_bio_kerosene * network_gas_input_conversion"
+        ),
+        Q(share_of_fossil_gas_in_gas_network)
+      ),
+      BILLIONS
+    )

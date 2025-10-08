@@ -1,0 +1,9 @@
+# Query for Sankey diagram: connection between natural_gas and biofuels
+
+- unit = PJ
+- query =
+    SUM(
+      Q(natural_gas_to_torrefied_biomass_pellets_in_sankey),
+      Q(natural_gas_to_bio_kerosene_in_sankey),
+      Q(natural_gas_to_bio_ethanol_in_sankey)
+    )

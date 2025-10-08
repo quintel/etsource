@@ -1,0 +1,14 @@
+# Query for Sankey diagram: connection between bio_ethanol from natural gas
+
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(
+          energy_production_bio_ethanol,
+          "output_of_bio_ethanol * network_gas_input_conversion"
+        ),
+        Q(share_of_fossil_gas_in_gas_network)
+      ),
+      BILLIONS
+    )

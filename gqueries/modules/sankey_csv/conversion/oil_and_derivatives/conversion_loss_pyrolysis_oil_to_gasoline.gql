@@ -6,13 +6,13 @@
     DIVIDE(
       SUM(
         V(
-          FILTER(G(sankey_conversion_group),"naphtha_output_conversion > 0.0 && pyrolysis_oil_input_conversion > 0.0"),
-          "naphtha_output_conversion * pyrolysis_oil_input_conversion / (1 - (loss_output_conversion + residual_heat_output_conversion)) * (output_of_loss + output_of_residual_heat)"
+          FILTER(G(sankey_conversion_group),"gasoline_output_conversion > 0.0 && pyrolysis_oil_input_conversion > 0.0"),
+          "gasoline_output_conversion * pyrolysis_oil_input_conversion / (1 - (loss_output_conversion + residual_heat_output_conversion)) * (output_of_loss + output_of_residual_heat)"
         ),
         PRODUCT(
           V(
             energy_production_fractionation_pyrolysis_oil,
-            "naphtha_output_conversion * steam_hot_water_input_conversion / (1 - loss_output_conversion) * output_of_loss"
+            "gasoline_output_conversion * steam_hot_water_input_conversion / (1 - loss_output_conversion) * output_of_loss"
           ),
           V(EDGE(energy_production_pyrolysis_non_biogenic_waste, energy_production_pyrolysis_locally_available_steam_hot_water),share)
         )

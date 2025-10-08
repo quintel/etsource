@@ -1,3 +1,7 @@
 - query =
-      Q(conversion_loss_network_gas_to_torrefied_biomass_pellets)
+    SUM(
+      Q(conversion_loss_network_gas_to_torrefied_biomass_pellets),
+      Q(conversion_loss_network_gas_to_bio_kerosene),
+      Q(conversion_loss_network_gas_to_bio_ethanol)
+    )
 - unit = PJ
