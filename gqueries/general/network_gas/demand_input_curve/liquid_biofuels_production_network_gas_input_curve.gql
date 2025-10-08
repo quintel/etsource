@@ -1,0 +1,9 @@
+- query =
+    SUM_CURVES(V(
+      INTERSECTION(
+        FILTER(ALL(),"network_gas && (network_gas.type == :consumer || network_gas.type == :export)"),
+        Q(liquid_biofuels_producers)
+      ),
+      network_gas_input_curve
+    ))
+- unit = curve
