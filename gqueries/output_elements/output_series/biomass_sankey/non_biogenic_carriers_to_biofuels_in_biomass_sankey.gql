@@ -21,6 +21,16 @@
             energy_production_hvo_bio_kerosene,
             energy_production_hvo_biodiesel,
             input_of_hydrogen
+          ),
+          PRODUCT(
+            SUM(
+              V(
+                energy_production_hvo_bio_kerosene,
+                energy_production_bio_ethanol,
+                input_of_network_gas
+              )
+            ),
+            Q(share_of_fossil_gas_in_gas_network)
           )
         ),
         BILLIONS
