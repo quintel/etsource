@@ -1,9 +1,11 @@
-
 - query =
     steel_network_gas_demand = DATASET_INPUT(input_industry_metal_steel_network_gas_demand);
     aluminium_network_gas_demand = DATASET_INPUT(input_industry_metal_aluminium_network_gas_demand);
-    metal_network_gas_demand = steel_network_gas_demand + aluminium_network_gas_demand + DATASET_INPUT(input_industry_metal_other_network_gas_demand);
-    metal_network_gas_demand = IF(metal_network_gas_demand > 0.0, metal_network_gas_demand, 1.0);
+    metal_other_network_gas_demand = DATASET_INPUT(input_industry_metal_other_network_gas_demand);
+    metal_network_gas_demand = steel_network_gas_demand + aluminium_network_gas_demand + metal_other_network_gas_demand;
 
-    steel_network_gas_demand /
-    metal_network_gas_demand
+    IF(
+      metal_network_gas_demand > 0.0,
+      -> { DIVIDE(steel_network_gas_demand,metal_network_gas_demand) },
+      -> { 0.0 }
+    )
