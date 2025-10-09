@@ -1,0 +1,11 @@
+# Query for Sankey diagram: connection between unused steam hot water from pyrolysis from non-biogen waste
+
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(energy_production_pyrolysis_locally_available_steam_hot_water_unused, demand),
+        V(EDGE(energy_production_pyrolysis_non_biogenic_waste,energy_production_pyrolysis_locally_available_steam_hot_water), share)
+      ),
+      BILLIONS
+    )

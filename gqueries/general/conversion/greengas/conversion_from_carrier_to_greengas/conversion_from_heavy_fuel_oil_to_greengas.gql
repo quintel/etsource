@@ -1,0 +1,12 @@
+# Direct conversion input of heavy_fuel_oil for greengas
+# The function is broken down due to limited allowed inputs in V() function
+
+- query =
+    DIVIDE(
+      V(
+        G(biomass_products_production),
+        "greengas_output_conversion / (1 - loss_output_conversion) * input_of_heavy_fuel_oil"
+      ),
+      BILLIONS
+    )
+- unit = PJ

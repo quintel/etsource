@@ -1,2 +1,4 @@
 - query =
-    INPUT_VALUE(industry_useful_demand_for_chemical_refineries)
+    present_value = QUERY_PRESENT(-> {Q(industry_useful_demand_for_chemical_refineries)});
+    PRODUCT(INPUT_VALUE(industry_useful_demand_for_chemical_refineries) / present_value,100)
+- unit = %

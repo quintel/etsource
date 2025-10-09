@@ -1,0 +1,148 @@
+# This input statement updates the useful refinery output and energetic demand.
+# It has two operation modes:
+# - With refinery output in dataset start year: a relative change is calculated and
+#   the energetic and non energetic useful demand are updated accordingly.
+# - Without refinery output in dataset start year: default values
+#   of a 'typical refinery' are taken assumed and updated according to the set refinery output.
+#
+# For more information on the 'typical refinery' conversion values (based on EU27_european_union_27_countries
+# dataset), see etdataset/inputs_source_analyses/demand/industry.
+
+- query =
+    present_value = QUERY_PRESENT(-> {Q(industry_useful_output_industry_refinery_transofrmation_crude_oil)});
+    relative_value = USER_INPUT() / present_value;
+
+    electricity_input_conversion_typical_refinery      = 0.00514;
+    heat_input_conversion_typical_refinery             = 0.05341;
+    refinery_gas_output_conversion_typical_refinery    = 0.03607;
+    diesel_output_conversion_typical_refinery          = 0.40374;
+    gasoline_output_conversion_typical_refinery        = 0.18022;
+    kerosene_output_conversion_typical_refinery        = 0.07896;
+    lpg_output_conversion_typical_refinery             = 0.02683;
+    naphtha_output_conversion_typical_refinery         = 0.07404;
+    heavy_fuel_oil_output_conversion_typical_refinery  = 0.10234;
+    crude_oil_output_conversion_typical_refinery       = 0.09023;
+    loss_output_conversion_typical_refinery            = 0.00758;
+    network_gas_burner_share_typical_refinery          = 0.28676;
+    crude_oil_burner_share_typical_refinery            = 0.65964;
+    biomass_burner_share_typical_refinery              = 0.00008;
+    coal_burner_share_typical_refinery                 = 0.00043;
+    hydrogen_burner_share_typical_refinery             = 0.00000;
+    steam_network_share_typical_refinery               = 0.05308;
+
+    IF(
+      present_value > 0.0,
+    ->
+      {
+        UPDATE_WITH_FACTOR(
+          V(
+            industry_useful_demand_for_chemical_refineries_coal_non_energetic,
+            industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic,
+            industry_useful_demand_for_chemical_refineries_electricity,
+            industry_useful_demand_for_chemical_refineries_network_gas_non_energetic,
+            industry_useful_demand_for_chemical_refineries_wood_pellets_non_energetic,
+            industry_useful_demand_for_chemical_refineries_useable_heat
+          ),
+          preset_demand,
+          relative_value
+        )
+      },
+    ->
+      {
+        EACH(
+          UPDATE(
+            V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic),
+            preset_demand,
+            (USER_INPUT() * BILLIONS) / (1.0 - loss_output_conversion_typical_refinery)
+          ),
+          UPDATE(
+            V(industry_useful_demand_for_chemical_refineries_useable_heat),
+            preset_demand,
+            (USER_INPUT() * BILLIONS) * heat_input_conversion_typical_refinery
+          ),
+          UPDATE(
+            V(industry_useful_demand_for_chemical_refineries_electricity),
+            preset_demand,
+            (USER_INPUT() * BILLIONS) * electricity_input_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),refinery_gas),
+            conversion,
+            refinery_gas_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),diesel),
+            conversion,
+            diesel_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),gasoline),
+            conversion,
+            gasoline_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),kerosene),
+            conversion,
+            kerosene_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),lpg),
+            conversion,
+            lpg_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),naphtha),
+            conversion,
+            naphtha_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),heavy_fuel_oil),
+            conversion,
+            heavy_fuel_oil_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),crude_oil),
+            conversion,
+            crude_oil_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_network_gas_hybrid_heat, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            network_gas_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_burner_crude_oil, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            crude_oil_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_burner_wood_pellets, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            biomass_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_burner_coal, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            coal_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_chemicals_refineries_hydrogen_hybrid_heat, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            hydrogen_burner_share_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_final_demand_for_chemical_refineries_steam_hot_water, industry_useful_demand_for_chemical_refineries_useable_heat),
+            share,
+            steam_network_share_typical_refinery
+          ),                                        
+        )
+      }
+    )
+- priority = 1
+- max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),10)
+- min_value = 0.0
+- start_value_gql = present:Q(industry_useful_output_industry_refinery_transofrmation_crude_oil)
+- step_value = 0.1
+- unit = PJ
+- update_period = future
+- disabled_by_couplings = [external_model_industry, industry_chemical_refineries]

@@ -1,0 +1,16 @@
+# Input of hydrogen to pyrolysis fractionation transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_production_fractionation_pyrolysis_oil,
+          energy_production_fractionation_bio_pyrolysis_oil,
+          energy_production_fractionation_pyrolysis_oil_burner_hydrogen,
+          energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen,
+          input_of_hydrogen
+        )
+      ),
+      BILLIONS
+    )

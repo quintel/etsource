@@ -1,0 +1,13 @@
+# Query for Sankey diagram: connection between greengas from waste_mix in industry transformation
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "output_of_bionaphtha * waste_mix_input_conversion"
+        )
+      ),
+      BILLIONS
+    )

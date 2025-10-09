@@ -1,11 +1,24 @@
-# Primary demand of carrier group 'biomass_products' for the export converter group
+# Primary demand of liquid biomass products
+# Includes biogenic carriers for final demand and primary feedstock oily biomass
 
 - unit = PJ
 - query =
-    SUM(
-       V(G(energy_export), primary_demand_of_biodiesel),
-       V(G(energy_export), primary_demand_of_bio_ethanol),
-       V(G(energy_export), primary_demand_of_bio_kerosene),
-       V(G(energy_export), primary_demand_of_bio_lng),
-       V(G(energy_export), primary_demand_of_bio_oil)
-    ) / BILLIONS
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          primary_demand_of(
+            biodiesel,
+            bio_ethanol,
+            bio_kerosene,
+            bio_lng,
+            bio_oil,
+            bionaphtha,
+            biomethanol,
+            bio_pyrolysis_oil,
+            oily_biomass
+          )
+        )
+      ),
+      BILLIONS
+    )

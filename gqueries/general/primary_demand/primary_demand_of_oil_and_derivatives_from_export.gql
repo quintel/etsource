@@ -1,11 +1,20 @@
 - unit = PJ
 - query =
-    SUM(
-      V(G(energy_export),primary_demand_of_crude_oil),
-      V(G(energy_export),primary_demand_of_gasoline),
-      V(G(energy_export),primary_demand_of_diesel),
-      V(G(energy_export),primary_demand_of_kerosene),
-      V(G(energy_export),primary_demand_of_lpg),
-      V(G(energy_export),primary_demand_of_heavy_fuel_oil),
-      V(G(energy_export),primary_demand_of_naphtha)
-    ) / BILLIONS
+    DIVIDE(
+      SUM(
+        V(
+          G(energy_export),
+          primary_demand_of(
+            crude_oil,
+            diesel,
+            heavy_fuel_oil,
+            gasoline,
+            lpg,
+            kerosene,
+            naphtha,
+            pyrolysis_oil
+          )
+        )
+      ),
+      BILLIONS
+    )

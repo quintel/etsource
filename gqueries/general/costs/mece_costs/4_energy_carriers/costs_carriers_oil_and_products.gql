@@ -8,7 +8,8 @@
         PRODUCT(V(CARRIER(lpg), cost_per_mj), V(energy_import_lpg, demand)),
         PRODUCT(V(CARRIER(diesel), cost_per_mj), V(energy_import_diesel, demand)),
         PRODUCT(V(CARRIER(heavy_fuel_oil), cost_per_mj), V(energy_import_heavy_fuel_oil, demand)),
-        PRODUCT(V(CARRIER(naphtha), cost_per_mj), V(energy_import_naphtha, demand))
+        PRODUCT(V(CARRIER(naphtha), cost_per_mj), V(energy_import_naphtha, demand)),
+        PRODUCT(V(CARRIER(pyrolysis_oil), cost_per_mj), V(energy_import_pyrolysis_oil_baseload, demand)),
     )
     -
     SUM(
@@ -19,7 +20,8 @@
         PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_diesel_backup, primary_demand_of_crude_oil)),
         PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_lpg_backup, primary_demand_of_crude_oil)),
         PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_heavy_fuel_oil_backup, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_naphtha_backup, primary_demand_of_crude_oil))
+        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_naphtha_backup, primary_demand_of_crude_oil)),
+        PRODUCT(V(CARRIER(pyrolysis_oil), cost_per_mj),V(energy_export_pyrolysis_oil_backup, primary_demand_of_crude_oil)),
     )
     -
     SUM(
@@ -29,7 +31,8 @@
         PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_diesel_baseload, primary_demand_of_crude_oil)),
         PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_lpg_baseload, primary_demand_of_crude_oil)),
         PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_heavy_fuel_oil_baseload, primary_demand_of_crude_oil)),
-        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_naphtha_baseload, primary_demand_of_crude_oil))
+        PRODUCT(V(CARRIER(crude_oil), cost_per_mj),V(energy_export_naphtha_baseload, primary_demand_of_crude_oil)),
+        PRODUCT(V(CARRIER(pyrolysis_oil), cost_per_mj),V(energy_export_pyrolysis_oil_baseload, demand))
     )
 
 - unit = euro

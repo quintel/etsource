@@ -1,0 +1,16 @@
+# Input of crude oil to fossil refinery transformation
+
+- unit = PJ
+- query = 
+    DIVIDE(
+      SUM(
+        V(
+          industry_final_demand_for_chemical_refineries_steam_hot_water,
+          energy_chemical_refineries_transformation_external_coupling_node,
+          input_of_steam_hot_water
+          )
+        ),
+        BILLIONS
+    )
+
+

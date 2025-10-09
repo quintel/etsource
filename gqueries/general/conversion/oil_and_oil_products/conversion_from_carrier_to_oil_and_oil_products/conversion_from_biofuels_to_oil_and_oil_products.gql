@@ -1,0 +1,15 @@
+# Special conversion for biomass_products to oil_and_oil_products
+
+- query =
+    SUM(
+      Q(conversion_from_biodiesel_to_oil_and_oil_products),
+      Q(conversion_from_bio_ethanol_to_oil_and_oil_products),
+      Q(conversion_from_wood_pellets_to_oil_and_oil_products),
+      Q(conversion_from_bio_lng_to_oil_and_oil_products),
+      Q(conversion_from_bio_kerosene_to_oil_and_oil_products),
+      Q(conversion_from_greengas_to_oil_and_oil_products),
+      Q(conversion_from_torrefied_biomass_pellets_to_oil_and_oil_products),
+      Q(conversion_from_bio_oil_to_oil_and_oil_products),
+      Q(conversion_from_biomass_products_to_oil_products)
+    )
+- unit = PJ

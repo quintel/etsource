@@ -1,0 +1,13 @@
+# Query for Biomass Sankey diagram: connection between biogenic waste and biofuels
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(liquid_biofuels_producers),
+          input_of_biogenic_waste
+        )
+      ),
+      BILLIONS
+    )

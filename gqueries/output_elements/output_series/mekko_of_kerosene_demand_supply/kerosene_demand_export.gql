@@ -1,6 +1,12 @@
+# Export of kerosene
+
+- query =
+      SUM(
+        V(
+          G(energy_export),
+          input_of(
+           kerosene
+          )
+        )
+      )
 - unit = MJ
-- query = 
-        SUM(
-            V(energy_export_kerosene_backup, input_of_kerosene),
-            V(energy_export_kerosene_baseload, input_of_kerosene)
-            )       

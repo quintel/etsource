@@ -1,0 +1,70 @@
+# Direct conversion input of hydrogen for biomass_products
+# The function is broken down due to limited allowed inputs in V() function
+# Input of hydrogen in hydrogen heater for bio_pyrolysis_oil fractionation process
+# is queried manually, otherwise this flow is ignored
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_greengas * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_wood_pellets * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_torrefied_biomass_pellets * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_biodiesel * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_bio_ethanol * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_bio_lng * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_bio_kerosene * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_bio_oil * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_biomethanol * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_bionaphtha * hydrogen_input_conversion"
+        ),
+        V(
+          Q(liquid_biofuels_producers),
+          "output_of_bio_pyrolysis_oil * hydrogen_input_conversion"
+        ),
+        PRODUCT(
+          V(
+            energy_production_fractionation_bio_pyrolysis_oil,
+            "output_of_biodiesel * steam_hot_water_input_conversion"
+          ),
+          V(EDGE(energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen,energy_production_bio_pyrolysis_locally_available_steam_hot_water),share)
+        ),
+        PRODUCT(
+          V(
+            energy_production_fractionation_bio_pyrolysis_oil,
+            "output_of_bionaphtha * steam_hot_water_input_conversion"
+          ),
+          V(EDGE(energy_production_fractionation_bio_pyrolysis_oil_burner_hydrogen,energy_production_bio_pyrolysis_locally_available_steam_hot_water),share)
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

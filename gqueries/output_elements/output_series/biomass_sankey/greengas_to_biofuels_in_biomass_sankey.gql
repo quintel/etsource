@@ -2,4 +2,20 @@
 
 - unit = PJ
 - query =
-     Q(greengas_to_biomass_products_industry_transformation_in_sankey)
+    SUM(
+      Q(greengas_to_biomass_products_industry_transformation_in_sankey),
+      DIVIDE(
+        PRODUCT(
+          SUM(
+            V(
+              energy_production_hvo_bio_kerosene,
+              energy_production_bio_ethanol,
+              input_of_network_gas
+            )
+          ),
+            Q(share_of_sustainable_gas_in_gas_network)
+          ),
+        BILLIONS
+      )
+    )
+

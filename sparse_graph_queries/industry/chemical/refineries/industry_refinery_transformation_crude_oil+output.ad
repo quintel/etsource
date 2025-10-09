@@ -1,3 +1,14 @@
+# ## Overview
+# This query calculates the output conversion factors for the refinery transformation 
+# process based on dataset inputs.
+#
+# ## Important Notes
+# 1. The values given to output slots in datasets where there is 
+#    no crude oil input are dummy/fallback values.
+# 2. These values will be overwritten when refinery demand is 
+#    configured in the input `industry_useful_demand_for_chemical_refineries`.
+# 3. Uses actual dataset ratios when crude oil input > 0, 
+#    otherwise falls back to predefined conversion factors.
 - query =
     diesel_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_diesel_demand);
     gasoline_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_gasoline_demand);

@@ -3,5 +3,8 @@
 - query =
     PRODUCT(V(CARRIER(methanol), cost_per_mj), V(energy_import_methanol, demand))
     -
-    PRODUCT(V(CARRIER(methanol), cost_per_mj), V(energy_export_methanol_backup, demand))
+    SUM(
+        PRODUCT(V(CARRIER(methanol), cost_per_mj), V(energy_export_methanol_backup, demand)),
+        PRODUCT(V(CARRIER(methanol), cost_per_mj), V(energy_export_methanol_baseload, demand))
+    )    
 - unit = euro
