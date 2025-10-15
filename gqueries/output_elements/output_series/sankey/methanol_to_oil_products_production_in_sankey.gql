@@ -1,38 +1,38 @@
-# Direct conversion input of methanol for oil production in industry transformation
+# Direct conversion input of methanol for oil production in liquid fuel production processes.
 
 - query =
     DIVIDE(
       SUM(
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "diesel_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "kerosene_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "heavy_fuel_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "lpg_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "gasoline_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "naphtha_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         ),
         V(
-          G(industry_transformation),
+          Q(liquid_fuels_producers),
           "refinery_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
         )
       ),

@@ -1,0 +1,19 @@
+# Direct conversion input of hydrogen for oil products
+# Input of hydrogen in hydrogen heater for pyrolysis_oil fractionation process
+# is queried manually, otherwise this flow is ignored
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_production_methanol_to_jet
+          "output_of_gasoline * hydrogen_input_conversion"
+        ),
+        V(
+          energy_production_methanol_to_jet,
+          "output_of_kerosene * hydrogen_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
