@@ -1,4 +1,13 @@
 # CO2 production for electricity produced from coal in megatons
 
-- query = SUM(V(Q(electricity_producing_coal_incl_coal_gas_converters),primary_co2_emission)) / BILLIONS
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(electricity_producing_coal_incl_coal_gas_and_torrefied_biomass_pellets_converters),
+          primary_co2_emission
+        )
+      ),
+      BILLIONS
+    )
 - unit = mt
