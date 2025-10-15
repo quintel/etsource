@@ -1,0 +1,12 @@
+# Electricitiy producers with coal, coal gas and torrefied biomass pellets conversion
+# Note that torrefied biomass pellets are somewhat odd in the coal converters category,
+# however torrefied biomass pellets are only applied in coal-fired power plants and therefore
+# seems the appropriate location to be queried.
+
+- query =
+    FILTER(
+      G(electricity_production),
+      "coal_input_conversion > 0.0 || coal_gas_input_conversion > 0.0 || torrefied_biomass_pellets_input_conversion > 0.0"
+    )
+- unit = nodes
+- deprecated_key = coal_plants
