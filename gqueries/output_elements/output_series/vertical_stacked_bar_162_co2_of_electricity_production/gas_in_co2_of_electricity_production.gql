@@ -1,12 +1,10 @@
 # CO2 production for electricity produced from gas in megatons
-# CO2 production for torrefied biomass pellets is also added in this query. 
-# This is to account for the network gas used in the production of torrefied biomass pellets
-- query = 
+
+- query =
     SUM(
       V(
         Q(electricity_producing_gas_converters),
-        Q(electricity_producing_torrefied_biomass_pellets_converters),
-        primary_co2_emission 
-        )               
+        primary_co2_emission
+        )
         ) / BILLIONS
 - unit = mt
