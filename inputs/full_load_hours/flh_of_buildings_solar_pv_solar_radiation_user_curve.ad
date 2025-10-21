@@ -1,0 +1,20 @@
+# This input is closely linked with flh_of_buildings_solar_pv_solar_radiation
+# It is used when a custom curve is uploaded by the user. In contrast with
+# flh_of_buildings_solar_pv_solar_radiation it runs regardless of the chosen
+# weather year.
+
+- query =
+    original_nou_buildings_solar_pv = V(buildings_solar_pv_solar_radiation, number_of_units);
+
+    EACH(
+      UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, USER_INPUT()),
+      UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, original_nou_buildings_solar_pv),
+      UPDATE(V(buildings_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)),
+    )
+
+- priority = 1
+- max_value = 8760.0
+- min_value = 0.0
+- start_value_gql = present:V(buildings_solar_pv_solar_radiation, full_load_hours)
+- unit = hours
+- update_period = future
