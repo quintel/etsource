@@ -1,9 +1,8 @@
-# This updates the efficiency of solar PV. This affects the output conversion,
-# output capacity per panel, and, for energy_power and energy_hydrogen, number of units
+# This updates the efficiency of solar PV. This affects the output conversion, output capacity per
+# panel, and, for energy_power and energy_hydrogen, number of units
 # For solar PV farms and solar H2 farms the user sets the installed capacity.
 # Since installed capacity is given by the user, a higher efficiency means
 # a lower number of units installed. This is achieved reducing the installed NoU.
-# For solar panels in households and buildings the user sets the percentage of roof surface covered.
 # The installed number of units remain the same.
 #
 # The priority of this input is set to be higher than that of the
@@ -11,22 +10,11 @@
 # will use the output shares to set the demand.
 
 - query =
-      start_value = QUERY_PRESENT(-> {V(households_solar_pv_solar_radiation,electricity_output_conversion)}) * 100;
-      EACH(
-        UPDATE_WITH_FACTOR(
-          OUTPUT_SLOTS(
-            V(
-              households_solar_pv_solar_radiation,
-              buildings_solar_pv_solar_radiation,
-              energy_power_solar_pv_solar_radiation,
-              energy_hydrogen_solar_pv_solar_radiation,
-              energy_battery_solar_pv_solar_radiation,
-              energy_power_solar_pv_offshore),
-              electricity),
-          conversion,
-          USER_INPUT() / start_value),
+    start_efficiency = QUERY_PRESENT(-> {V(households_solar_pv_solar_radiation, electricity_output_conversion)}) * 100.0;
 
-        UPDATE_WITH_FACTOR(
+    EACH(
+      UPDATE_WITH_FACTOR(
+        OUTPUT_SLOTS(
           V(
             households_solar_pv_solar_radiation,
             buildings_solar_pv_solar_radiation,
@@ -34,30 +22,54 @@
             energy_hydrogen_solar_pv_solar_radiation,
             energy_battery_solar_pv_solar_radiation,
             energy_power_solar_pv_offshore),
-          electricity_output_capacity,
-          USER_INPUT() / start_value),
-
-        UPDATE_WITH_FACTOR(
-          V(energy_hydrogen_solar_pv_solar_radiation),
-            number_of_units,
-            1 / (USER_INPUT() / start_value)),
-
-        UPDATE_WITH_FACTOR(
-          V(energy_battery_solar_pv_solar_radiation),
-            number_of_units,
-            1 / (USER_INPUT() / start_value)),
-
-        UPDATE_WITH_FACTOR(
-          V(energy_power_solar_pv_offshore),
-            number_of_units,
-            1 / (USER_INPUT() / start_value)),
-
-        UPDATE(
-          V(energy_power_solar_pv_solar_radiation),
-          number_of_units,
-          V(energy_power_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_value)),
+            electricity),
+        conversion,
+        USER_INPUT() / start_efficiency
+      ),
+      UPDATE_WITH_FACTOR(
+        V(
+          households_solar_pv_solar_radiation,
+          buildings_solar_pv_solar_radiation,
+          energy_power_solar_pv_solar_radiation,
+          energy_hydrogen_solar_pv_solar_radiation,
+          energy_battery_solar_pv_solar_radiation,
+          energy_power_solar_pv_offshore),
+        electricity_output_capacity,
+        USER_INPUT() / start_efficiency
+      ),
+      UPDATE(
+        V(households_solar_pv_solar_radiation),
+        number_of_units,
+        V(households_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_efficiency)
+      ),
+      UPDATE(
+        V(buildings_solar_pv_solar_radiation),
+        number_of_units,
+        V(buildings_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_efficiency)
+      ),
+      UPDATE(
+        V(energy_power_solar_pv_solar_radiation),
+        number_of_units,
+        V(energy_power_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_efficiency)
+      ),
+      UPDATE(
+        V(energy_hydrogen_solar_pv_solar_radiation),
+        number_of_units,
+        V(energy_hydrogen_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_efficiency)
+      ),
+      UPDATE(
+        V(energy_battery_solar_pv_solar_radiation),
+        number_of_units,
+        V(energy_battery_solar_pv_solar_radiation, number_of_units) / (USER_INPUT() / start_efficiency)
+      ),
+      UPDATE(
+        V(energy_power_solar_pv_offshore),
+        number_of_units,
+        V(energy_power_solar_pv_offshore, number_of_units) / (USER_INPUT() / start_efficiency)
       )
-- priority = 2
+    )
+
+- priority = 4
 - max_value = 50.0
 - min_value = 10.0
 - start_value_gql = present:V(households_solar_pv_solar_radiation,electricity_output_conversion) * 100.0
