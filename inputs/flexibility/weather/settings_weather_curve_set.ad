@@ -82,27 +82,23 @@
           UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, cool_factor),
           UPDATE_WITH_FACTOR(V(agriculture_useful_demand_useable_heat), preset_demand, heat_factor),
 
+          UPDATE(V(energy_heat_solar_thermal), full_load_hours, WEATHER_PROPERTY(flh_of_energy_heat_solar_thermal)),
+
+          UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_households_solar_pv_solar_radiation)),
+          UPDATE(V(households_solar_pv_solar_radiation), number_of_units, original_nou_households_solar_pv),
+          UPDATE(V(households_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(households_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
+          UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_buildings_solar_pv_solar_radiation)),
+          UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, original_nou_buildings_solar_pv),
+          UPDATE(V(buildings_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)),
+
           UPDATE(V(energy_power_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
           UPDATE(V(energy_power_solar_pv_solar_radiation), number_of_units, original_nou_power_solar_pv),
           UPDATE(V(energy_power_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_power_solar_pv_solar_radiation, production_based_on_number_of_units)),
 
-          UPDATE(V(households_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
-          UPDATE(V(households_solar_pv_solar_radiation), number_of_units, original_nou_households_solar_pv),
-          UPDATE(V(households_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(households_solar_pv_solar_radiation, production_based_on_number_of_units)),
-
-          UPDATE(V(buildings_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
-          UPDATE(V(buildings_solar_pv_solar_radiation), number_of_units, original_nou_buildings_solar_pv),
-          UPDATE(V(buildings_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(buildings_solar_pv_solar_radiation, production_based_on_number_of_units)),
-
-          UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_offshore)),
-          UPDATE(V(energy_power_solar_pv_offshore), number_of_units, original_nou_power_solar_pv_offshore),
-          UPDATE(V(energy_power_solar_pv_offshore), preset_demand_by_electricity_production, V(energy_power_solar_pv_offshore, production_based_on_number_of_units)),
-
           UPDATE(V(energy_battery_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
           UPDATE(V(energy_battery_solar_pv_solar_radiation), number_of_units, original_nou_battery_solar_pv),
           UPDATE(V(energy_battery_solar_pv_solar_radiation), preset_demand_by_electricity_production, V(energy_battery_solar_pv_solar_radiation, production_based_on_number_of_units)),
-
-          UPDATE(V(energy_heat_solar_thermal), full_load_hours, WEATHER_PROPERTY(flh_of_energy_heat_solar_thermal)),
 
           UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation)),
           UPDATE(V(energy_hydrogen_solar_pv_solar_radiation), number_of_units, original_nou_hydrogen_solar_pv),
@@ -110,6 +106,10 @@
           UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), full_load_hours, PRODUCT(WEATHER_PROPERTY(flh_of_energy_power_solar_pv_solar_radiation), electrolyser_pv_flh_ratio)),
           UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), number_of_units, original_nou_hydrogen_electrolysis_solar_pv),
           UPDATE(V(energy_hydrogen_electrolysis_solar_electricity), preset_demand_by_hydrogen_production, V(energy_hydrogen_electrolysis_solar_electricity, hydrogen_production_based_on_number_of_units)),
+
+          UPDATE(V(energy_power_solar_pv_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_solar_pv_offshore)),
+          UPDATE(V(energy_power_solar_pv_offshore), number_of_units, original_nou_power_solar_pv_offshore),
+          UPDATE(V(energy_power_solar_pv_offshore), preset_demand_by_electricity_production, V(energy_power_solar_pv_offshore, production_based_on_number_of_units)),
 
           UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, WEATHER_PROPERTY(flh_of_energy_power_wind_turbine_offshore)),
           UPDATE(V(energy_hydrogen_wind_turbine_offshore), number_of_units, original_nou_of_hydrogen_wind_offshore),
