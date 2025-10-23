@@ -11,7 +11,11 @@ gem 'rake'
 
 group :development, :test do
   gem 'roo'
+<<<<<<< HEAD
   gem 'atlas',         ref: '34f6d2b', github: 'quintel/atlas'
+=======
+  gem 'atlas',    ref: '10976bd', github: 'quintel/atlas'
+>>>>>>> 21c64e7630 (Bump Atlas to quintel/atlas@10976bd)
 end
 
 group :test do
