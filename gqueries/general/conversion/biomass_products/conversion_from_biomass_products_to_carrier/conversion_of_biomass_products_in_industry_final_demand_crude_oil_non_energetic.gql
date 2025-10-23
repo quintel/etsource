@@ -1,0 +1,22 @@
+# This query accounts for the biofuels in industry final demand for crude oil
+# Used in Sankey chart
+
+- query =
+    DIVIDE(
+      V(
+        FILTER(
+          INTERSECTION(
+            INTERSECTION(G(final_demand_group), SECTOR(industry)),
+            USE(non_energetic)
+          ),
+          "crude_oil_output_conversion > 0.0"
+        ),
+        input_of(
+          bio_kerosene,
+          bio_oil,
+          biodiesel
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

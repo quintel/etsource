@@ -1,0 +1,29 @@
+# Direct conversion input of biomass products for electricity production
+# This query is used in the Sankey chart
+# Flows from greengas share in network gas are left out intentionally since network gas
+# is a seperate carrier category in the Sankey chart
+
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            Q(electricity_producing_converters_sankey),
+            input_of(
+              greengas,
+              biodiesel,
+              bio_ethanol,
+              bio_lng,
+              bio_oil,
+              biogas,
+              bio_kerosene,
+              torrefied_biomass_pellets,
+              wood_pellets
+            )
+          )
+        ),
+        BILLIONS
+      ),
+      Q(gas_power_fuelmix_for_electricity_conversion) * V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion)
+    )
+- unit = PJ
