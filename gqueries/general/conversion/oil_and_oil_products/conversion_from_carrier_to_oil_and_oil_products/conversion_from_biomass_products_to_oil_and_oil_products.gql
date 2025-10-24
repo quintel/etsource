@@ -1,4 +1,6 @@
 # Special conversion for biomass_products to oil_and_oil_products
+# The final two queries are to account for biofuels blending into final demand for crude oil
+# in industry. Which occurs 'before' the final demand queries to industry.
 
 - query =
     SUM(
@@ -13,6 +15,8 @@
       PRODUCT(
         Q(conversion_from_gas_power_fuelmix_to_oil_and_oil_products),
         V(energy_mixer_for_gas_power_fuel, bio_oil_input_conversion)
-      )
+      ),
+      Q(conversion_of_biomass_products_in_industry_final_demand_crude_oil_energetic),
+      Q(conversion_of_biomass_products_in_industry_final_demand_crude_oil_non_energetic)
     )
 - unit = PJ

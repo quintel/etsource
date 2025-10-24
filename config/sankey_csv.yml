@@ -222,12 +222,12 @@ rows:
     Value: electricity_prod_to_central_heat_prod_excl_p2h_in_sankey
   - Group: Conversion
     Carrier: Electricity
-    Category: Synthetic kerosene production
+    Category: Fischer-Tropsch
     Type: Input
     Value: electricity_for_synthetic_kerosene_conversion
   - Group: Conversion
     Carrier: Electricity
-    Category: Synthetic methanol production
+    Category: Methanol synthesis
     Type: Input
     Value: electricity_for_synthetic_methanol_conversion
   - Group: Conversion
@@ -388,12 +388,12 @@ rows:
     Value: hydrogen_for_central_heat_conversion
   - Group: Conversion
     Carrier: Hydrogen
-    Category: Synthetic kerosene production
+    Category: Fischer-Tropsch
     Type: Input
     Value: hydrogen_for_synthetic_kerosene_conversion
   - Group: Conversion
     Carrier: Hydrogen
-    Category: Synthetic methanol production
+    Category: Methanol synthesis
     Type: Input
     Value: hydrogen_for_synthetic_methanol_conversion
   - Group: Conversion
@@ -405,7 +405,7 @@ rows:
     Carrier: Hydrogen
     Category: Oil products production
     Type: Input
-    Value: conversion_from_hydrogen_to_pyrolysis_oil_fractionation_products
+    Value: conversion_from_hydrogen_to_oil_products
   - Group: Conversion
     Carrier: Hydrogen
     Category: Hydrogen to oil industry transformation
@@ -785,7 +785,7 @@ rows:
     Value: oil_and_derivatives_to_unused_steam_hot_water_pyrolysis_in_sankey
   - Group: Conversion
     Carrier: Steam hot water
-    Category: Unused steam hot water from bio pyrolysis
+    Category: Unused steam hot water from biogenic pyrolysis
     Type: Output
     Value: biomass_products_to_unused_steam_hot_water_bio_pyrolysis_in_sankey
   - Group: Conversion
@@ -1174,7 +1174,7 @@ rows:
     Value: oil_and_derivatives_to_methanol_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Oil
-    Category: Oil to unused steam hot water pyrolysis
+    Category: Oil to unused steam hot water from pyrolysis
     Type: Input
     Value: oil_and_derivatives_to_unused_steam_hot_water_pyrolysis_in_sankey
   - Group: Conversion
@@ -1234,9 +1234,14 @@ rows:
     Value: steam_hot_water_in_source_of_oil_and_derivatives_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Oil
-    Category: Synthetic kerosene production
+    Category: Fischer-Tropsch
     Type: Output
     Value: fischer_tropsch_to_kerosene
+  - Group: Conversion
+    Carrier: Oil
+    Category: Methanol-to-jet production
+    Type: Output
+    Value: output_of_methanol_to_jet
   - Group: Conversion
     Carrier: Oil
     Category: Oil production from non-biogenic waste
@@ -1252,6 +1257,11 @@ rows:
     Category: Hydrogen to oil products production
     Type: Output
     Value: hydrogen_in_source_of_oil_products_in_sankey
+  - Group: Conversion
+    Carrier: Oil
+    Category: Hydrogen to methanol-to-jet production
+    Type: Output
+    Value: hydrogen_in_source_of_methanol_to_jet_products_in_sankey
   - Group: Conversion
     Carrier: Loss
     Category: Oil to electricity conversion losses
@@ -1687,7 +1697,7 @@ rows:
     Value: biomass_products_to_hydrogen_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Biomass
-    Category: Biomass to unused steam hot water bio pyrolysis
+    Category: Biomass to unused steam hot water from pyrolysis
     Type: Input
     Value: biomass_products_to_unused_steam_hot_water_bio_pyrolysis_in_sankey
   - Group: Conversion
@@ -2049,6 +2059,11 @@ rows:
     Value: import_of_methanol
   - Group: Conversion
     Carrier: Methanol
+    Category: Methanol to oil products production
+    Type: Input
+    Value: methanol_to_oil_products_production_in_sankey
+  - Group: Conversion
+    Carrier: Methanol
     Category: Methanol to oil industry transformation
     Type: Input
     Value: methanol_to_oil_and_derivatives_industry_transformation_in_sankey
@@ -2129,7 +2144,7 @@ rows:
     Value: steam_hot_water_in_source_of_methanol_industry_transformation_in_sankey
   - Group: Conversion
     Carrier: Methanol
-    Category: Synthetic methanol production
+    Category: Methanol synthesis
     Type: Output
     Value: conversion_to_synthetic_methanol
   - Group: Conversion

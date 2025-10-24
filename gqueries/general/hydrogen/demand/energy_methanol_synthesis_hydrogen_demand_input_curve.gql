@@ -1,0 +1,11 @@
+# This query obtains the methanol and kerosene (must-run and dispatchable) production nodes and retrieves
+# the hydrogen input curve
+
+- query =
+    SUM_CURVES(
+      V(
+        energy_production_methanol_synthesis_synthetic,
+        hydrogen_input_curve
+      )
+    )
+- unit = curve

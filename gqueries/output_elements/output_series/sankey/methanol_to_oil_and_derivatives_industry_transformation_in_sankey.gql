@@ -1,4 +1,41 @@
-# Query for Sankey diagram: connection between methanol and oil and oil products industry transformation
+# Direct conversion input of methanol for oil production in industry transformation
 
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          "diesel_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "kerosene_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "heavy_fuel_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "lpg_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "gasoline_output_conversion  / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "crude_oil_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "naphtha_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        ),
+        V(
+          G(industry_transformation),
+          "refinery_gas_output_conversion / (1 - loss_output_conversion - residual_heat_input_conversion) * input_of_methanol"
+        )
+      ),
+      BILLIONS
+    )
 - unit = PJ
-- query = Q(conversion_from_methanol_to_oil_and_oil_products)

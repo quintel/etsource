@@ -1,0 +1,12 @@
+# This query obtains the methanol and kerosene (must-run and dispatchable) production nodes and retrieves
+# the hydrogen input curve
+
+- query =
+    SUM_CURVES(
+      V(
+        energy_production_fischer_tropsch_synthetic_dispatchable,
+        energy_production_fischer_tropsch_synthetic_must_run,
+        hydrogen_input_curve
+      )
+    )
+- unit = curve

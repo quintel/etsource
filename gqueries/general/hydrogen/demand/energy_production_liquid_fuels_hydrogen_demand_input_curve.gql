@@ -1,0 +1,10 @@
+# This query obtains the hydrogen curve of all liquid fuel production nodes
+
+- query =
+    SUM_CURVES(
+      V(
+        Q(liquid_fuels_producers),
+        hydrogen_input_curve
+      )
+    )
+- unit = curve
