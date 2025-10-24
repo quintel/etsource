@@ -1,0 +1,30 @@
+- query =
+    EACH(
+      UPDATE(
+        V(energy_heat_flexibility_p2h_boiler_ht_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(p2h_boiler_ht_electricity)]
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_boiler_mt_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(p2h_boiler_mt_electricity)]
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_ht_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(p2h_heatpump_ht_electricity)]
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_mt_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(p2h_heatpump_mt_electricity)]
+      )
+    )
+- priority = 0
+- max_value = 0
+- min_value = 0
+- start_value = 0
+- step_value = 0.1
+- unit = #
+- update_period = before
