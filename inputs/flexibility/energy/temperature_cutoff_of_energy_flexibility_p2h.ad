@@ -1,0 +1,31 @@
+- query =
+    EACH(
+      UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_ht_electricity, merit_order),
+        temperature_cutoff,
+        USER_INPUT()
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_mt_electricity, merit_order),
+        temperature_cutoff,
+        USER_INPUT()
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_boiler_mt_electricity, merit_order),
+        temperature_cutoff,
+        USER_INPUT()
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_boiler_ht_electricity, merit_order),
+        temperature_cutoff,
+        USER_INPUT()
+      )
+    )
+
+- priority = 0
+- max_value = 30.0
+- min_value = 5.0
+- start_value_gql = present:V(energy_heat_flexibility_p2h_heatpump_ht_electricity, "merit_order.temperature_cutoff")
+- step_value = 0.1
+- unit = #
+- update_period = future

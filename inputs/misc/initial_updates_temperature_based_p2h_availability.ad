@@ -1,0 +1,34 @@
+# Used to initialize the availability curves for P2H technologies that are temperature-based.
+# For each technology an availability curve is dynamically generated at runtime, calculated
+# based on the scenario's temperature setpoint and air temperature profile.
+
+- query =
+    EACH(
+      UPDATE(
+        V(energy_heat_flexibility_p2h_boiler_ht_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(energy_heat_flexibility_p2h_boiler_ht_electricity_availability_curve)]
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_boiler_mt_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(energy_heat_flexibility_p2h_boiler_mt_electricity_availability_curve)]
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_ht_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(energy_heat_flexibility_p2h_heatpump_ht_electricity_availability_curve)]
+      ),
+      UPDATE(
+        V(energy_heat_flexibility_p2h_heatpump_mt_electricity),
+        availability_curve,
+        [ATTACHED_CURVE(energy_heat_flexibility_p2h_heatpump_mt_electricity_availability_curve)]
+      )
+    )
+- priority = 0
+- max_value = 0
+- min_value = 0
+- start_value = 0
+- step_value = 0.1
+- unit = #
+- update_period = before
