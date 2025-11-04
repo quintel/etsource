@@ -1,0 +1,9 @@
+- query =
+    SUM(
+      PRODUCT(
+        V(energy_production_methanol_synthesis_non_biogenic_waste_ccs, output_of_methanol),
+        V(CARRIER(methanol), co2_conversion_per_mj)
+      ),
+      MV(energy_production_methanol_synthesis_non_biogenic_waste_ccs_captured_co2, demand),
+      MV(energy_production_methanol_synthesis_non_biogenic_waste_ccs_emitted_co2, demand)
+    )
