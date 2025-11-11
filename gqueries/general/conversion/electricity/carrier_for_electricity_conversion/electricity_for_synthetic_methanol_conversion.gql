@@ -1,8 +1,14 @@
-# Query for scenario tools regional overview: direct conversion demand of electricity for synthetic methanol production
-
 - query =
     DIVIDE(
-      V(energy_production_methanol_synthesis_synthetic, input_of_electricity),
+      SUM(
+        V(
+          FILTER(
+            Q(synthetic_fuels_from_hydrogen_converters),
+            "methanol_output_conversion > 0.0"
+          ),
+        input_of_electricity
+        )
+      ),
       BILLIONS
     )
 - unit = PJ
