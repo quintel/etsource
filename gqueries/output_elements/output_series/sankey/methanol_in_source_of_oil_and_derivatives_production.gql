@@ -1,0 +1,15 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_kerosene * methanol_input_conversion"
+        ),
+        V(
+          Q(liquid_fuels_producers),
+          "output_of_naphtha * methanol_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
