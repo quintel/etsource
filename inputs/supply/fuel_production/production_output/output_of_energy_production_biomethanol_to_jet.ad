@@ -2,7 +2,7 @@
     UPDATE(
         V(energy_production_biomethanol_to_jet),
         demand,
-        DIVIDE((USER_INPUT() * BILLIONS), V(energy_production_biomethanol_to_jet, "bio_kerosene_output_conversion + bio_ethanol_output_conversion"))
+        DIVIDE((USER_INPUT() * BILLIONS), V(energy_production_biomethanol_to_jet, "bio_kerosene_output_conversion + bionaphtha_output_conversion"))
     )
 - priority = 0
 - max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),3)
