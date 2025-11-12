@@ -1,4 +1,4 @@
-# ETSource
+# Energy Transition Source
 
 [![Build Status](https://quintel.semaphoreci.com/badges/etsource/branches/master.svg)](https://quintel.semaphoreci.com/projects/etsource)
 
