@@ -1,33 +1,8 @@
-# Direct conversion input of hydrogen for oil products
-# Input of hydrogen in hydrogen heater for pyrolysis_oil fractionation process
-# is queried manually, otherwise this flow is ignored
+# Total of hydrogen to oil products in methanol-to-jet and pyrolysis oil and fractionation
 
 - query =
-    DIVIDE(
-      SUM(
-        V(
-          energy_production_fractionation_pyrolysis_oil,
-          "output_of_diesel * hydrogen_input_conversion"
-        ),
-        V(
-          energy_production_fractionation_pyrolysis_oil,
-          "output_of_naphtha * hydrogen_input_conversion"
-        ),
-        PRODUCT(
-          V(
-            energy_production_fractionation_pyrolysis_oil,
-            "output_of_diesel * steam_hot_water_input_conversion"
-          ),
-          V(EDGE(energy_production_fractionation_pyrolysis_oil_burner_hydrogen,energy_production_pyrolysis_locally_available_steam_hot_water),share)
-        ),
-        PRODUCT(
-          V(
-            energy_production_fractionation_pyrolysis_oil,
-            "output_of_naphtha * steam_hot_water_input_conversion"
-          ),
-          V(EDGE(energy_production_fractionation_pyrolysis_oil_burner_hydrogen,energy_production_pyrolysis_locally_available_steam_hot_water),share)
-        )
-      ),
-      BILLIONS
+    SUM(
+      Q(hydrogen_in_source_of_methanol_to_jet_products_in_sankey),
+      Q(hydrogen_in_source_of_pyrolysis_oil_fractionation_products_in_sankey)
     )
 - unit = PJ
