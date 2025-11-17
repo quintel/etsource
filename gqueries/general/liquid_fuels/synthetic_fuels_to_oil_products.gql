@@ -1,0 +1,16 @@
+# Output of synthetic fuels to oil products
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(synthetic_fuels_from_hydrogen_converters),
+          output_of(
+            kerosene,
+            gasoline
+          )
+        )
+      ),
+      BILLIONS
+    )
