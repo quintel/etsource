@@ -638,14 +638,41 @@ network_gas_import:
   type: profile
   display_group: gas_import_export
 
-weather/solar_pv_profile_1:
+weather/solar_pv_on_roof_households:
   type: capacity_profile
   display_group: electricity_production
   reduce:
     as: full_load_hours
     sets:
-      - flh_of_solar_pv_solar_radiation
-      - flh_of_solar_pv_solar_radiation_user_curve
+      - flh_of_households_solar_pv_solar_radiation
+      - flh_of_households_solar_pv_solar_radiation_user_curve
+
+weather/solar_pv_on_roof_buildings:
+  type: capacity_profile
+  display_group: electricity_production
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_buildings_solar_pv_solar_radiation
+      - flh_of_buildings_solar_pv_solar_radiation_user_curve
+
+weather/solar_pv_on_land:
+  type: capacity_profile
+  display_group: electricity_production
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_energy_power_solar_pv_solar_radiation
+      - flh_of_energy_power_solar_pv_solar_radiation_user_curve
+
+weather/solar_pv_offshore:
+  type: capacity_profile
+  display_group: electricity_production
+  reduce:
+    as: full_load_hours
+    sets:
+      - flh_of_energy_power_solar_pv_offshore
+      - flh_of_energy_power_solar_pv_offshore_user_curve
 
 weather/solar_thermal:
   type: capacity_profile

@@ -49,11 +49,17 @@ ev_demand:
     - electric_vehicle_profile_4
     - electric_vehicle_profile_5
 
-solar_pv:
-  type: interpolate
-  curves:
-    - weather/solar_pv_profile_1
-    - weather/solar_pv_profile_2
+solar_pv_on_roof_households:
+  type: amplify
+  curve: weather/solar_pv_on_roof_households
+
+solar_pv_on_roof_buildings:
+  type: amplify
+  curve: weather/solar_pv_on_roof_buildings
+
+solar_pv_on_land:
+  type: amplify
+  curve: weather/solar_pv_on_land
 
 solar_pv_offshore:
   type: amplify
