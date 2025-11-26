@@ -14,6 +14,38 @@ describe 'Load profiles' do
     end
   end
 
+  shared_examples 'a load profile CSV' do |curve|
+    let(:curve_file) { curve }
+
+    it 'does not permit CR (\r) line endings' do
+      message = "expected #{ curve_file.relative_path_from(Atlas.data_dir) } " \
+                "to not have CR line endings"
+
+      expect(curve_file.read).not_to match(/\r[^\n]/), message
+    end
+
+    unless curve.basename.to_s == 'air_temperature.csv'
+      let(:values) do
+        File.foreach(curve_file, encoding: 'bom|utf-8').map do |line|
+          BigDecimal(line.strip.scrub)
+        end
+      end
+
+      it 'has values summing to 1/3600' do
+        in_joules = values.reduce(BigDecimal('0'), :+) * BigDecimal('3600')
+
+        # The sum of the values in the load profile ought to equal
+        # 1.0 / 3600 since the load profile will implicitly convert values
+        # from ETEngine, which are in Joules, into watthours.
+        expect(in_joules).to be_within(BigDecimal('1e-7')).of(BigDecimal('1'))
+      end
+
+      it 'has 8760 lines' do
+        expect(values.length).to eq(8760)
+      end
+    end
+  end
+
   Atlas::Dataset.all.each do |dataset|
     # Skip testing a dataset curves if the curves directory is a symlink.
     next unless dataset.dataset_dir.join('curves').exist?
@@ -35,30 +67,10 @@ describe 'Load profiles' do
           # Skip any curves which are symlinks to curves in other datasets.
           next unless file.exist?
 
-          it "#{file.basename} does not permit CR (\r) line endings" do
-            message = "expected #{ file.relative_path_from(Atlas.data_dir) } " \
-                      "to not have CR line endings"
+          curve = file.dup
 
-            expect(file.read).not_to match(/\r[^\n]/), message
-          end
-
-          if file.basename.to_s != 'air_temperature.csv'
-            let(:values) do
-              File.foreach(file, encoding: 'bom|utf-8').map { |line| BigDecimal(line.strip.scrub) }
-            end
-
-            it "#{file.basename} should have values summing to 1/3600" do
-              in_joules = values.reduce(BigDecimal('0'), :+) * BigDecimal('3600')
-
-              # The sum of the values in the load profile ought to equal
-              # 1.0 / 3600 since the load profile will implicitly convert values
-              # from ETEngine, which are in Joules, into watthours.
-              expect(in_joules).to be_within(BigDecimal('1e-7')).of(BigDecimal('1'))
-            end
-
-            it "#{file.basename} should have 8760 lines" do
-              expect(values.length).to eq(8760)
-            end
+          context curve.basename.to_s do
+            include_examples 'a load profile CSV', curve
           end
         end # each profile
       end
