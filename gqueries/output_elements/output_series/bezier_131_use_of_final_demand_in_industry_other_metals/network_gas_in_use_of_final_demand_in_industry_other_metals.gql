@@ -1,5 +1,6 @@
 - unit = PJ
 - query =
-    V(
-      industry_other_metals_production, final_demand_of(:network_gas)
-    ) / BILLIONS
+    DIVIDE(
+      V(industry_final_demand_for_metal_other_metals_network_gas, demand),
+      BILLIONS
+    )
