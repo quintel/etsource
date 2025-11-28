@@ -1,5 +1,6 @@
 - unit = PJ
 - query =
-    V(
-      industry_other_metals_production, final_demand_of(:steam_hot_water)
-    ) / BILLIONS
+    DIVIDE(
+      V(industry_final_demand_for_metal_other_metals_steam_hot_water, demand),
+      BILLIONS
+    )
