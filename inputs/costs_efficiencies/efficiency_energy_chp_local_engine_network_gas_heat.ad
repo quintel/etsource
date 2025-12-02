@@ -1,11 +1,24 @@
-# Priority set to 2 to set prior to input for share in ht/mt and input for capacity
+# Changing efficiency should update heat output conversion
+# Number of units should remain unchanged as total electricity output capacity should remain
+# unchanged, since this is a user input
+# Priority set to 3 to set prior to e-efficiency, share of ht/mt and capacity inputs
 
 - query =
+    original_nou_ht = V(energy_chp_local_engine_ht_network_gas, number_of_units);
+    original_nou_mt = V(energy_chp_local_engine_mt_network_gas, number_of_units);
+    start_efficiency_ht = QUERY_PRESENT(-> {V(energy_chp_local_engine_ht_network_gas, steam_hot_water_output_conversion)}) * 100.0;
+    start_efficiency_mt = QUERY_PRESENT(-> {V(energy_chp_local_engine_mt_network_gas, steam_hot_water_output_conversion)}) * 100.0;
+
     EACH(
-        UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_ht_network_gas), steam_hot_water), conversion, DIVIDE(USER_INPUT(), 100.0)),
-        UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_mt_network_gas), steam_hot_water), conversion, DIVIDE(USER_INPUT(), 100.0))
+      UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_ht_network_gas), steam_hot_water), conversion, DIVIDE(USER_INPUT(), 100.0)),
+      UPDATE(V(energy_chp_local_engine_ht_network_gas), number_of_units, original_nou_ht),
+      UPDATE(V(energy_chp_local_engine_ht_network_gas), preset_demand_by_electricity_production, V(energy_chp_local_engine_ht_network_gas, production_based_on_number_of_units)),
+
+      UPDATE(OUTPUT_SLOTS(V(energy_chp_local_engine_mt_network_gas), steam_hot_water), conversion, DIVIDE(USER_INPUT(), 100.0)),
+      UPDATE(V(energy_chp_local_engine_mt_network_gas), number_of_units, original_nou_mt),
+      UPDATE(V(energy_chp_local_engine_mt_network_gas), preset_demand_by_electricity_production, V(energy_chp_local_engine_mt_network_gas, production_based_on_number_of_units))
     )
-- priority = 2
+- priority = 3
 - max_value_gql = present:(V(energy_chp_local_engine_ht_network_gas, steam_hot_water_output_conversion) * 100.0) + 10.0
 - min_value_gql = present:(V(energy_chp_local_engine_ht_network_gas, steam_hot_water_output_conversion) * 100.0) - 10.0
 - start_value_gql = present:V(energy_chp_local_engine_ht_network_gas, steam_hot_water_output_conversion) * 100.0
