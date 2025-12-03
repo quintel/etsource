@@ -1,5 +1,24 @@
-# Priority set to 2 to set prior to external coupling input for share in ccs and external coupling input for capacity
+# Changing efficiency should update electricity output conversion
+# Number of units should remain unchanged as total electricity output capacity should remain
+# unchanged, since this is a user input
+# typical input capacity should be updated to unsure electricity output capacity remains unchanged
+# Priority set to 2 to set prior to external coupling inputs for share in ccs and capacity
 
+- query =
+    original_nou = V(energy_chp_supercritical_ccs_ht_waste_mix, number_of_units);
+    start_efficiency = QUERY_PRESENT(-> {V(energy_chp_supercritical_ccs_ht_waste_mix, electricity_output_conversion)}) * 100.0;
+
+    EACH(
+      UPDATE(OUTPUT_SLOTS(V(energy_chp_supercritical_ccs_ht_waste_mix), electricity), conversion, DIVIDE(USER_INPUT(), 100.0)),
+      UPDATE(V(energy_chp_supercritical_ccs_ht_waste_mix), number_of_units, original_nou),
+      UPDATE(V(energy_chp_supercritical_ccs_ht_waste_mix), preset_demand_by_electricity_production, V(energy_chp_supercritical_ccs_ht_waste_mix, production_based_on_number_of_units)),
+
+      UPDATE_WITH_FACTOR(
+        V(energy_chp_supercritical_ccs_ht_waste_mix),
+        typical_input_capacity,
+        DIVIDE(start_efficiency, USER_INPUT())
+      )
+    )
 - query = UPDATE(OUTPUT_SLOTS(V(energy_chp_supercritical_ccs_ht_waste_mix), electricity), conversion, DIVIDE(USER_INPUT(), 100.0))
 - priority = 2
 - max_value = 100.0
