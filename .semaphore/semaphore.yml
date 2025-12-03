@@ -12,16 +12,16 @@ blocks:
           - checkout
           - cache restore
           - gem install bundler
-          - bundle install --path vendor/bundle || (rm -rf vendor/bundle && cache clear && bundle install --path vendor/bundle)
+          - bundle config set --local path 'vendor/bundle'
+          - bundle install || (rm -rf vendor/bundle && cache clear && bundle install)
           - cache store
+          - mkdir -p /tmp/test-results
       jobs:
         - name: Test ETSource
           commands:
-            - mkdir -p /tmp/test-results
             - bundle exec rspec --tag '~slow' --format RspecJunitFormatter --out /tmp/test-results/etsource.xml --format progress
         - name: Test datasets
           commands:
-            - mkdir -p /tmp/test-results
             - bundle exec rspec --tag 'slow' --format RspecJunitFormatter --out /tmp/test-results/datasets-${SEMAPHORE_JOB_INDEX}.xml --format progress
           parallelism: 7
       epilogue:
