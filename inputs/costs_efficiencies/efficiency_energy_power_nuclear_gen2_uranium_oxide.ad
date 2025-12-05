@@ -1,6 +1,15 @@
+# Changing efficiency should update electricity output conversion
+# Number of units should remain unchanged as total output capacity should remain unchanged
 # Priority set to 1 to set prior to input for capacity
 
-- query = UPDATE(OUTPUT_SLOTS(V(energy_power_nuclear_gen2_uranium_oxide), electricity), conversion, DIVIDE(USER_INPUT(), 100.0))
+- query =
+    original_nou = V(energy_power_nuclear_gen2_uranium_oxide, number_of_units);
+
+    EACH(
+      UPDATE(OUTPUT_SLOTS(V(energy_power_nuclear_gen2_uranium_oxide), electricity), conversion, DIVIDE(USER_INPUT(), 100.0)),
+      UPDATE(V(energy_power_nuclear_gen2_uranium_oxide), number_of_units, original_nou),
+      UPDATE(V(energy_power_nuclear_gen2_uranium_oxide), preset_demand_by_electricity_production, V(energy_power_nuclear_gen2_uranium_oxide, production_based_on_number_of_units))
+    )
 - priority = 1
 - max_value_gql = present:(V(energy_power_nuclear_gen2_uranium_oxide, electricity_output_conversion) * 100.0) + 10.0
 - min_value_gql = present:(V(energy_power_nuclear_gen2_uranium_oxide, electricity_output_conversion) * 100.0) - 10.0
