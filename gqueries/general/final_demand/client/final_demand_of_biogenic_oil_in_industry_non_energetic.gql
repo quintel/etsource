@@ -1,8 +1,19 @@
 # Final demand of biogenic oil and derivatives in industry (non-energetic use)
+#
+# This query uses a different approach than other sectors because naphtha is
+# modeled separately in the industry sector:
+# 1. Takes the demand from industry_final_demand_crude_oil_non_energetic and
+#    multiplies it by the biogenic share (which covers biodiesel, bio_kerosene,
+#    and bio_oil)
+# 2. Adds the full demand from industry_final_demand_bionaphtha_non_energetic
+#    (which is already fully biogenic)
 
 - unit = PJ
 - query =
-    PRODUCT(
-      Q(final_demand_of_oil_and_derivatives_in_industry_non_energetic),
-      Q(share_of_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+    SUM(
+      PRODUCT(
+        DIVIDE(V(industry_final_demand_crude_oil_non_energetic, demand), BILLIONS),
+        Q(share_of_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+      ),
+      DIVIDE(V(industry_final_demand_bionaphtha_non_energetic, demand), BILLIONS)
     )
