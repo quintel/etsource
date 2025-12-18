@@ -1,0 +1,9 @@
+# Final demand of biodiesel in buses, based on final demand for road and share of diesel mix
+# to buses
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_biodiesel, demand),
+      V(EDGE(transport_road_mixer_diesel, transport_bus_using_diesel_mix), parent_share)
+    )
+- unit = MJ

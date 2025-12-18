@@ -1,0 +1,8 @@
+# Final demand of electricity in buses, based on final demand for road and share to buses
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_electricity, demand),
+      V(EDGE(transport_final_demand_for_road_electricity, transport_bus_using_electricity), parent_share)
+    )
+- unit = MJ
