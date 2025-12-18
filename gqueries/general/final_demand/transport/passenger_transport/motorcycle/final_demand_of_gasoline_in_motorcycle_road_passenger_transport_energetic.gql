@@ -1,0 +1,9 @@
+# Final demand of gasoline in motorcycles, based on final demand for road and share of gasoline mix
+# to motorcycles
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_gasoline, demand),
+      V(EDGE(transport_road_mixer_gasoline, transport_motorcycle_using_gasoline_mix), parent_share)
+    )
+- unit = MJ
