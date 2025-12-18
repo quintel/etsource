@@ -1,0 +1,8 @@
+# Final demand of electricity in bicycles, based on final demand for road and share to bicycles
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_electricity, demand),
+      V(EDGE(transport_final_demand_for_road_electricity, transport_bicycle_using_electricity), parent_share)
+    )
+- unit = MJ
