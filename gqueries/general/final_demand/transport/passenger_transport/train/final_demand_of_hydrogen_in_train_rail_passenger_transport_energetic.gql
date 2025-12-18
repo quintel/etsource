@@ -1,0 +1,8 @@
+# Final demand of hydrogen in trains, based on final demand for rail and share to trains
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_rail_hydrogen, demand),
+      V(EDGE(transport_final_demand_for_rail_hydrogen, transport_passenger_train_using_hydrogen), parent_share)
+    )
+- unit = MJ

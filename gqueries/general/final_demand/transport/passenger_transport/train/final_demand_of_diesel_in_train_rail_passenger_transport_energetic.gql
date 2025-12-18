@@ -1,0 +1,9 @@
+# Final demand of diesel in trains, based on final demand for rail and share of diesel mix
+# to trains
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_rail_diesel, demand),
+      V(EDGE(transport_rail_mixer_diesel, transport_passenger_train_using_diesel_mix), parent_share)
+    )
+- unit = MJ

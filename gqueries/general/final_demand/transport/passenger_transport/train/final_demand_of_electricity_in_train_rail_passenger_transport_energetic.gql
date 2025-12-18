@@ -1,0 +1,8 @@
+# Final demand of electricity in trains, based on final demand for rail and share to trains
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_rail_electricity, demand),
+      V(EDGE(transport_final_demand_for_rail_electricity, transport_passenger_train_using_electricity), parent_share)
+    )
+- unit = MJ
