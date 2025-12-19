@@ -1,0 +1,8 @@
+# Final demand of compressed_network_gas in cars, based on final demand for road and share to cars
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_compressed_network_gas, demand),
+      V(EDGE(transport_road_mixer_compressed_network_gas, transport_car_using_compressed_natural_gas), parent_share)
+    )
+- unit = MJ

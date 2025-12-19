@@ -1,0 +1,8 @@
+# Final demand of coal in trains, based on final demand for rail and share to trains
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_rail_coal, demand),
+      V(EDGE(transport_final_demand_for_rail_coal, transport_passenger_train_using_coal), parent_share)
+    )
+- unit = MJ

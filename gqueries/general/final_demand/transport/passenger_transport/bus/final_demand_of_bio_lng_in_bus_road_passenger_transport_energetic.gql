@@ -1,0 +1,8 @@
+# Final demand of bio-LNG in buses, based on final demand for road and share of LNG mix to buses
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_bio_lng, demand),
+      V(EDGE(transport_road_mixer_lng, transport_bus_using_lng_mix), parent_share)
+    )
+- unit = MJ

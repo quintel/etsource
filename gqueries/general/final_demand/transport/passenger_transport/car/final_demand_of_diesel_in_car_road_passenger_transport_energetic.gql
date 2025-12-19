@@ -1,0 +1,9 @@
+# Final demand of diesel in cars, based on final demand for road and share of diesel mix
+# to cars
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_diesel, demand),
+      V(EDGE(transport_road_mixer_diesel, transport_car_using_diesel_mix), parent_share)
+    )
+- unit = MJ

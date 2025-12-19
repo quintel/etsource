@@ -1,0 +1,8 @@
+# Final demand of hydrogen in buses, based on final demand for road and share to buses
+
+- query =
+    PRODUCT(
+      V(transport_final_demand_for_road_hydrogen, demand),
+      V(EDGE(transport_final_demand_for_road_hydrogen, transport_bus_using_hydrogen), parent_share)
+    )
+- unit = MJ
