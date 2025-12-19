@@ -1,0 +1,9 @@
+# Final inflexible demand of the 'electricity' carrier group, equals the total energetic final
+# demand minus flexible demand
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_demand_of_electricity_in_industry_energetic),
+      NEG(Q(final_demand_of_electricity_flexible_in_industry_energetic))
+    )
