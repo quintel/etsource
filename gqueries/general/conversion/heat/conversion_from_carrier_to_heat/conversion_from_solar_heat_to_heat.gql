@@ -1,13 +1,13 @@
 # Direct conversion input of solar heat for central heat production
 
-- query = 
+- query =
     DIVIDE(
       SUM(
         V(
           G(heat_production),
-          "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_bio_ethanol"
+          "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_solar_thermal"
         )
-      ), 
+      ),
       BILLIONS
     )
 - unit = PJ
