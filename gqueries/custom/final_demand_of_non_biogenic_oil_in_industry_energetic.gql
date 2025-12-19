@@ -9,10 +9,13 @@
 
 - unit = PJ
 - query =
-    SUM(
-      PRODUCT(
-        DIVIDE(V(industry_final_demand_crude_oil, demand), BILLIONS),
-        Q(share_of_non_biogenic_in_industry_final_demand_crude_oil_energetic)
+    DIVIDE(
+      SUM(
+        PRODUCT(
+          V(industry_final_demand_crude_oil, demand),
+          Q(share_of_non_biogenic_in_industry_final_demand_crude_oil_energetic)
+        ),
+        V(industry_final_demand_naphtha, demand)
       ),
-      DIVIDE(V(industry_final_demand_naphtha, demand), BILLIONS)
+      BILLIONS
     )
