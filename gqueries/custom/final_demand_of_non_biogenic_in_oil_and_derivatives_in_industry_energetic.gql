@@ -1,0 +1,18 @@
+# Final demand of non-biogenic portion of oil and derivatives in industry (energetic use)
+#
+# This calculates the non-biogenic share of the crude oil final demand node only.
+# It does not include naphtha, which is tracked separately in
+# final_demand_of_oil_and_derivatives_in_industry_energetic.
+#
+# The non-biogenic share covers: diesel, kerosene, lpg, heavy_fuel_oil, and
+# crude_oil inputs to the industry_final_demand_crude_oil node.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(industry_final_demand_crude_oil, demand),
+        Q(share_of_non_biogenic_in_industry_final_demand_crude_oil_energetic)
+      ),
+      BILLIONS
+    )
