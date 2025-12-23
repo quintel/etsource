@@ -1,0 +1,11 @@
+# Returns the produced electricity of hydrogen dedicated offshore wind to curtailment.
+
+- unit = PJ
+- query =
+    SUM(
+      DIVIDE(
+        V(energy_hydrogen_wind_turbine_offshore, output_of_electricity),
+        BILLIONS
+      ),
+      NEG(Q(electricity_produced_from_hydrogen_offshore_wind_for_hydrogen))
+    )

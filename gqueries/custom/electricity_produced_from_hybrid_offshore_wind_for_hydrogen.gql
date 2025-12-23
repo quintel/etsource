@@ -1,0 +1,11 @@
+# Returns the produced electricity from hybrid offshore wind that goes to dedicated hydrogen production.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(energy_hydrogen_hybrid_electrolysis_wind_electricity, input_of_electricity),
+        NEG(V(energy_power_hybrid_to_offshore_network_electricity, output_of_electricity))
+      ),
+      BILLIONS
+    )
