@@ -2,15 +2,10 @@
 
 - unit = PJ
 - query =
-    SUM(
-      DIVIDE(
-        V(energy_hydrogen_hybrid_electrolysis_wind_electricity, demand),
-        BILLIONS
+    DIVIDE(
+      SUM(
+        V(energy_hydrogen_hybrid_electrolysis_wind_electricity, input_of_electricity),
+        NEG(V(energy_power_hybrid_to_offshore_network_electricity, output_of_electricity))
       ),
-      NEG(
-        DIVIDE(
-          V(energy_power_hybrid_to_offshore_network_electricity, output_of_electricity),
-          BILLIONS
-        )
-      )
+      BILLIONS
     )
