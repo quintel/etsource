@@ -1,0 +1,22 @@
+# Final demand of non-biogenic oil and derivatives in industry (non-energetic use)
+#
+# This query uses a different approach than other sectors because naphtha is
+# modeled separately in the industry sector:
+# 1. Takes the demand from industry_final_demand_crude_oil_ and
+#    multiplies it by the non-biogenic share (which covers diesel, kerosene,
+#    lpg, and crude_oil)
+# 2. Adds the full demand from industry_final_demand_naphtha
+#    (which is already fully non-biogenic)
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        PRODUCT(
+          V(industry_final_demand_crude_oil, demand),
+          Q(share_of_non_biogenic_in_industry_final_demand_crude_oil_energetic)
+        ),
+        V(industry_final_demand_naphtha, demand)
+      ),
+      BILLIONS
+    )

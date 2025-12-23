@@ -1,0 +1,21 @@
+# Non-energetic final demand of the 'oil_and_derivatives' carrier group
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(
+                EG(final_demand),"sector == :industry"
+              ),
+              "!energetic?"
+            ),
+            "crude_oil? ||  gasoline? ||  diesel? ||  lpg? || kerosene? || heavy_fuel_oil? || naphtha? || pyrolysis_oil?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )
