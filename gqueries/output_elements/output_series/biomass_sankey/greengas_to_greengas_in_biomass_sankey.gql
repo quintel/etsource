@@ -1,0 +1,9 @@
+# Flow from greengas_primary to greengas_secondary in biomass sankey
+# greengas_primary consists of greengas produced by dry biomass and wet biomass
+
+- unit = PJ
+- query =
+    SUM(
+      Q(conversion_dry_biomass_in_source_of_greengas),
+      Q(conversion_wet_biomass_in_source_of_greengas)
+    )
