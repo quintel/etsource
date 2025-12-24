@@ -1,0 +1,16 @@
+# Direct conversion output of hydrogen from network gas, excluding industry transformation
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          EXCLUDE(
+            G(hydrogen_production),
+            G(industry_transformation)
+          ),
+          "output_of_hydrogen * network_gas_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

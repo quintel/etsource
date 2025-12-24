@@ -1,0 +1,18 @@
+# Direct conversion output of steam hot water from network gas
+# The difference with network_gas_in_source_of_central_heat_production is that this query
+# includes heat production from CHPs (with heat_production group)
+
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            G(heat_production),
+            "output_of_steam_hot_water * network_gas_input_conversion"
+          )
+        ),
+        BILLIONS
+      ),
+      Q(gas_power_fuelmix_in_source_of_heat_conversion) * V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+    )
+- unit = PJ

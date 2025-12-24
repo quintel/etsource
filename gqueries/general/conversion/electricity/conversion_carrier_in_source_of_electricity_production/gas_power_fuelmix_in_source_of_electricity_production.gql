@@ -1,0 +1,13 @@
+# Direct conversion output of electricity from gas power fuelmix
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(electricity_production),
+          "output_of_electricity * gas_power_fuelmix_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
