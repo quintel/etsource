@@ -2,23 +2,25 @@
 
 - unit = PJ
 - query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :bunkers"
+    DIVIDE(
+      PRODUCT(
+        SUM(
+          V(
+            FILTER(
+              FILTER(EG(final_demand),"sector == :bunkers"),
+              network_gas?
+            ),
+            value
           ),
-          network_gas?
+          V(
+            FILTER(
+              FILTER(EG(final_demand),"sector == :bunkers"),
+              compressed_network_gas?
+            ),
+            value
+          )
         ),
-        value
+        Q(share_of_sustainable_gas_in_gas_network)
       ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :bunkers"
-          ),
-          compressed_network_gas?
-        ),
-        value
-      )
-    ) * V(energy_national_gas_network_natural_gas,greengas_input_conversion) / BILLIONS
+      BILLIONS
+    )
