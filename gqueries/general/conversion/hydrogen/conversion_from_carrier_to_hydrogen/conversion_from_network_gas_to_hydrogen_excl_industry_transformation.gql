@@ -1,0 +1,17 @@
+# Network gas conversion to hydrogen from hydrogen_production group
+# Industry transformation is excluded from this query
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          EXCLUDE(
+            G(hydrogen_production),
+            G(industry_transformation)
+          ),
+          "hydrogen_output_conversion / (1 - loss_output_conversion) * input_of_network_gas"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
