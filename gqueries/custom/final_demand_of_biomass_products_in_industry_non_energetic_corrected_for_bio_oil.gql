@@ -1,0 +1,45 @@
+# Final demand of biogenic oil and derivatives in industry (non-energetic use)
+
+- unit = PJ
+- query =
+    SUM(
+      PRODUCT(
+        DIVIDE(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(
+                    EG(final_demand),"sector == :industry"
+                  ),
+                  "!energetic?"
+                ),
+                "crude_oil? ||  gasoline? ||  diesel? ||  lpg? || kerosene? || heavy_fuel_oil? || naphtha? || pyrolysis_oil?"
+              ),
+              value
+            )
+          ),
+          BILLIONS
+      ),
+          Q(share_of_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+      ),
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(
+                EG(final_demand),"sector == :industry"
+              ),
+              "!energetic?"
+            ),
+            "biodiesel? || bio_ethanol? || wood_pellets? || bio_lng? || bio_kerosene? || bio_oil? || bionaphtha? || bio_pyrolysis_oil? || biomethanol?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )
+  )
+
+

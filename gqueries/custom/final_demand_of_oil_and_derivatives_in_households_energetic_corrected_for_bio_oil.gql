@@ -1,0 +1,24 @@
+# Final demand of non-biogenic oil and derivatives in households (energetic use)
+
+- unit = PJ
+- query =
+    PRODUCT(
+      DIVIDE(
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                FILTER(
+                  EG(final_demand),"sector == :households"
+                ),
+                energetic?
+              ),
+              "crude_oil? ||  gasoline? ||  diesel? ||  lpg? || kerosene? || heavy_fuel_oil? || naphtha? || pyrolysis_oil?"
+            ),
+            value
+          )
+        ),
+        BILLIONS
+    ),
+        Q(share_of_non_biogenic_in_households_final_demand_crude_oil_energetic)
+    )
