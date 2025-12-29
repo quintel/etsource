@@ -1,0 +1,17 @@
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          V(
+            EXCLUDE(
+              G(hydrogen_production),
+              G(industry_transformation)
+            ),
+            "hydrogen_output_conversion / (1 - loss_output_conversion) * input_of_network_gas"
+          )
+        ),
+        BILLIONS
+      ),
+      Q(gas_power_fuelmix_for_hydrogen_conversion) * V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+    )
+- unit = PJ
