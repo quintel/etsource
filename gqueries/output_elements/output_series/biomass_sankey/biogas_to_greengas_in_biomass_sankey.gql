@@ -1,2 +1,22 @@
+# Flow from biogas to greengas in biomass sankey
+# This query consists of the following flows:
+# 1. Greengas production from biogas
+# 2. Reduced with greengas production to bio_ethanol, bio_kerosene and torrefied_biomass_pellets
+# (via network gas). A correction in this part is done to only account for greengas produced
+# from biogas (so not from wet and dry biomass)
+
 - unit = PJ
-- query = Q(conversion_from_biogas_to_greengas)
+- query =
+    SUM(
+      Q(conversion_from_biogas_to_greengas),
+      NEG(
+        PRODUCT(
+          SUM(
+            Q(conversion_from_greengas_to_bio_ethanol),
+            Q(conversion_from_greengas_to_bio_kerosene),
+            Q(conversion_from_greengas_to_torrefied_biomass_pellets)
+          ),
+          V(EDGE(energy_greengas_upgrade_biogas, energy_greengas_production), share)
+        )
+      )
+    )
