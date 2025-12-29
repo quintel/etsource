@@ -1,0 +1,18 @@
+# Final demand of the 'wood_pellets' carrier group
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :agriculture"
+            ),
+            wood_pellets?
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )
