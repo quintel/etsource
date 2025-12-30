@@ -2,9 +2,9 @@
 
 - unit = PJ
 - query =
-    SUM(
-      PRODUCT(
-        DIVIDE(
+    DIVIDE(
+      SUM(
+        PRODUCT(
           SUM(
             V(
               FILTER(
@@ -14,32 +14,27 @@
                   ),
                   energetic?
                 ),
-                "crude_oil? ||  gasoline? ||  diesel? ||  lpg? || kerosene? || heavy_fuel_oil? || naphtha? || pyrolysis_oil?"
+                crude_oil?
               ),
               value
             )
           ),
-          BILLIONS
-      ),
           Q(share_of_biogenic_in_industry_final_demand_crude_oil_energetic)
-      ),
-    DIVIDE(
-      SUM(
-        V(
-          FILTER(
+        ),
+        SUM(
+          V(
             FILTER(
               FILTER(
-                EG(final_demand),"sector == :industry"
+                FILTER(
+                  EG(final_demand),"sector == :industry"
+                ),
+                energetic?
               ),
-              energetic?
+              "biodiesel? || bio_ethanol? || wood_pellets? || bio_lng? || bio_kerosene? || bio_oil? || bionaphtha? || bio_pyrolysis_oil? || biomethanol?"
             ),
-            "biodiesel? || bio_ethanol? || wood_pellets? || bio_lng? || bio_kerosene? || bio_oil? || bionaphtha? || bio_pyrolysis_oil? || biomethanol?"
-          ),
-          value
+            value
+          )
         )
       ),
       BILLIONS
     )
-  )
-
-
