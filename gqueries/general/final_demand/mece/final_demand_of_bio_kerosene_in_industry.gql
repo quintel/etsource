@@ -1,0 +1,53 @@
+# Final demand of the 'bio_kerosene' carrier group for industry
+# Input of bio_kerosene in crude_oil final demand is accounted for
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :industry"
+            ),
+            bio_kerosene?
+          ),
+          value
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(
+                    EG(final_demand),"sector == :industry"
+                  ),
+                  energetic?
+                ),
+                crude_oil?
+              ),
+              value
+            )
+          ),
+          V(industry_final_demand_crude_oil, bio_kerosene_input_conversion)
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(
+                    EG(final_demand),"sector == :industry"
+                  ),
+                  "!energetic?"
+                ),
+                crude_oil?
+              ),
+              value
+            )
+          ),
+          V(industry_final_demand_crude_oil_non_energetic, bio_kerosene_input_conversion)
+        )
+      ),
+      BILLIONS
+    )

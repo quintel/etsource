@@ -1,0 +1,36 @@
+# Final demand of the 'bio_kerosene' carrier group for buildings
+# Input of bio_kerosene in crude_oil final demand is accounted for
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :buildings"
+            ),
+            bio_kerosene?
+          ),
+          value
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(
+                    EG(final_demand),"sector == :buildings"
+                  ),
+                  energetic?
+                ),
+                crude_oil?
+              ),
+              value
+            )
+          ),
+          V(buildings_final_demand_crude_oil, bio_kerosene_input_conversion)
+        )
+      ),
+      BILLIONS
+    )
