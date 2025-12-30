@@ -1,0 +1,40 @@
+# Final demand of biogenic oil and derivatives in buildings (energetic use)
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(
+                    EG(final_demand),"sector == :buildings"
+                  ),
+                  energetic?
+                ),
+                crude_oil?
+              ),
+              value
+            )
+          ),
+          Q(share_of_biogenic_in_buildings_final_demand_crude_oil_energetic)
+        ),
+        SUM(
+          V(
+            FILTER(
+              FILTER(
+                FILTER(
+                  EG(final_demand),"sector == :buildings"
+                ),
+                energetic?
+              ),
+              "biodiesel? || bio_ethanol? || wood_pellets? || bio_lng? || bio_kerosene? || bio_oil? || bionaphtha? || bio_pyrolysis_oil? || biomethanol?"
+            ),
+            value
+          )
+        )
+      ),
+      BILLIONS
+    )
