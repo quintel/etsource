@@ -1,12 +1,11 @@
 # Flow from bio_kerosene_primary to bio_kerosene_secondary in biomass sankey
-# This query consists of bio_kerosene from import and production from Fischer-Tropsch, pyrolysis
-# oil fractionation and HVO biokerosene
+# This query consists of bio_kerosene from import and production from Fischer-Tropsch and
+# HVO biokerosene
 
 - unit = PJ
 - query =
     SUM(
       Q(import_of_bio_kerosene),
       Q(fischer_tropsch_to_bio_kerosene),
-      Q(pyrolysis_fractionation_to_bio_kerosene),
       Q(hvo_bio_kerosene_to_bio_kerosene)
     )

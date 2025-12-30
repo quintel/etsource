@@ -1,0 +1,13 @@
+# Direct conversion input of bio_pyrolysis_oil to bio_kerosene
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          Q(biofuels_producers),
+          "bio_kerosene_output_conversion / (1 - loss_output_conversion) * input_of_bio_pyrolysis_oil"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
