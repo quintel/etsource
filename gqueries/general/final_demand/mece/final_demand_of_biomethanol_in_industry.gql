@@ -1,0 +1,18 @@
+# Final demand of the 'biomethanol' carrier group
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              EG(final_demand),"sector == :industry"
+            ),
+            biomethanol?
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )
