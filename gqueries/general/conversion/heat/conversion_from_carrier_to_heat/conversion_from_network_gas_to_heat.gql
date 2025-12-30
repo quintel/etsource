@@ -5,8 +5,14 @@
       DIVIDE(
         SUM(
           V(
-            G(heat_production),
+            INTERSECTION(G(heat_production),G(electricity_production)),
             "steam_hot_water_output_conversion / (1 - loss_output_conversion) * input_of_network_gas"
+          ),
+          V(
+            FILTER(
+            EXCLUDE(G(heat_production),G(electricity_production)),
+            "steam_hot_water_output_conversion > 0.0"),
+            "input_of_network_gas"
           ),
         ),
         BILLIONS
