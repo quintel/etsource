@@ -1,0 +1,9 @@
+# Flow from bio_pyrolysis_oil_primary to bio_pyrolysis_oil_secondary in biomass sankey
+# This query consists of bio_pyrolysis_oil from import and production from pyrolysis dry biomass
+
+- unit = PJ
+- query =
+    SUM(
+      Q(import_of_bio_pyrolysis_oil),
+      Q(pyrolysis_dry_biomass_to_bio_pyrolysis_oil)
+    )
