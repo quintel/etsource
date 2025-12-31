@@ -1,8 +1,0 @@
-# Query for Biomass Sankey diagram: connection between greengas and bunkers
-
-- unit = PJ
-- query =
-     DIVIDE(
-      SUM(V(INTERSECTION(G(final_demand_group), SECTOR(bunkers)), input_of(network_gas, compressed_network_gas))) * Q(share_of_sustainable_gas_in_gas_network),
-      BILLIONS
-      )
