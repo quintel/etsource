@@ -1,0 +1,11 @@
+# Sum of all energy input flows into bionaphtha_secondary node in the biomass sankey
+
+- unit = PJ
+- query =
+    SUM(
+      Q(bionaphtha_to_bionaphtha_in_biomass_sankey),
+      Q(biomethanol_to_bionaphtha_in_biomass_sankey),
+      Q(bio_pyrolysis_oil_to_bionaphtha_in_biomass_sankey),
+      Q(hydrogen_to_bionaphtha_in_biomass_sankey),
+      Q(steam_hot_water_to_bionaphtha_in_biomass_sankey)
+    )
