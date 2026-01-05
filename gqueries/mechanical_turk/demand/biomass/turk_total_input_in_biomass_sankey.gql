@@ -1,10 +1,29 @@
 # Sum of all energy input flows (column: 0) in the biomass sankey
-
+# The flow from greengas to industry transformation must be subtracted from this sum.
+# This flow is made up from the greengas and biogas that come from the first column.
 - unit = PJ
 - query =
     SUM(
+      NEG(Q(greengas_to_industry_transformation_in_biomass_sankey)),
       Q(greengas_to_greengas_in_biomass_sankey),
       Q(biogas_to_greengas_in_biomass_sankey),
+      Q(biogenic_waste_to_bio_kerosene_in_biomass_sankey),
+      Q(bio_kerosene_to_bio_kerosene_in_biomass_sankey),
+      Q(bio_ethanol_to_bio_kerosene_in_biomass_sankey),
+      Q(hydrogen_to_bio_kerosene_in_biomass_sankey),
+      Q(steam_hot_water_to_bio_kerosene_in_biomass_sankey),
+      Q(biogenic_waste_to_biodiesel_in_biomass_sankey),
+      Q(biodiesel_to_biodiesel_in_biomass_sankey),
+      Q(bio_ethanol_to_biodiesel_in_biomass_sankey),
+      Q(hydrogen_to_biodiesel_in_biomass_sankey),
+      Q(biogenic_waste_to_bionaphtha_in_biomass_sankey),
+      Q(bionaphtha_to_bionaphtha_in_biomass_sankey),
+      Q(hydrogen_to_bionaphtha_in_biomass_sankey),
+      Q(steam_hot_water_to_bionaphtha_in_biomass_sankey),
+      Q(biogenic_waste_to_biomethanol_in_biomass_sankey),
+      Q(biomethanol_to_biomethanol_in_biomass_sankey),
+      Q(biogenic_waste_to_bio_pyrolysis_oil_in_biomass_sankey),
+      Q(bio_pyrolysis_oil_to_bio_pyrolysis_oil_in_biomass_sankey),
       Q(biogas_to_electricity_production_in_biomass_sankey),
       Q(biogas_to_heat_production_in_biomass_sankey),
       Q(wood_pellets_to_final_demand_households_in_biomass_sankey),
@@ -13,6 +32,7 @@
       Q(wood_pellets_to_final_demand_bunkers_in_biomass_sankey),
       Q(wood_pellets_to_final_demand_industry_in_biomass_sankey),
       Q(wood_pellets_to_final_demand_agriculture_in_biomass_sankey),
+      Q(wood_pellets_to_final_demand_energy_in_biomass_sankey),
       Q(wood_pellets_to_final_demand_other_in_biomass_sankey),
       Q(wood_pellets_to_electricity_production_in_biomass_sankey),
       Q(wood_pellets_to_heat_production_in_biomass_sankey),
@@ -21,5 +41,19 @@
       Q(torrefied_biomass_pellets_to_hydrogen_production_in_biomass_sankey),
       Q(biogenic_waste_to_final_demand_industry_in_biomass_sankey),
       Q(biogenic_waste_to_electricity_production_in_biomass_sankey),
-      Q(biogenic_waste_to_heat_production_in_biomass_sankey)
+      Q(biogenic_waste_to_heat_production_in_biomass_sankey),
+      Q(bio_ethanol_to_final_demand_transport_in_biomass_sankey),
+      Q(bio_ethanol_to_export_in_biomass_sankey),
+      Q(bio_lng_to_final_demand_transport_in_biomass_sankey),
+      Q(bio_lng_to_final_demand_bunkers_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_households_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_buildings_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_transport_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_bunkers_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_industry_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_agriculture_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_energy_in_biomass_sankey),
+      Q(bio_oil_to_final_demand_other_in_biomass_sankey),
+      Q(bio_oil_to_electricity_production_in_biomass_sankey),
+      Q(bio_oil_to_heat_production_in_biomass_sankey)
     )
