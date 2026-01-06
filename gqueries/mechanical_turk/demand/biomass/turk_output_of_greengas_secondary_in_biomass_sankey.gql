@@ -1,0 +1,20 @@
+# Sum of all energy output flows from greengas_secondary node in the biomass sankey
+# The flow from greengas_primary to industry transformation is added to balance the energy.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(greengas_to_final_demand_households_in_biomass_sankey),
+      Q(greengas_to_final_demand_buildings_in_biomass_sankey),
+      Q(greengas_to_final_demand_transport_in_biomass_sankey),
+      Q(greengas_to_final_demand_bunkers_in_biomass_sankey),
+      Q(greengas_to_final_demand_industry_in_biomass_sankey),
+      Q(greengas_to_final_demand_agriculture_in_biomass_sankey),
+      Q(greengas_to_final_demand_other_in_biomass_sankey),
+      Q(greengas_to_export_in_biomass_sankey),
+      Q(greengas_to_electricity_production_in_biomass_sankey),
+      Q(greengas_to_heat_production_in_biomass_sankey),
+      Q(greengas_to_hydrogen_production_in_biomass_sankey),
+      Q(greengas_to_loss_in_biomass_sankey),
+      Q(greengas_to_industry_transformation_in_biomass_sankey)
+    )

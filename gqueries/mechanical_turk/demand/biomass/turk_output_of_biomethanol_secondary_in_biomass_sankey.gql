@@ -1,0 +1,13 @@
+# Sum of all energy output flows from biomethanol_secondary node in the biomass sankey
+
+- unit = PJ
+- query =
+    SUM(
+      Q(biomethanol_to_bio_kerosene_in_biomass_sankey),
+      Q(biomethanol_to_bionaphtha_in_biomass_sankey),
+      Q(biomethanol_to_final_demand_transport_in_biomass_sankey),
+      Q(biomethanol_to_final_demand_bunkers_in_biomass_sankey),
+      Q(biomethanol_to_final_demand_industry_in_biomass_sankey),
+      Q(biomethanol_to_export_in_biomass_sankey),
+      Q(biomethanol_to_loss_in_biomass_sankey)
+    )
