@@ -1,4 +1,7 @@
 # Direct conversion input of network gas for central heat production
+# Note that manual adding of output_conversion of steam_hot_water, electricity, useable_heat
+# and cooling is done (instead of 1 - loss_output_conversion) to account for
+# efficiencies of > 100% of burners, which otherwise leads to imbalance of flows in sankey diagrams.
 
 - query =
     SUM(
@@ -6,15 +9,20 @@
         SUM(
           V(
             G(heat_production),
-            "steam_hot_water_output_conversion / (steam_hot_water_output_conversion + electricity_output_conversion) * input_of_network_gas"
+            "steam_hot_water_output_conversion / (
+              steam_hot_water_output_conversion +
+              electricity_output_conversion +
+              useable_heat_output_conversion +
+              cooling_output_conversion
+            ) * input_of_network_gas"
           ),
         ),
         BILLIONS
       ),
-        PRODUCT(
-            Q(conversion_from_gas_power_fuelmix_to_heat),
-            V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
-          ),
-        Q(conversion_from_compressed_network_gas_to_heat)
-      )
+      PRODUCT(
+        Q(conversion_from_gas_power_fuelmix_to_heat),
+        V(energy_mixer_for_gas_power_fuel, network_gas_input_conversion)
+      ),
+      Q(conversion_from_compressed_network_gas_to_heat)
+    )
 - unit = PJ
