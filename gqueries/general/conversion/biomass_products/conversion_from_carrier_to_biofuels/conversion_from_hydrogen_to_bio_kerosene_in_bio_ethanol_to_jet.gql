@@ -1,0 +1,13 @@
+# Direct conversion input of hydrogen to bio_kerosene in bio_ethanol_to_jet specifically
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_production_bio_ethanol_to_jet,
+          "bio_kerosene_output_conversion / (1 - loss_output_conversion) * input_of_hydrogen"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

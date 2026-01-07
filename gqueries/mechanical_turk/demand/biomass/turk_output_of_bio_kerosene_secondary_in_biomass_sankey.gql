@@ -1,0 +1,16 @@
+# Sum of all energy output flows from bio_kerosene_secondary node in the biomass sankey
+
+- unit = PJ
+- query =
+    SUM(
+      Q(bio_kerosene_to_final_demand_households_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_buildings_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_transport_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_bunkers_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_industry_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_agriculture_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_energy_in_biomass_sankey),
+      Q(bio_kerosene_to_final_demand_other_in_biomass_sankey),
+      Q(bio_kerosene_to_export_in_biomass_sankey),
+      Q(bio_kerosene_to_loss_in_biomass_sankey)
+    )

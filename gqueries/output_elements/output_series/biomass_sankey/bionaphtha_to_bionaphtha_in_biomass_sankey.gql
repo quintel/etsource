@@ -1,0 +1,12 @@
+# Flow from bionaphtha_primary to bionaphtha_secondary in biomass sankey
+# This query consists of bionaphtha from import and production from Fischer-Tropsch dry biomass and
+# HVO biokerosene and biodiesel
+
+- unit = PJ
+- query =
+    SUM(
+      Q(import_of_bionaphtha),
+      Q(fischer_tropsch_dry_biomass_to_bionaphtha),
+      Q(hvo_bio_kerosene_to_bionaphtha),
+      Q(hvo_biodiesel_to_bionaphtha)
+    )

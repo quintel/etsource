@@ -1,0 +1,13 @@
+# Loss of steam_hot_water to bio_kerosene in fractionation bio_pyrolysis_oil
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_production_fractionation_bio_pyrolysis_oil,
+          "bio_kerosene_output_conversion * steam_hot_water_input_conversion / (1 - loss_output_conversion) * output_of_loss"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

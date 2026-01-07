@@ -1,0 +1,11 @@
+# Flow from biodiesel_primary to biodiesel_secondary in biomass sankey
+# This query consists of biodiesel from import and production from Fischer-Tropsch dry biomass and
+# HVO biodiesel
+
+- unit = PJ
+- query =
+    SUM(
+      Q(import_of_biodiesel),
+      Q(fischer_tropsch_dry_biomass_to_biodiesel),
+      Q(hvo_biodiesel_to_biodiesel)
+    )

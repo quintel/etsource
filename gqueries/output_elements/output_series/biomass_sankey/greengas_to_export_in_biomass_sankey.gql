@@ -1,12 +1,2 @@
-# Query for Biomass Sankey diagram: connection between greengas and bunkers
-
 - unit = PJ
-- query =
-        DIVIDE(
-          SUM(
-            V(energy_export_greengas_baseload, demand),
-            V(energy_export_greengas_backup, demand)
-            ),
-          BILLIONS
-          )
-     
+- query = Q(export_of_greengas)

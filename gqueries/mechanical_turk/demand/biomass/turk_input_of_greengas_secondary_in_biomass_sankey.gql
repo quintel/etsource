@@ -1,0 +1,9 @@
+# Sum of all energy input flows into greengas_secondary node in the biomass sankey
+
+- unit = PJ
+- query =
+    SUM(
+      Q(industry_transformation_to_greengas_in_biomass_sankey),
+      Q(greengas_to_greengas_in_biomass_sankey),
+      Q(biogas_to_greengas_in_biomass_sankey)
+    )

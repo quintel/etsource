@@ -1,0 +1,15 @@
+# Direct conversion output of steam hot water from gas power fuelmix
+# The difference with gas_power_fuelmix_in_source_of_central_heat_conversion is that this query
+# includes heat production from CHPs (with heat_production group)
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(heat_production),
+          "output_of_steam_hot_water * gas_power_fuelmix_input_conversion"
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ

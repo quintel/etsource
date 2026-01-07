@@ -1,0 +1,9 @@
+# Flow from biomethanol_primary to biomethanol_secondary in biomass sankey
+# This query consists of biomethanol from import and production from methanol synthesis dry biomass
+
+- unit = PJ
+- query =
+    SUM(
+      Q(import_of_biomethanol),
+      Q(methanol_synthesis_dry_biomass_to_biomethanol)
+    )

@@ -1,24 +1,31 @@
 # Final demand of the 'greengas' carrier group
+# Demand for compressed network gas is corrected for network_gas_input_conversion to correct
+# for network gas input only (electricity is also an input to the compressor)
 
 - unit = PJ
 - query =
-    SUM(
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :transport"
+    DIVIDE(
+      PRODUCT(
+        SUM(
+          V(
+            FILTER(
+              FILTER(EG(final_demand),"sector == :transport"),
+              network_gas?
+            ),
+            value
           ),
-          network_gas?
+          PRODUCT(
+            V(
+              FILTER(
+                FILTER(EG(final_demand),"sector == :transport"),
+                compressed_network_gas?
+              ),
+              value
+            ),
+            V(energy_compressor_network_gas, network_gas_input_conversion)
+          )
         ),
-        value
+        Q(share_of_sustainable_gas_in_gas_network)
       ),
-      V(
-        FILTER(
-          FILTER(
-            EG(final_demand),"sector == :transport"
-          ),
-          compressed_network_gas?
-        ),
-        value
-      )
-    ) * V(energy_national_gas_network_natural_gas,greengas_input_conversion) / BILLIONS
+      BILLIONS
+    )
