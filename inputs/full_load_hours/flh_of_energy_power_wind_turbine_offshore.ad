@@ -1,8 +1,6 @@
 # The query starts by fetching the original number of units (nou): we want the new FLH
 # to increase the preset demand, so we have to set this value after updating FLH
-# to prevent ETEngine from calculating a new (lower) NoU.
-#
-# See https://github.com/quintel/etmodel/issues/2906
+# to prevent ETEngine from calculating a new NoU.
 #
 # Note: When updating this input statement, please update
 # flh_of_energy_power_wind_turbine_offshore_user_curve as well!
@@ -12,6 +10,8 @@
       ->{
         original_nou = V(energy_power_wind_turbine_offshore, number_of_units);
         original_nou_hybrid = V(energy_power_hybrid_wind_turbine_offshore, number_of_units);
+        original_nou_of_hydrogen_wind_offshore = V(energy_hydrogen_wind_turbine_offshore, number_of_units);
+        original_nou_of_hydrogen_electrolysis_wind = V(energy_hydrogen_electrolysis_wind_electricity, number_of_units);
 
         EACH(
           UPDATE(V(energy_power_wind_turbine_offshore), full_load_hours, USER_INPUT()),
@@ -21,12 +21,28 @@
             preset_demand_by_electricity_production,
             V(energy_power_wind_turbine_offshore, production_based_on_number_of_units)
           ),
+
           UPDATE(V(energy_power_hybrid_wind_turbine_offshore), full_load_hours, USER_INPUT()),
           UPDATE(V(energy_power_hybrid_wind_turbine_offshore), number_of_units, original_nou_hybrid),
           UPDATE(
             V(energy_power_hybrid_wind_turbine_offshore),
             preset_demand_by_electricity_production,
             V(energy_power_hybrid_wind_turbine_offshore, production_based_on_number_of_units)
+          ),
+
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_wind_turbine_offshore), number_of_units, original_nou_of_hydrogen_wind_offshore),
+          UPDATE(
+            V(energy_hydrogen_wind_turbine_offshore),
+            preset_demand_by_electricity_production,
+            V(energy_hydrogen_wind_turbine_offshore, production_based_on_number_of_units)
+          ),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), full_load_hours, USER_INPUT()),
+          UPDATE(V(energy_hydrogen_electrolysis_wind_electricity), number_of_units, original_nou_of_hydrogen_electrolysis_wind),
+          UPDATE(
+            V(energy_hydrogen_electrolysis_wind_electricity),
+            preset_demand_by_hydrogen_production,
+            V(energy_hydrogen_electrolysis_wind_electricity, hydrogen_production_based_on_number_of_units)
           )
         )
       },
