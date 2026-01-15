@@ -11,7 +11,7 @@ gem 'rake'
 
 group :development, :test do
   gem 'roo'
-  gem 'atlas',    ref: '923f382', github: 'quintel/atlas'
+  gem 'atlas',    ref: '20ca383', github: 'quintel/atlas' #TODO: Update after merging Atlas 'retire-employment'
 end
 
 group :test do
