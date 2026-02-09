@@ -1,0 +1,21 @@
+# The appliances efficiency and useful demand input set the same node
+# Updating the node sequentially would lead to incorrect results
+# When the efficiency is not set, the node is updated by the useful demand input
+# When the efficiency is set, the useful demand input does nothing and the net effect of both
+# inputs is set here
+
+- query =
+    buildings_appliances_efficiency_change = USER_INPUT();
+    buildings_appliances_demand_change     = DIVIDE(INPUT_VALUE(buildings_useful_demand_appliances),100.0);
+    buildings_appliances_net_change        = SUM(buildings_appliances_demand_change, NEG(buildings_appliances_efficiency_change));
+
+    UPDATE(V(buildings_useful_demand_for_appliances), preset_demand, buildings_appliances_net_change)
+
+- priority = 0
+- max_value = 5.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = %
+- update_period = future
+- update_type = %y
