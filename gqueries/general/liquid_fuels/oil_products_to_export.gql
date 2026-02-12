@@ -3,13 +3,6 @@
 - unit = PJ
 - query =
     DIVIDE(
-      SUM(
-        V(
-          G(energy_export),
-          input_of(
-            crude_oil
-          )
-        )
-      ),
+      V(energy_export_oil_products, input_of_crude_oil),
       BILLIONS
     )

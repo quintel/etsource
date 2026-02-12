@@ -1,0 +1,14 @@
+# Crude Oil to Export
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          energy_export_crude_oil_baseload,
+          energy_export_crude_oil_backup,
+          input_of_crude_oil
+        )
+      ),
+      BILLIONS
+    )
