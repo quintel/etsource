@@ -3,17 +3,18 @@ name: Test ETSource
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu2004
+    os_image: ubuntu2404
 blocks:
   - name: RSpec
     task:
       prologue:
         commands:
           - checkout
-          - cache restore
+          - cache clear
+          - rm -rf vendor/bundle
           - gem install bundler
           - bundle config set --local path 'vendor/bundle'
-          - bundle install || (rm -rf vendor/bundle && cache clear && bundle install)
+          - bundle install
           - cache store
           - mkdir -p /tmp/test-results
       jobs:
