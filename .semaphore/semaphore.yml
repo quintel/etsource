@@ -10,8 +10,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache clear
-          - rm -rf vendor/bundle
+          - cache restore
           - gem install bundler
           - bundle config set --local path 'vendor/bundle'
           - bundle install
