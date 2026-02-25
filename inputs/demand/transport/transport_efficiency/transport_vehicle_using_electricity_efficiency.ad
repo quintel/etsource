@@ -1,12 +1,30 @@
 - query =
     EACH(
-     UPDATE(OUTPUT_SLOTS(V(transport_car_using_electricity),passenger_kms), conversion, USER_INPUT()),
-     UPDATE(OUTPUT_SLOTS(V(transport_bus_using_electricity),passenger_kms), conversion, USER_INPUT()),
-     UPDATE(OUTPUT_SLOTS(V(transport_bicycle_using_electricity),passenger_kms), conversion, USER_INPUT()),
-     UPDATE(OUTPUT_SLOTS(V(transport_tram_using_electricity),passenger_kms), conversion, USER_INPUT()),
-     UPDATE(OUTPUT_SLOTS(V(transport_motorcycle_using_electricity),passenger_kms), conversion, USER_INPUT()),
-     UPDATE(OUTPUT_SLOTS(V(transport_van_using_electricity),freight_tonne_kms), conversion, USER_INPUT()),
-     UPDATE(OUTPUT_SLOTS(V(transport_truck_using_electricity),freight_tonne_kms), conversion, USER_INPUT())
+      UPDATE(
+        OUTPUT_SLOTS(
+          V(
+            transport_car_using_electricity,
+            transport_bus_using_electricity,
+            transport_bicycle_using_electricity,
+            transport_tram_using_electricity,
+            transport_motorcycle_using_electricity
+          ),
+          passenger_kms
+        ),
+        conversion,
+        USER_INPUT()
+      ),
+      UPDATE(
+        OUTPUT_SLOTS(
+          V(
+            transport_van_using_electricity,
+            transport_truck_using_electricity
+          ),
+          freight_tonne_kms
+        ),
+        conversion,
+        USER_INPUT()
+      )
     )
 - priority = 0
 - max_value = 3.0
