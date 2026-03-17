@@ -1,4 +1,4 @@
-ruby '~> 3.2.7'
+ruby '~> 3.4.7'
 
 source 'https://rubygems.org'
 
@@ -11,13 +11,13 @@ gem 'rake'
 
 group :development, :test do
   gem 'roo'
-  gem 'atlas',    ref: '33f32a4', github: 'quintel/atlas'
+  gem 'atlas',    ref: 'f0fb6be', github: 'quintel/atlas'
 end
 
 group :test do
   gem 'rspec'
   gem 'rspec_junit_formatter'
 
-  gem 'refinery', ref: 'c39c9b1', github: 'quintel/refinery'
-  gem 'rubel',    ref: 'e36554a', github: 'quintel/rubel'
+  gem 'refinery', ref: '36b8e34', github: 'quintel/refinery'
+  gem 'rubel',    ref: '9fe7010', github: 'quintel/rubel'
 end
