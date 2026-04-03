@@ -2,8 +2,8 @@
 
 - query =
    IF(
-       V(energy_power_turbine_network_gas, output_of_electricity) == 0,
+       V(energy_power_turbine_network_gas_dispatchable, output_of_electricity) == 0,
        -> { '-' },
-       -> { V(energy_power_turbine_network_gas, capital_expenditures_per(:mwh_electricity)) }
+       -> { V(energy_power_turbine_network_gas_dispatchable, capital_expenditures_per(:mwh_electricity)) }
    )
 - unit = EUR/MWh
