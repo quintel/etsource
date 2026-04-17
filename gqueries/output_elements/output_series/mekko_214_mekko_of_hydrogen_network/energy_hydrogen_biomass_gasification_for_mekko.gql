@@ -1,2 +1,8 @@
 - unit = PJ
-- query = DIVIDE(V(energy_hydrogen_biomass_gasification,output_of_hydrogen),BILLIONS)
+- query =
+    DIVIDE( 
+        SUM (V(energy_hydrogen_biomass_gasification,output_of_hydrogen), 
+            V(energy_hydrogen_biomass_gasification_ccs,output_of_hydrogen)),
+            BILLIONS
+            )
+
