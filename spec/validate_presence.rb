@@ -156,7 +156,6 @@ REQUIRED_GQUERIES = %i[
   costs_per_mwh_hydrogen_by_import
   fossil_co2_emissions_of_produced_hydrogen
   emitted_biogenic_co2_emissions_of_produced_hydrogen
-  energy_hydrogen_biomass_gasification_ccs_for_mekko
   energy_hydrogen_biomass_gasification_for_mekko
   energy_hydrogen_electrolysis_solar_electricity_for_mekko
   energy_hydrogen_electrolysis_wind_electricity_for_mekko
