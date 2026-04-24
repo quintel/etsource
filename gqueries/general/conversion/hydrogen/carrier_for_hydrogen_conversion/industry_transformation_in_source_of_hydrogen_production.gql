@@ -1,0 +1,13 @@
+# Hydrogen production by industry transformation nodes
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(industry_transformation),
+          output_of_hydrogen
+        )
+      ),
+      BILLIONS
+    )
