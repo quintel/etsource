@@ -1,6 +1,22 @@
 namespace :import do
   # Import emissions.csv files from ETDataset to ETSource datasets.
-  # See task description at the bottom for usage examples.
+
+  desc <<-DESC
+    Import emissions.csv files from ETDataset to ETSource datasets.
+
+    Auto-discovers all emissions.csv files in ETDataset and imports them to matching datasets in ETSource.
+    Uses datasets.yml for naming resolution (base years, multi-year datasets, special cases).
+
+    Optional ENV parameters:
+      DATASET   - Import only this dataset (country code)
+      YEAR      - Use this year (otherwise looks up in datasets.yml)
+      YEAR_NAME - If set, appends year to dataset name (e.g., 'nl2019' not 'nl')
+
+    Examples:
+      rake import:emissions                              # Auto-discover and import all
+      rake import:emissions DATASET=nl YEAR=2019         # Import nl/2019 → datasets/nl/
+      rake import:emissions DATASET=nl YEAR=2019 YEAR_NAME=1  # Import nl/2019 → datasets/nl2019/
+  DESC
   task emissions: :environment do
     def cp_csv(from, to)
       to = to.join(from.basename) if to.directory? || !to.to_s.match(/\.(csv|ad)$/)
@@ -105,20 +121,3 @@ namespace :import do
     puts "\nImported #{imported_count} emissions.csv file#{'s' unless imported_count == 1}"
   end
 end
-
-desc <<-DESC
-  Import emissions.csv files from ETDataset to ETSource datasets.
-
-  Auto-discovers all emissions.csv files in ETDataset and imports them to matching datasets in ETSource.
-  Uses datasets.yml for naming resolution (base years, multi-year datasets, special cases).
-
-  Optional ENV parameters:
-    DATASET   - Import only this dataset (country code)
-    YEAR      - Use this year (otherwise looks up in datasets.yml)
-    YEAR_NAME - If set, appends year to dataset name (e.g., 'nl2019' not 'nl')
-
-  Examples:
-    rake import:emissions                              # Auto-discover and import all
-    rake import:emissions DATASET=nl YEAR=2019         # Import nl/2019 → datasets/nl/
-    rake import:emissions DATASET=nl YEAR=2019 YEAR_NAME=1  # Import nl/2019 → datasets/nl2019/
-DESC
