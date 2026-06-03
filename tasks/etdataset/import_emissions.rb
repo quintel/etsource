@@ -13,9 +13,9 @@ namespace :import do
       YEAR_NAME - If set, appends year to dataset name (e.g., 'nl2019' not 'nl')
 
     Examples:
-      rake import:emissions                              # Auto-discover and import all
-      rake import:emissions DATASET=nl YEAR=2019         # Import nl/2019 → datasets/nl/
-      rake import:emissions DATASET=nl YEAR=2019 YEAR_NAME=1  # Import nl/2019 → datasets/nl2019/
+      rake import:emissions                                       # Auto-discover and import all
+      rake import:emissions DATASET=nl YEAR=2019                  # Import nl/2019 → datasets/nl/
+      rake import:emissions DATASET=nl YEAR=2019 YEAR_NAME=true   # Import nl/2019 → datasets/nl2019/
   DESC
   task emissions: :environment do
     def cp_csv(from, to)
