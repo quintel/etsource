@@ -1,3 +1,6 @@
+# Updates both useful demand for international shipping and other_ghg emissions value
+# Start year value for other_ghg is taken from emissions file and converted from kton to kg
+
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
@@ -7,8 +10,18 @@
 - update_period = both
 
 - query =
-    UPDATE(
-      V(bunkers_useful_demand_ships),
-      preset_demand,
-      V(bunkers_total_useful_demand_ships, preset_demand) * (USER_INPUT() / 100)
+    other_ghg_start_value = PRODUCT(EMISSIONS(bunkers_international_navigation, energetic, other_ghg), MILLIONS);
+    international_share = DIVIDE(USER_INPUT(), 100.0);
+
+    EACH(
+      UPDATE(
+        V(bunkers_useful_demand_ships),
+        preset_demand,
+        PRODUCT(V(bunkers_total_useful_demand_ships, preset_demand), international_share)
+      ),
+      UPDATE(
+        MV(bunkers_international_navigation_energetic_other_ghg),
+        preset_demand,
+        PRODUCT(other_ghg_start_value, international_share)
+      )
     )
