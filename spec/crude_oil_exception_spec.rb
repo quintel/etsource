@@ -39,8 +39,8 @@ module CrudeOilException
     return false unless node.get(:model).use == 'energetic'
     return false if node.out_edges(CARRIER).none?
 
-    carriers = node.in_edges.map(&:label).uniq
-    carriers.any? { |c| biogenic?(c) } && carriers.any? { |c| fossil?(c) }
+    incoming = node.in_edges
+    incoming.any? { |edge| biogenic?(edge.label) } && incoming.any? { |edge| fossil?(edge.label) }
   end
 
   # Every crude_oil edge reachable downstream of +node+ by following crude_oil
@@ -70,7 +70,8 @@ RSpec.describe ':emissions_skip_crude_oil_mix edge group' do
   describe 'every crude_oil edge downstream of a blending node' do
     downstream_edges.each do |edge|
       it "#{edge.key} carries #{CrudeOilException::GROUP}" do
-        expect(edge.groups).to include(CrudeOilException::GROUP)
+        expect(edge.groups.include?(CrudeOilException::GROUP)).to be(true),
+          "#{edge.key} should carry #{CrudeOilException::GROUP} but does not"
       end
     end
   end
@@ -80,7 +81,8 @@ RSpec.describe ':emissions_skip_crude_oil_mix edge group' do
 
     marked_edges.each do |edge|
       it "#{edge.key} is a crude_oil edge downstream of a blending node" do
-        expect(downstream_keys).to include(edge.key)
+        expect(downstream_keys.include?(edge.key)).to be(true),
+          "#{edge.key} carries #{CrudeOilException::GROUP} but should not"
       end
     end
   end
