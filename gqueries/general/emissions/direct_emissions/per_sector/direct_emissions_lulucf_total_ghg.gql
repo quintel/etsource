@@ -1,0 +1,15 @@
+- unit = mt
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(emissions_lulucf),
+          direct_reporting_emissions_total_ghg_emissions
+        ),
+        MV(
+          MG(emissions_lulucf),
+          direct_reporting_emissions_total_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )
