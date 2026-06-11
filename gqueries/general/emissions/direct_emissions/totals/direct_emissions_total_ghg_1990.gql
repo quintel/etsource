@@ -1,0 +1,16 @@
+# Total GHG emissions incl. indirect emissions, LULUCF and international transport
+
+- unit = mt
+- query =
+    SUM(
+      Q(direct_emissions_energy_total_ghg_1990),
+      Q(direct_emissions_industry_total_ghg_1990),
+      Q(direct_emissions_transport_total_ghg_1990),
+      Q(direct_emissions_buildings_total_ghg_1990),
+      Q(direct_emissions_households_total_ghg_1990),
+      Q(direct_emissions_agriculture_total_ghg_1990),
+      Q(direct_emissions_other_total_ghg_1990),
+      Q(direct_emissions_lulucf_total_ghg_1990),
+      Q(direct_emissions_waste_total_ghg_1990),
+      Q(direct_emissions_bunkers_total_ghg_1990)
+    )
