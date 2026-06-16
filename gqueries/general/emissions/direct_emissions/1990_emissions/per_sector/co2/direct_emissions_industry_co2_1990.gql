@@ -1,0 +1,18 @@
+- unit = mt
+- query =
+    DIVIDE(
+      SUM(
+        EMISSIONS(industry_aluminium, non_energetic, co2, 1990),
+        EMISSIONS(industry_chemicals, non_energetic, co2, 1990),
+        EMISSIONS(industry_fertilizers, non_energetic, co2, 1990),
+        EMISSIONS(industry_food, non_energetic, co2, 1990),
+        EMISSIONS(industry_non_specified, energetic, co2, 1990),
+        EMISSIONS(industry_other, non_energetic, co2, 1990),
+        EMISSIONS(industry_other_metals, non_energetic, co2, 1990),
+        EMISSIONS(industry_paper, non_energetic, co2, 1990),
+        EMISSIONS(industry_refineries, energetic, co2, 1990),
+        EMISSIONS(industry_refineries, non_energetic, co2, 1990),
+        EMISSIONS(industry_steel, non_energetic, co2, 1990)
+      ),
+      THOUSANDS
+    )
