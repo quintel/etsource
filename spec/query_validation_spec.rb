@@ -36,7 +36,7 @@ RSpec.describe 'Query validation' do
   Atlas::Gquery.all.each do |gquery|
     describe "Gquery: #{gquery.key}" do
       REFERENCE_TYPES.each do |reference_type|
-        it "does not refer to any missing #{reference_type.label}" do
+        it "references existing #{reference_type.label} keys" do
           missing_keys = reference_type.missing_keys(gquery.query)
 
           messages = missing_keys.map do |missing_key|
