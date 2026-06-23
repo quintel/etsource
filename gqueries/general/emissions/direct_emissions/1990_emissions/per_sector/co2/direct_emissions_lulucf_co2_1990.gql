@@ -1,0 +1,11 @@
+# LULUCF removals should be handled as negative CO2 emissions
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        EMISSIONS(lulucf_emissions, non_energetic, co2, 1990),
+        NEG(EMISSIONS(lulucf_removals, non_energetic, co2, 1990))
+      ),
+      THOUSANDS
+    )

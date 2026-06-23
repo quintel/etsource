@@ -1,0 +1,13 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        EMISSIONS(energy_ccus, non_energetic, co2, 1990),
+        EMISSIONS(energy_electricity_and_heat_production, energetic, co2, 1990),
+        EMISSIONS(energy_fuels_production, energetic, co2, 1990),
+        EMISSIONS(energy_fugitive_emissions, non_energetic, co2, 1990),
+        EMISSIONS(energy_hydrogen_production, non_energetic, co2, 1990),
+        EMISSIONS(energy_methanol_production, non_energetic, co2, 1990)
+      ),
+      THOUSANDS
+    )
