@@ -1,9 +1,6 @@
 - unit = MT
 - query =
     DIVIDE(
-      SUM(
-        EMISSIONS(other_non_specified, energetic, other_ghg, 1990),
-        EMISSIONS(other_other_transportation, energetic, other_ghg, 1990)
-      ),
+      EMISSIONS(emissions_sector, "Other", other_ghg, 1990),
       THOUSANDS
     )
