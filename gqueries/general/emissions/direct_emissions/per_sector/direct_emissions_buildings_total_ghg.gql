@@ -3,11 +3,11 @@
     DIVIDE(
       SUM(
         V(
-          G(emissions_buildings),
+          SECTOR(emissions_sector, "Buildings"),
           direct_reporting_emissions_total_ghg_emissions
         ),
         MV(
-          MG(emissions_buildings),
+          MSECTOR(emissions_sector, "Buildings"),
           direct_reporting_emissions_total_ghg_emissions
         )
       ),
