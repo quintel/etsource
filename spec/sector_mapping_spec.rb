@@ -57,6 +57,23 @@ RSpec.describe 'Sector mapping validation' do
     schemes & rows.filter_map { |row| row[:sector_label] }.uniq
   end
 
+  # Check 7: every mapping-column reference in the direct emissions export config
+  # (`sector_mapping` `value:`s and the `rows: require:`/`rows: order_by:` rules) names
+  # a real column of the sector mapping CSV.
+  def export_config_column_references(config)
+    schema = config['schema'] || []
+    rows = config['rows']
+
+    schema_refs = schema.select { |column| column['type'] == 'sector_mapping' }.map { |column| column['value'] }
+    rows_refs = rows.is_a?(Hash) ? [rows['require'], rows['order_by']] : []
+
+    (schema_refs + rows_refs).compact
+  end
+
+  def unknown_mapping_columns(config)
+    export_config_column_references(config).reject { |reference| mapping.scheme?(reference) }
+  end
+
   # Check 5: static scan of a GQL string for literal scheme-form calls which
   # name an unknown scheme or an unresolvable value. Returns a list of messages.
   CALL_RE = /\b(SECTOR|MSECTOR|EMISSIONS)\(([^()]*)\)/
@@ -148,6 +165,19 @@ RSpec.describe 'Sector mapping validation' do
     end
   end
 
+  describe 'check 7: direct emissions export config references real mapping columns' do
+    it 'names only real sector_mapping columns in "value:", "require:" and "order_by:"' do
+      config = Atlas::Config.read('direct_emissions_csv')
+      offenders = unknown_mapping_columns(config)
+
+      expect(offenders).to(
+        be_empty,
+        "direct_emissions_csv.yml references unknown mapping column(s) #{offenders.inspect}; " \
+        "valid columns: #{mapping.scheme_names.inspect}"
+      )
+    end
+  end
+
   describe 'check 6: reverse coverage is deliberately NOT enforced' do
     it 'allows mapping rows with zero labelled nodes during incremental rollout' do
       # Intentionally no assertion: a mapping row without a labelled node is
@@ -201,6 +231,36 @@ RSpec.describe 'Sector mapping validation' do
 
     it 'check 5 leaves legacy one-argument SECTOR untouched' do
       expect(scan_offences("SECTOR(households)", 'test')).to eq([])
+    end
+
+    it 'check 7 flags an unknown "sector_mapping" column value' do
+      config = {
+        'schema' => [{ 'type' => 'sector_mapping', 'value' => 'impossible' }],
+        'rows' => { 'require' => 'emissions_sector' }
+      }
+
+      expect(unknown_mapping_columns(config)).to eq(['impossible'])
+    end
+
+    it 'check 7 flags an unknown "rows: require:" column' do
+      config = { 'schema' => [], 'rows' => { 'require' => 'impossible' } }
+
+      expect(unknown_mapping_columns(config)).to eq(['impossible'])
+    end
+
+    it 'check 7 flags an unknown "rows: order_by:" column' do
+      config = { 'schema' => [], 'rows' => { 'require' => 'emissions_sector', 'order_by' => 'impossible' } }
+
+      expect(unknown_mapping_columns(config)).to eq(['impossible'])
+    end
+
+    it 'check 7 accepts a config naming only real mapping columns' do
+      config = {
+        'schema' => [{ 'type' => 'sector_mapping', 'value' => 'ipcc_crt_code_agg' }],
+        'rows' => { 'require' => 'emissions_sector', 'order_by' => 'ipcc_crt_code' }
+      }
+
+      expect(unknown_mapping_columns(config)).to eq([])
     end
   end
 
