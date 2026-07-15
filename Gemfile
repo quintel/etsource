@@ -11,7 +11,7 @@ gem 'rake'
 
 group :development, :test do
   gem 'roo'
-  gem 'atlas',         ref: '727707b', github: 'quintel/atlas'
+  gem 'atlas',         ref: '5d2e5b2', github: 'quintel/atlas'
   gem "ostruct"
 end
 
