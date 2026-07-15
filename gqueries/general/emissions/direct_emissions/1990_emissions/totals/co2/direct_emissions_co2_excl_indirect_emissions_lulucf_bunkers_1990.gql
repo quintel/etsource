@@ -1,0 +1,10 @@
+# Total CO2 emissions excl. indirect emissions, LULUCF and international transport for 1990
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_co2_incl_indirect_emissions_lulucf_bunkers_1990),
+      NEG(Q(direct_emissions_indirect_emissions_co2_1990)),
+      NEG(Q(direct_emissions_lulucf_co2_1990)),
+      NEG(Q(direct_emissions_bunkers_co2_1990))
+    )
