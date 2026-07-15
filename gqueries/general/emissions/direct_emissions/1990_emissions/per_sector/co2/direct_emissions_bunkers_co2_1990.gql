@@ -3,9 +3,9 @@
     DIVIDE(
       SUM(
         (INPUT_VALUE(bunkers_allocated_percentage_shipping) / 100.0)
-          * EMISSIONS(bunkers_international_navigation, energetic, co2, 1990),
+          * EMISSIONS(emissions_subsector, "International navigation", co2, 1990),
         (INPUT_VALUE(bunkers_allocated_percentage_aviation) / 100.0)
-          * EMISSIONS(bunkers_international_aviation, energetic, co2, 1990)
+          * EMISSIONS(emissions_subsector, "International aviation", co2, 1990)
       ),
       THOUSANDS
     )
