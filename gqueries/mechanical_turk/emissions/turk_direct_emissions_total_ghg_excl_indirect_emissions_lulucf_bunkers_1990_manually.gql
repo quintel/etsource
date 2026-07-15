@@ -1,0 +1,12 @@
+# Mechanical turk query for total GHG emissions excl. indirect, LULUCF and international transport
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_total_ghg_incl_indirect_emissions_lulucf_bunkers_1990),
+      NEG(Q(direct_emissions_indirect_emissions_co2_1990)),
+      NEG(Q(direct_emissions_lulucf_co2_1990)),
+      NEG(Q(direct_emissions_lulucf_other_ghg_1990)),
+      NEG(Q(direct_emissions_bunkers_co2_1990)),
+      NEG(Q(direct_emissions_bunkers_other_ghg_1990))
+    )

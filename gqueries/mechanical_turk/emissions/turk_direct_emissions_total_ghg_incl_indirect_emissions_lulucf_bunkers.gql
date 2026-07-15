@@ -1,18 +1,4 @@
-# Mechanical turk query for total GHG emissions incl. indirect, LULUCF and international transport
-# Sums results for all energy and molecule nodes
+# Total GHG emissions incl. indirect emissions, LULUCF and international transport
 
 - unit = MT
-- query =
-    DIVIDE(
-      SUM(
-        V(
-          ALL(),
-          direct_reporting_emissions_total_ghg_emissions
-        ),
-        MV(
-          MALL(),
-          direct_reporting_emissions_total_ghg_emissions
-        )
-      ),
-      BILLIONS
-    )
+- query = Q(direct_emissions_total_ghg_incl_indirect_emissions_lulucf_bunkers)
