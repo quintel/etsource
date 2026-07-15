@@ -7,9 +7,6 @@ require 'set'
 # Guarantees that the mapping, node labels, emissions store and the gquery corpus are
 # mutually consistent.
 RSpec.describe 'Sector mapping validation' do
-  # The GHGs the mapped EMISSIONS form aggregates over.
-  GHGS = %i[co2 other_ghg].freeze
-
   def normalise(value)
     Atlas::SectorMapping.normalize(value)
   end
@@ -31,33 +28,33 @@ RSpec.describe 'Sector mapping validation' do
     end
   end
 
-  # Check 2: every row's sector_label == slug(sector) + '_' + slug(subsector).
-  def rows_with_drifted_join_key(rows)
-    rows.reject do |row|
-      joined = [row[:emissions_sector], row[:emissions_subsector]].compact.join('_')
-      row[:sector_label] == (joined.empty? ? nil : joined.to_sym)
-    end
+  # Check 2: every (slug(etm_sector)_slug(etm_subsector), use) pair in the
+  # default dataset's emissions store exists as a mapping (sector_label, use)
+  # row. The store is a subset of the mapping — the reverse (a mapping pair
+  # without store data) is legal; (sector_label, use) is the store join key and
+  # the mapping's emissions_sector/emissions_subsector columns are display-only.
+  def store_pairs_off_mapping(store_pairs, pairs)
+    store_pairs.reject { |pair| pairs.include?(pair) }
   end
 
-  # Check 3: every mapping (sector, subsector, use) x GHG has an emissions row.
-  def uncovered_store_tuples(rows, present_tuples, allowlist)
-    rows.flat_map do |row|
-      GHGS.filter_map do |ghg|
-        tuple = [row[:emissions_sector], row[:emissions_subsector], row[:use], ghg]
-        next if present_tuples.include?(tuple) || allowlist.include?(tuple)
-
-        tuple
-      end
-    end
-  end
-
-  # Check 4: scheme names must not collide with the sector labels used as the
+  # Check 3: scheme names must not collide with the sector labels used as the
   # EMISSIONS first argument, or the EMISSIONS scheme dispatch is ambiguous.
   def scheme_label_collisions(schemes, rows)
     schemes & rows.filter_map { |row| row[:sector_label] }.uniq
   end
 
-  # Check 7: every mapping-column reference in the direct emissions export config
+  # Check 4: static scan of a GQL string for literal scheme-form calls which
+  # name an unknown scheme or an unresolvable value. Returns a list of messages.
+  CALL_RE = /\b(SECTOR|MSECTOR|EMISSIONS)\(([^()]*)\)/
+
+  def scan_offences(text, source)
+    text.to_s.scan(CALL_RE).flat_map do |func, arglist|
+      args = split_args(arglist).map { |arg| unquote(arg) }.reject(&:empty?)
+      offence_for(func, args, source)
+    end.compact
+  end
+
+  # Check 6: every mapping-column reference in the direct emissions export config
   # (`sector_mapping` `value:`s and the `rows: require:`/`rows: order_by:` rules) names
   # a real column of the sector mapping CSV.
   def export_config_column_references(config)
@@ -72,17 +69,6 @@ RSpec.describe 'Sector mapping validation' do
 
   def unknown_mapping_columns(config)
     export_config_column_references(config).reject { |reference| mapping.scheme?(reference) }
-  end
-
-  # Check 5: static scan of a GQL string for literal scheme-form calls which
-  # name an unknown scheme or an unresolvable value. Returns a list of messages.
-  CALL_RE = /\b(SECTOR|MSECTOR|EMISSIONS)\(([^()]*)\)/
-
-  def scan_offences(text, source)
-    text.to_s.scan(CALL_RE).flat_map do |func, arglist|
-      args = split_args(arglist).map { |arg| unquote(arg) }.reject(&:empty?)
-      offence_for(func, args, source)
-    end.compact
   end
 
   # ---------------------------------------------------------------------------
@@ -101,41 +87,24 @@ RSpec.describe 'Sector mapping validation' do
     end
   end
 
-  describe 'check 2: join-key pin' do
-    it 'has every row label equal to slug(sector)_slug(subsector)' do
-      offenders = rows_with_drifted_join_key(mapping.rows).map do |row|
-        "#{row[:sector_label].inspect} != " \
-        "#{row[:emissions_sector].inspect}_#{row[:emissions_subsector].inspect}"
+  describe 'check 2: default-dataset store pairs exist in the mapping' do
+    it 'has every emissions store (sector_subsector, use) pair as a mapping row' do
+      offenders = store_pairs_off_mapping(default_store_pairs, mapping.pairs).map do |label, use|
+        "(#{label.inspect}, #{use.inspect})"
       end
 
       expect(offenders).to(
         be_empty,
-        "Mapping rows whose sector_label drifted from sector+subsector:\n  " \
+        "Emissions store pairs in #{default_dataset} with no mapping (sector_label, use) row. " \
+        "The store key prefix slug(etm_sector)_slug(etm_subsector) must equal a mapping " \
+        "sector_label, or mapped EMISSIONS queries silently sum the pair as 0.0. Add the " \
+        "mapping row, or rename the label / the store's sector naming to match:\n  " \
         "#{offenders.join("\n  ")}"
       )
     end
   end
 
-  describe 'check 3: emissions store coverage' do
-    # Pending: emissions.csv does not yet carry a per-(sector, subsector, use)
-    # breakdown for most rows in the mapping — the store is populated
-    # incrementally alongside the mapping (see check 6). Re-enable once the
-    # emissions store catches up; an allowlist isn't practical while most of
-    # the mapping is still uncovered.
-    it 'has an emissions row for every mapping pair x GHG', pending: 'emissions store coverage is incomplete during incremental rollout' do
-      uncovered = uncovered_store_tuples(
-        mapping.rows, present_emissions_tuples, Set.new
-      ).map { |tuple| tuple.map(&:to_s).join('_') }
-
-      expect(uncovered).to(
-        be_empty,
-        "Mapping pairs with no emissions-store coverage in #{default_dataset} " \
-        "(add data or allowlist):\n  #{uncovered.join("\n  ")}"
-      )
-    end
-  end
-
-  describe 'check 4: scheme names disjoint from sector keys' do
+  describe 'check 3: scheme names disjoint from sector keys' do
     it 'has no scheme name equal to a sector label' do
       collisions = scheme_label_collisions(mapping.scheme_names, mapping.rows)
 
@@ -146,7 +115,7 @@ RSpec.describe 'Sector mapping validation' do
     end
   end
 
-  describe 'check 5: gqueries and inputs reference known schemes/values' do
+  describe 'check 4: gqueries and inputs reference known schemes/values' do
     Atlas::Gquery.all.each do |gquery|
       it "resolves every literal scheme-form call in gquery #{gquery.key}" do
         expect(scan_offences(gquery.query, "gquery #{gquery.key}")).to eq([])
@@ -165,7 +134,20 @@ RSpec.describe 'Sector mapping validation' do
     end
   end
 
-  describe 'check 7: direct emissions export config references real mapping columns' do
+  describe 'check 5: reverse coverage is deliberately NOT enforced' do
+    it 'allows mapping rows with zero labelled nodes during incremental rollout' do
+      # Intentionally no assertion: a mapping row without a labelled node is
+      # legal so `sector_label` can be populated incrementally. Documented here
+      # so its absence is a decision, not an oversight. The same stance applies
+      # to the emissions store: a mapping pair without store data is legal (the
+      # store is a subset of the mapping — see check 2 for the direction that
+      # IS enforced); a mapped query over such a pair reads as zero until its
+      # data lands.
+      expect(true).to be(true)
+    end
+  end
+
+  describe 'check 6: direct emissions export config references real mapping columns' do
     it 'names only real sector_mapping columns in "value:", "require:" and "order_by:"' do
       config = Atlas::Config.read('direct_emissions_csv')
       offenders = unknown_mapping_columns(config)
@@ -175,15 +157,6 @@ RSpec.describe 'Sector mapping validation' do
         "direct_emissions_csv.yml references unknown mapping column(s) #{offenders.inspect}; " \
         "valid columns: #{mapping.scheme_names.inspect}"
       )
-    end
-  end
-
-  describe 'check 6: reverse coverage is deliberately NOT enforced' do
-    it 'allows mapping rows with zero labelled nodes during incremental rollout' do
-      # Intentionally no assertion: a mapping row without a labelled node is
-      # legal so `sector_label` can be populated incrementally. Documented here
-      # so its absence is a decision, not an oversight.
-      expect(true).to be(true)
     end
   end
 
@@ -198,42 +171,44 @@ RSpec.describe 'Sector mapping validation' do
       expect(nodes_off_mapping([broken_node], Set.new)).to eq([broken_node])
     end
 
-    it 'check 2 flags a drifted join key' do
-      rows = [{ sector_label: :wrong, emissions_sector: :energy, emissions_subsector: :steel }]
-      expect(rows_with_drifted_join_key(rows)).to eq(rows)
+    it 'check 2 flags a store pair with no mapping row' do
+      store_pairs = Set.new([%i[transport_trams_and_metros energetic]])
+      expect(store_pairs_off_mapping(store_pairs, Set.new))
+        .to eq([%i[transport_trams_and_metros energetic]])
     end
 
-    it 'check 3 flags a pair with no store coverage' do
-      rows = [{ emissions_sector: :energy, emissions_subsector: :steel, use: :energetic }]
-      expect(uncovered_store_tuples(rows, Set.new, Set.new)).not_to be_empty
+    it 'check 2 accepts a store pair present in the mapping' do
+      store_pairs = Set.new([%i[industry_steel energetic]])
+      expect(store_pairs_off_mapping(store_pairs, Set.new([%i[industry_steel energetic]])))
+        .to eq([])
     end
 
-    it 'check 4 flags a scheme name that is also a sector label' do
+    it 'check 3 flags a scheme name that is also a sector label' do
       rows = [{ sector_label: :klimaattafel }]
       expect(scheme_label_collisions(%i[klimaattafel], rows)).to eq(%i[klimaattafel])
     end
 
-    it 'check 5 flags an unknown scheme in a call' do
+    it 'check 4 flags an unknown scheme in a call' do
       expect(scan_offences("SECTOR(impossible, query)", 'test'))
         .to include(/impossible/)
     end
 
-    it 'check 5 flags an unresolvable value in a known scheme' do
+    it 'check 4 flags an unresolvable value in a known scheme' do
       offences = scan_offences("SECTOR(ipcc_crt_code_agg, 'Nonexistent')", 'test')
 
       expect(offences).to include(/Nonexistent/)
       expect(offences).to include(/unresolvable value/)
     end
 
-    it 'check 5 accepts a resolvable literal call' do
+    it 'check 4 accepts a resolvable literal call' do
       expect(scan_offences("SECTOR(ipcc_crt_code_agg, '1.A.1')", 'test')).to eq([])
     end
 
-    it 'check 5 leaves legacy one-argument SECTOR untouched' do
+    it 'check 4 leaves legacy one-argument SECTOR untouched' do
       expect(scan_offences("SECTOR(households)", 'test')).to eq([])
     end
 
-    it 'check 7 flags an unknown "sector_mapping" column value' do
+    it 'check 6 flags an unknown "sector_mapping" column value' do
       config = {
         'schema' => [{ 'type' => 'sector_mapping', 'value' => 'impossible' }],
         'rows' => { 'require' => 'emissions_sector' }
@@ -242,19 +217,19 @@ RSpec.describe 'Sector mapping validation' do
       expect(unknown_mapping_columns(config)).to eq(['impossible'])
     end
 
-    it 'check 7 flags an unknown "rows: require:" column' do
+    it 'check 6 flags an unknown "rows: require:" column' do
       config = { 'schema' => [], 'rows' => { 'require' => 'impossible' } }
 
       expect(unknown_mapping_columns(config)).to eq(['impossible'])
     end
 
-    it 'check 7 flags an unknown "rows: order_by:" column' do
+    it 'check 6 flags an unknown "rows: order_by:" column' do
       config = { 'schema' => [], 'rows' => { 'require' => 'emissions_sector', 'order_by' => 'impossible' } }
 
       expect(unknown_mapping_columns(config)).to eq(['impossible'])
     end
 
-    it 'check 7 accepts a config naming only real mapping columns' do
+    it 'check 6 accepts a config naming only real mapping columns' do
       config = {
         'schema' => [{ 'type' => 'sector_mapping', 'value' => 'ipcc_crt_code_agg' }],
         'rows' => { 'require' => 'emissions_sector', 'order_by' => 'ipcc_crt_code' }
@@ -270,14 +245,16 @@ RSpec.describe 'Sector mapping validation' do
     @default_dataset ||= YAML.load_file(Atlas.data_dir.join('config/default_dataset.yml'))
   end
 
-  def present_emissions_tuples
-    @present_emissions_tuples ||= begin
+  # (label, use) pairs present in the default dataset's emissions store, where
+  # label is the store key prefix slug(etm_sector)_slug(etm_subsector) — joined
+  # exactly as the store loader joins it (per-part normalize, '_').
+  def default_store_pairs
+    @default_store_pairs ||= begin
       path = Atlas.data_dir.join('datasets', default_dataset, 'emissions.csv')
       CSV.read(path, headers: true).each_with_object(Set.new) do |row, set|
-        set << [
-          normalise(row['etm_sector']), normalise(row['etm_subsector']),
-          normalise(row['use']), normalise(row['ghg'])
-        ]
+        label = [normalise(row['etm_sector']), normalise(row['etm_subsector'])]
+          .compact.join('_').to_sym
+        set << [label, normalise(row['use'])]
       end
     end
   end
