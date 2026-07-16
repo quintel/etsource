@@ -1,11 +1,10 @@
 - output.loss = elastic
 - groups = [
-    emissions, emissions_energy, emissions_energy_electricity_and_heat_production,
-    preset_demand, central_production, electricity_production, ccs_technology_pair,
+    emissions, preset_demand, central_production, electricity_production, ccs_technology_pair,
     dispatchable_production, hv_net_supply, wacc_proven_tech, costs_production_power_plants,
     sankey_conversion_group
-  ]
-- use = undefined
+    ]
+- use = energetic
 - presentation_group = electricity_production_ccs
 - graph_methods = [output, full_load_hours]
 - availability = 0.87
@@ -28,6 +27,7 @@
 - heat_output_capacity = 0.0
 - land_use_per_unit = 0.4
 - takes_part_in_ets = 1.0
+- sector_label = energy_electricity_and_heat_production
 
 ~ demand = CENTRAL_PRODUCTION(energy_power_ultra_supercritical_oxyfuel_ccs_lignite, demand)
 ~ full_load_hours = CENTRAL_PRODUCTION(energy_power_ultra_supercritical_oxyfuel_ccs_lignite, full_load_hours)
