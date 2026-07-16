@@ -1,0 +1,17 @@
+# Net CO2 emissions defined by subtracting captured CO2 from gross produced CO2
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(emissions_sector, "Waste"),
+          "direct_reporting_emissions_co2_production - direct_reporting_emissions_co2_capture"
+        ),
+        MV(
+          MSECTOR(emissions_sector, "Waste"),
+          "direct_reporting_emissions_co2_production - direct_reporting_emissions_co2_capture"
+        )
+      ),
+      BILLIONS
+    )

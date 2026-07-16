@@ -1,0 +1,9 @@
+# Total CO2 emissions incl. indirect emissions, excl. LULUCF and international transport
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_co2_incl_indirect_emissions_lulucf_bunkers),
+      NEG(Q(direct_emissions_lulucf_co2)),
+      NEG(Q(direct_emissions_bunkers_co2))
+    )
