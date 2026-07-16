@@ -1,6 +1,7 @@
 - unit = MT
 - query =
     DIVIDE(
-      EMISSIONS(ipcc_crt_code_agg, "4", other_ghg, 1990),
+      SUM(EMISSIONS(sector_label, lulucf_emissions, other_ghg, 1990),
+      NEG(EMISSIONS(sector_label, lulucf_removals, other_ghg, 1990))),
     THOUSANDS
     )

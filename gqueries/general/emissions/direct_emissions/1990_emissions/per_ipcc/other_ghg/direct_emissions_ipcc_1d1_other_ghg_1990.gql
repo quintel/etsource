@@ -1,6 +1,11 @@
 - unit = MT
 - query =
     DIVIDE(
-      EMISSIONS(ipcc_crt_code_agg, "1.D.1", other_ghg, 1990),
-    THOUSANDS
+      SUM(
+        (INPUT_VALUE(bunkers_allocated_percentage_shipping) / 100.0)
+          * EMISSIONS(bunkers_international_navigation, energetic, other_ghg, 1990),
+        (INPUT_VALUE(bunkers_allocated_percentage_aviation) / 100.0)
+          * EMISSIONS(bunkers_international_aviation, energetic, other_ghg, 1990)
+      ),
+      THOUSANDS
     )
