@@ -4,8 +4,8 @@
 - query =
     DIVIDE(
       SUM(
-        EMISSIONS(emissions_sector, "LULUCF", co2, 1990),
-        NEG(EMISSIONS(emissions_subsector, "Removals", co2, 1990))
+        EMISSIONS(lulucf_emissions, non_energetic, co2, 1990),
+        NEG(EMISSIONS(lulucf_removals, non_energetic, co2, 1990))
       ),
       THOUSANDS
     )
