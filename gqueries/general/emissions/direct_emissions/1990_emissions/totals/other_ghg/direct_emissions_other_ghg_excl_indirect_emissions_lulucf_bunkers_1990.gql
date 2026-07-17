@@ -1,0 +1,10 @@
+# Total other GHG emissions excl. indirect emissions, LULUCF and international transport for 1990
+# Only indirect CO2 emissions are modelled, therefore there is no query for indirect other GHG
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_other_ghg_incl_indirect_emissions_lulucf_bunkers_1990),
+      NEG(Q(direct_emissions_lulucf_other_ghg_1990)),
+      NEG(Q(direct_emissions_bunkers_other_ghg_1990))
+    )

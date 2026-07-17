@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(emissions_sector, "Agriculture"),
+          direct_reporting_emissions_other_ghg_emissions
+        ),
+        MV(
+          MSECTOR(emissions_sector, "Agriculture"),
+          direct_reporting_emissions_other_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )

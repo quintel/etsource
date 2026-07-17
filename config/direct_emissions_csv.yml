@@ -1,14 +1,31 @@
 # Configuration for the direct emissions CSV
 #
+# Row selection (the export membership rule)
+# -------------------------------------------
+# `rows.require` names a column of `config/sector_mapping.csv`. A (sector_label, use) pair from that
+# mapping is exported iff its cell in that column has a value ("-" and blank both count as "no
+# value"). `rows.order_by` names a column whose raw display value orders those pairs (ascending; a
+# pair with a blank/"-" cell there sorts last; ties keep mapping-file order) — the column need not
+# appear in `schema:`. Each exported pair expands into one row per energy or molecule node whose own
+# `sector_label` and `use` attributes match the pair (never derived from group or config names) AND
+# which belongs to the node's `:emissions` group, sorted by node key. A pair with zero such nodes
+# legally yields zero rows. A future export (e.g. a costs export) can reuse this mechanism by
+# declaring a different `require` column; rows for it stay out of this export by carrying "-" in
+# `emissions_sector`.
+#
+# Column types
+# ------------
+#   - node_attribute:  Evaluates `value` (a node_api method/expression) on each expanded node, with an
+#                       optional `transform` applied to the result.
+#   - sector_mapping:   Renders the raw display value (never a normalized slug) of the named
+#                       sector_mapping column for the row's pair. A "-"/blank mapping cell renders as
+#                       an empty CSV cell.
+#
 # Schema
 # ------
-# Defines the columns included in the exported CSV, split into three categories:
-#
-# Row identifiers — must also be specified in each `rows` entry:
-#   - Group      Node group used to select which nodes appear in the export.
-#                The group name itself is not included in the data export.
-#   - Sector     ETM sector name
-#   - Subsector  ETM subsector name
+# Row identifiers, looked up from the sector mapping (not hand-typed):
+#   - Sector     sector_mapping: emissions_sector
+#   - Subsector  sector_mapping: emissions_subsector
 #
 # Auto-generated node attributes:
 #   - Key  Unique node key
@@ -22,19 +39,26 @@
 #   A transform is applied to each: emission values are given in kg, transformed to kton (× 1e-6)
 #   and rounded to 6 decimal places.
 #
-# Rows
-# ----
-# See explanation above for row identifiers, rows include:
-#   - Group
-#   - Sector
-#   - Subsector
+# Modellers may append further classification columns later by adding a `sector_mapping` entry here
+# — any column of `config/sector_mapping.csv` may be surfaced, in any order, under any header label.
+# For example:
+#   - name: Use
+#     label: "Use"
+#     type: sector_mapping
+#     value: use
+#   - name: IPCC_CRT_code_agg
+#     label: "IPCC CRT code (aggregated)"
+#     type: sector_mapping
+#     value: ipcc_crt_code_agg
 
 
 schema:
-  - name: Group
-    type: node_group
   - name: Sector
+    type: sector_mapping
+    value: emissions_sector
   - name: Subsector
+    type: sector_mapping
+    value: emissions_subsector
   - name: Key
     type: node_attribute
     value: key
@@ -64,162 +88,5 @@ schema:
 
 
 rows:
-  - Group: emissions_energy_electricity_and_heat_production
-    Sector: Energy
-    Subsector: Electricity and heat production
-  - Group: emissions_energy_fuels_production
-    Sector: Energy
-    Subsector: Fuels production
-  - Group: emissions_energy_steel
-    Sector: Energy
-    Subsector: Steel
-  - Group: emissions_energy_methanol_production
-    Sector: Energy
-    Subsector: Methanol production
-  - Group: emissions_energy_hydrogen_production
-    Sector: Energy
-    Subsector: Hydrogen production
-  - Group: emissions_energy_fugitive_emissions
-    Sector: Energy
-    Subsector: Fugitive emissions
-  - Group: emissions_energy_ccus
-    Sector: Energy
-    Subsector: CCUS
-  - Group: emissions_industry_non_specified
-    Sector: Industry
-    Subsector: Non-specified
-  - Group: emissions_industry_electricity_and_heat_production
-    Sector: Industry
-    Subsector: Electricity and heat production
-  - Group: emissions_industry_refineries
-    Sector: Industry
-    Subsector: Refineries
-  - Group: emissions_industry_steel
-    Sector: Industry
-    Subsector: Steel
-  - Group: emissions_industry_aluminium
-    Sector: Industry
-    Subsector: Aluminium
-  - Group: emissions_industry_other_metals
-    Sector: Industry
-    Subsector: Other metals
-  - Group: emissions_industry_fertilizers
-    Sector: Industry
-    Subsector: Fertilizers
-  - Group: emissions_industry_chemicals
-    Sector: Industry
-    Subsector: Chemicals
-  - Group: emissions_industry_paper
-    Sector: Industry
-    Subsector: Paper
-  - Group: emissions_industry_food
-    Sector: Industry
-    Subsector: Food
-  - Group: emissions_industry_other
-    Sector: Industry
-    Subsector: Other
-  - Group: emissions_transport_non_specified
-    Sector: National transport
-    Subsector: Non-specified
-  - Group: emissions_transport_cars
-    Sector: National transport
-    Subsector: Cars
-  - Group: emissions_transport_motorcycles
-    Sector: National transport
-    Subsector: Motorcycles
-  - Group: emissions_transport_bicycles
-    Sector: National transport
-    Subsector: Bicycles
-  - Group: emissions_transport_buses
-    Sector: National transport
-    Subsector: Buses
-  - Group: emissions_transport_trucks
-    Sector: National transport
-    Subsector: Trucks
-  - Group: emissions_transport_vans
-    Sector: National transport
-    Subsector: Vans
-  - Group: emissions_transport_trains
-    Sector: National transport
-    Subsector: Trains
-  - Group: emissions_transport_trams_metros
-    Sector: National transport
-    Subsector: Trams and metros
-  - Group: emissions_transport_domestic_navigation
-    Sector: National transport
-    Subsector: Domestic navigation
-  - Group: emissions_transport_domestic_aviation
-    Sector: National transport
-    Subsector: Domestic aviation
-  - Group: emissions_buildings_non_specified
-    Sector: Buildings
-    Subsector: Non-specified
-  - Group: emissions_buildings_space_heating
-    Sector: Buildings
-    Subsector: Space heating
-  - Group: emissions_buildings_cooling
-    Sector: Buildings
-    Subsector: Cooling
-  - Group: emissions_buildings_lighting
-    Sector: Buildings
-    Subsector: Lighting
-  - Group: emissions_buildings_appliances
-    Sector: Buildings
-    Subsector: Appliances
-  - Group: emissions_households_non_specified
-    Sector: Households
-    Subsector: Non-specified
-  - Group: emissions_households_space_heating
-    Sector: Households
-    Subsector: Space heating
-  - Group: emissions_households_hot_water
-    Sector: Households
-    Subsector: Hot water
-  - Group: emissions_households_cooling
-    Sector: Households
-    Subsector: Cooling
-  - Group: emissions_households_cooking
-    Sector: Households
-    Subsector: Cooking
-  - Group: emissions_households_lighting
-    Sector: Households
-    Subsector: Lighting
-  - Group: emissions_households_appliances
-    Sector: Households
-    Subsector: Appliances
-  - Group: emissions_agriculture_non_specified
-    Sector: Agriculture
-    Subsector: Non-specified
-  - Group: emissions_agriculture_electricity_and_heat_production
-    Sector: Agriculture
-    Subsector: Electricity and heat production
-  - Group: emissions_agriculture_heating
-    Sector: Agriculture
-    Subsector: Heating
-  - Group: emissions_other_non_specified
-    Sector: Other
-    Subsector: Non-specified
-  - Group: emissions_other_heating
-    Sector: Other
-    Subsector: Heating
-  - Group: emissions_other_other_transportation
-    Sector: Other
-    Subsector: Other transportation
-  - Group: emissions_other_indirect_emissions
-    Sector: Other
-    Subsector: Indirect emissions
-  - Group: emissions_lulucf_emissions
-    Sector: LULUCF
-    Subsector: Emissions
-  - Group: emissions_lulucf_removals
-    Sector: LULUCF
-    Subsector: Removals
-  - Group: emissions_waste_non_specified
-    Sector: Waste
-    Subsector: Non-specified
-  - Group: emissions_bunkers_international_aviation
-    Sector: International transport
-    Subsector: International aviation
-  - Group: emissions_bunkers_international_navigation
-    Sector: International transport
-    Subsector: International navigation
+  require: emissions_sector
+  order_by: ipcc_crt_code

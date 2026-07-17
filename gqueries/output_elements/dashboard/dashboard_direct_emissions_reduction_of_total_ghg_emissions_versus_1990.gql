@@ -1,0 +1,18 @@
+# Reduction of direct total GHG emissions future vs. 1990
+
+- query =
+    IF(
+      GRAPH().future?,
+      -> {
+        SUM(
+          -1,
+          DIVIDE(
+            Q(direct_emissions_total_ghg_incl_indirect_emissions_lulucf_bunkers),
+            Q(direct_emissions_total_ghg_incl_indirect_emissions_lulucf_bunkers_1990)
+          )
+        )
+      },
+      -> { 0 }
+    )
+
+- unit = factor

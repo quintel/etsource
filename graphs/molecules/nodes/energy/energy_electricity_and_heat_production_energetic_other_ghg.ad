@@ -1,7 +1,9 @@
 # Attribute scaling_exempt set to true to avoid scaling of value read from emissions.csv
 
-- groups = [preset_demand, emissions, emissions_energy, emissions_energy_electricity_and_heat_production]
+- groups = [preset_demand, emissions]
 - input.other_ghg = 1.0
 - scaling_exempt = true
+- use = energetic
+- sector_label = energy_electricity_and_heat_production
 
 ~ demand = EMISSIONS(energy_electricity_and_heat_production, energetic, other_ghg)

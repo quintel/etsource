@@ -1,0 +1,11 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        MV(
+          MSECTOR(emissions_subsector, "Indirect emissions"),
+          direct_reporting_emissions_total_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )

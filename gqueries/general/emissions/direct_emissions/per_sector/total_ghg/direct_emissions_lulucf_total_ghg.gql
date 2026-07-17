@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(emissions_sector, "LULUCF"),
+          direct_reporting_emissions_total_ghg_emissions
+        ),
+        MV(
+          MSECTOR(emissions_sector, "LULUCF"),
+          direct_reporting_emissions_total_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )
