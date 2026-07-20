@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(ipcc_crt_code_agg, "ind_CO2"),
+          "direct_reporting_emissions_co2_production - direct_reporting_emissions_co2_capture"
+        ),
+        MV(
+          MSECTOR(ipcc_crt_code_agg, "ind_CO2"),
+          "direct_reporting_emissions_co2_production - direct_reporting_emissions_co2_capture"
+        )
+      ),
+      BILLIONS
+    )
