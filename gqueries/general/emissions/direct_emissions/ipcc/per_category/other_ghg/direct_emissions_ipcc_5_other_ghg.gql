@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(ipcc_crt_code_agg, "5"),
+          direct_reporting_emissions_other_ghg_emissions
+        ),
+        MV(
+          MSECTOR(ipcc_crt_code_agg, "5"),
+          direct_reporting_emissions_other_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )
