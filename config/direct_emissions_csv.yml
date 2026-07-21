@@ -4,8 +4,9 @@
 # -------------------------------------------
 # `rows.require` names a column of `config/sector_mapping.csv`. A (sector_label, use) pair from that
 # mapping is exported iff its cell in that column has a value ("-" and blank both count as "no
-# value"). `rows.order_by` names a column whose raw display value orders those pairs (ascending; a
-# pair with a blank/"-" cell there sorts last; ties keep mapping-file order) — the column need not
+# value"). `rows.order_by` names a column whose raw display value orders those pairs (ascending, and
+# digit runs compare by value, so "2.B.10.a" follows "2.B.8.a"; a pair with a blank/"-" cell there
+# sorts last; ties keep mapping-file order) — the column need not
 # appear in `schema:`. Each exported pair expands into one row per energy or molecule node whose own
 # `sector_label` and `use` attributes match the pair (never derived from group or config names) AND
 # which belongs to the node's `:emissions` group, sorted by node key. A pair with zero such nodes
@@ -19,35 +20,43 @@
 #                       optional `transform` applied to the result.
 #   - sector_mapping:   Renders the raw display value (never a normalized slug) of the named
 #                       sector_mapping column for the row's pair. A "-"/blank mapping cell renders as
-#                       an empty CSV cell.
+#                       "-", so the exported cell reads back the way it is written in the mapping.
+#                       This is display only: a "-" cell stays unqueryable, and a "-" in the
+#                       `rows.require` column still excludes the pair from the export (see above).
 #
 # Schema
 # ------
+# `name` is the CSV header, and the columns below appear in the exported order.
+
 # Row identifiers, looked up from the sector mapping (not hand-typed):
-#   - Sector     sector_mapping: emissions_sector
-#   - Subsector  sector_mapping: emissions_subsector
+#   - Sector                          sector_mapping: emissions_sector
+#   - Subsector                       sector_mapping: emissions_subsector
+#   - IPCC CRT code                   sector_mapping: ipcc_crt_code
+#   - IPCC CRT category               sector_mapping: ipcc_crt_category
+#   - IPCC CRT subcategory 1st order  sector_mapping: ipcc_crt_subcategory_1st_order
+#   - IPCC CRT subcategory 2nd order  sector_mapping: ipcc_crt_subcategory_2nd_order
+#   - IPCC CRT subcategory 3rd order  sector_mapping: ipcc_crt_subcategory_3rd_order
+#   The subcategory columns are the ones carrying "-" in the mapping, and export it verbatim.
 #
 # Auto-generated node attributes:
 #   - Key  Unique node key
 #   - GHG  Greenhouse gas type (CO2 or Other GHG), derived via ghg_carrier method
 #
 # Emission method columns.
-#   - CO2_production       Direct reporting CO2 production
-#   - CO2_capture          Direct reporting captured CO2
-#   - Other_GHG_emissions  Direct reporting other GHG emissions
-#   - Total_GHG_emissions  Direct reporting total GHG emissions
+#   - CO2 production [kton CO2-eq]       Direct reporting CO2 production
+#   - CO2 capture [kton CO2-eq]          Direct reporting captured CO2
+#   - Other GHG emissions [kton CO2-eq]  Direct reporting other GHG emissions
+#   - Total GHG emissions [kton CO2-eq]  Direct reporting total GHG emissions
 #   A transform is applied to each: emission values are given in kg, transformed to kton (× 1e-6)
 #   and rounded to 6 decimal places.
 #
 # Modellers may append further classification columns later by adding a `sector_mapping` entry here
-# — any column of `config/sector_mapping.csv` may be surfaced, in any order, under any header label.
+# — any column of `config/sector_mapping.csv` may be surfaced, in any order, under any header.
 # For example:
 #   - name: Use
-#     label: "Use"
 #     type: sector_mapping
 #     value: use
-#   - name: IPCC_CRT_code_agg
-#     label: "IPCC CRT code (aggregated)"
+#   - name: "IPCC CRT code (aggregated)"
 #     type: sector_mapping
 #     value: ipcc_crt_code_agg
 
@@ -79,23 +88,19 @@ schema:
   - name: GHG
     type: node_attribute
     value: ghg_carrier
-  - name: CO2_production
-    label: "CO2 production [kton CO2-eq]"
+  - name: "CO2 production [kton CO2-eq]"
     type: node_attribute
     value: direct_reporting_emissions_co2_production
     transform: "(value * 1e-6).round(6)"
-  - name: CO2_capture
-    label: "CO2 capture [kton CO2-eq]"
+  - name: "CO2 capture [kton CO2-eq]"
     type: node_attribute
     value: direct_reporting_emissions_co2_capture
     transform: "(value * 1e-6).round(6)"
-  - name: Other_GHG_emissions
-    label: "Other GHG emissions [kton CO2-eq]"
+  - name: "Other GHG emissions [kton CO2-eq]"
     type: node_attribute
     value: direct_reporting_emissions_other_ghg_emissions
     transform: "(value * 1e-6).round(6)"
-  - name: Total_GHG_emissions
-    label: "Total GHG emissions [kton CO2-eq]"
+  - name: "Total GHG emissions [kton CO2-eq]"
     type: node_attribute
     value: direct_reporting_emissions_total_ghg_emissions
     transform: "(value * 1e-6).round(6)"
