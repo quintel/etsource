@@ -3,31 +3,30 @@
 # Row selection (the export membership rule)
 # -------------------------------------------
 # `rows.require` names a column of `config/sector_mapping.csv`. A (sector_label, use) pair from that
-# mapping is exported iff its cell in that column has a value ("-" and blank both count as "no
-# value"). `rows.order_by` names a column whose raw display value orders those pairs (ascending, and
-# digit runs compare by value, so "2.B.10.a" follows "2.B.8.a"; a pair with a blank/"-" cell there
-# sorts last; ties keep mapping-file order) — the column need not
-# appear in `schema:`. Each exported pair expands into one row per energy or molecule node whose own
-# `sector_label` and `use` attributes match the pair (never derived from group or config names) AND
-# which belongs to the node's `:emissions` group, sorted by node key. A pair with zero such nodes
-# legally yields zero rows. A future export (e.g. a costs export) can reuse this mechanism by
+# mapping is exported if its cell in that column has a value ("-" and blank both count as "no
+# value").
+# `rows.order_by` names a column whose raw display value orders those pairs (ascending) — the column
+# need not appear in `schema:`.
+# Each exported pair expands into one row per energy or molecule node whose own
+# `sector_label` and `use` attributes match the pair AND which belongs to the node's `:emissions`
+# group, sorted by node key.
+# A future export (e.g. a costs export) can reuse this mechanism by
 # declaring a different `require` column; rows for it stay out of this export by carrying "-" in
 # `emissions_sector`.
 #
 # Column types
 # ------------
-#   - node_attribute:  Evaluates `value` (a node_api method/expression) on each expanded node, with an
+#   - node_attribute:   Evaluates `value` (a node_api method/expression) on each expanded node, with an
 #                       optional `transform` applied to the result.
-#   - sector_mapping:   Renders the raw display value (never a normalized slug) of the named
-#                       sector_mapping column for the row's pair. A "-"/blank mapping cell renders as
-#                       "-", so the exported cell reads back the way it is written in the mapping.
+#   - sector_mapping:   Renders the raw display value of the named sector_mapping column for the
+#.                      row's pair. A "-"/blank mapping cell renders as "-".
 #                       This is display only: a "-" cell stays unqueryable, and a "-" in the
 #                       `rows.require` column still excludes the pair from the export (see above).
 #
 # Schema
 # ------
 # `name` is the CSV header, and the columns below appear in the exported order.
-
+#
 # Row identifiers, looked up from the sector mapping (not hand-typed):
 #   - Sector                          sector_mapping: emissions_sector
 #   - Subsector                       sector_mapping: emissions_subsector
@@ -36,7 +35,6 @@
 #   - IPCC CRT subcategory 1st order  sector_mapping: ipcc_crt_subcategory_1st_order
 #   - IPCC CRT subcategory 2nd order  sector_mapping: ipcc_crt_subcategory_2nd_order
 #   - IPCC CRT subcategory 3rd order  sector_mapping: ipcc_crt_subcategory_3rd_order
-#   The subcategory columns are the ones carrying "-" in the mapping, and export it verbatim.
 #
 # Auto-generated node attributes:
 #   - Key  Unique node key
