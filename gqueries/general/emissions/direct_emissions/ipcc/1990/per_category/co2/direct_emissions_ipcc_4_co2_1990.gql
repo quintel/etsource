@@ -1,9 +1,6 @@
+# Uses the query for ETM sector LULUCF, which exactly matches IPCC category 5 LULUCF.
+# This is done since using the IPCC columns of the mapping file in a query could not distinguish
+# between emissions and removals for CO2.
+
 - unit = MT
-- query =
-    DIVIDE(
-      SUM(
-        EMISSIONS(lulucf_emissions, non_energetic, co2, 1990),
-        NEG(EMISSIONS(lulucf_removals, non_energetic, co2, 1990))
-      ),
-      THOUSANDS
-    )
+- query = Q(direct_emissions_lulucf_co2_1990)
