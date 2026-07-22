@@ -1,7 +1,9 @@
 - unit = MT
 - query =
     DIVIDE(
-      SUM(EMISSIONS(sector_label, lulucf_emissions, co2, 1990),
-      NEG(EMISSIONS(sector_label, lulucf_removals, co2, 1990))),
-    THOUSANDS
+      SUM(
+        EMISSIONS(lulucf_emissions, non_energetic, co2, 1990),
+        NEG(EMISSIONS(lulucf_removals, non_energetic, co2, 1990))
+      ),
+      THOUSANDS
     )
