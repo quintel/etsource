@@ -1,7 +1,10 @@
+# No separate handling required for emissions/removals since per definition, other GHG in the
+# LULUCF category can only be emissions. For the CO2 query direct_emissions_lulucf_co2_1990,
+# removals and emissions are handled separately.
+
 - unit = MT
 - query =
     DIVIDE(
-      SUM(EMISSIONS(sector_label, lulucf_emissions, other_ghg, 1990),
-      NEG(EMISSIONS(sector_label, lulucf_removals, other_ghg, 1990))),
-    THOUSANDS
+      EMISSIONS(emissions_sector, "LULUCF", other_ghg, 1990),
+      THOUSANDS
     )
