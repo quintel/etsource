@@ -8,7 +8,7 @@
 # pair with a blank/"-" cell there sorts last; ties keep mapping-file order) — the column need not
 # appear in `schema:`. Each exported pair expands into one row per energy or molecule node whose own
 # `sector_label` and `use` attributes match the pair (never derived from group or config names) AND
-# which belongs to the node's `:emissions` group, sorted by node key. A pair with zero such nodes
+# which belongs to the node's `:direct_emissions` group, sorted by node key. A pair with zero such nodes
 # legally yields zero rows. A future export (e.g. a costs export) can reuse this mechanism by
 # declaring a different `require` column; rows for it stay out of this export by carrying "-" in
 # `emissions_sector`.
