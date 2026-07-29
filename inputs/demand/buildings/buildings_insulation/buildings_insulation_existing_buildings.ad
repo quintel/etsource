@@ -1,0 +1,21 @@
+# This input lets you change the insulation of existing buildings by reducing it with a certain percentage
+# This percentage is used update: 
+### The useful_demand
+### The typical_useful_demand 
+### The investment costs for insulation
+
+- query =
+    relative_change = (100 + USER_INPUT())/100;
+    EACH(
+      UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_present), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_buildings_present, relative_change),
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_present_after_solar_thermal), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_buildings_present)}))
+    )
+- priority = 1
+- max_value = 0.0
+- min_value = -100.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = %
+- update_period = future
+- update_type = mixed

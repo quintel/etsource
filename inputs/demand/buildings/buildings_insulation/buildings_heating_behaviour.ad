@@ -1,0 +1,20 @@
+# This input calculates the changed heat demand due to behavioural changes.
+# It only updates the demand. 
+# Its priority is delibaretely set low (0) to make sure it happens after the typical demand is changed due to insulation.
+# This input therefore does not udpate the typical_useful_demand_for_space_heating_buildings_present/future
+# The typical demand is used in the queries costs_of_insulation_buildings_present and costs_of_insulation_buildings_future
+
+- query =
+    relative_change = (100 + USER_INPUT())/100;
+    EACH(
+      UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_present), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, relative_change)
+    )
+- priority = 0
+- max_value = 50.0
+- min_value = -50.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = %
+- update_period = future
+- update_type = mixed
