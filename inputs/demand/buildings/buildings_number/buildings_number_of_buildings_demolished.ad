@@ -11,10 +11,6 @@
 # To make this work, the priority of this input is higher than the insulation inputs
 
 - query =
-    insulation_value_existing_buildings_future = QUERY_PRESENT(-> { AREA(typical_useful_demand_for_space_heating_buildings_present) });
-    typical_surface_area_per_unit = AREA(area_per_building_residence_equivalent);
-    heat_demand_per_unit = insulation_value_existing_buildings_future * typical_surface_area_per_unit * MJ_PER_KWH;
-
     total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_buildings)});
     number_of_units_demolished = USER_INPUT();
     number_of_existing_buildings_future = total_number_of_units_present - number_of_units_demolished;
