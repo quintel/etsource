@@ -1,5 +1,5 @@
-# This input lets you demolish existing buildings.
-# After you have set your number of demolished buildings it updates the following:
+# This input lets you build new buildings
+# After you have set your number of new buildings buildings it updates the following:
 ### useful demand for space heating
 ### useful demand for cooling
 ### useful demand for lighting
@@ -24,14 +24,18 @@
     relative_change = total_number_of_units_future / total_number_of_units_present;
 
     useful_heat_demand_new_buildings_future = number_of_new_units_future * heat_demand_per_unit;
+    useful_cooling_demand_future = relative_change * QUERY_PRESENT(-> {V(buildings_useful_demand_cooling, preset_demand)});
+    useful_lighting_demand_future = relative_change * QUERY_PRESENT(-> {V(buildings_useful_demand_light, preset_demand)});
+    useful_appliances_demand_future = relative_change * QUERY_PRESENT(-> {V(buildings_useful_demand_for_appliances, preset_demand)});
+    roof_surface_for_pv_future = relative_change * QUERY_PRESENT(-> {AREA(buildings_roof_surface_available_for_pv)});
 
     EACH(
       UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future), preset_demand, useful_heat_demand_new_buildings_future),
-      UPDATE_WITH_FACTOR(V(buildings_useful_demand_cooling), preset_demand, relative_change),
-      UPDATE_WITH_FACTOR(V(buildings_useful_demand_light), preset_demand, relative_change),
-      UPDATE_WITH_FACTOR(V(buildings_useful_demand_for_appliances), preset_demand, relative_change),
-      UPDATE_WITH_FACTOR(AREA(), buildings_roof_surface_available_for_pv,relative_change),
-      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), number_of_units, number_of_new_units_future),
+      UPDATE(V(buildings_useful_demand_cooling), preset_demand, useful_cooling_demand_future),
+      UPDATE(V(buildings_useful_demand_light), preset_demand, useful_lighting_demand_future),
+      UPDATE(V(buildings_useful_demand_for_appliances), preset_demand, useful_appliances_demand_future),
+      UPDATE(AREA(), buildings_roof_surface_available_for_pv, roof_surface_for_pv_future),
+      UPDATE(V(buildings_useful_demand_for_space_heating_buildings_future_after_solar_thermal), number_of_units, number_of_new_units_future)
     )
 - priority = 2
 - max_value_gql = present:AREA(present_number_of_buildings)
