@@ -1,0 +1,51 @@
+# This input slider lets you reduce or increase the heat demand for households solely by the behaviour.
+# Therefore it only affects the actual useful demand.
+# Unlike insulation it does not affect the typical heat demand and the insulation costs.
+# The priority is lower than the other heat demand input sliders. It therefore uses the demand that
+# is already calculated in other sliders. It can therefore update with factor, instead of calculating
+# everything here.
+
+# Every building type / construction period has to be updated individually. They are sorted by period.
+
+- query =
+    relative_change = (100 + USER_INPUT())/100;
+
+      EACH(
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_future), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_future), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_future), preset_demand, relative_change),
+
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_2005_present), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_2005_present), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_2005_present), preset_demand, relative_change),
+
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1985_2004), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1985_2004), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1985_2004), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1985_2004), preset_demand, relative_change),
+
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1965_1984), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1965_1984), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1965_1984), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1965_1984), preset_demand, relative_change),
+
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_1945_1964), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_1945_1964), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_1945_1964), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_1945_1964), preset_demand, relative_change),
+
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_before_1945), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_before_1945), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_before_1945), preset_demand, relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_before_1945), preset_demand, relative_change)
+      )
+- priority = 0
+- max_value = 50.0
+- min_value = -50.0
+- start_value = 0.0
+- step_value = 1.0
+- unit = %
+- update_period = future
+- update_type = mixed
