@@ -1,0 +1,19 @@
+# v2 - This is a simplified copy of households_share_of_terraced.ad.
+# The original file's own EACH(UPDATE(...)) only ran when this specific slider was
+# manually touched, so its start_value default of 25% was silently ignored whenever a
+# user only set the aggregate number_of_residences_new_v2 slider.
+#
+# This v2 version keeps only the share value itself. The actual number-of-units and
+# demand updates now happen centrally in number_of_residences_new_v2.ad, which reads
+# this slider via INPUT_VALUE(households_share_of_terraced_v2) - so the 25% default is
+# always applied, whether or not this slider is touched directly.
+
+- query = UPDATE()
+- share_group = households_new_residences
+- priority = 3
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 25.0
+- step_value = 1.0
+- unit = %
+- update_period = future
