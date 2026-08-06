@@ -1,14 +1,12 @@
 # This input slider keeps only the share value itself. The actual number-of-units and
-# demand updates now happen centrally in number_of_residences_demolished.ad, which
-# reads this slider via INPUT_VALUE(households_demolished_1945_1964) - so the 20%
-# default is always applied, whether or not this slider is touched directly.
+# demand updates happen centrally in number_of_residences_demolished.ad.
 
 - query = UPDATE()
 - share_group = households_demolished
-- priority = 3
+- priority = 4
 - max_value = 100.0
 - min_value = 0.0
 - start_value = 20.0
-- step_value = 1.0
+- step_value = 0.1
 - unit = %
 - update_period = future
