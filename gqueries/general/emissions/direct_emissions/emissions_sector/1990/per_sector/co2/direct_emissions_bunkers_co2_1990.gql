@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        PRODUCT(
+          DIVIDE(INPUT_VALUE(bunkers_allocated_percentage_shipping), 100.0),
+          EMISSIONS(emissions_subsector, "International navigation", co2, 1990)
+        ),
+        PRODUCT(
+          DIVIDE(INPUT_VALUE(bunkers_allocated_percentage_aviation), 100.0),
+          EMISSIONS(emissions_subsector, "International aviation", co2, 1990)
+        )
+      ),
+      THOUSANDS
+    )

@@ -1,0 +1,23 @@
+# Total other GHG emissions incl. indirect emissions (ind_co2), LULUCF (4) and international
+# transport(1.D.1).
+# Category 1.C (CO2 Transport and storage) only reports CO2 emissions and
+# therefore no query exists for other GHG.
+# Note that ind_co2 is not explicitly included here as indirect emissions are only modelled for CO2.
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_ipcc_1a1_other_ghg),
+      Q(direct_emissions_ipcc_1a2_other_ghg),
+      Q(direct_emissions_ipcc_1a3_other_ghg),
+      Q(direct_emissions_ipcc_1a4a_other_ghg),
+      Q(direct_emissions_ipcc_1a4b_other_ghg),
+      Q(direct_emissions_ipcc_1a4c_other_ghg),
+      Q(direct_emissions_ipcc_1a5_other_ghg),
+      Q(direct_emissions_ipcc_1b_other_ghg),
+      Q(direct_emissions_ipcc_1d1_other_ghg),
+      Q(direct_emissions_ipcc_2_other_ghg),
+      Q(direct_emissions_ipcc_3_other_ghg),
+      Q(direct_emissions_ipcc_4_other_ghg),
+      Q(direct_emissions_ipcc_5_other_ghg)
+    )
