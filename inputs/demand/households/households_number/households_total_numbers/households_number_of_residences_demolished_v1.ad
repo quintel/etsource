@@ -1,18 +1,18 @@
-# v2 - This is number_of_residences_demolished.ad, extended so that the per-building-type
-# and per-construction-period demolition breakdown (previously split across the
-# households_demolished_[period].ad files) is always applied.
-#
-# Reason: each households_demolished_[period].ad file's own EACH(UPDATE(...)) only ran
-# when that specific slider was manually touched. Setting only this slider (the total
-# number of residences demolished) never triggered them, so the per-period 20% defaults
-# were silently skipped. This version reads each period's share via
-# INPUT_VALUE(households_demolished_[period]_v2) - which resolves to the user value or
-# the 20% start_value regardless of whether that slider was touched - and performs the
-# breakdown and updates directly here, in a file that is guaranteed to run whenever this
-# slider has a value.
-#
-# The households_demolished_[period].ad files are now pure share sliders with no
-# side effects of their own (see those files for details).
+# In this input, the number of demolished households is set.
+# The hot water demand, number of unites for p2p electricity, roof area for PV and cooling demand
+# are updated purely based on the new total number of households.
+# Once the number of demolished households is set the demolished buildigns are
+# divided amongst the 20 sets of buildings (5 construction periods x 4 building types).
+# This is done based on the slider settings in households_demolished_share_per_construction_period
+# and the current share of buildings per type in each construction period.
+# Finally the total number of units and useful heat demand are updated for all 20 types.
+
+# Priorities of related inputs are set as follows:
+# - 4: shares of new buildings & shares of buildings demolished
+# - 3: number of new buildings & number of buildings demolished
+# - 2: setting weather curve
+# - 1: insulation sliders
+# - 0: behaviour slider & outdoor temperature
 
 - query =
     total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_residences)});

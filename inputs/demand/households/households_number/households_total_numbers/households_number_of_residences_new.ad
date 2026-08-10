@@ -1,23 +1,21 @@
-# v2 - This is number_of_residences_new.ad, extended so that the per-building-type
-# breakdown of new construction (previously split across the
-# households_share_of_[type].ad files) is always applied.
-#
-# Reason: each households_share_of_[type].ad file's own EACH(UPDATE(...)) only ran when
-# that specific slider was manually touched. Setting only this slider (the total number
-# of new residences) never triggered them, so the per-type 25% defaults were silently
-# skipped. This version reads each type's share via
-# INPUT_VALUE(households_share_of_[type]_v2) - which resolves to the user value or the
-# 25% start_value regardless of whether that slider was touched - and performs the
-# breakdown and updates directly here, in a file that is guaranteed to run whenever this
-# slider has a value.
-#
-# The households_share_of_[type]_v2.ad files are now pure share sliders with no side
-# effects of their own (see those files for details).
-### The update of insulation costs can potentially be deleted and only added in the insulation inputs
+# In this input, the number of new households is set.
+# The hot water demand, number of unites for p2p electricity, roof area for PV and cooling demand
+# are updated purely based on the new total number of households.
+# Once the number of new households is set the new buildigns are
+# divided amongst the 4 buildings types.
+# This is done based on the slider settings in households_new_buildings_share_per_type
+# Finally the total number of units and useful heat demand are updated for all 4 types.
+
+# Priorities of related inputs are set as follows:
+# - 4: shares of new buildings & shares of buildings demolished
+# - 3: number of new buildings & number of buildings demolished
+# - 2: setting weather curve
+# - 1: insulation sliders
+# - 0: behaviour slider & outdoor temperature
 
 - query =
     total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_residences)});
-    number_of_units_demolished = INPUT_VALUE(households_number_of_residences_demolished);
+    number_of_units_demolished = INPUT_VALUE(households_number_of_residences_demolished_v2a);
     number_of_existing_units_future = total_number_of_units_present - number_of_units_demolished;
     number_of_new_units_future = USER_INPUT();
     total_number_of_units_future = number_of_existing_units_future + number_of_new_units_future;
