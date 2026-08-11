@@ -7,15 +7,15 @@
 # Finally the total number of units and useful heat demand are updated for all 4 types.
 
 # Priorities of related inputs are set as follows:
-# - 4: shares of new buildings & shares of buildings demolished
+# - 4: shares of new buildings
 # - 3: number of new buildings & number of buildings demolished
 # - 2: setting weather curve
 # - 1: insulation sliders
-# - 0: behaviour slider & outdoor temperature
+# - 0: behaviour slider & outdoor temperature & households_flexibility_p2p_electricity_market_penetration
 
 - query =
     total_number_of_units_present = QUERY_PRESENT(-> { AREA(present_number_of_residences)});
-    number_of_units_demolished = INPUT_VALUE(households_number_of_residences_demolished_v2a);
+    number_of_units_demolished = Q(number_of_demolished_residences);
     number_of_existing_units_future = total_number_of_units_present - number_of_units_demolished;
     number_of_new_units_future = USER_INPUT();
     total_number_of_units_future = number_of_existing_units_future + number_of_new_units_future;
@@ -58,7 +58,7 @@
 
     EACH(
      UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_units_future),
-     UPDATE(V(households_flexibility_p2p_electricity), number_of_units, total_number_of_units_future),
+  	 UPDATE(V(households_flexibility_p2p_electricity), number_of_units, PRODUCT(total_number_of_units_future, DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))),
      UPDATE(AREA(), residences_roof_surface_available_for_pv, roof_surface_for_pv_future),
      UPDATE(V(households_useful_demand_for_cooling), preset_demand, useful_cooling_demand_future),
 
