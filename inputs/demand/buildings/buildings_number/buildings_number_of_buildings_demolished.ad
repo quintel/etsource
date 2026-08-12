@@ -3,7 +3,7 @@
 # - Useful demand for cooling (combined effect total nr of buildings)
 # - Useful demand for lighting (combined effect total nr of buildings)
 # - Useful demand for appliances (combined effect total nr of buildings)
-# - Building surface available for PV (combined effect total nr of buildings)
+# - Roof surface of buildings available for PV (combined effect total nr of buildings)
 # - Number of units of existing buildings
 #
 # Priority set to 3 to go before insulation, weather_curve_set, heating behaviour, appliances efficiency and
@@ -13,9 +13,7 @@
     number_of_existing_buildings_present = QUERY_PRESENT(-> { AREA(present_number_of_buildings)});
     number_of_buildings_demolished = USER_INPUT();
     number_of_existing_buildings_future = number_of_existing_buildings_present - number_of_buildings_demolished;
-
     number_of_new_buildings_future = INPUT_VALUE(buildings_number_of_buildings_new);
-
     total_number_of_buildings_future = number_of_existing_buildings_future + number_of_new_buildings_future;
 
     relative_change_existing_buildings = DIVIDE(number_of_existing_buildings_future, number_of_existing_buildings_present);
@@ -34,6 +32,7 @@
       UPDATE(AREA(), buildings_roof_surface_available_for_pv, roof_surface_for_pv_future),
       UPDATE(V(buildings_useful_demand_for_space_heating_buildings_present_after_solar_thermal), number_of_units, number_of_existing_buildings_future)
     )
+
 - priority = 3
 - max_value_gql = present:AREA(present_number_of_buildings)
 - min_value = 0.0
