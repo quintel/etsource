@@ -1,18 +1,19 @@
-# This input slider sets the demolished buildings for one construction peroid.
-# It updates the total number of residences, total roof surface for pv, total cooling demand.
-# It alsl updates the number of units and useful demand for all building types within this construction period individually.
+# This input sets the demolished residence for one construction period.
+# It updates the total number of residences, roof surface for pv, total cooling demand.
+# It also updates the number of units and useful demand for all residence types within this construction period individually.
+#
 # Related priorities are set as follows:
-# - 4: shares of new buildings
+# - 4: shares of new residences
 # - 3: number of new buildings & number of buildings demolished
-# - 2: setting weather curve
+# - 2: settings_weather_curve_set
 # - 1: insulation sliders
 # - 0: behaviour slider & outdoor temperature & households_flexibility_p2p_electricity_market_penetration.ad
 
 - query =
     total_number_of_residences_present = QUERY_PRESENT(-> { AREA(present_number_of_residences)});
-    number_of_residences_present_1965_1984 = QUERY_PRESENT(-> {Q(number_of_residences_1965_1984)});
-    number_of_residences_demolished_1965_1984 = USER_INPUT();
-    number_of_residences_future_1965_1984 = number_of_residences_present_1965_1984 - number_of_residences_demolished_1965_1984;
+    number_of_residences_present_before_1945 = QUERY_PRESENT(-> {Q(number_of_residences_before_1945)});
+    number_of_residences_demolished_before_1945 = USER_INPUT();
+    number_of_residences_future_before_1945 = number_of_residences_present_before_1945 - number_of_residences_demolished_before_1945;
 
     number_of_residences_demolished_total = Q(number_of_demolished_residences);
     number_of_residences_new = INPUT_VALUE(households_number_of_residences_new);
@@ -22,22 +23,26 @@
       number_of_residences_new);
 
     relative_change_total = DIVIDE(total_number_of_residences_future, total_number_of_residences_present);
-    relative_change_1965_1984 = DIVIDE(number_of_residences_future_1965_1984, number_of_residences_present_1965_1984);
+    relative_change_before_1945 = DIVIDE(number_of_residences_future_before_1945, number_of_residences_present_before_1945);
 
     roof_surface_for_pv_future = PRODUCT(relative_change_total, QUERY_PRESENT(-> {AREA(residences_roof_surface_available_for_pv)}));
     useful_cooling_demand_future = PRODUCT(relative_change_total, QUERY_PRESENT(-> {V(households_useful_demand_for_cooling, preset_demand)}));
 
     EACH(
       UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_residences_future),
-      UPDATE(V(households_flexibility_p2p_electricity), number_of_units, PRODUCT(total_number_of_residences_future, DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))),
       UPDATE(AREA(), residences_roof_surface_available_for_pv, roof_surface_for_pv_future),
       UPDATE(V(households_useful_demand_for_cooling), preset_demand, useful_cooling_demand_future),
+      UPDATE(
+        V(households_flexibility_p2p_electricity),
+        number_of_units,
+        PRODUCT(total_number_of_residences_future, DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))
+      ),
 
-      UPDATE_WITH_FACTOR(V(G(households_1965_1984)), preset_demand, relative_change_1965_1984),
-      UPDATE_WITH_FACTOR(V(G(households_1965_1984)), number_of_units, relative_change_1965_1984),
-      )
+      UPDATE_WITH_FACTOR(V(G(households_before_1945)), preset_demand, relative_change_before_1945),
+      UPDATE_WITH_FACTOR(V(G(households_before_1945)), number_of_units, relative_change_before_1945),
+    )
 - priority = 3
-- max_value_gql = present:Q(number_of_residences_1965_1984)
+- max_value_gql = present:Q(number_of_residences_before_1945)
 - min_value = 0.0
 - start_value = 0.0
 - step_value = 1.0

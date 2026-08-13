@@ -1,0 +1,19 @@
+# This input sets the share of new residences that will be apartments.
+# The input updates nothing but is used in the input total_number_of_residences_new.ad
+#
+# Priorities of related inputs are set as follows:
+# - 4: shares of new residences
+# - 3: number of new buildings & number of buildings demolished
+# - 2: settings_weather_curve_set
+# - 1: insulation sliders
+# - 0: behaviour slider & outdoor temperature & households_flexibility_p2p_electricity_market_penetration
+
+- query = UPDATE()
+- share_group = households_new_residences
+- priority = 4
+- max_value = 100.0
+- min_value = 0.0
+- start_value_gql = present:Q(households_share_of_apartments)
+- step_value = 0.1
+- unit = %
+- update_period = future
