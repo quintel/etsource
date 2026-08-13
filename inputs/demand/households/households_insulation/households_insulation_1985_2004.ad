@@ -19,7 +19,7 @@
 
 
 - query =
-    insulation_relative_change = (100 + USER_INPUT())/100;
+    insulation_relative_change = DIVIDE(100 + NEG(USER_INPUT()), 100.0);
 
     EACH(
       UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_apartments_1985_2004, insulation_relative_change),
@@ -38,8 +38,8 @@
       UPDATE(V(households_useful_demand_for_space_heating_terraced_houses_1985_2004), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_terraced_houses_1985_2004)}))
     )
 - priority = 1
-- max_value = 0.0
-- min_value = -100.0
+- max_value = 100.0
+- min_value = 0.0
 - start_value = 0.0
 - step_value = 0.1
 - unit = %
