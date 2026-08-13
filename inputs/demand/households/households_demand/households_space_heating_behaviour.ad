@@ -1,23 +1,16 @@
-# This input slider lets you reduce or increase the heat demand for households solely by the behaviour.
-# Therefore it only affects the actual useful demand.
-# Unlike insulation it does not affect the typical heat demand and the insulation costs.
-# The priority is lower than the other heat demand input sliders. It therefore uses the demand that
-# is already calculated in other sliders. It can therefore update with factor, instead of calculating
-# everything here.
-
+# This sets the change in heat demand due to behaviour of all residence types and construction periods.
+#
 # Priorities of related inputs are set as follows:
-# - 4: shares of new buildings & shares of buildings demolished
+# - 4: shares of new residences
 # - 3: number of new buildings & number of buildings demolished
-# - 2: setting weather curve
+# - 2: settings_weather_curve_set
 # - 1: insulation sliders
 # - 0: behaviour slider & outdoor temperature
 
-# Every building type / construction period has to be updated individually. They are sorted by period.
-
 - query =
-    relative_change = (100 + USER_INPUT())/100;
+    relative_change = DIVIDE((100.0 + USER_INPUT()), 100.0);
 
-      EACH(
+    EACH(
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, relative_change),
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_future), preset_demand, relative_change),
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_future), preset_demand, relative_change),
@@ -47,7 +40,7 @@
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_before_1945), preset_demand, relative_change),
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_before_1945), preset_demand, relative_change),
       UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_before_1945), preset_demand, relative_change)
-      )
+    )
 - priority = 0
 - max_value = 50.0
 - min_value = -50.0
@@ -55,4 +48,3 @@
 - step_value = 1.0
 - unit = %
 - update_period = future
-- update_type = mixed

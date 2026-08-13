@@ -1,24 +1,18 @@
-# This input lets you set the reduced heat demand for residences built between 1945 and 1964 due to insulation
-#
-# It works by calculating the relative change. This relative change is used to update the:
-# - typical useful demand
-# - preset_useful demand
-#
+# This input sets reduction of heat demand due to improved insulation for residences built between
+# 1945 and 1964 and updates the typical useful demand area attributes and preset demand for space
+# heating.
 # Finally the new values are used to calculate the initial investment costs for insulation in the
 # respective queries.
 #
 # Priorities of related inputs are set as follows:
-# - 4: shares of new buildings & shares of buildings demolished
+# - 4: shares of new residences
 # - 3: number of new buildings & number of buildings demolished
-# - 2: setting weather curve
+# - 2: settings_weather_curve_set
 # - 1: insulation sliders
-# - 0: behaviour slider & outdoor temperature
-# The priority of this input is lower than the demolition of houses from this construction period.
-# In these sliders the total demand is calculated before insulation.
-# Therefore it works to simply multiply by the relative change due to insulation here.
+# - 0: behaviour slider & outdoor temperature & households_flexibility_p2p_electricity_market_penetration.ad
 
 - query =
-    insulation_relative_change = DIVIDE(100 + NEG(USER_INPUT()), 100.0);
+    insulation_relative_change = DIVIDE(100.0 + NEG(USER_INPUT()), 100.0);
 
     EACH(
       UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_apartments_1945_1964, insulation_relative_change),
@@ -43,4 +37,3 @@
 - step_value = 0.1
 - unit = %
 - update_period = future
-- update_type = mixed
