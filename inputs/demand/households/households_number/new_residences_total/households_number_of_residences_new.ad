@@ -18,7 +18,7 @@
     number_of_existing_units_future = total_number_of_units_present - number_of_units_demolished;
     number_of_new_units_future = USER_INPUT();
     total_number_of_units_future = number_of_existing_units_future + number_of_new_units_future;
-    relative_change = total_number_of_units_future / total_number_of_units_present;
+    relative_change = DIVIDE(total_number_of_units_future, total_number_of_units_present);
 
     roof_surface_for_pv_future = relative_change * QUERY_PRESENT(-> {AREA(residences_roof_surface_available_for_pv)});
     useful_cooling_demand_future = relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_cooling, preset_demand)});
