@@ -20,40 +20,40 @@
     total_number_of_units_future = number_of_existing_units_future + number_of_new_units_future;
     relative_change = DIVIDE(total_number_of_units_future, total_number_of_units_present);
 
-    roof_surface_for_pv_future = relative_change * QUERY_PRESENT(-> {AREA(residences_roof_surface_available_for_pv)});
-    useful_cooling_demand_future = relative_change * QUERY_PRESENT(-> {V(households_useful_demand_for_cooling, preset_demand)});
+    roof_surface_for_pv_future = PRODUCT(relative_change, QUERY_PRESENT(-> {AREA(residences_roof_surface_available_for_pv)}));
+    useful_cooling_demand_future = PRODUCT(relative_change, QUERY_PRESENT(-> {V(households_useful_demand_for_cooling, preset_demand)}));
 
-    share_new_apartments = INPUT_VALUE(households_share_of_apartments) / 100.0;
-    number_new_apartments = share_new_apartments * number_of_new_units_future;
+    share_new_apartments = DIVIDE(INPUT_VALUE(households_share_of_apartments), 100.0);
+    number_new_apartments = PRODUCT(share_new_apartments, number_of_new_units_future);
 
     typical_heat_new_apartments_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_apartments_future)});
     typical_surface_area_per_unit_apartments = 84.0916691776263;
-    typical_heat_demand_per_unit_apartments = typical_heat_new_apartments_future * typical_surface_area_per_unit_apartments;
-    total_heat_demand_apartments_new = number_new_apartments * typical_heat_demand_per_unit_apartments * MJ_PER_KWH;
+    typical_heat_demand_per_unit_apartments = PRODUCT(typical_heat_new_apartments_future, typical_surface_area_per_unit_apartments);
+    total_heat_demand_apartments_new = PRODUCT(number_new_apartments, typical_heat_demand_per_unit_apartments, MJ_PER_KWH);
 
-    share_new_detached = INPUT_VALUE(households_share_of_detached) / 100.0;
-    number_new_detached = share_new_detached * number_of_new_units_future;
+    share_new_detached = DIVIDE(INPUT_VALUE(households_share_of_detached), 100.0);
+    number_new_detached = PRODUCT(share_new_detached, number_of_new_units_future);
 
     typical_heat_new_detached_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_detached_houses_future)});
     typical_surface_area_per_unit_detached = 224.001485938283;
-    typical_heat_demand_per_unit_detached = typical_heat_new_detached_future * typical_surface_area_per_unit_detached;
-    total_heat_demand_detached_new = number_new_detached * typical_heat_demand_per_unit_detached * MJ_PER_KWH;
+    typical_heat_demand_per_unit_detached = PRODUCT(typical_heat_new_detached_future, typical_surface_area_per_unit_detached);
+    total_heat_demand_detached_new = PRODUCT(number_new_detached, typical_heat_demand_per_unit_detached, MJ_PER_KWH);
 
-    share_new_semi_detached = INPUT_VALUE(households_share_of_semi_detached) / 100.0;
-    number_new_semi_detached = share_new_semi_detached * number_of_new_units_future;
+    share_new_semi_detached = DIVIDE(INPUT_VALUE(households_share_of_semi_detached), 100.0);
+    number_new_semi_detached = PRODUCT(share_new_semi_detached, number_of_new_units_future);
 
     typical_heat_new_semi_detached_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_future)});
     typical_surface_area_per_unit_semi_detached = 147.709471392282;
-    typical_heat_demand_per_unit_semi_detached = typical_heat_new_semi_detached_future * typical_surface_area_per_unit_semi_detached;
-    total_heat_demand_semi_detached_new = number_new_semi_detached * typical_heat_demand_per_unit_semi_detached * MJ_PER_KWH;
+    typical_heat_demand_per_unit_semi_detached = PRODUCT(typical_heat_new_semi_detached_future, typical_surface_area_per_unit_semi_detached);
+    total_heat_demand_semi_detached_new = PRODUCT(number_new_semi_detached, typical_heat_demand_per_unit_semi_detached, MJ_PER_KWH);
 
-    share_new_terraced = INPUT_VALUE(households_share_of_terraced) / 100.0;
-    number_new_terraced = share_new_terraced * number_of_new_units_future;
+    share_new_terraced = DIVIDE(INPUT_VALUE(households_share_of_terraced), 100.0);
+    number_new_terraced = PRODUCT(share_new_terraced, number_of_new_units_future);
 
     typical_heat_new_terraced_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_terraced_houses_future)});
     typical_surface_area_per_unit_terraced = 130.419159051538;
-    typical_heat_demand_per_unit_terraced = typical_heat_new_terraced_future * typical_surface_area_per_unit_terraced;
-    total_heat_demand_terraced_new = number_new_terraced * typical_heat_demand_per_unit_terraced * MJ_PER_KWH;
+    typical_heat_demand_per_unit_terraced = PRODUCT(typical_heat_new_terraced_future, typical_surface_area_per_unit_terraced);
+    total_heat_demand_terraced_new = PRODUCT(number_new_terraced, typical_heat_demand_per_unit_terraced, MJ_PER_KWH);
 
     EACH(
       UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_units_future),
