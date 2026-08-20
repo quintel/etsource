@@ -1,7 +1,21 @@
 - query =
-  UPDATE(
-  	V(households_flexibility_p2p_electricity), number_of_units, (USER_INPUT() / 100.0) * QUERY_FUTURE(-> { Q(number_of_residences) })
-  )
+    number_of_residences_start_year = QUERY_PRESENT(-> { AREA(present_number_of_residences) });
+    number_of_residences_demolished = SUM(
+      INPUT_VALUE(households_demolished_before_1945),
+      INPUT_VALUE(households_demolished_1945_1964),
+      INPUT_VALUE(households_demolished_1965_1984),
+      INPUT_VALUE(households_demolished_1985_2004),
+      INPUT_VALUE(households_demolished_2005_present)
+    );
+    number_of_residences_built = INPUT_VALUE(households_number_of_residences_new);
+    number_of_residences_future_year = number_of_residences_start_year + number_of_residences_built - number_of_residences_demolished;
+
+    UPDATE(
+      V(households_flexibility_p2p_electricity),
+      number_of_units,
+      (USER_INPUT() / 100.0) * number_of_residences_future_year
+    )
+
 - priority = 0
 - max_value = 100.0
 - min_value = 0.0
