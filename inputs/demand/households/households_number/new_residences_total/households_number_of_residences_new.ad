@@ -1,5 +1,5 @@
 # This input sets the number of new residences
-# The hot water demand, number of unites for p2p electricity, roof area for PV and cooling demand
+# The hot water demand, roof area for PV and cooling demand
 # are updated based on the new total number of residences.
 # New number of residences is subsequently distributed across the 4 residence types using
 # the share inputs for new residences.
@@ -59,12 +59,6 @@
       UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_units_future),
       UPDATE(AREA(), residences_roof_surface_available_for_pv, roof_surface_for_pv_future),
       UPDATE(V(households_useful_demand_for_cooling), preset_demand, useful_cooling_demand_future),
-      UPDATE(
-        V(households_flexibility_p2p_electricity),
-        number_of_units,
-        PRODUCT(total_number_of_units_future, DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))
-      ),
-
       UPDATE(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, total_heat_demand_apartments_new),
       UPDATE(V(households_useful_demand_for_space_heating_apartments_future), number_of_units, number_new_apartments),
 

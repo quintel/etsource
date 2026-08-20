@@ -32,12 +32,6 @@
       UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_residences_future),
       UPDATE(AREA(), residences_roof_surface_available_for_pv, roof_surface_for_pv_future),
       UPDATE(V(households_useful_demand_for_cooling), preset_demand, useful_cooling_demand_future),
-      UPDATE(
-        V(households_flexibility_p2p_electricity),
-        number_of_units,
-        PRODUCT(total_number_of_residences_future, DIVIDE(INPUT_VALUE(households_flexibility_p2p_electricity_market_penetration),100.0))
-      ),
-
       UPDATE_WITH_FACTOR(V(G(households_2005_present)), preset_demand, relative_change_2005_present),
       UPDATE_WITH_FACTOR(V(G(households_2005_present)), number_of_units, relative_change_2005_present),
     )
