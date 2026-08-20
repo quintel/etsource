@@ -1,12 +1,6 @@
 - query =
     number_of_residences_start_year = QUERY_PRESENT(-> { AREA(present_number_of_residences) });
-    number_of_residences_demolished = SUM(
-      INPUT_VALUE(households_demolished_before_1945),
-      INPUT_VALUE(households_demolished_1945_1964),
-      INPUT_VALUE(households_demolished_1965_1984),
-      INPUT_VALUE(households_demolished_1985_2004),
-      INPUT_VALUE(households_demolished_2005_present)
-    );
+    number_of_residences_demolished = QUERY_FUTURE(number_of_demolished_residences);
     number_of_residences_built = INPUT_VALUE(households_number_of_residences_new);
     number_of_residences_future_year = number_of_residences_start_year + number_of_residences_built - number_of_residences_demolished;
 
