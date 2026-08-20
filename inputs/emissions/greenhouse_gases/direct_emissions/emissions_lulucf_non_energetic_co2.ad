@@ -1,0 +1,30 @@
+- query =
+    IF(
+      USER_INPUT() > 0.0,
+      -> {
+          UPDATE(
+            MV(lulucf_emissions_non_energetic_co2),
+            preset_demand,
+            PRODUCT(USER_INPUT(), THOUSANDS)
+          )
+         },
+      -> {
+          UPDATE(
+            MV(lulucf_removals_non_energetic_co2),
+            preset_demand,
+            PRODUCT((USER_INPUT()), THOUSANDS)
+          )
+         }
+    )
+- priority = 0
+- max_value_gql = present:PRODUCT(Q(direct_emissions_static_emissions_max_value), 3.0)
+- min_value_gql = present:NEG(PRODUCT(Q(direct_emissions_static_emissions_max_value), 3.0))
+- start_value_gql =
+    present:IF(
+      MV(lulucf_emissions_non_energetic_co2, demand) > 0.0,
+      -> { DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), THOUSANDS) },
+      -> { DIVIDE(NEG(MV(lulucf_removals_non_energetic_co2, demand)), THOUSANDS) }
+    )
+- step_value = 0.1
+- unit = T
+- update_period = future
