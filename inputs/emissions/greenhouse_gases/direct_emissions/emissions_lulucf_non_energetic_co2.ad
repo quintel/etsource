@@ -9,8 +9,8 @@
 # -0. GREATER is used in the start_value_gql to ensure when emissions are zero, the demand
 # of the removals node is used.
 
-# Max value is set to a fraction of the total GHG emissions
-# If the start value exceeds this, the max value is set as a factor of the start value instead
+# Max value is the larger of a fraction of the total GHG emissions and a factor of the start value
+# This ensures that the max value never falls below the start value
 # The min value is set in the same way, but then negative
 
 - query =
