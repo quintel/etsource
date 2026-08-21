@@ -1,14 +1,15 @@
-- output.cooling = 0.0
 - output.loss = elastic
 - output.useable_heat.ambient_heat = 1.0
 - output.useable_heat.electricity = 1.0
 - output.useable_heat.network_gas = 1.07
 - groups = [
-    direct_emissions, demand_driven, heat_production, etmoses, merit_household_space_heating_producers,
-    application_group, aggregator_producer, lv_net_demand, wacc_households, merit_order_csv_include,
-    costs_building_and_installations_households, mt_delivery_system_households
+    direct_emissions, demand_driven, heat_production,
+    etmoses, merit_household_space_heating_producers, application_group,
+    aggregator_producer, lv_net_demand, wacc_households,
+    merit_order_csv_include, costs_building_and_installations_households, mt_delivery_system_households
     ]
 - use = energetic
+- sector_label = households_space_heating
 - presentation_group = heat_pumps
 - graph_methods = [input]
 - availability = 0.0
@@ -17,32 +18,31 @@
 - construction_time = 0.0
 - cost_of_installing = 0.0
 - decommissioning_costs = 0.0
-- fixed_operation_and_maintenance_costs_per_year = 200.0
-- initial_investment = 3819.0
+- fixed_operation_and_maintenance_costs_per_year = 50.0
+- initial_investment = 6931.5
 - technical_lifetime = 15.0
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
 - variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
 - wacc = 0.02
 - fever.alias_of = households_water_heater_hybrid_heatpump_air_water_electricity
-- fever.base_cop = 2.323
-- fever.capacity.electricity = 0.0018327326043130307
+- fever.base_cop = 3.0584
+- fever.capacity.electricity = 0.001704
 - fever.capacity.network_gas = 0.022
-- fever.cop_cutoff = 2.6
-- fever.cop_per_degree = 0.0578
+- fever.cop_cutoff = 2.600238
+- fever.cop_per_degree = 0.0593
 - fever.defer_for = 4
 - fever.efficiency_balanced_with = ambient_heat
 - fever.efficiency_based_on = electricity
 - fever.group = space_heating
-- fever.type = producer
 - fever.technology_curve_type = tech_constant
+- fever.type = producer
 - network_gas.profile = self: network_gas_input_curve
 - network_gas.type = consumer
 - electricity_output_capacity = 0.0
 - free_co2_factor = 0.0
-- heat_output_capacity = 0.004900000000000001
+- heat_output_capacity = 0.02354
 - households_supplied_per_unit = 1.0
 - takes_part_in_ets = 0.0
-- sector_label = households_space_heating
 
 ~ input.electricity = EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, electricity)
 ~ input.network_gas = EFFICIENCY(households_space_heater_hybrid_heatpump_air_water_electricity, input, network_gas)
