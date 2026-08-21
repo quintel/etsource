@@ -1,0 +1,38 @@
+# This input sets reduction of heat demand due to improved insulation and updates the typical
+# useful demand area attributes and preset demand for space heating.
+# Finally the new values are used to calculate the initial investment costs for insulation in the
+# respective queries.
+#
+# Priorities of related inputs are set as follows:
+# - 4: shares of new residences
+# - 3: number of new buildings & number of buildings demolished
+# - 2: settings_weather_curve_set (if set, this overrides the outdoor temperature input)
+# - 1: insulation sliders
+# - 0: behaviour slider & outdoor temperature & households_flexibility_p2p_electricity_market_penetration.ad
+
+- query =
+    insulation_relative_change = DIVIDE(100.0 + NEG(USER_INPUT()), 100.0);
+
+    EACH(
+      UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_apartments_future, insulation_relative_change),
+      UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_detached_houses_future, insulation_relative_change),
+      UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_semi_detached_houses_future, insulation_relative_change),
+      UPDATE_WITH_FACTOR(AREA(), typical_useful_demand_for_space_heating_terraced_houses_future, insulation_relative_change),
+
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_apartments_future), preset_demand, insulation_relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_detached_houses_future), preset_demand, insulation_relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_semi_detached_houses_future), preset_demand, insulation_relative_change),
+      UPDATE_WITH_FACTOR(V(households_useful_demand_for_space_heating_terraced_houses_future), preset_demand, insulation_relative_change),
+
+      UPDATE(V(households_useful_demand_for_space_heating_apartments_future), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_apartments_future)})),
+      UPDATE(V(households_useful_demand_for_space_heating_detached_houses_future), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_detached_houses_future)})),
+      UPDATE(V(households_useful_demand_for_space_heating_semi_detached_houses_future), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_semi_detached_houses_future)})),
+      UPDATE(V(households_useful_demand_for_space_heating_terraced_houses_future), initial_investment, QUERY_FUTURE(-> { Q(costs_of_insulation_terraced_houses_future)}))
+    )
+- priority = 1
+- max_value = 100.0
+- min_value = 0.0
+- start_value = 0.0
+- step_value = 0.1
+- unit = %
+- update_period = future
