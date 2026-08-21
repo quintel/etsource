@@ -9,6 +9,10 @@
 # -0. GREATER is used in the start_value_gql to ensure when emissions are zero, the demand
 # of the removals node is used.
 
+# Max value is set to a fraction of the total GHG emissions
+# If the start value exceeds this, the max value is set as a factor of the start value instead
+# The min value is set in the same way, but then negative
+
 - query =
     IF(
       GREATER_OR_EQUAL(USER_INPUT(), 0.0),
@@ -17,7 +21,7 @@
           UPDATE(
             MV(lulucf_emissions_non_energetic_co2),
             preset_demand,
-            PRODUCT(USER_INPUT(), THOUSANDS)
+            PRODUCT(USER_INPUT(), MILLIONS)
           ),
           UPDATE(
             MV(lulucf_removals_non_energetic_co2),
@@ -36,20 +40,42 @@
           UPDATE(
             MV(lulucf_removals_non_energetic_co2),
             preset_demand,
-            NEG(PRODUCT((USER_INPUT()), THOUSANDS))
+            NEG(PRODUCT((USER_INPUT()), MILLIONS))
           )
         )
       }
     )
 - priority = 0
-- max_value_gql = present:PRODUCT(Q(direct_emissions_static_emissions_max_value), 3.0)
-- min_value_gql = present:NEG(PRODUCT(Q(direct_emissions_static_emissions_max_value), 3.0))
+- max_value_gql =
+    present:MAX(
+      Q(max_value_dataset_derived_direct_emissions),
+      PRODUCT(
+        MAX(
+          DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), MILLIONS),
+          DIVIDE(MV(lulucf_removals_non_energetic_co2, demand), MILLIONS)
+        ),
+        1.5
+      )
+    )
+- min_value_gql =
+    present:NEG(
+      MAX(
+        Q(max_value_dataset_derived_direct_emissions),
+        PRODUCT(
+          MAX(
+            DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), MILLIONS),
+            DIVIDE(MV(lulucf_removals_non_energetic_co2, demand), MILLIONS)
+          ),
+          1.5
+        )
+      )
+    )
 - start_value_gql =
     present:IF(
       GREATER(MV(lulucf_emissions_non_energetic_co2, demand), 0.0),
-      -> { DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), THOUSANDS) },
-      -> { DIVIDE(NEG(MV(lulucf_removals_non_energetic_co2, demand)), THOUSANDS) }
+      -> { DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), MILLIONS) },
+      -> { DIVIDE(NEG(MV(lulucf_removals_non_energetic_co2, demand)), MILLIONS) }
     )
 - step_value = 0.1
-- unit = T
+- unit = kT
 - update_period = future

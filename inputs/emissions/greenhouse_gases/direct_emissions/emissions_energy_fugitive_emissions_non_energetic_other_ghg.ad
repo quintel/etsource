@@ -1,13 +1,20 @@
+# Max value is set to a fraction of the total GHG emissions
+# If the start value exceeds this, the max value is set as a factor of the start value instead
+
 - query =
     UPDATE(
       MV(energy_fugitive_emissions_non_energetic_other_ghg),
       preset_demand,
-      PRODUCT(USER_INPUT(), THOUSANDS)
+      PRODUCT(USER_INPUT(), MILLIONS)
     )
 - priority = 0
-- max_value_gql = present:PRODUCT(Q(direct_emissions_static_emissions_max_value), 3.0)
+- max_value_gql =
+    present:MAX(
+      Q(max_value_dataset_derived_direct_emissions),
+      PRODUCT(DIVIDE(MV(energy_fugitive_emissions_non_energetic_other_ghg, demand), MILLIONS), 1.5)
+    )
 - min_value = 0.0
-- start_value_gql = present:DIVIDE(MV(energy_fugitive_emissions_non_energetic_other_ghg, demand), THOUSANDS)
+- start_value_gql = present:DIVIDE(MV(energy_fugitive_emissions_non_energetic_other_ghg, demand), MILLIONS)
 - step_value = 0.1
-- unit = T
+- unit = kT
 - update_period = future

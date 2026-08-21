@@ -1,6 +1,8 @@
 # Sets international navigation other GHG emissions
 # Value is corrected for share of international transport that should be taken into account
 # Priority set to 0 to go after input bunkers_allocated_percentage_shipping
+# Max value is set to a fraction of the total GHG emissions
+# If the start value exceeds this, the max value is set as a factor of the start value instead
 
 - query =
     international_share = DIVIDE(INPUT_VALUE(bunkers_allocated_percentage_shipping), 100.0);
@@ -9,14 +11,18 @@
       MV(bunkers_international_navigation_energetic_other_ghg),
       preset_demand,
       PRODUCT(
-        PRODUCT(USER_INPUT(), THOUSANDS),
+        PRODUCT(USER_INPUT(), MILLIONS),
         international_share
       )
     )
 - priority = 0
-- max_value_gql = present:PRODUCT(Q(direct_emissions_static_emissions_max_value), 3.0)
+- max_value_gql =
+    present:MAX(
+      Q(max_value_dataset_derived_direct_emissions),
+      PRODUCT(EMISSIONS(bunkers_international_navigation, energetic, other_ghg), 1.5)
+    )
 - min_value = 0.0
-- start_value_gql = present:PRODUCT(EMISSIONS(bunkers_international_navigation, energetic, other_ghg), THOUSANDS)
+- start_value_gql = present:EMISSIONS(bunkers_international_navigation, energetic, other_ghg)
 - step_value = 0.1
-- unit = T
+- unit = kT
 - update_period = future
