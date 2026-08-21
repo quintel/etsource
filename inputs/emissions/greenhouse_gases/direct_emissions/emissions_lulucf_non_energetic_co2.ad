@@ -1,0 +1,81 @@
+# Sets LULUCF emissions and removals molecule nodes
+# - If positive, lulucf_emissions_non_energetic_co2 is updated with the user value and
+#   lulucf_removals_non_energetic_co2 is set to zero.
+# - If negative, lulucf_emissions_non_energetic_co2 is set to zero and
+#   lulucf_removals_non_energetic_co2 is updated with the (positive) user value
+#
+# Note: the asymmetric use of GREATER_OR_EQUAL in the query and GREATER in the start_value_gql is
+# intentional. GREATER_OR_EQUAL ensures that if the user value is 0, LULUCF removals are not set to
+# -0. GREATER is used in the start_value_gql to ensure when emissions are zero, the demand
+# of the removals node is used.
+
+# Max value is the larger of a fraction of the total GHG emissions and a factor of the start value
+# This ensures that the max value never falls below the start value
+# The min value is set in the same way, but then negative
+
+- query =
+    IF(
+      GREATER_OR_EQUAL(USER_INPUT(), 0.0),
+      -> {
+        EACH(
+          UPDATE(
+            MV(lulucf_emissions_non_energetic_co2),
+            preset_demand,
+            PRODUCT(USER_INPUT(), MILLIONS)
+          ),
+          UPDATE(
+            MV(lulucf_removals_non_energetic_co2),
+            preset_demand,
+            0.0
+          )
+        )
+      },
+      -> {
+        EACH(
+          UPDATE(
+            MV(lulucf_emissions_non_energetic_co2),
+            preset_demand,
+            0.0
+          ),
+          UPDATE(
+            MV(lulucf_removals_non_energetic_co2),
+            preset_demand,
+            NEG(PRODUCT((USER_INPUT()), MILLIONS))
+          )
+        )
+      }
+    )
+- priority = 0
+- max_value_gql =
+    present:MAX(
+      Q(max_value_dataset_derived_direct_emissions),
+      PRODUCT(
+        MAX(
+          DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), MILLIONS),
+          DIVIDE(MV(lulucf_removals_non_energetic_co2, demand), MILLIONS)
+        ),
+        1.5
+      )
+    )
+- min_value_gql =
+    present:NEG(
+      MAX(
+        Q(max_value_dataset_derived_direct_emissions),
+        PRODUCT(
+          MAX(
+            DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), MILLIONS),
+            DIVIDE(MV(lulucf_removals_non_energetic_co2, demand), MILLIONS)
+          ),
+          1.5
+        )
+      )
+    )
+- start_value_gql =
+    present:IF(
+      GREATER(MV(lulucf_emissions_non_energetic_co2, demand), 0.0),
+      -> { DIVIDE(MV(lulucf_emissions_non_energetic_co2, demand), MILLIONS) },
+      -> { DIVIDE(NEG(MV(lulucf_removals_non_energetic_co2, demand)), MILLIONS) }
+    )
+- step_value = 0.1
+- unit = kT
+- update_period = future

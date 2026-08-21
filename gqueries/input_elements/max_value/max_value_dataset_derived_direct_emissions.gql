@@ -1,0 +1,16 @@
+# This set the max value for dataset-derived direct emissions inputs
+# It is set as a fraction of the total emissions, which are in MT, so it is scaled to kT as well
+# It is then rounded to 10 ktonnes to make the max value cleaner
+
+- query =
+    ROUND(
+      DIVIDE(
+        PRODUCT(
+          Q(direct_emissions_total_ghg_incl_indirect_emissions_lulucf_bunkers),
+          THOUSANDS
+        ),
+        6.0
+      ),
+      -1
+    )
+- unit = kT

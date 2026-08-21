@@ -1,0 +1,20 @@
+# Max value is the larger of a fraction of the total GHG emissions and a factor of the start value
+# This ensures that the max value never falls below the start value
+
+- query =
+    UPDATE(
+      MV(other_other_transportation_energetic_other_ghg),
+      preset_demand,
+      PRODUCT(USER_INPUT(), MILLIONS)
+    )
+- priority = 0
+- max_value_gql =
+    present:MAX(
+      Q(max_value_dataset_derived_direct_emissions),
+      PRODUCT(DIVIDE(MV(other_other_transportation_energetic_other_ghg, demand), MILLIONS), 1.5)
+    )
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(MV(other_other_transportation_energetic_other_ghg, demand), MILLIONS)
+- step_value = 0.1
+- unit = kT
+- update_period = future
