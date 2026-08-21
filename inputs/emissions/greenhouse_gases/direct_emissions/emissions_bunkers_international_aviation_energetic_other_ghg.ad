@@ -4,6 +4,9 @@
 # Max value is the larger of a fraction of the total GHG emissions and a factor of the start value
 # This ensures that the max value never falls below the start value
 
+# Note that the share from bunkers_allocated_percentage_aviation determines the extent to which
+# these emissions show in output.
+
 - query =
     international_share = DIVIDE(INPUT_VALUE(bunkers_allocated_percentage_aviation), 100.0);
 
@@ -15,6 +18,7 @@
         international_share
       )
     )
+
 - priority = 0
 - max_value_gql =
     present:MAX(
