@@ -1,23 +1,46 @@
-# this query ensures that the hybrid heat pump input slot shares for electricity, gas and ambient heat are set in the right proportion (i.e. in accordance with the electricity and gas going into the node as specified by the user)
-# first, the electricity going to HHPs is calculated (elec_tj)
-# secondly, the ambient accompanying this electricity is calculated (by calculating the ratio between electricity and ambient in the HHP node)
-# thirdly, the gas going to HHPs is calculated (gas_tj)
-# this gives the total demand of the HHP node
-# finally, the input slot shares for electricity, gas and ambient_heat are set using their respective share in the total demand of the HHP node
-# if total_heat is zero (i.e. there are no HHPs in the start year) the input slots shares are set equal to the default node values
+# This query sets the input efficiencies of electricity, network_gas and ambient_heat.
+# If the electricity input of the HHP in the default node values (i.e. parent dataset) is higher
+# than 0.0, the ambient heat demand (ambient_tj) is determined based on the share of ambient required
+# per unit of electricity input.
+# If the electricity input is zero, the ambient heat demand (ambient_tj) is determined based on the
+# share of ambient required
+# per unit of network gas input.
+# The input slot shares are set using their respective share in the total demand of the HHP node.
+# If total_heat is zero, the input slots shares are set equal to the default node values.
 
 - query =
-    elec_tj = DATASET_INPUT(households_final_demand_electricity_demand) * DATASET_INPUT(households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share) * SPARSE_GRAPH_QUERY("households_final_demand_for_hot_water_electricity-households_water_heater_hybrid_heatpump_air_water_electricity@electricity", parent_share);
-    ambient_relative_to_elec = NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat) / NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity);
-    ambient_tj = elec_tj * ambient_relative_to_elec;
-    gas_tj = DATASET_INPUT(households_final_demand_network_gas_demand) * DATASET_INPUT(households_final_demand_network_gas_households_final_demand_for_hot_water_network_gas_parent_share) * SPARSE_GRAPH_QUERY("households_final_demand_for_hot_water_network_gas-households_water_heater_hybrid_heatpump_air_water_electricity@network_gas", parent_share);
+    elec_tj =
+      PRODUCT(
+        DATASET_INPUT(households_final_demand_electricity_demand),
+        DATASET_INPUT(households_final_demand_electricity_households_final_demand_for_hot_water_electricity_parent_share),
+        DATASET_INPUT(households_final_demand_for_hot_water_electricity_households_water_heater_hybrid_heatpump_air_water_electricity_parent_share)
+      );
+    gas_tj =
+      PRODUCT(
+        DATASET_INPUT(households_final_demand_network_gas_demand),
+        DATASET_INPUT(households_final_demand_network_gas_households_final_demand_for_hot_water_network_gas_parent_share),
+        DATASET_INPUT(households_final_demand_for_hot_water_network_gas_households_water_heater_hybrid_heatpump_air_water_electricity_parent_share)
+      );
+
+    ambient_tj =
+      IF(
+        NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity) > 0.0,
+        -> { elec_tj * DIVIDE(NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat), NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity)) },
+        -> { gas_tj * DIVIDE(NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat), NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, network_gas)) },
+      );
+
     total_heat = elec_tj + ambient_tj + gas_tj;
 
-    IF(total_heat > 0.0, {
+    IF(
+      total_heat > 0.0,
+      {
         electricity: elec_tj / total_heat,
         network_gas: gas_tj / total_heat,
-        ambient_heat: ambient_tj / total_heat}, {
+        ambient_heat: ambient_tj / total_heat
+      },
+      {
         electricity: NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity),
         network_gas: NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, network_gas),
-        ambient_heat: NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)}
-        )
+        ambient_heat: NODE_EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)
+      }
+    )
