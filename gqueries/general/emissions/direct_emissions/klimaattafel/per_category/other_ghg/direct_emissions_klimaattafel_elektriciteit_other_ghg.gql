@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(klimaattafel, "Elektriciteit"),
+          direct_reporting_emissions_other_ghg_emissions
+        ),
+        MV(
+          MSECTOR(klimaattafel, "Elektriciteit"),
+          direct_reporting_emissions_other_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )
