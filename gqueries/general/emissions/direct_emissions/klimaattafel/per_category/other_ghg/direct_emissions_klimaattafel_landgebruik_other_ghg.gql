@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(klimaattafel, "Landgebruik"),
+          direct_reporting_emissions_other_ghg_emissions
+        ),
+        MV(
+          MSECTOR(klimaattafel, "Landgebruik"),
+          direct_reporting_emissions_other_ghg_emissions
+        )
+      ),
+      BILLIONS
+    )

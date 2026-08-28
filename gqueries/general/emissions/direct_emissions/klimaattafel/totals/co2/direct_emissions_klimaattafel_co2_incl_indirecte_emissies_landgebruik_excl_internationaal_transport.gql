@@ -1,0 +1,9 @@
+# Total CO2 emissions incl. indirect emissions (indirecte emissies), land use
+# (landgebruik), excl. international transport
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_klimaattafel_co2_incl_indirecte_emissies_landgebruik_internationaal_transport),
+      NEG(Q(direct_emissions_klimaattafel_internationaal_transport_co2))
+    )

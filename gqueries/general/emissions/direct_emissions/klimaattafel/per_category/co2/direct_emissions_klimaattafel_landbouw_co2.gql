@@ -1,0 +1,15 @@
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(klimaattafel, "Landbouw"),
+          "direct_reporting_emissions_co2_production - direct_reporting_emissions_co2_capture"
+        ),
+        MV(
+          MSECTOR(klimaattafel, "Landbouw"),
+          "direct_reporting_emissions_co2_production - direct_reporting_emissions_co2_capture"
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,10 @@
+# Total GHG emissions incl. land use (landgebruik), excl. indirect emissions (indirecte
+# emissies), international transport
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_klimaattafel_total_ghg_incl_indirecte_emissies_landgebruik_internationaal_transport),
+      NEG(Q(direct_emissions_klimaattafel_indirecte_emissies_total_ghg)),
+      NEG(Q(direct_emissions_klimaattafel_internationaal_transport_total_ghg))
+    )
