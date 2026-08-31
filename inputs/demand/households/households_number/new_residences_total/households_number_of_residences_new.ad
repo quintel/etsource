@@ -3,8 +3,11 @@
 # are updated based on the new total number of residences.
 # New number of residences is subsequently distributed across the 4 residence types using
 # the share inputs for new residences.
+#
+# The heat demand per new residence is set equal to present heat demand of the residences from 2005-present of that type.
+# This heat demand per unit is calculated by dividing the preset_demand by the nr. of units.
 # Finally the total number of units and useful heat demand are updated for all 4 types.
-
+#
 # Priorities of related inputs are set as follows:
 # - 4: shares of new residences
 # - 3: number of new buildings & number of buildings demolished
@@ -25,31 +28,39 @@
 
     share_new_apartments = DIVIDE(INPUT_VALUE(households_share_of_apartments), 100.0);
     number_new_apartments = PRODUCT(share_new_apartments, number_of_new_units_future);
-    typical_heat_new_apartments_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_apartments_future)});
-    typical_surface_area_per_unit_apartments = 84.0916691776263;
-    typical_heat_demand_per_unit_apartments = PRODUCT(typical_heat_new_apartments_future, typical_surface_area_per_unit_apartments);
-    total_heat_demand_apartments_new = PRODUCT(number_new_apartments, typical_heat_demand_per_unit_apartments, MJ_PER_KWH);
+
+    total_heat_demand_apartments_2005_present = QUERY_PRESENT(->{V(households_useful_demand_for_space_heating_apartments_2005_present, preset_demand)});
+    number_of_apartments_2005_present = QUERY_PRESENT(-> {AREA(present_number_of_apartments_2005_present)});
+    heat_demand_per_residence_apartments_2005_present = DIVIDE(total_heat_demand_apartments_2005_present, number_of_apartments_2005_present);
+    heat_demand_per_residence_apartments_new = heat_demand_per_residence_apartments_2005_present;
+    total_heat_demand_apartments_new = PRODUCT(number_new_apartments, heat_demand_per_residence_apartments_new);
 
     share_new_detached = DIVIDE(INPUT_VALUE(households_share_of_detached), 100.0);
     number_new_detached = PRODUCT(share_new_detached, number_of_new_units_future);
-    typical_heat_new_detached_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_detached_houses_future)});
-    typical_surface_area_per_unit_detached = 224.001485938283;
-    typical_heat_demand_per_unit_detached = PRODUCT(typical_heat_new_detached_future, typical_surface_area_per_unit_detached);
-    total_heat_demand_detached_new = PRODUCT(number_new_detached, typical_heat_demand_per_unit_detached, MJ_PER_KWH);
+
+    total_heat_demand_detached_2005_present = QUERY_PRESENT(->{V(households_useful_demand_for_space_heating_detached_houses_2005_present, preset_demand)});
+    number_of_detached_2005_present = QUERY_PRESENT(-> {AREA(present_number_of_detached_houses_2005_present)});
+    heat_demand_per_residence_detached_2005_present = DIVIDE(total_heat_demand_detached_2005_present, number_of_detached_2005_present);
+    heat_demand_per_residence_detached_new = heat_demand_per_residence_detached_2005_present;
+    total_heat_demand_detached_new = PRODUCT(number_new_detached, heat_demand_per_residence_detached_new);
 
     share_new_semi_detached = DIVIDE(INPUT_VALUE(households_share_of_semi_detached), 100.0);
     number_new_semi_detached = PRODUCT(share_new_semi_detached, number_of_new_units_future);
-    typical_heat_new_semi_detached_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_semi_detached_houses_future)});
-    typical_surface_area_per_unit_semi_detached = 147.709471392282;
-    typical_heat_demand_per_unit_semi_detached = PRODUCT(typical_heat_new_semi_detached_future, typical_surface_area_per_unit_semi_detached);
-    total_heat_demand_semi_detached_new = PRODUCT(number_new_semi_detached, typical_heat_demand_per_unit_semi_detached, MJ_PER_KWH);
+
+    total_heat_demand_semi_detached_2005_present = QUERY_PRESENT(->{V(households_useful_demand_for_space_heating_semi_detached_houses_2005_present, preset_demand)});
+    number_of_semi_detached_2005_present = QUERY_PRESENT(-> {AREA(present_number_of_semi_detached_houses_2005_present)});
+    heat_demand_per_residence_semi_detached_2005_present = DIVIDE(total_heat_demand_semi_detached_2005_present, number_of_semi_detached_2005_present);
+    heat_demand_per_residence_semi_detached_new = heat_demand_per_residence_semi_detached_2005_present;
+    total_heat_demand_semi_detached_new = PRODUCT(number_new_semi_detached, heat_demand_per_residence_semi_detached_new);
 
     share_new_terraced = DIVIDE(INPUT_VALUE(households_share_of_terraced), 100.0);
     number_new_terraced = PRODUCT(share_new_terraced, number_of_new_units_future);
-    typical_heat_new_terraced_future = QUERY_FUTURE(-> { AREA(typical_useful_demand_for_space_heating_terraced_houses_future)});
-    typical_surface_area_per_unit_terraced = 130.419159051538;
-    typical_heat_demand_per_unit_terraced = PRODUCT(typical_heat_new_terraced_future, typical_surface_area_per_unit_terraced);
-    total_heat_demand_terraced_new = PRODUCT(number_new_terraced, typical_heat_demand_per_unit_terraced, MJ_PER_KWH);
+
+    total_heat_demand_terraced_2005_present = QUERY_PRESENT(->{V(households_useful_demand_for_space_heating_terraced_houses_2005_present, preset_demand)});
+    number_of_terraced_2005_present = QUERY_PRESENT(-> {AREA(present_number_of_terraced_houses_2005_present)});
+    heat_demand_per_residence_terraced_2005_present = DIVIDE(total_heat_demand_terraced_2005_present, number_of_terraced_2005_present);
+    heat_demand_per_residence_terraced_new = heat_demand_per_residence_terraced_2005_present;
+    total_heat_demand_terraced_new = PRODUCT(number_new_terraced, heat_demand_per_residence_terraced_new);
 
     EACH(
       UPDATE(V(households_useful_demand_for_hot_water_after_solar_heater), number_of_units, total_number_of_units_future),
