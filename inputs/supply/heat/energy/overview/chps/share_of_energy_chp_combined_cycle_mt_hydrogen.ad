@@ -1,15 +1,15 @@
 - query =
     EACH(
-        UPDATE(
-            V(energy_chp_combined_cycle_mt_hydrogen),
-            number_of_units,
-            DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_combined_cycle_hydrogen) / V(energy_chp_combined_cycle_mt_hydrogen, electricity_output_capacity)
-        ),
-        UPDATE(
-            L(energy_chp_combined_cycle_mt_hydrogen),
-            preset_demand_by_electricity_production,
-            V(energy_chp_combined_cycle_mt_hydrogen, production_based_on_number_of_units)
-        )
+      UPDATE(
+        V(energy_chp_combined_cycle_mt_hydrogen),
+        number_of_units,
+        DIVIDE(USER_INPUT(),100.0) * INPUT_VALUE(capacity_of_energy_chp_combined_cycle_hydrogen) / V(energy_chp_combined_cycle_mt_hydrogen, electricity_output_capacity)
+      ),
+      UPDATE(
+        L(energy_chp_combined_cycle_mt_hydrogen),
+        preset_demand_by_electricity_production,
+        V(energy_chp_combined_cycle_mt_hydrogen, production_based_on_number_of_units)
+      )
     )
 
 - share_group = chp_cc_hydrogen_heat
