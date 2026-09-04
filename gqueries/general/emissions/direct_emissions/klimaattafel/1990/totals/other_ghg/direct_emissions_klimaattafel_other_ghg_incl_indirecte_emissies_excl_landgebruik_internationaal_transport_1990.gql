@@ -1,0 +1,10 @@
+# Total other GHG emissions for 1990 incl. indirect emissions (indirecte emissies), excl.
+# land use (landgebruik), international transport
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_klimaattafel_other_ghg_incl_indirecte_emissies_landgebruik_internationaal_transport_1990),
+      NEG(Q(direct_emissions_klimaattafel_landgebruik_other_ghg_1990)),
+      NEG(Q(direct_emissions_klimaattafel_internationaal_transport_other_ghg_1990))
+    )

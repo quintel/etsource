@@ -1,0 +1,9 @@
+# No separate handling is required for emissions and removals since per definition, other GHG in
+# the Landgebruik category can only be emissions.
+
+- unit = MT
+- query =
+    DIVIDE(
+        EMISSIONS(klimaattafel, "Landgebruik", other_ghg, 1990),
+        THOUSANDS
+    )
