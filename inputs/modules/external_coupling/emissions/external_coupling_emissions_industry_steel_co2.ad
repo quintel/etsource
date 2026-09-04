@@ -1,0 +1,17 @@
+# Max value is the toal emissions for the industry sector.
+
+- query =
+    UPDATE(
+      MV(industry_steel_external_coupling_node_co2),
+      preset_demand,
+      PRODUCT(USER_INPUT(), MILLIONS)
+    )
+- priority = 0
+- max_value_gql =
+    present:PRODUCT(Q(direct_emissions_industry_total_ghg), THOUSANDS)
+- min_value = 0.0
+- start_value_gql = present:DIVIDE(MV(industry_steel_external_coupling_node_co2, demand), MILLIONS)
+- step_value = 0.1
+- unit = kT
+- update_period = future
+- coupling_groups = [external_model_industry, industry_metal_steel]
