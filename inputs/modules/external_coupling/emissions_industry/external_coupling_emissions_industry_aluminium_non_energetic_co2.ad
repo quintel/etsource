@@ -3,7 +3,7 @@
 
 - query =
     UPDATE(
-      MV(industry_chemicals_non_energetic_other_ghg),
+      MV(industry_aluminium_non_energetic_co2),
       preset_demand,
       PRODUCT(USER_INPUT(), MILLIONS)
     )
@@ -11,11 +11,11 @@
 - max_value_gql =
     present:MAX(
       Q(max_value_dataset_derived_direct_emissions),
-      PRODUCT(DIVIDE(MV(industry_chemicals_non_energetic_other_ghg, demand), MILLIONS), 1.5)
+      PRODUCT(DIVIDE(MV(industry_aluminium_non_energetic_co2, demand), MILLIONS), 1.5)
     )
 - min_value = 0.0
-- start_value_gql = present:DIVIDE(MV(industry_chemicals_non_energetic_other_ghg, demand), MILLIONS)
+- start_value_gql = present:DIVIDE(MV(industry_aluminium_non_energetic_co2, demand), MILLIONS)
 - step_value = 0.1
 - unit = kT
 - update_period = future
-- disabled_by_couplings = [external_model_industry, emissions_industry]
+- coupling_groups = [external_model_industry, emissions_industry]
