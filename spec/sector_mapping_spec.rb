@@ -184,8 +184,8 @@ RSpec.describe 'Sector mapping validation' do
     end
 
     it 'check 3 flags a scheme name that is also a sector label' do
-      rows = [{ sector_label: :klimaattafel }]
-      expect(scheme_label_collisions(%i[klimaattafel], rows)).to eq(%i[klimaattafel])
+      rows = [{ sector_label: :klimaatsector }]
+      expect(scheme_label_collisions(%i[klimaatsector], rows)).to eq(%i[klimaatsector])
     end
 
     it 'check 4 flags an unknown scheme in a call' do
