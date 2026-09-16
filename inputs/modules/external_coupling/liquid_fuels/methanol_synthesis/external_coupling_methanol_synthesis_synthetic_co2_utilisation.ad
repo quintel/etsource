@@ -1,0 +1,11 @@
+# Priority is set at 2 to go before the regular liquid fuels inputs
+
+- query = UPDATE(V(energy_production_methanol_synthesis_synthetic), co2_utilisation_per_mj, USER_INPUT())
+- priority = 2
+- max_value = 1.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_production_methanol_synthesis_synthetic, co2_utilisation_per_mj)
+- step_value = 0.01
+- unit = k/MJ
+- update_period = future
+- coupling_groups = [external_model_liquid_fuels]
