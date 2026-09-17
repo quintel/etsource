@@ -1,0 +1,14 @@
+# Priority is set at 2 to go before the regular liquid fuels inputs
+# The front-end slider sets the CO2 utilisation value in Mton/PJ,
+# while CO2 utilisation in the corresponding node is expressed in kg/MJ.
+# No conversion factor is needed between these units, so the unit change is not explicitly visible.
+
+- query = UPDATE(V(energy_production_methanol_synthesis_synthetic), co2_utilisation_per_mj, USER_INPUT())
+- priority = 2
+- max_value = 1.0
+- min_value = 0.0
+- start_value_gql = present:V(energy_production_methanol_synthesis_synthetic, co2_utilisation_per_mj)
+- step_value = 0.01
+- unit = Mton/PJ
+- update_period = future
+- coupling_groups = [external_model_liquid_fuels]
