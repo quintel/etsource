@@ -1,7 +1,10 @@
-# This node is defined for methanol synthesis from non biogenic waste, where
-# co2_emissions_primary needs to be defined for to retrieve the primary emissions of the hydrogen input.
-# CO2 emissions of the final demand of the output products of fractionation are queried
-# with the co2_emissions_refinery_products group.
+# This node is defined for methanol synthesis from non-biogenic waste, where
+# co2_emissions_primary needs to be defined on this node to retrieve the primary
+# emissions of the hydrogen input. CO2 emissions of the final demand of the produced methanol
+# are queried with the co2_emissions_refinery_products group.
+# For methanol synthesis from dry biomass and biogenic waste, CO2 emissions of the
+# final demand of produced methanol are queried with the co2_emissions_primary
+# group directly. Therefore, no separate hydrogen node is needed for those processes.
 
 - groups = [co2_emissions_primary, sankey_conversion_group]
 - use = undefined
