@@ -1,7 +1,7 @@
+- input.ambient_heat = 0.565217
+- input.electricity = 0.434783
 - output.loss = elastic
-- output.useable_heat.ambient_heat = 1.0
-- output.useable_heat.electricity = 1.0
-- output.useable_heat.network_gas = 0.9
+- output.useable_heat = 1.0
 - groups = [
     direct_emissions, demand_driven, heat_production,
     etmoses, merit_household_hot_water_producers, application_group,
@@ -11,37 +11,31 @@
 - use = energetic
 - sector_label = households_hot_water
 - presentation_group = heat_pumps
-- graph_methods = [input]
 - availability = 0.0
 - full_load_hours = 0.0
 - ccs_investment = 0.0
 - construction_time = 0.0
 - cost_of_installing = 0.0
 - decommissioning_costs = 0.0
-- fixed_operation_and_maintenance_costs_per_year = 0.0
-- initial_investment = 0.0
+- fixed_operation_and_maintenance_costs_per_year = 50.0
+- initial_investment = 1750.0
 - technical_lifetime = 15.0
 - variable_operation_and_maintenance_costs_for_ccs_per_full_load_hour = 0.0
 - variable_operation_and_maintenance_costs_per_full_load_hour = 0.0
 - wacc = 0.02
 - fever.base_cop = 2.1044
-- fever.capacity.electricity = 0.001704
-- fever.capacity.network_gas = 0.022
-- fever.cop_cutoff = 6.0
+- fever.capacity.electricity = 0.00070
 - fever.cop_per_degree = 0.04074
 - fever.efficiency_balanced_with = ambient_heat
 - fever.efficiency_based_on = electricity
 - fever.group = households_hot_water
 - fever.technology_curve_type = default
 - fever.type = producer
-- network_gas.profile = self: network_gas_input_curve
-- network_gas.type = consumer
+- storage.cost_per_mwh = 0.0
+- storage.decay = 0.0
+- storage.volume = 0.008723
 - electricity_output_capacity = 0.0
 - free_co2_factor = 0.0
-- heat_output_capacity = 0.00460
+- heat_output_capacity = 0.0078
 - households_supplied_per_unit = 1.0
 - takes_part_in_ets = 0.0
-
-~ input.electricity = EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, electricity)
-~ input.network_gas = EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, network_gas)
-~ input.ambient_heat = EFFICIENCY(households_water_heater_hybrid_heatpump_air_water_electricity, input, ambient_heat)
