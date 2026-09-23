@@ -1,7 +1,9 @@
 - query =
-    SUM(
-      MV(energy_chemical_other_transformation_external_coupling_node_captured_co2, demand),
-      MV(energy_chemical_fertilizers_transformation_external_coupling_node_captured_co2, demand),
-      MV(energy_chemical_refineries_transformation_external_coupling_node_captured_co2, demand)
-    ) / BILLIONS
+    DIVIDE(
+      MV(
+        energy_chemical_transformations_captured_co2,
+        demand
+      ),
+      BILLIONS
+    )
 - unit = MT
