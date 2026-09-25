@@ -1,0 +1,12 @@
+- type = share
+- reversed = true
+- groups = [chemical_industry]
+
+~ parent_share =
+  DIVIDE(
+    EB(industry, refinery_gas),
+    (EB(industry, refinery_gas) -
+    EB(energy_industry_own_use, refinery_gas) +
+    EB("own_use_in_electricity,_CHP_and_heat_plants", refinery_gas)
+    )
+  )
