@@ -1,0 +1,26 @@
+# Priority is set at 2 to go before the regular liquid fuels inputs
+# The front-end slider sets the CO2 utilisation value in kg/GJ,
+# while CO2 utilisation in the corresponding node is expressed in kg/MJ.
+# Therefore a conversion factor of a thousand is applied.
+
+- query =
+    UPDATE(
+      V(energy_production_fischer_tropsch_synthetic_dispatchable),
+      co2_utilisation_per_mj,
+      DIVIDE(
+        USER_INPUT(), THOUSANDS
+      )
+    )
+- priority = 2
+- max_value = 1000.0
+- min_value = 0.0
+- start_value_gql =
+    present:
+      PRODUCT(
+        V(energy_production_fischer_tropsch_synthetic_dispatchable, co2_utilisation_per_mj),
+        THOUSANDS
+      )
+- step_value = 1.0
+- unit = kg/GJ
+- update_period = future
+- coupling_groups = [external_model_liquid_fuels]
