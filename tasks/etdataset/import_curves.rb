@@ -18,7 +18,13 @@ namespace :import do
     curves.each do |country, year|
       puts "Importing curves for: #{ country }/#{ year }"
       importer = CurveImporter.new(country, year)
-      importer.import_curves
+      missing_curves = importer.import_curves
+
+      if missing_curves.any?
+        puts "Warning: #{ missing_curves.length } curves for #{ country } were not found in ETDataset:"
+        missing_curves.each { |curve| puts "  - #{ curve }" }
+        puts "Regenerate them in ETDataset (e.g. with tools/weather_years) and import again."
+      end
 
       encrypt_balance(Pathname.new("datasets/#{ country }/curves"))
     end

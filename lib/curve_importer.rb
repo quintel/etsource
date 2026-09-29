@@ -2,8 +2,6 @@ class CurveImporter
   require_relative "source"
   require_relative "destination"
   require_relative "symlinker"
-  require_relative "solar"
-  include Solar
 
   WEATHER_YEAR_SPECIAL_YEARS = [1987, 1997, 2004]
   DEFAULT_AREA = "nl"
@@ -18,11 +16,13 @@ class CurveImporter
     @year = year
   end
 
+  # Returns the curves present before the import that it did not recreate.
   def import_curves
+    previous_curves = curve_files
     prepare
     import_from_data_folders
     import_weather_years if include_weather?
-    extend_solar_profiles(@dest, @country)
+    previous_curves - curve_files
     # unless @country == DEFAULT_AREA
     #   symlinker = Symlinker.new(DEFAULT_AREA, @country, @year, include_weather?)
     #   symlinker.symlink_curves
@@ -39,6 +39,15 @@ class CurveImporter
     Pathname.glob(base_paths).each do | base_path |
       source = Source.new(base_path, @etdataset_country, year)
       copy_from_source(source) if source.etdata_path
+    end
+    import_area_output(year)
+  end
+
+  def import_area_output(year)
+    output = "#{ETDATASET_PATH}/data/#{@etdataset_country}/#{year}/13_curves/output/*.csv"
+    Pathname.glob(output).each do | file |
+      next if skip?(file.basename.to_s)
+      cp_csv(Destination.new(file.basename.to_s, @country, year).destination_path, file)
     end
   end
 
@@ -62,6 +71,10 @@ class CurveImporter
     end
     to.parent.mkpath unless to.parent.directory?
     File.write(to, File.read(from).gsub(/\r\n/, "\n"))
+  end
+
+  def curve_files
+    Pathname.glob(@dest.join("**/*.csv")).map { |file| file.relative_path_from(@dest).to_s }
   end
 
   def remove_stale
