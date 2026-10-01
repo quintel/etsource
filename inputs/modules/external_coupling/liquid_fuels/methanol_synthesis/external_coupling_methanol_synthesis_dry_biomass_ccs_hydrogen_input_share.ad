@@ -1,6 +1,11 @@
 # Priority is set at 2 to go before the regular liquid fuels inputs
 
-- query = UPDATE(INPUT_SLOTS(V(energy_production_methanol_synthesis_dry_biomass_ccs), hydrogen), conversion, DIVIDE(USER_INPUT(),100.0))
+- query =
+    UPDATE(
+      INPUT_SLOTS(V(energy_production_methanol_synthesis_dry_biomass_ccs), hydrogen),
+      conversion,
+      DIVIDE(USER_INPUT(),100.0)
+    )
 - share_group = energy_production_methanol_synthesis_dry_biomass_ccs_input
 - priority = 2
 - max_value = 100.0
