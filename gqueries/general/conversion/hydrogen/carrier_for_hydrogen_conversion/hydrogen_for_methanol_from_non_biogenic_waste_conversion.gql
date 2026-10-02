@@ -1,0 +1,14 @@
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            G(application_group),
+            "methanol_output_conversion > 0.0 && non_biogenic_waste_input_conversion > 0.0"
+          ),
+        input_of_hydrogen
+        )
+      ),
+      BILLIONS
+    )
+- unit = PJ
