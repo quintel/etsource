@@ -1,0 +1,6 @@
+# Part of the refinery gas own use of the refineries that is not covered by refinery
+# gas output, and therefore comes from the crude oil top-up
+# (energy_distribution_crude_oil -> industry_total_production_refinery_gas).
+
+- unit = PJ
+- query = MAX(0.0, Q(refinery_gas_own_use_in_fossil_refinery) - Q(fossil_refinery_to_refinery_gas))

@@ -1,0 +1,5 @@
+# Query for refinery sankey: connection between crude oil and refinery gas
+# Crude oil top-up used for refinery gas own use goes to the fossil refinery instead
+
+- query = MAX(0.0, Q(crude_oil_to_refinery_gas) - Q(refinery_gas_own_use_from_crude_oil_top_up))
+- unit = PJ
