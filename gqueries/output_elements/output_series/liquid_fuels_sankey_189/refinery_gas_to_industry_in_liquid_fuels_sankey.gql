@@ -1,0 +1,5 @@
+# Query for refinery sankey: connection between refinery gas and industry
+# Refinery gas own use of the refineries stays within the fossil refinery
+
+- query = MAX(0.0, Q(refinery_gas_to_industry) - Q(refinery_gas_own_use_in_fossil_refinery))
+- unit = PJ
