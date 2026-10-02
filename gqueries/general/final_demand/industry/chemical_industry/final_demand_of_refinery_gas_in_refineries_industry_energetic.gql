@@ -1,4 +1,4 @@
-# Non-energetic final demand of the 'oil_and_derivatives' carrier group
+# Energetic final demand of refinery gas
 
 - unit = PJ
 - query =
@@ -10,9 +10,9 @@
               INTERSECTION(
                 EG(final_demand),EG(refineries_industry)
               ),
-              "! energetic?"
+              energetic?
             ),
-            "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?"
+            "refinery_gas?"
           ),
           value
         )
