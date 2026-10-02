@@ -1,0 +1,22 @@
+# Energetic final demand of the 'oil_and_derivatives' carrier group, excluding refinery gas.
+# Used in charts that show refinery gas as a separate series.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              INTERSECTION(
+                EG(final_demand),EG(other_chemical_industry)
+              ),
+              energetic?
+            ),
+            "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || pyrolysis_oil?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )
