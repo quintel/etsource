@@ -1,0 +1,15 @@
+# Final demand of refinery gas in industry
+
+- unit = PJ
+- query =
+    SUM(
+      V(
+        FILTER(
+    --       FILTER(
+            EG(final_demand),"sector == :industry"
+          ),
+          refinery_gas?
+        ),
+        value
+      )
+    ) / BILLIONS
