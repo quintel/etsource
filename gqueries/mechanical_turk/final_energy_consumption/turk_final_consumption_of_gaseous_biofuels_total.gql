@@ -1,0 +1,15 @@
+# Mechanical turk query: sum of the final consumption of gaseous biofuels over all sectors (energetic and non-energetic use combined).
+# The result should equal final_consumption_of_gaseous_biofuels_total.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_gaseous_biofuels_in_agriculture_total),
+      Q(final_consumption_of_gaseous_biofuels_in_energy_total),
+      Q(final_consumption_of_gaseous_biofuels_in_households_total),
+      Q(final_consumption_of_gaseous_biofuels_in_buildings_total),
+      Q(final_consumption_of_gaseous_biofuels_in_national_transport_total),
+      Q(final_consumption_of_gaseous_biofuels_in_international_transport_total),
+      Q(final_consumption_of_gaseous_biofuels_in_other_total),
+      Q(final_consumption_of_gaseous_biofuels_in_industry_total)
+    )

@@ -1,0 +1,24 @@
+# Mechanical turk query: sum of the final consumption of all carriers over all sectors (non-energetic use only).
+# The carrier exceptions (network_gas, waste_mix, crude oil mix) are incorporated in the carrier
+# groups, so the result should equal
+# final_consumption_non_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_ammonia_non_energetic),
+      Q(final_consumption_of_coal_and_coal_products_non_energetic),
+      Q(final_consumption_of_electricity_non_energetic),
+      Q(final_consumption_of_gaseous_biofuels_non_energetic),
+      Q(final_consumption_of_geothermal_non_energetic),
+      Q(final_consumption_of_heat_non_energetic),
+      Q(final_consumption_of_hydrogen_non_energetic),
+      Q(final_consumption_of_liquid_biofuels_non_energetic),
+      Q(final_consumption_of_methanol_non_energetic),
+      Q(final_consumption_of_natural_gas_and_gas_products_non_energetic),
+      Q(final_consumption_of_non_renewable_waste_non_energetic),
+      Q(final_consumption_of_oil_and_oil_products_non_energetic),
+      Q(final_consumption_of_renewable_waste_non_energetic),
+      Q(final_consumption_of_solar_thermal_non_energetic),
+      Q(final_consumption_of_solid_biofuels_non_energetic)
+    )

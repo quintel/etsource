@@ -1,0 +1,15 @@
+# Mechanical turk query: sum of the final consumption of oil and oil products over all sectors (energetic use only).
+# The result should equal final_consumption_of_oil_and_oil_products_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_oil_and_oil_products_in_agriculture_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_energy_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_households_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_buildings_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_national_transport_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_international_transport_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_other_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_industry_energetic)
+    )

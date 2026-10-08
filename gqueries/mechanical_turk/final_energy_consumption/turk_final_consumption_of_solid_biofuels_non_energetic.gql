@@ -1,0 +1,10 @@
+# Mechanical turk query: sum of the final consumption of solid biofuels over all sectors (non-energetic use only).
+# The result should equal final_consumption_of_solid_biofuels_non_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_solid_biofuels_in_national_transport_non_energetic),
+      Q(final_consumption_of_solid_biofuels_in_other_non_energetic),
+      Q(final_consumption_of_solid_biofuels_in_industry_non_energetic)
+    )

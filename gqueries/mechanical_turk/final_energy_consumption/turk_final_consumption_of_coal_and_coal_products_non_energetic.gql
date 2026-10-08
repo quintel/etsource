@@ -1,0 +1,10 @@
+# Mechanical turk query: sum of the final consumption of coal and coal products over all sectors (non-energetic use only).
+# The result should equal final_consumption_of_coal_and_coal_products_non_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_coal_and_coal_products_in_national_transport_non_energetic),
+      Q(final_consumption_of_coal_and_coal_products_in_other_non_energetic),
+      Q(final_consumption_of_coal_and_coal_products_in_industry_non_energetic)
+    )
