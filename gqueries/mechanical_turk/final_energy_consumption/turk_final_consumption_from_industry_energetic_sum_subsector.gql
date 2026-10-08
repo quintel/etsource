@@ -1,0 +1,18 @@
+# Mechanical turk query: sum of the final consumption of the subsectors of industry
+# (energetic use only). Subsectors without a energetic query have no energetic final demand.
+# The result should equal final_consumption_from_industry_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_from_industry_ict_energetic),
+      Q(final_consumption_from_industry_refineries_energetic),
+      Q(final_consumption_from_industry_other_chemical_energetic),
+      Q(final_consumption_from_industry_fertilizers_energetic),
+      Q(final_consumption_from_industry_paper_energetic),
+      Q(final_consumption_from_industry_food_energetic),
+      Q(final_consumption_from_industry_other_non_specified_energetic),
+      Q(final_consumption_from_industry_steel_energetic),
+      Q(final_consumption_from_industry_aluminium_energetic),
+      Q(final_consumption_from_industry_other_metals_energetic)
+    )

@@ -1,0 +1,10 @@
+# Mechanical turk query: sum of the final consumption of the subsectors of international transport (bunkers)
+# (energetic use only). Subsectors without a energetic query have no energetic final demand.
+# The result should equal final_consumption_from_international_transport_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_from_bunkers_international_aviation_energetic),
+      Q(final_consumption_from_bunkers_international_navigation_energetic)
+    )
