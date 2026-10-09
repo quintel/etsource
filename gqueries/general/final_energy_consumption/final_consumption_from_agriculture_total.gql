@@ -1,0 +1,17 @@
+# Final consumption from agriculture, all carriers (energetic and non-energetic use combined).
+#
+# Sector:      Agriculture -- sector == :agriculture
+# Carrier:     All carriers
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(EG(final_demand), "sector == :agriculture"),
+          value
+        )
+      ),
+      BILLIONS
+    )

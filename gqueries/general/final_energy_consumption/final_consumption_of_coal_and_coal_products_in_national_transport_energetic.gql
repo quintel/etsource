@@ -1,0 +1,23 @@
+# Final consumption of coal and coal products in national transport (energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Coal and coal products -- coal? || coal_gas? || cokes? || lignite?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "coal? || coal_gas? || cokes? || lignite?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

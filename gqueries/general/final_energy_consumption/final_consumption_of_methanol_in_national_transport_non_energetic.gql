@@ -1,0 +1,23 @@
+# Final consumption of methanol in national transport (non-energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Methanol -- methanol?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "methanol?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

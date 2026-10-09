@@ -1,0 +1,34 @@
+# Final consumption of oil and oil products in industry ex. ict and refineries - fertilizers (non-energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Fertilizers -- EG(fertilizers_industry)
+# Carrier:     Oil and oil products -- gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil? + crude_oil? x Q(share_of_non_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+# Use type:    Non-energetic -- !energetic?
+#
+# Exception: includes the non-biogenic share of crude oil in agriculture, buildings, households, industry.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(fertilizers_industry)), "gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?"),
+            "!energetic?"
+          ),
+          value
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(INTERSECTION(EG(final_demand), EG(fertilizers_industry)), "crude_oil?"),
+                "!energetic?"
+              ),
+              value
+            )
+          ),
+          Q(share_of_non_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,17 @@
+# Final consumption of renewable waste excl. waste mix in industry refineries (energetic and non-energetic use combined).
+#
+# Sector:      Industry Refineries -- EG(refineries_industry)
+# Carrier:     Renewable waste excl. waste mix -- biogenic_waste?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(refineries_industry)), "biogenic_waste?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,20 @@
+# Final consumption of gaseous biofuels excl. network gas in industry ex. ict and refineries - aluminium (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Aluminium -- EG(aluminium_industry)
+# Carrier:     Gaseous biofuels excl. network gas -- biogas? || greengas? || bio_lng?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(aluminium_industry)), "biogas? || greengas? || bio_lng?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

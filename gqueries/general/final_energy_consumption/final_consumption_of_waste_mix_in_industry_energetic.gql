@@ -1,0 +1,23 @@
+# Final consumption of waste mix in industry (energetic use only).
+#
+# Sector:      Industry -- sector == :industry
+# Carrier:     Waste mix -- waste_mix?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :industry"),
+              "waste_mix?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

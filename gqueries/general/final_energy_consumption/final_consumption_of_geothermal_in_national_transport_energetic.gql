@@ -1,0 +1,23 @@
+# Final consumption of geothermal in national transport (energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Geothermal -- geothermal?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "geothermal?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

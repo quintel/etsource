@@ -1,0 +1,20 @@
+# Final consumption of gaseous biofuels excl. network gas in international transport - international aviation (energetic use only).
+#
+# Sector:      International transport - International aviation -- EG(bunkers_international_aviation)
+# Carrier:     Gaseous biofuels excl. network gas -- biogas? || greengas? || bio_lng?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_aviation)), "biogas? || greengas? || bio_lng?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

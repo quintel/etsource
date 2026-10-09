@@ -1,0 +1,20 @@
+# Final consumption of natural gas and gas products excl. network gas in international transport - international aviation (energetic use only).
+#
+# Sector:      International transport - International aviation -- EG(bunkers_international_aviation)
+# Carrier:     Natural gas and gas products excl. network gas -- natural_gas? || propane? || lng?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_aviation)), "natural_gas? || propane? || lng?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

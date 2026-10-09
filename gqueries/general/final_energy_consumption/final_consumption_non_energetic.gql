@@ -1,0 +1,17 @@
+# Final consumption, all sectors and all carriers (non-energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     All carriers
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(EG(final_demand), "!energetic?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

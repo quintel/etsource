@@ -1,0 +1,20 @@
+# Final consumption of ammonia in industry ex. ict and refineries - paper (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Paper -- EG(paper_industry)
+# Carrier:     Ammonia -- ammonia?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(paper_industry)), "ammonia?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

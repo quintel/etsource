@@ -1,0 +1,20 @@
+# Final consumption of heat in industry ex. ict and refineries - paper (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Paper -- EG(paper_industry)
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(paper_industry)), "steam_hot_water? || useable_heat?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

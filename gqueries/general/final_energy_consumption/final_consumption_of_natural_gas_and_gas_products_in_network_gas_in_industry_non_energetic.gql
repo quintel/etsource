@@ -1,0 +1,14 @@
+# Final consumption of natural gas and gas products in network gas in industry (non-energetic use only).
+#
+# Sector:      Industry -- sector == :industry
+# Carrier:     Natural gas and gas products in network gas
+# Use type:    Non-energetic -- !energetic?
+#
+# Network gas times the share of natural gas and gas products in it.
+
+- unit = PJ
+- query =
+    PRODUCT(
+      Q(final_consumption_of_network_gas_in_industry_non_energetic),
+      Q(share_of_fossil_gas_in_gas_network)
+    )

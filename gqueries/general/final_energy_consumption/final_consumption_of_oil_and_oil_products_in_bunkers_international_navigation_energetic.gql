@@ -1,0 +1,20 @@
+# Final consumption of oil and oil products in international transport - international navigation (energetic use only).
+#
+# Sector:      International transport - International navigation -- EG(bunkers_international_navigation)
+# Carrier:     Oil and oil products -- crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_navigation)), "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,15 @@
+# Final consumption of oil and oil products, all sectors (non-energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Oil and oil products
+# Use type:    Non-energetic -- !energetic?
+#
+# Exception: includes the non-biogenic share of crude oil in agriculture, buildings, households, industry.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_oil_and_oil_products_in_national_transport_non_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_industry_non_energetic),
+      Q(final_consumption_of_oil_and_oil_products_in_other_non_energetic)
+    )

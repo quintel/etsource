@@ -1,0 +1,14 @@
+# Final consumption of gaseous biofuels in international transport - international aviation (energetic and non-energetic use combined).
+#
+# Sector:      International transport - International aviation -- EG(bunkers_international_aviation)
+# Carrier:     Gaseous biofuels
+# Use type:    Total
+#
+# Exception: includes the share of gaseous biofuels in network gas.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_gaseous_biofuels_excl_network_gas_in_bunkers_international_aviation_total),
+      Q(final_consumption_of_gaseous_biofuels_in_network_gas_in_bunkers_international_aviation_total)
+    )

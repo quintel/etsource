@@ -1,0 +1,17 @@
+# Final consumption from industry ex. ict and refineries - other, all carriers (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Other -- EG(other_non_specified_industry)
+# Carrier:     All carriers
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(EG(final_demand), EG(other_non_specified_industry)),
+          value
+        )
+      ),
+      BILLIONS
+    )

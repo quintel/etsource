@@ -1,0 +1,40 @@
+# Final consumption of liquid biofuels in buildings (energetic use only).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     Liquid biofuels -- biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass? + crude_oil? x Q(share_of_biogenic_in_buildings_final_demand_crude_oil_energetic)
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the biogenic share of crude oil in agriculture, buildings, households, industry.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :buildings"),
+              "biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?"
+            ),
+            "energetic?"
+          ),
+          value
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(EG(final_demand), "sector == :buildings"),
+                  "crude_oil?"
+                ),
+                "energetic?"
+              ),
+              value
+            )
+          ),
+          Q(share_of_biogenic_in_buildings_final_demand_crude_oil_energetic)
+        )
+      ),
+      BILLIONS
+    )

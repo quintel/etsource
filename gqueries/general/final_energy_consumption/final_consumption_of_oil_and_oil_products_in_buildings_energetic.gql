@@ -1,0 +1,40 @@
+# Final consumption of oil and oil products in buildings (energetic use only).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     Oil and oil products -- gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil? + crude_oil? x Q(share_of_non_biogenic_in_buildings_final_demand_crude_oil_energetic)
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the non-biogenic share of crude oil in agriculture, buildings, households, industry.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :buildings"),
+              "gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?"
+            ),
+            "energetic?"
+          ),
+          value
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(
+                  FILTER(EG(final_demand), "sector == :buildings"),
+                  "crude_oil?"
+                ),
+                "energetic?"
+              ),
+              value
+            )
+          ),
+          Q(share_of_non_biogenic_in_buildings_final_demand_crude_oil_energetic)
+        )
+      ),
+      BILLIONS
+    )

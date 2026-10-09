@@ -1,0 +1,23 @@
+# Final consumption of heat in buildings (energetic use only).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :buildings"),
+              "steam_hot_water? || useable_heat?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

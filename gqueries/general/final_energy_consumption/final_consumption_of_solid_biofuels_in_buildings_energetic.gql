@@ -1,0 +1,23 @@
+# Final consumption of solid biofuels in buildings (energetic use only).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     Solid biofuels -- wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :buildings"),
+              "wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

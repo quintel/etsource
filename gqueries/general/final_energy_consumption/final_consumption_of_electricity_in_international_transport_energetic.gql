@@ -1,0 +1,23 @@
+# Final consumption of electricity in international transport (energetic use only).
+#
+# Sector:      International transport -- sector == :bunkers
+# Carrier:     Electricity -- electricity?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :bunkers"),
+              "electricity?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

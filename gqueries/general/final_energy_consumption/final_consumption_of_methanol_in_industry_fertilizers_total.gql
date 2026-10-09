@@ -1,0 +1,17 @@
+# Final consumption of methanol in industry ex. ict and refineries - fertilizers (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Fertilizers -- EG(fertilizers_industry)
+# Carrier:     Methanol -- methanol?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(fertilizers_industry)), "methanol?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

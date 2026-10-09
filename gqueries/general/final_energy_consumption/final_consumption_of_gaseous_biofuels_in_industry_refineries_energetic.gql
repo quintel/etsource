@@ -1,0 +1,14 @@
+# Final consumption of gaseous biofuels in industry refineries (energetic use only).
+#
+# Sector:      Industry Refineries -- EG(refineries_industry)
+# Carrier:     Gaseous biofuels
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the share of gaseous biofuels in network gas.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_gaseous_biofuels_excl_network_gas_in_industry_refineries_energetic),
+      Q(final_consumption_of_gaseous_biofuels_in_network_gas_in_industry_refineries_energetic)
+    )

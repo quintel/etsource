@@ -1,0 +1,34 @@
+# Final consumption of liquid biofuels in industry ex. ict and refineries - fertilizers (non-energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Fertilizers -- EG(fertilizers_industry)
+# Carrier:     Liquid biofuels -- biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass? + crude_oil? x Q(share_of_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+# Use type:    Non-energetic -- !energetic?
+#
+# Exception: includes the biogenic share of crude oil in agriculture, buildings, households, industry.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(fertilizers_industry)), "biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?"),
+            "!energetic?"
+          ),
+          value
+        ),
+        PRODUCT(
+          SUM(
+            V(
+              FILTER(
+                FILTER(INTERSECTION(EG(final_demand), EG(fertilizers_industry)), "crude_oil?"),
+                "!energetic?"
+              ),
+              value
+            )
+          ),
+          Q(share_of_biogenic_in_industry_final_demand_crude_oil_non_energetic)
+        )
+      ),
+      BILLIONS
+    )

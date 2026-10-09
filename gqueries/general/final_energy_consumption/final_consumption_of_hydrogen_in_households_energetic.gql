@@ -1,0 +1,23 @@
+# Final consumption of hydrogen in households (energetic use only).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Hydrogen -- hydrogen? || liquid_hydrogen? || lohc?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :households"),
+              "hydrogen? || liquid_hydrogen? || lohc?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

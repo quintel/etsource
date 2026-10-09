@@ -1,0 +1,20 @@
+# Final consumption of coal and coal products, all sectors (non-energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Coal and coal products -- coal? || coal_gas? || cokes? || lignite?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "coal? || coal_gas? || cokes? || lignite?"),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

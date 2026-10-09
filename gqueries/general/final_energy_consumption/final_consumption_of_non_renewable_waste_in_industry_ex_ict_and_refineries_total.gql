@@ -1,0 +1,15 @@
+# Final consumption of non-renewable waste in industry ex. ict and refineries (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries -- sector == :industry minus EG(ict_industry), EG(refineries_industry)
+# Carrier:     Non-renewable waste
+# Use type:    Total
+#
+# Exception: industry minus industry ict, industry refineries.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_non_renewable_waste_in_industry_total),
+      NEG(Q(final_consumption_of_non_renewable_waste_in_industry_ict_total)),
+      NEG(Q(final_consumption_of_non_renewable_waste_in_industry_refineries_total))
+    )

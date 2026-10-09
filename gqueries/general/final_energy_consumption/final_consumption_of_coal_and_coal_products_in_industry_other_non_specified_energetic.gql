@@ -1,0 +1,20 @@
+# Final consumption of coal and coal products in industry ex. ict and refineries - other (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Other -- EG(other_non_specified_industry)
+# Carrier:     Coal and coal products -- coal? || coal_gas? || cokes? || lignite?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(other_non_specified_industry)), "coal? || coal_gas? || cokes? || lignite?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

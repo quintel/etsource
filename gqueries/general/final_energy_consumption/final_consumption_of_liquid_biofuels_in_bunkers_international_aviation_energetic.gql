@@ -1,0 +1,20 @@
+# Final consumption of liquid biofuels in international transport - international aviation (energetic use only).
+#
+# Sector:      International transport - International aviation -- EG(bunkers_international_aviation)
+# Carrier:     Liquid biofuels -- biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_aviation)), "biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

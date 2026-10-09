@@ -1,0 +1,17 @@
+# Final consumption of heat in industry ex. ict and refineries - aluminium (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Aluminium -- EG(aluminium_industry)
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(aluminium_industry)), "steam_hot_water? || useable_heat?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

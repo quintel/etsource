@@ -1,0 +1,20 @@
+# Final consumption of electricity in industry ex. ict and refineries - other metals (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Other metals -- EG(other_metals_industry)
+# Carrier:     Electricity -- electricity?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(other_metals_industry)), "electricity?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,14 @@
+# Final consumption of gaseous biofuels in agriculture (energetic and non-energetic use combined).
+#
+# Sector:      Agriculture -- sector == :agriculture
+# Carrier:     Gaseous biofuels
+# Use type:    Total
+#
+# Exception: includes the share of gaseous biofuels in network gas.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_gaseous_biofuels_excl_network_gas_in_agriculture_total),
+      Q(final_consumption_of_gaseous_biofuels_in_network_gas_in_agriculture_total)
+    )

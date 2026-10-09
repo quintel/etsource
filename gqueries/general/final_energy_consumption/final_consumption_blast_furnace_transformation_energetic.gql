@@ -1,0 +1,15 @@
+# Net energy transformation in blast furnaces, as counted in the EU target definition of final energy consumption.
+#
+# Sector:      Blast furnace transformation -- energy_blastfurnace_transformation_cokes
+# Carrier:     Cokes and coal (input) minus coal gas (output)
+# Use type:    Energetic
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(energy_blastfurnace_transformation_cokes, "input_of_cokes + input_of_coal"),
+        NEG(V(energy_blastfurnace_transformation_cokes, "output_of_coal_gas"))
+      ),
+      BILLIONS
+    )

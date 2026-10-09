@@ -1,0 +1,23 @@
+# Final consumption of geothermal in agriculture (energetic use only).
+#
+# Sector:      Agriculture -- sector == :agriculture
+# Carrier:     Geothermal -- geothermal?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :agriculture"),
+              "geothermal?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

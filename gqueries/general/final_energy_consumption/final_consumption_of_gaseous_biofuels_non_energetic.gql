@@ -1,0 +1,14 @@
+# Final consumption of gaseous biofuels, all sectors (non-energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Gaseous biofuels
+# Use type:    Non-energetic -- !energetic?
+#
+# Exception: includes the share of gaseous biofuels in network gas.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_gaseous_biofuels_excl_network_gas_non_energetic),
+      Q(final_consumption_of_gaseous_biofuels_in_network_gas_non_energetic)
+    )

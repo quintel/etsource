@@ -1,0 +1,20 @@
+# Final consumption of coal and coal products in international transport (energetic and non-energetic use combined).
+#
+# Sector:      International transport -- sector == :bunkers
+# Carrier:     Coal and coal products -- coal? || coal_gas? || cokes? || lignite?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :bunkers"),
+            "coal? || coal_gas? || cokes? || lignite?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

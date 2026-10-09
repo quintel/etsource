@@ -1,0 +1,20 @@
+# Final consumption of waste mix in industry ex. ict and refineries - other (non-energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Other -- EG(other_non_specified_industry)
+# Carrier:     Waste mix -- waste_mix?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(other_non_specified_industry)), "waste_mix?"),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

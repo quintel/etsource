@@ -1,0 +1,23 @@
+# Final consumption of solid biofuels in national transport (non-energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Solid biofuels -- wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,17 @@
+# Final consumption of solid biofuels in industry refineries (energetic and non-energetic use combined).
+#
+# Sector:      Industry Refineries -- EG(refineries_industry)
+# Carrier:     Solid biofuels -- wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(refineries_industry)), "wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

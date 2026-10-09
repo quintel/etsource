@@ -1,0 +1,23 @@
+# Final consumption of renewable waste excl. waste mix in industry (non-energetic use only).
+#
+# Sector:      Industry -- sector == :industry
+# Carrier:     Renewable waste excl. waste mix -- biogenic_waste?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :industry"),
+              "biogenic_waste?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,17 @@
+# Final consumption of solid biofuels in international transport - international navigation (energetic and non-energetic use combined).
+#
+# Sector:      International transport - International navigation -- EG(bunkers_international_navigation)
+# Carrier:     Solid biofuels -- wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_navigation)), "wood_pellets? || torrefied_biomass_pellets? || wet_biomass? || dry_biomass?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,20 @@
+# Final consumption of heat in households (energetic and non-energetic use combined).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :households"),
+            "steam_hot_water? || useable_heat?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

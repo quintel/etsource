@@ -1,0 +1,17 @@
+# Final consumption of geothermal in industry ict (energetic and non-energetic use combined).
+#
+# Sector:      Industry ICT -- EG(ict_industry)
+# Carrier:     Geothermal -- geothermal?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(ict_industry)), "geothermal?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

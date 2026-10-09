@@ -1,0 +1,23 @@
+# Final consumption of liquid biofuels in other (non-energetic use only).
+#
+# Sector:      Other -- sector == :other
+# Carrier:     Liquid biofuels -- biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :other"),
+              "biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

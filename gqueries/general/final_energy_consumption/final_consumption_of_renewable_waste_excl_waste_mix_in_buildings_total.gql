@@ -1,0 +1,20 @@
+# Final consumption of renewable waste excl. waste mix in buildings (energetic and non-energetic use combined).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     Renewable waste excl. waste mix -- biogenic_waste?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :buildings"),
+            "biogenic_waste?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

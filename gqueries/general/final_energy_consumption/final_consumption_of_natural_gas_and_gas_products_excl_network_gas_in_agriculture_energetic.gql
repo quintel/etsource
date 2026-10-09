@@ -1,0 +1,23 @@
+# Final consumption of natural gas and gas products excl. network gas in agriculture (energetic use only).
+#
+# Sector:      Agriculture -- sector == :agriculture
+# Carrier:     Natural gas and gas products excl. network gas -- natural_gas? || propane? || lng?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :agriculture"),
+              "natural_gas? || propane? || lng?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

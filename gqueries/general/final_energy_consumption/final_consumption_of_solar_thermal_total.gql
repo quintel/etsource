@@ -1,0 +1,17 @@
+# Final consumption of solar thermal, all sectors (energetic and non-energetic use combined).
+#
+# Sector:      All sectors
+# Carrier:     Solar thermal -- solar_thermal?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(EG(final_demand), "solar_thermal?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

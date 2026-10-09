@@ -1,0 +1,20 @@
+# Final consumption of coal and coal products in international transport - international aviation (energetic use only).
+#
+# Sector:      International transport - International aviation -- EG(bunkers_international_aviation)
+# Carrier:     Coal and coal products -- coal? || coal_gas? || cokes? || lignite?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_aviation)), "coal? || coal_gas? || cokes? || lignite?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

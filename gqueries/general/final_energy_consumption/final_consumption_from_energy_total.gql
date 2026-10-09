@@ -1,0 +1,17 @@
+# Final consumption from energy, all carriers (energetic and non-energetic use combined).
+#
+# Sector:      Energy -- sector == :energy
+# Carrier:     All carriers
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(EG(final_demand), "sector == :energy"),
+          value
+        )
+      ),
+      BILLIONS
+    )

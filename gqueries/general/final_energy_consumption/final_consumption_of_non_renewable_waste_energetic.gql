@@ -1,0 +1,14 @@
+# Final consumption of non-renewable waste, all sectors (energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Non-renewable waste
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the share of non-renewable waste in waste mix.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_non_renewable_waste_excl_waste_mix_energetic),
+      Q(final_consumption_of_non_renewable_waste_in_waste_mix_energetic)
+    )

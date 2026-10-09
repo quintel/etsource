@@ -1,0 +1,23 @@
+# Final consumption of ammonia in agriculture (energetic use only).
+#
+# Sector:      Agriculture -- sector == :agriculture
+# Carrier:     Ammonia -- ammonia?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :agriculture"),
+              "ammonia?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

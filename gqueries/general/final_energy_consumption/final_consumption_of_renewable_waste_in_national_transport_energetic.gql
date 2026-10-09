@@ -1,0 +1,14 @@
+# Final consumption of renewable waste in national transport (energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Renewable waste
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the share of renewable waste in waste mix.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_renewable_waste_excl_waste_mix_in_national_transport_energetic),
+      Q(final_consumption_of_renewable_waste_in_waste_mix_in_national_transport_energetic)
+    )

@@ -1,0 +1,20 @@
+# Final consumption of geothermal in international transport (energetic and non-energetic use combined).
+#
+# Sector:      International transport -- sector == :bunkers
+# Carrier:     Geothermal -- geothermal?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :bunkers"),
+            "geothermal?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

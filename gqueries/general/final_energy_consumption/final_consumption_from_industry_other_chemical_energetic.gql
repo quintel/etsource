@@ -1,0 +1,17 @@
+# Final consumption from industry ex. ict and refineries - chemicals, all carriers (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Chemicals -- EG(other_chemical_industry)
+# Carrier:     All carriers
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(other_chemical_industry)), "energetic?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,17 @@
+# Final consumption of natural gas and gas products excl. network gas in industry ex. ict and refineries - paper (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Paper -- EG(paper_industry)
+# Carrier:     Natural gas and gas products excl. network gas -- natural_gas? || propane? || lng?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(paper_industry)), "natural_gas? || propane? || lng?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

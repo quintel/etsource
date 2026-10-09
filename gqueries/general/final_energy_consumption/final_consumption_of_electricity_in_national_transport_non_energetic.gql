@@ -1,0 +1,23 @@
+# Final consumption of electricity in national transport (non-energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Electricity -- electricity?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "electricity?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

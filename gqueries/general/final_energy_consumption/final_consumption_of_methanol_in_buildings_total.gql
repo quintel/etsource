@@ -1,0 +1,20 @@
+# Final consumption of methanol in buildings (energetic and non-energetic use combined).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     Methanol -- methanol?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :buildings"),
+            "methanol?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

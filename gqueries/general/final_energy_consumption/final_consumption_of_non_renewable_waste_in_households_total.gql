@@ -1,0 +1,14 @@
+# Final consumption of non-renewable waste in households (energetic and non-energetic use combined).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Non-renewable waste
+# Use type:    Total
+#
+# Exception: includes the share of non-renewable waste in waste mix.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_non_renewable_waste_excl_waste_mix_in_households_total),
+      Q(final_consumption_of_non_renewable_waste_in_waste_mix_in_households_total)
+    )

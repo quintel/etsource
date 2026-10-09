@@ -1,0 +1,17 @@
+# Final consumption of network gas in industry ex. ict and refineries - other (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Other -- EG(other_non_specified_industry)
+# Carrier:     Network gas -- network_gas? || compressed_network_gas?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(other_non_specified_industry)), "network_gas? || compressed_network_gas?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

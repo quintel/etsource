@@ -1,0 +1,20 @@
+# Final consumption of liquid biofuels in national transport (energetic and non-energetic use combined).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Liquid biofuels -- biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :transport"),
+            "biodiesel? || bio_ethanol? || bio_kerosene? || bio_oil? || bionaphtha? || biomethanol? || bio_pyrolysis_oil? || oily_biomass?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

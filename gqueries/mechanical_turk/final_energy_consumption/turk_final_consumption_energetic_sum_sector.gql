@@ -1,0 +1,15 @@
+# Mechanical turk query: sum of the final consumption of all sectors (energetic use only).
+# The result should equal final_consumption_energetic.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_from_agriculture_energetic),
+      Q(final_consumption_from_energy_energetic),
+      Q(final_consumption_from_households_energetic),
+      Q(final_consumption_from_buildings_energetic),
+      Q(final_consumption_from_national_transport_energetic),
+      Q(final_consumption_from_international_transport_energetic),
+      Q(final_consumption_from_other_energetic),
+      Q(final_consumption_from_industry_energetic)
+    )

@@ -1,0 +1,17 @@
+# Final consumption of electricity in industry ict (energetic and non-energetic use combined).
+#
+# Sector:      Industry ICT -- EG(ict_industry)
+# Carrier:     Electricity -- electricity?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(ict_industry)), "electricity?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

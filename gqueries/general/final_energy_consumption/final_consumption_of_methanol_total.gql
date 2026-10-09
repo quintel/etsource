@@ -1,0 +1,17 @@
+# Final consumption of methanol, all sectors (energetic and non-energetic use combined).
+#
+# Sector:      All sectors
+# Carrier:     Methanol -- methanol?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(EG(final_demand), "methanol?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

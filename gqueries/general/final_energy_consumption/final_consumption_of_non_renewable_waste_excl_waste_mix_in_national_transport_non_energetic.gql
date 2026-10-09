@@ -1,0 +1,23 @@
+# Final consumption of non-renewable waste excl. waste mix in national transport (non-energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Non-renewable waste excl. waste mix -- non_biogenic_waste?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "non_biogenic_waste?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

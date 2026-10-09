@@ -1,0 +1,20 @@
+# Final consumption of heat in industry ex. ict and refineries - fertilizers (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Fertilizers -- EG(fertilizers_industry)
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(fertilizers_industry)), "steam_hot_water? || useable_heat?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

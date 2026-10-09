@@ -1,0 +1,20 @@
+# Final consumption from other, all carriers (energetic use only).
+#
+# Sector:      Other -- sector == :other
+# Carrier:     All carriers
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :other"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

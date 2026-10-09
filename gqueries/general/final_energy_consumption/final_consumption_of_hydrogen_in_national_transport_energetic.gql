@@ -1,0 +1,23 @@
+# Final consumption of hydrogen in national transport (energetic use only).
+#
+# Sector:      National transport -- sector == :transport
+# Carrier:     Hydrogen -- hydrogen? || liquid_hydrogen? || lohc?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :transport"),
+              "hydrogen? || liquid_hydrogen? || lohc?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

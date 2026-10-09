@@ -1,0 +1,20 @@
+# Final consumption of electricity, all sectors (energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Electricity -- electricity?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "electricity?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

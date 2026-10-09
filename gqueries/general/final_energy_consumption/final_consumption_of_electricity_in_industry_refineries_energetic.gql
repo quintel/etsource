@@ -1,0 +1,20 @@
+# Final consumption of electricity in industry refineries (energetic use only).
+#
+# Sector:      Industry Refineries -- EG(refineries_industry)
+# Carrier:     Electricity -- electricity?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(refineries_industry)), "electricity?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

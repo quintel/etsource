@@ -1,0 +1,17 @@
+# Final consumption of non-renewable waste excl. waste mix in industry ict (energetic and non-energetic use combined).
+#
+# Sector:      Industry ICT -- EG(ict_industry)
+# Carrier:     Non-renewable waste excl. waste mix -- non_biogenic_waste?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(ict_industry)), "non_biogenic_waste?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

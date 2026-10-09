@@ -1,0 +1,23 @@
+# Final consumption of methanol in international transport (energetic use only).
+#
+# Sector:      International transport -- sector == :bunkers
+# Carrier:     Methanol -- methanol?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :bunkers"),
+              "methanol?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

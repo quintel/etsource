@@ -1,0 +1,23 @@
+# Final consumption of heat in other (non-energetic use only).
+#
+# Sector:      Other -- sector == :other
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :other"),
+              "steam_hot_water? || useable_heat?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,20 @@
+# Final consumption of natural gas and gas products excl. network gas, all sectors (energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Natural gas and gas products excl. network gas -- natural_gas? || propane? || lng?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "natural_gas? || propane? || lng?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

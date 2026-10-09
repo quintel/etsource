@@ -1,0 +1,20 @@
+# Final consumption of solar thermal in international transport (energetic and non-energetic use combined).
+#
+# Sector:      International transport -- sector == :bunkers
+# Carrier:     Solar thermal -- solar_thermal?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :bunkers"),
+            "solar_thermal?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

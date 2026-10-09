@@ -1,0 +1,20 @@
+# Final consumption of ammonia, all sectors (energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Ammonia -- ammonia?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "ammonia?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

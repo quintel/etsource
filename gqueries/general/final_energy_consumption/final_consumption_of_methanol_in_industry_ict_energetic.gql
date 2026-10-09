@@ -1,0 +1,20 @@
+# Final consumption of methanol in industry ict (energetic use only).
+#
+# Sector:      Industry ICT -- EG(ict_industry)
+# Carrier:     Methanol -- methanol?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(ict_industry)), "methanol?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

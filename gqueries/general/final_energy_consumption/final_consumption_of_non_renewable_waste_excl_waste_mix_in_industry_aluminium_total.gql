@@ -1,0 +1,17 @@
+# Final consumption of non-renewable waste excl. waste mix in industry ex. ict and refineries - aluminium (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Aluminium -- EG(aluminium_industry)
+# Carrier:     Non-renewable waste excl. waste mix -- non_biogenic_waste?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(aluminium_industry)), "non_biogenic_waste?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

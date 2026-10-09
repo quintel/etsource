@@ -1,0 +1,14 @@
+# Final consumption of renewable waste in industry ex. ict and refineries - steel (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Steel -- EG(steel_industry)
+# Carrier:     Renewable waste
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the share of renewable waste in waste mix.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_renewable_waste_excl_waste_mix_in_industry_steel_energetic),
+      Q(final_consumption_of_renewable_waste_in_waste_mix_in_industry_steel_energetic)
+    )

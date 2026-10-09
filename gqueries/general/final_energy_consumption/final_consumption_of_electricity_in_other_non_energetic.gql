@@ -1,0 +1,23 @@
+# Final consumption of electricity in other (non-energetic use only).
+#
+# Sector:      Other -- sector == :other
+# Carrier:     Electricity -- electricity?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :other"),
+              "electricity?"
+            ),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

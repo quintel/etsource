@@ -1,0 +1,20 @@
+# Final consumption of gaseous biofuels excl. network gas, all sectors (non-energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Gaseous biofuels excl. network gas -- biogas? || greengas? || bio_lng?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "biogas? || greengas? || bio_lng?"),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

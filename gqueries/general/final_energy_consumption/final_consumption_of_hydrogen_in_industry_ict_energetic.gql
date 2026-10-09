@@ -1,0 +1,20 @@
+# Final consumption of hydrogen in industry ict (energetic use only).
+#
+# Sector:      Industry ICT -- EG(ict_industry)
+# Carrier:     Hydrogen -- hydrogen? || liquid_hydrogen? || lohc?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(ict_industry)), "hydrogen? || liquid_hydrogen? || lohc?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

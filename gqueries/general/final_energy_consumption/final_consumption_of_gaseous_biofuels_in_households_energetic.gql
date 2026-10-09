@@ -1,0 +1,14 @@
+# Final consumption of gaseous biofuels in households (energetic use only).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Gaseous biofuels
+# Use type:    Energetic -- energetic?
+#
+# Exception: includes the share of gaseous biofuels in network gas.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_gaseous_biofuels_excl_network_gas_in_households_energetic),
+      Q(final_consumption_of_gaseous_biofuels_in_network_gas_in_households_energetic)
+    )

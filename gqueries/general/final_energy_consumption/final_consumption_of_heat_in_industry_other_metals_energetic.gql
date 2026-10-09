@@ -1,0 +1,20 @@
+# Final consumption of heat in industry ex. ict and refineries - other metals (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Other metals -- EG(other_metals_industry)
+# Carrier:     Heat -- steam_hot_water? || useable_heat?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(other_metals_industry)), "steam_hot_water? || useable_heat?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

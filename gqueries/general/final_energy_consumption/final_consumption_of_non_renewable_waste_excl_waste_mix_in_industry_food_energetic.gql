@@ -1,0 +1,20 @@
+# Final consumption of non-renewable waste excl. waste mix in industry ex. ict and refineries - food (energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Food -- EG(food_industry)
+# Carrier:     Non-renewable waste excl. waste mix -- non_biogenic_waste?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(food_industry)), "non_biogenic_waste?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

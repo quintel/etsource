@@ -1,0 +1,23 @@
+# Final consumption of electricity in agriculture (energetic use only).
+#
+# Sector:      Agriculture -- sector == :agriculture
+# Carrier:     Electricity -- electricity?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :agriculture"),
+              "electricity?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

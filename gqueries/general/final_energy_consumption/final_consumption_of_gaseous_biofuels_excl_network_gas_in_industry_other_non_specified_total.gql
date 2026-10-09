@@ -1,0 +1,17 @@
+# Final consumption of gaseous biofuels excl. network gas in industry ex. ict and refineries - other (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Other -- EG(other_non_specified_industry)
+# Carrier:     Gaseous biofuels excl. network gas -- biogas? || greengas? || bio_lng?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(other_non_specified_industry)), "biogas? || greengas? || bio_lng?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

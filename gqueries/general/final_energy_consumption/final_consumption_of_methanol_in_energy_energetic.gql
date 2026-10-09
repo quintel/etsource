@@ -1,0 +1,23 @@
+# Final consumption of methanol in energy (energetic use only).
+#
+# Sector:      Energy -- sector == :energy
+# Carrier:     Methanol -- methanol?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :energy"),
+              "methanol?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

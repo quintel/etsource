@@ -1,0 +1,20 @@
+# Final consumption of hydrogen, all sectors (energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Hydrogen -- hydrogen? || liquid_hydrogen? || lohc?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "hydrogen? || liquid_hydrogen? || lohc?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

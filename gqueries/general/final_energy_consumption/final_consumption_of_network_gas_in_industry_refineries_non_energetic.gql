@@ -1,0 +1,20 @@
+# Final consumption of network gas in industry refineries (non-energetic use only).
+#
+# Sector:      Industry Refineries -- EG(refineries_industry)
+# Carrier:     Network gas -- network_gas? || compressed_network_gas?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(refineries_industry)), "network_gas? || compressed_network_gas?"),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

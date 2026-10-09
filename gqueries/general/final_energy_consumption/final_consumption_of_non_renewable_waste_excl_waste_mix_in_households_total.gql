@@ -1,0 +1,20 @@
+# Final consumption of non-renewable waste excl. waste mix in households (energetic and non-energetic use combined).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Non-renewable waste excl. waste mix -- non_biogenic_waste?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :households"),
+            "non_biogenic_waste?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

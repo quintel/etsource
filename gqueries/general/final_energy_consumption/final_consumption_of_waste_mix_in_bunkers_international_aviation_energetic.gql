@@ -1,0 +1,20 @@
+# Final consumption of waste mix in international transport - international aviation (energetic use only).
+#
+# Sector:      International transport - International aviation -- EG(bunkers_international_aviation)
+# Carrier:     Waste mix -- waste_mix?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(bunkers_international_aviation)), "waste_mix?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

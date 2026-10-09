@@ -1,0 +1,23 @@
+# Final consumption of oil and oil products in energy (energetic use only).
+#
+# Sector:      Energy -- sector == :energy
+# Carrier:     Oil and oil products -- crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :energy"),
+              "crude_oil? || gasoline? || diesel? || lpg? || kerosene? || heavy_fuel_oil? || naphtha? || refinery_gas? || pyrolysis_oil?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

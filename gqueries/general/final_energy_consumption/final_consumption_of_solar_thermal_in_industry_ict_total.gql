@@ -1,0 +1,17 @@
+# Final consumption of solar thermal in industry ict (energetic and non-energetic use combined).
+#
+# Sector:      Industry ICT -- EG(ict_industry)
+# Carrier:     Solar thermal -- solar_thermal?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(ict_industry)), "solar_thermal?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

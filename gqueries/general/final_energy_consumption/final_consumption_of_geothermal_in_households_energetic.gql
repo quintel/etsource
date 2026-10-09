@@ -1,0 +1,23 @@
+# Final consumption of geothermal in households (energetic use only).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Geothermal -- geothermal?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :households"),
+              "geothermal?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

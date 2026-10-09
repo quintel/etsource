@@ -1,0 +1,20 @@
+# Final consumption from buildings, all carriers (energetic use only).
+#
+# Sector:      Buildings -- sector == :buildings
+# Carrier:     All carriers
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "sector == :buildings"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

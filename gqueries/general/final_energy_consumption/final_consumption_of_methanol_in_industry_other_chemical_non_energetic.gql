@@ -1,0 +1,20 @@
+# Final consumption of methanol in industry ex. ict and refineries - chemicals (non-energetic use only).
+#
+# Sector:      Industry ex. ICT and refineries - Chemicals -- EG(other_chemical_industry)
+# Carrier:     Methanol -- methanol?
+# Use type:    Non-energetic -- !energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(INTERSECTION(EG(final_demand), EG(other_chemical_industry)), "methanol?"),
+            "!energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

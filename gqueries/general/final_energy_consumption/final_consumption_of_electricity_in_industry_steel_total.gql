@@ -1,0 +1,17 @@
+# Final consumption of electricity in industry ex. ict and refineries - steel (energetic and non-energetic use combined).
+#
+# Sector:      Industry ex. ICT and refineries - Steel -- EG(steel_industry)
+# Carrier:     Electricity -- electricity?
+# Use type:    Total
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(INTERSECTION(EG(final_demand), EG(steel_industry)), "electricity?"),
+          value
+        )
+      ),
+      BILLIONS
+    )

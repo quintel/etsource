@@ -1,0 +1,23 @@
+# Final consumption of network gas in households (energetic use only).
+#
+# Sector:      Households -- sector == :households
+# Carrier:     Network gas -- network_gas? || compressed_network_gas?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              FILTER(EG(final_demand), "sector == :households"),
+              "network_gas? || compressed_network_gas?"
+            ),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

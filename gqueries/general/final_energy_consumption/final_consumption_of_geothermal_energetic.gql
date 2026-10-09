@@ -1,0 +1,20 @@
+# Final consumption of geothermal, all sectors (energetic use only).
+#
+# Sector:      All sectors
+# Carrier:     Geothermal -- geothermal?
+# Use type:    Energetic -- energetic?
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(EG(final_demand), "geothermal?"),
+            "energetic?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )

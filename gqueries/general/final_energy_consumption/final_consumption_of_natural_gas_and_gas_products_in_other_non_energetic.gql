@@ -1,0 +1,14 @@
+# Final consumption of natural gas and gas products in other (non-energetic use only).
+#
+# Sector:      Other -- sector == :other
+# Carrier:     Natural gas and gas products
+# Use type:    Non-energetic -- !energetic?
+#
+# Exception: includes the share of natural gas and gas products in network gas.
+
+- unit = PJ
+- query =
+    SUM(
+      Q(final_consumption_of_natural_gas_and_gas_products_excl_network_gas_in_other_non_energetic),
+      Q(final_consumption_of_natural_gas_and_gas_products_in_network_gas_in_other_non_energetic)
+    )
