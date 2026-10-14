@@ -1,0 +1,17 @@
+# Bio Oil to Industry
+#
+# Excludes the part used by refineries, which is shown as a backflow to the
+# fossil refinery (bio_oil_to_fossil_refinery).
+
+- unit = PJ
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          V(industry_final_demand_other_bio_oil, demand),
+          V(industry_final_demand_other_bio_oil_non_energetic, demand)
+        ),
+        BILLIONS
+      ),
+      NEG(Q(bio_oil_to_fossil_refinery))
+    )

@@ -1,0 +1,17 @@
+# Crude oil from distribution to other oil final demand
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          households_final_demand_other_oil,
+          buildings_final_demand_other_oil,
+          agriculture_final_demand_other_oil,
+          industry_final_demand_other_oil,
+          industry_final_demand_other_oil_non_energetic,
+          input_of_crude_oil
+        )
+      ),
+      BILLIONS
+    )

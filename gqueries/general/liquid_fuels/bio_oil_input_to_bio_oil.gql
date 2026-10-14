@@ -1,0 +1,17 @@
+# Bio oil from distribution to other bio oil final demand
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          households_final_demand_other_bio_oil,
+          buildings_final_demand_other_bio_oil,
+          agriculture_final_demand_other_bio_oil,
+          industry_final_demand_other_bio_oil,
+          industry_final_demand_other_bio_oil_non_energetic,
+          input_of_bio_oil
+        )
+      ),
+      BILLIONS
+    )
