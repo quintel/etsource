@@ -9,7 +9,7 @@
 # dataset), see etdataset/inputs_source_analyses/demand/industry.
 
 - query =
-    present_value = QUERY_PRESENT(-> {Q(industry_useful_output_industry_refinery_transofrmation_crude_oil)});
+    present_value = QUERY_PRESENT(-> {SUM(Q(industry_useful_output_industry_refinery_transformation_crude_oil), Q(industry_additional_useful_output_refinery_gas_from_crude_oil))});
     relative_value = USER_INPUT() / present_value;
 
     electricity_input_conversion_typical_refinery      = 0.00514;
@@ -134,14 +134,14 @@
             EDGE(industry_final_demand_for_chemical_refineries_steam_hot_water, industry_chemicals_refineries_combined_burners),
             share,
             steam_network_share_typical_refinery
-          ),                                        
+          ),
         )
       }
     )
 - priority = 1
 - max_value_gql = present:PRODUCT(SUM(Q(final_demand_of_biomass_products),Q(final_demand_of_oil_and_derivatives)),10)
 - min_value = 0.0
-- start_value_gql = present:Q(industry_useful_output_industry_refinery_transofrmation_crude_oil)
+- start_value_gql = present:SUM(Q(industry_useful_output_industry_refinery_transformation_crude_oil), Q(industry_additional_useful_output_refinery_gas_from_crude_oil))
 - step_value = 0.1
 - unit = PJ
 - update_period = future
