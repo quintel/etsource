@@ -1,0 +1,21 @@
+# Energetic final demand of refinery gas
+
+- unit = PJ
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          FILTER(
+            FILTER(
+              INTERSECTION(
+                EG(final_demand),EG(other_chemical_industry)
+              ),
+              energetic?
+            ),
+            "refinery_gas?"
+          ),
+          value
+        )
+      ),
+      BILLIONS
+    )
