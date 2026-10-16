@@ -1,16 +1,17 @@
 # Direct conversion input of solar for central electricity production
 # For renewable energy carriers the output of electricity is taken by convention
+# The group electricity_producing_solar_converters also includes the output node of the
+# solar PV plant with battery system, which has no solar radiation input itself
 
-- query = 
+- query =
       DIVIDE(
         SUM(
           V(
-            FILTER(G(electricity_production),"solar_radiation_input_conversion > 0.0"),
+            Q(electricity_producing_solar_converters),
             output_of_electricity
-          ),
+          )
         ),
       BILLIONS
       )
-    
-    
+
 - unit = PJ
