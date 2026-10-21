@@ -1,0 +1,10 @@
+# Refinery gas produced by the refineries that is not used in industry or by the refineries
+# themselves. This is the derived dataset version of the demand formula on the node.
+
+- query =
+    refinery_gas_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_refinery_gas_demand);
+    refinery_gas_demand =
+      DATASET_INPUT(input_industry_chemical_other_refinery_gas_demand) +
+      DATASET_INPUT(input_industry_chemical_refineries_refinery_gas_demand);
+
+    IF(refinery_gas_output > refinery_gas_demand, refinery_gas_output - refinery_gas_demand, 0.0)
