@@ -1,0 +1,10 @@
+# Refinery gas that is not used in industry ends up in industry_refinery_gas_for_energy, which has
+# no outgoing edges. Its primary demand is added so that total primary demand can be compared
+# with final demand, export and curtailment.
+
+- query =
+    SUM(
+      Q(turk_primary_demand_of_final_demand_export_and_curtailment),
+      Q(turk_primary_demand_of_industry_refinery_gas_for_energy)
+    )
+- unit = MJ
