@@ -11,8 +11,10 @@
 # The demand is set here because the present-year balance has two unknowns that close the same
 # gap: the crude oil top-up and the excess to this node. Without this formula Refinery cannot
 # choose between them (IncalculableGraphError). A flexible/inversed_flexible setup like
-# import/export does not work here either: Refinery cannot solve it, and with a converter node
-# ETEngine never uses the top-up because nothing downstream pulls demand.
+# import/export does not work here either, the balance is not on the same node. Also, the shares
+# need to remain the same.
+#
+# The MAX() function doesn't work here since it is not a GQL file. Therefore [].max is used
 
 - use = energetic
 - groups = []
