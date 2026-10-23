@@ -1,0 +1,32 @@
+# This node is used as a balancing node for excess refinery gas. It is mostly needed because some
+# countries use a lot of refinery gas in CHPs, this flow isn't modelled explicitly. There are also
+# some accounting type flows on the energy balance. For many countries, the supply is therefore
+# higher than the demand for refinery gas in the industry sector. This is a dead end in the graph.
+# For NL, however, the demand for refinery gas in industry is high and this node is 0.
+#
+# In the present year it receives the refinery gas production that exceeds the industry demand
+# (the demand of industry_final_demand_refinery_gas). In future years it receives a constant
+# share of the locally available refinery gas, so it scales with refinery production.
+#
+# The demand is set here because the present-year balance has two unknowns that close the same
+# gap: the crude oil top-up and the excess to this node. Without this formula Refinery cannot
+# choose between them (IncalculableGraphError). A flexible/inversed_flexible setup like
+# import/export does not work here either, the balance is not on the same node. Also, the shares
+# need to remain the same.
+#
+# The MAX() function doesn't work here since it is not a GQL file. Therefore [].max is used
+
+- use = energetic
+- groups = []
+- graph_methods = [demand]
+- free_co2_factor = 0.0
+
+~ demand =
+    [
+      EB(oil_refineries_transformation, refinery_gas) - (
+        EB(industry, refinery_gas) -
+        EB(energy_industry_own_use, refinery_gas) +
+        EB("own_use_in_electricity,_CHP_and_heat_plants", refinery_gas)
+      ),
+      0.0
+    ].max

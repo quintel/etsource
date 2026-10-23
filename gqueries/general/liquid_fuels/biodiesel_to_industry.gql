@@ -1,11 +1,17 @@
 # Biodiesel to Industry
+#
+# Excludes the part used by refineries, which is shown as a backflow to the
+# fossil refinery (biodiesel_to_fossil_refinery).
 
 - unit = PJ
 - query =
-    DIVIDE(
-      SUM(
-        V(industry_final_demand_biodiesel, demand),
-        V(industry_final_demand_biodiesel_non_energetic, demand)
+    SUM(
+      DIVIDE(
+        SUM(
+          V(industry_final_demand_biodiesel, demand),
+          V(industry_final_demand_biodiesel_non_energetic, demand)
+        ),
+        BILLIONS
       ),
-      BILLIONS
+      NEG(Q(biodiesel_to_fossil_refinery))
     )

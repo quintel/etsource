@@ -1,0 +1,9 @@
+# Share of the refinery gas that goes to chemicals other. The refineries get the rest through a
+# flexible edge.
+
+- query =
+    chemical_other_refinery_gas_demand = 1.0 * DATASET_INPUT(input_industry_chemical_other_refinery_gas_demand);
+    chemical_refinery_gas_demand = chemical_other_refinery_gas_demand + DATASET_INPUT(input_industry_chemical_refineries_refinery_gas_demand);
+    chemical_refinery_gas_demand = IF(chemical_refinery_gas_demand > 0.0, chemical_refinery_gas_demand, 1.0);
+
+    chemical_other_refinery_gas_demand / chemical_refinery_gas_demand
