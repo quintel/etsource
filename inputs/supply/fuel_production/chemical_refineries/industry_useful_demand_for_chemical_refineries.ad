@@ -4,9 +4,13 @@
 #   the energetic and non energetic useful demand are updated accordingly.
 # - Without refinery output in dataset start year: default values
 #   of a 'typical refinery' are taken assumed and updated according to the set refinery output.
+#   The refinery gas produced by the typical refinery is used by the refineries themselves. The
+#   burner shares are shares of the combined burners, which supply the heat demand that is not
+#   covered by refinery gas.
 #
 # For more information on the 'typical refinery' conversion values (based on EU27_european_union_27_countries
-# dataset), see etdataset/inputs_source_analyses/demand/industry.
+# dataset), see etdataset/inputs_source_analyses/demand/industry. The burner shares are the input
+# shares of industry_chemicals_refineries_combined_burners in the EU27 dataset.
 
 - query =
     present_value = QUERY_PRESENT(-> {SUM(Q(industry_useful_output_industry_refinery_transformation_crude_oil), Q(industry_additional_useful_output_refinery_gas_from_crude_oil))});
@@ -23,12 +27,12 @@
     heavy_fuel_oil_output_conversion_typical_refinery  = 0.10234;
     crude_oil_output_conversion_typical_refinery       = 0.09023;
     loss_output_conversion_typical_refinery            = 0.00758;
-    network_gas_burner_share_typical_refinery          = 0.28676;
-    crude_oil_burner_share_typical_refinery            = 0.65964;
-    biomass_burner_share_typical_refinery              = 0.00008;
-    coal_burner_share_typical_refinery                 = 0.00043;
+    network_gas_burner_share_typical_refinery          = 0.57679;
+    crude_oil_burner_share_typical_refinery            = 0.31540;
+    biomass_burner_share_typical_refinery              = 0.00016;
+    coal_burner_share_typical_refinery                 = 0.00087;
     hydrogen_burner_share_typical_refinery             = 0.00000;
-    steam_network_share_typical_refinery               = 0.05308;
+    steam_network_share_typical_refinery               = 0.10678;
 
     IF(
       present_value > 0.0,
@@ -69,6 +73,16 @@
             OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),refinery_gas),
             conversion,
             refinery_gas_output_conversion_typical_refinery
+          ),
+          UPDATE(
+            EDGE(industry_locally_available_refinery_gas, industry_final_demand_refinery_gas),
+            share,
+            1.0
+          ),
+          UPDATE(
+            EDGE(industry_locally_available_refinery_gas, industry_refinery_gas_for_gas_power_fuelmix),
+            share,
+            0.0
           ),
           UPDATE(
             OUTPUT_SLOTS(V(industry_refinery_transformation_crude_oil),diesel),
