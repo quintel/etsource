@@ -765,6 +765,8 @@ industry_final_demand_other_oil:
   demand: 26.309164519762373
 industry_final_demand_other_oil_non_energetic:
   demand: 262.2579320770155
+industry_final_demand_refinery_gas:
+  demand: 0.0
 industry_final_demand_steam_hot_water:
   demand: 121.05974131541966
 industry_final_demand_wood_pellets:
@@ -798,6 +800,8 @@ industry_other_metals_burner_network_gas:
     :coal: 1.0
     :crude_oil: 0.0
     :network_gas: 0.0
+industry_refinery_gas_for_gas_power_fuelmix:
+  demand: 0.2767197953783059
 industry_refinery_transformation_crude_oil:
   output:
     :diesel: 0.32345416751330497
@@ -832,6 +836,10 @@ industry_steel_scrap_hbi_eaf:
     :wood_pellets: 0.0
   output:
     :not_defined: 0.2004
+industry_total_production_refinery_gas:
+  input:
+    :crude_oil: 0.0
+    :refinery_gas: 1.0
 industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic:
   demand: 6.836541920048517
 other_final_demand_coal:
@@ -1136,6 +1144,8 @@ industry_final_demand_for_chemical_network_gas-industry_final_demand_for_chemica
 : parent_share: 1.0
 ? industry_final_demand_for_chemical_network_gas_non_energetic-industry_final_demand_for_chemical_refineries_network_gas_non_energetic@network_gas
 : parent_share: 0.0
+industry_final_demand_for_chemical_refinery_gas-industry_final_demand_for_chemical_other_refinery_gas@refinery_gas:
+  parent_share: 0.0
 ? industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_fertilizers_steam_hot_water@steam_hot_water
 : parent_share: 0.0
 industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_other_steam_hot_water@steam_hot_water:
@@ -1167,7 +1177,7 @@ industry_final_demand_for_metal_electricity-industry_final_demand_for_metal_stee
 industry_final_demand_for_metal_network_gas-industry_final_demand_for_metal_aluminium_network_gas@network_gas:
   parent_share: 0.3965722034477919
 industry_final_demand_for_metal_network_gas-industry_final_demand_for_metal_steel_network_gas@network_gas:
-  parent_share: 0.6034277965522081
+  parent_share: 0.603427796552208
 industry_final_demand_for_metal_steam_hot_water-industry_final_demand_for_metal_steel_steam_hot_water@steam_hot_water:
   parent_share: 1.0
 industry_final_demand_for_metal_steel_coal-industry_steel_blastfurnace_bof@coal:
