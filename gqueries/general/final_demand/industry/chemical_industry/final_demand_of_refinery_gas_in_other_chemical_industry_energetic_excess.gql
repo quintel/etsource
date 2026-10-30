@@ -1,0 +1,11 @@
+# Refinery gas burned in the other chemical industry to produce excess (unused) heat
+
+- unit = PJ
+- query =
+    DIVIDE(
+      DIVIDE(
+        V(industry_chemicals_other_unused_heat, demand),
+        V(industry_chemicals_other_burner_refinery_gas, useable_heat_output_conversion)
+      ),
+      BILLIONS
+    )
