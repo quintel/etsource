@@ -765,6 +765,8 @@ industry_final_demand_other_oil:
   demand: 162.10944250041254
 industry_final_demand_other_oil_non_energetic:
   demand: 0.0
+industry_final_demand_refinery_gas:
+  demand: 0.0
 industry_final_demand_steam_hot_water:
   demand: 0.0
 industry_final_demand_wood_pellets:
@@ -831,6 +833,10 @@ industry_steel_scrap_hbi_eaf:
     :wood_pellets: 0.0
   output:
     :not_defined: 0.2004
+industry_total_production_refinery_gas:
+  input:
+    :crude_oil: 0.0
+    :refinery_gas: 1.0
 industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic:
   demand: 0.0
 other_final_demand_coal:
@@ -1135,6 +1141,8 @@ industry_final_demand_for_chemical_network_gas-industry_final_demand_for_chemica
 : parent_share: 1.0
 ? industry_final_demand_for_chemical_network_gas_non_energetic-industry_final_demand_for_chemical_refineries_network_gas_non_energetic@network_gas
 : parent_share: 0.0
+industry_final_demand_for_chemical_refinery_gas-industry_final_demand_for_chemical_other_refinery_gas@refinery_gas:
+  parent_share: 0.0
 ? industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_fertilizers_steam_hot_water@steam_hot_water
 : parent_share: 0.0
 industry_final_demand_for_chemical_steam_hot_water-industry_final_demand_for_chemical_other_steam_hot_water@steam_hot_water:
@@ -1230,6 +1238,10 @@ industry_final_demand_wood_pellets-industry_final_demand_for_chemical_wood_pelle
 industry_final_demand_wood_pellets-industry_final_demand_for_metal_wood_pellets@wood_pellets:
   parent_share: 0.0
 industry_final_demand_wood_pellets_non_energetic-industry_final_demand_for_chemical_wood_pellets_non_energetic@wood_pellets:
+  parent_share: 0.0
+industry_locally_available_refinery_gas-industry_final_demand_refinery_gas@refinery_gas:
+  parent_share: 1.0
+industry_locally_available_refinery_gas-industry_refinery_gas_for_gas_power_fuelmix@refinery_gas:
   parent_share: 0.0
 transport_final_demand_bio_ethanol-transport_final_demand_for_aviation_bio_ethanol@bio_ethanol:
   parent_share: 0.0

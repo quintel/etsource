@@ -1,0 +1,16 @@
+# Sets the input shares of refinery gas production: refinery gas from the refineries and the
+# crude oil that fills the gap when industry uses more refinery gas than the refineries produce.
+# Without this, datasets without any refinery gas have undetermined shares and fail to calculate.
+
+- query =
+    refinery_gas_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_refinery_gas_demand);
+    refinery_gas_demand =
+      DATASET_INPUT(input_industry_chemical_other_refinery_gas_demand) +
+      DATASET_INPUT(input_industry_chemical_refineries_refinery_gas_demand);
+    crude_oil_gap = IF(refinery_gas_demand > refinery_gas_output, 1.0 * (refinery_gas_demand - refinery_gas_output), 0.0);
+    refinery_gas_demand = IF(refinery_gas_demand > 0.0, refinery_gas_demand, 1.0);
+
+    {
+      crude_oil: crude_oil_gap / refinery_gas_demand,
+      refinery_gas: 1.0 - crude_oil_gap / refinery_gas_demand
+    }

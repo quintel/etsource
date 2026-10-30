@@ -1,0 +1,9 @@
+# Refinery gas that is not used in industry (industry_refinery_gas_for_gas_power_fuelmix). In the energy
+# balance it is mostly burned in power plants and CHPs, which are not modelled with refinery gas.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      V(industry_refinery_gas_for_gas_power_fuelmix, demand),
+      BILLIONS
+    )

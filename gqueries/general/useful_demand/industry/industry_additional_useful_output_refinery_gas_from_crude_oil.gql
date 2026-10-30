@@ -1,0 +1,17 @@
+# As a solution to make up for missing refinery gas, refinery gas is also produced directly from the
+# distribution of crude oil. In reality, this is also part of the refinery process but it is now modelled
+# separately. This value is needed in an input and has to be calculated before running the graph,
+# therefore it is slightly more complicated as it only uses preset_demand and OUTPUT_SLOTS and INPUT_SLOTS conversions.
+
+- query =
+    refinery_gas_output_refinery =
+      DIVIDE(
+        V(industry_useful_demand_for_chemical_refineries_crude_oil_non_energetic, preset_demand),
+        BILLIONS
+      ) *
+      V(OUTPUT_SLOTS(industry_refinery_transformation_crude_oil, refinery_gas), conversion);
+
+    crude_oil_share = V(INPUT_SLOTS(industry_total_production_refinery_gas, crude_oil), conversion);
+
+    DIVIDE(refinery_gas_output_refinery * crude_oil_share, 1.0 - crude_oil_share)
+- unit = PJ
