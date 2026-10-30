@@ -1,13 +1,11 @@
-# Output of refinery_gas from fossil refinery transformation
-# The node 'industry total production refinery gas' is used that combines the production from the
-# refinery node and the direct input from 'distribution of crude oil'
+#Output of refinery gas from fossil refineries
 
 - unit = PJ
 - query =
     DIVIDE(
       SUM(
        V(
-        industry_total_production_refinery_gas,
+        industry_refinery_transformation_crude_oil,
         energy_chemical_refineries_transformation_external_coupling_node,
         output_of_refinery_gas
         )
