@@ -1,0 +1,12 @@
+# Share of the locally available refinery gas that is not used in industry: the refinery gas
+# output that exceeds the industry demand. Datasets without any refinery gas fall back to a
+# share of 0.0.
+
+- query =
+    refinery_gas_output = DATASET_INPUT(input_industry_refinery_transformation_crude_oil_refinery_gas_demand);
+    refinery_gas_demand =
+      DATASET_INPUT(input_industry_chemical_other_refinery_gas_demand) +
+      DATASET_INPUT(input_industry_chemical_refineries_refinery_gas_demand);
+    excess = IF(refinery_gas_output > refinery_gas_demand, refinery_gas_output - refinery_gas_demand, 0.0);
+
+    IF(refinery_gas_output > 0.0, 1.0 * excess / refinery_gas_output, 0.0)
