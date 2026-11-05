@@ -1,11 +1,17 @@
 # Bio kerosene to Industry
+#
+# Excludes the part used by refineries, which is shown as a backflow to the
+# fossil refinery (bio_kerosene_to_fossil_refinery).
 
 - unit = PJ
 - query =
-    DIVIDE(
-      SUM(
-        V(industry_final_demand_bio_kerosene, demand),
-        V(industry_final_demand_bio_kerosene_non_energetic, demand)
+    SUM(
+      DIVIDE(
+        SUM(
+          V(industry_final_demand_bio_kerosene, demand),
+          V(industry_final_demand_bio_kerosene_non_energetic, demand)
+        ),
+        BILLIONS
       ),
-      BILLIONS
+      NEG(Q(bio_kerosene_to_fossil_refinery))
     )

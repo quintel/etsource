@@ -1,0 +1,15 @@
+# Bio kerosene used by refineries (backflow to fossil refinery)
+#
+# Industry oil carriers are aggregated in industry_final_demand_crude_oil before
+# being split over subsectors. The refinery share of that mix is assumed to
+# apply equally to each carrier.
+
+- unit = PJ
+- query =
+    DIVIDE(
+      PRODUCT(
+        V(industry_final_demand_bio_kerosene, demand),
+        Q(share_of_industry_crude_oil_to_refineries)
+      ),
+      BILLIONS
+    )

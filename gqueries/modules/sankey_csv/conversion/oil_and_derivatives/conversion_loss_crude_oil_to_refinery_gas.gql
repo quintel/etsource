@@ -1,5 +1,5 @@
-# Refinery gas is not consumed see https://github.com/quintel/etsource/issues/1156
-# To ensure a equal inputs and outputs in the oil balance, refinery gas use is allocated as a loss
+# Refinery gas that is not used in industry ends up in industry_refinery_gas_for_gas_power_fuelmix, which has
+# no outgoing edges. To ensure equal inputs and outputs in the oil balance, it is allocated as a loss.
 
 - query =
     DIVIDE(
@@ -9,10 +9,10 @@
           "refinery_gas_output_conversion * crude_oil_input_conversion / (1 - loss_output_conversion) * output_of_loss"
         ),
         V(
-          industry_locally_available_refinery_gas_for_chemical,
+          industry_refinery_gas_for_gas_power_fuelmix,
           demand
         )
-      ), 
+      ),
       BILLIONS
     )
 - unit = PJ

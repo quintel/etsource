@@ -1,0 +1,17 @@
+# Oil Products to Industry
+#
+# Excludes the part used by refineries, which is shown as a backflow to the
+# fossil refinery (oil_products_to_fossil_refinery).
+
+- unit = PJ
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          V(industry_final_demand_other_oil, demand),
+          V(industry_final_demand_other_oil_non_energetic, demand)
+        ),
+        BILLIONS
+      ),
+      NEG(Q(oil_products_to_fossil_refinery))
+    )

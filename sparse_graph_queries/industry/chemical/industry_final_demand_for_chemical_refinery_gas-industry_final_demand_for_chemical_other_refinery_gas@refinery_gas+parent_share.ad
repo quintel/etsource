@@ -1,0 +1,8 @@
+# Share of the refinery gas in industry that goes to chemicals other.
+
+- query =
+    chemical_other_refinery_gas_demand = 1.0 * DATASET_INPUT(input_industry_chemical_other_refinery_gas_demand);
+		chemical_refineries_refinery_gas_demand = 1.0 * DATASET_INPUT(input_industry_chemical_refineries_refinery_gas_demand);
+    total_chemical_refinery_gas_demand = chemical_other_refinery_gas_demand + chemical_refineries_refinery_gas_demand;
+
+		DIVIDE(chemical_other_refinery_gas_demand, total_chemical_refinery_gas_demand)

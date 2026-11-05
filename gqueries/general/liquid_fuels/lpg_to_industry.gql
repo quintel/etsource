@@ -1,11 +1,17 @@
 # Lpg to Industry
+#
+# Excludes the part used by refineries, which is shown as a backflow to the
+# fossil refinery (lpg_to_fossil_refinery).
 
 - unit = PJ
 - query =
-    DIVIDE(
-      SUM(
-        V(industry_final_demand_lpg, demand),
-        V(industry_final_demand_lpg_non_energetic, demand)
+    SUM(
+      DIVIDE(
+        SUM(
+          V(industry_final_demand_lpg, demand),
+          V(industry_final_demand_lpg_non_energetic, demand)
+        ),
+        BILLIONS
       ),
-      BILLIONS
+      NEG(Q(lpg_to_fossil_refinery))
     )
