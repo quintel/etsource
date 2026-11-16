@@ -1,0 +1,17 @@
+# Total gross energetic CO2 production (before capture) of all sectors
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          INTERSECTION(G(direct_emissions), USE(energetic)),
+          direct_reporting_emissions_co2_production
+        ),
+        MV(
+          INTERSECTION(MG(direct_emissions), MUSE(energetic)),
+          direct_reporting_emissions_co2_production
+        )
+      ),
+      BILLIONS
+    )

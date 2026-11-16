@@ -1,0 +1,23 @@
+# Total captured fossil CO2 of all sectors, excluding direct air capture (DAC) and LULUCF removals
+# Molecule nodes do not know direct_co2_output_production_capture_fossil, so
+# direct_reporting_emissions_co2_capture is used for the molecule graph instead.
+
+- unit = MT
+- query =
+    SUM(
+      DIVIDE(
+        SUM(
+          NEG(SUM(V(
+            G(direct_emissions),
+            direct_co2_output_production_capture_fossil
+          ))),
+          NEG(SUM(MV(
+            MG(direct_emissions),
+            direct_reporting_emissions_co2_capture
+          )))
+        ),
+        BILLIONS
+      ),
+      NEG(Q(direct_emissions_co2_captured_dac)),
+      NEG(Q(direct_emissions_co2_captured_lulucf))
+    )
