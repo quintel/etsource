@@ -1,0 +1,14 @@
+# Total net CO2 emissions of all sectors: gross CO2 production minus all captured CO2
+# including LULUCF, international transport and indirect emissions.
+# This query equals direct_emissions_co2_incl_indirect_emissions_lulucf_bunkers.
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_co2_gross_production_total_energetic),
+      Q(direct_emissions_co2_gross_production_total_non_energetic),
+      Q(direct_emissions_co2_captured_fossil_total),
+      Q(direct_emissions_co2_captured_biogenic_total),
+      Q(direct_emissions_co2_captured_dac),
+      Q(direct_emissions_co2_captured_lulucf)
+    )

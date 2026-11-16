@@ -1,0 +1,16 @@
+# Total captured biogenic CO2 of all sectors
+# Biogenic CO2 is only assumed to be captured in the energy graph.
+
+- unit = MT
+- query =
+    NEG(
+      DIVIDE(
+        SUM(
+          V(
+            G(direct_emissions),
+            direct_co2_output_production_capture_biogenic
+          )
+        ),
+        BILLIONS
+      )
+    )
