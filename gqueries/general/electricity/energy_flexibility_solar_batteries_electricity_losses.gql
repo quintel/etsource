@@ -1,6 +1,8 @@
+# Battery losses: electricity input minus the electricity actually discharged.
+# The output curve is used because output_of_electricity does not subtract losses and
+# unused electricity after the merit order calculation.
+
 - query =
-    SUM(
-      V(EDGE(energy_flexibility_solar_batteries_electricity,energy_battery_unused_electricity),demand),
-      V(energy_flexibility_solar_batteries_electricity,output_of_loss)
-    )
+    V(energy_flexibility_solar_batteries_electricity, input_of_electricity) -
+    PRODUCT(SUM(V(energy_flexibility_solar_batteries_electricity, electricity_output_curve)),MJ_PER_MWH)
 - unit = MJ
