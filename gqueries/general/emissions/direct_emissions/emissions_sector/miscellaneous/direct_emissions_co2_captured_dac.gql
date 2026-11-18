@@ -2,7 +2,14 @@
 
 - unit = MT
 - query =
-    DIVIDE(
-      NEG(MV(molecules_direct_air_capture_co2, direct_reporting_emissions_co2_capture)),
-      BILLIONS
+    NEG(
+      DIVIDE(
+        SUM(
+          MV(
+            molecules_direct_air_capture_co2,
+            direct_reporting_emissions_co2_capture
+          )
+        ),
+        BILLIONS
+      )
     )

@@ -3,10 +3,14 @@
 
 - unit = MT
 - query =
-    DIVIDE(
-      NEG(SUM(V(
-        G(direct_emissions),
-        direct_co2_output_production_capture_biogenic
-      ))),
-      BILLIONS
+    NEG(
+      DIVIDE(
+        SUM(
+          V(
+            G(direct_emissions),
+            direct_co2_output_production_capture_biogenic
+          )
+        ),
+        BILLIONS
+      )
     )

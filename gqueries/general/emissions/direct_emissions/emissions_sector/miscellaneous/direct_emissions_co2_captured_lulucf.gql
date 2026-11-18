@@ -2,7 +2,14 @@
 
 - unit = MT
 - query =
-    DIVIDE(
-      NEG(MV(lulucf_removals_non_energetic_co2, direct_reporting_emissions_co2_capture)),
-      BILLIONS
+    NEG(
+      DIVIDE(
+        SUM(
+          MV(
+            lulucf_removals_non_energetic_co2,
+            direct_reporting_emissions_co2_capture
+          )
+        ),
+        BILLIONS
+      )
     )
