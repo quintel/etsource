@@ -1,16 +1,19 @@
-# Direct conversion input of solar for central electricity production
-# For renewable energy carriers the output of electricity is taken by convention
+# Direct conversion input of solar for central electricity production.
+# For renewable energy carriers the output of electricity is taken by convention.
+# The solar PV plant with battery system is not in the electricity_production group and is
+# added separately with its total production. Its battery losses and curtailment
+# will be accounted for in the conversion losses of electricity.
 
-- query = 
+- query =
       DIVIDE(
         SUM(
           V(
             FILTER(G(electricity_production),"solar_radiation_input_conversion > 0.0"),
             output_of_electricity
           ),
+          V(energy_battery_solar_pv_solar_radiation, output_of_electricity)
         ),
       BILLIONS
       )
-    
-    
+
 - unit = PJ

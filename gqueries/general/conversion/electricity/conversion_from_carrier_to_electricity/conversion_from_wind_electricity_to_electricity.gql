@@ -1,15 +1,19 @@
-# Direct conversion input of wind for central electricity production
-# For renewable energy carriers the output of electricity is taken by convention
+# Direct conversion input of wind for central electricity production.
+# For renewable energy carriers the output of electricity is taken by convention.
+# The wind turbine with battery system is not in the electricity_production group and is
+# added separately with its total production. Its battery losses and curtailment
+# will be accounted for in the conversion losses of electricity.
 
-- query = 
+- query =
       DIVIDE(
         SUM(
           V(
             FILTER(G(electricity_production),"wind_input_conversion > 0.0"),
             output_of_electricity
-          )
-        ), 
-        BILLIONS
+          ),
+          V(energy_battery_wind_turbine_inland, output_of_electricity)
+        ),
+      BILLIONS
       )
-    
+
 - unit = PJ

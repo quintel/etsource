@@ -1,0 +1,13 @@
+# Curtailed electricity: the demand of the grid curtailment node and the curtailment
+# nodes of solar and wind battery parks.
+
+- query =
+    SUM(
+      V(
+        energy_flexibility_curtailment_electricity,
+        energy_battery_curtailed_solar_electricity,
+        energy_battery_curtailed_wind_electricity,
+        demand
+      )
+    )
+- unit = MJ
