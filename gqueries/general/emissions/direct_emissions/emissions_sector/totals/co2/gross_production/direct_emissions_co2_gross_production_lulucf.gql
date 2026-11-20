@@ -1,15 +1,15 @@
-# Total gross non-energetic CO2 production (before capture) of all sectors
+# Total gross LULUCF CO2 emissions (before removals)
 
 - unit = MT
 - query =
     DIVIDE(
       SUM(
         V(
-          INTERSECTION(G(direct_emissions), USE(non_energetic)),
+          SECTOR(emissions_sector, "LULUCF"),
           direct_reporting_emissions_co2_production
         ),
         MV(
-          INTERSECTION(MG(direct_emissions), MUSE(non_energetic)),
+          MSECTOR(emissions_sector, "LULUCF"),
           direct_reporting_emissions_co2_production
         )
       ),

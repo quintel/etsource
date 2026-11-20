@@ -1,0 +1,17 @@
+# Total gross fossil CO2 production (before capture) of all sectors, excl. LULUCF
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          EXCLUDE(G(direct_emissions), SECTOR(emissions_sector, "LULUCF")),
+          direct_reporting_emissions_co2_production
+        ),
+        MV(
+          EXCLUDE(MG(direct_emissions), MSECTOR(emissions_sector, "LULUCF")),
+          direct_reporting_emissions_co2_production
+        )
+      ),
+      BILLIONS
+    )
