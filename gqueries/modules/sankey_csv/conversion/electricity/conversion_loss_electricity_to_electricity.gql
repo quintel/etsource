@@ -1,6 +1,5 @@
 # Standard query format for conversion losses is not used due to issue https://github.com/quintel/etengine/issues/1330
-# Instead, storage losses, network loss and curtailment losses are summed manually.
-# Curtailment losses are taken from energy_curtailment_electricity_losses
+# Instead, storage losses, curtailment losses and network losses are summed manually.
 
 - query =
     DIVIDE(
@@ -16,8 +15,8 @@
         Q(energy_flexibility_flow_batteries_electricity_losses),
         Q(energy_flexibility_solar_batteries_electricity_losses),
         Q(energy_flexibility_wind_batteries_electricity_losses),
-        V(energy_power_hv_network_loss, demand),
-        Q(energy_curtailment_electricity_losses)
+        Q(energy_curtailment_electricity_losses),
+        V(energy_power_hv_network_loss, demand)
       ), BILLIONS
     )
 - unit = PJ
