@@ -1,7 +1,6 @@
 # Standard query format for conversion losses is not used due to issue https://github.com/quintel/etengine/issues/1330
-# Instead, storage losses, network loss and curtailment losses are summed manually
-# Curtailment uses demand instead of primary demand of electricity, because the primary demand
-# of grid curtailment excludes the share produced from other carriers, such as natural gas
+# Instead, storage losses, network loss and curtailment losses are summed manually.
+# Curtailment losses are taken from energy_curtailment_electricity_losses
 
 - query =
     DIVIDE(
@@ -18,12 +17,7 @@
         Q(energy_flexibility_solar_batteries_electricity_losses),
         Q(energy_flexibility_wind_batteries_electricity_losses),
         V(energy_power_hv_network_loss, demand),
-        V(
-          energy_flexibility_curtailment_electricity,
-          energy_battery_curtailed_solar_electricity,
-          energy_battery_curtailed_wind_electricity,
-          demand
-        )
+        Q(energy_curtailment_electricity_losses)
       ), BILLIONS
     )
 - unit = PJ
