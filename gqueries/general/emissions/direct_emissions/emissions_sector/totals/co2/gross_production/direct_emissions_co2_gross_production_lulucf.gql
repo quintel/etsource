@@ -1,0 +1,17 @@
+# Total gross LULUCF CO2 emissions (before removals)
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          SECTOR(emissions_sector, "LULUCF"),
+          direct_reporting_emissions_co2_production
+        ),
+        MV(
+          MSECTOR(emissions_sector, "LULUCF"),
+          direct_reporting_emissions_co2_production
+        )
+      ),
+      BILLIONS
+    )

@@ -1,0 +1,27 @@
+# Total captured fossil CO2 of all sectors, excl. direct air capture (DAC) and LULUCF removals
+# Molecule nodes do not know direct_co2_output_production_capture_fossil, so
+# direct_reporting_emissions_co2_capture is used for the molecule graph instead.
+# Note: The molecule graph does not distinguish whether captured CO₂ is biogenic or fossil.
+# In this query the molecule-graph capture (paper, food, chemicals, fertilizers, refineries)
+# is counted as fossil, but can include a biogenic share from wood pellets.
+
+- unit = MT
+- query =
+    NEG(
+      DIVIDE(
+        SUM(
+          V(
+            G(direct_emissions),
+            direct_co2_output_production_capture_fossil
+          ),
+          MV(
+            EXCLUDE(
+              MG(direct_emissions),
+              ML(molecules_direct_air_capture_co2, lulucf_removals_non_energetic_co2)
+            ),
+            direct_reporting_emissions_co2_capture
+          )
+        ),
+        BILLIONS
+      )
+    )

@@ -1,0 +1,20 @@
+# Mechanical turk query for total captured CO2 (incl. DAC and LULUCF removals)
+# Sums direct_reporting_emissions_co2_capture for all energy and molecule nodes
+
+- unit = MT
+- query =
+    NEG(
+      DIVIDE(
+        SUM(
+          V(
+            ALL(),
+            direct_reporting_emissions_co2_capture
+          ),
+          MV(
+            MALL(),
+            direct_reporting_emissions_co2_capture
+          )
+        ),
+        BILLIONS
+      )
+    )
