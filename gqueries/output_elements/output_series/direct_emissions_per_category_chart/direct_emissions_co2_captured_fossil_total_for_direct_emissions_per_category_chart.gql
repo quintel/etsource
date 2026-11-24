@@ -1,0 +1,12 @@
+# Total fossil CO2 capture excl CO2 capture from DAC and LULUCF, which are shown as
+# individual series in the chart
+
+- unit = MT
+- query =
+    NEG(
+      SUM(
+        Q(direct_emissions_co2_captured_fossil_total),
+        NEG(Q(direct_emissions_co2_captured_dac)),
+        NEG(Q(direct_emissions_co2_captured_lulucf))
+      )
+    )

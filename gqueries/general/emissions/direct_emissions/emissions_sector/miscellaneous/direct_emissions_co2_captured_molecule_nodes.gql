@@ -1,0 +1,15 @@
+# Total captured CO2 of all sectors from molecule nodes
+# Molecule nodes do not distinguish between fossil and biogenic CO2
+# direct_reporting_emissions_co2_capture is used for the molecule graph instead
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        MV(
+          MG(direct_emissions),
+          direct_reporting_emissions_co2_capture
+        )
+      ),
+      BILLIONS
+    )

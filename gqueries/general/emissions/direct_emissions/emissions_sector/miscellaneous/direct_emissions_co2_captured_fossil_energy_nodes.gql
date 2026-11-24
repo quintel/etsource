@@ -1,0 +1,13 @@
+# Total captured fossil CO2 of all sectors from energy nodes
+
+- unit = MT
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(direct_emissions),
+          direct_co2_output_production_capture_fossil
+        )
+      ),
+      BILLIONS
+    )

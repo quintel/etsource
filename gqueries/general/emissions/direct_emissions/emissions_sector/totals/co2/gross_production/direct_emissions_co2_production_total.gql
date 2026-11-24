@@ -1,0 +1,16 @@
+# Total gross CO2 production (before capture) of all sectors
+
+- query =
+    DIVIDE(
+      SUM(
+        V(
+          G(direct_emissions),
+          direct_reporting_emissions_co2_production
+        ),
+        MV(
+          MG(direct_emissions),
+          direct_reporting_emissions_co2_production
+        )
+      ),
+      BILLIONS
+    )

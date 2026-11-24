@@ -1,0 +1,13 @@
+# Mechanical turk query for total GHG emissions
+# Sums the series of the direct emissions chart: CO2 production, CO2 capture and other GHG
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_co2_production_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_fossil_total_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_biogenic_total_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_dac_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_lulucf_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_other_ghg_total_for_direct_emissions_per_category_chart)
+    )

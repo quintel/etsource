@@ -1,0 +1,24 @@
+# Mechanical turk query for total captured CO2
+# Sums direct_reporting_emissions_co2_capture for all energy and molecule nodes
+# Makes the total negative to compare with emissions chart CO2 capture query sum
+# Final SUM() function used to avoid result becoming -0 with NEG() if capture is 0
+
+- unit = MT
+- query =
+    SUM(
+      NEG(
+        DIVIDE(
+          SUM(
+            V(
+              ALL(),
+              direct_reporting_emissions_co2_capture
+            ),
+            MV(
+              MALL(),
+              direct_reporting_emissions_co2_capture
+            )
+          ),
+          BILLIONS
+        )
+      )
+    )

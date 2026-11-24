@@ -1,0 +1,11 @@
+# Mechanical turk query for total captured CO2
+# Sums the captured CO2 queries used in the direct emissions chart
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_co2_captured_fossil_total_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_biogenic_total_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_dac_for_direct_emissions_per_category_chart),
+      Q(direct_emissions_co2_captured_lulucf_for_direct_emissions_per_category_chart)
+    )

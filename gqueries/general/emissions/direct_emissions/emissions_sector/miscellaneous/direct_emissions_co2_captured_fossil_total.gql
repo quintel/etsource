@@ -1,0 +1,12 @@
+# Total captured fossil CO2 of all sectors
+# Molecule nodes do not distinguish between fossil and biogenic CO2;
+# CO2 capture from molecule nodes are therefore now assumed to be fossil, which can lead
+# to an overestimation of fossil captured CO2 and underestimation of biogenic captured CO2
+# This has no effect on the total captured CO2 and net emissions
+
+- unit = MT
+- query =
+    SUM(
+      Q(direct_emissions_co2_captured_fossil_energy_nodes),
+      Q(direct_emissions_co2_captured_molecule_nodes)
+    )
